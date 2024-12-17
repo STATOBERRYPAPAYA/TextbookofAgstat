@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>5&nbsp; Central tendency II – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./dispersion.html" rel="next">
+<link href="./central1.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="5&nbsp; Central tendency II – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cleaning-data-r.ala.org.au/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="5&nbsp; Central tendency II – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cleaning-data-r.ala.org.au/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./central2.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/AtlasOfLivingAustralia/cleaning_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#geometric-mean" id="toc-geometric-mean" class="nav-link active" data-scroll-target="#geometric-mean"><span class="header-section-number">5.1</span> Geometric mean</a>
+  <ul class="collapse">
+  <li><a href="#geometric-mean-for-frequency-table" id="toc-geometric-mean-for-frequency-table" class="nav-link" data-scroll-target="#geometric-mean-for-frequency-table"><span class="header-section-number">5.1.1</span> Geometric mean for frequency table</a></li>
+  </ul></li>
+  <li><a href="#harmonic-mean" id="toc-harmonic-mean" class="nav-link" data-scroll-target="#harmonic-mean"><span class="header-section-number">5.2</span> Harmonic mean</a>
+  <ul class="collapse">
+  <li><a href="#harmonic-mean-for-frequency-table" id="toc-harmonic-mean-for-frequency-table" class="nav-link" data-scroll-target="#harmonic-mean-for-frequency-table"><span class="header-section-number">5.2.1</span> Harmonic mean for frequency table</a></li>
+  </ul></li>
+  <li><a href="#am-gm-or-hm" id="toc-am-gm-or-hm" class="nav-link" data-scroll-target="#am-gm-or-hm"><span class="header-section-number">5.3</span> AM, GM or HM ?</a></li>
+  <li><a href="#relation-between-am-gm-and-hm" id="toc-relation-between-am-gm-and-hm" class="nav-link" data-scroll-target="#relation-between-am-gm-and-hm"><span class="header-section-number">5.4</span> Relation between AM, GM and HM</a>
+  <ul class="collapse">
+  <li><a href="#geometric-illustration" id="toc-geometric-illustration" class="nav-link" data-scroll-target="#geometric-illustration"><span class="header-section-number">5.4.1</span> Geometric illustration</a></li>
+  </ul></li>
+  <li><a href="#sec-positional_avg" id="toc-sec-positional_avg" class="nav-link" data-scroll-target="#sec-positional_avg"><span class="header-section-number">5.5</span> Positional averages</a></li>
+  <li><a href="#sec-quartile" id="toc-sec-quartile" class="nav-link" data-scroll-target="#sec-quartile"><span class="header-section-number">5.6</span> Quartiles</a></li>
+  <li><a href="#percentiles" id="toc-percentiles" class="nav-link" data-scroll-target="#percentiles"><span class="header-section-number">5.7</span> Percentiles</a></li>
+  <li><a href="#deciles" id="toc-deciles" class="nav-link" data-scroll-target="#deciles"><span class="header-section-number">5.8</span> Deciles</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>While simple averages like mean, median, and mode are widely used to summarize data, certain situations call for more specialized measures to capture the essence of a dataset. <strong>Special averages</strong>, including the <strong>geometric mean</strong> and <strong>harmonic mean</strong>, are tailored for specific contexts where the nature of the data or the relationships between data points require a different approach.</p>
+<section id="geometric-mean" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="geometric-mean"><span class="header-section-number">5.1</span> Geometric mean</h2>
+<p>The <strong>geometric mean (GM)</strong> is a specialized measure of central tendency, particularly suited for datasets involving growth rates, ratios, or percentages, such as population growth, investment returns, or interest rates. Unlike the arithmetic mean, which calculates the average by summing values, the geometric mean finds the average by multiplying values and then taking the root (typically the <em>n</em><sup>th</sup> root for <em>n</em> values).</p>
+<p>This approach captures the compounding effects present in the data, making the geometric mean an essential tool for accurately summarizing proportional changes or rates over time. Its utility lies in providing a more representative measure for datasets where changes are multiplicative rather than additive.</p>
+<p>The geometric mean of a series containing <em>n</em> observations is the <em>n</em><sup>th</sup> root of the product of the values. If <span class="math inline">\(x_{1},x_{2},\ldots,&nbsp;x_{n}\)</span> are observations then</p>
+<p><span id="eq-gm1"><span class="math display">\[GM = \sqrt[n]{\prod_{i=1}^{n}x_{i}} \tag{5.1}\]</span></span><br>
+where <span class="math inline">\(\prod_{i=1}^{n} x_i\)</span> means the product of <span class="math inline">\(x_{1},x_{2},\ldots,&nbsp;x_{n}\)</span></p>
+<p><span class="math display">\[= \left( x_1 x_2 \cdots x_n \right)^{\frac{1}{n}}\]</span></p>
+<p><span class="math display">\[\log \text{GM} = \frac{1}{n} \log \left( x_1 x_2 \cdots x_n \right)\]</span></p>
+<p><span class="math display">\[= \frac{1}{n} \left( \log x_1 + \log x_2 + \cdots + \log x_n \right)\]</span></p>
+<p><span id="eq-gm2"><span class="math display">\[= \frac{\sum_{i=1}^{n} \log x_i}{n} \tag{5.2}\]</span></span></p>
+<p><span id="eq-gm3"><span class="math display">\[\text{GM} = \text{Antilog} \left( \frac{\sum_{i=1}^{n} \log x_i}{n} \right) \tag{5.3}\]</span></span></p>
+<section id="geometric-mean-for-frequency-table" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="geometric-mean-for-frequency-table"><span class="header-section-number">5.1.1</span> Geometric mean for frequency table</h3>
+<p><span id="eq-gm4"><span class="math display">\[\text{GM} = \text{Antilog} \left( \frac{\sum_{i=1}^{k} f_i \log x_i}{n} \right) \tag{5.4}\]</span></span></p>
+<p>where <span class="math inline">\(x_{i}\)</span> is the <em>i</em><sup>th</sup> value in the dataset and for a grouped frequency table <span class="math inline">\(x_{i}\)</span> will be the midpoint of the <em>i</em><sup>th</sup> class interval calculated as the average of upper and lower limit, <span class="math inline">\(f_{i}\)</span> is the frequency of the <em>i</em><sup>th</sup> value or class , <em>k</em> is the number of classes.</p>
+<p><strong>Example 5.1</strong> If the weight of sorghum ear heads are 45, 60, 48, 100, 65 gms. Find the Geometric mean?</p>
+<div id="tbl-sorghumear" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sorghumear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.1: log values of sorghum ear head weights
+</figcaption>
+<div aria-describedby="tbl-sorghumear-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Weight of ear head (<em>x</em>)</th>
+<th style="text-align: center;">log(<em>x</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">1.653</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">1.778</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">1.681</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">2.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">65</td>
+<td style="text-align: center;">1.813</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"><strong>8.926</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.1</strong></p>
+<p>Here <em>n</em> =5</p>
+<p>using <a href="#eq-gm3" class="quarto-xref">Equation&nbsp;<span>5.3</span></a></p>
+<p><span class="math display">\[=\text{Antilog}\left( \frac{8.926}{5} \right) \]</span><br>
+<span class="math display">\[ =\text{Antilog}(1.785) = 60.95\]</span> note: here <span class="math inline">\(\text{Antilog}\left( x \right) = 10^{x}\)</span> <em>i</em>.<em>e</em>. <span class="math display">\[\text{Antilog}\left( 1.785 \right) = \ 10^{1.785} = 60.95\]</span></p>
+<p><strong>Example 5.2</strong> Geometric mean of a frequency distribution</p>
+<div id="tbl-gmfreq" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gmfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.2: Frequency distribution and log for GM calculation
+</figcaption>
+<div aria-describedby="tbl-gmfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Weight of ear head (<em>x</em>)</th>
+<th style="text-align: center;">Frequency(<em>f</em>)</th>
+<th style="text-align: center;">log(<em>x</em>)</th>
+<th style="text-align: center;"><em>f</em>.log(<em>x</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1.653</td>
+<td style="text-align: center;">8.266</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">60</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">1.778</td>
+<td style="text-align: center;">7.113</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">1.681</td>
+<td style="text-align: center;">10.087</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">2.000</td>
+<td style="text-align: center;">16.000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">65</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">1.813</td>
+<td style="text-align: center;">16.316</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>32</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>57.782</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.2</strong></p>
+<p>Here <em>n</em> =32</p>
+<p>using <a href="#eq-gm4" class="quarto-xref">Equation&nbsp;<span>5.4</span></a></p>
+<p><span class="math display">\[{\sum_{i = 1}^{k}{{f_{i}\log}x_{i}} = 57.782
+}\]</span><br>
+<span class="math display">\[{\text{GM} = \ Antilog\left( \frac{57.782}{32} \right)  }\]</span><br>
+<span class="math display">\[{= Antilog\left( 1.8056 \right)= 10^{1.8056} = 63.92}\]</span></p>
+<p><strong>Example 5.3</strong> Geometric mean of a grouped frequency distribution</p>
+<div id="tbl-gmgrpfreq" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gmgrpfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.3: Geometric mean calculation for grouped frequency table
+</figcaption>
+<div aria-describedby="tbl-gmgrpfreq-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Class</th>
+<th style="text-align: center;">Mid value (<em>x</em>)</th>
+<th style="text-align: center;">Frequency(<em>f</em>)</th>
+<th style="text-align: center;">log(<em>x</em>)</th>
+<th style="text-align: center;"><em>f</em>.log(x)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">60-80</td>
+<td style="text-align: center;">70</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1.845</td>
+<td style="text-align: center;">9.225</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">80-100</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">1.954</td>
+<td style="text-align: center;">7.817</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">100-120</td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2.041</td>
+<td style="text-align: center;">12.248</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">120-140</td>
+<td style="text-align: center;">130</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">2.114</td>
+<td style="text-align: center;">16.912</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">140-160</td>
+<td style="text-align: center;">150</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">2.176</td>
+<td style="text-align: center;">19.585</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>32</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>65.787</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.3</strong><br>
+Here <em>n</em> =32</p>
+<p>using <a href="#eq-gm4" class="quarto-xref">Equation&nbsp;<span>5.4</span></a></p>
+<p><span class="math display">\[{\sum_{i = 1}^{k}{{f_{i}\log}x_{i}} = 65.787}\]</span> <span class="math display">\[{\text{GM} = \ Antilog\left( \frac{65.787}{32} \right)}\]</span> <span class="math display">\[{= Antilog\left( 2.0558 \right) = 10^{2.0558} = 113.71}\]</span></p>
+<p><strong>Merits and demerits of geometric mean</strong></p>
+<p><span class="ui"><strong>Merits</strong></span></p>
+<ul>
+<li><p>It is rigidly defined.</p></li>
+<li><p>It is based on all the observations of the series.</p></li>
+<li><p>It is suitable for measuring the relative changes.</p></li>
+<li><p>It gives more weights to the small values and less weight to the large values.</p></li>
+<li><p>It is used in averaging the ratios, percentages and in determining the rate gradual increase and decrease.</p></li>
+<li><p>It is capable of further algebraic treatment.</p></li>
+</ul>
+<p><span class="ui"><strong>Demerits</strong></span></p>
+<ul>
+<li><p>It is not easy to understand.</p></li>
+<li><p>It is difficult to calculate.</p></li>
+<li><p>It cannot be calculated, if the number of negative values is odd.</p></li>
+<li><p>It cannot be calculated, if any value of a series is zero.</p></li>
+<li><p>At times it gives a value which may not be found in the series or impractical.</p></li>
+</ul>
+</section>
+</section>
+<section id="harmonic-mean" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="harmonic-mean"><span class="header-section-number">5.2</span> Harmonic mean</h2>
+<p>Harmonic means are often used in averaging things like rates (e.g.&nbsp;the average travel speed given duration of several trips). Harmonic mean (HM) of a set of observations is defined as the reciprocal of the arithmetic average of the reciprocal of the given value.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Harmonic mean can be easily remembered as “reciprocal of the mean of the reciprocals”</p>
+</div>
+</div>
+<p>If <span class="math inline">\(x_{1},\ x_{2},\ldots,\ x_{n}\)</span> are <em>n</em> observations then</p>
+<p><span id="eq-hm1"><span class="math display">\[\mathbf{\text{H.M}} = \frac{n}{\sum_{i = 1}^{n}\frac{1}{x_{i}}} \tag{5.5}\]</span></span></p>
+<p><u><strong>Steps in calculating Harmonic Mean (H.M)</strong></u></p>
+<ol type="1">
+<li><p>Calculate the reciprocal (1/value) for every value.</p></li>
+<li><p>Find the average of those reciprocals (just add them and divide by how many there are)</p></li>
+<li><p>Then do the reciprocal of that average (=1/average)</p></li>
+</ol>
+<p><strong>Example 5.4</strong> From the given data 5, 10, 17, 24, 30 calculate H.M</p>
+<p><strong>Solution 5.4</strong></p>
+<p>Here <em>n</em> = 5</p>
+<div id="tbl-hmcalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-hmcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.4: Inverse of numbers to calculate harmonic mean
+</figcaption>
+<div aria-describedby="tbl-hmcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><em>x</em></th>
+<th style="text-align: center;">1/<em>x</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">0.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">0.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">0.059</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">0.042</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">0.033</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"><strong>0.434</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>using <a href="#eq-hm1" class="quarto-xref">Equation&nbsp;<span>5.5</span></a></p>
+<p><span class="math display">\[HM=\frac{5}{0.434} = 11.525\]</span></p>
+<section id="harmonic-mean-for-frequency-table" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="harmonic-mean-for-frequency-table"><span class="header-section-number">5.2.1</span> Harmonic mean for frequency table</h3>
+<p><span id="eq-hm2"><span class="math display">\[\mathbf{\text{H.M}} = \frac{n}{\sum_{i = 1}^{k}{f_{i}\frac{1}{x_{i}}}} \tag{5.6}\]</span></span></p>
+<p>where, <span class="math inline">\(x_{i}\)</span> is the <em>i</em><sup>th</sup> value in the dataset and for a grouped frequency table <span class="math inline">\(x_{i}\)</span> will be the midpoint of the <em>i</em><sup>th</sup> class interval calculated as the average of upper and lower limit, <span class="math inline">\(f_{i}\)</span> is the frequency of the <em>i</em><sup>th</sup> value or class , <em>k</em> is the number of classes.</p>
+<p><strong>Example 5.5</strong> For the given data calculate the harmonic mean.</p>
+<div id="tbl-tomato" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tomato-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.5: Model data for harmonic mean calculation
+</figcaption>
+<div aria-describedby="tbl-tomato-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>x</em></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">21</td>
+<td style="text-align: left;">22</td>
+<td style="text-align: left;">23</td>
+<td style="text-align: left;">24</td>
+<td style="text-align: left;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">frequency (<em>f</em>)</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.5</strong></p>
+<div id="tbl-freqhm" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-freqhm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.6: Calculation of harmonic mean from frequency table
+</figcaption>
+<div aria-describedby="tbl-freqhm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><em>x</em></th>
+<th style="text-align: center;"><em>f</em></th>
+<th style="text-align: center;">1/<em>x</em></th>
+<th style="text-align: center;"><em>f .</em> (1/x)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">20</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0.050</td>
+<td style="text-align: center;">0.200</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">21</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">0.048</td>
+<td style="text-align: center;">0.095</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">22</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">0.045</td>
+<td style="text-align: center;">0.318</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">23</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.043</td>
+<td style="text-align: center;">0.043</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">24</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.042</td>
+<td style="text-align: center;">0.125</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">25</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0.040</td>
+<td style="text-align: center;">0.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"></td>
+<td style="text-align: center;"><strong>18</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><strong>0.822</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here <em>n</em> =18</p>
+<p>using <a href="#eq-hm2" class="quarto-xref">Equation&nbsp;<span>5.6</span></a></p>
+<p><span class="math display">\[HM = \frac{18}{0.822} = 21.90\]</span></p>
+<p><strong>Example 5.6</strong> <em>Cistern Problem</em>-Two pipes are used to fill a cistern. Pipe A can fill the cistern in 3 hours. Pipe B can fill the cistern in 5 hours. If both pipes are opened at the same time, how long will it take to fill the cistern completely?</p>
+<p><strong>Solution 5.6</strong><br>
+To solve the cistern problem, we first calculate the rate at which each pipe fills the cistern. Pipe A fills the cistern in 3 hours, so its rate is <span class="math inline">\(\frac{1}{3}\)</span> of the cistern per hour. Pipe B fills the cistern in 5 hours, so its rate is <span class="math inline">\(\frac{1}{5}\)</span> per hour. To find the combined rate, we add these rates together; <span class="math inline">\(\frac{1}{3} + \frac{1}{5} = \frac{8}{15}\)</span>. This means the two pipes together fill <span class="math inline">\(\frac{8}{15}\)</span> of the cistern each hour. To find the total time, we take the reciprocal of the combined rate <em>i</em>.<em>e</em>. <span class="math inline">\(\text{Total time} = \frac{1}{\frac{8}{15}} = \frac{15}{8} = 1.875\)</span>. To convert 1.875 hours into hours and minutes, we first separate the whole number from the decimal part. 1.875 hours consists of 1 hour (the whole number) and 0.875 hours (the decimal part). Next, we convert the decimal part into minutes. Since 1 hour is equal to 60 minutes, we multiply 0.875 by 60 <em>i</em>.<em>e</em>. <span class="math inline">\(0.875 \times 60 = 52.5 \, \text{minutes}\)</span>. Rounding 52.5 minutes gives approximately 53 minutes. Thus, 1.875 hours is equivalent to <strong>1 hour and 53 minutes</strong>.</p>
+<p><br>
+The problem can be easily solved using the harmonic mean, the harmonic mean of two pipes is</p>
+<p><span class="math display">\[
+HM=\frac{2}{\frac{1}{3} +\frac{1}{5}}
+\]</span></p>
+<p><span class="math display">\[= \frac{2 \cdot 3 \cdot 5}{3 + 5} = \frac{30}{8} = 3.75 \, \text{hours}\]</span></p>
+<p>the harmonic mean of the pipes is 3.75 hours, and since both pipes are working together, the total time is half of that, which confirms the answer of 1 hour and 53 minutes.</p>
+<p><strong>Example 5.7</strong> A car travels a certain distance from City A to City B at a speed of 60 km/h, and returns the same distance from City B to City A at a speed of 90 km/h. What is the average speed for the entire trip?</p>
+<p><strong>Solution 5.7</strong></p>
+<p>To find the average speed when traveling the same distance at two different speeds, we use the harmonic mean. The harmonic mean for the speed is <span class="math inline">\(\frac{2 \cdot S_1 \cdot S_2}{S_1 + S_2}\)</span>, where <span class="math inline">\(S_1 = 60 \, \text{km/h}\)</span> is the speed from City A to City B, <span class="math inline">\(S_2 = 90 \, \text{km/h}\)</span> is the speed from City B to City A.</p>
+<p>In this case, we are calculating the average speed over the entire round trip. The harmonic mean is used because it accounts for the fact that traveling at different speeds over the same distance results in an overall average speed that is closer to the lower of the two speeds, rather than simply averaging the two speeds.</p>
+<p>Now, applying the harmonic mean formula:</p>
+<p><span class="math inline">\(S_{\text{avg}} = \frac{2 \cdot 60 \cdot 90}{60 + 90} = \frac{10800}{150} = 72 \, \text{km/h}\)</span></p>
+<p>So, the average speed for the entire trip is 72 km/h.</p>
+<p><strong>Merits and demerits of harmonic mean</strong></p>
+<p><u><strong>Merits</strong></u></p>
+<ul>
+<li><p>It is rigidly defined.</p></li>
+<li><p>It is defined on all observations.</p></li>
+<li><p>It is amenable to further algebraic treatment.</p></li>
+<li><p>It is the most suitable average when it is desired to give greater weight to smaller and less weight to the larger ones.</p></li>
+</ul>
+<p><u><strong>Demerits</strong></u></p>
+<ul>
+<li><p>It is not easily understood.</p></li>
+<li><p>It is difficult to compute.</p></li>
+<li><p>It is only a summary figure and may not be the actual item in the series.</p></li>
+<li><p>It gives greater importance to small items and is therefore, useful only when small items have to be given greater weightage.</p></li>
+<li><p>It is rarely used in grouped data.</p></li>
+</ul>
+</section>
+</section>
+<section id="am-gm-or-hm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="am-gm-or-hm"><span class="header-section-number">5.3</span> AM, GM or HM ?</h2>
+<p>The arithmetic mean (AM), geometric mean (GM), and harmonic mean (HM) are termed as <strong>Pythagorean means</strong>. The Pythagorean means refer to three specific types of means that were known to the ancient Greek mathematicians, particularly to Pythagoras and his followers. Choosing the right average depends on what you’re measuring and how the data behaves. Let’s break it down step by step in a simple way:</p>
+<p><strong>Arithmetic Mean (AM)</strong><br>
+The arithmetic mean is the most common type of average. You use it when the values in your data add together in a straightforward way. This is suitable for quantities like:<br>
+- Heights or weights<br>
+- Lengths or distances<br>
+- Marks in exams</p>
+<p>For example, if you want to find the average height of students in a class, you add up all the heights and divide by the number of students. The arithmetic mean gives a meaningful average because height or weight adds linearly.</p>
+<p><strong>Harmonic Mean (HM)</strong><br>
+The harmonic mean is useful when you are working with rates, ratios, or situations where quantities add up as reciprocals. Some examples include:<br>
+- Speeds (distance per unit time)<br>
+- Capacitors in a series circuit<br>
+- Rates like fuel efficiency or cost per unit</p>
+<p>For instance, imagine you are driving the same distance at different speeds. If you want to find the average speed for the entire trip, the harmonic mean is the best choice. This is because speeds relate inversely to time when you go faster, you take less time, and vice versa.</p>
+<p><strong>Geometric Mean (GM)</strong><br>
+The geometric mean is the right choice when your data involves multiplication or compounding, such as:<br>
+- Growth rates (like population growth or interest rates)<br>
+- Percentages (like inflation rates)<br>
+- Ratios</p>
+<p>For example, if you have annual interest rates for 10 years and want to find a single rate that represents the same total growth over that period, the geometric mean gives you the answer. It works by multiplying the rates and taking the root, which accounts for the compounding effect.</p>
+<p>Here’s a simple example to understand how the geometric mean works. Suppose you invest Rs.100, and your investment changes over three years as follows: in the first year, it grows by 10%, represented by a growth factor of 1.10; in the second year, it grows by 20%, represented by 1.20; and in the third year, it drops by 10%, represented by 0.90. To find a single rate that would give the same overall growth over the three years, you multiply the growth factors: <span class="math inline">\(1.10 \times 1.20 \times 0.90 = 1.188\)</span>. Then, take the cube root (since there are three years): <span class="math inline">\(\sqrt[3]{1.188} \approx 1.059\)</span>. This gives a geometric mean rate of approximately 1.059, or 5.9% per year. In other words, if your Rs. 100 investment grew steadily at a rate of 5.9% each year, it would result in the same total growth over three years, leaving you with about Rs. 118.80 at the end.</p>
+<p><strong>Key Takeaways</strong><br>
+1. Use <strong>Arithmetic Mean</strong> when values combine directly, like adding lengths or weights.<br>
+2. Use <strong>Harmonic Mean</strong> for rates or quantities that work reciprocally, like speed or resistance.<br>
+3. Use <strong>Geometric Mean</strong> for data involving multiplication or compounding, like growth rates or percentages.</p>
+<p>By understanding the relationship between the data and the type of average, you can choose the most meaningful measure for your analysis.</p>
+</section>
+<section id="relation-between-am-gm-and-hm" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="relation-between-am-gm-and-hm"><span class="header-section-number">5.4</span> Relation between AM, GM and HM</h2>
+<p>The formula for the relation between AM, GM, HM is the product of arithmetic mean and harmonic mean is equal to the square of the geometric mean. This can be presented here in the form of <a href="#eq-amgmhm" class="quarto-xref">Equation&nbsp;<span>5.7</span></a></p>
+<p><span id="eq-amgmhm"><span class="math display">\[\mathbf{\text{AM}}\mathbf{\times}\mathbf{\text{HM}}\mathbf{=}\mathbf{\text{GM}}^{\mathbf{2}} \tag{5.7}\]</span></span></p>
+<p>also</p>
+<p><span id="eq-gretamgmhm"><span class="math display">\[\mathbf{AM \geq GM \geq HM} \tag{5.8}\]</span></span></p>
+<section id="geometric-illustration" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="geometric-illustration"><span class="header-section-number">5.4.1</span> Geometric illustration</h3>
+<p>Consider two numbers a and b. See <a href="#fig-semiam" class="quarto-xref">Figure&nbsp;<span>5.1</span></a> a semi circle can be drawn with diameter a+b. Then its radius is half the diameter, which will be the arithmetic mean <span class="math inline">\(\frac{a+b}{2}\)</span>.</p>
+<div id="fig-semiam" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semiam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/semiam.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semiam-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Arithmetic mean on a semi circle
+</figcaption>
+</figure>
+</div>
+<p>The geometric mean is the length of the perpendicular where a and b meet, which is never larger than the radius of the circle as illustrated in <a href="#fig-semigm" class="quarto-xref">Figure&nbsp;<span>5.2</span></a></p>
+<div id="fig-semigm" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semigm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/semigm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semigm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.2: Geometric mean on a semi circle
+</figcaption>
+</figure>
+</div>
+<p>Now draw a line from the top of red line which is the GM in <a href="#fig-semigm" class="quarto-xref">Figure&nbsp;<span>5.2</span></a> to the center of the circle. Now that line is the radius of the circle, so it is equal to AM, which is now the hypotenuse of the newly formed triangle with GM as the leg of the triangle. So from <a href="#fig-semiamgm" class="quarto-xref">Figure&nbsp;<span>5.3</span></a> it is clear that</p>
+<p><span id="eq-amgm"><span class="math display">\[\mathbf{AM \geq GM} \tag{5.9}\]</span></span></p>
+<div id="fig-semiamgm" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semiamgm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/semiamgm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semiamgm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.3: Geometric mean and aritmetic mean on a semi circle
+</figcaption>
+</figure>
+</div>
+<p>Now if we draw an altitude to the hypotenuse as shown in <a href="#fig-semiamgm" class="quarto-xref">Figure&nbsp;<span>5.3</span></a>, the upper length on the hypotenuse is the harmonic mean . We can now consider another triangle where HM is a leg and the GM is the hypotenuse, this shows the GM is never smaller than the HM. So <span id="eq-gmhm"><span class="math display">\[\mathbf{GM \geq HM} \tag{5.10}\]</span></span></p>
+<div id="fig-semiamgmhm" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-semiamgmhm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/semiamgmhm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-semiamgmhm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.4: AM, GM and HM on a semi circle
+</figcaption>
+</figure>
+</div>
+<p>Now from <a href="#eq-amgm" class="quarto-xref">Equation&nbsp;<span>5.9</span></a> and <a href="#eq-gmhm" class="quarto-xref">Equation&nbsp;<span>5.10</span></a> it is clear that <span class="math inline">\(\mathbf{AM \geq GM \geq HM}\)</span></p>
+</section>
+</section>
+<section id="sec-positional_avg" class="level2" data-number="5.5">
+<h2 data-number="5.5" class="anchored" data-anchor-id="sec-positional_avg"><span class="header-section-number">5.5</span> Positional averages</h2>
+<p>Positional averages are measures derived directly from the values in a dataset. These averages are based on the position of the values within the series and are used to represent the overall dataset or highlight specific positional characteristics.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The <strong>median</strong> although a simple average is also a positional average that represents the middle value of an ordered dataset, making it a central point of reference. Similarly, the <strong>mode</strong>, which identifies the most frequently occurring value in the dataset, is also a positional average since it is directly taken from the series.</p>
+</div>
+</div>
+<p>The other common positional averages include <strong>percentiles</strong>, <strong>quartiles</strong>, and <strong>deciles</strong>, which divide the data into equal parts to analyze its distribution.</p>
+<p>In contrast, measures like the <strong>arithmetic mean</strong>, <strong>geometric mean</strong>, and <strong>harmonic mean</strong> are referred to as <strong>mathematical averages</strong>, as they are calculated through specific mathematical operations rather than being derived from the data’s positional properties.</p>
+</section>
+<section id="sec-quartile" class="level2" data-number="5.6">
+<h2 data-number="5.6" class="anchored" data-anchor-id="sec-quartile"><span class="header-section-number">5.6</span> Quartiles</h2>
+<p>The <strong>median</strong> divides a dataset into two equal halves. Similarly, it is possible to divide a dataset into more than two parts. When an <strong>ordered</strong> dataset is divided into four equal sections, the points that mark these divisions are called <strong>quartiles</strong>.</p>
+<p>The <strong>first or lower quartile (</strong><span class="math inline">\(\mathbf{Q}_{\mathbf{1}}\)</span><strong>)</strong> is a value that has one fourth, or 25% of the observations below its value.</p>
+<p>The <strong>second quartile (</strong><span class="math inline">\(\mathbf{Q}_{\mathbf{2}}\)</span><strong>)</strong>, has one-half, or 50% of the observations below its value. The second quartile is equal to the <strong>median</strong>.</p>
+<p>The <strong>third or upper quartile</strong>, <strong>(</strong><span class="math inline">\(\mathbf{Q}_{\mathbf{3}}\)</span><strong>)</strong>, is a value that has three-fourths, or 75% of the observations below it. If there are <em>n</em> items in a dataset then</p>
+<p><span id="eq-quartileq1"><span class="math display">\[Q_1 = \left( \frac{n + 1}{4} \right)^{\text{th}} {\text{item}} \tag{5.11}\]</span></span></p>
+<p><span id="eq-quartileq2"><span class="math display">\[Q_3 = \left( \frac{3(n + 1)}{4} \right)^{\text{th}} {\text{item}} \tag{5.12}\]</span></span></p>
+<p>Calculations of quartiles are explained using the example below. See in the example the procedure followed when a fraction appear in the calculation.</p>
+<p><strong>Example 5.8</strong> Compute quartiles for the data 25, 18, 30, 8, 15, 5, 10, 35, 40, 45</p>
+<p><strong>Solution 5.8</strong></p>
+<p>First arrange the data in ascending order</p>
+<p>5, 8, 10, 15, 18, 25, 30, 35, 40, 45</p>
+<p>here <em>n</em> = 10</p>
+<p>using <a href="#eq-quartileq1" class="quarto-xref">Equation&nbsp;<span>5.11</span></a> and <a href="#eq-quartileq2" class="quarto-xref">Equation&nbsp;<span>5.12</span></a></p>
+<p><span class="math inline">\(Q_{1} = \left( \frac{10 + 1}{4} \right)^{th}\)</span> = 2.75<sup>th</sup> item; when such a fraction appears we use the following procedure</p>
+<p><span class="math inline">\(Q_{1} =\)</span><!-- -->2.75<sup>th</sup> item = 2<sup>nd</sup> item + 0.75(3<sup>rd</sup> item - 2<sup>nd</sup> item)</p>
+<p>So from the given data <span class="math inline">\(Q_{1}\)</span>= 8+0.75(10– 8) = 9.5, also <span class="math inline">\(Q_{2}\)</span> is the median, here <span class="math inline">\(Q_{2} =\)</span>(18+25)/2 = 21.5</p>
+<p><span class="math inline">\(Q_{3} = \left(\frac{3(10 + 1)}{4} \right)^{th}\)</span> = 8.25<sup>th</sup> item = 8<sup>th</sup> item + 0.25(9<sup>th</sup> item - 8<sup>th</sup> item) = 35+0.25(40-35) = 36.25</p>
+<p><strong>Quartiles of a discrete frequency data</strong></p>
+<p>Below it is explained steps in calculating quartiles for a discrete frequency data</p>
+<ol type="1">
+<li><p>Find cumulative frequencies.</p></li>
+<li><p>Find <span class="math inline">\(\left( \frac{n + 1}{4} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies, the value just greater than <span class="math inline">\(\left( \frac{\mathbf{n + 1}}{\mathbf{4}} \right)\)</span>, then the corresponding value of <span class="math inline">\(x\)</span> is <span class="math inline">\(Q_{1}\)</span></p></li>
+<li><p>Find <span class="math inline">\(\left( \frac{\mathbf{3(n + 1)}}{\mathbf{4}} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies, the value just greater than <span class="math inline">\(\left( \frac{\mathbf{3(n + 1)}}{\mathbf{4}} \right)\)</span>, then the corresponding value of <span class="math inline">\(x\)</span> is <span class="math inline">\(Q_{3}\)</span></p></li>
+</ol>
+<p><strong>Example 5.9</strong> Compute quartiles for the data given below</p>
+<div id="tbl-quartile" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-quartile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.7: A model frequency distribution
+</figcaption>
+<div aria-describedby="tbl-quartile-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><em>x</em></td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>f</em></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.9</strong></p>
+<div id="tbl-qtlcalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-qtlcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.8: Cumulative frequency data for quartile calculation
+</figcaption>
+<div aria-describedby="tbl-qtlcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><em>x</em></th>
+<th style="text-align: center;"><em>f</em></th>
+<th style="text-align: center;"><em>cf</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">13</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">18</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">20</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">24</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here <em>n</em> =24</p>
+<p><span class="math inline">\(\left( \frac{n + 1}{4} \right)\)</span> = <span class="math inline">\(\left( \frac{25}{4} \right)\)</span> = 6.25</p>
+<p>The cumulative frequency value just greater than 6.25 is 7, the<br>
+<span class="math inline">\({x}\)</span> value corresponding to cumulative frequency 7 is 8. So <span class="math inline">\({Q}_{1}\)</span> = 8</p>
+<p><span class="math inline">\(\left( \frac{3(n + 1)}{4} \right)\)</span> = <span class="math inline">\(\left( \frac{3 \times 25}{4} \right)\)</span> = 18.75</p>
+<p>The cumulative frequency value just greater than 18.75 is 20, the<br>
+<span class="math inline">\(\mathbf{x}\)</span> value corresponding to cumulative frequency 20 is 24. So <span class="math inline">\({Q}_{3}\)</span> = 24</p>
+<p><strong>Quartiles of a grouped frequency data</strong></p>
+<p>Below it is explained steps in calculating quartiles for a continuous frequency data</p>
+<ol type="1">
+<li><p>Find cumulative frequencies</p></li>
+<li><p>Find <span class="math inline">\(\left( \frac{n}{4} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies, the value just greater than<span class="math inline">\(\left( \frac{n}{4} \right)\)</span>, and then the corresponding class interval is called <strong>first quartile class</strong>.</p></li>
+<li><p>Find <span class="math inline">\(3\left( \frac{n}{4} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies the value just greater than <span class="math inline">\(33\left( \frac{n}{4} \right)\)</span>then the corresponding class interval is called <strong>3<sup>rd</sup> quartile class</strong>. Then apply the respective formulae</p></li>
+</ol>
+<p><span id="eq-qrtl1"><span class="math display">\[Q_1 = l_1 + \frac{\frac{n}{4} - m_1}{f_1} \times c_1 \tag{5.13}\]</span></span></p>
+<p><span id="eq-qrtl2"><span class="math display">\[Q_3 = l_3 + \frac{3 \left( \frac{n}{4} \right) - m_3}{f_3} \times c_3 \tag{5.14}\]</span></span></p>
+<p>Where, <span class="math inline">\(l_{1}\)</span> = lower limit of the first quartile class</p>
+<p><span class="math inline">\(f_{1}\)</span> = frequency of the first quartile class</p>
+<p><span class="math inline">\(c_{1}\)</span> = width of the first quartile class</p>
+<p><span class="math inline">\(m_{1}\)</span> = cumulative frequency preceding the first quartile class</p>
+<p><span class="math inline">\(l_{3}\)</span>= 1ower limit of the 3<sup>rd</sup> quartile class</p>
+<p><span class="math inline">\(f_{3}\)</span>= frequency of the 3<sup>rd</sup> quartile class</p>
+<p><span class="math inline">\(c_{3}\)</span>= width of the 3<sup>rd</sup> quartile class</p>
+<p><span class="math inline">\(m_{3}\)</span> = cumulative frequency preceding the 3<sup>rd</sup> quartile class</p>
+<p><strong>Example 5.10</strong> Find the quartiles for the grouped frequency data given</p>
+<div id="tbl-grpdqrtl" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-grpdqrtl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;5.9: A model grouped frequency data
+</figcaption>
+<div aria-describedby="tbl-grpdqrtl-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Class</strong></th>
+<th style="text-align: center;"><strong>frequency</strong></th>
+<th style="text-align: center;"><strong>cumulative frequency</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">0–10</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10–20</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">20–30</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">54</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">30–40</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">82</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">40–50</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">112</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">50–60</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">145</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">60–70</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">167</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">70–80</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">182</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">80–90</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">194</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">90–100</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">204</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 5.10</strong></p>
+<p><span class="math inline">\(\left( \frac{n}{4} \right)\)</span> = <span class="math inline">\(\frac{204}{4}\)</span> = 51</p>
+<p>The cumulative frequency value just greater than 51 is 54 so the class 20-30 is the 1<sup>st</sup> quartile class</p>
+<p>using <a href="#eq-qrtl1" class="quarto-xref">Equation&nbsp;<span>5.13</span></a></p>
+<p><span class="math display">\[Q_1 = 20 + \frac{51 - 29}{25} \times 10 = 28.8\]</span></p>
+<p><span class="math inline">\(3\left( \frac{n}{4} \right)\)</span>= <span class="math inline">\(3 \times \frac{204}{4}\)</span> = 153</p>
+<p>The cumulative frequency value just greater than 153 is 167 so the class 60-70 is the 3<sup>rd</sup> quartile class</p>
+<p>using <a href="#eq-qrtl2" class="quarto-xref">Equation&nbsp;<span>5.14</span></a></p>
+<p><span class="math display">\[Q_1 = 60 + \frac{153 - 145}{22} \times 10 = 63.63\]</span></p>
+</section>
+<section id="percentiles" class="level2" data-number="5.7">
+<h2 data-number="5.7" class="anchored" data-anchor-id="percentiles"><span class="header-section-number">5.7</span> Percentiles</h2>
+<p>Percentiles divide an ordered dataset into 100 equal parts, with each part containing 1% of the observations. The <em>p</em><sup>th</sup> percentile, denoted as <span class="math inline">\(P_p\)</span>, is the value below which <em>x</em> percent of the data falls.</p>
+<p>For example:<br>
+- The <span class="math inline">\(\mathbf{P}_{\mathbf{50}}\)</span>, <strong>50th percentile</strong> is equivalent to the <strong>median</strong>, representing the middle value of the dataset.<br>
+- The <span class="math inline">\(\mathbf{P}_{\mathbf{25}}\)</span>, <strong>25th percentile</strong> corresponds to the first quartile (<span class="math inline">\(Q_1\)</span>), which marks the lower 25% of the data.<br>
+- The <span class="math inline">\(\mathbf{P}_{\mathbf{75}}\)</span>, <strong>75th percentile</strong> is the third quartile (<span class="math inline">\(Q_3\)</span>), indicating that 75% of the data falls below this value.</p>
+<p>For raw data, first arrange the <em>n</em> observations in increasing order. Then the <em>x</em><sup>th</sup> percentile is given by</p>
+<p><span id="eq-percentilesingle1"><span class="math display">\[P_p = \left( \frac{p(n + 1)}{100} \right)^{\text{th}} \text{ item} \tag{5.15}\]</span></span></p>
+<p><strong>Percentiles of discrete frequency data</strong></p>
+<p>To calculate percentiles for discrete frequency data, follow these steps which is similar to that of quartiles:</p>
+<ol type="1">
+<li><p>Find the cumulative frequencies</p></li>
+<li><p>Find the position of the percentile. For the <span class="math inline">\(p\)</span>-th percentile, calculate the position using the formula: <span class="math display">\[
+P_p = \left( \frac{p(n + 1)}{100} \right)
+\]</span> where <span class="math inline">\(p\)</span> is the percentile and <span class="math inline">\(n\)</span> is the total number of data points.</p></li>
+<li><p>Identify the value in the cumulative frequencies</p></li>
+</ol>
+<p>find the cumulative frequency that is just greater than or equal to the calculated position <span class="math inline">\(P_p\)</span>. The corresponding value of <span class="math inline">\(x\)</span> is the <span class="math inline">\(p\)</span>-th percentile.</p>
+<p>For example, to find the first percentile (<span class="math inline">\(P_1\)</span>): - Calculate <span class="math inline">\(P_1 = \left( \frac{1(n + 1)}{100} \right)\)</span>. - Locate the cumulative frequency that is just greater than <span class="math inline">\(P_1\)</span>, and the corresponding value of <span class="math inline">\(x\)</span> is <span class="math inline">\(P_1\)</span>.</p>
+<p><strong>Percentiles of a grouped frequency data</strong></p>
+<p>Calculation of percentile is very much similar to that of quartile. For a frequency distribution the <em>p</em><sup>th</sup> percentile is given by following steps</p>
+<ol type="1">
+<li><p>Find cumulative frequencies</p></li>
+<li><p>Find <span class="math inline">\(\left( \frac{p.n}{100} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies, the value just greater than <span class="math inline">\(\left( \frac{p.n}{100} \right)\)</span> and then the corresponding class interval is called <strong>Percentile class</strong>.</p></li>
+<li><p>Use the following formula</p></li>
+</ol>
+<p><span id="eq-percentile1"><span class="math display">\[P_p = l + \frac{\left( \frac{p \times n}{100} \right) - cf}{f} \times c \tag{5.16}\]</span></span></p>
+<p>Where</p>
+<p><span class="math inline">\({l}\)</span> = lower limit of the percentile class</p>
+<p><span class="math inline">\({cf}\)</span> = cumulative frequency preceding the percentile class</p>
+<p><span class="math inline">\({f}\)</span> = frequency of the percentile class</p>
+<p><span class="math inline">\({c}\)</span> = class interval</p>
+<p><span class="math inline">\({n}\)</span> = total number of observations</p>
+<p><strong>Example 5.11</strong> Compute <span class="math inline">\({P}_{25}\)</span> and <span class="math inline">\({P}_{75}\)</span> for the data 25, 18, 30, 8, 15, 5, 10, 35, 40, 45</p>
+<p><strong>Solution 5.11</strong></p>
+<p>First arrange the data in ascending order</p>
+<p>5, 8, 10, 15, 18, 25, 30, 35, 40, 45</p>
+<p>Here <em>n</em> =10</p>
+<p><span class="math inline">\(P_{25} = \left( \frac{25(10 + 1)}{100} \right)^{\text{th}}\)</span> = 2.75<sup>th</sup> item</p>
+<p><span class="math inline">\(P_{25} =\)</span><!-- -->2.75<sup>th</sup> item = 2<sup>nd</sup> item + 0.75(3<sup>rd</sup> item – 2<sup>nd</sup> item)</p>
+<p>So from the given data <span class="math inline">\(P_{25}\)</span>= 8+0.75(10– 8) = 9.5</p>
+<p><span class="math inline">\(P_{75} = \left( \frac{75(10 + 1)}{100} \right)^{\text{th}}\)</span> = 8.25<sup>th</sup> item</p>
+<p><em>i</em>.<em>e</em>. <span class="math inline">\(P_{75} = \left( 75 \times \frac{10 + 1}{100} \right)^{th}\)</span> = 8.25<sup>th</sup> item = 8<sup>th</sup> item + 0.25(9<sup>th</sup> item –8<sup>th</sup> item) = 35+0.25(40-35) =36.25</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Data in Example 5.11 is same as Example 5.8; it can be seen that <span class="math inline">\(P_{25} = Q_{1}\)</span> &amp; <span class="math inline">\(P_{75} = Q_{3}\)</span> always</p>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Try yourself</strong></p>
+<p>Find <span class="math inline">\(P_{25}\)</span>, <span class="math inline">\(P_{50}\)</span> &amp; <span class="math inline">\(P_{75}\)</span> for Example 5.9 &amp; 5.10; verify that <span class="math inline">\(P_{50} = Q_{2}\)</span>, <span class="math inline">\(P_{25} = Q_{1}\)</span> &amp; <span class="math inline">\(P_{75} = Q_{3}\)</span></p>
+</div>
+</div>
+</div>
+</section>
+<section id="deciles" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="deciles"><span class="header-section-number">5.8</span> Deciles</h2>
+<p>Deciles consist of 9 points that divide an ordered dataset into ten equal parts. The <em>d</em> <sup>th</sup> decile is denoted as <span class="math inline">\(D_d\)</span>. It is important to note that the <strong>median</strong> is the <strong>5th decile</strong>.</p>
+<p><span id="eq-decileq1"><span class="math display">\[D_d = \left( \frac{d(n + 1)}{10} \right)^{\text{th}} \text{ item} \tag{5.17}\]</span></span><br>
+where, <span class="math inline">\(d\)</span> is the decile number (e.g., <span class="math inline">\(d = 1\)</span> for the first decile, <span class="math inline">\(d = 9\)</span> for the ninth decile), and <span class="math inline">\(n\)</span> is the total number of data points.</p>
+<p><strong>Deciles of discrete frequency data</strong></p>
+<p>To calculate deciles for discrete frequency data, follow these steps which are similar to that of percentiles:</p>
+<ol type="1">
+<li><p>Find the cumulative frequencies.</p></li>
+<li><p>Find the position of the decile.<br>
+For the <span class="math inline">\(d\)</span>-th decile, calculate the position using the formula:<br>
+<span class="math display">\[D_d = \left( \frac{d(n + 1)}{10} \right)\]</span><br>
+</p></li>
+<li><p>Identify the value in the cumulative frequencies.<br>
+Find the cumulative frequency that is just greater than or equal to the calculated position <span class="math inline">\(D_d\)</span>. The corresponding value of <span class="math inline">\(x\)</span> is the <span class="math inline">\(d\)</span>-th decile.</p></li>
+</ol>
+<p>For example, to find the first decile (<span class="math inline">\(D_1\)</span>): - Calculate <span class="math inline">\(D_1 = \left( \frac{1(n + 1)}{10} \right)\)</span>. - Locate the cumulative frequency that is just greater than <span class="math inline">\(D_1\)</span>, and the corresponding value of <span class="math inline">\(x\)</span> is <span class="math inline">\(D_1\)</span>.</p>
+<p><strong>Deciles of a grouped frequency data</strong></p>
+<p>For a frequency distribution the <em>d</em><sup>th</sup> decile is given by following steps</p>
+<ol type="1">
+<li><p>Find cumulative frequencies</p></li>
+<li><p>Find <span class="math inline">\(\left( \frac{d.n}{10} \right)\)</span></p></li>
+<li><p>See in the cumulative frequencies, the value just greater than<span class="math inline">\(\left( \frac{d.n}{10} \right)\)</span>and then the corresponding class interval is called <strong>decile class</strong>.</p></li>
+<li><p>Use the following formula</p></li>
+</ol>
+<p><span id="eq-decile"><span class="math display">\[D_d = l + \frac{\left( \frac{d \times n}{10} \right) - cf}{f} \times c \tag{5.18}\]</span></span></p>
+<p>Where</p>
+<p><span class="math inline">\(l\)</span> = lower limit of the decile class</p>
+<p><span class="math inline">\({cf}\)</span> = cumulative frequency preceding the decile class</p>
+<p><span class="math inline">\({f}\)</span> = frequency of the decile class</p>
+<p><span class="math inline">\({c}\)</span> = class interval</p>
+<p><span class="math inline">\({n}\)</span> = total number of observations</p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Try yourself</strong></p>
+<p>Find <span class="math inline">\(\text{D}_{5}\)</span> for Example 5.9, 5.10 &amp; 5.11; verify that <span class="math inline">\({D}_{5} = {Q}_{2} = {P}_{50} = median\)</span></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The Harmonic mean and the perfect fourth</strong></p>
+<p>The harmonic mean a term derived from the ancient Greeks, particularly associated with Pythagoras or his followers. The harmonic mean is closely related to musical intervals, specifically the <em>perfect fourth</em>. In music theory, an octave change upwards corresponds to a doubling of the frequency (a 1:2 ratio). The harmonic mean of 1 and 2, which is <span class="math inline">\(\frac{4}{3}\)</span>, defines the frequency ratio for the perfect fourth, making it a crucial concept in understanding musical harmony and acoustics.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“The best thing about being a statistician is that you get to play in everybody else’s backyard”. – John Tukey</strong></p>
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cleaning-data-r\.ala\.org\.au\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./central1.html" class="pagination-link" aria-label="Central tendency I">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./dispersion.html" class="pagination-link" aria-label="Measures of dispersion">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

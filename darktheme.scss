@@ -1,0 +1,129 @@
+/*-- scss:defaults --*/
+
+/* Colors */
+$background-color: #36342e; /* Base dark background */
+$text-color: #f0f0f0;       /* Bright text for readability */
+$primary: #4FC3F7; /* Vibrant cyan for primary elements */
+$activecolour: #00ad34;
+$link-color: #4FC3F7;       /* Matches primary */
+$sidebar-hl: #FF6F61;       /* Bright coral for highlights */
+$toc-color: #f0f0f0;        /* Light text in TOC */
+$toc-active-border: #4FC3F7;
+$toc-active-background: #f2d585; /* Slightly lighter than background */
+
+/* Sidebar */
+.sidebar-title {
+  color: $text-color;
+}
+
+div.sidebar-item-container .active {
+  font-weight: bold;
+  color: $sidebar-hl;
+}
+
+.sidebar nav[role=doc-toc] ul > li > a.active,
+.sidebar nav[role=doc-toc] ul > li > ul > li > a.active {
+  font-weight: bold;
+  color: $activecolour;
+  background-color: $toc-active-background;
+  border-left: 4px solid $primary;
+}
+
+img.quarto-cover-image {
+  box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.8);
+}
+
+/* Sidebar Navigation */
+.sidebar-navigation a:hover {
+  color: $sidebar-hl !important;
+}
+
+.nav-link.active {
+  background-color: $toc-active-background !important;
+  color: $background-color !important;
+}
+
+/* Footnotes */
+.footnotes {
+  font-size: 0.9rem;
+  color: $text-color;
+}
+
+/* Hex Logo */
+.hex-logo {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* Download Buttons */
+#download-button {
+  border-width: 1.5px;
+  background-color: $sidebar-hl;
+  color: $text-color;
+  border-color: $primary;
+}
+
+#download-button:hover {
+  background-color: $primary;
+  color: #121212; /* Dark text for contrast */
+}
+
+/* Miscellaneous */
+body {
+  background-color: $background-color;
+  color: $text-color;
+}
+
+a {
+  color: $link-color;
+}
+
+a:hover {
+  color: $sidebar-hl;
+}
+
+/* Cards and Highlights */
+.card {
+  background-color: #1e1e1e;
+  color: $text-color;
+  border: 1px solid $primary;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+}
+
+.highlight {
+  background-color: #242424;
+  color: $text-color;
+  border-left: 4px solid $primary;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+/* Buttons */
+.button {
+  background-color: $primary;
+  color: #121212;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+.button:hover {
+  background-color: $sidebar-hl;
+  color: #121212;
+}
+
+/* Table of Contents Active Items */
+.sidebar nav[role=doc-toc] ul > li > a.active {
+  border-left: 4px solid $primary;
+  background-color: $toc-active-background;
+  color: $activecolour;
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 768px) {
+  .sidebar-title {
+    font-size: 1.2rem;
+  }
+  .hex-logo {
+    padding: 10px;
+  }
+}

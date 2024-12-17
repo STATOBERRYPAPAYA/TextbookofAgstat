@@ -1,0 +1,1706 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Central tendency I – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./central2.html" rel="next">
+<link href="./3graph.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="4&nbsp; Central tendency I – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cleaning-data-r.ala.org.au/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="4&nbsp; Central tendency I – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cleaning-data-r.ala.org.au/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./central1.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/AtlasOfLivingAustralia/cleaning_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#arithmetic-mean" id="toc-arithmetic-mean" class="nav-link active" data-scroll-target="#arithmetic-mean"><span class="header-section-number">4.1</span> Arithmetic mean</a>
+  <ul class="collapse">
+  <li><a href="#mean-of-ungrouped-frequency-distribution" id="toc-mean-of-ungrouped-frequency-distribution" class="nav-link" data-scroll-target="#mean-of-ungrouped-frequency-distribution"><span class="header-section-number">4.1.1</span> Mean of ungrouped frequency distribution</a></li>
+  <li><a href="#mean-of-grouped-frequency-distribution" id="toc-mean-of-grouped-frequency-distribution" class="nav-link" data-scroll-target="#mean-of-grouped-frequency-distribution"><span class="header-section-number">4.1.2</span> Mean of grouped frequency distribution</a></li>
+  </ul></li>
+  <li><a href="#the-median" id="toc-the-median" class="nav-link" data-scroll-target="#the-median"><span class="header-section-number">4.2</span> The median</a></li>
+  <li><a href="#median-of-ungrouped-or-raw-data" id="toc-median-of-ungrouped-or-raw-data" class="nav-link" data-scroll-target="#median-of-ungrouped-or-raw-data"><span class="header-section-number">4.3</span> Median of ungrouped or raw data</a></li>
+  <li><a href="#median-of-ungrouped-frequency-distribution" id="toc-median-of-ungrouped-frequency-distribution" class="nav-link" data-scroll-target="#median-of-ungrouped-frequency-distribution"><span class="header-section-number">4.4</span> Median of ungrouped frequency distribution</a></li>
+  <li><a href="#median-of-grouped-frequency-distribution" id="toc-median-of-grouped-frequency-distribution" class="nav-link" data-scroll-target="#median-of-grouped-frequency-distribution"><span class="header-section-number">4.5</span> Median of grouped frequency distribution</a></li>
+  <li><a href="#the-mode" id="toc-the-mode" class="nav-link" data-scroll-target="#the-mode"><span class="header-section-number">4.6</span> The mode</a>
+  <ul class="collapse">
+  <li><a href="#mode-of-ungrouped-or-raw-data" id="toc-mode-of-ungrouped-or-raw-data" class="nav-link" data-scroll-target="#mode-of-ungrouped-or-raw-data"><span class="header-section-number">4.6.1</span> Mode of ungrouped or raw data</a></li>
+  </ul></li>
+  <li><a href="#mode-of-grouped-data" id="toc-mode-of-grouped-data" class="nav-link" data-scroll-target="#mode-of-grouped-data"><span class="header-section-number">4.7</span> Mode of grouped data</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous chapter, you explored how data can be summarized using tables and visually presented through graphs, enabling important features to be highlighted effectively. In this chapter, we shift our focus to <strong>statistical measures</strong> that describe the characteristics of a dataset.</p>
+<p>One key aspect of data analysis is identifying a single value that represents the overall dataset. This is where <strong>measures of central tendency</strong> come into play. These are summary statistics that capture the center or typical value of a dataset, providing a concise numerical summary.</p>
+<p>There are five commonly used averages: <strong>mean</strong>, <strong>median</strong>, and <strong>mode</strong>, collectively referred to as <strong>simple averages</strong>, and <strong>geometric mean</strong> and <strong>harmonic mean</strong>, known as <strong>special averages</strong>. In addition to these, there are <strong>positional averages</strong>, such as <strong>quartiles</strong>, <strong>deciles</strong>, and <strong>percentiles</strong>, which are determined based on the position of values within an ordered dataset. These measures provide insights into the central value and distribution of the data, making them fundamental tools for understanding and interpreting data patterns.</p>
+<p>In this section, we will focus on <strong>simple averages</strong>, with a detailed discussion on positional averages and special averages following later.</p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="images/Measures of Central Tendency.png" class="img-fluid figure-img" style="width:60.0%" alt="Measures of central tendency"></p>
+<figcaption>Measures of central tendency</figcaption>
+</figure>
+</div>
+<p><span class="ui"><strong>Requisites of a Good Measure of Central Tendency:</strong></span></p>
+<ul>
+<li><p>It should be rigidly defined.</p></li>
+<li><p>It should be simple to understand &amp; easy to calculate</p></li>
+<li><p>It should be based upon all values of given data</p></li>
+<li><p>It should be capable of further mathematical treatment.</p></li>
+<li><p>It should have sampling stability.</p></li>
+<li><p>It should be not be unduly affected by extreme values</p></li>
+</ul>
+<p><strong>The main objectives of Measure of Central Tendency:</strong></p>
+<ul>
+<li><p>To condense data in a single value.</p></li>
+<li><p>To facilitate comparisons between data.</p></li>
+</ul>
+<section id="arithmetic-mean" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="arithmetic-mean"><span class="header-section-number">4.1</span> Arithmetic mean</h2>
+<p>This is what people usually intend when they say “average”. Arithmetic mean or simply the mean of a variable is defined as the sum of the observations divided by the number of observations. Mean of set of numbers <span class="math inline">\(x_{1\ },x_{2},\ldots,x_{n}\)</span> is denoted as <span class="math inline">\(\overline{x}\)</span>. It is given by the formula</p>
+<p><span class="math display">\[\overline{x} = \frac{x_{1} + x_{2} + \ldots + x_{n}}{n}\]</span></p>
+<p><span id="eq-mean"><span class="math display">\[= \frac{1}{n}\sum_{i = 1}^{n}x_{i} \tag{4.1}\]</span></span></p>
+<p><strong>Example 4.1</strong> Find the mean of the numbers 2, 4, 7, 8, 11, 12</p>
+<p><span class="math display">\[\overline{x} = \frac{2 + 4 + 7 + 8 + 11 + 12}{6} = \frac{44}{6} = 7.33\]</span></p>
+<section id="mean-of-ungrouped-frequency-distribution" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="mean-of-ungrouped-frequency-distribution"><span class="header-section-number">4.1.1</span> Mean of ungrouped frequency distribution</h3>
+<p><u><strong>Direct method</strong></u></p>
+<p>If the numbers <span class="math inline">\(x_{1\ },x_{2},\ldots,x_{n}\)</span> occur with frequencies <span class="math inline">\(f_{1\ },f_{2},\ldots,f_{n}\)</span> respectively then</p>
+<p><span class="math display">\[\overline{x} = \frac{x_{1}f_{1} + x_{2}f_{2\ \ } + \ldots + x_{n}f_{n}}{f_{1} + f_{2} + \ldots f_{n}}\]</span></p>
+<p><span id="eq-meanungrouped"><span class="math display">\[= \frac{\sum_{i = 1}^{n}{f_{i}x_{i}}}{\sum_{i = 1}^{n}f_{i}} \tag{4.2}\]</span></span></p>
+<p><strong>Example 4.2</strong> <a href="#tbl-plantheight" class="quarto-xref">Table&nbsp;<span>4.1</span></a> below shows the plant height of 50 plants. Find the mean plant height.</p>
+<div id="tbl-plantheight" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plantheight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.1: Plant height of 50 plants
+</figcaption>
+<div aria-describedby="tbl-plantheight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td>Plant height(cm)</td>
+<td style="text-align: right;">159</td>
+<td style="text-align: right;">160</td>
+<td style="text-align: right;">161</td>
+<td style="text-align: right;">162</td>
+<td style="text-align: right;">163</td>
+</tr>
+<tr class="even">
+<td>Frequency</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 4.2</strong></p>
+<p>The calculation can be arranged as shown</p>
+<div id="tbl-pltheightsolutn" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pltheightsolutn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.2: Solution using direct method
+</figcaption>
+<div aria-describedby="tbl-pltheightsolutn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Plant height(<em>x</em>)</th>
+<th style="text-align: center;">Frequency(<em>f</em>)</th>
+<th style="text-align: center;"><em>fx</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">159</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">477</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">160</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">1440</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">161</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">3703</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">162</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">1782</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">163</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">652</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}f_{i}\)</span>= 50</td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}{f_{i}x_{i}}\)</span>= 8054</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><span class="math inline">\(\overline{x} = \frac{\sum_{i = 1}^{n}{f_{i}x_{i}}}{\sum_{i = 1}^{n}f_{i}} = \frac{8054}{50}\)</span>= 161.08 cm</p>
+<p><u><strong>Assumed mean method (Indirect method)</strong></u></p>
+<p>The amount of computation involved above can be reduced by using the following formula:</p>
+<p><span id="eq-assumedmean"><span class="math display">\[\overline{x} = A + \frac{\sum_{i = 1}^{n}{f_{i}d_{i}}}{\sum_{i = 1}^{n}f_{i}} \tag{4.3}\]</span></span></p>
+<p>Where <span class="math inline">\(A\)</span> is the assumed mean, which can be any value in <em>x</em>. <span class="math inline">\(d_{i} = x_{i} - A\)</span>, <span class="math inline">\(f_{i}\)</span> is the frequency of <span class="math inline">\(x_{i}\)</span></p>
+<p>Consider the <a href="#tbl-plantheight" class="quarto-xref">Table&nbsp;<span>4.1</span></a></p>
+<p>let <span class="math inline">\(A\)</span> = 161; it can be any number in <em>x</em></p>
+<div id="tbl-pltheightassumed" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pltheightassumed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.3: Solution using assumed mean method
+</figcaption>
+<div aria-describedby="tbl-pltheightassumed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Plant height(<em>x</em>)</th>
+<th style="text-align: center;">Frequency(<em>f</em>)</th>
+<th style="text-align: center;"><span class="math inline">\(d_i = x_i - 161\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(f_i d_i\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">159</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">-6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">160</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">-9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">161</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">162</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">11</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">163</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}f_{i}= 50\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}{f_{i}d_{i}}\)</span>= 4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>using <a href="#eq-assumedmean" class="quarto-xref">Equation&nbsp;<span>4.3</span></a>, <span class="math inline">\(\overline{x} = 161 + \frac{4}{50}\)</span> = 161.08 cm</p>
+<p>The mean plant height is 161.08 cm</p>
+</section>
+<section id="mean-of-grouped-frequency-distribution" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="mean-of-grouped-frequency-distribution"><span class="header-section-number">4.1.2</span> Mean of grouped frequency distribution</h3>
+<p><u><strong>Direct method</strong></u></p>
+<p>The mean for grouped data is obtained from the following formula:</p>
+<p><span id="eq-meangpdirect"><span class="math display">\[\overline{x} = \frac{\sum_{i = 1}^{k}{f_{i}x_{i}}}{n} \tag{4.4}\]</span></span></p>
+<p>Where <span class="math inline">\(x_{i}\)</span> = the mid-point of <em>i</em><sup>th</sup> class (<em>i</em><sup>th</sup> class mark); <span class="math inline">\(f_{i}\)</span>= the frequency of <em>i</em><sup>th</sup> class; <span class="math inline">\(n\)</span> = the sum of the frequencies or total frequencies in a sample. Note that <em>i</em> =1,2…, <em>k</em>, <em>i</em>.<em>e</em>. there are <em>k</em> classes.</p>
+<p><strong>Example 4.3</strong> <a href="#tbl-math" class="quarto-xref">Table&nbsp;<span>4.4</span></a> shows the distribution of the marks scored by 60 students in a Maths examination. Find the mean mark.</p>
+<div id="tbl-math" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-math-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.4: Distribution of the marks scored by 60 students
+</figcaption>
+<div aria-describedby="tbl-math-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Mark (%)</td>
+<td style="text-align: left;">60-65</td>
+<td style="text-align: left;">65-70</td>
+<td style="text-align: left;">70-75</td>
+<td style="text-align: left;">75-80</td>
+<td style="text-align: left;">80-85</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of students</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">15</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">14</td>
+<td style="text-align: left;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 4.3</strong></p>
+<p>The solution can be arranged as shown</p>
+<div id="tbl-pltheightsolutn" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pltheightsolutn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.5: Mean of grouped frequency table using direct method
+</figcaption>
+<div aria-describedby="tbl-pltheightsolutn-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Marks</th>
+<th style="text-align: center;">Class mark(<span class="math inline">\({x}_{i}\)</span>)</th>
+<th style="text-align: center;">Frequency(<span class="math inline">\({f}_{i}\)</span>)</th>
+<th style="text-align: center;"><span class="math inline">\({f}_{i}{x}_{i}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">60-65</td>
+<td style="text-align: center;">62.5</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">125</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">65-70</td>
+<td style="text-align: center;">67.5</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">1012.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">70-75</td>
+<td style="text-align: center;">72.5</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">1812.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">75-80</td>
+<td style="text-align: center;">77.5</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">1085</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">80-85</td>
+<td style="text-align: center;">82.5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">330</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}f_{i}\)</span>= 60</td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{n}{f_{i}x_{i}}\)</span>= 4365</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><span class="math inline">\(\overline{x} = \frac{\sum_{i = 1}^{n}{f_{i}x_{i}}}{\sum_{i = 1}^{n}f_{i}} = \frac{4365}{60}\)</span>= 72.75</p>
+<p>The mean mark is 72.75%</p>
+<p><u><strong>Coding Method or Indirect method</strong></u></p>
+<p>If all the class intervals of a grouped frequency distribution have equal size <span class="math inline">\(C\)</span> (class width); then the following formula can be used instead of direct method above. This formula makes calculations easier.</p>
+<p><span id="eq-meancoding"><span class="math display">\[\overline{x} = A + C\frac{\sum_{i = 1}^{n}{f_{i}u_{i}}}{\sum_{i = 1}^{n}f_{i}} \tag{4.5}\]</span></span></p>
+<p>Where <span class="math inline">\(A\)</span> is the class mark with the highest frequency, <span class="math inline">\(u_{i} = \frac{x_{i} - A}{C}\)</span>, <span class="math inline">\(f_{i}\)</span> is the frequency of <span class="math inline">\(x_{i}\)</span>, <em>C</em> is the class width.</p>
+<p>This is called the “coding” method for computing the mean. It is a very short method and should always be used for finding the mean of a grouped frequency distribution with equal class widths.</p>
+<p>Consider the <a href="#tbl-math" class="quarto-xref">Table&nbsp;<span>4.4</span></a> of the Example 4.3.</p>
+<p><span class="math inline">\(A\)</span>=72.5, class mark with highest frequency; <span class="math inline">\(C\)</span> =5</p>
+<div id="tbl-pltheightcoding" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-pltheightcoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.6: Solution using coding method
+</figcaption>
+<div aria-describedby="tbl-pltheightcoding-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Marks</th>
+<th style="text-align: center;">Class mark(<span class="math inline">\({x}_{i}\)</span>)</th>
+<th style="text-align: center;">Frequency(<span class="math inline">\({f}_{i}\)</span>)</th>
+<th style="text-align: center;"><span class="math display">\[{u}_{i}=\frac{x_i- 72.5}{5}\]</span></th>
+<th style="text-align: center;"><span class="math display">\[{f}_{i}{u}_{i}\]</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">60-65</td>
+<td style="text-align: center;">62.5</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">-4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">65-70</td>
+<td style="text-align: center;">67.5</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">-15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">70-75</td>
+<td style="text-align: center;">72.5</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">75-80</td>
+<td style="text-align: center;">77.5</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">80-85</td>
+<td style="text-align: center;">82.5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{k}f_{i}\)</span>= 60</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\sum_{i = 1}^{k}{f_{i}u_{i}}\)</span>=3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>using <a href="#eq-meancoding" class="quarto-xref">Equation&nbsp;<span>4.5</span></a>, <span class="math inline">\(\overline{x} = 72.5 + 5 \times \left( \frac{3}{60} \right)\)</span>= 72.75</p>
+<p>The mean mark is 72.75%</p>
+<p><strong>Merits and demerits of arithmetic mean</strong></p>
+<p><u><strong>Merits</strong></u></p>
+<ol type="1">
+<li><p>It is rigidly defined.</p></li>
+<li><p>It is easy to understand and easy to calculate.</p></li>
+<li><p>If the number of items is sufficiently large, it is more accurate and more reliable.</p></li>
+<li><p>It is a calculated value and is not based on its position in the series.</p></li>
+<li><p>It is possible to calculate even if some of the details of the data are lacking.</p></li>
+<li><p>Of all averages, it is affected least by fluctuations of sampling.</p></li>
+<li><p>It provides a good basis for comparison.</p></li>
+</ol>
+<p><u><strong>Demerits</strong></u></p>
+<ol type="1">
+<li><p>It cannot be obtained by inspection nor located through a frequency graph.</p></li>
+<li><p>It cannot be in the study of qualitative phenomena not capable of numerical measurement <em>i</em>.<em>e</em>. Intelligence, beauty, honesty etc.</p></li>
+<li><p>It can ignore any single item only at the risk of losing its accuracy.</p></li>
+<li><p>It is affected very much by extreme values.</p></li>
+<li><p>It cannot be calculated for open-end classes.</p></li>
+<li><p>It may lead to fallacious conclusions, if the details of the data from which it is computed are not given.</p></li>
+</ol>
+</section>
+</section>
+<section id="the-median" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="the-median"><span class="header-section-number">4.2</span> The median</h2>
+<p>The <strong>median</strong> is the middle value in a set of data when the values are arranged in order from smallest to largest. If there is an <strong>odd</strong> number of values, the median is the one in the middle, with half of the values smaller and half larger. If there is an <strong>even</strong> number of values, the median is the average of the two middle values. The median is a <strong>positional measure</strong>, which means it depends on the order of the data, not the actual values. It helps to find the central point of the data, especially when there are extreme values or outliers that could affect the average.</p>
+</section>
+<section id="median-of-ungrouped-or-raw-data" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="median-of-ungrouped-or-raw-data"><span class="header-section-number">4.3</span> Median of ungrouped or raw data</h2>
+<p>Arrange the given <em>n</em> observations <span class="math inline">\(x_{1\ },x_{2},\ldots,x_{n}\)</span> in ascending order. If the number of values is odd, median is the middle value. If the number of values is even, median is the mean of middle two values.</p>
+<p>Arrange data in ascending then use the following formula</p>
+<p>When <em>n</em> is odd, Median = Md =<span class="math inline">\(\left( \frac{n + 1}{2} \right)^{\text{th}}\)</span>value</p>
+<p>When <em>n</em> is even, Median = Md =<span class="math inline">\({\text{Average of}\left( \frac{n}{2} \right)^{th}\text{and }\left( \frac{n}{2} + 1 \right)}^{\text{th}}\)</span>value</p>
+<p><strong>Example 4.4</strong> Find the median of each of the following sets of numbers.</p>
+<p><span class="math inline">\(a)\)</span> 12, 15, 22, 17, 20, 26, 22, 26, 12</p>
+<p><span class="math inline">\(b)\)</span> 4, 7, 9, 10, 5, 1, 3, 4, 12, 10</p>
+<p><strong>Solution 4.4</strong></p>
+<p><span class="math inline">\(a)\)</span> Arranging the data in an increasing order of magnitude, we obtain 12, 12, 15, 17, 20, 22, 22, 26, 26. Here, N = 9 is odd, and so, median =<span class="math inline">\(\left( \frac{9 + 1}{2} \right)^{\text{th}}\)</span>= 5<sup>th</sup> ordered observation = 20.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If a number is repeated, we still count it the number of times it appears when we calculate the median.</p>
+</div>
+</div>
+<p><span class="math inline">\(b)\)</span> Arranging the data in an increasing order of magnitude, we obtain 1, 3, 4, 4, 5, 7, 9, 10, 10, 12. Here, N = 10 is an even number and so median = <span class="math inline">\(\frac{1}{2}\)</span>{5<sup>th</sup> ordered observation + 6<sup>th</sup> ordered observation} = <span class="math inline">\(\frac{1}{2}\left( 5 + 7 \right) = 6\)</span>.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>You can see in each case, the median divides the distribution into two equal parts, with 50% of the observations greater than it and the other 50% less than it.</p>
+</div>
+</div>
+</section>
+<section id="median-of-ungrouped-frequency-distribution" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="median-of-ungrouped-frequency-distribution"><span class="header-section-number">4.4</span> Median of ungrouped frequency distribution</h2>
+<p>The median is the middle number is an ordered set of data. In a frequency table, the observations are already arranged in an ascending order. We can obtain the median by looking for the value in the middle position.</p>
+<p><u><strong>Odd number of observations</strong></u></p>
+<p>When the number of observations (<em>n</em>) is odd, then the median is the value at the&nbsp;<span class="math inline">\(\left( \frac{n + 1}{2} \right)^{\text{th}}\)</span> positional value. For that we use less than cumulative frequency.</p>
+<p><strong>Example 4.5</strong>: The <a href="#tbl-score" class="quarto-xref">Table&nbsp;<span>4.7</span></a> shows the frequency of the score obtained in a mathematics quiz. Find the median score.</p>
+<div id="tbl-score" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.7: Score obtained in a mathematics quiz
+</figcaption>
+<div aria-describedby="tbl-score-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Score</strong></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Frequency</strong></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 4.5:</strong></p>
+<p>Total frequency = 3 + 4 + 7 + 6 + 3 = 23 (odd number). Since the number of scores is odd, the median is at <span class="math inline">\(\left( \frac{23 + 1}{2} \right)^{\text{th}} =\)</span> 12<sup>th</sup> position.</p>
+<div id="tbl-mediansolution" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mediansolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.8: Less than cumulative frequency of the scores in mathematics quiz
+</figcaption>
+<div aria-describedby="tbl-mediansolution-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Score</strong></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Frequency</strong></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;"><strong>7</strong></td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>less than cumulative frequency</strong></td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">7</td>
+<td style="text-align: left;"><strong>14</strong></td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">23</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>To find out the 12<sup>th</sup> position, we use less than cumulative frequencies in <a href="#tbl-mediansolution" class="quarto-xref">Table&nbsp;<span>4.8</span></a> which helps us track how many values are less than or equal to each score. In the table, the less than cumulative frequency for the score 0 is 3 (meaning the first 3 values are 0), for the score 1 is 7 (meaning the first 7 values are 0 and 1), and for the score 2 is 14 (meaning the first 14 values are 0, 1, and 2). If we list the data in order, it would look like this: 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2. (no need to list, this is just for reader’s understanding, less than cumulative frequency is enough).</p>
+<p>Now, we need to find where the 12<sup>th</sup> value falls. The 12th value is between the 7th and 14th values, so based on less than cumulative frequency it is clear that 12<sup>th</sup> value is 2. So the median is 2.</p>
+<p><u><strong>Even number of observations</strong></u></p>
+<p>When the number of observations is even, then the median is the average of <span class="math inline">\({\left( \frac{n}{2} \right)^{th}\text{and}\left( \frac{n}{2} + 1 \right)}^{\text{th}}\)</span> position values.</p>
+<p><strong>Example 4.6</strong>: The <a href="#tbl-median" class="quarto-xref">Table&nbsp;<span>4.9</span></a> is a frequency table of the marks obtained in a competition. Find the median score.</p>
+<div id="tbl-median" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.9: Distribution of marks obtained in a competition.
+</figcaption>
+<div aria-describedby="tbl-median-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Mark</strong></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Frequency</strong></td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">15</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 4.6</strong>:</p>
+<p>Total frequency = 11 + 9 + 5 + 10 + 15 = 50 (even number). Since the number of scores is even, the median is at the average of the&nbsp;values in <span class="math inline">\({\left( \frac{n}{2} \right)^{th} = 25\ and\ \left( \frac{n}{2} + 1 \right)}^{\text{th}} = 26\)</span> positions. To find out the 25<sup>th</sup>&nbsp;position and 26<sup>th</sup>&nbsp;position, we add up the frequencies as shown:</p>
+<div id="tbl-medianeven" class="bordered hover quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-medianeven-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.10: Less than cumulative frequency of marks obtained.
+</figcaption>
+<div aria-describedby="tbl-medianeven-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered table-hover caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Mark</strong></td>
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Frequency</strong></td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">15</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>less than cumulative frequency</strong></td>
+<td style="text-align: left;">11</td>
+<td style="text-align: left;">20</td>
+<td style="text-align: left;">25</td>
+<td style="text-align: left;">35</td>
+<td style="text-align: left;">50</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The mark at the 25<sup>th</sup>&nbsp;position is 2 and the mark at the 26<sup>th</sup>&nbsp;position is 3. The median is the average of the scores at 25<sup>th</sup>&nbsp;and 26<sup>th</sup>&nbsp;positions =&nbsp;<span class="math inline">\(\frac{2 + 3}{2} = 2.5\)</span></p>
+</section>
+<section id="median-of-grouped-frequency-distribution" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="median-of-grouped-frequency-distribution"><span class="header-section-number">4.5</span> Median of grouped frequency distribution</h2>
+<p>The exact value of the median of a grouped data cannot be obtained because the actual values of a grouped data are not known. For a grouped frequency distribution, the median is in the class interval which contains the <span class="math inline">\(\left( \frac{N}{2} \right)^{\text{th}}\)</span>ordered observation, where <span class="math inline">\(N\)</span> is the total number of observations. This class interval is called the <strong>median class</strong>. The median of a grouped frequency distribution can be estimated by either of the following two methods:</p>
+<p><u><strong>Linear interpolation method</strong></u></p>
+<p>The median of a grouped frequency distribution can be estimated by linear interpolation. We assume that the observations are evenly spread through the median class. The median can then be computed by using the following formula:</p>
+<p><span id="eq-medlinear"><span class="math display">\[Median = L + \left( \frac{\frac{1}{2}N - F}{f_{m}} \right)C \tag{4.6}\]</span></span></p>
+<p>where <span class="math inline">\(N\)</span> = total number of observations, <span class="math inline">\(L\)</span> = lower limit of the median class, <span class="math inline">\(F\)</span> = sum of all frequencies below <em>L</em>(cumulative frequency), <span class="math inline">\(f_{m}\)</span> = frequency of the median class, <span class="math inline">\(C\)</span> = class width of the median class.</p>
+<p><u><strong>Estimation from cumulative frequency curve</strong></u></p>
+<p>The median of a grouped frequency distribution can be estimated from a cumulative frequency curve. A horizontal line is drawn from the point <span class="math inline">\(\frac{\text{N}}{2}\)</span> on the vertical axis to meet the cumulative frequency curve. From the point of intersection, a vertical line is dropped to the horizontal axis. The value on the horizontal axis is equal to the median.</p>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="images/mediancf.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>median from a cumulative frequency curve</figcaption>
+</figure>
+</div>
+<p><strong>Example 4.7</strong> <a href="#tbl-medianheight" class="quarto-xref">Table&nbsp;<span>4.11</span></a> below gives the distribution of the heights of 60 students in a senior high school. Find the median height of the students</p>
+<div id="tbl-medianheight" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-medianheight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.11: Distribution of heights of 60 students
+</figcaption>
+<div aria-describedby="tbl-medianheight-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Height(cm)</td>
+<td style="text-align: left;">145-150</td>
+<td style="text-align: left;">150-155</td>
+<td style="text-align: left;">155-160</td>
+<td style="text-align: left;">160-165</td>
+<td style="text-align: left;">165-170</td>
+<td style="text-align: left;">170-175</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Number of students</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 4.7</strong></p>
+<p><strong>(i) Linear interpolation method</strong></p>
+<p><span class="math inline">\(N\)</span> = 60 (Sum of frequencies)</p>
+<p>Median class= class interval which contains the <span class="math inline">\(\left( \frac{N}{2} \right)^{\text{th}}\)</span>ordered observation; here <span class="math inline">\(\left( \frac{60}{2} \right)^{\text{th}} =\)</span> 30<sup>th</sup> observation. Before the class 160-165 there are 3+9+16=28 observations so 30<sup>th</sup> observation will be in the class 160-165, therefore it is the median class.</p>
+<p><span class="math inline">\(L\)</span> = lower limit of the median class =160</p>
+<p><span class="math inline">\(F\)</span> = sum of all frequencies below 160(cumulative frequency) = 16+9+3= 28</p>
+<p><span class="math inline">\(f_{m}\)</span> = frequency of the median class=18</p>
+<p><span class="math inline">\(C\)</span> = class width of the median class=5</p>
+<p>using <a href="#eq-medlinear" class="quarto-xref">Equation&nbsp;<span>4.6</span></a>, <span class="math inline">\(median = 160 + \left( \frac{\frac{1}{2}60 - 28}{18} \right)5\)</span> = 160.56</p>
+<p><strong>(ii) From a cumulative frequency curve</strong></p>
+<p><img src="images/cf.png" class="img-fluid quarto-figure quarto-figure-left" style="width:50.0%" alt="Median from a cumulative frequency curve Example 4.7"><br>
+</p>
+<p><strong>Merits and demerits of median</strong></p>
+<p><u><strong>Merits</strong></u></p>
+<ol type="1">
+<li><p>Median is not influenced by extreme values because it is a positional average.</p></li>
+<li><p>Median can be calculated in case of distribution with open-end intervals.</p></li>
+<li><p>Median can be located even if the data are incomplete.</p></li>
+</ol>
+<p><u><strong>Demerits</strong></u></p>
+<ol type="1">
+<li><p>A slight change in the series may bring drastic change in median value.</p></li>
+<li><p>In case of even number of items or continuous series, median is an estimated value other than any value in the series.</p></li>
+<li><p>It is not suitable for further mathematical treatment except its use in calculating mean deviation.</p></li>
+<li><p>It does not take into account all the observations.</p></li>
+</ol>
+</section>
+<section id="the-mode" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="the-mode"><span class="header-section-number">4.6</span> The mode</h2>
+<p>The mode of a set of data is the value which occurs with the greatest frequency. The mode is therefore the most frequently occuring value in a dataset. The mode is an important measure in case of qualitative data. The mode can be used to describe both quantitative and qualitative data.</p>
+<section id="mode-of-ungrouped-or-raw-data" class="level3" data-number="4.6.1">
+<h3 data-number="4.6.1" class="anchored" data-anchor-id="mode-of-ungrouped-or-raw-data"><span class="header-section-number">4.6.1</span> Mode of ungrouped or raw data</h3>
+<p>For ungrouped data or a series of individual observations, mode is often found by mere inspection.</p>
+<p><strong>Example 4.8</strong></p>
+<p><span class="math inline">\(a)\)</span> The modes of 1, 2, 2, 2, 3 is 2.</p>
+<p><span class="math inline">\(b)\)</span> The modes of 2, 3, 4, 4, 5, 5 are 4 and 5.</p>
+<p><span class="math inline">\(c)\)</span> The mode does not exist when every observation has the same frequency. For example, the following sets of data have no modes: (i) 3, 6, 8, 9; (ii) 4, 4, 4, 7, 7, 7, 9, 9, 9.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It can be seen that the mode of a distribution may not exist, and even if it exists, it may not be unique. Distributions with a single mode are referred to as <em>unimodal</em>. Distributions with two modes are referred to as <em>bimodal</em>. Distributions may have several modes, in which case they are referred to as <em>multimodal</em>.</p>
+</div>
+</div>
+<p><strong>Example 4.9</strong> 20 patients selected at random had their blood groups determined. The results are given in the <a href="#tbl-letters" class="quarto-xref">Table&nbsp;<span>4.12</span></a></p>
+<div id="tbl-letters" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-letters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.12: Blood group of 20 patients
+</figcaption>
+<div aria-describedby="tbl-letters-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Blood group</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">AB</td>
+<td style="text-align: left;">B</td>
+<td style="text-align: left;">O</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">No.&nbsp;of patients</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The blood group with the highest frequency is O. The mode of the data is therefore blood group O. We can say that most of the patients selected have blood group O. Notice that the mean and the median cannot be applied to the data. This is because the variable “blood group” cannot take numerical values. However, it can be seen that the mode can be used to describe both quantitative and qualitative data.</p>
+</section>
+</section>
+<section id="mode-of-grouped-data" class="level2" data-number="4.7">
+<h2 data-number="4.7" class="anchored" data-anchor-id="mode-of-grouped-data"><span class="header-section-number">4.7</span> Mode of grouped data</h2>
+<p>Mode of a grouped frequency distribution can be found out using the formula below.</p>
+<p><span id="eq-mode"><span class="math display">\[mode = L + \left( \frac{f_{m}-f_{p}}{2f_{m}-f_{p} - f_{s}} \right)C \tag{4.7}\]</span></span></p>
+<p>Locate the highest frequency the class corresponding to that frequency is called the <strong>modal class</strong>.</p>
+<p>Where, <span class="math inline">\(L\)</span> = lower limit of the modal class; <span class="math inline">\(f_{m}\)</span> = the frequency of modal class; <span class="math inline">\(f_{p}\)</span>= the frequency of the class preceding the modal class; <span class="math inline">\(f_{s}\)</span>= the frequency of the class succeeding the modal class and <span class="math inline">\(C\)</span> = class interval</p>
+<p><strong>Example 4.10</strong> For the frequency distribution of weights of sorghum ear-heads given in <a href="#tbl-earhead" class="quarto-xref">Table&nbsp;<span>4.13</span></a> below. Calculate the mode.</p>
+<div id="tbl-earhead" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-earhead-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;4.13: frequency distribution of weights of sorghum ear heads
+</figcaption>
+<div aria-describedby="tbl-earhead-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Weights of ear heads (g)</th>
+<th style="text-align: center;">No of ear heads (<em>f</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">60-80</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">80-100</td>
+<td style="text-align: center;">38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">100-120</td>
+<td style="text-align: center;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">120-140</td>
+<td style="text-align: center;">35</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">140-160</td>
+<td style="text-align: center;">20</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Modal class is <strong>100-120</strong>, since it is the class with highest frequency.</p>
+<p>Using <a href="#eq-mode" class="quarto-xref">Equation&nbsp;<span>4.7</span></a> mode is calculated as below.</p>
+<p><span class="math inline">\(mode = 100 + \left( \frac{45-35}{90-38-35} \right)20 =\)</span> 111.76</p>
+<p><u><strong>Mode using Histogram</strong></u></p>
+<p>Consider the figure below. The modal class is the class interval which corresponds to rectangle <span class="math inline">\(\text{ABCD}\)</span>. An estimate of the mode of the distribution is the abscissa of the point of intersection of the line segments <span class="math inline">\(\overline{\text{AE}}\)</span> and <span class="math inline">\(\overline{\text{BF}}\)</span> in the figure.</p>
+<p><img src="images/l2m1.jpeg" class="img-fluid quarto-figure quarto-figure-left" style="width:50.0%" alt="’Median from a cumulative frequency curve for Example 4.10"><br>
+<strong>Merits and Demerits of Mode</strong></p>
+<p><u><em>Merits</em></u></p>
+<ol type="1">
+<li><p>It is readily comprehensible and easy to compute. In some case it can be computed merely by inspection.</p></li>
+<li><p>It is not affected by extreme values. It can be obtained even if the extreme values are not known.</p></li>
+<li><p>Mode can be determined in distributions with open classes.</p></li>
+<li><p>Mode can be located on the graph also.</p></li>
+<li><p>Mode can be used to describe both quantitative and qualitative data.</p></li>
+</ol>
+<p><u><em>Demerits</em></u></p>
+<ol type="1">
+<li><p>The mode is not unique. That is, there can be more than one mode for a given set of data.</p></li>
+<li><p>The mode of a set of data may not exist.</p></li>
+<li><p>It is not based upon all the observation.</p></li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Ancient wall measuring with the mode!</strong></p>
+<p>Back in the 5<sup>th</sup> century BCE, the Athenians used a clever “statistical hack” to plan their siege of Platea. Soldiers counted bricks in an unplastered section of the wall multiple times, and the most frequent count (what we now call the mode) was taken as the best estimate. They then multiplied this by the height of a brick to calculate the wall’s height and build ladders tall enough to scale it. Problem-solving with statistics!</p>
+<p><strong>Asrtonomy and the mean</strong></p>
+<p>Although the Greeks knew the concept of the arithmetic mean, it wasn’t generalized for multiple values until the 16<sup>th</sup> century. Simon Stevin’s invention of the decimal system in 1585 made it much easier to calculate. Astronomer Tycho Brahe was one of the first to use the mean, reducing errors in his estimates of celestial body locations.</p>
+<p><strong>Navigation and the median</strong></p>
+<p>The concept of the median first appeared in 1599 in Edward Wright’s book on navigation, <em>Certaine errors in navigation</em>. Wright used it to determine the most likely value in a series of compass readings. Later, in 1669, Christiaan Huygens noticed the difference between the mean and the median while working with Graunt’s tables. It’s amazing how these early navigators and mathematicians paved the way for the stats we use today.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“If the statistics are boring, you’ve got the wrong numbers”:- Edward R. Tufte</strong></p>
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cleaning-data-r\.ala\.org\.au\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./3graph.html" class="pagination-link" aria-label="Graphical representation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./central2.html" class="pagination-link" aria-label="Central tendency II">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
