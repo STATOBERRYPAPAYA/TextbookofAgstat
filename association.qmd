@@ -1,78 +1,84 @@
 # Measures of association
 
-## Scatter Diagram
+In the previous chapters, we examined measures of central tendency, which summarize the location of data, and measures of dispersion, which describe the spread around that location. Together, these tools provided us with a foundation for understanding and summarizing a single dataset. However, in many real-world scenarios, we are interested in understanding the relationships between variables rather than focusing on one variable in isolation.
+
+**Measures of association** allow us to explore and quantify the connections between two or more variables. For example, does fertilizer use influence crop yield? Is there a relationship between farm size and agricultural income? Do education levels impact the adoption of new farming technologies? By studying association, we can answer such questions and uncover meaningful patterns in data.
+
+In this chapter, we will introduce key measures of association, such as **covariance**, **correlation coefficients**, and other related metrics. We will discuss how these measures are calculated, interpreted, and applied to analyze relationships between variables. By the end of this chapter, you will be equipped to assess both the strength and direction of relationships, providing deeper insights into agricultural and social science research.
+
+## Scatter Diagram {#sec-scatterdiag}
 
 Consider two variables *x* and *y*, we use scatter diagram to investigate whether there is any relation between the two variables. If the variables *x* and *y* are plotted along the X-axis and Y-axis respectively in the X-Y plane of a graph sheet the resultant diagram of dots is known as **scatter diagram**. From the scatter diagram we can say whether there is any association between *x* and *y*.
 
-**Example 8.1**: Consider the data on Sepal length (*x*) and Sepal width (*y*) of *Iris* *setosa.*
+**Example 8.1**: Consider the data on sepal length (*x*) and sepal width (*y*) of *Iris* *setosa.*
 
-| Sl. No. | Sepal Length | Sepal Width |
-|:-------:|:------------:|:-----------:|
-|    1    |     5.1      |     3.5     |
-|    2    |     4.9      |      3      |
-|    3    |     4.7      |     3.2     |
-|    4    |     4.6      |     3.1     |
-|    5    |      5       |     3.6     |
-|    6    |      7       |     3.2     |
-|    7    |     6.4      |     3.2     |
-|    8    |     6.9      |     3.1     |
-|    9    |     5.5      |     2.3     |
-|   10    |     6.5      |     2.8     |
-|   11    |     6.3      |     3.3     |
-|   12    |     5.8      |     2.7     |
-|   13    |     7.1      |      3      |
-|   14    |     6.3      |     2.9     |
-|   15    |     6.5      |      3      |
+| Sl. No. | sepal Length (*x*) | sepal Width (*y*) |
+|:-------:|:------------------:|:-----------------:|
+|    1    |        5.1         |        3.5        |
+|    2    |        4.9         |         3         |
+|    3    |        4.7         |        3.2        |
+|    4    |        4.6         |        3.1        |
+|    5    |         5          |        3.6        |
+|    6    |         7          |        3.2        |
+|    7    |        6.4         |        3.2        |
+|    8    |        6.9         |        3.1        |
+|    9    |        5.5         |        2.3        |
+|   10    |        6.5         |        2.8        |
+|   11    |        6.3         |        3.3        |
+|   12    |        5.8         |        2.7        |
+|   13    |        7.1         |         3         |
+|   14    |        6.3         |        2.9        |
+|   15    |        6.5         |         3         |
 
-```{r c1, echo=FALSE,fig.cap='Scatter diagram of data in Example 7.1',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/image2c.jpeg"))
-```
+: Data on sepal length (*x*) and sepal width (*y*) of *Iris* *setosa.* {#tbl-irisdata .bordered}
+
+![Scatter diagram of data in Example 8.1](images/image2c.jpeg){#fig-scatterdiag fig-align="center" width="50%" style="text-align:center;"}
 
 ## Correlation
 
-Correlation is a statistical method used to analyze the relationship between two or more variables. The correlation measures the degree and closeness of the linear relationship between two variables in numerical magnitude.
+Correlation is a statistical technique used to examine the relationship between two or more variables. It quantifies the degree and strength of the *linear association* between two variables, expressed as a single numerical value.
 
-Correlation measure will enable us to compare the linear relationship between two variables by using a single number. If two or more quantities vary in a related manner so that the movements in one tend to be accompanied by the movements in the other, then they are said to be correlated.
+This measure allows us to summarize the extent to which changes in one variable are associated with changes in another. When two or more quantities vary in a related manner, such that movements in one variable are consistently accompanied by movements in the other, the variables are said to be correlated.
 
-### Positive correlation
+**Positive correlation**
 
-Positive correlation is a relationship between two variables in which both variables move in the same direction. A positive correlation exists when one variable decreases as the other variable decreases, or one variable increases while the other increases.
+Positive correlation refers to a relationship between two variables in which both move in the same direction. A positive correlation exists when an increase in one variable is accompanied by an increase in the other, or when a decrease in one variable corresponds with a decrease in the other.
 
-Examples of positive correlation: consider two variables *x* and *y*
+**Examples of positive correlation:**
 
--   The more time you spend running on a treadmill, (Running time (*x*)), the more calories you will burn, (calories burned (*y*)). Here you can see as *x* increases *y* also increases.
+1.  **Fertilizer use and crop yield:** The more fertilizer (*x*) a farmer applies to a field, the higher the crop yield (*y*). Here, as x increases, y also increases.
 
--   Shorter people (Height (*x*)) have smaller shoe sizes (shoe size (*y*)). Here you can see as *x* decreases *y* also decreases.
+2.  **Rainfall and crop growth:** Increased rainfall (*x*) often leads to better crop growth (*y*).
 
--   The more hours you spend in direct sunlight (Hours in sunlight (*x*)), the more is your tan (melanin content(*y*)). Here you can see as *x* increases *y* also increases.
+3.  **Farm size and agricultural output:** Larger farm sizes (*x*) are associated with greater total agricultural output (*y*).
 
--   As the temperature goes up (Temperature (*x*)), ice cream sales (sales (*y*)), also go up.
+4.  **Labor hours and harvest quantity:** The more hours spent harvesting (*x*), the higher the quantity of crops harvested (*y*).
 
-### Negative correlation
+**Negative correlation**
 
-Negative correlation is a relationship between two variables in which one variable increases as the other decreases, and vice versa.
+Negative correlation refers to a relationship between two variables in which one variable increases as the other decreases, and vice versa.
 
-Examples of negative correlation: consider two variables *x* and *y*
+**Examples of negative correlation**
 
--   A student who has many absences (No. of days absent (*x*)) has a decrease in grades (grades (*x*)). Here you can see as *x* increases *y* decreases.
+1.  **Weed density and crop yield:** As the density of weeds in a field (*x*) increases, the crop yield (*y*) decreases. Here, as x increases, y decreases.
 
--   As weather gets colder (Average monthly temperature (*x*)), air conditioning costs decrease (Price of A.C (*y*)).
+2.  **Soil salinity and plant growth:** Higher soil salinity levels (*x*) result in reduced plant growth (*y*).
 
--   If a chicken increases in age (chicken age (*x*)), the number of eggs it produces (No. of eggs produced (*y*)) decreases.
+3.  **Age of livestock and milk production:** As a cow’s age (*x*) increases, the amount of milk it produces (*y*) decreases. Here, as x increases, y decreases.
 
--   If a car decreases speed (average car speed(*x*)), travel time (*y*) to a destination increases.
+4.  **Pesticide application and pest population:** As the amount of pesticide applied (*x*) increases, the pest population (*y*) decreases. Here, *x* increases while *y* decreases.
 
 ## Other types of correlation
 
-### Simple and Multiple
+### Simple and multiple
 
 In [simple correlation]{.underline} the relationship is confined to two variables only. In [multiple correlation]{.underline} the relationship between more than two variables is judged.
 
-### Linear and Non linear correlation
+### Linear and non linear correlation
 
-[Linear Correlation]{.underline}: A type of correlation where the relationship between two variables can be represented by a straight line. In this case, the change in one variable corresponds to a proportional change in the other, either positively or negatively.
+[Linear correlation]{.underline}: A type of correlation where the relationship between two variables can be represented by a straight line. In this case, the change in one variable corresponds to a proportional change in the other, either positively or negatively.
 
-[Non-linear Correlation]{.underline}: A type of correlation where the relationship between two variables cannot be represented by a straight line. Instead, the relationship follows a curved pattern, indicating that the variables do not change at a constant rate relative to each other.
+[Non-linear correlation]{.underline}: A type of correlation where the relationship between two variables cannot be represented by a straight line. Instead, the relationship follows a curved pattern, indicating that the variables do not change at a constant rate relative to each other.
 
 ### Partial and total
 
@@ -113,7 +119,7 @@ For the rest of our discussion we will be using this example .
 
 ## Methods of measurement of correlation
 
-### Scatter diagram or Graphic method
+### Scatter diagram or graphic method
 
 ```{r c2, echo=FALSE,fig.cap='Scatter plot of Example 7.2',out.width="50%", fig.align='center'}
 knitr::include_graphics(rep("images/image3c.jpeg"))
