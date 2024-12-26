@@ -1,0 +1,2688 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>8&nbsp; Measures of association – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./regression.html" rel="next">
+<link href="./skewness.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="8&nbsp; Measures of association – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cleaning-data-r.ala.org.au/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="8&nbsp; Measures of association – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cleaning-data-r.ala.org.au/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./association.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/AtlasOfLivingAustralia/cleaning_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#linear-and-monotonic-relationship" id="toc-linear-and-monotonic-relationship" class="nav-link active" data-scroll-target="#linear-and-monotonic-relationship"><span class="header-section-number">8.1</span> Linear and monotonic relationship</a></li>
+  <li><a href="#sec-scatterdiag" id="toc-sec-scatterdiag" class="nav-link" data-scroll-target="#sec-scatterdiag"><span class="header-section-number">8.2</span> Scatter diagram</a></li>
+  <li><a href="#correlation" id="toc-correlation" class="nav-link" data-scroll-target="#correlation"><span class="header-section-number">8.3</span> Correlation</a></li>
+  <li><a href="#correlation-types" id="toc-correlation-types" class="nav-link" data-scroll-target="#correlation-types"><span class="header-section-number">8.4</span> Correlation types</a></li>
+  <li><a href="#measuring-correlation" id="toc-measuring-correlation" class="nav-link" data-scroll-target="#measuring-correlation"><span class="header-section-number">8.5</span> Measuring correlation</a>
+  <ul class="collapse">
+  <li><a href="#karl-pearsons-coefficient-of-correlation" id="toc-karl-pearsons-coefficient-of-correlation" class="nav-link" data-scroll-target="#karl-pearsons-coefficient-of-correlation"><span class="header-section-number">8.5.1</span> Karl Pearson’s coefficient of correlation</a></li>
+  <li><a href="#sec-spearman" id="toc-sec-spearman" class="nav-link" data-scroll-target="#sec-spearman"><span class="header-section-number">8.5.2</span> Spearman’s rank order correlation coefficient</a></li>
+  <li><a href="#kendalls-rank-correlation-coefficient" id="toc-kendalls-rank-correlation-coefficient" class="nav-link" data-scroll-target="#kendalls-rank-correlation-coefficient"><span class="header-section-number">8.5.3</span> Kendall’s Rank Correlation Coefficient</a></li>
+  </ul></li>
+  <li><a href="#correlation-matrix" id="toc-correlation-matrix" class="nav-link" data-scroll-target="#correlation-matrix"><span class="header-section-number">8.6</span> Correlation matrix</a></li>
+  <li><a href="#correlogram" id="toc-correlogram" class="nav-link" data-scroll-target="#correlogram"><span class="header-section-number">8.7</span> Correlogram</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous chapters, we examined measures of central tendency, which summarize the location of data, and measures of dispersion, which describe the spread around that location. Together, these tools provided us with a foundation for understanding and summarizing a single dataset. However, in many real-world scenarios, we are interested in understanding the relationships between variables rather than focusing on one variable in isolation.</p>
+<p><strong>Measures of association</strong> allow us to explore and quantify the connections between two or more variables. For example, does fertilizer use influence crop yield? Is there a relationship between farm size and agricultural income? Do education levels impact the adoption of new farming technologies? By studying association, we can answer such questions and uncover meaningful patterns in data.</p>
+<p>In this chapter, we will introduce key measures of association, such as <strong>covariance</strong>, <strong>correlation coefficients</strong>, and other related metrics. We will discuss how these measures are calculated, interpreted, and applied to analyze relationships between variables. By the end of this chapter, you will be equipped to assess both the strength and direction of relationships, providing deeper insights into agricultural and social science research.</p>
+<section id="linear-and-monotonic-relationship" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="linear-and-monotonic-relationship"><span class="header-section-number">8.1</span> Linear and monotonic relationship</h2>
+<p><strong>Linear relationship</strong></p>
+<p>A linear relationship (or linear association) is a statistical term used to describe a straight-line relationship between variables. Linear relationships can be expressed either in a graphical format where the variable plotted on X-Y plane gives a straight line or relation between two variables (consider <em>x</em> and <em>y</em>) can be expressed with an equation of a straight line (<em>y</em> = <em>a</em> + <em>bx</em>) (will be more clear when we discuss regression in <a href="regression.html" class="quarto-xref"><span>Chapter 9</span></a>).</p>
+<p><strong>Monotonic relation</strong></p>
+<p>A monotonic relationship between two variables means that as one variable increases or decreases, the other tends to move in the same direction, but not necessarily at a constant rate. In contrast, a linear relationship implies that the variables move in the same direction at a constant rate. While all linear relationships are monotonic, not all monotonic relationships are linear. Refer to the illustration <a href="#fig-linearandmono" class="quarto-xref">Figure&nbsp;<span>8.1</span></a> for a clearer distinction.</p>
+<div id="fig-linearandmono" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-linearandmono-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-linearandmono" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-stroli" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-stroli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image6c.png" data-ref-parent="fig-linearandmono" width="200" height="200" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-stroli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Strong positive linear relationship
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-linearandmono" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-stroneg" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-stroneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image7c.png" data-ref-parent="fig-linearandmono" width="200" height="200" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-stroneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Strong negative linear relationship
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-linearandmono" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-weakli" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-weakli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image9c.png" data-ref-parent="fig-linearandmono" width="200" height="200" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-weakli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Weak linear relationship
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-linearandmono" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-nonli" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-nonli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image8c.png" data-ref-parent="fig-linearandmono" width="200" height="200" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-nonli-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Non-linear relationship
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-linearandmono" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-monotonic" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-monotonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image10c.png" data-ref-parent="fig-linearandmono" width="200" height="200" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-monotonic-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) Monotonic relationship
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-linearandmono-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.1: Linear and monotonic relationship
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-scatterdiag" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="sec-scatterdiag"><span class="header-section-number">8.2</span> Scatter diagram</h2>
+<p>Consider two variables <em>x</em> and <em>y</em>, a scatter diagram is used to visually investigate whether there is any relationship between them. This graphical method helps explore whether an association exists between the two variables. If the variables <em>x</em> and <em>y</em> are plotted along the X-axis and Y-axis respectively in the X-Y plane of a graph sheet the resultant diagram of dots is known as <strong>scatter diagram</strong>. From the scatter diagram we can say whether there is any association between <em>x</em> and <em>y</em>. <a href="#fig-scatterdiag" class="quarto-xref">Figure&nbsp;<span>8.2</span></a> gives the scatter diagram of Example 8.1</p>
+<p><strong>Example 8.1</strong>: Consider the data on sepal length (<em>x</em>) and sepal width (<em>y</em>) of <em>Iris</em> <em>setosa.</em></p>
+<div id="tbl-irisdata" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-irisdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.1: Data on sepal length (<em>x</em>) and sepal width (<em>y</em>) of <em>Iris</em> <em>setosa.</em>
+</figcaption>
+<div aria-describedby="tbl-irisdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Sepal length (<em>x</em>)</th>
+<th style="text-align: center;">Sepal width (<em>y</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">5.1</td>
+<td style="text-align: center;">3.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4.9</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4.7</td>
+<td style="text-align: center;">3.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4.6</td>
+<td style="text-align: center;">3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3.6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">3.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6.4</td>
+<td style="text-align: center;">3.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6.9</td>
+<td style="text-align: center;">3.1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">2.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6.5</td>
+<td style="text-align: center;">2.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6.3</td>
+<td style="text-align: center;">3.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5.8</td>
+<td style="text-align: center;">2.7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7.1</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6.3</td>
+<td style="text-align: center;">2.9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6.5</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div id="fig-scatterdiag" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scatterdiag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image2c.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scatterdiag-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.2: Scatter diagram of data in Example 8.1
+</figcaption>
+</figure>
+</div>
+<p><strong>Example 8.2</strong>: A research station investigates the relationship between the average daily soil moisture content (as influenced by irrigation levels, in percentage) and the corresponding monetary yield (in Rs.) of a crop. The data collected over different periods are as follows:</p>
+<div id="tbl-corrdata" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.2: Model data on crop yield influenced by soil moisture
+</figcaption>
+<div aria-describedby="tbl-corrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Soil moisture (%)</th>
+<th style="text-align: center;">Crop yield (in Rs./cent)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">14.2</td>
+<td style="text-align: center;">215</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">16.4</td>
+<td style="text-align: center;">325</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">11.9</td>
+<td style="text-align: center;">185</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">15.2</td>
+<td style="text-align: center;">332</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">18.5</td>
+<td style="text-align: center;">406</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">22.1</td>
+<td style="text-align: center;">522</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">19.4</td>
+<td style="text-align: center;">412</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">25.1</td>
+<td style="text-align: center;">614</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">23.4</td>
+<td style="text-align: center;">544</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">18.1</td>
+<td style="text-align: center;">421</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">22.6</td>
+<td style="text-align: center;">445</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">17.2</td>
+<td style="text-align: center;">408</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Scatter diagram for the Example 8.2 is given in <a href="#fig-scattercorrdata" class="quarto-xref">Figure&nbsp;<span>8.3</span></a>. You can see a linear association between the two variables <em>i</em>.<em>e</em>. between soil moisture and crop yield in rupees. It can be shown using a line as in <a href="#fig-reglinecorrdata" class="quarto-xref">Figure&nbsp;<span>8.4</span></a>. It is clear that as soil moisture percentage increases crop yield in rupees increases, indicating a positive correlation.</p>
+<div id="fig-scattercorrdata" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-scattercorrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image3c.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-scattercorrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.3: Scatter diagram of data in Example 8.2
+</figcaption>
+</figure>
+</div>
+<div id="fig-reglinecorrdata" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reglinecorrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image3.5c.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reglinecorrdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.4: Linear relationship between variables
+</figcaption>
+</figure>
+</div>
+<p>From the examples above it is clear that scatter diagram gives an idea on linear association between variables, so it can also used as a graphical tool to see whether there any association is present or not. But we cannot quantify the association using scatter diagram.</p>
+</section>
+<section id="correlation" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="correlation"><span class="header-section-number">8.3</span> Correlation</h2>
+<p>Correlation is a statistical technique used to examine the relationship between two or more variables. It quantifies the degree and strength of the <em>linear association</em> between two variables, expressed as a single numerical value.</p>
+<p>This measure allows us to summarize the extent to which changes in one variable are associated with changes in another. When two or more quantities vary in a related manner, such that movements in one variable are consistently accompanied by movements in the other, the variables are said to be correlated. Based on the nature of relationship, correlation can be classified into three categories <em>positive correlation</em>, <em>negative correlation</em> and <em>no correlation</em>.</p>
+<p><strong>Positive correlation</strong></p>
+<p>Positive correlation refers to a relationship between two variables in which both move in the same direction. A positive correlation exists when an increase in one variable is accompanied by an increase in the other, or when a decrease in one variable corresponds with a decrease in the other.</p>
+<p><strong>Examples of positive correlation:</strong></p>
+<ol type="1">
+<li><p><em>Fertilizer use and crop yield</em>: The more fertilizer (<em>x</em>) a farmer applies to a field, the higher the crop yield (<em>y</em>). Here, as x increases, y also increases.</p></li>
+<li><p><em>Rainfall and crop growth</em>: Increased rainfall (<em>x</em>) often leads to better crop growth (<em>y</em>).</p></li>
+<li><p><em>Farm size and agricultural output</em>: Larger farm sizes (<em>x</em>) are associated with greater total agricultural output (<em>y</em>).</p></li>
+<li><p><em>Labor hours and harvest quantity</em>: The more hours spent harvesting (<em>x</em>), the higher the quantity of crops harvested (<em>y</em>).</p></li>
+</ol>
+<p><strong>Negative correlation</strong></p>
+<p>Negative correlation refers to a relationship between two variables in which one variable increases as the other decreases, and vice versa.</p>
+<p><strong>Examples of negative correlation:</strong></p>
+<ol type="1">
+<li><p><em>Weed density and crop yield</em>: As the density of weeds in a field (<em>x</em>) increases, the crop yield (<em>y</em>) decreases. Here, as x increases, y decreases.</p></li>
+<li><p><em>Soil salinity and plant growth</em>: Higher soil salinity levels (<em>x</em>) result in reduced plant growth (<em>y</em>).</p></li>
+<li><p><em>Age of livestock and milk production</em>: As a cow’s age (<em>x</em>) increases, the amount of milk it produces (<em>y</em>) decreases. Here, as x increases, y decreases.</p></li>
+<li><p><em>Pesticide application and pest population</em>: As the amount of pesticide applied (<em>x</em>) increases, the pest population (<em>y</em>) decreases. Here, <em>x</em> increases while <em>y</em> decreases.</p></li>
+</ol>
+<p><strong>No correlation</strong> refers to a statistical relationship where two variables exhibit no apparent association with each other. In other words, changes in one variable do not systematically correspond to changes in the other.</p>
+<p>Direction of correlation can be identified using a scatter diagram as shown below in <a href="#fig-directioncorr" class="quarto-xref">Figure&nbsp;<span>8.5</span></a></p>
+<div id="fig-directioncorr" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-directioncorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/image4c.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-directioncorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.5: Scatter plot and nature of relationship
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="correlation-types" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="correlation-types"><span class="header-section-number">8.4</span> Correlation types</h2>
+<p><strong>Simple and multiple</strong></p>
+<p>In <u>simple correlation</u> the relationship is confined to two variables only. In <u>multiple correlation</u> the relationship between more than two variables is studied</p>
+<p><strong>Linear and non-linear correlation</strong></p>
+<p><u>Linear correlation:</u> A type of correlation in which the relationship between two variables can be represented by a straight line. In this case, a change in one variable corresponds to a proportional change in the other, either in a positive or negative direction.</p>
+<p><u>Non-linear correlation:</u> A type of correlation where the relationship between two variables cannot be represented by a straight line. Instead, the relationship follows a curved pattern, indicating that the variables do not change at a constant rate relative to each other. This is also referred to as <em>curvilinear correlation</em>.</p>
+<p><strong>Partial and total</strong></p>
+<p><u>Partial correlation</u>: In multiple correlation analysis, partial correlation examines the relationship between two variables after controlling for or eliminating the linear effect of other correlated variables.</p>
+<p><u>Total correlation</u>: Total correlation considers the relationship between variables based on all relevant variables without controlling for the influence of any specific variable.</p>
+<p>Partial and multiple correlation are discussed in detail in <a href="regression.html#sec-partialmulti" class="quarto-xref"><span>Section 9.15</span></a></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Perfect Correlation</strong>: If there is any change in the value of one variable, the value of the other variable is changed in a fixed proportion then the correlation between them is said to be in perfect correlation. If there is a perfect correlation, the points will lie in the straight line. If there was a perfect correlation the data will look like in <a href="#fig-perfectcorr" class="quarto-xref">Figure&nbsp;<span>8.6</span></a> below.</p>
+<div id="fig-perfectcorr" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-perfectcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/perfectcorr.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:30.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-perfectcorr-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;8.6: Perfect correlation
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="measuring-correlation" class="level2" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="measuring-correlation"><span class="header-section-number">8.5</span> Measuring correlation</h2>
+<p>While a scatter diagram provides a visual representation to examine whether there is an association between two variables, it does not give a precise measure of the strength or direction of the relationship. To understand the degree and nature of the correlation more quantitatively, we use numerical measures. In this section, we discuss various methods to quantify correlation, enabling a more comprehensive and objective analysis of the relationship between variables.</p>
+<section id="karl-pearsons-coefficient-of-correlation" class="level3" data-number="8.5.1">
+<h3 data-number="8.5.1" class="anchored" data-anchor-id="karl-pearsons-coefficient-of-correlation"><span class="header-section-number">8.5.1</span> Karl Pearson’s coefficient of correlation</h3>
+<p>It is the most important and widely used measure of correlation. A measure of the intensity or degree of <em>linear relationship</em> between two variables is developed by Karl Pearson, a British Biometrician - known as the <u><strong>Pearson’s Correlation coefficient</strong></u> denoted by ‘<em>r</em>’ which is expressed as the ratio of the <strong>covariance</strong> to the product of the standard deviations of the two variables.</p>
+<p><u><strong>Covariance</strong></u></p>
+<p><strong>Covariance</strong> is a measure of the joint linear variability of the two variables. Covariance of two variables <em>x</em> and <em>y</em> is denoted as <em>cov</em>(<em>x</em>, <em>y</em>). Covariance measure is used to find correlation coefficient. Consider two variables <em>x</em> and <em>y</em> with <em>n</em> observations each, then covariance is given by <a href="#eq-covariance" class="quarto-xref">Equation&nbsp;<span>8.1</span></a></p>
+<p><span id="eq-covariance"><span class="math display">\[cov(x,y)=\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)} \tag{8.1}\]</span></span></p>
+<p>When covariance = 0 there is no joint variability or there is no linear relationship. The unit of covariance is the product of the units of the two variables.</p>
+<p><u><strong>Pearson’s Correlation coefficient</strong></u></p>
+<p><strong>Assumptions of Pearson’s correlation coefficient</strong></p>
+<p>To ensure the validity of Pearson’s correlation coefficient, the following assumptions must be met:</p>
+<ol type="1">
+<li><p><strong>Linearity</strong>: The relationship between the two variables must be linear. Pearson’s correlation only measures the strength of linear associations, so it may not accurately describe relationships that are non-linear.</p></li>
+<li><p><strong>Continuous data</strong>: Both variables should be measured on continuous scales (interval or ratio).</p></li>
+<li><p><strong>Normality</strong>: Both variables should be approximately normally distributed, especially for small sample sizes. This assumption is less critical for large sample sizes due to the Central Limit Theorem.</p></li>
+<li><p><strong>Homoscedasticity</strong>: The variability in one variable should remain constant across the range of the other variable. In other words, the scatter of points around the regression line should be uniform.</p></li>
+<li><p><strong>Independence</strong>: Observations in the data should be independent of each other.</p></li>
+<li><p><strong>No significant outliers</strong>: Outliers can have a disproportionate effect on Pearson’s correlation, potentially distorting the results. An <em>outlier</em> is an observation in a dataset that is significantly different from other observations. It deviates markedly from the overall pattern of the data and may occur due to variability in the data, measurement errors, or rare events.</p></li>
+</ol>
+<p>Violations of these assumptions may lead to incorrect or misleading interpretations of the correlation coefficient. In such cases, alternative methods like Spearman’s correlation discussed in <a href="#sec-spearman" class="quarto-xref"><span>Section 8.5.2</span></a> may be more appropriate.</p>
+<p>The Pearson’s correlation coefficient between the two variables (<em>x</em> and <em>y</em>) is calculated using <a href="#eq-correlation" class="quarto-xref">Equation&nbsp;<span>8.2</span></a>. <a href="#eq-correlation" class="quarto-xref">Equation&nbsp;<span>8.2</span></a> can be also written as in <a href="#eq-correlation2" class="quarto-xref">Equation&nbsp;<span>8.3</span></a></p>
+<p><span id="eq-correlation"><span class="math display">\[r=\frac{cov(x,y)}{sd(x)sd(y)} \tag{8.2}\]</span></span></p>
+<p>where <em>sd</em> is the standard deviation.</p>
+<p><span id="eq-correlation2"><span class="math display">\[r = \frac{\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}}{\sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}}} \tag{8.3}\]</span></span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Product-moment correlation</strong></p>
+<p>Karl Pearson’s correlation coefficient (<em>r</em>) is also called the <strong>product-moment correlation</strong> coefficient because it is calculated using the product of the deviations of the two variables from their respective means. In other words, the <a href="#eq-correlation2" class="quarto-xref">Equation&nbsp;<span>8.3</span></a> involves multiplying the deviations of each data point from the mean of its variable and then averaging those products. The term product-moment refers to the multiplication (product) of the deviations (moments) of the variables from their means.</p>
+</div>
+</div>
+<p>A Simplified formula for by hand computation of correlation coefficient can be derived by modifying <a href="#eq-correlation2" class="quarto-xref">Equation&nbsp;<span>8.3</span></a></p>
+<p><span id="eq-correlation3"><span class="math display">\[r = \frac{n\left( \sum_{i = 1}^{n}{x_{i}y_{i}} \right) - \sum_{i = 1}^{n}{x_{i}\sum_{i = 1}^{n}y_{i}}}{\sqrt{\left\lbrack n\sum_{i = 1}^{n}{x_{i}^{2} - \left( \sum_{i = 1}^{n}x_{i} \right)^{2}} \right\rbrack\left\lbrack n\sum_{i = 1}^{n}{y_{i}^{2} - \left( \sum_{i = 1}^{n}y_{i} \right)^{2}} \right\rbrack}} \tag{8.4}\]</span></span></p>
+<p><u>Properties of the correlation coefficient (<em>r)</em></u></p>
+<ol type="1">
+<li><p>It is a pure number independent of both origin and scale of the units of the observations.</p></li>
+<li><p>It always lies between −1 and +1 (absolute value cannot exceed unity). −1 ≤ <em>r</em> ≤ +1</p></li>
+<li><p><em>r</em> = +1, indicates perfect positive correlation. <em>r</em> = −1, indicates perfect negative correlation. <em>r</em> = 0, indicates no correlation.</p></li>
+<li><p>When the correlation is zero then there is no linear relationship between the variables.</p></li>
+<li><p>Karl Pearson’s correlation coefficient is also called as <em>product-moment correlation</em> coefficient.</p></li>
+<li><p>Two independent variables are always uncorrelated, meaning that there is no relationship between them. However, the reverse is not always true. Just because two variables are uncorrelated doesn’t mean they are independent. Uncorrelated variables may still have a relationship, but the relationship might be non-linear, which correlation cannot capture. Independence implies no relationship in any form (linear or non-linear), but uncorrelated means there’s no linear relationship between them.</p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Spurious correlation</strong></p>
+<p>When we calculate the correlation between two variables, we often get a numerical value that quantifies the strength and direction of the relationship between them. However, if there is no actual meaningful relationship between these variables, the correlation value obtained may be misleading. For example, even if there’s no practical or causal link, we might find a correlation between variables like “fertilizer price” and “Kohli’s batting average.” Despite the absence of any real-world connection between these two variables, we can still compute a correlation value. This type of correlation is known as a spurious correlation, which means it exists purely due to random chance or statistical artifacts rather than any practical or causal relationship.</p>
+</div>
+</div>
+<p><strong>Example 8.3</strong>: Consider the <a href="#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a> in Example 8.2; find correlation coefficient (<em>r</em>)</p>
+<div id="tbl-corrcalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.3: Calculation of Pearson’s correlation coefficient for <a href="#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>
+</figcaption>
+<div aria-describedby="tbl-corrcalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+<col style="width: 12%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Sl. No.</td>
+<td style="text-align: center;">Temperature (x)</td>
+<td style="text-align: center;">Sales (y)</td>
+<td style="text-align: center;"><span class="math inline">\(x_{i}-\overline{x}\)</span>(1)</td>
+<td style="text-align: center;"><span class="math inline">\(y_{i}-\overline{y}\)</span>(2)</td>
+<td style="text-align: center;">(1).(2)</td>
+<td style="text-align: center;"><span class="math inline">\((x_{i}-\overline{x})^{2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((y_{i}-\overline{y})^{2}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">14.2</td>
+<td style="text-align: center;">215</td>
+<td style="text-align: center;">-4.48</td>
+<td style="text-align: center;">-187.42</td>
+<td style="text-align: center;">838.69</td>
+<td style="text-align: center;">20.03</td>
+<td style="text-align: center;">35125.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">16.4</td>
+<td style="text-align: center;">325</td>
+<td style="text-align: center;">-2.28</td>
+<td style="text-align: center;">-77.42</td>
+<td style="text-align: center;">176.12</td>
+<td style="text-align: center;">5.18</td>
+<td style="text-align: center;">5993.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">11.9</td>
+<td style="text-align: center;">185</td>
+<td style="text-align: center;">-6.78</td>
+<td style="text-align: center;">-217.42</td>
+<td style="text-align: center;">1473</td>
+<td style="text-align: center;">45.90</td>
+<td style="text-align: center;">47270.01</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">15.2</td>
+<td style="text-align: center;">332</td>
+<td style="text-align: center;">-3.48</td>
+<td style="text-align: center;">-70.42</td>
+<td style="text-align: center;">244.70</td>
+<td style="text-align: center;">12.08</td>
+<td style="text-align: center;">4958.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">18.5</td>
+<td style="text-align: center;">406</td>
+<td style="text-align: center;">-0.18</td>
+<td style="text-align: center;">3.58</td>
+<td style="text-align: center;">-0.63</td>
+<td style="text-align: center;">0.031</td>
+<td style="text-align: center;">12.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">22.1</td>
+<td style="text-align: center;">522</td>
+<td style="text-align: center;">3.43</td>
+<td style="text-align: center;">119.58</td>
+<td style="text-align: center;">409.57</td>
+<td style="text-align: center;">11.73</td>
+<td style="text-align: center;">14300.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">19.4</td>
+<td style="text-align: center;">412</td>
+<td style="text-align: center;">0.73</td>
+<td style="text-align: center;">9.58</td>
+<td style="text-align: center;">6.9479</td>
+<td style="text-align: center;">0.53</td>
+<td style="text-align: center;">91.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">25.1</td>
+<td style="text-align: center;">614</td>
+<td style="text-align: center;">6.43</td>
+<td style="text-align: center;">211.58</td>
+<td style="text-align: center;">1359.42</td>
+<td style="text-align: center;">41.28</td>
+<td style="text-align: center;">44767.51</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">23.4</td>
+<td style="text-align: center;">544</td>
+<td style="text-align: center;">4.73</td>
+<td style="text-align: center;">141.58</td>
+<td style="text-align: center;">668.98</td>
+<td style="text-align: center;">22.33</td>
+<td style="text-align: center;">20045.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">18.1</td>
+<td style="text-align: center;">421</td>
+<td style="text-align: center;">-0.58</td>
+<td style="text-align: center;">18.58</td>
+<td style="text-align: center;">-10.69</td>
+<td style="text-align: center;">0.33</td>
+<td style="text-align: center;">345.34</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">22.6</td>
+<td style="text-align: center;">445</td>
+<td style="text-align: center;">3.93</td>
+<td style="text-align: center;">42.58</td>
+<td style="text-align: center;">167.14</td>
+<td style="text-align: center;">15.41</td>
+<td style="text-align: center;">1813.34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">17.2</td>
+<td style="text-align: center;">408</td>
+<td style="text-align: center;">-1.48</td>
+<td style="text-align: center;">5.58</td>
+<td style="text-align: center;">-8.24</td>
+<td style="text-align: center;">2.16</td>
+<td style="text-align: center;">31.17</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"><strong>224.1</strong></td>
+<td style="text-align: center;"><strong>4829</strong></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;"><strong>5325.03</strong></td>
+<td style="text-align: center;"><strong>176.98</strong></td>
+<td style="text-align: center;"><strong>174754.9</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><em>n</em> =12</p>
+<p><span class="math display">\[mean,\overline{x} = \ \frac{224.1}{12} = 18.68\]</span></p>
+<p><span class="math display">\[mean,\overline{y} = \ \frac{4829}{12} = 402.42\]</span> <em>cov</em> (<em>x</em>,<em>y</em>) = <span class="math inline">\(\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}\)</span></p>
+<p><span class="math inline">\(\sum_{i = 1}^{12}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)} = 5325.03\)</span></p>
+<p><em>Cov</em> (<em>x</em>,<em>y</em>) = <span class="math inline">\(\frac{5325.03}{12} = 443.75\)</span></p>
+<p><span class="math display">\[Standard\ deviation,\ S.D\left( x \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}} = \sqrt{\frac{176.98}{12}} = 3.84\]</span></p>
+<p><span class="math display">\[Standard\ deviation,\ S.D\left( y \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}} = \sqrt{\frac{174754.9}{12}} = 120.68\]</span></p>
+<p>Using <a href="#eq-correlation" class="quarto-xref">Equation&nbsp;<span>8.2</span></a>, <span class="math inline">\(r = \frac{443.75}{3.84\  \times 120.68} = 0.96\)</span>, which indicates a strong positive correlation</p>
+</section>
+<section id="sec-spearman" class="level3" data-number="8.5.2">
+<h3 data-number="8.5.2" class="anchored" data-anchor-id="sec-spearman"><span class="header-section-number">8.5.2</span> Spearman’s rank order correlation coefficient</h3>
+<p>The Spearman’s correlation coefficient evaluates the strength and direction of a monotonic relationship between two variables, whether they are continuous or ordinal. Spearman’s correlation is denoted by a Greek letter <span class="math inline">\(\rho\)</span> pronounced as “<em>rho</em>”. The range of Spearman’s rank correlation also lies between −1 and +1 always, <em>i</em>.<em>e</em>. −1 ≤ <em>ρ</em> ≤+1</p>
+<p>Unlike Pearson’s correlation, which measures linear relationships, Spearman’s correlation is based on the ranked values of the variables rather than their raw data. This makes it particularly useful in situations where:</p>
+<ul>
+<li><p>The relationship between variables is non-linear but monotonic.</p></li>
+<li><p>The data contains outliers or is not normally distributed, as ranking reduces the influence of extreme values.</p></li>
+<li><p>Variables are measured on an ordinal, interval, or ratio scale.</p></li>
+</ul>
+<p>Spearman’s correlation is a more robust alternative to Pearson’s when the assumptions of Pearson’s correlation coefficient are violated.</p>
+<p>There are two cases in calculating <span class="math inline">\(\rho\)</span> :</p>
+<ol type="1">
+<li><p>No tied rank case</p></li>
+<li><p>Tied rank case</p></li>
+</ol>
+<p><u><strong>No tied rank case</strong></u></p>
+<p>When two or more distinct observations have the same value, thus being given the same rank, they are said to be tied. The formula for the Spearman rank correlation coefficient when there are <em>no tied ranks</em> is:</p>
+<p><span id="eq-spearman1"><span class="math display">\[\rho = 1 - \frac{6\sum_{i = 1}^{n}d_{i}^{2}}{n\left( n^{2} - 1 \right)} \tag{8.5}\]</span></span></p>
+<p>Where <span class="math inline">\(d_{i}\)</span> is the difference between ranks of <em>i<sup>t</sup></em><sup>h</sup> pair of observation</p>
+<p><strong>Example 8.4</strong>: Calculation of Spearman’s rank correlation when there is no tied rank is explained step by step by using the simple example below</p>
+<p>The scores for nine students in physics and mathematics are as follows:</p>
+<p>Physics: 35, 23, 47, 17, 10, 43, 9, 6, 28</p>
+<p>Mathematics: 30, 33, 45, 23, 8, 49, 12, 4, 31</p>
+<p>Compute the student’s ranks in the two subjects and compute the Spearman rank correlation.</p>
+<div id="tbl-nontied" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nontied-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.4: Non tied rank case example dataset
+</figcaption>
+<div aria-describedby="tbl-nontied-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics</th>
+<th style="text-align: center;">Mathematics</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">31</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 1</strong>: Find the ranks for each individual subject. Rank the scores from greatest to smallest; assign the rank 1 to the highest score, 2 to the next highest and so on:</p>
+<div id="tbl-nontiedcalc1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nontiedcalc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.5: Non tied rank case calculation table1
+</figcaption>
+<div aria-describedby="tbl-nontiedcalc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics (<em>x</em>)</th>
+<th style="text-align: center;">Rank<sub><em>x</em></sub></th>
+<th style="text-align: center;">Mathematics (<em>y</em>)</th>
+<th style="text-align: center;">Rank<sub><em>y</em></sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 2</strong>: Add a column <em>d</em>, to your data. The <em>d</em> is the difference between ranks.</p>
+<p><em>d</em> = Rank<sub><em>x</em></sub> <em>–</em> Rank<sub><em>y</em></sub></p>
+<p>For example, the first student’s physics rank is 3 and math rank is 5, so the difference is -2. In the next column, square your <em>d</em> values.</p>
+<div id="tbl-nontiedcalc2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-nontiedcalc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.6: Non tied rank case calculation table2
+</figcaption>
+<div aria-describedby="tbl-nontiedcalc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 15%">
+<col style="width: 27%">
+<col style="width: 15%">
+<col style="width: 7%">
+<col style="width: 11%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics ( <em>x</em>)</th>
+<th style="text-align: center;">Rank<sub><em>x</em></sub></th>
+<th style="text-align: center;">Mathematics (<em>y</em>)</th>
+<th style="text-align: center;">Rank<sub><em>y</em></sub></th>
+<th style="text-align: center;"><em>d</em></th>
+<th style="text-align: center;"><em>d</em><sup>2</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">31</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">12</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 4</strong>: Sum (add up) all of your <em>d</em><sup>2</sup> values. <span class="math inline">\(\sum_{i = 1}^{n}d_{i}^{2} =\)</span> 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12.</p>
+<p><strong>Step 5</strong>: Insert the values into @eq-spearman1</p>
+<p><span class="math display">\[\rho = 1 - \frac{6 \times 12}{9\left( 81 - 1 \right)} = 0.90\]</span></p>
+<p>The Spearman’s rank correlation for this set of data is 0.90. This indicates there is a high correlation between the marks of physics and mathematics in the sample.</p>
+<p><u><strong>Tied rank case</strong></u><br>
+When two or more data points have the same value, same ranks were given to these data points and a tied rank case occurs. When there are tied ranks, the formula for calculating <span class="math inline">\(\rho\)</span> is given below <span id="eq-spearman2"><span class="math display">\[\rho = 1 - \frac{6\left( \sum_{i = 1}^{n}d_{i}^{2} + T_{x} + T_{y} \right)}{n\left( n^{2} - 1 \right)} \tag{8.6}\]</span></span></p>
+<p>If there are <em>m</em> individuals tied (having same rank), and <em>s</em> such sets of ranks are there in X- series then, <span id="eq-spearmanx"><span class="math display">\[T_{x} = \ \frac{1}{12}\sum_{i = 1}^{s}{m_{i}\left( m_{i}^{2} - 1 \right)} \tag{8.7}\]</span></span></p>
+<p>If there are <em>w</em> individuals tied (having same rank), and <em>s’</em> such sets of ranks are there in Y- series then, <span id="eq-spearmany"><span class="math display">\[T_{y} = \ \frac{1}{12}\sum_{i = 1}^{s'}{w_{i}\left( w_{i}^{2} - 1 \right)} \tag{8.8}\]</span></span></p>
+<p>Calculation of Spearman’s rank correlation when there is tied rank is explained step by step by using the example below</p>
+<p><strong>Example 8.5</strong>: The scores for nine students in physics and mathematics are as follows:</p>
+<div id="tbl-tied" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tied-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.7: Tied rank case example dataset
+</figcaption>
+<div aria-describedby="tbl-tied-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics (<em>x</em>)</th>
+<th style="text-align: center;">Mathematics (<em>y</em>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">30</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">45</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">23</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">49</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">33</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 1</strong>: Consider the marks in Physics, ranked as usual without considering the repeated value. Here you can see 23 is repeated but first value is given rank 5 and second repeated value is given the next rank 6.</p>
+<div id="tbl-tiedcalc1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tiedcalc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.8: Tied rank case calculation table1
+</figcaption>
+<div aria-describedby="tbl-tiedcalc1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics (<em>x</em>)</th>
+<th style="text-align: center;">Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Then the average of two ranks 5 and 6 is assigned to both the values; <span class="math inline">\(\left( \frac{5 + 6}{2}\right)\)</span>= 5.5</p>
+<div id="tbl-tiedcalc2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tiedcalc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.9: Tied rank case calculation table2
+</figcaption>
+<div aria-describedby="tbl-tiedcalc2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics (<em>x</em>)</th>
+<th style="text-align: center;">Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Similarly for marks in mathematics you can see 33 is repeated thrice.</p>
+<div id="tbl-tiedcalc3" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tiedcalc3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.10: Tied rank case calculation table3
+</figcaption>
+<div aria-describedby="tbl-tiedcalc3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Mathematics (<em>y</em>)</th>
+<th style="text-align: center;">Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 and 5 is given <span class="math inline">\(\left( \frac{3 + 4 + 5}{3} \right)\)</span>= 4</p>
+<div id="tbl-tiedcalc4" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tiedcalc4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.11: Tied rank case calculation table4
+</figcaption>
+<div aria-describedby="tbl-tiedcalc4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Mathematics (<em>y</em>)</th>
+<th style="text-align: center;">Rank</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">8</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Step 2</strong>: Calculate T_{x} and T_{y}</p>
+<p>In our example marks in Physics (<em>x</em>) there are two 23 values tied therefore <em>m</em> = 2; since only one such a set is there <em>s</em> =1. Applying these values in <a href="#eq-spearmanx" class="quarto-xref">Equation&nbsp;<span>8.7</span></a> <span class="math inline">\(T_{x} = \ \frac{1}{12}\left( 2 \times (2^{2} - 1 \right)\)</span> = 0.5</p>
+<p>In our example marks in Mathematics (<em>y</em>) there are three 33 values tied therefore <em>w</em> = 3; since only one such a set is there <em>s</em> =1. Applying these values in <a href="#eq-spearmany" class="quarto-xref">Equation&nbsp;<span>8.8</span></a> <span class="math inline">\(T_{y} = \ \frac{1}{12}\left( 3 \times (3^{2} - 1 \right)\)</span> = 2</p>
+<p><strong>Step 2</strong>: Calculate <em>d</em> and then use the <a href="#eq-spearman2" class="quarto-xref">Equation&nbsp;<span>8.6</span></a></p>
+<div id="tbl-tiedcalc5" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tiedcalc5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.12: Tied rank case calculation table5
+</figcaption>
+<div aria-describedby="tbl-tiedcalc5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Physics ( <em>x</em>)</th>
+<th style="text-align: center;">Rank</th>
+<th style="text-align: center;">Mathematics ( <em>y</em>)</th>
+<th style="text-align: center;">Rank</th>
+<th style="text-align: center;">d</th>
+<th style="text-align: center;">d<sup>2</sup></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">1.5</td>
+<td style="text-align: center;">2.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">5.5</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">-1.5</td>
+<td style="text-align: center;">2.25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">43</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">25</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">44.5</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>using <a href="#eq-spearman2" class="quarto-xref">Equation&nbsp;<span>8.6</span></a>, <span class="math inline">\(\rho = 1 - \frac{6 \times \left( 44.5 + 0.5 + 2 \right)}{9\left( 9^{2} - 1 \right)} = \ 1 - \frac{282}{720}\)</span> = 0.61</p>
+<p>A Spearman rank correlation of 0.61 indicates a moderately strong positive monotonic relationship between the two variables.</p>
+</section>
+<section id="kendalls-rank-correlation-coefficient" class="level3" data-number="8.5.3">
+<h3 data-number="8.5.3" class="anchored" data-anchor-id="kendalls-rank-correlation-coefficient"><span class="header-section-number">8.5.3</span> Kendall’s Rank Correlation Coefficient</h3>
+<p>Kendall’s rank correlation coefficient, also known as Kendall’s <span class="math inline">\(\tau\)</span> or the coefficient of concordance, is a measure of association that evaluates the degree of agreement between ranked variables. It ranges from 0 to 1 <span class="math inline">\(0\leq \tau \leq1\)</span>, where: - <span class="math inline">\(\tau = 0\)</span>: Indicates no agreement. - <span class="math inline">\(\tau = 1\)</span>: Indicates perfect agreement.</p>
+<p>When there are multiple sets of rankings (<em>k</em> sets), Kendall’s coefficient of concordance (<span class="math inline">\(\tau\)</span>) can be used to assess the association among them. This measure is particularly useful in evaluating the reliability or consistency of scores assigned by multiple judges or raters. By quantifying the agreement across different rankings, it provides a robust way to analyze consensus in subjective evaluations or repeated assessments.</p>
+<p>To calculate Kendall’s coefficient of concordance (<span class="math inline">\(\tau\)</span>), the data is organized into a table where each row represents the ranks assigned by a different judge to the same set of <em>n</em> objects. Each column in the table corresponds to the ranks given by a judge to <em>n</em> objects.</p>
+<p>For <em>k</em> judges, there will be <em>k</em> sets of rankings for each object. The table should look like this:</p>
+<div id="tbl-kendalltau" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kendalltau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.13: Model table for the calculation of Kendall’s <span class="math inline">\(\tau\)</span>
+</figcaption>
+<div aria-describedby="tbl-kendalltau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Object</th>
+<th style="text-align: center;">Judge 1</th>
+<th style="text-align: center;">Judge 2</th>
+<th style="text-align: center;">…</th>
+<th style="text-align: center;">Judge <em>k</em></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">R<sub>11</sub></td>
+<td style="text-align: center;">R<sub>12</sub></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">R<sub>1<em>k</em></sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">R<sub>21</sub></td>
+<td style="text-align: center;">R<sub>22</sub></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">R<sub>2<em>k</em></sub></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">…</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><em>n</em></td>
+<td style="text-align: center;">R<sub><em>n1</em></sub></td>
+<td style="text-align: center;">R<sub><em>n</em>2</sub></td>
+<td style="text-align: center;">…</td>
+<td style="text-align: center;">R<sub><em>nk</em></sub></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>in <a href="#tbl-kendalltau" class="quarto-xref">Table&nbsp;<span>8.13</span></a> each row represents the ranks assigned to an object by all ( <em>k</em> ) judges. - Each column represents the ranks for each object assigned by a particular judge. <span class="math inline">\(R_{ij}\)</span> is the rank assigned to the <em>i</em><sup>th</sup> object by the <em>j</em><sup>th</sup> object, where <em>i</em> =1, 2, …, <em>n</em> and <em>j</em> = 1, 2, …, <em>k.</em></p>
+<p>Kendall’s coefficient of concordance (<span class="math inline">\(\tau\)</span>) is calculated using <a href="#eq-kendall" class="quarto-xref">Equation&nbsp;<span>8.9</span></a>.</p>
+<p><span id="eq-kendall"><span class="math display">\[\tau = \frac{12\left\lbrack \sum_{i = 1}^{n}{R_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}R_{i} \right)^{2}}{n}} \right\rbrack}{k^{2}n\left( n^{2} - 1 \right)} \tag{8.9}\]</span></span></p>
+<p>where <span class="math inline">\(R_{i} =\sum_{j = 1}^{k}{R_{ij}}\)</span>, <em>i</em>.<em>e</em>. the sum of ranks obtained by each object. Calculation of Kendall’s <span class="math inline">\(\tau\)</span> is explained in Example 8.6</p>
+<p><strong>Example 8.6</strong>: In a crop production competition, 10 entries of farmers were ranked by agricultural scientists (judges). Find the degree of agreement among the scientist for the competition result given below.</p>
+<div id="tbl-croprod" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-croprod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.14: Rankings of 10 farmers by agricultural scientists
+</figcaption>
+<div aria-describedby="tbl-croprod-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Farmers</td>
+<td style="text-align: center;">Scientist 1</td>
+<td style="text-align: center;">Scientist 2</td>
+<td style="text-align: center;">Scientist 3</td>
+<td style="text-align: center;">Scientist 4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution 8.6</strong>:</p>
+<div id="tbl-kendaltau" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kendaltau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.15: Calculation of Kendall’s <span class="math inline">\(\tau\)</span>
+</figcaption>
+<div aria-describedby="tbl-kendaltau-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 34%">
+<col style="width: 23%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Farmers</th>
+<th style="text-align: center;">S1</th>
+<th style="text-align: center;">S2</th>
+<th style="text-align: center;">S3</th>
+<th style="text-align: center;">S4</th>
+<th style="text-align: center;"><span class="math inline">\(R _{i}\)</span> (sum of ranks)</th>
+<th style="text-align: center;"><span class="math inline">\(R _ {i} ^ {2}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">361</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">1089</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">1089</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">100</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">64</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">529</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">256</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">1156</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">1156</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><strong>Total</strong></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">220</td>
+<td style="text-align: center;">5900</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>here <em>k</em> = number of judges = 4; <em>n</em> = number of farmers =10; <span class="math inline">\(\sum_{i = 1}^{10}R_{i}^{2}\)</span>= (220)<sup>2</sup> = 48400; <span class="math inline">\(\sum_{i = 1}^{10}R_{i}^{2}\)</span> = 5900. Using <a href="#eq-kendall" class="quarto-xref">Equation&nbsp;<span>8.9</span></a></p>
+<p><span class="math display">\[\tau = \frac{12\left\lbrack 5900 - \frac{48400}{10} \right\rbrack}{16 \times 10\left( 100 - 1 \right)} = 0.80\]</span></p>
+<p>A Kendall’s <span class="math inline">\(\tau\)</span> of 0.80 suggests that the judges’ rankings are highly consistent. This level of concordance implies that the rankings are strongly aligned, indicating a high level of agreement across the judges’ evaluations.</p>
+</section>
+</section>
+<section id="correlation-matrix" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="correlation-matrix"><span class="header-section-number">8.6</span> Correlation matrix</h2>
+<p>A correlation matrix is a table that displays the correlation coefficients between multiple variables. It is particularly useful for presenting the correlation values of several variables at the same time. The matrix can be computed using either Pearson’s correlation or Spearman’s correlation. Each cell in the matrix represents the correlation coefficient between the two variables at the intersecting row and column. These values range from -1 to 1. The diagonal elements are always equal to 1, as a variable is perfectly correlated with itself. Additionally, the matrix is symmetrical across the diagonal, since the correlation between <em>x</em> and <em>y</em> is the same as the correlation between <em>y</em> and <em>x</em>.</p>
+<p><strong>Example 8.7</strong>: Data below gives the measurement on several plant growth characters. Create a correlation matrix.</p>
+<div id="tbl-corrmat" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.16: Plant growth characters
+</figcaption>
+<div aria-describedby="tbl-corrmat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Growth</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Water</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sunlight</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Fertilizer</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Nutrient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">4.37</td>
+<td style="text-align: center; width: 7em;">167.55</td>
+<td style="text-align: center; width: 7em;">11.08</td>
+<td style="text-align: center; width: 7em;">56.60</td>
+<td style="text-align: center; width: 7em;">243.43</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">9.56</td>
+<td style="text-align: center; width: 7em;">325.36</td>
+<td style="text-align: center; width: 7em;">6.71</td>
+<td style="text-align: center; width: 7em;">40.68</td>
+<td style="text-align: center; width: 7em;">519.04</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">7.59</td>
+<td style="text-align: center; width: 7em;">231.40</td>
+<td style="text-align: center; width: 7em;">5.65</td>
+<td style="text-align: center; width: 7em;">35.86</td>
+<td style="text-align: center; width: 7em;">455.06</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">6.39</td>
+<td style="text-align: center; width: 7em;">209.62</td>
+<td style="text-align: center; width: 7em;">14.49</td>
+<td style="text-align: center; width: 7em;">78.06</td>
+<td style="text-align: center; width: 7em;">342.38</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">2.40</td>
+<td style="text-align: center; width: 7em;">77.79</td>
+<td style="text-align: center; width: 7em;">14.66</td>
+<td style="text-align: center; width: 7em;">81.01</td>
+<td style="text-align: center; width: 7em;">127.70</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">2.40</td>
+<td style="text-align: center; width: 7em;">115.16</td>
+<td style="text-align: center; width: 7em;">13.08</td>
+<td style="text-align: center; width: 7em;">70.34</td>
+<td style="text-align: center; width: 7em;">148.98</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">1.52</td>
+<td style="text-align: center; width: 7em;">76.76</td>
+<td style="text-align: center; width: 7em;">8.05</td>
+<td style="text-align: center; width: 7em;">45.48</td>
+<td style="text-align: center; width: 7em;">92.12</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">8.80</td>
+<td style="text-align: center; width: 7em;">280.54</td>
+<td style="text-align: center; width: 7em;">5.98</td>
+<td style="text-align: center; width: 7em;">34.18</td>
+<td style="text-align: center; width: 7em;">532.97</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">6.41</td>
+<td style="text-align: center; width: 7em;">195.48</td>
+<td style="text-align: center; width: 7em;">11.84</td>
+<td style="text-align: center; width: 7em;">59.45</td>
+<td style="text-align: center; width: 7em;">401.31</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">7.37</td>
+<td style="text-align: center; width: 7em;">236.65</td>
+<td style="text-align: center; width: 7em;">9.40</td>
+<td style="text-align: center; width: 7em;">48.08</td>
+<td style="text-align: center; width: 7em;">431.84</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">1.19</td>
+<td style="text-align: center; width: 7em;">51.96</td>
+<td style="text-align: center; width: 7em;">6.22</td>
+<td style="text-align: center; width: 7em;">31.41</td>
+<td style="text-align: center; width: 7em;">146.65</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">9.73</td>
+<td style="text-align: center; width: 7em;">328.38</td>
+<td style="text-align: center; width: 7em;">9.95</td>
+<td style="text-align: center; width: 7em;">56.11</td>
+<td style="text-align: center; width: 7em;">566.87</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">8.49</td>
+<td style="text-align: center; width: 7em;">286.58</td>
+<td style="text-align: center; width: 7em;">5.34</td>
+<td style="text-align: center; width: 7em;">29.84</td>
+<td style="text-align: center; width: 7em;">443.16</td>
+</tr>
+<tr class="even">
+<td style="text-align: center; width: 7em;">2.91</td>
+<td style="text-align: center; width: 7em;">131.66</td>
+<td style="text-align: center; width: 7em;">14.09</td>
+<td style="text-align: center; width: 7em;">75.54</td>
+<td style="text-align: center; width: 7em;">234.76</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center; width: 7em;">2.64</td>
+<td style="text-align: center; width: 7em;">102.81</td>
+<td style="text-align: center; width: 7em;">7.59</td>
+<td style="text-align: center; width: 7em;">47.03</td>
+<td style="text-align: center; width: 7em;">185.93</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</figure>
+</div>
+<p>Correlation matrix for <a href="#tbl-corrmat" class="quarto-xref">Table&nbsp;<span>8.16</span></a> can be created as shown in <a href="#tbl-corrmatdata" class="quarto-xref">Table&nbsp;<span>8.17</span></a> below. Here the diagonal elements are 1 because correlation of any variable to itself is 1. Also from the matrix below it is easy to find the correlation between any two variables, for example correlation between growth and water is 0.988. Correlation matrix is an effective way of presenting correlation results of several variables.</p>
+<div id="tbl-corrmatdata" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrmatdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;8.17: Correlation matrix of data in <a href="#tbl-corrmat" class="quarto-xref">Table&nbsp;<span>8.16</span></a>
+</figcaption>
+<div aria-describedby="tbl-corrmatdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Growth</th>
+<th>Water</th>
+<th>Sunlight</th>
+<th>Fertilizer</th>
+<th>Nutrient</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Growth</strong></td>
+<td>1</td>
+<td>0.988</td>
+<td>-0.343</td>
+<td>-0.332</td>
+<td>0.983</td>
+</tr>
+<tr class="even">
+<td><strong>Water</strong></td>
+<td>0.988</td>
+<td>1</td>
+<td>-0.328</td>
+<td>-0.314</td>
+<td>0.967</td>
+</tr>
+<tr class="odd">
+<td><strong>Sunlight</strong></td>
+<td>-0.343</td>
+<td>-0.328</td>
+<td>1</td>
+<td>0.986</td>
+<td>-0.371</td>
+</tr>
+<tr class="even">
+<td><strong>Fertilizer</strong></td>
+<td>-0.332</td>
+<td>-0.314</td>
+<td>0.986</td>
+<td>1</td>
+<td>-0.366</td>
+</tr>
+<tr class="odd">
+<td><strong>Nutrient</strong></td>
+<td>0.983</td>
+<td>0.967</td>
+<td>-0.371</td>
+<td>-0.366</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</section>
+<section id="correlogram" class="level2" data-number="8.7">
+<h2 data-number="8.7" class="anchored" data-anchor-id="correlogram"><span class="header-section-number">8.7</span> Correlogram</h2>
+<p>A correlogram is a graphical representation of a correlation matrix. It is used to visualize the pairwise correlation coefficients between multiple variables in a dataset. The correlogram uses color and size to represent the strength and direction of the correlation, helping to quickly identify relationships among variables. The most common way to display a correlogram is through a matrix of circles or squares, where each shape represents the correlation between two variables. Correlogram can be drawn using packages like <code>corrplot</code> <span class="citation" data-cites="corrplot">(<a href="references.html#ref-corrplot" role="doc-biblioref">Wei and Simko 2021</a>)</span> in R software <span class="citation" data-cites="RCoreTeam">(<a href="references.html#ref-RCoreTeam" role="doc-biblioref">Team 2024</a>)</span>. Different colours and styles are available to make the presentation attractive. Correlation matrix and correlogram can also be generated using our online platform available at www.kaugrapes.com <span class="citation" data-cites="grapes">(<a href="references.html#ref-grapes" role="doc-biblioref">Pratheesh P. Gopinath 2020</a>)</span>.</p>
+<div class="quarto-figure quarto-figure-center" style="text-align:center;">
+<figure class="figure">
+<p><img src="images/correlogram.png" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Correlogram of growth characters in Example 8.7</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Correlation and Sir Francis Galton</strong></p>
+<p>The concept of correlation dates back to Sir Francis Galton, who introduced the idea of <em>“co-relation”</em> in the 19th century while studying the relationship between physical traits, such as the height of parents and their children. Galton’s cousin, Karl Pearson, further developed this idea by formalizing the calculation of correlation and introducing the formula we use today in terms of Pearson’s correlation coefficient. Pearson’s work in the late 1800s provided a mathematical framework for understanding the strength and direction of relationships between two variables, a concept that has since become fundamental in statistics, especially in the fields of genetics, psychology, and social sciences.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands”.- Herman Chernoff</strong></p>
+</div>
+</div>
+
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-grapes" class="csl-entry" role="listitem">
+Pratheesh P. Gopinath, Brigit Joseph, Rajender Parsad. 2020. <em>GRAPES: General r-Shiny Based Analysis Platform Empowered by Statistics</em> (version 1.0.0). <a href="https://doi.org/10.5281/zenodo.4923220">https://doi.org/10.5281/zenodo.4923220</a>.
+</div>
+<div id="ref-RCoreTeam" class="csl-entry" role="listitem">
+Team, R Core. 2024. <span>“R: A Language and Environment for Statistical Computing.”</span> R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-corrplot" class="csl-entry" role="listitem">
+Wei, Taiyun, and Viliam Simko. 2021. <span>“Corrplot: Visualization of a Correlation Matrix.”</span> <a href="https://cran.r-project.org/web/packages/corrplot/corrplot.pdf">https://cran.r-project.org/web/packages/corrplot/corrplot.pdf</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cleaning-data-r\.ala\.org\.au\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./skewness.html" class="pagination-link" aria-label="Skewness and kurtosis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./regression.html" class="pagination-link" aria-label="Regression Analysis">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

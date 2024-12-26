@@ -6,9 +6,33 @@ In the previous chapters, we examined measures of central tendency, which summar
 
 In this chapter, we will introduce key measures of association, such as **covariance**, **correlation coefficients**, and other related metrics. We will discuss how these measures are calculated, interpreted, and applied to analyze relationships between variables. By the end of this chapter, you will be equipped to assess both the strength and direction of relationships, providing deeper insights into agricultural and social science research.
 
-## Scatter Diagram {#sec-scatterdiag}
+## Linear and monotonic relationship
 
-Consider two variables *x* and *y*, we use scatter diagram to investigate whether there is any relation between the two variables. If the variables *x* and *y* are plotted along the X-axis and Y-axis respectively in the X-Y plane of a graph sheet the resultant diagram of dots is known as **scatter diagram**. From the scatter diagram we can say whether there is any association between *x* and *y*.
+**Linear relationship**
+
+A linear relationship (or linear association) is a statistical term used to describe a straight-line relationship between variables. Linear relationships can be expressed either in a graphical format where the variable plotted on X-Y plane gives a straight line or relation between two variables (consider *x* and *y*) can be expressed with an equation of a straight line (*y* = *a* + *bx*) (will be more clear when we discuss regression in @sec-regression).
+
+**Monotonic relation**
+
+A monotonic relationship between two variables means that as one variable increases or decreases, the other tends to move in the same direction, but not necessarily at a constant rate. In contrast, a linear relationship implies that the variables move in the same direction at a constant rate. While all linear relationships are monotonic, not all monotonic relationships are linear. Refer to the illustration @fig-linearandmono for a clearer distinction.
+
+::: {#fig-linearandmono layout-ncol="3"}
+![Strong positive linear relationship](images/image6c.png){#fig-stroli width="200px" height="200px"}
+
+![Strong negative linear relationship](images/image7c.png){#fig-stroneg width="200px" height="200px"}
+
+![Weak linear relationship](images/image9c.png){#fig-weakli width="200px" height="200px"}
+
+![Non-linear relationship](images/image8c.png){#fig-nonli width="200px" height="200px"}
+
+![Monotonic relationship](images/image10c.png){#fig-monotonic width="200px" height="200px"}
+
+Linear and monotonic relationship
+:::
+
+## Scatter diagram {#sec-scatterdiag}
+
+Consider two variables *x* and *y*, a scatter diagram is used to visually investigate whether there is any relationship between them. This graphical method helps explore whether an association exists between the two variables. If the variables *x* and *y* are plotted along the X-axis and Y-axis respectively in the X-Y plane of a graph sheet the resultant diagram of dots is known as **scatter diagram**. From the scatter diagram we can say whether there is any association between *x* and *y*. @fig-scatterdiag gives the scatter diagram of Example 8.1
 
 **Example 8.1**: Consider the data on sepal length (*x*) and sepal width (*y*) of *Iris* *setosa.*
 
@@ -34,11 +58,38 @@ Consider two variables *x* and *y*, we use scatter diagram to investigate whethe
 
 ![Scatter diagram of data in Example 8.1](images/image2c.jpeg){#fig-scatterdiag fig-align="center" width="50%" style="text-align:center;"}
 
+**Example 8.2**: A research station investigates the relationship between the average daily soil moisture content (as influenced by irrigation levels, in percentage) and the corresponding monetary yield (in Rs.) of a crop. The data collected over different periods are as follows:
+
+| Soil moisture (%) | Crop yield (in Rs./cent) |
+|:-----------------:|:------------------------:|
+|       14.2        |           215            |
+|       16.4        |           325            |
+|       11.9        |           185            |
+|       15.2        |           332            |
+|       18.5        |           406            |
+|       22.1        |           522            |
+|       19.4        |           412            |
+|       25.1        |           614            |
+|       23.4        |           544            |
+|       18.1        |           421            |
+|       22.6        |           445            |
+|       17.2        |           408            |
+
+: Model data on crop yield influenced by soil moisture {#tbl-corrdata .bordered}
+
+Scatter diagram for the Example 8.2 is given in @fig-scattercorrdata. You can see a linear association between the two variables *i*.*e*. between soil moisture and crop yield in rupees. It can be shown using a line as in @fig-reglinecorrdata. It is clear that as soil moisture percentage increases crop yield in rupees increases, indicating a positive correlation.
+
+![Scatter diagram of data in Example 8.2](images/image3c.jpeg){#fig-scattercorrdata fig-align="center" width="70%" style="text-align:center;"}
+
+![Linear relationship between variables](images/image3.5c.jpeg){#fig-reglinecorrdata fig-align="center" width="70%" style="text-align:center;"}
+
+From the examples above it is clear that scatter diagram gives an idea on linear association between variables, so it can also used as a graphical tool to see whether there any association is present or not. But we cannot quantify the association using scatter diagram.
+
 ## Correlation
 
 Correlation is a statistical technique used to examine the relationship between two or more variables. It quantifies the degree and strength of the *linear association* between two variables, expressed as a single numerical value.
 
-This measure allows us to summarize the extent to which changes in one variable are associated with changes in another. When two or more quantities vary in a related manner, such that movements in one variable are consistently accompanied by movements in the other, the variables are said to be correlated. Based on the nature of relationship correlation can be classified into three categories *positive correlation*, *negative correlation* and *no correlation*.
+This measure allows us to summarize the extent to which changes in one variable are associated with changes in another. When two or more quantities vary in a related manner, such that movements in one variable are consistently accompanied by movements in the other, the variables are said to be correlated. Based on the nature of relationship, correlation can be classified into three categories *positive correlation*, *negative correlation* and *no correlation*.
 
 **Positive correlation**
 
@@ -46,27 +97,33 @@ Positive correlation refers to a relationship between two variables in which bot
 
 **Examples of positive correlation:**
 
-1.  **Fertilizer use and crop yield:** The more fertilizer (*x*) a farmer applies to a field, the higher the crop yield (*y*). Here, as x increases, y also increases.
+1.  *Fertilizer use and crop yield*: The more fertilizer (*x*) a farmer applies to a field, the higher the crop yield (*y*). Here, as x increases, y also increases.
 
-2.  **Rainfall and crop growth:** Increased rainfall (*x*) often leads to better crop growth (*y*).
+2.  *Rainfall and crop growth*: Increased rainfall (*x*) often leads to better crop growth (*y*).
 
-3.  **Farm size and agricultural output:** Larger farm sizes (*x*) are associated with greater total agricultural output (*y*).
+3.  *Farm size and agricultural output*: Larger farm sizes (*x*) are associated with greater total agricultural output (*y*).
 
-4.  **Labor hours and harvest quantity:** The more hours spent harvesting (*x*), the higher the quantity of crops harvested (*y*).
+4.  *Labor hours and harvest quantity*: The more hours spent harvesting (*x*), the higher the quantity of crops harvested (*y*).
 
 **Negative correlation**
 
 Negative correlation refers to a relationship between two variables in which one variable increases as the other decreases, and vice versa.
 
-**Examples of negative correlation**
+**Examples of negative correlation:**
 
-1.  **Weed density and crop yield:** As the density of weeds in a field (*x*) increases, the crop yield (*y*) decreases. Here, as x increases, y decreases.
+1.  *Weed density and crop yield*: As the density of weeds in a field (*x*) increases, the crop yield (*y*) decreases. Here, as x increases, y decreases.
 
-2.  **Soil salinity and plant growth:** Higher soil salinity levels (*x*) result in reduced plant growth (*y*).
+2.  *Soil salinity and plant growth*: Higher soil salinity levels (*x*) result in reduced plant growth (*y*).
 
-3.  **Age of livestock and milk production:** As a cow’s age (*x*) increases, the amount of milk it produces (*y*) decreases. Here, as x increases, y decreases.
+3.  *Age of livestock and milk production*: As a cow’s age (*x*) increases, the amount of milk it produces (*y*) decreases. Here, as x increases, y decreases.
 
-4.  **Pesticide application and pest population:** As the amount of pesticide applied (*x*) increases, the pest population (*y*) decreases. Here, *x* increases while *y* decreases.
+4.  *Pesticide application and pest population*: As the amount of pesticide applied (*x*) increases, the pest population (*y*) decreases. Here, *x* increases while *y* decreases.
+
+**No correlation** refers to a statistical relationship where two variables exhibit no apparent association with each other. In other words, changes in one variable do not systematically correspond to changes in the other.
+
+Direction of correlation can be identified using a scatter diagram as shown below in @fig-directioncorr
+
+![Scatter plot and nature of relationship](images/image4c.jpeg){#fig-directioncorr fig-align="center" width="70%" style="text-align:center;"}
 
 ## Correlation types
 
@@ -78,7 +135,7 @@ In [simple correlation]{.underline} the relationship is confined to two variable
 
 [Linear correlation:]{.underline} A type of correlation in which the relationship between two variables can be represented by a straight line. In this case, a change in one variable corresponds to a proportional change in the other, either in a positive or negative direction.
 
-[Non-linear correlation:]{.underline} A type of correlation where the relationship between two variables cannot be represented by a straight line. Instead, the relationship follows a curved pattern, indicating that the variables do not change at a constant rate relative to each other. This is also referred to as curvilinear correlation.
+[Non-linear correlation:]{.underline} A type of correlation where the relationship between two variables cannot be represented by a straight line. Instead, the relationship follows a curved pattern, indicating that the variables do not change at a constant rate relative to each other. This is also referred to as *curvilinear correlation*.
 
 **Partial and total**
 
@@ -88,162 +145,154 @@ In [simple correlation]{.underline} the relationship is confined to two variable
 
 Partial and multiple correlation are discussed in detail in @sec-partialmulti
 
-## Linear relationship
+::: {.callout-important title="Note"}
+**Perfect Correlation**: If there is any change in the value of one variable, the value of the other variable is changed in a fixed proportion then the correlation between them is said to be in perfect correlation. If there is a perfect correlation, the points will lie in the straight line. If there was a perfect correlation the data will look like in @fig-perfectcorr below.
 
-A linear relationship (or linear association) is a statistical term used to describe a straight-line relationship between variables. Linear relationships can be expressed either in a graphical format where the variable plotted on X-Y plane gives a straight line or relation between two variables (consider *x* and *y*) can be expressed with an equation of a straight line (*y* = *a* + *bx*) (will be more clear when we discuss regression in @sec-regression)
+![Perfect correlation](images/perfectcorr.jpeg){#fig-perfectcorr fig-align="center" width="30%" style="text-align:center;"}
+:::
 
-**Example 8.2**: Consider the following example of ice cream sales
+## Measuring correlation
 
-The local ice cream shop keeps track of how much ice cream they sell versus the temperature on that day; here are their figures for the last 12 days:
+While a scatter diagram provides a visual representation to examine whether there is an association between two variables, it does not give a precise measure of the strength or direction of the relationship. To understand the degree and nature of the correlation more quantitatively, we use numerical measures. In this section, we discuss various methods to quantify correlation, enabling a more comprehensive and objective analysis of the relationship between variables.
 
-| Temperature (°C) | Ice Cream Sales (in Rs.) |
-|:----------------:|:------------------------:|
-|       14.2       |           215            |
-|       16.4       |           325            |
-|       11.9       |           185            |
-|       15.2       |           332            |
-|       18.5       |           406            |
-|       22.1       |           522            |
-|       19.4       |           412            |
-|       25.1       |           614            |
-|       23.4       |           544            |
-|       18.1       |           421            |
-|       22.6       |           445            |
-|       17.2       |           408            |
+### Karl Pearson's coefficient of correlation
 
-For the rest of our discussion we will be using this example .
+It is the most important and widely used measure of correlation. A measure of the intensity or degree of *linear relationship* between two variables is developed by Karl Pearson, a British Biometrician - known as the [**Pearson's Correlation coefficient**]{.underline} denoted by '*r* ' which is expressed as the ratio of the **covariance** to the product of the standard deviations of the two variables.
 
-## Methods of measurement of correlation
+[**Covariance**]{.underline}
 
-### Scatter diagram or graphic method
+**Covariance** is a measure of the joint linear variability of the two variables. Covariance of two variables *x* and *y* is denoted as *cov*(*x*, *y*). Covariance measure is used to find correlation coefficient. Consider two variables *x* and *y* with *n* observations each, then covariance is given by @eq-covariance
 
-```{r c2, echo=FALSE,fig.cap='Scatter plot of Example 7.2',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/image3c.jpeg"))
-```
-
-From the Figure 7.2 above you can see a linear association between the two variables *i*.*e*. between temperature and ice cream sales. It can be shown using a line as below. It is clear that as temperature increases sales increases, indicating a positive correlation.
-
-```{r c3, echo=FALSE,fig.cap='Linear relationship between variables',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/image3.5c.png"))
-```
-
-From the example it is clear that scatter diagram gives an idea on linear association between variables, so it can also used as a graphical tool to see whether there is correlation is present or not.
-
-> **Perfect Correlation**: If there is any change in the value of one variable, the value of the other variable is changed in a fixed proportion then the correlation between them is said to be a perfect correlation. If there is a perfect correlation, the points will lie in the straight line. In the scatter diagram of Example 7.2, you can see that there is no perfect linear relationship as the points are not exactly in the line, but the points are in some scattered form but still have a direction (positive).
-
-Direction of correlation can be identified using a scatter diagram as shown below in Figure 7.4
-
-```{r c4, echo=FALSE,fig.cap='Scatter plot and nature of relationship',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/image4c.jpeg"))
-```
-
-### Karl Pearson's coefficient of Correlation (*r*)
-
-It is the most important and widely used measure of correlation. A measure of the intensity or degree of linear relationship between two variables is developed by Karl Pearson, a British Biometrician - known as the [**Pearson's Correlation coefficient**]{.underline} denoted by ***r*** which is expressed as the ratio of the **covariance** to the product of the standard deviations of the two variables.
-
-#### Covariance
-
-**Covariance** is a measure of the joint linear variability of the two variables. Consider two variables *x* and *y* with *n* observations each, then covariance is given by the formula
-
-Covariance of (*x*,*y*) = $\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}$
+$$cov(x,y)=\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}$$ {#eq-covariance}
 
 When covariance = 0 there is no joint variability or there is no linear relationship. The unit of covariance is the product of the units of the two variables.
 
-Covariance of two variables *x* and *y* is denoted as *Cov*(*x*, *y*). Covariance measure is used to find correlation coefficient.
+[**Pearson's Correlation coefficient**]{.underline}
 
-The correlation coefficient between the two variables (*x* and *y*) is calculated as\
-$$r=\frac{cov(x,y)}{sd(x)sd(y)}$$
+**Assumptions of Pearson's correlation coefficient**
 
-Where *sd*. is the standard deviation.
+To ensure the validity of Pearson's correlation coefficient, the following assumptions must be met:
 
-$$r = \frac{\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}}{\sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}}}$$
+1.  **Linearity**: The relationship between the two variables must be linear. Pearson's correlation only measures the strength of linear associations, so it may not accurately describe relationships that are non-linear.
 
-#### Properties of the correlation coefficient (*r*)
+2.  **Continuous data**: Both variables should be measured on continuous scales (interval or ratio).
+
+3.  **Normality**: Both variables should be approximately normally distributed, especially for small sample sizes. This assumption is less critical for large sample sizes due to the Central Limit Theorem.
+
+4.  **Homoscedasticity**: The variability in one variable should remain constant across the range of the other variable. In other words, the scatter of points around the regression line should be uniform.
+
+5.  **Independence**: Observations in the data should be independent of each other.
+
+6.  **No significant outliers**: Outliers can have a disproportionate effect on Pearson's correlation, potentially distorting the results. An *outlier* is an observation in a dataset that is significantly different from other observations. It deviates markedly from the overall pattern of the data and may occur due to variability in the data, measurement errors, or rare events.
+
+Violations of these assumptions may lead to incorrect or misleading interpretations of the correlation coefficient. In such cases, alternative methods like Spearman's correlation discussed in @sec-spearman may be more appropriate.
+
+The Pearson's correlation coefficient between the two variables (*x* and *y*) is calculated using @eq-correlation. @eq-correlation can be also written as in @eq-correlation2
+
+$$r=\frac{cov(x,y)}{sd(x)sd(y)}$$ {#eq-correlation}
+
+where *sd* is the standard deviation.
+
+$$r = \frac{\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}}{\sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}}}$$ {#eq-correlation2}
+
+::: {.callout-important title="Note"}
+**Product-moment correlation**
+
+Karl Pearson's correlation coefficient (*r*) is also called the **product-moment correlation** coefficient because it is calculated using the product of the deviations of the two variables from their respective means. In other words, the @eq-correlation2 involves multiplying the deviations of each data point from the mean of its variable and then averaging those products. The term product-moment refers to the multiplication (product) of the deviations (moments) of the variables from their means.
+:::
+
+A Simplified formula for by hand computation of correlation coefficient can be derived by modifying @eq-correlation2
+
+$$r = \frac{n\left( \sum_{i = 1}^{n}{x_{i}y_{i}} \right) - \sum_{i = 1}^{n}{x_{i}\sum_{i = 1}^{n}y_{i}}}{\sqrt{\left\lbrack n\sum_{i = 1}^{n}{x_{i}^{2} - \left( \sum_{i = 1}^{n}x_{i} \right)^{2}} \right\rbrack\left\lbrack n\sum_{i = 1}^{n}{y_{i}^{2} - \left( \sum_{i = 1}^{n}y_{i} \right)^{2}} \right\rbrack}}$$ {#eq-correlation3}
+
+[Properties of the correlation coefficient (*r)*]{.underline}
 
 1.  It is a pure number independent of both origin and scale of the units of the observations.
 
-2.  It always lies between −1 and +1 (absolute value cannot exceed unity). **−1** ≤ *r* ≤ **+1**
+2.  It always lies between −1 and +1 (absolute value cannot exceed unity). −1 ≤ *r* ≤ +1
 
 3.  *r* = +1, indicates perfect positive correlation. *r* = −1, indicates perfect negative correlation. *r* = 0, indicates no correlation.
 
 4.  When the correlation is zero then there is no linear relationship between the variables.
 
-5.  If there is no meaningful relation between the variables the value of the correlation obtained is also meaningless. (For example as fertilizer price increases, Kohili's batting average also increases, we know there no practical relationship between these variables, still we may get a correlation measure and it is called *spurious correlation*)
+5.  Karl Pearson's correlation coefficient is also called as *product-moment correlation* coefficient.
 
-6.  A Simplified formula for computation of correlation coefficient can be derived by modifying above formula
+6.  Two independent variables are always uncorrelated, meaning that there is no relationship between them. However, the reverse is not always true. Just because two variables are uncorrelated doesn't mean they are independent. Uncorrelated variables may still have a relationship, but the relationship might be non-linear, which correlation cannot capture. Independence implies no relationship in any form (linear or non-linear), but uncorrelated means there’s no linear relationship between them.
 
-$$r = \frac{n\left( \sum_{i = 1}^{n}{x_{i}y_{i}} \right) - \sum_{i = 1}^{n}{x_{i}\sum_{i = 1}^{n}y_{i}}}{\sqrt{\left\lbrack n\sum_{i = 1}^{n}{x_{i}^{2} - \left( \sum_{i = 1}^{n}x_{i} \right)^{2}} \right\rbrack\left\lbrack n\sum_{i = 1}^{n}{y_{i}^{2} - \left( \sum_{i = 1}^{n}y_{i} \right)^{2}} \right\rbrack}}$$
+::: {.callout-important title="Note"}
+**Spurious correlation**
 
-7.  Karl Pearson's correlation coefficient is also called as product -moment correlation coefficient.
+When we calculate the correlation between two variables, we often get a numerical value that quantifies the strength and direction of the relationship between them. However, if there is no actual meaningful relationship between these variables, the correlation value obtained may be misleading. For example, even if there's no practical or causal link, we might find a correlation between variables like "fertilizer price" and "Kohli's batting average." Despite the absence of any real-world connection between these two variables, we can still compute a correlation value. This type of correlation is known as a spurious correlation, which means it exists purely due to random chance or statistical artifacts rather than any practical or causal relationship.
+:::
 
-8.  Two independent variables are uncorrelated; however, the converse is not necessarily true.
+**Example 8.3**: Consider the @tbl-corrdata in Example 8.2; find correlation coefficient (*r*)
 
-**Example 7.3**: Consider the Example 7.2 of ice cream sales; find correlation coefficient (*r*)
-
-| Sl. No. | Temperature | Sales | $x_{i}-\overline{x}$(1) | $y_{i}-\overline{y}$(2) | (1).(2) | $(x_{i}-\overline{x})^{2}$ | $(y_{i}-\overline{y})^{2}$ |
+|  |  |  |  |  |  |  |  |
 |:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|:-------:|
-|  | \(x\) | \(y\) |  |  |  |  |  |
-| 1 | 14.2 | 215 | -4.475 | -187.42 | 838.69 | 20.0256 | 35125.01 |
-| 2 | 16.4 | 325 | -2.275 | -77.417 | 176.123 | 5.17563 | 5993.34 |
-| 3 | 11.9 | 185 | -6.775 | -217.42 | 1473 | 45.9006 | 47270.01 |
-| 4 | 15.2 | 332 | -3.475 | -70.417 | 244.698 | 12.0756 | 4958.507 |
-| 5 | 18.5 | 406 | -0.175 | 3.58333 | -0.6271 | 0.03063 | 12.84028 |
-| 6 | 22.1 | 522 | 3.425 | 119.583 | 409.573 | 11.7306 | 14300.17 |
-| 7 | 19.4 | 412 | 0.725 | 9.58333 | 6.94792 | 0.52562 | 91.84028 |
-| 8 | 25.1 | 614 | 6.425 | 211.583 | 1359.42 | 41.2806 | 44767.51 |
-| 9 | 23.4 | 544 | 4.725 | 141.583 | 668.981 | 22.3256 | 20045.84 |
-| 10 | 18.1 | 421 | -0.575 | 18.5833 | -10.685 | 0.33062 | 345.3403 |
-| 11 | 22.6 | 445 | 3.925 | 42.5833 | 167.14 | 15.4056 | 1813.34 |
-| 12 | 17.2 | 408 | -1.475 | 5.58333 | -8.2354 | 2.17563 | 31.17361 |
-| **SUM** | **224.1** | **4829** | 0 | 0 | **5325.03** | **176.983** | **174754.9** |
+| Sl. No. | Temperature (x) | Sales (y) | $x_{i}-\overline{x}$(1) | $y_{i}-\overline{y}$(2) | (1).(2) | $(x_{i}-\overline{x})^{2}$ | $(y_{i}-\overline{y})^{2}$ |
+| 1 | 14.2 | 215 | -4.48 | -187.42 | 838.69 | 20.03 | 35125.01 |
+| 2 | 16.4 | 325 | -2.28 | -77.42 | 176.12 | 5.18 | 5993.34 |
+| 3 | 11.9 | 185 | -6.78 | -217.42 | 1473 | 45.90 | 47270.01 |
+| 4 | 15.2 | 332 | -3.48 | -70.42 | 244.70 | 12.08 | 4958.51 |
+| 5 | 18.5 | 406 | -0.18 | 3.58 | -0.63 | 0.031 | 12.84 |
+| 6 | 22.1 | 522 | 3.43 | 119.58 | 409.57 | 11.73 | 14300.17 |
+| 7 | 19.4 | 412 | 0.73 | 9.58 | 6.9479 | 0.53 | 91.84 |
+| 8 | 25.1 | 614 | 6.43 | 211.58 | 1359.42 | 41.28 | 44767.51 |
+| 9 | 23.4 | 544 | 4.73 | 141.58 | 668.98 | 22.33 | 20045.84 |
+| 10 | 18.1 | 421 | -0.58 | 18.58 | -10.69 | 0.33 | 345.34 |
+| 11 | 22.6 | 445 | 3.93 | 42.58 | 167.14 | 15.41 | 1813.34 |
+| 12 | 17.2 | 408 | -1.48 | 5.58 | -8.24 | 2.16 | 31.17 |
+| **Total** | **224.1** | **4829** | 0 | 0 | **5325.03** | **176.98** | **174754.9** |
+
+: Calculation of Pearson's correlation coefficient for @tbl-corrdata {#tbl-corrcalc .bordered}
 
 *n* =12
 
-$$mean,\overline{x} = \ \frac{224.1}{12} = 18.675$$
+$$mean,\overline{x} = \ \frac{224.1}{12} = 18.68$$
 
-$$mean,\overline{y} = \ \frac{4829}{12} = 402.416$$ *Cov* (*x*,*y*) = $\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}$
+$$mean,\overline{y} = \ \frac{4829}{12} = 402.42$$ *cov* (*x*,*y*) = $\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)}$
 
 $\sum_{i = 1}^{12}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)} = 5325.03$
 
-*Cov* (*x*,*y*) = $\frac{5325.03}{12} = 443.752$
+*Cov* (*x*,*y*) = $\frac{5325.03}{12} = 443.75$
 
-$$Standard\ deviation,\ S.D\left( x \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}} = \sqrt{\frac{176.983}{12}} = 3.840$$
+$$Standard\ deviation,\ S.D\left( x \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}} = \sqrt{\frac{176.98}{12}} = 3.84$$
 
-$$Standard\ deviation,\ S.D\left( y \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}} = \sqrt{\frac{174754.9}{12}} = 120.676$$
+$$Standard\ deviation,\ S.D\left( y \right) = \ \sqrt{\frac{1}{n}\sum_{i = 1}^{n}\left( y_{i} - \overline{y} \right)^{2}} = \sqrt{\frac{174754.9}{12}} = 120.68$$
 
-$r = \frac{443.752}{3.840\  \times 120.676} = 0.95751$, which indicates a strong positive correlation
+Using @eq-correlation, $r = \frac{443.75}{3.84\  \times 120.68} = 0.96$, which indicates a strong positive correlation
 
-### Spearman's Rank order correlation coefficient (*ρ*)
+### Spearman's rank order correlation coefficient {#sec-spearman}
 
-The Spearman correlation evaluates the monotonic relationship between two continuous or ordinal variables.
+The Spearman's correlation coefficient evaluates the strength and direction of a monotonic relationship between two variables, whether they are continuous or ordinal. Spearman's correlation is denoted by a Greek letter $\rho$ pronounced as "*rho*". The range of Spearman's rank correlation also lies between −1 and +1 always, *i*.*e*. −1 ≤ *ρ* ≤+1
 
-Note: What is a monotonic relation?
+Unlike Pearson's correlation, which measures linear relationships, Spearman's correlation is based on the ranked values of the variables rather than their raw data. This makes it particularly useful in situations where:
 
-In a monotonic relationship, the variables tend to move in the same relative direction, but not necessarily at a constant rate. In a linear relationship, the variables move in the same direction at a constant rate.
+-   The relationship between variables is non-linear but monotonic.
 
-Linear relationship is monotonic but all monotonic relations are not linear. You can see the plots below for better understanding.
+-   The data contains outliers or is not normally distributed, as ranking reduces the influence of extreme values.
 
-```{r c6, echo=FALSE,fig.cap='Linear and Monotonic relationship',out.width="49%",fig.show='hold', fig.align='center'}
-knitr::include_graphics(c("images/image6c.jpeg","images/image7c.jpeg","images/image8c.jpeg","images/image9c.jpeg","images/image10c.jpeg"))
-```
+-   Variables are measured on an ordinal, interval, or ratio scale.
 
-The Spearman correlation coefficient is based on the ranked values for each variable rather than the raw data. The spearman correlation measures the monotonic relationship between variables, where pearsons correlation coefficient measures linear relationship only. To use Spearman's correlation coefficient your data must be in ordinal, interval or ratio scale.
+Spearman's correlation is a more robust alternative to Pearson's when the assumptions of Pearson's correlation coefficient are violated.
 
-There are two cases in calculating *ρ*. One is in case of no tied rank other is when there is tied rank
+There are two cases in calculating $\rho$ :
 
-#### No tied rank case
+1.  No tied rank case
 
-When two or more distinct observations have the same value, thus being given the same rank, they are said to be tied
+2.  Tied rank case
 
-The formula for the Spearman rank correlation coefficient when there are no tied ranks is:
+[**No tied rank case**]{.underline}
 
-$$\rho = 1 - \frac{6\sum_{i = 1}^{n}d_{i}^{2}}{n\left( n^{2} - 1 \right)}$$
+When two or more distinct observations have the same value, thus being given the same rank, they are said to be tied. The formula for the Spearman rank correlation coefficient when there are *no tied ranks* is:
+
+$$\rho = 1 - \frac{6\sum_{i = 1}^{n}d_{i}^{2}}{n\left( n^{2} - 1 \right)}$$ {#eq-spearman1}
 
 Where $d_{i}$ is the difference between ranks of *i^t^*^h^ pair of observation
 
-**Example 7.4**: Calculation of Spearman's rank correlation when there is no tied rank is explained step by step by using the example below
+**Example 8.4**: Calculation of Spearman's rank correlation when there is no tied rank is explained step by step by using the simple example below
 
-The scores for nine students in physics and math are as follows:
+The scores for nine students in physics and mathematics are as follows:
 
 Physics: 35, 23, 47, 17, 10, 43, 9, 6, 28
 
@@ -252,63 +301,74 @@ Mathematics: 30, 33, 45, 23, 8, 49, 12, 4, 31
 Compute the student's ranks in the two subjects and compute the Spearman rank correlation.
 
 | Physics | Mathematics |
-|:--------|:------------|
-| 35      | 30          |
-| 23      | 33          |
-| 47      | 45          |
-| 17      | 23          |
-| 10      | 8           |
-| 43      | 49          |
-| 9       | 12          |
-| 6       | 4           |
-| 28      | 31          |
+|:-------:|:-----------:|
+|   35    |     30      |
+|   23    |     33      |
+|   47    |     45      |
+|   17    |     23      |
+|   10    |      8      |
+|   43    |     49      |
+|    9    |     12      |
+|    6    |      4      |
+|   28    |     31      |
+
+: Non tied rank case example dataset {#tbl-nontied .bordered}
 
 **Step 1**: Find the ranks for each individual subject. Rank the scores from greatest to smallest; assign the rank 1 to the highest score, 2 to the next highest and so on:
 
-| Physics (*x*) | Rank | Mathematics(*y*) | Rank |
-|:-------------:|:----:|:----------------:|:----:|
-|      35       |  3   |        30        |  5   |
-|      23       |  5   |        33        |  3   |
-|      47       |  1   |        45        |  2   |
-|      17       |  6   |        23        |  6   |
-|      10       |  7   |        8         |  8   |
-|      43       |  2   |        49        |  1   |
-|       9       |  8   |        12        |  7   |
-|       6       |  9   |        4         |  9   |
-|      28       |  4   |        31        |  4   |
+| Physics (*x*) | Rank~*x*~ | Mathematics (*y*) | Rank~*y*~ |
+|:-------------:|:---------:|:-----------------:|:---------:|
+|      35       |     3     |        30         |     5     |
+|      23       |     5     |        33         |     3     |
+|      47       |     1     |        45         |     2     |
+|      17       |     6     |        23         |     6     |
+|      10       |     7     |         8         |     8     |
+|      43       |     2     |        49         |     1     |
+|       9       |     8     |        12         |     7     |
+|       6       |     9     |         4         |     9     |
+|      28       |     4     |        31         |     4     |
 
-**Step 2**: Add a column *d*, to your data. The *d* is the difference between ranks. For example, the first student's physics rank is 3 and math rank is 5, so the difference is -2. In the next column, square your *d* values.
+: Non tied rank case calculation table1 {#tbl-nontiedcalc1 .bordered}
 
-| Physics ( *x*) | Rank | Mathematics (*y*) | Rank | *d* | d^2^ |
-|:--------------:|:----:|:-----------------:|:----:|:---:|:----:|
-|       35       |  3   |        30         |  5   | -2  |  4   |
-|       23       |  5   |        33         |  3   |  2  |  4   |
-|       47       |  1   |        45         |  2   | -1  |  1   |
-|       17       |  6   |        23         |  6   |  0  |  0   |
-|       10       |  7   |         8         |  8   | -1  |  1   |
-|       43       |  2   |        49         |  1   |  1  |  1   |
-|       9        |  8   |        12         |  7   |  1  |  1   |
-|       6        |  9   |         4         |  9   |  0  |  0   |
-|       28       |  4   |        31         |  4   |  0  |  0   |
-|    **SUM**     |      |                   |      |     |  12  |
+**Step 2**: Add a column *d*, to your data. The *d* is the difference between ranks.
 
-**Step 4**: Sum (add up) all of your *d*^2^ values. 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12. You'll need this for the formula (the $\sum_{i = 1}^{n}d_{i}^{2}$ is just "the sum of *d*^2^values, here *n*= 9").
+*d* = Rank~*x*~ *--* Rank~*y*~
 
-**Step 5**: Insert the values into the formula.
+For example, the first student's physics rank is 3 and math rank is 5, so the difference is -2. In the next column, square your *d* values.
 
-$$\rho = 1 - \frac{6\sum_{i = 1}^{n}d_{i}^{2}}{n\left( n^{2} - 1 \right)}$$
+| Physics ( *x*) | Rank~*x*~ | Mathematics (*y*) | Rank~*y*~ | *d* | *d*^2^ |
+|:--------------:|:---------:|:-----------------:|:---------:|:---:|:------:|
+|       35       |     3     |        30         |     5     | -2  |   4    |
+|       23       |     5     |        33         |     3     |  2  |   4    |
+|       47       |     1     |        45         |     2     | -1  |   1    |
+|       17       |     6     |        23         |     6     |  0  |   0    |
+|       10       |     7     |         8         |     8     | -1  |   1    |
+|       43       |     2     |        49         |     1     |  1  |   1    |
+|       9        |     8     |        12         |     7     |  1  |   1    |
+|       6        |     9     |         4         |     9     |  0  |   0    |
+|       28       |     4     |        31         |     4     |  0  |   0    |
+|   **Total**    |           |                   |           |     |   12   |
+
+: Non tied rank case calculation table2 {#tbl-nontiedcalc2 .bordered}
+
+**Step 4**: Sum (add up) all of your *d*^2^ values. $\sum_{i = 1}^{n}d_{i}^{2} =$ 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12.
+
+**Step 5**: Insert the values into \@eq-spearman1
 
 $$\rho = 1 - \frac{6 \times 12}{9\left( 81 - 1 \right)} = 0.90$$
 
-The Spearman's Rank Correlation for this set of data is 0.9.
+The Spearman's rank correlation for this set of data is 0.90. This indicates there is a high correlation between the marks of physics and mathematics in the sample.
 
-Spearman's Rank Correlation also lies between −1 and +1 always. −1 ≤ *ρ* ≤+1
+[**Tied rank case**]{.underline}\
+When two or more data points have the same value, same ranks were given to these data points and a tied rank case occurs. When there are tied ranks, the formula for calculating $\rho$ is given below $$\rho = 1 - \frac{6\left( \sum_{i = 1}^{n}d_{i}^{2} + T_{x} + T_{y} \right)}{n\left( n^{2} - 1 \right)}$$ {#eq-spearman2}
 
-#### Tied rank case
+If there are *m* individuals tied (having same rank), and *s* such sets of ranks are there in X- series then, $$T_{x} = \ \frac{1}{12}\sum_{i = 1}^{s}{m_{i}\left( m_{i}^{2} - 1 \right)}$$ {#eq-spearmanx}
+
+If there are *w* individuals tied (having same rank), and *s'* such sets of ranks are there in Y- series then, $$T_{y} = \ \frac{1}{12}\sum_{i = 1}^{s'}{w_{i}\left( w_{i}^{2} - 1 \right)}$$ {#eq-spearmany}
 
 Calculation of Spearman's rank correlation when there is tied rank is explained step by step by using the example below
 
-**Example 7.5**: The scores for nine students in physics and mathematics are as follows:
+**Example 8.5**: The scores for nine students in physics and mathematics are as follows:
 
 | Physics (*x*) | Mathematics (*y*) |
 |:-------------:|:-----------------:|
@@ -322,7 +382,9 @@ Calculation of Spearman's rank correlation when there is tied rank is explained 
 |       6       |        33         |
 |      28       |        33         |
 
-**Step 1**: Consider the marks in Physics, ranked as usual
+: Tied rank case example dataset {#tbl-tied .bordered}
+
+**Step 1**: Consider the marks in Physics, ranked as usual without considering the repeated value. Here you can see 23 is repeated but first value is given rank 5 and second repeated value is given the next rank 6.
 
 | Physics (*x*) | Rank |
 |:-------------:|:----:|
@@ -336,7 +398,9 @@ Calculation of Spearman's rank correlation when there is tied rank is explained 
 |       6       |  9   |
 |      28       |  4   |
 
-You can see the value 23 is repeated, so may have equal ranks, so the average of two ranks 5 and 6 is given to both; $\left( \frac{5 + 6}{2}\right)$= 5.5
+: Tied rank case calculation table1 {#tbl-tiedcalc1 .bordered}
+
+Then the average of two ranks 5 and 6 is assigned to both the values; $\left( \frac{5 + 6}{2}\right)$= 5.5
 
 | Physics (*x*) | Rank |
 |:-------------:|:----:|
@@ -350,19 +414,9 @@ You can see the value 23 is repeated, so may have equal ranks, so the average of
 |       6       |  9   |
 |      28       |  4   |
 
-Similarly for marks in mathematics you can see 33 is repeated thrice.
+: Tied rank case calculation table2 {#tbl-tiedcalc2 .bordered}
 
-| Mathematics (*y*) |
-|:-----------------:|
-|        30         |
-|        33         |
-|        45         |
-|        23         |
-|         8         |
-|        49         |
-|        12         |
-|        33         |
-|        33         |
+Similarly for marks in mathematics you can see 33 is repeated thrice.
 
 | Mathematics (*y*) | Rank |
 |:-----------------:|:----:|
@@ -375,6 +429,8 @@ Similarly for marks in mathematics you can see 33 is repeated thrice.
 |        12         |  8   |
 |        33         |  4   |
 |        33         |  5   |
+
+: Tied rank case calculation table3 {#tbl-tiedcalc3 .bordered}
 
 You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 and 5 is given $\left( \frac{3 + 4 + 5}{3} \right)$= 4
 
@@ -390,23 +446,15 @@ You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 
 |        33         |  4   |
 |        33         |  4   |
 
-**Step 2**: Change in the formula
+: Tied rank case calculation table4 {#tbl-tiedcalc4 .bordered}
 
-$$\rho = 1 - \frac{6\left( \sum_{i = 1}^{n}d_{i}^{2} + T_{x} + T_{y} \right)}{n\left( n^{2} - 1 \right)}$$
+**Step 2**: Calculate T\_{x} and T\_{y}
 
-If there are *m* individuals tied (having same rank), and *s* such sets of ranks are there in X- series then, $T_{x} = \ \frac{1}{12}\sum_{i = 1}^{s}{m_{i}\left( m_{i}^{2} - 1 \right)}$
+In our example marks in Physics (*x*) there are two 23 values tied therefore *m* = 2; since only one such a set is there *s* =1. Applying these values in @eq-spearmanx $T_{x} = \ \frac{1}{12}\left( 2 \times (2^{2} - 1 \right)$ = 0.5
 
-In our example marks in Physics (*x*) there are two 23 values tied therefore *m* = 2; since only one such a set is there *s* =1
+In our example marks in Mathematics (*y*) there are three 33 values tied therefore *w* = 3; since only one such a set is there *s* =1. Applying these values in @eq-spearmany $T_{y} = \ \frac{1}{12}\left( 3 \times (3^{2} - 1 \right)$ = 2
 
-$T_{x} = \ \frac{1}{12}\left( 2 \times (2^{2} - 1 \right)$ = 0.5
-
-If there are *w* individuals tied (having same rank), and *s'* such sets of ranks are there in Y- series then, $T_{y} = \ \frac{1}{12}\sum_{i = 1}^{s'}{w_{i}\left( w_{i}^{2} - 1 \right)}$
-
-In our example marks in Mathematics (*y*) there are three 33 values tied therefore *w* = 3; since only one such a set is there *s* =1
-
-$T_{y} = \ \frac{1}{12}\left( 3 \times (3^{2} - 1 \right)$ = 2
-
-**Step 2**: Calculate *d* and then use the formula
+**Step 2**: Calculate *d* and then use the @eq-spearman2
 
 | Physics ( *x*) | Rank | Mathematics ( *y*) | Rank |  d   | d^2^ |
 |:--------------:|:----:|:------------------:|:----:|:----:|:----:|
@@ -419,70 +467,136 @@ $T_{y} = \ \frac{1}{12}\left( 3 \times (3^{2} - 1 \right)$ = 2
 |       9        |  8   |         12         |  8   |  0   |  0   |
 |       6        |  9   |         33         |  4   |  5   |  25  |
 |       28       |  4   |         33         |  4   |  0   |  0   |
-|    **SUM**     |      |                    |      |  0   | 44.5 |
+|   **Total**    |      |                    |      |  0   | 44.5 |
 
-$\rho = 1 - \frac{6\left( \sum_{i = 1}^{n}d_{i}^{2} + T_{x} + T_{y} \right)}{n\left( n^{2} - 1 \right)} = 1 - \frac{6 \times \left( 44.5 + 0.5 + 2 \right)}{9\left( 9^{2} - 1 \right)} = \ 1 - \frac{282}{720}$ = 0.60834
+: Tied rank case calculation table5 {#tbl-tiedcalc5 .bordered}
 
-### Kendall's Rank Correlation Coefficient (*τ*)
+using @eq-spearman2, $\rho = 1 - \frac{6 \times \left( 44.5 + 0.5 + 2 \right)}{9\left( 9^{2} - 1 \right)} = \ 1 - \frac{282}{720}$ = 0.61
 
-Kendall's rank correlation coefficient also known as Kendall's Tau or coefficient of concordance. It lies between 0 and 1, 0 ≤ *τ ≤* 1. when several sets of ranks are there, it can be used to test the association.
+A Spearman rank correlation of 0.61 indicates a moderately strong positive monotonic relationship between the two variables.
 
-When we have *k* sets of rankings we may determine the association among them by using the Kendall's coefficient of Concordance (*τ*). Such a measure is useful to study the reliability in the scorings made by a number of Judges.
+### Kendall's Rank Correlation Coefficient
 
-Arrange the data into a table with each row representing the ranks assigned by (each judge), to say, *n* number of objects. Let there be *k* number of sets of rankings for each object given by *k* judges. Then the Kendall's coefficient of concordance *τ* is computed as
+Kendall's rank correlation coefficient, also known as Kendall's $\tau$ or the coefficient of concordance, is a measure of association that evaluates the degree of agreement between ranked variables. It ranges from 0 to 1 $0\leq \tau \leq1$, where: - $\tau = 0$: Indicates no agreement. - $\tau = 1$: Indicates perfect agreement.
 
-$$\tau = \frac{12\left\lbrack \sum_{i = 1}^{n}{R_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}R_{i} \right)^{2}}{n}} \right\rbrack}{k^{2}n\left( n^{2} - 1 \right)}$$
+When there are multiple sets of rankings (*k* sets), Kendall's coefficient of concordance ($\tau$) can be used to assess the association among them. This measure is particularly useful in evaluating the reliability or consistency of scores assigned by multiple judges or raters. By quantifying the agreement across different rankings, it provides a robust way to analyze consensus in subjective evaluations or repeated assessments.
 
-**Example 7.6**: In a crop production competition, 10 entries of farmers were ranked by agricultural scientists (judges). Find the degree of agreement among the scientist for the competition result given below.
+To calculate Kendall's coefficient of concordance ($\tau$), the data is organized into a table where each row represents the ranks assigned by a different judge to the same set of *n* objects. Each column in the table corresponds to the ranks given by a judge to *n* objects.
 
-|   | Ranks given by the judges to farmers |   |   |   |
-|:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
+For *k* judges, there will be *k* sets of rankings for each object. The table should look like this:
+
+| Object | Judge 1 | Judge 2 | ... | Judge *k* |
+|:------:|:-------:|:-------:|:---:|:---------:|
+|   1    |  R~11~  |  R~12~  | ... |  R~1*k*~  |
+|   2    |  R~21~  |  R~22~  | ... |  R~2*k*~  |
+|  ...   |   ...   |   ...   | ... |    ...    |
+|  *n*   | R~*n1*~ | R~*n*2~ | ... |  R~*nk*~  |
+
+: Model table for the calculation of Kendall's $\tau$ {#tbl-kendalltau .bordered}
+
+in @tbl-kendalltau each row represents the ranks assigned to an object by all ( *k* ) judges. - Each column represents the ranks for each object assigned by a particular judge. $R_{ij}$ is the rank assigned to the *i*^th^ object by the *j*^th^ object, where *i* =1, 2, ..., *n* and *j* = 1, 2, ..., *k.*
+
+Kendall's coefficient of concordance ($\tau$) is calculated using @eq-kendall.
+
+$$\tau = \frac{12\left\lbrack \sum_{i = 1}^{n}{R_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}R_{i} \right)^{2}}{n}} \right\rbrack}{k^{2}n\left( n^{2} - 1 \right)}$$ {#eq-kendall}
+
+where $R_{i} =\sum_{j = 1}^{k}{R_{ij}}$, *i*.*e*. the sum of ranks obtained by each object. Calculation of Kendall's $\tau$ is explained in Example 8.6
+
+**Example 8.6**: In a crop production competition, 10 entries of farmers were ranked by agricultural scientists (judges). Find the degree of agreement among the scientist for the competition result given below.
+
+|         |             |             |             |             |
+|:-------:|:-----------:|:-----------:|:-----------:|:-----------:|
 | Farmers | Scientist 1 | Scientist 2 | Scientist 3 | Scientist 4 |
-| 1 | 4 | 5 | 3 | 7 |
-| 2 | 10 | 9 | 8 | 6 |
-| 3 | 8 | 6 | 10 | 9 |
-| 4 | 3 | 4 | 2 | 1 |
-| 5 | 1 | 3 | 4 | 2 |
-| 6 | 2 | 1 | 1 | 4 |
-| 7 | 5 | 7 | 6 | 5 |
-| 8 | 6 | 2 | 5 | 3 |
-| 9 | 7 | 8 | 9 | 10 |
-| 10 | 9 | 10 | 7 | 8 |
+|    1    |      4      |      5      |      3      |      7      |
+|    2    |     10      |      9      |      8      |      6      |
+|    3    |      8      |      6      |     10      |      9      |
+|    4    |      3      |      4      |      2      |      1      |
+|    5    |      1      |      3      |      4      |      2      |
+|    6    |      2      |      1      |      1      |      4      |
+|    7    |      5      |      7      |      6      |      5      |
+|    8    |      6      |      2      |      5      |      3      |
+|    9    |      7      |      8      |      9      |     10      |
+|   10    |      9      |     10      |      7      |      8      |
 
-Solution:
+: Rankings of 10 farmers by agricultural scientists {#tbl-croprod .bordered}
 
-| Farmers | S1  | S2  | S3  | S4  | $R _{i}$ (sum of ranks) | $R _ {i} ^ {2}$ |
-|:-------:|:---:|:---:|:---:|:---:|:-----------------------:|:---------------:|
-|    1    |  4  |  5  |  3  |  7  |           19            |       361       |
-|    2    | 10  |  9  |  8  |  6  |           33            |      1089       |
-|    3    |  8  |  6  | 10  |  9  |           33            |      1089       |
-|    4    |  3  |  4  |  2  |  1  |           10            |       100       |
-|    5    |  1  |  3  |  4  |  2  |           10            |       100       |
-|    6    |  2  |  1  |  1  |  4  |            8            |       64        |
-|    7    |  5  |  7  |  6  |  5  |           23            |       529       |
-|    8    |  6  |  2  |  5  |  3  |           16            |       256       |
-|    9    |  7  |  8  |  9  | 10  |           34            |      1156       |
-|   10    |  9  | 10  |  7  |  8  |           34            |      1156       |
-| **SUM** |     |     |     |     |           220           |      5900       |
+**Solution 8.6**:
 
-Here *k* = number of judges = 4
+|  Farmers  | S1  | S2  | S3  | S4  | $R _{i}$ (sum of ranks) | $R _ {i} ^ {2}$ |
+|:---------:|:---:|:---:|:---:|:---:|:-----------------------:|:---------------:|
+|     1     |  4  |  5  |  3  |  7  |           19            |       361       |
+|     2     | 10  |  9  |  8  |  6  |           33            |      1089       |
+|     3     |  8  |  6  | 10  |  9  |           33            |      1089       |
+|     4     |  3  |  4  |  2  |  1  |           10            |       100       |
+|     5     |  1  |  3  |  4  |  2  |           10            |       100       |
+|     6     |  2  |  1  |  1  |  4  |            8            |       64        |
+|     7     |  5  |  7  |  6  |  5  |           23            |       529       |
+|     8     |  6  |  2  |  5  |  3  |           16            |       256       |
+|     9     |  7  |  8  |  9  | 10  |           34            |      1156       |
+|    10     |  9  | 10  |  7  |  8  |           34            |      1156       |
+| **Total** |     |     |     |     |           220           |      5900       |
 
-*n* = number of farmers =10
+: Calculation of Kendall's $\tau$ {#tbl-kendaltau .bordered}
 
-$\left( \sum_{i = 1}^{10}R_{i} \right)^{2}$= (220)^2^ = 48400
+here *k* = number of judges = 4; *n* = number of farmers =10; $\sum_{i = 1}^{10}R_{i}^{2}$= (220)^2^ = 48400; $\sum_{i = 1}^{10}R_{i}^{2}$ = 5900. Using @eq-kendall
 
-$\sum_{i = 1}^{10}R_{i}^{2}$ = 5900
+$$\tau = \frac{12\left\lbrack 5900 - \frac{48400}{10} \right\rbrack}{16 \times 10\left( 100 - 1 \right)} = 0.80$$
 
-$$\tau = \frac{12\left\lbrack \sum_{i = 1}^{n}{R_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}R_{i} \right)^{2}}{n}} \right\rbrack}{k^{2}n\left( n^{2} - 1 \right)}$$
+A Kendall's $\tau$ of 0.80 suggests that the judges’ rankings are highly consistent. This level of concordance implies that the rankings are strongly aligned, indicating a high level of agreement across the judges' evaluations.
 
-$$\tau = \frac{12\left\lbrack 5900 - \frac{48400}{10} \right\rbrack}{16 \times 10\left( 100 - 1 \right)} = 0.803$$
+## Correlation matrix
 
-Since $\tau$ is nearly equal to 1, the ranks given by judges were almost same.
+A correlation matrix is a table that displays the correlation coefficients between multiple variables. It is particularly useful for presenting the correlation values of several variables at the same time. The matrix can be computed using either Pearson's correlation or Spearman's correlation. Each cell in the matrix represents the correlation coefficient between the two variables at the intersecting row and column. These values range from -1 to 1. The diagonal elements are always equal to 1, as a variable is perfectly correlated with itself. Additionally, the matrix is symmetrical across the diagonal, since the correlation between *x* and *y* is the same as the correlation between *y* and *x*.
 
- \
- \
- 
+**Example 8.7**: Data below gives the measurement on several plant growth characters. Create a correlation matrix.
 
-::: {#hello7 .greeting .message style="color: #c9c6c5;"}
-<center>**"Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands".-- Herman Chernoff**</center>
+```{r corrmat, echo=FALSE,warning=FALSE,results='asis'}
+#| label: tbl-corrmat
+#| tbl-cap: "Plant growth characters"  
+
+library(knitr)
+library(kableExtra)
+dt<-read.csv("csv/corrmatdata.csv")
+dt %>%
+  kbl(booktabs = TRUE, align = "c",) %>%
+   kable_classic(full_width = F, html_font = "Georgia") %>%
+kable_styling(
+    # latex_options = "HOLD_position", 
+    full_width = FALSE,
+    position = "center", 
+    bootstrap_options = "bordered"
+  ) %>% 
+  column_spec(1, width = "7em") %>%  
+  column_spec(2, width = "7em") %>%
+  column_spec(3, width = "7em") %>%
+  column_spec(4, width = "7em") %>%
+  column_spec(5, width = "7em")
+```
+
+Correlation matrix for @tbl-corrmat can be created as shown in @tbl-corrmatdata below. Here the diagonal elements are 1 because correlation of any variable to itself is 1. Also from the matrix below it is easy to find the correlation between any two variables, for example correlation between growth and water is 0.988. Correlation matrix is an effective way of presenting correlation results of several variables.
+
+|                | Growth | Water  | Sunlight | Fertilizer | Nutrient |
+|----------------|--------|--------|----------|------------|----------|
+| **Growth**     | 1      | 0.988  | -0.343   | -0.332     | 0.983    |
+| **Water**      | 0.988  | 1      | -0.328   | -0.314     | 0.967    |
+| **Sunlight**   | -0.343 | -0.328 | 1        | 0.986      | -0.371   |
+| **Fertilizer** | -0.332 | -0.314 | 0.986    | 1          | -0.366   |
+| **Nutrient**   | 0.983  | 0.967  | -0.371   | -0.366     | 1        |
+
+: Correlation matrix of data in @tbl-corrmat {#tbl-corrmatdata .bordered}
+
+## Correlogram
+
+A correlogram is a graphical representation of a correlation matrix. It is used to visualize the pairwise correlation coefficients between multiple variables in a dataset. The correlogram uses color and size to represent the strength and direction of the correlation, helping to quickly identify relationships among variables. The most common way to display a correlogram is through a matrix of circles or squares, where each shape represents the correlation between two variables. Correlogram can be drawn using packages like `corrplot` [@corrplot] in R software [@RCoreTeam]. Different colours and styles are available to make the presentation attractive. Correlation matrix and correlogram can also be generated using our online platform available at www.kaugrapes.com [@grapes].
+
+![Correlogram of growth characters in Example 8.7](images/correlogram.png){fig-align="center" width="50%" style="text-align:center;"}
+
+::: {.callout-caution title="Historical Insights"}
+**Correlation and Sir Francis Galton**
+
+The concept of correlation dates back to Sir Francis Galton, who introduced the idea of *"co-relation"* in the 19th century while studying the relationship between physical traits, such as the height of parents and their children. Galton's cousin, Karl Pearson, further developed this idea by formalizing the calculation of correlation and introducing the formula we use today in terms of Pearson's correlation coefficient. Pearson's work in the late 1800s provided a mathematical framework for understanding the strength and direction of relationships between two variables, a concept that has since become fundamental in statistics, especially in the fields of genetics, psychology, and social sciences.
+:::
+
+::: {.callout-tip title="Quotes to Inspire"}
+**"Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands".- Herman Chernoff**
 :::
