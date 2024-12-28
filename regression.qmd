@@ -47,7 +47,7 @@ By the end of this chapter, you will learn how to perform regression analysis, i
 Correlation versus regression
 
 | **Item** | **Correlation** | **Regression** |
-|----|----|----|
+|------------------------|------------------------|------------------------|
 | **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
 | **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
 | **Causation** | Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another. | Can imply causation if assumptions are met and the model is well-specified. |
@@ -60,53 +60,41 @@ Correlation versus regression
 
 ## Simple linear regression
 
-Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable)
+Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable).  
+We can use regression analysis to answer the following questions. What will be the crop yield in rupees when soil moisture content is maintained at 20%?. What is the functional form of relationship between soil moisture content and monetary crop yield?.  
 
-We can use regression analysis to answer the following questions
+Refer to the scatter diagram of @tbl-corrdata in @fig-scattercorrdata. To represent the relationship between soil moisture content and monetary crop yield, we might attempt to draw a line, as illustrated in @fig-funcrel. However, as shown in @fig-funcrel, it’s possible to draw numerous lines through the data points. This raises the question: *which line is the best fit*?
 
-What will be the crop yield in rupees when soil moisture content is maintained at 20%?
+![lines drawn to show functional relationship between soil moisture and yield](images/r99.png){#fig-funcrel fig-align="center" width="50%" style="text-align:center;"}
 
-What is the functional form of relationship between soil moisture content and monetary crop yield?
+The best fit line is defined as the one that minimizes the distances between the observed data points and the line itself. These distances, which represent how far each data point is from the line, are minimized collectively using a specific criterion. The regression technique provides a systematic approach to determine and draw this best fit line. Before diving further into regression, it is essential to understand the concepts of error and residuals, which play a critical role in determining the best fit line. The entire topic of regression is on *how to draw a best fit line*?.
 
-```{r r1, echo=FALSE,fig.cap='Scatter diagram of data in Example 8.1',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/r2.jpeg"))
-```
+### Error and residual
 
-We can draw a line to denote the functional relationship between temperature and sales
+In regression analysis, an error represents the difference between an observed value (a data point) and the true regression line, which reflects the actual relationship between the dependent and independent variables in the population. Since the true regression line is based on the entire population and is usually unknown, the error is a theoretical concept that cannot be directly calculated.
 
-```{r r2, echo=FALSE,fig.cap='lines drawn to show functional relationship',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/r99.png"))
-```
+A residual is the difference between an observed value and the value predicted by a regression line based on sample data. Specifically, for a given data point, the residual is calculated as the observed value minus the predicted value from the regression line. Residuals are measurable because they are derived from the observed data and the regression line that is obtained using the sample. Unlike errors, which are theoretical and represent deviations from the true underlying model, residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.
 
-You can see that as shown above we can draw any number of lines, so which is the best fit line?
+In essence, a residual serves as an estimate of the error. While errors represent the deviation from the actual true value, residuals reflect the discrepancy between observed data and the fitted model. From @fig-residual you can see the residual in a fitted regression line.  
 
-We can say the **best fit line** is the line that passes through all points such that distance of each point to the line is minimum. Using regression technique we could easily draw such a line. Before proceeding you should know the concept of error and residuals.
+![Residual and a best fit line](images/r91.png){#fig-residual fig-align="center" width="70%" style="text-align:center;"}
 
-## Error and residual
+The distance of each observation (*e*~i~) from the fitted line can be considered as the residual (error). Best fit line can be obtained by minimizing this distance. This can be achieved using the mathematical technique "**principle of least squares**" discussed in @sec-leastsquares. Before going to identify a best fit line on should know the concept of a straight line.  
 
-An error is the difference between the observed value and the true value (true value is the unobserved population mean of the population from which sample observations are taken). A residual is the difference between the observed value and the predicted value (by the model **fitted line**). Error cannot be measured but residual can be; so residual is considered as an estimate of error.
+### Straight lines
 
-```{r r3, echo=FALSE,fig.cap='Error depicted in best fit line ',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/r91.png"))
-```
+A straight line is the simplest figure in geometry. Mathematical equation of a straight line is   
+$$Y = \alpha + \beta X$$ {#eq-straightline}  
 
-The distance of each observation (*e*~i~) from the fitted line can be considered as the residual (error). Best fit line can be obtained by minimizing this distance. This can be achieved using the mathematical technique "**principle of least squares**".
+Two important features of a line **slope** ($\alpha$) and **intercept**($\beta$). $\alpha$ is the Y-intercept, the intercept of a line is the y-value of the point where it crosses the y-axis. $\beta$ is the **slope of a line,** which is a number that measures its "steepness". It is the change in Y for a unit change in X along the line. In regression $\beta$ is called as regression coefficient.
 
-## Straight lines
-
-A straight line is the simplest figure in geometry.
-
-Mathematical equation of a straight line Y= ***a*** + ***b***X.
-
-Two important features of a line **slope** and **intercept**. ***a*** is the Y-intercept, the intercept of a line is the y-value of the point where it crosses the y-axis. ***b*** is the **slope of a line,** which is a number that measures its "steepness". It is the change in Y for a unit change in X along the line. In regression ***b*** is called as regression coefficient.
-
-Intercept (***a***)
+Intercept ($\alpha$) {.underline}  
 
 ```{r r4, echo=FALSE,fig.cap='Intercept of a line ',out.width="50%", fig.align='center'}
 knitr::include_graphics(rep("images/r92.png"))
 ```
 
-Slope (***b***)
+Slope ($\beta$) {.underline}  
 
 ```{r r5, echo=FALSE,fig.cap='Slope of a line ',out.width="50%", fig.align='center'}
 knitr::include_graphics(rep("images/r93.png"))
@@ -116,7 +104,7 @@ knitr::include_graphics(rep("images/r93.png"))
 
 So now our problem is simple, to find a line of best, estimate ***a*** & ***b***, such that error *e*~i~ of each observation is minimized. For that we use the **method of least squares**.
 
-## Method of least squares
+### Method of least squares {#sec-leastsquares}
 
 On considering the error term *e*~i~; equation of a straight line is
 
