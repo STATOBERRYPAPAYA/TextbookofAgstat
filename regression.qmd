@@ -26,7 +26,7 @@ There are different types of regression techniques, depending on the nature of t
 
 -   **Simple linear regression**: Examines the relationship between one independent variable and one dependent variable, assuming a straight-line relationship.
 
--   **Multiple linear regression**: Itis an extension of simple linear regression, allowing for the analysis of the relationship between one dependent variable (*y*) and multiple independent variables (more than one *x*). It is used when the outcome (dependent variable) is influenced by more than one factor (independent variables).
+-   **Multiple linear regression**: It is an extension of simple linear regression, allowing for the analysis of the relationship between one dependent variable (*y*) and multiple independent variables (more than one *x*). It is used when the outcome (dependent variable) is influenced by more than one factor (independent variables).
 
 -   **Nonlinear regression:** Deals with situations where the relationship between variables is not a straight line.
 
@@ -47,7 +47,7 @@ By the end of this chapter, you will learn how to perform regression analysis, i
 Correlation versus regression
 
 | **Item** | **Correlation** | **Regression** |
-|------------------|-------------------------|------------------------------|
+|----|----|----|
 | **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
 | **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
 | **Causation** | Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another. | Can imply causation if assumptions are met and the model is well-specified. |
@@ -55,39 +55,18 @@ Correlation versus regression
 | **Variables involved** | Considers two variables at a time. | Can involve one or multiple independent variables to predict a dependent variable. |
 | **Symmetry** | Correlation between (x) and (*y*) is the same as (*y*) and (*x*). | Regression is directional: it models (*y*) as dependent on (*x*), not vice versa. |
 | **Range** | The correlation coefficient (*r*) ranges from -1 to 1. | Regression coefficients ($\beta_0, \beta_1$) ranges from $-\infty$ to $+\infty$. |
-| **Units** | Unitless measure. | Dependent on the units of the variables involved. |
+| **Units** | Unit less measure. | Dependent on the units of the variables involved. |
 | **Purpose** | To understand the strength of the relationship. | To predict outcomes or explain variability in the dependent variable. |
 
 ## Simple linear regression
 
-Correlation is a statistical measure which determines the degree of association of two variables. Regression on other hand side describes how an independent variable is numerically related to dependent variable.
-
-Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?
-
-For explaining further, consider the example of Ice cream sales:
-
-**Example 8.1**: The local ice cream shop keeps track of how much ice cream they sell versus the temperature on that day; here are their figures for the last 12 days:
-
-| Temperature (°C) | Ice Cream Sales (in \$) |
-|:-----------------|:------------------------|
-| 14.2             | 215                     |
-| 16.4             | 325                     |
-| 11.9             | 185                     |
-| 15.2             | 332                     |
-| 18.5             | 406                     |
-| 22.1             | 522                     |
-| 19.4             | 412                     |
-| 25.1             | 614                     |
-| 23.4             | 544                     |
-| 18.1             | 421                     |
-| 22.6             | 445                     |
-| 17.2             | 408                     |
+Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable)
 
 We can use regression analysis to answer the following questions
 
-What will be the Ice cream sales when temperature is 20^o^ Celsius?
+What will be the crop yield in rupees when soil moisture content is maintained at 20%?
 
-What is the functional form of relationship between Temperature and Ice cream sales?
+What is the functional form of relationship between soil moisture content and monetary crop yield?
 
 ```{r r1, echo=FALSE,fig.cap='Scatter diagram of data in Example 8.1',out.width="50%", fig.align='center'}
 knitr::include_graphics(rep("images/r2.jpeg"))
