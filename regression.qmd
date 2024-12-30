@@ -51,10 +51,10 @@ Correlation versus regression
 | **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
 | **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
 | **Causation** | Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another. | Can imply causation if assumptions are met and the model is well-specified. |
-| **Equation** | No equation is derived. | Derives an equation: $y=\beta_0 + \beta_1x + \epsilon$. |
+| **Equation** | No equation is derived. | Derives an equation: $y=\alpha + \beta x + e$. |
 | **Variables involved** | Considers two variables at a time. | Can involve one or multiple independent variables to predict a dependent variable. |
 | **Symmetry** | Correlation between (x) and (*y*) is the same as (*y*) and (*x*). | Regression is directional: it models (*y*) as dependent on (*x*), not vice versa. |
-| **Range** | The correlation coefficient (*r*) ranges from -1 to 1. | Regression coefficients ($\beta_0, \beta_1$) ranges from $-\infty$ to $+\infty$. |
+| **Range** | The correlation coefficient (*r*) ranges from -1 to 1. | Regression coefficients ($\alpha, \beta$) ranges from $-\infty$ to $+\infty$. |
 | **Units** | Unit less measure. | Dependent on the units of the variables involved. |
 | **Purpose** | To understand the strength of the relationship. | To predict outcomes or explain variability in the dependent variable. |
 
@@ -63,16 +63,17 @@ Correlation versus regression
 Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable).\
 We can use regression analysis to answer the following questions. What will be the crop yield in rupees when soil moisture content is maintained at 20%?. What is the functional form of relationship between soil moisture content and monetary crop yield?.
 
-Refer to the scatter diagram of @tbl-corrdata in @fig-scattercorrdata. To represent the relationship between soil moisture content and monetary crop yield, we might attempt to draw a line, as illustrated in @fig-funcrel. However, as shown in @fig-funcrel, it’s possible to draw numerous lines through the data points. This raises the question: *which line is the best fit*?  
+Refer to the scatter diagram of @tbl-corrdata in @fig-scattercorrdata. To represent the relationship between soil moisture content and monetary crop yield, we might attempt to draw a line, as illustrated in @fig-funcrel. However, as shown in @fig-funcrel, it’s possible to draw numerous lines through the data points. This raises the question: *which line is the best fit*?
 
 ::: {#fig-funcrel layout-ncol="2"}
-![](images/r99.1.png){#fig-funcrel1 width="200px" height="150px"}  
-![](images/r99.2.png){#fig-funcrel2 width="200px" height="150px"}  
-![](images/r99.3.png){#fig-funcrel3 width="200px" height="150px"}  
+![](images/r99.1.png){#fig-funcrel1 width="200px" height="150px"}
+
+![](images/r99.2.png){#fig-funcrel2 width="200px" height="150px"}
+
+![](images/r99.3.png){#fig-funcrel3 width="200px" height="150px"}
 
 lines drawn to show functional relationship between soil moisture and yield
-:::  
-
+:::
 
 The best fit line is defined as the one that minimizes the distances between the observed data points and the line itself. These distances, which represent how far each data point is from the line, are minimized collectively using a specific criterion. The regression technique provides a systematic approach to determine and draw this best fit line. Before diving further into regression, it is essential to understand the concepts of error and residuals, which play a critical role in determining the best fit line. The entire topic of regression is on *how to draw a best fit line*?.
 
@@ -82,26 +83,28 @@ In regression analysis, an error represents the difference between an observed v
 
 A residual is the difference between an observed value and the value predicted by a regression line based on sample data. Specifically, for a given data point, the residual is calculated as the observed value minus the predicted value from the regression line. Residuals are measurable because they are derived from the observed data and the regression line that is obtained using the sample. Unlike errors, which are theoretical and represent deviations from the true underlying model, residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.
 
-In essence, a residual serves as an estimate of the error. While errors represent the deviation from the actual true value, residuals reflect the discrepancy between observed data and the fitted model. From @fig-residual you can see the residual $e_i$ of an *i*^th observation in a fitted regression line.
+In essence, a residual serves as an estimate of the error. While errors represent the deviation from the actual true value, residuals reflect the discrepancy between observed data and the fitted model. From @fig-residual you can see the residual $e_i$ of an *i*\^th observation in a fitted regression line.
 
 ![Residual and a best fit line](images/r91.png){#fig-residual fig-align="center" width="70%" style="text-align:center;"}
 
-The distance of *i*^th observation ($e_i$) from the fitted line can be considered as the residual (error). Best fit line can be obtained by minimizing this distance. This can be achieved using the mathematical technique "**principle of least squares**" discussed in @sec-leastsquares. Before going to identify a best fit line on should know the concept of a straight line.
+The distance of *i*\^th observation ($e_i$) from the fitted line can be considered as the residual (error). Best fit line can be obtained by minimizing this distance. This can be achieved using the mathematical technique "**principle of least squares**" discussed in @sec-leastsquares. Before going to identify a best fit line on should know the concept of a straight line.
 
 ### Straight lines
 
 A straight line is the simplest figure in geometry. Mathematical equation of a straight line is\
 $$Y = \alpha + \beta X$$ {#eq-straightline}
 
-Two important features of a line **slope** ($\alpha$) and **intercept**($\beta$). $\alpha$ is the Y-intercept, the intercept of a line is the y-value of the point where it crosses the y-axis. $\beta$ is the **slope of a line,** which is a number that measures its "steepness". It is the change in Y for a unit change in X along the line. In regression $\beta$ is called as regression coefficient.
+Two important features of a line **intercept** ($\alpha$) and **slope**($\beta$). $\alpha$ is the Y-intercept, the intercept of a line is the y-value of the point where it crosses the y-axis. $\beta$ is the **slope of a line,** which is a number that measures its "steepness". It is the change in Y for a unit change in X along the line. In regression $\beta$ is called as **regression coefficient** explained in @sec-regressionbeta.
 
-Intercept and slope {.underline}  
+[Intercept and slope]{.underline}
+
 ::: {#fig-interceptandslope layout-ncol="2"}
-![Intercept of a straight line](images/r92.png){#fig-intercept width="200px" height="150px"}  
-![Slope of a straight line](images/r93.png){#fig-intercept width="250px" height="150px"}  
+![Intercept of a straight line](images/r92.png){#fig-intercept width="200px" height="150px"}
+
+![Slope of a straight line](images/r93.png){#fig-slope width="250px" height="150px"}
 
 Intercept and slope
-:::  
+:::
 
 $\alpha$ and $\beta$ can be considered as a finger print of a line; with these values we can easily identify the line. So now our problem is simple, to find a line of best, estimate $\alpha$ and $\beta$, such that error *e*~i~ of each observation is minimized. For that we use the *method of least squares*.
 
@@ -111,84 +114,136 @@ On considering the error term $e_i$; equation of a straight line is
 
 $$y_i = \alpha +\beta x_i + e_i$$ {#eq-simpleregression}
 
-Where $e_i$ is the *i*^th^ error term corresponding to $y_i$, *i* =1,2,...,*n*
+Where $e_i$ is the *i*^th^ error term corresponding to $y_i$, *i* =1, 2, ..., *n*
 
-Line of best fit can be obtained by estimating $\alpha$ and $\beta$ by minimizing error sum $\sum_{i = 1}^{n}{e_i}$. By theorem $\sum_{i = 1}^{n}{e_i} = 0$; so $\alpha$ and $\beta$ are estimated by minimising $\sum_{i = 1}^{n}{e_i}^2$. The term $\sum_{i = 1}^{n}e_i^2$ is called as error sum of squares. As we are minmizing the sum of the squares of error term the process is known by the name `principle of least squares`.  
+::: {.callout-important title="Note"}
+One way to obtain *line of best fit* is by estimating $\alpha$ and $\beta$ by minimizing error sum $\sum_{i = 1}^{n}{e_i}$. By theorem $\sum_{i = 1}^{n}{e_i} = 0$. So $\alpha$ and $\beta$ are estimated by minimizing $\sum_{i = 1}^{n}{e_i}^2$. The term $\sum_{i = 1}^{n}e_i^2$ is called as error sum of squares. As we are minimizing the sum of the squares of error term the process is known by the name `principle of least squares`.
+:::
 
-**Principle of least squares** {.underline}  
+[**Principle of least squares**]{.underline}
 
-`Principle of least squares` is the statistical method used to determine a line of best fit by minimizing the sum of squares of the error term *i*.*e* minimizing $\sum_{i = 1}^{n}{e_i}^2$.  
+`Principle of least squares` is the statistical method used to determine a line of best fit by minimizing the sum of squares of the error term *i*.*e* minimizing $\sum_{i = 1}^{n}{e_i}^2$.
 
 Consider @eq-simpleregression
 
-$$y_i = \alpha +\beta x_i + e_i$$  
+$$y_i = \alpha +\beta x_i + e_i$$
 
-$$e_i = y_i -(\alpha +\beta x_i)$$ {#eq-leastsq1} 
+$$e_i = y_i -(\alpha +\beta x_i)$$ {#eq-leastsq1}
 
-$$e_i^2 = [y_i -(\alpha +\beta x_i)]^2$$ {#eq-leastsq2} 
+$$e_i^2 = [y_i -(\alpha +\beta x_i)]^2$$ {#eq-leastsq2}
 
-$$\sum_{i = 1}^{n}e_i^2 = \sum_{i = 1}^{n}[y_i -(\alpha +\beta x_i)]^2$$ {#eq-leastsq3}  
+$$\sum_{i = 1}^{n}e_i^2 = \sum_{i = 1}^{n}[y_i -(\alpha +\beta x_i)]^2$$ {#eq-leastsq3}
 
-we want to minimize @eq-leastsq3 and estimate $\alpha$ and $\beta$. $\sum_{i = 1}^{n}e_i^2$ can be minimized by taking derivative with respect to $\alpha$  and $\beta$ and equating to zero. On doing so we will get two equations, these equations are termed as *normal equations* and solving those normal equations will give the formulas for estimating $\alpha$  and $\beta$.  
+we want to minimize @eq-leastsq3 and estimate $\alpha$ and $\beta$. $\sum_{i = 1}^{n}e_i^2$ can be minimized by taking derivative with respect to $\alpha$ and $\beta$ and equating to zero. On doing so we will get two equations, these equations are termed as *normal equations* and solving those normal equations will give the formulas for estimating $\alpha$ and $\beta$.
 
-Differentiating $E=\sum_{i = 1}^{n}e_i^2$ with respect to $\alpha$ and wquating to 0.
+Differentiating $E=\sum_{i = 1}^{n}e_i^2$ with respect to $\alpha$ and equating to 0.
 
-$$\frac{\partial E}{\partial \alpha} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-1)$$
+$$\frac{\partial E}{\partial \alpha} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-1)$$ {#eq-lssquares1}
 
-$$\frac{\partial E}{\partial \alpha} = -2 \sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right]$$
+$$=\frac{\partial E}{\partial \alpha} = -2 \sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right]$$ {#eq-lssquares2}
 
-Equating this derivative to 0:
+equating the derivative in @eq-lssquares2 to 0 and on simplifying:
 
-$$\sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right] = 0$$
+$$\sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right] = 0$$ {#eq-lssquares3}
 
-Expand the summation:
+expand the summation in @eq-lssquares3:
 
-$$\sum_{i=1}^n y_i - n\alpha - \beta \sum_{i=1}^n x_i = 0$$
+$$=\sum_{i=1}^n y_i - n\alpha - \beta \sum_{i=1}^n x_i = 0$$ {#eq-lssquares4}
 
-Rearrange:
+on rearranging @eq-lssquares4 you will get the first normal equation.
 
-$$\sum_{i=1}^n y_i =n\alpha + \beta \sum_{i=1}^n x_i$$
+$$\sum_{i=1}^n y_i =n\alpha + \beta \sum_{i=1}^n x_i$$ {#eq-normaleq1}
 
 Differentiating $E=\sum_{i = 1}^{n}e_i^2$ with respect to $\beta$:
 
-$$\frac{\partial S}{\partial \beta} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-x_i)$$
+$$\frac{\partial E}{\partial \beta} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-x_i)$$ {#eq-lssquares5}
 
-Simplify:
+$$=\frac{\partial E}{\partial \beta} = -2 \sum_{i=1}^n x_i \left[ y_i - \alpha - \beta x_i \right]$$ {#eq-lssquares6}
 
-$$\frac{\partial S}{\partial \beta} = -2 \sum_{i=1}^n x_i \left[ y_i - \alpha - \beta x_i \right]$$
+equating the derivative in @eq-lssquares6 to 0 and on simplifying:
 
-Set this derivative to 0:
+$$\sum_{i=1}^n x_i \left[ y_i - \alpha - \beta x_i \right] = 0$$ {#eq-lssquares7}
 
-$$\sum_{i=1}^n x_i \left[ y_i - \alpha - \beta x_i \right] = 0$$
+expand the summation in @eq-lssquares7:
 
-Expand the summation:
+$$=\sum_{i=1}^n x_i y_i - \alpha \sum_{i=1}^n x_i - \beta \sum_{i=1}^n x_i^2 = 0$$ {#eq-lssquares8}
 
-$$\sum_{i=1}^n x_i y_i - \alpha \sum_{i=1}^n x_i - \beta \sum_{i=1}^n x_i^2 = 0$$
+on rearranging @eq-lssquares8 you will get the second normal equation.
 
-Rearrange:
+$$\sum_{i=1}^n y_i x_i = \alpha \sum_{i=1}^n x_i + \beta \sum_{i=1}^n x_i^2$$ {#eq-normaleq2}
 
-$$\sum_{i=1}^n x_i y_i = \alpha \sum_{i=1}^n x_i + \beta \sum_{i=1}^n x_i^2$$
+On solving normal equations @eq-normaleq1 and @eq-normaleq2, we derive the equations to estimate $\alpha$ and $\beta$, which are considered population parameters. Since these parameters are usually unknown, we estimate them using equations derived from sample data. The estimated values of $\alpha$ and $\beta$ are denoted as $\hat{\alpha}$ and $\hat{\beta}$, where the hats indicate that they are sample-based estimates. These are pronounced as "alpha cap" and "beta cap," respectively, and are used as approximations of the true population parameters.
 
-$$\sum_{i = 1}^{n}{y_{i}x_{i} = \mathbf{a}\sum_{i = 1}^{n}x_{i} + \mathbf{b}\sum_{i = 1}^{n}x_{i}^{2}}$$
+### Regression coefficient {#sec-regressionbeta}
 
-On solving the above equations we will get
+The regression coefficient, $\beta$ in linear regression, represents the slope of the regression line. It quantifies the relationship between the independent variable ($x$) and the dependent variable ($y$). Specifically, $\beta$ indicates the expected change in $y$ for a one-unit increase in $x$, holding other factors constant. Regression coefficients can take any real value, ranging from $-\infty$ to $+\infty$, depending on the nature of the relationship between the variables. A positive $\beta$ implies a direct relationship (as $x$ increases, $y$ increases), while a negative $\beta$implies an inverse relationship (as $x$ increases, $y$ decreases). A coefficient of 0 suggests no linear relationship between the variables. The magnitude of $\beta$ reflects the strength of the association, with larger absolute values indicating stronger relationships. @eq-regeqn3 and @eq-regeqn3 for the calculation of estimate of $\beta$ is obtained by solving normal equations @eq-normaleq1 and @eq-normaleq2. @eq-regeqn3 can be used for hand calculations.
 
-Regression coefficient, $$b=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}$$
+$$\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}$$ {#eq-regeqn3}
 
-$$=\frac{cov(x,y)}{var(x)}$$
+@eq-regeqn3 can be written as
 
-$$\mathbf{b =}\frac{\mathbf{cov(x,y)}}{\mathbf{var(x)}}
-$$
+$$\hat{\beta} =\frac{cov(x,y)}{var(x)}$$ {#eq-regeqn4}
 
-$$\mathbf{a = }\overline{\mathbf{y}}\mathbf{- b}\overline{\mathbf{x}}$$
+### Intercept
 
-where $\overline{y}$ = mean of *y*; $\overline{x}$ = mean of *x*
+The intercept, often denoted as $\alpha$ in linear regression, represents the value of the dependent variable $y$ when the independent variable $x$ is equal to zero. It is the point at which the regression line crosses the $y$-axis. The intercept provides a baseline value for the dependent variable before any influence from the independent variable is considered. The intercept can take any real value ($-\infty$ to $+\infty$), and its meaning depends on the specific context of the data. In some cases, it may not have a practical interpretation, especially if $x = 0$ is not within the range of observed data. @eq-regeqn5 for estimating $\alpha$ is obtained by solving normal equations @eq-normaleq1 and @eq-normaleq2.
 
-## Two lines of regression
+$$\hat{\alpha} =\overline{y}-\hat{\beta}.\overline{x}$$ {#eq-regeqn5}\
+where $\overline{y}$ = mean of $y$; $\overline{x}$ = mean of $x$
 
-There are two lines of regression- that of *y* on *x* and *x* on *y*.
+::: {.callout-important title="Note"}
+Once the estimates of $\alpha$ and $\beta$, which are denoted as $\hat{\alpha}$ and $\hat{\beta}$ respectively are obtained using @eq-regeqn4 and @eq-regeqn5. The estimated regression line can be written as:\
+$$y =\hat{\alpha}+ \hat{\beta} x$$ {#eq-regestimate}
+:::
 
-[Regression of *y* on *x*]{.underline}
+### Assumptions
+
+The goal of linear regression is to estimate the coefficients of the regression equation, which help explain how changes in the independent variables affect the dependent variable. However, for the results of a regression analysis to be reliable and meaningful, certain underlying assumptions must be met. These assumptions ensure that the estimates are accurate, the predictions are unbiased, and the conclusions drawn from the model are valid. Before conducting a regression analysis, it is crucial to understand and verify these assumptions to avoid misleading results.These assumptions are:
+
+1.  **Linearity**\
+    The relationship between the independent variable(s) and the dependent variable is linear. This means that the changes in the dependent variable are proportional to changes in the independent variable(s).
+
+2.  **Independence**\
+    The observations in the dataset are independent of each other. Additionally, the residuals (errors) are assumed to be independent.
+
+3.  **Homoscedasticity**\
+    The variance of the residuals is constant across all levels of the independent variable(s). In other words, the spread of the residuals should remain consistent and not show patterns of increasing or decreasing variance.
+
+4.  **Normality of Residuals**\
+    The residuals (errors) are normally distributed. This is particularly important for hypothesis testing and constructing confidence intervals. Normality assumption doesnot much influence the estimation of regression coefficient.
+
+5.  **No Multicollinearity**\
+    In the case of multiple regression, the independent variables should not be highly correlated with each other, as multicollinearity can distort the estimates of regression coefficients.
+
+6.  **No Autocorrelation**\
+    There should be no autocorrelation in the residuals. This means that the residuals of one observation should not be correlated with the residuals of another.
+
+7.  **Correct Model Specification**\
+    The model should include all relevant variables and exclude irrelevant ones. The functional form of the relationship between variables should be correctly specified.
+
+Violations of these assumptions can lead to biased, inconsistent, or inefficient estimates, affecting the validity of the regression analysis.
+
+::: {.callout-important title="Note"}
+The essence of the assumptions in linear regression can be summarized as $e \sim \text{i.i.d.}(0, \sigma^2)$. This denotes that the errors are *independent and identically distributed (i.i.d.)*, with a mean of zero and a constant variance $\sigma^2$. Independence ensures that the error for one observation neither depends on nor influences the error for another. Identically distributed means that all errors are drawn from the same probability distribution, without variation across observations. A mean of zero ensures that the errors do not introduce systematic bias into the model’s predictions. Additionally, the constant variance (homoscedasticity) implies that the errors maintain a consistent level of variability across all values of the independent variable(s).
+:::  
+
+## Two lines of regression  
+
+Consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. Where we can draw two lines of regression interchanging variables in X and Y axis as shown in @fig-twolines.  
+
+::: {#fig-twolines layout-ncol="2"}
+![Soil moisture in X-axis and crop yield in Y-axis](images/yonx.png){#fig-intercept width="200px" height="150px"}
+
+![Crop yield in X-axis and soil moisture in Y-axis](images/yonx.png){#fig-intercept width="200px" height="150px"}
+
+Two lines of regression  
+:::
+
+
+
+There are two lines of regression- that of $y$ on $x$ and $x$ on $y$.
+
+[Regression of $y$ on $x$]{.underline}
 
 Consider the two variables *x* and *y*, if you are considering *y* as dependent variable and *x* as independent variable then your equation is:
 
@@ -200,9 +255,6 @@ $$\mathbf{b}_{\mathbf{\text{yx}}}\mathbf{=}\frac{\mathbf{cov(x,y)}}{\mathbf{var(
 
 Consider Example 8.1; considering ice cream sales as dependent variable and temperature as independent variable
 
-```{r r6, echo=FALSE,fig.cap='Scatter diagram of data in Example 8.1',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/r7.jpeg"))
-```
 
 [Regression of *x* on *y*]{.underline}
 
@@ -214,27 +266,13 @@ This is used to predict the unknown value of variable *x* when value of variable
 
 $$\mathbf{b}_{\mathbf{\text{xy}}}\mathbf{=}\frac{\mathbf{cov(x,y)}}{\mathbf{var(y)}}$$
 
-Consider Example 8.1; considering temperature as dependent variable and ice cream sales as independent variable
 
-```{r r7, echo=FALSE,fig.cap='Scatter diagram of data in Example 8.1',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/r8.jpeg"))
-```
+
+
 
 You can see both the regression were different. It depends on the experimenter to choose dependent and independent variable. In the above example it is evident that considering temperature as dependent variable is meaningless, *i*.*e*. what is the usefulness in predicting temperature based on ice cream sales?. So the selection of dependent and independent variable is entirely the discretion of experimenter based on the objective of his study.
 
-## Assumptions of Regression
-
-If *y* is the dependent variable and *x* is the independent variable then
-
-1.  The *x*'s are non-random or fixed constants.
-
-2.  At each fixed value of *x* the corresponding values of *y* have a normal distribution about a mean.
-
-3.  For any given *x*, the variance of *y* is same.
-
-4.  The values of *y* observed at different levels of *x* are completely independent.
-
-## Properties of Regression coefficients
+### Properties
 
 1.  The correlation coefficient between *x* and *y* is the geometric mean of the two regression coefficients ***b***~yx~ and ***b***~xy~
 
