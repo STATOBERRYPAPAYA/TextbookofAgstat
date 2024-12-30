@@ -44,20 +44,6 @@ Regression analysis has a wide range of applications across fields:
 
 By the end of this chapter, you will learn how to perform regression analysis, interpret its results, and understand its assumptions and limitations. This will enable you to use regression as a powerful tool for making informed decisions and predictions.
 
-Correlation versus regression
-
-| **Item** | **Correlation** | **Regression** |
-|------------------------|------------------------|------------------------|
-| **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
-| **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
-| **Causation** | Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another. | Can imply causation if assumptions are met and the model is well-specified. |
-| **Equation** | No equation is derived. | Derives an equation: $y=\alpha + \beta x + e$. |
-| **Variables involved** | Considers two variables at a time. | Can involve one or multiple independent variables to predict a dependent variable. |
-| **Symmetry** | Correlation between (*x*) and (*y*) is the same as (*y*) and (*x*). | Regression is directional: it models (*y*) as dependent on (*x*), not vice versa. |
-| **Range** | The correlation coefficient (*r*) ranges from -1 to 1. | Regression coefficients ($\alpha, \beta$) ranges from $-\infty$ to $+\infty$. |
-| **Units** | Unit less measure. | Dependent on the units of the variables involved. |
-| **Purpose** | To understand the strength of the relationship. | To predict outcomes or explain variability in the dependent variable. |
-
 ## Simple linear regression
 
 Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable).\
@@ -232,47 +218,38 @@ The essence of the assumptions in linear regression can be summarized as $e \sim
 Consider the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag. For the data we can draw two lines of regression interchanging variables in X and Y axis as shown in @fig-twolines.
 
 ::: {#fig-twolines layout-ncol="2"}
-![Soil moisture in X-axis and crop yield in Y-axis](images/yonx.png){width="200px" height="150px"}
+![Soil moisture in X-axis and crop yield in Y-axis](images/yonx.png){#fig-xony width="200px" height="150px"}
 
-![Crop yield in X-axis and soil moisture in Y-axis](images/yonx.png){width="200px" height="150px"}
+![Crop yield in X-axis and soil moisture in Y-axis](images/yonx.png){#fig-yonx width="200px" height="150px"}
 
 Two lines of regression
 :::
 
-From @fig-twolines it is clear that two lines of regression that of $y$ on $x$ and $x$ on $y$ is possible.  
+From @fig-twolines it is clear that two lines of regression that of $y$ on $x$ and $x$ on $y$ is possible.
 
 [Regression of $y$ on $x$]{.underline}
 
 Consider the two variables $x$ and $y$, if you are considering $y$ as dependent variable and $x$ as independent variable then your equation is:
 
-$$y = \alpha + \beta_{yx}.x$$ {#eq-yonx} 
+$$y = \alpha + \beta_{yx}.x$$ {#eq-yonx}
 
-This is used to predict the unknown value of variable $y$ when value of variable $x$ is known. Usually $\beta$ here is denoted as $\beta_{yx}$ and it is obtained using @eq-betayonx.  
+This is used to predict the unknown value of variable $y$ when value of variable $x$ is known. Usually $\beta$ here is denoted as $\beta_{yx}$ and it is obtained using @eq-betayonx.
 
-$$\beta_{yx} =\frac{cov(x,y)}{var(x)}$$ {#eq-betayonx}  
+$$\beta_{yx} =\frac{cov(x,y)}{var(x)}$$ {#eq-betayonx}
 
 [Regression of $x$ on $y$]{.underline}
 
-Consider the two variables $x$ and $y$, if you are considering $x$ as dependent variable and $y$ as independent variable then your equation is:  
+Consider the two variables $x$ and $y$, if you are considering $x$ as dependent variable and $y$ as independent variable then your equation is:
 
-$$x = \alpha_1 + \beta_{xy}.x$$ {#eq-xony}  
+$$x = \alpha_1 + \beta_{xy}.x$$ {#eq-xony}
 
-This is used to predict the unknown value of variable $x$ when value of variable $y$ is known. Usually $\beta$ here is denoted as $\beta_{xy}$ and it is obtained using @eq-betaxony.  
+This is used to predict the unknown value of variable $x$ when value of variable $y$ is known. Usually $\beta$ here is denoted as $\beta_{xy}$ and it is obtained using @eq-betaxony.
 
-$$\beta_{xy} =\frac{cov(x,y)}{var(y)}$$ {#eq-betaxony}  
+$$\beta_{xy} =\frac{cov(x,y)}{var(y)}$$ {#eq-betaxony}
 
 You can see from @eq-betayonx and @eq-betaxony both the regression coefficients were different. It depends on the experimenter to choose dependent and independent variable. In the Example 8.2 there may be situation that considering moisture as dependent variable is meaningless, *i*.*e*. it depends on the fact that what is the usefulness in predicting soil moisture based on monetary crop yield?. So the selection of dependent and independent variable is entirely the discretion of experimenter based on the objective of his study.  
 
-### Properties of Regression lines
-
-1.  Regression lines minimize the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.
-
-2.  The regression lines intersect at the mean values of $x$ and $y$ *i.e.,* at ($\overline{x}$,$\overline{y}$)
-
-3.  The slopes of the regression lines are related to the correlation coefficient r. If r=0, the lines are perpendicular, indicating no linear relationship.  
-
-
-### Properties of regression coefficients  
+### Properties of regression coefficients
 
 1.  The correlation coefficient between $x$ and $y$ denoted as $r_{xy}$ is the geometric mean of the two regression coefficients $\beta_{yx}$ and $\beta_{xy}$
 
@@ -280,69 +257,87 @@ $$r_{xy} = \sqrt{\beta_{yx}.\beta_{xy}}$$ {#eq-corndbeta}
 
 2.  Regression coefficients are independent of change of origin but not of scale. Regression coefficients exhibit specific behaviors under transformations of the variables $x$ or $y$, particularly when there are changes in origin or scale. They are independent of a change in origin for both $x$ and $y$. This means that adding or subtracting a constant to either variable (e.g., transforming $x$ to $x'= x + c$ or $y$ to $y'= y + c$, where $c$ is a constant) does not affect the slope $\beta$ of the regression line. The slope depends on the relative differences between values, which remain unchanged by shifts in origin. However, changes in origin will affect the intercept $\alpha$ by adjusting it to accommodate the shift in $y$. In contrast, regression coefficients are not independent of changes in scale. When either $x$ or $y$ is multiplied or divided by a constant (e.g., $x'= kx$ or $y'= ky$, where $k$ is a non-zero constant), the slope $\beta$ changes proportionally. Specifically, the regression coefficient is inversely proportional to the scale factor for $x$ because scaling affects the covariance and variance of the variables. Similarly, scaling $y$ affects both the slope and the intercept, as the entire regression equation is scaled by the factor $k$. Understanding these effects is crucial for accurately interpreting regression results, especially when transformations are applied during data preprocessing.
 
+3.  If one regression coefficient is greater than unity, then the other must be less than unity but not vice versa. *i*.*e*. both the regression coefficients can be less than unity but both cannot be greater than unity, *i*.*e*. if $\beta_{yx} >1$ then $\beta_{xy} <1$ and if $\beta_{xy} >1$, then $\beta_{yx} <1$.
 
-3.  If one regression coefficient is greater than unity, then the other must be less than unity but not vice versa. *i*.*e*. both the regression coefficients can be less than unity but both cannot be greater than unity, *i*.*e*. if $\beta_{yx} >1$  then $\beta_{xy} <1$ and if $\beta_{xy} >1$, then $\beta_{yx} <1$.
-
-4.  Also if one regression coefficient is positive the other must be positive (in this case the correlation coefficient is positive) and if one regression coefficient is negative the other must be negative (in this case the correlation coefficient is negative). This relationship arises because the regression coefficients and the correlation coefficient share the same sign, reflecting the direction of the association between the two variables.  
+4.  Also if one regression coefficient is positive the other must be positive (in this case the correlation coefficient is positive) and if one regression coefficient is negative the other must be negative (in this case the correlation coefficient is negative). This relationship arises because the regression coefficients and the correlation coefficient share the same sign, reflecting the direction of the association between the two variables.
 
 5.  The range of regression coefficients is $- \infty$ to $+ \infty$.
 
 6.  If the variables ($x$ ) and ($y$) are independent, the regression coefficients are zero. This is referred to as the independence property of regression coefficients.  
 
+### Properties of regression lines
+
+1.  Regression lines minimize the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.
+
+2.  The regression lines intersect at the mean values of $x$ and $y$ *i.e.,* at ($\overline{x}$,$\overline{y}$)
+
+3.  The slopes of the regression lines are related to the correlation coefficient r. If r=0, the lines are perpendicular, indicating no linear relationship.  
+
+The position of regression lines is closely related to the strength of the correlation between $x$ and $y$. As shown in the figure, the placement of the two lines changes with the correlation value, demonstrating how the relationship between $x$ and $y$ influences the regression line’s position.  
+
+::: {#fig-twolines layout-ncol="2"}
+![When correlation = 0](images/no_correlation.png){#fig-nocorrel width="200px" height="150px"}
+
+![Perfect positive correlation](images/perfect_positive.png){#fig-nocorrel width="200px" height="150px"}
+![Perfect negative correlation](images/perfect_negative.png){#fig-nocorrel width="200px" height="150px"}  
+![High degree positive correlation](images/highdegree_positive.png){#fig-nocorrel width="200px" height="150px"}  
+![High degree negative correlation](images/highdegree_negative.png){#fig-nocorrel width="200px" height="150px"} 
+![Low degree negative correlation](images/lowdegree_negative.png){#fig-nocorrel width="200px" height="150px"}  
+![Low degree positive correlation](images/lowdegree_positive.png){#fig-nocorrel width="200px" height="150px"}  
+
+Effect of correlation strength on the position of regression lines
+:::
+
+
 ## Uses of Regression
 
-- **Prediction**  
-Regression analysis is used to predict the value of a dependent variable ($y$) based on one or more independent variables ($x$). Examples in agricultural research include:  
-  - Predicting crop yield based on weather parameters such as temperature, rainfall, and humidity.  
-  - Estimating soil nutrient levels using remote sensing data or environmental variables.  
-  - Forecasting pest or disease outbreaks based on climatic and ecological conditions.  
+-   **Prediction**\
+    Regression analysis is used to predict the value of a dependent variable ($y$) based on one or more independent variables ($x$). Examples in agricultural research include:
+    -   Predicting crop yield based on weather parameters such as temperature, rainfall, and humidity.\
+    -   Estimating soil nutrient levels using remote sensing data or environmental variables.\
+    -   Forecasting pest or disease outbreaks based on climatic and ecological conditions.
+-   **Identify the strength of relationships**\
+    Regression helps quantify the strength of the relationship between variables. This is essential in agricultural research to identify influential factors. Examples include:
+    -   Determining the effect of fertilizer dosage on crop yield.\
+    -   Analyzing the relationship between irrigation frequency and plant growth.\
+    -   Understanding the impact of livestock feed composition on milk production.
+-   **Forecast effects or impact of changes**\
+    Regression models allow researchers to evaluate how changes in one or more independent variables affect the dependent variable. For example:
+    -   Assessing how seed quality impacts overall harvest productivity.\
+    -   Analyzing the effects of varying water availability on crop output in drought-prone areas.\
+    -   Estimating the economic benefits of adopting precision farming techniques.
+-   **Predict Trends and Future Values**\
+    Regression is valuable for modeling trends and forecasting future values, aiding in strategic planning and policy-making. Applications include:
+    -   Predicting future crop yields under different climate change scenarios.\
+    -   Estimating long-term price trends for agricultural commodities such as rice, wheat, or coffee.\
+    -   Forecasting the adoption rates of new agricultural technologies among farmers.
 
-- **Identify the strength of relationships**  
-  Regression helps quantify the strength of the relationship between variables. This is essential in agricultural research to identify influential factors. Examples include:  
-  - Determining the effect of fertilizer dosage on crop yield.  
-  - Analyzing the relationship between irrigation frequency and plant growth.  
-  - Understanding the impact of livestock feed composition on milk production.  
+::: {.callout-important title="Note"}
+Multiple regression is an extension of simple linear regression that models the relationship between a dependent variable and two or more independent variables. It allows researchers to account for the combined effect of multiple factors on an outcome, making it particularly useful in agricultural research. For instance, crop yield can be predicted based on a combination of variables such as soil nutrients, rainfall, temperature, and fertilizer application.
 
-- **Forecast effects or impact of changes**  
-  Regression models allow researchers to evaluate how changes in one or more independent variables affect the dependent variable. For example:  
-  - Assessing how seed quality impacts overall harvest productivity.  
-  - Analyzing the effects of varying water availability on crop output in drought-prone areas.  
-  - Estimating the economic benefits of adopting precision farming techniques.  
+In a multiple regression model, the relationship between the dependent variable $y$ and independent variables $x_1, x_2, \dots, x_n$ is expressed as:
 
-- **Predict Trends and Future Values**  
-  Regression is valuable for modeling trends and forecasting future values, aiding in strategic planning and policy-making. Applications include:  
-  - Predicting future crop yields under different climate change scenarios.  
-  - Estimating long-term price trends for agricultural commodities such as rice, wheat, or coffee.  
-  - Forecasting the adoption rates of new agricultural technologies among farmers.  
-  
+$$y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n + e$$ {#eq-multireg}
 
-::: {.callout-important title="Note"}  
-Multiple regression is an extension of simple linear regression that models the relationship between a dependent variable and two or more independent variables. It allows researchers to account for the combined effect of multiple factors on an outcome, making it particularly useful in agricultural research. For instance, crop yield can be predicted based on a combination of variables such as soil nutrients, rainfall, temperature, and fertilizer application.  
+Where:\
+- $y$: Dependent variable (response).\
+- $\alpha$: Intercept (value of $Y$ when all $X$ values are zero).\
+- $\beta_1, \beta_2, \dots, \beta_n$: Coefficients representing the effect of each independent variable on $y$.\
+- $x_1, x_2, \dots, x_n$: Independent variables (predictors).\
+- $e$: Error term accounting for variability not explained by the predictors.
+:::
 
-In a multiple regression model, the relationship between the dependent variable $y$ and independent variables $x_1, x_2, \dots, x_n$ is expressed as:  
-
-$$y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \dots + \beta_n x_n + e$$ {#eq-multireg}  
-
-Where:  
-- $y$: Dependent variable (response).  
-- $\alpha$: Intercept (value of $Y$ when all $X$ values are zero).  
-- $\beta_1, \beta_2, \dots, \beta_n$: Coefficients representing the effect of each independent variable on $y$.  
-- $x_1, x_2, \dots, x_n$: Independent variables (predictors).  
-- $e$: Error term accounting for variability not explained by the predictors.  
-:::  
-
-**Example 9.1**: We will be using the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag to demonsrtate how  regression analysis can be used to answer the following questions.  
+**Example 9.1**: We will be using the data presented in @tbl-corrdata, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of @sec-scatterdiag to demonsrtate how regression analysis can be used to answer the following questions.
 
 1.  What is the functional form of relationship between soil moisture and monetary crop yield?
 
 2.  What will be the estimated monetary crop yield when average daily soil moisture is maintained around 20%?
 
-**Solution 9.1**:  
+**Solution 9.1**:
 
-1.  Fit a model considering monetary crop yield as dependent variable ($y$) and average soil moisture as independent variable ($x$). Fitting a model means estimating $\beta$ and $\alpha$ using equation.  
+1.  Fit a model considering monetary crop yield as dependent variable ($y$) and average soil moisture as independent variable ($x$). Fitting a model means estimating $\beta$ and $\alpha$ using equation.
 
-2.  After fitting the model put 20 in the $x$ value you will get the predicted $y$ value  
-
+2.  After fitting the model put 20 in the $x$ value you will get the predicted $y$ value
 
 ```{r corrmat, echo=FALSE,warning=FALSE,results='asis'}
 #| label: tbl-regressioncalc
@@ -365,6 +360,7 @@ kable_styling(
     bootstrap_options = "bordered"
   )  
 ```
+
 $n$ =12
 
 $$mean,\overline{x} = \ \frac{224.1}{12} = 18.675$$
@@ -373,17 +369,13 @@ $$mean,\overline{y} = \ \frac{4829}{12} = 402.416$$
 
 $$cov (x,y) =\frac{1}{n}\sum_{i = 1}^{n}{\left( x_{i} - \overline{x} \right)\left( y_{i} - \overline{y} \right)} = \frac{5325.03}{12} = 443.752$$
 
-variance of $x$:  
+variance of $x$:
 
-$$var\left( x \right) = \ \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2} = \frac{176.983}{12} = 14.7485$$
-now using @eq-regeqn4  
-$$\hat{\beta} =\frac{cov(x,y)}{var(x)}$$  
+$$var\left( x \right) = \ \frac{1}{n}\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2} = \frac{176.983}{12} = 14.7485$$ now using @eq-regeqn4\
+$$\hat{\beta} =\frac{cov(x,y)}{var(x)}$$
 
-
-$$\hat{\beta} =\frac{443.752}{14.7485} =30.088$$
-using @eq-regeqn5  
-$$\hat{\alpha} =\overline{y}-\hat{\beta}.\overline{x}$$  
-
+$$\hat{\beta} =\frac{443.752}{14.7485} =30.088$$ using @eq-regeqn5\
+$$\hat{\alpha} =\overline{y}-\hat{\beta}.\overline{x}$$
 
 $$\hat{\alpha} = 402.416 - 30.088\left( 18.675 \right) = \  - 159.477$$
 
@@ -397,17 +389,34 @@ for soil moisture content at 20%, *i*.*e*. $x = 20$
 
 $$y = \  - 159.477 + 30.088(20)$$ = 442.28
 
-So the predicted monetary yield in rupees at a average soil moisture of 20% is $442.283$ 
+So the predicted monetary yield in rupees at a average soil moisture of 20% is $442.283$  
+
+## Correlation and regression   
+
+Correlation and regression are fundamental concepts in statistics, often used to explore and model relationships between variables. While both techniques examine how variables relate to one another, they differ in their purpose, interpretation, and methodology. Correlation focuses on measuring the strength and direction of an association between two variables, without assuming causation. In contrast, regression goes a step further by modeling the relationship, enabling predictions of one variable based on the other(s). The @tbl-corrndregression below provides a detailed comparison of these two approaches, helping to clarify their unique characteristics and applications.  
+
+
+
+| **Item** | **Correlation** | **Regression** |
+|------------------------|------------------------|------------------------|
+| **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
+| **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
+| **Causation** | Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another. | Can imply causation if assumptions are met and the model is well-specified. |
+| **Equation** | No equation is derived. | Derives an equation: $y=\alpha + \beta x + e$. |
+| **Variables involved** | Considers two variables at a time. | Can involve one or multiple independent variables to predict a dependent variable. |
+| *Symmetry* | Correlation between (x) and (y) is the same as (y) and (x). | The regression coefficient of y on x is different from x on y. |
+| **Range** | The correlation coefficient (*r*) ranges from -1 to 1. | Regression coefficients ($\alpha, \beta$) ranges from $-\infty$ to $+\infty$. |
+| **Units** | Unit less measure. | Dependent on the units of the variables involved. |
+| **Purpose** | To understand the strength of the relationship. | To predict outcomes or explain variability in the dependent variable. |  
+
+: Correlation versus regression {#tbl-corrndregression} 
 
 ::: {.callout-caution title="Historical Insights"}
 **"Regression and study of heights"**
 
-The story of *regression* begins with Sir Francis Galton’s groundbreaking work on heredity in the late 19th century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon "regression toward the mean", as the offspring's heights seemed to move closer to the population average. This observation not only introduced the term "regression" but also inspired the development of statistical tools for studying relationships between variables. Galton’s work, later expanded by Karl Pearson, laid the foundation for modern regression analysis, which remains an essential technique in several fields ranging from agriculture to space exploration.  
-
+The story of *regression* begins with Sir Francis Galton’s groundbreaking work on heredity in the late 19th century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon "regression toward the mean", as the offspring's heights seemed to move closer to the population average. This observation not only introduced the term "regression" but also inspired the development of statistical tools for studying relationships between variables. Galton’s work, later expanded by Karl Pearson, laid the foundation for modern regression analysis, which remains an essential technique in several fields ranging from agriculture to space exploration.
 :::
- 
 
 ::: {.callout-tip title="Quotes to Inspire"}
 **"Statistics is the art of never having to say you're wrong":-Robert P. Abelson**
-:::  
-
+:::

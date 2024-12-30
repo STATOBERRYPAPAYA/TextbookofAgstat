@@ -265,10 +265,11 @@ window.Quarto = {
   </ul></li>
   <li><a href="#two-lines-of-regression" id="toc-two-lines-of-regression" class="nav-link" data-scroll-target="#two-lines-of-regression"><span class="header-section-number">9.2</span> Two lines of regression</a>
   <ul class="collapse">
-  <li><a href="#properties-of-regression-lines" id="toc-properties-of-regression-lines" class="nav-link" data-scroll-target="#properties-of-regression-lines"><span class="header-section-number">9.2.1</span> Properties of Regression lines</a></li>
-  <li><a href="#properties-of-regression-coefficients" id="toc-properties-of-regression-coefficients" class="nav-link" data-scroll-target="#properties-of-regression-coefficients"><span class="header-section-number">9.2.2</span> Properties of regression coefficients</a></li>
+  <li><a href="#properties-of-regression-coefficients" id="toc-properties-of-regression-coefficients" class="nav-link" data-scroll-target="#properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of regression coefficients</a></li>
+  <li><a href="#properties-of-regression-lines" id="toc-properties-of-regression-lines" class="nav-link" data-scroll-target="#properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of regression lines</a></li>
   </ul></li>
   <li><a href="#uses-of-regression" id="toc-uses-of-regression" class="nav-link" data-scroll-target="#uses-of-regression"><span class="header-section-number">9.3</span> Uses of Regression</a></li>
+  <li><a href="#correlation-and-regression" id="toc-correlation-and-regression" class="nav-link" data-scroll-target="#correlation-and-regression"><span class="header-section-number">9.4</span> Correlation and regression</a></li>
   </ul>
 </nav>
     </div>
@@ -324,68 +325,6 @@ window.Quarto = {
 <li><p>In <strong>medicine</strong>, regression can predict health outcomes based on patient characteristics.</p></li>
 </ul>
 <p>By the end of this chapter, you will learn how to perform regression analysis, interpret its results, and understand its assumptions and limitations. This will enable you to use regression as a powerful tool for making informed decisions and predictions.</p>
-<p>Correlation versus regression</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th><strong>Item</strong></th>
-<th><strong>Correlation</strong></th>
-<th><strong>Regression</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Definition</strong></td>
-<td>Measures the strength and direction of the relationship between two variables.</td>
-<td>Models the relationship between a dependent variable and one or more independent variables.</td>
-</tr>
-<tr class="even">
-<td><strong>Objective</strong></td>
-<td>To quantify the degree of association between variables.</td>
-<td>To predict the value of the dependent variable based on the independent variable(s).</td>
-</tr>
-<tr class="odd">
-<td><strong>Causation</strong></td>
-<td>Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another.</td>
-<td>Can imply causation if assumptions are met and the model is well-specified.</td>
-</tr>
-<tr class="even">
-<td><strong>Equation</strong></td>
-<td>No equation is derived.</td>
-<td>Derives an equation: <span class="math inline">\(y=\alpha + \beta x + e\)</span>.</td>
-</tr>
-<tr class="odd">
-<td><strong>Variables involved</strong></td>
-<td>Considers two variables at a time.</td>
-<td>Can involve one or multiple independent variables to predict a dependent variable.</td>
-</tr>
-<tr class="even">
-<td><strong>Symmetry</strong></td>
-<td>Correlation between (<em>x</em>) and (<em>y</em>) is the same as (<em>y</em>) and (<em>x</em>).</td>
-<td>Regression is directional: it models (<em>y</em>) as dependent on (<em>x</em>), not vice versa.</td>
-</tr>
-<tr class="odd">
-<td><strong>Range</strong></td>
-<td>The correlation coefficient (<em>r</em>) ranges from -1 to 1.</td>
-<td>Regression coefficients (<span class="math inline">\(\alpha, \beta\)</span>) ranges from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>.</td>
-</tr>
-<tr class="even">
-<td><strong>Units</strong></td>
-<td>Unit less measure.</td>
-<td>Dependent on the units of the variables involved.</td>
-</tr>
-<tr class="odd">
-<td><strong>Purpose</strong></td>
-<td>To understand the strength of the relationship.</td>
-<td>To predict outcomes or explain variability in the dependent variable.</td>
-</tr>
-</tbody>
-</table>
 <section id="simple-linear-regression" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="simple-linear-regression"><span class="header-section-number">9.1</span> Simple linear regression</h2>
 <p>Regression can be simply defined as a technique of fitting best line or line of best fit to estimate value of one variable on the basis of another variable. Now what is a best line? or line of best fit?. To understand this concept better, consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of <a href="association.html#sec-scatterdiag" class="quarto-xref"><span>Section 8.2</span></a>. This example helps visualize how the relationship between two variables—soil moisture content (independent variable) and crop yield (dependent variable).<br>
@@ -446,7 +385,7 @@ Figure&nbsp;9.1: lines drawn to show functional relationship between soil moistu
 <p>In regression analysis, an error represents the difference between an observed value (a data point) and the true regression line, which reflects the actual relationship between the dependent and independent variables in the population. Since the true regression line is based on the entire population and is usually unknown, the error is a theoretical concept that cannot be directly calculated.</p>
 <p>A residual is the difference between an observed value and the value predicted by a regression line based on sample data. Specifically, for a given data point, the residual is calculated as the observed value minus the predicted value from the regression line. Residuals are measurable because they are derived from the observed data and the regression line that is obtained using the sample. Unlike errors, which are theoretical and represent deviations from the true underlying model, residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.</p>
 <p>In essence, a residual serves as an estimate of the error. While errors represent the deviation from the actual true value, residuals reflect the discrepancy between observed data and the fitted model. From <a href="#fig-residual" class="quarto-xref">Figure&nbsp;<span>9.2</span></a> you can see the residual <span class="math inline">\(e_i\)</span> of an <em>i</em>^th observation in a fitted regression line.</p>
-<div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-residual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/r91.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:70.0%">
@@ -611,24 +550,32 @@ Note
 </section>
 <section id="two-lines-of-regression" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="two-lines-of-regression"><span class="header-section-number">9.2</span> Two lines of regression</h2>
-<p>Consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of <a href="association.html#sec-scatterdiag" class="quarto-xref"><span>Section 8.2</span></a>. For the data we can draw two lines of regression interchanging variables in X and Y axis as shown in <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>.</p>
+<p>Consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of <a href="association.html#sec-scatterdiag" class="quarto-xref"><span>Section 8.2</span></a>. For the data we can draw two lines of regression interchanging variables in X and Y axis as shown in <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>.</p>
 <div id="fig-twolines" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-twolines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/yonx.png" width="200" height="150" class="figure-img"></p>
-<figcaption>Soil moisture in X-axis and crop yield in Y-axis</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-xony" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-xony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/yonx.png" data-ref-parent="fig-twolines" width="200" height="150" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-xony-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Soil moisture in X-axis and crop yield in Y-axis
+</figcaption>
 </figure>
 </div>
 </div>
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="images/yonx.png" width="200" height="150" class="figure-img"></p>
-<figcaption>Crop yield in X-axis and soil moisture in Y-axis</figcaption>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-yonx" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-yonx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/yonx.png" data-ref-parent="fig-twolines" width="200" height="150" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-yonx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Crop yield in X-axis and soil moisture in Y-axis
+</figcaption>
 </figure>
 </div>
 </div>
@@ -639,7 +586,7 @@ Figure&nbsp;9.4: Two lines of regression
 </figcaption>
 </figure>
 </div>
-<p>From <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> it is clear that two lines of regression that of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is possible.</p>
+<p>From <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.5</span></a> it is clear that two lines of regression that of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is possible.</p>
 <p><u>Regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span></u></p>
 <p>Consider the two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, if you are considering <span class="math inline">\(y\)</span> as dependent variable and <span class="math inline">\(x\)</span> as independent variable then your equation is:</p>
 <p><span id="eq-yonx"><span class="math display">\[y = \alpha + \beta_{yx}.x \tag{9.20}\]</span></span></p>
@@ -651,16 +598,8 @@ Figure&nbsp;9.4: Two lines of regression
 <p>This is used to predict the unknown value of variable <span class="math inline">\(x\)</span> when value of variable <span class="math inline">\(y\)</span> is known. Usually <span class="math inline">\(\beta\)</span> here is denoted as <span class="math inline">\(\beta_{xy}\)</span> and it is obtained using <a href="#eq-betaxony" class="quarto-xref">Equation&nbsp;<span>9.23</span></a>.</p>
 <p><span id="eq-betaxony"><span class="math display">\[\beta_{xy} =\frac{cov(x,y)}{var(y)} \tag{9.23}\]</span></span></p>
 <p>You can see from <a href="#eq-betayonx" class="quarto-xref">Equation&nbsp;<span>9.21</span></a> and <a href="#eq-betaxony" class="quarto-xref">Equation&nbsp;<span>9.23</span></a> both the regression coefficients were different. It depends on the experimenter to choose dependent and independent variable. In the Example 8.2 there may be situation that considering moisture as dependent variable is meaningless, <em>i</em>.<em>e</em>. it depends on the fact that what is the usefulness in predicting soil moisture based on monetary crop yield?. So the selection of dependent and independent variable is entirely the discretion of experimenter based on the objective of his study.</p>
-<section id="properties-of-regression-lines" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="properties-of-regression-lines"><span class="header-section-number">9.2.1</span> Properties of Regression lines</h3>
-<ol type="1">
-<li><p>Regression lines minimize the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.</p></li>
-<li><p>The regression lines intersect at the mean values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> <em>i.e.,</em> at (<span class="math inline">\(\overline{x}\)</span>,<span class="math inline">\(\overline{y}\)</span>)</p></li>
-<li><p>The slopes of the regression lines are related to the correlation coefficient r. If r=0, the lines are perpendicular, indicating no linear relationship.</p></li>
-</ol>
-</section>
-<section id="properties-of-regression-coefficients" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="properties-of-regression-coefficients"><span class="header-section-number">9.2.2</span> Properties of regression coefficients</h3>
+<section id="properties-of-regression-coefficients" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of regression coefficients</h3>
 <ol type="1">
 <li>The correlation coefficient between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> denoted as <span class="math inline">\(r_{xy}\)</span> is the geometric mean of the two regression coefficients <span class="math inline">\(\beta_{yx}\)</span> and <span class="math inline">\(\beta_{xy}\)</span></li>
 </ol>
@@ -672,6 +611,44 @@ Figure&nbsp;9.4: Two lines of regression
 <li><p>The range of regression coefficients is <span class="math inline">\(- \infty\)</span> to <span class="math inline">\(+ \infty\)</span>.</p></li>
 <li><p>If the variables (<span class="math inline">\(x\)</span> ) and (<span class="math inline">\(y\)</span>) are independent, the regression coefficients are zero. This is referred to as the independence property of regression coefficients.</p></li>
 </ol>
+</section>
+<section id="properties-of-regression-lines" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of regression lines</h3>
+<ol type="1">
+<li><p>Regression lines minimize the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.</p></li>
+<li><p>The regression lines intersect at the mean values of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> <em>i.e.,</em> at (<span class="math inline">\(\overline{x}\)</span>,<span class="math inline">\(\overline{y}\)</span>)</p></li>
+<li><p>The slopes of the regression lines are related to the correlation coefficient r. If r=0, the lines are perpendicular, indicating no linear relationship.</p></li>
+</ol>
+<p>The position of regression lines is closely related to the strength of the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. As shown in the figure, the placement of the two lines changes with the correlation value, demonstrating how the relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> influences the regression line’s position.</p>
+<div id="fig-twolines" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-twolines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-nocorrel" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-nocorrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/no_correlation.png" data-ref-parent="fig-twolines" width="200" height="150" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-nocorrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) When correlation = 0
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<p><img src="images/perfect_positive.png" id="fig-nocorrel" width="200" height="150" class="figure-img"> <img src="images/perfect_negative.png" id="fig-nocorrel" width="200" height="150" class="figure-img"><br>
+<img src="images/highdegree_positive.png" id="fig-nocorrel" width="200" height="150" class="figure-img"><br>
+<img src="images/highdegree_negative.png" id="fig-nocorrel" width="200" height="150" class="figure-img"> <img src="images/lowdegree_negative.png" id="fig-nocorrel" width="200" height="150" class="figure-img"><br>
+<img src="images/lowdegree_positive.png" id="fig-nocorrel" width="200" height="150" class="figure-img"></p>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twolines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;9.5: Effect of correlation strength on the position of regression lines
+</figcaption>
+</figure>
+</div>
 </section>
 </section>
 <section id="uses-of-regression" class="level2" data-number="9.3">
@@ -745,7 +722,7 @@ Note
 <li><p>Fit a model considering monetary crop yield as dependent variable (<span class="math inline">\(y\)</span>) and average soil moisture as independent variable (<span class="math inline">\(x\)</span>). Fitting a model means estimating <span class="math inline">\(\beta\)</span> and <span class="math inline">\(\alpha\)</span> using equation.</p></li>
 <li><p>After fitting the model put 20 in the <span class="math inline">\(x\)</span> value you will get the predicted <span class="math inline">\(y\)</span> value</p></li>
 </ol>
-<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Calculation table for regression" data-filters="parse-latex">
+<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-filters="parse-latex" data-tbl-cap="Calculation table for regression">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regressioncalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;9.1: Calculation table for regression
@@ -1098,6 +1075,80 @@ Crop yield in Rs(<span class="math inline">\(y\)</span>)
 <p>for soil moisture content at 20%, <em>i</em>.<em>e</em>. <span class="math inline">\(x = 20\)</span></p>
 <p><span class="math display">\[y = \  - 159.477 + 30.088(20)\]</span> = 442.28</p>
 <p>So the predicted monetary yield in rupees at a average soil moisture of 20% is <span class="math inline">\(442.283\)</span></p>
+</section>
+<section id="correlation-and-regression" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="correlation-and-regression"><span class="header-section-number">9.4</span> Correlation and regression</h2>
+<p>Correlation and regression are fundamental concepts in statistics, often used to explore and model relationships between variables. While both techniques examine how variables relate to one another, they differ in their purpose, interpretation, and methodology. Correlation focuses on measuring the strength and direction of an association between two variables, without assuming causation. In contrast, regression goes a step further by modeling the relationship, enabling predictions of one variable based on the other(s). The <a href="#tbl-corrndregression" class="quarto-xref">Table&nbsp;<span>9.2</span></a> below provides a detailed comparison of these two approaches, helping to clarify their unique characteristics and applications.</p>
+<div id="tbl-corrndregression" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-corrndregression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;9.2: Correlation versus regression
+</figcaption>
+<div aria-describedby="tbl-corrndregression-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Item</strong></th>
+<th><strong>Correlation</strong></th>
+<th><strong>Regression</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Definition</strong></td>
+<td>Measures the strength and direction of the relationship between two variables.</td>
+<td>Models the relationship between a dependent variable and one or more independent variables.</td>
+</tr>
+<tr class="even">
+<td><strong>Objective</strong></td>
+<td>To quantify the degree of association between variables.</td>
+<td>To predict the value of the dependent variable based on the independent variable(s).</td>
+</tr>
+<tr class="odd">
+<td><strong>Causation</strong></td>
+<td>Does not imply causation; it only measures association. Causation means changes in one variable cause changes in another.</td>
+<td>Can imply causation if assumptions are met and the model is well-specified.</td>
+</tr>
+<tr class="even">
+<td><strong>Equation</strong></td>
+<td>No equation is derived.</td>
+<td>Derives an equation: <span class="math inline">\(y=\alpha + \beta x + e\)</span>.</td>
+</tr>
+<tr class="odd">
+<td><strong>Variables involved</strong></td>
+<td>Considers two variables at a time.</td>
+<td>Can involve one or multiple independent variables to predict a dependent variable.</td>
+</tr>
+<tr class="even">
+<td><em>Symmetry</em></td>
+<td>Correlation between (x) and (y) is the same as (y) and (x).</td>
+<td>The regression coefficient of y on x is different from x on y.</td>
+</tr>
+<tr class="odd">
+<td><strong>Range</strong></td>
+<td>The correlation coefficient (<em>r</em>) ranges from -1 to 1.</td>
+<td>Regression coefficients (<span class="math inline">\(\alpha, \beta\)</span>) ranges from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>.</td>
+</tr>
+<tr class="even">
+<td><strong>Units</strong></td>
+<td>Unit less measure.</td>
+<td>Dependent on the units of the variables involved.</td>
+</tr>
+<tr class="odd">
+<td><strong>Purpose</strong></td>
+<td>To understand the strength of the relationship.</td>
+<td>To predict outcomes or explain variability in the dependent variable.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
