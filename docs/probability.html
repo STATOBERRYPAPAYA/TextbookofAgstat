@@ -1,0 +1,1290 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./appendix1.html" rel="next">
+<link href="./regression.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cleaning-data-r.ala.org.au/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cleaning-data-r.ala.org.au/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./probability.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/AtlasOfLivingAustralia/cleaning_data" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#random-experiment" id="toc-random-experiment" class="nav-link active" data-scroll-target="#random-experiment"><span class="header-section-number">10.1</span> Random experiment</a></li>
+  <li><a href="#probability" id="toc-probability" class="nav-link" data-scroll-target="#probability"><span class="header-section-number">10.2</span> Probability</a></li>
+  <li><a href="#event" id="toc-event" class="nav-link" data-scroll-target="#event"><span class="header-section-number">10.3</span> Event</a>
+  <ul class="collapse">
+  <li><a href="#types-of-events" id="toc-types-of-events" class="nav-link" data-scroll-target="#types-of-events"><span class="header-section-number">10.3.1</span> Types of events</a></li>
+  </ul></li>
+  <li><a href="#definitions-of-probability" id="toc-definitions-of-probability" class="nav-link" data-scroll-target="#definitions-of-probability"><span class="header-section-number">10.4</span> Definitions of probability</a>
+  <ul class="collapse">
+  <li><a href="#mathematical-approach" id="toc-mathematical-approach" class="nav-link" data-scroll-target="#mathematical-approach"><span class="header-section-number">10.4.1</span> Mathematical approach</a></li>
+  <li><a href="#statistical-approach" id="toc-statistical-approach" class="nav-link" data-scroll-target="#statistical-approach"><span class="header-section-number">10.4.2</span> Statistical approach</a></li>
+  <li><a href="#axiomatic-approach" id="toc-axiomatic-approach" class="nav-link" data-scroll-target="#axiomatic-approach"><span class="header-section-number">10.4.3</span> Axiomatic Approach</a></li>
+  </ul></li>
+  <li><a href="#event-relations" id="toc-event-relations" class="nav-link" data-scroll-target="#event-relations"><span class="header-section-number">10.5</span> Event relations</a></li>
+  <li><a href="#additive-law-of-probability" id="toc-additive-law-of-probability" class="nav-link" data-scroll-target="#additive-law-of-probability"><span class="header-section-number">10.6</span> Additive law of probability</a></li>
+  <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="header-section-number">10.7</span> Conditional probability</a></li>
+  <li><a href="#multiplication-law-of-probability" id="toc-multiplication-law-of-probability" class="nav-link" data-scroll-target="#multiplication-law-of-probability"><span class="header-section-number">10.8</span> Multiplication law of probability</a></li>
+  <li><a href="#probability-using-combinations" id="toc-probability-using-combinations" class="nav-link" data-scroll-target="#probability-using-combinations"><span class="header-section-number">10.9</span> Probability using combinations</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">10.10</span> Bayes’ theorem</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Probability is a cornerstone of statistical methods, providing the mathematical framework to quantify and analyze uncertainty. In the diverse and dynamic field of agricultural research, uncertainty often arises in areas such as yield predictions, pest control strategies, and the impact of environmental variables on crop growth. Understanding probability equips researchers and students with the tools to make informed decisions in the face of variability and randomness.</p>
+<p>This chapter introduces fundamental probability concepts. We begin with the basic definitions and axioms of probability. The chapter progresses to explore key topics such as conditional probability, Bayes’ theorem, and independence of events.</p>
+<section id="random-experiment" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="random-experiment"><span class="header-section-number">10.1</span> Random experiment</h2>
+<p>A random experiment is a process or procedure that produces an outcome which cannot be predicted with certainty beforehand. The outcome is determined by chance, and the set of all possible outcomes is known as the <code>sample space</code>. Random experiments form the basis of probability theory and are critical for understanding uncertainty in various contexts.</p>
+<p><u>Characteristics of a random experiment</u></p>
+<ul>
+<li><p>Uncertainty of outcome: The result of the experiment cannot be predetermined.</p></li>
+<li><p>Repeatability: The experiment can be repeated under the same conditions.</p></li>
+<li><p>Defined sample space: All possible outcomes are known and well-defined.</p></li>
+</ul>
+<p>Some common examples of random experiments used to illustrate probability theory were discussed below:</p>
+<p><strong>Tossing a coin</strong></p>
+<p>Tossing a coin is one of the simplest and most fundamental random experiments used to illustrate the principles of probability. Despite its simplicity, this seemingly mundane activity provides profound insights into random processes and lays the groundwork for understanding more complex probabilistic systems.</p>
+<p>When a coin is tossed, there are two possible outcomes:</p>
+<ul>
+<li><p>Heads (<span class="math inline">\(H\)</span>)</p></li>
+<li><p>Tails (<span class="math inline">\(T\)</span>)</p></li>
+</ul>
+<p>We say that for an unbiassed coin the probability of the coin landing <span class="math inline">\(H\)</span> is <span class="math inline">\(\frac{1}{2}\)</span> and the probability of the coin landing <span class="math inline">\(T\)</span> is <span class="math inline">\(\frac{1}{2}\)</span></p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>An unbiased coin is a theoretical concept in probability, referring to a coin designed or assumed to have no preference for either side when tossed, such that the likelihood of landing on heads (H) is exactly the same as landing on tails (T), with each outcome having a probability of <span class="math inline">\(\frac{1}{2}\)</span> or 50%. Its characteristics include perfect symmetry, ensuring the coin is balanced without physical imperfections or uneven weight distribution that could influence the result, and equal probability, where each side is equally likely to face upward after a toss. This assumption generally holds under ideal experimental conditions, free from external factors like uneven surfaces or human bias in the tossing technique.</p>
+</div>
+</div>
+<p><strong>Throwing dice</strong></p>
+<p>A standard die has six faces, numbered from 1 to 6. Under fair conditions, each face has an equal probability of appearing when the die is rolled. Thus, the probability of getting any one face is <span class="math inline">\(\frac{1}{6}\)</span>.</p>
+<div id="fig-dice" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/dice.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:20.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-dice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.1: Two dice
+</figcaption>
+</figure>
+</div>
+<p><strong>Playing cards</strong></p>
+<p>A standard deck of playing cards consists of 52 cards, divided into four suits: spades, hearts, diamonds, and clubs, with each suit containing 13 cards. Four suits in playing cards were given in the <a href="#fig-suitsincard" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>. The spades suit includes 9 numbered cards from 2 to 10, along with the picture cards ace, king, queen, and jack. Similarly, the hearts, diamonds, and clubs suits each contain 13 cards. Of these 52 cards, 26 are red, consisting of the hearts and diamonds suits, while the other 26 cards are black, comprising the spades and clubs suits. Playing cards can be used to create examples for random experiments, such as drawing a single card from a shuffled deck to determine its specific identity. Other experiments include drawing a card and checking its suit etc. These simple experiments can be easily modified with conditions or repetition, making playing cards a versatile tool for exploring probability and random events.</p>
+<div id="fig-suitsincard" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-suitsincard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suitsincard" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div id="fig-spade" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-spade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/spade.png" data-ref-parent="fig-suitsincard" width="50" height="50" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-spade-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Spades
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suitsincard" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div id="fig-heart" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-heart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/heart.png" data-ref-parent="fig-suitsincard" width="50" height="50" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-heart-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Hearts
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suitsincard" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div id="fig-diamond" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-diamond-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/diamond.png" data-ref-parent="fig-suitsincard" width="50" height="50" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-diamond-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Diamonds
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-suitsincard" style="flex-basis: 25.0%;justify-content: flex-start;">
+<div id="fig-clubs" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-clubs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/claver.png" data-ref-parent="fig-suitsincard" width="50" height="50" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-clubs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Clubs
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-suitsincard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.2: Four suits in playing cards
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="probability" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="probability"><span class="header-section-number">10.2</span> Probability</h2>
+<p>Probability is a measure of the likelihood or chance that a particular event will occur. It quantifies uncertainty and is expressed as a number between 0 and 1, where 0 indicates an impossible event and 1 represents a certain event. Mathematically, the probability of an event <span class="math inline">\(A\)</span> is defined as the ratio of the number of favorable outcomes to the total number of possible outcomes, assuming all outcomes are equally likely, and is given by</p>
+<p>Probability of an event <span class="math inline">\(A\)</span> happening:</p>
+<p><span id="eq-probability1"><span class="math display">\[p(A) = \frac{\text{Number of favourable outcomes}}{\text{Total possible outcomes}} \tag{10.1}\]</span></span><br>
+here favourable outcome means outcomes favouring the happening of event <span class="math inline">\(A\)</span>.</p>
+<p><strong>Example 10.1</strong>: What is the chances of rolling a “4” with a die ?</p>
+<p><strong>Solution 10.1</strong>: Let the event <span class="math inline">\(A\)</span> = rolling a “4” with a die. Number of ways event <span class="math inline">\(A\)</span> can happen is one, as there is only 1 face with a “4” on it. Total number of outcomes is 6 (there are 6 faces altogether). So using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>; probability,<span class="math inline">\(p(A)\)</span> = <span class="math inline">\(\frac{1}{6}\)</span>.</p>
+<p><strong>Example 10.2</strong>: There are 5 marbles in a bag: 4 are blue, and 1 is red. What is the probability that a blue marble gets picked?</p>
+<p><strong>Solution 10.2</strong>: Let the event <span class="math inline">\(A\)</span> = a blue marble gets picked. Number of ways event <span class="math inline">\(A\)</span> can happen is 4 (there are 4 blues). Total number of possible outcomes is 5 (there are 5 marbles in total). So using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>; probability,<span class="math inline">\(p(A)\)</span> = <span class="math inline">\(\frac{4}{5}\)</span> = 0.8</p>
+<p><u><strong>Common terms used</strong></u></p>
+<p><strong>Outcome:</strong> An outcome is the result of a random experiment, representing a single occurrence or observation. For instance, when rolling a die, the outcomes could include the appearance of 1 dot, 2 dots, and so on.</p>
+<p><strong>Sample space:</strong> The sample space (denoted as <span class="math inline">\(S\)</span>) of a random experiment is the set that contains all possible outcomes of that experiment. For example, when tossing a coin, the sample space is <span class="math inline">\(S\)</span> = {H, T}, and when throwing a die, the sample space is <span class="math inline">\(S\)</span> = {1, 2, 3, 4, 5, 6}.</p>
+<p><strong>Sample point:</strong> A sample point is an individual element of the sample space, representing a single possible outcome. For example, “heads” in a coin toss or the “5 of clubs” in a deck of cards are sample points. In the case of rolling a die, there are six distinct sample points within the sample space.</p>
+<div id="fig-samplespacendpoint" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-samplespacendpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/dicesamplepoints.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-samplespacendpoint-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.3: Sample space and sample point
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Try yourself</strong></p>
+<p>If a die is tossed</p>
+<ol type="1">
+<li>What is the sample space?</li>
+<li>What is the probability of getting a 1?</li>
+<li>What is the probability of obtaining a even number?</li>
+<li>What is the probability of getting a 7?</li>
+</ol>
+</div>
+</div>
+</div>
+</section>
+<section id="event" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="event"><span class="header-section-number">10.3</span> Event</h2>
+<p>An event refers to one or more outcomes of a random experiment. It can represent any subset of the sample space, where the event consists of specific outcomes that are of interest in the context of the experiment. An event can be a single outcome. For example, when tossing a coin, getting a “Tail” is an event that represents just one outcome from the sample space {H, T}. Similarly, rolling a “5” on a die is an event that includes only one specific outcome, 5, from the sample space {1, 2, 3, 4, 5, 6}.</p>
+<p>On the other hand, an event can also include multiple outcomes. For instance, when selecting a “king” from a deck of cards, the event includes any one of the four kings (king of hearts, king of diamonds, king of clubs, king of spades), forming a set of four possible outcomes. Similarly, when rolling an “even number” on a die, the event would encompass the outcomes {2, 4, 6}, which are all the even numbers in the sample space of a die roll. Thus, an event can be a single outcome or a combination of multiple outcomes depending on the context of the experiment.</p>
+<p><strong>Example 10.3</strong>: Ram wants to see how many times a “double” (both dice have same number) comes up when throwing 2 dice.</p>
+<p><strong>Solution 10.3</strong>: The <em>sample space</em> is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3} {1,4} … {6,3} {6,4} {6,5} {6,6}. The <em>event</em> Ram is looking for is a “double”, where both dice have the same number. It is made up of these 6 sample points: {1,1} {2,2} {3,3} {4,4} {5,5} and {6,6}. You can calculate the probability of the event using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>. Probability = <span class="math inline">\(\frac{6}{36}=0.17\)</span>.</p>
+<section id="types-of-events" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="types-of-events"><span class="header-section-number">10.3.1</span> Types of events</h3>
+<p><strong>Independent events</strong></p>
+<p>Independent events are events where the occurrence of one does not influence the occurrence of another. For instance, consider tossing a coin. If it lands on “heads” three times in a row, the outcome of the next toss remains unaffected by the previous results. The probability of getting “heads” on the next toss is still <span class="math inline">\(\frac{1}{2}\)</span> (or 0.5), just as it is for any fair coin toss. This demonstrates that past outcomes do not influence the probabilities of future events in independent scenarios.</p>
+<p><strong>Example 10.4</strong>: A coin is tossed 100 times, and heads appear in 99 of those tosses. What is the probability that heads will appear on the <span class="math inline">\(100^{th}\)</span> toss?</p>
+<p><strong>Solution 10.4</strong>: Answer is <span class="math inline">\(\frac{1}{2}\)</span> as each toss is independent of previous toss.</p>
+<p><strong>Dependent events</strong></p>
+<p>Dependent events are events where the outcome of one event influences the probabilities of subsequent events. For example, consider drawing cards from a deck. The probabilities change as cards are removed from the deck, altering the available outcomes. Initially, the chance of drawing a king on the first card is <span class="math inline">\(\frac{4}{52}\)</span>. However, for the second draw, the probabilities depend on the outcome of the first draw. If the first card is a king, only 3 kings remain among the 51 remaining cards, reducing the likelihood of drawing another king to <span class="math inline">\(\frac{3}{51}\)</span>. Conversely, if the first card is not a king, all 4 kings remain, making the probability <span class="math inline">\(\frac{4}{51}\)</span>. This illustrates how previous outcomes affect probabilities in dependent events.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>When cards are drawn <code>with replacement</code>, each card is returned to the deck after being drawn, so the total number of cards remains constant. This keeps the probabilities unchanged, making the events independent. However, when cards are drawn <code>without replacement</code>, the total number of cards decreases after each draw, which alters the probabilities and makes the events dependent.</p>
+</div>
+</div>
+<p><strong>Mutually exclusive events</strong></p>
+<p>Mutually exclusive events are events that cannot occur at the same time. It is either one event or the other, but not both. For example, turning left or right is mutually exclusive because you cannot do both simultaneously. Similarly, heads and tails in a coin toss is mutually exclusive. Drawing a king and drawing an ace are mutually exclusive events because you can’t draw both in a single card. However, not all events are mutually exclusive. For instance, kings and hearts are not mutually exclusive because it is possible to have a king of hearts, an outcome that belongs to both categories.</p>
+<p><strong>Exhaustive events</strong></p>
+<p>A set of events is called exhaustive if, together, they encompass the entire sample space. For example, when tossing a die, the sample space is <span class="math inline">\(S = \{1, 2, 3, 4, 5, 6\}\)</span>. Consider the events: event <span class="math inline">\(A\)</span>, which is getting an even number <span class="math inline">\(\{2, 4, 6\}\)</span>, and event <span class="math inline">\(B\)</span>, which is getting an odd number <span class="math inline">\(\{1, 3, 5\}\)</span>. These events are exhaustive because, when combined, they include all possible outcomes in the sample space.</p>
+<p><strong>Equally likely events</strong></p>
+<p>Equally likely events are events that have the same theoretical probability of occurring. For example, when tossing a coin, event <span class="math inline">\(A\)</span> (getting a head) and event <span class="math inline">\(B\)</span> (getting a tail) are equally likely events because both have an equal probability of occurring.</p>
+</section>
+</section>
+<section id="definitions-of-probability" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="definitions-of-probability"><span class="header-section-number">10.4</span> Definitions of probability</h2>
+<p>In probability theory, different approaches are used to define and calculate the likelihood of events occurring. These approaches vary depending on the nature of the experiment and the available information. The three primary definitions of probability are mathematical (classical), statistical (empirical), and axiomatic, each offer unique perspectives and methods for determining probabilities. The classical approach is based on equally likely outcomes, the empirical approach relies on experimental data, and the axiomatic approach, developed by A.N. Kolmogorov, is based on a set of foundational principles. Understanding these definitions helps in applying probability theory to various real-world situations, from simple experiments to more complex scenarios.</p>
+<section id="mathematical-approach" class="level3" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="mathematical-approach"><span class="header-section-number">10.4.1</span> Mathematical approach</h3>
+<p>It is also known as classical, theoretical or a priori approach to probability. If an experiment with <span class="math inline">\(n\)</span> <code>exhaustive</code>, <code>mutually exclusive</code> and <code>equally likely</code> outcomes, <span class="math inline">\(m\)</span> outcomes are favourable to the happening of an event <span class="math inline">\(E\)</span>, the probability <span class="math inline">\(p\)</span> of happening of E is given by</p>
+<p><span id="eq-mathematicalapproach"><span class="math display">\[p\left( E \right) = \ \frac{m}{n} \tag{10.2}\]</span></span></p>
+<p><span class="math inline">\(p\)</span> is termed as probability of success.</p>
+<p><strong>Example 10.5</strong>: When a coin is tossed, there are two possible outcomes head or tail. Outcomes are exhaustive, mutually exclusive and equally likely. What is the probability of getting head?</p>
+<p><strong>Solution 10.5</strong>: Solution using mathematical approach, consider the event <span class="math inline">\(E\)</span> : getting a head; probability of event <span class="math inline">\(E\)</span>, <span class="math inline">\(p(E)\)</span> can be determined using <a href="#eq-mathematicalapproach" class="quarto-xref">Equation&nbsp;<span>10.2</span></a>.</p>
+<p>here, number of outcomes are favourable to the happening of event <span class="math inline">\(E\)</span>, <span class="math inline">\(m =1\)</span>; <span class="math inline">\(n\)</span> = total number of possible outcomes (head and tail) = 2</p>
+<p><span class="math display">\[p\left( E \right) =  \ \frac{1}{2}\]</span></p>
+<p><em>i</em>.<em>e</em>. probability of getting a head is <span class="math inline">\(\frac{1}{2}\)</span></p>
+<p><u><strong>Limitations</strong></u></p>
+<p>The mathematical approach has certain limitations. For instance, it cannot account for situations where the outcomes are not equally likely, such as tossing a biased die. Additionally, this approach cannot define probability when the total number of possible outcomes <span class="math inline">\(n\)</span> is unknown or tends to infinity, as in determining the probability of raining tomorrow. To address these limitations, other definitions of probability have been developed.</p>
+</section>
+<section id="statistical-approach" class="level3" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="statistical-approach"><span class="header-section-number">10.4.2</span> Statistical approach</h3>
+<p>The statistical approach to probability, also known as the <em>empirical approach</em>, is based on observing and recording outcomes from repeated experiments. The probability of an event is determined as the ratio of the number of times the event occurs <span class="math inline">\(m\)</span> to the total number of trials <span class="math inline">\(n\)</span> as when <span class="math inline">\(n\)</span> approaches infinity. This method is useful when theoretical probabilities cannot be calculated but relies on the practicality of conducting a large number of trials and assumes consistency in experimental conditions.</p>
+<p>The probability <span class="math inline">\(p\)</span> of happening of <span class="math inline">\(E\)</span> is given by</p>
+<p><span id="eq-statisticalapproach"><span class="math display">\[p\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n} \tag{10.3}\]</span></span></p>
+<p>where <span class="math inline">\(n\)</span> is the number of times the process is performed which tends to infinity, and <span class="math inline">\(m\)</span> is the number of times the outcome ‘<span class="math inline">\(E\)</span>’ happens.</p>
+<p><u><strong>Limitations</strong></u></p>
+<p>The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large (<span class="math inline">\(n\)</span>) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which does not rely on precise definitions but instead establishes probability based on a set of fundamental axioms or postulates.</p>
+</section>
+<section id="axiomatic-approach" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="axiomatic-approach"><span class="header-section-number">10.4.3</span> Axiomatic Approach</h3>
+<p>The axiomatic approach to probability, introduced by A.N. Kolmogorov, provides a formal framework based on a set of foundational axioms rather than specific definitions. This approach overcomes the limitations of earlier methods by establishing universally accepted rules that apply to all probability calculations, making it applicable to a wide range of theoretical and practical scenarios.</p>
+<p>Whole field of probability theory is based on the following three axioms</p>
+<ol type="1">
+<li><p>Probability of an event, <span class="math inline">\(p(E)\)</span> lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. That is <span class="math inline">\(0 \leq p(E) \leq 1\)</span></p></li>
+<li><p>Probability of entire sample space is 1. That is <span class="math inline">\(p\left( S \right) = 1\)</span></p></li>
+<li><p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events then probability of occurrence of either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> is denoted by <span class="math inline">\(p(A \cup B)\)</span> shall be given by <span class="math inline">\(p\left( A \cup B \right) = p\left( A \right) + p(B)\)</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The probability <span class="math inline">\(p\)</span> of the occurrence of an event is referred to as the <em>probability of success</em>, while the probability <span class="math inline">\(q\)</span> of its non-occurrence is known as the <em>probability of failure</em>. Both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are non-negative and cannot exceed unity, <em>i</em>.<em>e</em>., <span class="math inline">\(0 \leq p \leq 1\)</span> and <span class="math inline">\(0 \leq q \leq 1\)</span>. This means the probability of an event always lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, inclusive. The probability of an impossible event is <span class="math inline">\(0\)</span>, and the probability of a certain event is <span class="math inline">\(1\)</span>. For instance, if <span class="math inline">\(p(A) = 1\)</span>, event <span class="math inline">\(A\)</span> is guaranteed to occur, and if <span class="math inline">\(p(A) = 0\)</span>, event <span class="math inline">\(A\)</span> cannot occur. Additionally, the number of favorable outcomes <span class="math inline">\(m\)</span> for an event cannot exceed the total number of outcomes <span class="math inline">\(n\)</span>.</p>
+</div>
+</div>
+<div id="fig-probshow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-probshow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/probshow.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-probshow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.4: Probability always lies between 0 and 1
+</figcaption>
+</figure>
+</div>
+<p><strong>Example 10.6</strong>: In a simultaneous toss of two coins, find the probability of (i) getting 2 heads. (ii) exactly 1 head?</p>
+<p><strong>Solution 10.6</strong>: Here, the possible outcomes are HH, HT, TH, TT. <em>i</em>.<em>e</em>., Total number of possible outcomes = 4.</p>
+<ol type="i">
+<li><p>Number of outcomes favorable to the event (2 heads <em>i</em>.<em>e</em>.,HH) = 1. <span class="math inline">\(p\text{(2 heads)} = \frac{1}{4}\)</span>.</p></li>
+<li><p>Now the event consisting of exactly one head has two favourable cases, namely HT and TH. <span class="math inline">\(p\text{(exactly one head)} = \frac{2}{4} = \frac{1}{2}\)</span></p></li>
+</ol>
+<p><strong>Example 10.7</strong>: In a single throw of two dice, what is the probability that the sum is 9?</p>
+<p><strong>Solution 10.7</strong>: The number of possible outcomes is 6 × 6 = 36.</p>
+<p>(1,1) (1,2) (1,3) (1,4) (1,5) (1,6)</p>
+<p>(2,1) (2,2) (2,3) (2,4) (2,5) (2,6)</p>
+<p>(3,1) (3,2) (3,3) (3,4) (3,5) (3,6)</p>
+<p>(4,1) (4,2) (4,3) (4,4) (4,5) (4,6)</p>
+<p>(5,1) (5,2) (5,3) (5,4) (5,5) (5,6)</p>
+<p>(6,1) (6,2) (6,3) (6,4) (6,5) (6,6)</p>
+<p>Let the event <span class="math inline">\(A\)</span> be sum the is 9. Four outcomes are there with sum 9, they are (5,4), (6,3), (3,6), (4,5). <span class="math inline">\(p (A) = \frac{4}{36} =\frac{1}{9}\)</span></p>
+<p><strong>Example 10.8</strong>: From a bag containing 10 red, 4 blue and 6 black balls, a ball is drawn at random. What is the probability of drawing (i) a red ball? (ii) a blue ball? (iii) not a black ball?</p>
+<p><strong>Solution 10.8</strong>: There are 20 balls in all. So, the total number of possible outcomes is 20</p>
+<ol type="i">
+<li>Number of red balls = 10, <span class="math inline">\(p\text{(getting a red ball)}=\frac{10}{20} =\frac{1}{2}\)</span><br>
+</li>
+<li>Number of blue balls = 4, <span class="math inline">\(p\text{(getting a blue ball)}=\frac{4}{20} =\frac{1}{5}\)</span><br>
+</li>
+<li>Number of balls which are not black = 14, <span class="math inline">\(p\text{(not a black ball)}=\frac{14}{20} =\frac{7}{10}\)</span></li>
+</ol>
+</section>
+</section>
+<section id="event-relations" class="level2" data-number="10.5">
+<h2 data-number="10.5" class="anchored" data-anchor-id="event-relations"><span class="header-section-number">10.5</span> Event relations</h2>
+<p>In probability theory, relationships between events help in analyzing their combined or individual outcomes within a sample space. These relations include concepts such as union, intersection, complement and mutual exclusivity, which are fundamental for understanding how events interact and influence probabilities.</p>
+<p><strong>Complement of an event</strong></p>
+<p>In probability, the complement of an event refers to all outcomes in the sample space that are not favorable to the given event. If <span class="math inline">\(A\)</span> is an event, its complement is denoted by <span class="math inline">\(A^c\)</span>, and it represents the occurrence of all outcomes where <span class="math inline">\(A\)</span> does not happen.</p>
+<p>For example, consider the experiment of tossing a die. Let <span class="math inline">\(A\)</span> be the event of getting an even number. The favorable outcomes for <span class="math inline">\(A\)</span> are <span class="math inline">\(\{2, 4, 6\}\)</span>. The remaining outcomes, <span class="math inline">\(\{1, 3, 5\}\)</span>, do not satisfy <span class="math inline">\(A\)</span> and are therefore the complement of <span class="math inline">\(A\)</span>. These outcomes represent the occurrence of <span class="math inline">\(A^c\)</span>, where <span class="math inline">\(A\)</span> does not occur, therefore in this case <span class="math inline">\(A^c=\{1, 3, 5\}\)</span> .</p>
+<p>The complement of an event is essential in probability calculations and is related to the event by the formula:</p>
+<p><span id="eq-complement"><span class="math display">\[P(A^c) = 1 - P(A) \tag{10.4}\]</span></span></p>
+<p>The relationship in <a href="#eq-complement" class="quarto-xref">Equation&nbsp;<span>10.4</span></a> highlights that the probability of an event and its complement together always sum to 1. <em>i</em>.<em>e</em>. <span class="math inline">\(P(A) + P(A^c) = 1\)</span></p>
+<p><strong>Event</strong> <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span></p>
+<p>Denoted as ‘<span class="math inline">\(A \cup B\)</span>’, spelled as <span class="math inline">\(A\)</span> union <span class="math inline">\(B\)</span>, represents the occurrence of either event <span class="math inline">\(A\)</span>, event <span class="math inline">\(B\)</span> or both. Let us consider the example of throwing a die. Suppose <span class="math inline">\(A\)</span> is an event of getting a multiple of 2 and <span class="math inline">\(B\)</span> be another event of getting a multiple of 3. The outcomes 2, 4 and 6 are favourable to the event <span class="math inline">\(A\)</span> and the outcomes 3 and 6 are favourable to the event <span class="math inline">\(B\)</span> <em>i</em>.<em>e</em>. <span class="math inline">\(A = \{2, 4, 6\}\)</span>, <span class="math inline">\(B= \{3, 6\}\)</span> then <span class="math inline">\(A \cup B = \{ 2, 3, 4, 6\}\)</span>.</p>
+<p><strong>Event</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
+<p>Denoted as ’ <span class="math inline">\(A \cap B\)</span> ’ spelled as <span class="math inline">\(A\)</span> intersection <span class="math inline">\(B\)</span>, represents the occurrence of both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> simultaneously. It includes only those outcomes that are common to both events. For example, on throwing a die in which <span class="math inline">\(A\)</span> is the event of getting a multiple of 2 and <span class="math inline">\(B\)</span> is the event of getting a multiple of 3. The outcomes favorable to <span class="math inline">\(A\)</span> are 2, 4, 6 and the outcomes favorable to <span class="math inline">\(B\)</span> are 3 and 6. Here 6 is present in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> so here <span class="math inline">\(A \cap B = 6\)</span>. <a href="#fig-intersection" class="quarto-xref">Figure&nbsp;<span>10.5</span></a> below shows the venn diagram of intersection of two events.</p>
+<div id="fig-intersection" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-intersection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/intersection.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-intersection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;10.5: Venn diagram showing intersection
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="additive-law-of-probability" class="level2" data-number="10.6">
+<h2 data-number="10.6" class="anchored" data-anchor-id="additive-law-of-probability"><span class="header-section-number">10.6</span> Additive law of probability</h2>
+<p>According to additive law of probability, for any two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of a sample space <span class="math inline">\(S\)</span>, the probability of the union of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is equal to the sum of their individual probabilities, minus the probability of their intersection.</p>
+<p><span id="eq-additivelaw"><span class="math display">\[p(A \cup B) = p(A)+p(B) − p(A \cap B) \tag{10.5}\]</span></span></p>
+<p>For mutually exclusive case <span class="math inline">\(p(AꓵB)=0\)</span>; in that case:<br>
+<span id="eq-additivelaw2"><span class="math display">\[p(A \cup B) = p(A )+ p(B ) \tag{10.6}\]</span></span></p>
+<p><strong>Example 10.9</strong>: A card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is either a spade or a king?</p>
+<p><strong>Solution 10.9</strong>: If <span class="math inline">\(A\)</span> denotes the event of drawing a ‘spade card’. <span class="math inline">\(B\)</span> denotes the events of drawing a ‘king’ respectively. The event <span class="math inline">\(A\)</span> consists of 13 sample points, whereas the event <span class="math inline">\(B\)</span> consists of 4 sample points. <span class="math inline">\(p(A)= \frac{13}{52}\)</span>, <span class="math inline">\(p(B)= \frac{4}{52}\)</span>, <span class="math inline">\(p(A \cap B) = \frac{1}{52}\)</span>, <span class="math inline">\(p(A \cup B) = p(A)+ p(B) − p(AꓵB)\)</span> = <span class="math inline">\(\frac{13}{52}+\frac{4}{52}-\frac{1}{52}= \frac{4}{13}\)</span></p>
+<p><strong>Example 10.10</strong>: In a single throw of two dice, find the probability of a total of 9 or 11.</p>
+<p><strong>Solution 10.10</strong>: Let the events <span class="math inline">\(A\)</span> = a total of 9 and <span class="math inline">\(B\)</span> = a total of 11. Events are mutually exclusive <span class="math inline">\(A \cap B = 0\)</span>. Now there are four such cases were sum = 9, such as (3, 6), (4, 5), (5, 4), (6, 3); therefore <span class="math inline">\(p(A) = \frac{4}{36}\)</span>. Similarly there are two cases were sum = 11, such as (5, 6), (6, 5); therefore <span class="math inline">\(p(B) = \frac{2}{36}\)</span>. Thus from <a href="#eq-additivelaw2" class="quarto-xref">Equation&nbsp;<span>10.6</span></a>, <span class="math inline">\(p(A \cup B) = \frac{4}{36}+\frac{2}{36}= \frac{6}{36} = \frac{1}{6}\)</span></p>
+</section>
+<section id="conditional-probability" class="level2" data-number="10.7">
+<h2 data-number="10.7" class="anchored" data-anchor-id="conditional-probability"><span class="header-section-number">10.7</span> Conditional probability</h2>
+<p>Conditional probability measures the likelihood of an event occurring, given that another event has already occurred. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two events, the conditional probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is denoted by <span class="math inline">\(P(A \mid B)\)</span> and is defined as:</p>
+<p><span id="eq-conditionalprob"><span class="math display">\[p(A \mid B) = \frac{p(A \cap B)}{p(B)}, \quad \text{provided } p(B) &gt; 0 \tag{10.7}\]</span></span></p>
+<p><a href="#eq-conditionalprob" class="quarto-xref">Equation&nbsp;<span>10.7</span></a> gives the probability of <span class="math inline">\(A\)</span> happening under the condition that <span class="math inline">\(B\)</span> has occurred.</p>
+<p><strong>Example 10.11</strong>: If a card is drawn from a standard deck of 52 cards, what is the probability that it is a king, given that the card drawn is a face card?</p>
+<p><strong>Solution 10.11</strong>: Let <span class="math inline">\(A\)</span> be the event of drawing a king, <span class="math inline">\(B\)</span> be the event of drawing a face card (king, queen, or jack). The probability of <span class="math inline">\(B\)</span>, drawing a face card, is <span class="math inline">\(p(B) = \frac{\text{Number of face cards}}{\text{Total cards}} = \frac{12}{52}\)</span>. The probability of <span class="math inline">\(A \cap B\)</span>, drawing a King that is also a face card, is:<span class="math inline">\(p(A \cap B) = \frac{\text{Number of Kings}}{\text{Total cards}} = \frac{4}{52}\)</span>. Using <a href="#eq-conditionalprob" class="quarto-xref">Equation&nbsp;<span>10.7</span></a> the conditional probability of drawing a king given that the card is a face card is <span class="math inline">\(p(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{4}{52}}{\frac{12}{52}} = \frac{4}{12} = \frac{1}{3}\)</span>.</p>
+</section>
+<section id="multiplication-law-of-probability" class="level2" data-number="10.8">
+<h2 data-number="10.8" class="anchored" data-anchor-id="multiplication-law-of-probability"><span class="header-section-number">10.8</span> Multiplication law of probability</h2>
+<p>The multiplication law of probability states that if <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are two events, the probability of both events occurring (<em>i</em>.<em>e</em>., <span class="math inline">\(A \cap B\)</span>) is given by:</p>
+<p><span id="eq-multilaw"><span class="math display">\[p(A \cap B) = p(A) \cdot p(B \mid A) \tag{10.8}\]</span></span></p>
+<p>This formula expresses the relationship between the joint probability of two events and their conditional probability. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events, then <span class="math inline">\(p(B \mid A) = p(B)\)</span>, and the formula simplifies to:</p>
+<p><span id="eq-multilaw2"><span class="math display">\[p(A \cap B) = p(A) \cdot p(B) \tag{10.9}\]</span></span></p>
+<p><strong>Example 10.12</strong>: What is the probability of drawing two aces in succession from a standard deck of 52 cards?</p>
+<p><strong>Solution 10.12</strong>: Let <span class="math inline">\(A\)</span> be the event that the first card drawn is an ace. <span class="math inline">\(B\)</span> be the event that the second card drawn is an ace. The probability of <span class="math inline">\(A\)</span> (drawing an ace on the first draw) is <span class="math inline">\(p(A) = \frac{4}{52}\)</span>. If the first card is an ace, there are only 3 aces left in a deck of 51 cards. The probability of <span class="math inline">\(B\)</span> (drawing an ace on the second draw given that the first card was an ace) is <span class="math inline">\(p(B \mid A) = \frac{3}{51}\)</span>. Now using <a href="#eq-multilaw" class="quarto-xref">Equation&nbsp;<span>10.8</span></a> the probability of drawing two aces in succession is given by <span class="math inline">\(p(A \cap B) = p(A) \cdot p(B \mid A) = \frac{4}{52} \cdot \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}\)</span></p>
+<p><strong>Example 10.13</strong>: A die is tossed twice. Find the probability of a number greater than 4 on each throw?</p>
+<p><strong>Solution 10.13</strong>: Let <span class="math inline">\(A\)</span> be the event that ‘a number greater than 4’ on first throw. <span class="math inline">\(B\)</span> be the event that ‘a number greater than 4’ in the second throw. Clearly <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events. In the first throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(A\)</span>. <span class="math inline">\(p(A) = \frac{2}{6} = \frac{1}{3}\)</span>. Similarly in the second throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(B\)</span>, therefore <span class="math inline">\(p(B) = \frac{2}{6} = \frac{1}{3}\)</span>. Now by <a href="#eq-additivelaw2" class="quarto-xref">Equation&nbsp;<span>10.6</span></a>, probability to get a number greater than 4 on each throw is given by <span class="math inline">\(p(A \cap B) = p(A).p(B) = \frac{1}{3}.\frac{1}{3} = \frac{1}{9}\)</span></p>
+</section>
+<section id="probability-using-combinations" class="level2" data-number="10.9">
+<h2 data-number="10.9" class="anchored" data-anchor-id="probability-using-combinations"><span class="header-section-number">10.9</span> Probability using combinations</h2>
+<p>Combinations can be used to calculate the total number of possible outcomes in a probability problem. The formula for combinations is given by:</p>
+<p><span id="eq-combn"><span class="math display">\[^n C_r = \frac{n!}{r!(n - r)!} \tag{10.10}\]</span></span></p>
+<p><strong>Example 10.14</strong>: Calculate <span class="math inline">\(^3 C_2\)</span></p>
+<p><strong>Solution 10.14</strong>: <span class="math inline">\(^3 C_2 = \frac{3!}{2!(3 - 2)!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3\)</span></p>
+<p><strong>Example 10.15</strong>: A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn are white and blue?</p>
+<p><strong>Solution 10.15</strong>: Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by <span class="math inline">\(^{16} C_2 =120\)</span>. The number of ways to draw one white ball from 6 white balls is <span class="math inline">\(^6 C_1=6\)</span>, and the number of ways to draw one blue ball from 7 blue balls is <span class="math inline">\(^7 C_1 =7\)</span>. Since the events are independent, the total number of favorable outcomes is <span class="math inline">\(^6 C_1 \times ^7 C_1 = 6 \times 7 = 42\)</span>. Thus, the required probability is:<span class="math inline">\(p(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}\)</span></p>
+<p><strong>Example 10.16</strong>: A bag contains 5 red and 4 black balls. What is the probability that both balls drawn are red?</p>
+<p><strong>Solution 10.16</strong>:Total number of balls = 5 + 4 = 9. The number of ways to draw 2 balls from 9 is given by <span class="math inline">\(^9 C_2 = \frac{9 \times 8}{2 \times 1} = 36\)</span>. The number of ways to draw 2 red balls from 5 red balls is <span class="math inline">\(^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10\)</span>. Thus, the required probability is: <span class="math inline">\(p(\text{both red balls}) = \frac{^5 C_2}{^9 C_2} = \frac{10}{36} = \frac{5}{18}\)</span></p>
+</section>
+<section id="bayes-theorem" class="level2" data-number="10.10">
+<h2 data-number="10.10" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">10.10</span> Bayes’ theorem</h2>
+<p>Bayes’ theorem gives a mathematical rule for inverting conditional probabilities, allowing one to find the probability of a cause given its effect.</p>
+<p>Let <span class="math inline">\(E_1, E_2, \dots, E_n\)</span> be a set of events associated with a sample space <span class="math inline">\(S\)</span>, where all the events <span class="math inline">\(E_1, E_2,\dots, E_n\)</span> have non-zero probability of occurrence and they form a partition of <span class="math inline">\(S\)</span>. Let <span class="math inline">\(A\)</span> be any event associated with <span class="math inline">\(S\)</span>, then according to Bayes theorem,</p>
+<p><span id="eq-bayestheorem"><span class="math display">\[p(E_i \mid A) =\frac{p(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}{p(E_k)}\cdot p(A \mid E_k)} \tag{10.11}\]</span></span></p>
+<p>The following terminologies are commonly used when applying Bayes’ theorem:</p>
+<p><strong>Hypotheses</strong>: The events <span class="math inline">\(E_1, E_2, \dots, E_n\)</span> are called the hypotheses.</p>
+<p><strong>Prior probability</strong>: The probability <span class="math inline">\(p(E_i)\)</span> is considered the prior probability of hypothesis <span class="math inline">\(E_i\)</span>.</p>
+<p><strong>Posterior probability</strong>: The probability <span class="math inline">\(p(E_i \mid A)\)</span> is considered the posterior probability of hypothesis <span class="math inline">\(E_i\)</span>.</p>
+<p>For any two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, the formula for the Bayes theorem is given by:</p>
+<p><span id="eq-bayestheorem2"><span class="math display">\[p(A \mid B) =\frac{p(B\mid A)\cdot p(A)}{p(B)}, p(B)\neq 0 \tag{10.12}\]</span></span></p>
+<p>Where <span class="math inline">\(p(A)\)</span> and <span class="math inline">\(p(B)\)</span> are the probabilities of events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>. <span class="math inline">\(p(A \mid B)\)</span> is the probability of event <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span>. <span class="math inline">\(p(B \mid A)\)</span> is the probability of event <span class="math inline">\(B\)</span> given <span class="math inline">\(A\)</span>.</p>
+<p><strong>Example 10.17</strong>: A bag I contains 4 white and 6 black balls while another bag II contains 4 white and 3 black balls. One ball is drawn at random from one of the bags, and it is found to be black. Find the probability that it was drawn from bag I.</p>
+<p><strong>Solution 10.17</strong>: Let <span class="math inline">\(E_1\)</span> be the event of choosing bag I, <span class="math inline">\(E_2\)</span> the event of choosing bag II, and <span class="math inline">\(A\)</span> be the event of drawing a black ball. <span class="math inline">\(p(E_1)=p(E_2)=\frac{1}{2}\)</span>. Also,probability of drawing a black ball from bag I is given by <span class="math inline">\(p(A \mid E_1) = \frac{6}{10}=\frac{3}{5}\)</span>. Probability of drawing a black ball from bag II <span class="math inline">\(p(A \mid E_2=)\frac{3}{7}\)</span>.</p>
+<p>By using Bayes’ theorem, the probability of drawing a black ball from bag I out of two bags,<br>
+<span class="math display">\[p(E_1 \mid A) =\frac{p(E_1) \cdot P(A \mid E_1)}{p(E_1) \cdot P(A \mid E_1)+p(E_2) \cdot P(A \mid E_2)}\]</span><br>
+<span class="math display">\[= \frac{\frac{1}{2}\times \frac{3}{5}}{\frac{1}{2}\times \frac{3}{5}+\frac{1}{2}\times \frac{3}{7}} =\frac{7}{12}\]</span></p>
+<p><strong>Example 10.18</strong>: A man is known to speak the truth 2 out of 3 times. He throws a die and reports that the number obtained is a four. Find the probability that the number obtained is actually a four.</p>
+<p><strong>Solution 10.18</strong>: Let <span class="math inline">\(A\)</span> be the event that the man reports that number four is obtained. Let <span class="math inline">\(E_1\)</span> be the event that four is obtained and <span class="math inline">\(E_2\)</span> be its complementary event. Then, <span class="math inline">\(p(E_1)\)</span> = probability that four occurs = <span class="math inline">\(\frac{1}{6}\)</span>. <span class="math inline">\(p(E_2)\)</span> = probability that four does not occur = <span class="math inline">\(1-p(E_1) = 1-\frac{1}{6} = \frac{5}{6}\)</span>. Also, <span class="math inline">\(p(A|E_1)=\)</span> probability that man reports four and it is actually a four <span class="math inline">\(= \frac{2}{3}\)</span> (because man speaks truth 2 out of 3 times). <span class="math inline">\(p(A|E_2)=\)</span>Probability that man reports four and it is not a four <span class="math inline">\(= \frac{1}{3}\)</span>.</p>
+<p>By using Bayes’ theorem, probability that number obtained is actually a four, <span class="math inline">\(p(E_1 \mid A) =\frac{p(E_1) \cdot P(A \mid E_1)}{p(E_1) \cdot P(A \mid E_1)+p(E_2) \cdot P(A \mid E_2)}\)</span>.</p>
+<p><span class="math display">\[p(E_1 \mid A)= \frac{\frac{1}{6}\times \frac{2}{3}}{\frac{1}{6}\times \frac{2}{3}+\frac{5}{6}\times \frac{1}{3}} =\frac{2}{7}\]</span></p>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Try yourself</strong></p>
+<p>Six cards are drawn at random from a pack of 52 cards. What is the probability that 3 will be red and 3 black?</p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The gambler’s fallacy</strong></p>
+<p>In 1913, a group of gamblers gathered at a casino in Monte Carlo, where they witnessed a highly unusual event at the roulette table. The ball landed on black 26 times in a row—an incredibly rare streak. As the streak continued, more and more gamblers bet heavily on red, convinced that red was “due” to appear. But to their shock, black kept winning, and many lost fortunes that night. This event is now a famous example of the <em>gambler’s fallacy</em> also known as the <em>Monte Carlo fallacy</em> or <em>the fallacy of the maturity of chances</em>, the mistaken belief that past events influence future outcomes in independent events, like the spin of a roulette wheel. In reality, the probability of the ball landing on black or red remains the same on every spin, regardless of previous results.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“The theory of probabilities is at bottom nothing but common sense reduced to calculus.” – Pierre-Simon Laplace</strong></p>
+</div>
+</div>
+
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cleaning-data-r\.ala\.org\.au\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./regression.html" class="pagination-link" aria-label="Regression analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
