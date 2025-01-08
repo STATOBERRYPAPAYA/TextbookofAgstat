@@ -1,16 +1,14 @@
 # Probability distributions
 
-## Probability distributions
+In statistics, a probability distribution gives the possibility of each possible outcome of a random experiment or event. It provides a systematic way to understand and quantify the probabilities of different occurrences.
 
-A probability distribution is a list of all of the possible outcomes of a random variable along with their corresponding probability values.
+Probability, as a measure of uncertainty, helps us analyze various phenomena. For instance, when rolling a die, the possible outcomes and their likelihoods are described by a probability distribution. Such distributions apply to any random experiment where outcomes are uncertain or unpredictable.
 
-Example: - Tossing a coin 3 times
+In this chapter, we explore the definition, functions, formulas, and types of probability distributions.
 
-Defining random variable:
+## Probability distribution
 
-Let X be the number of heads appearing on throwing the dice In this case there would be 0 heads, 1, 2 and 3 heads, so the sample space is $X$ = {0, 1, 2, 3} and they are not equally likely.
-
-There are total 8 possible cases on tossing coin three times is shown in table below
+In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment—tossing an unbiased coin three times. Let $X$ represent the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space $X = \{0, 1, 2, 3\}$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
 
 | On tossing thrice | No: of heads ($X$) |
 |:------------------|--------------------|
@@ -23,13 +21,13 @@ There are total 8 possible cases on tossing coin three times is shown in table b
 | TTH               | 1                  |
 | TTT               | 0                  |
 
+: Possible outcomes on tossing a coin three times {#tbl-tossingcoin .bordered}
+
 $p(X = x)$ = $\frac{No: \ of \ times\ X\ takes\ value\ x}{8}$
 
 $p(X = 3)$ = 1/8; $p(X = 2)$ = 3/8; $p(X = 1)$ = 3/8; $p(X = 0)$ = 1/8
 
-A **probability distribution** is a list of all of the possible outcomes of a random variable along with their corresponding probability values.
-
-Table below shows a probability distribution.
+@tbl-probabilitydistncoin below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.
 
 | $X$ | $p(x)$ |
 |:----|:-------|
@@ -38,11 +36,9 @@ Table below shows a probability distribution.
 | 2   | 3/8    |
 | 3   | 1/8    |
 
-This is an example of discrete probability distribution as $X$ takes only discrete values. If $x$ takes continuous values, it is termed as continuous probability distribution.
+: Probability distribution of tossing the coing three times {#tbl-probabilitydistncoin .bordered}
 
-## Probability mass function
-
-When we use a probability function to describe a discrete probability distribution, we call it a probability mass function (commonly abbreviated as *p*.*m*.*f*). A probability mass function, returns the probability of an outcome. Therefore, a probability mass function is written as: $p(x)$ = $p(X = x)$. Here the variable $X$ is discrete in nature.
+This is an example of discrete probability distribution as $X$ takes only discrete values. If $X$ takes continuous values, it is termed as continuous probability distribution.
 
 ## Probability density function
 
@@ -98,7 +94,9 @@ $E(X)$ = $\sum_{i = 1}^{6}xp(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
 
 ## Discrete probability distributions
 
-We have seen that a **probability distribution** is a list of all of the possible outcomes of a random variable along with their corresponding probability values. It is represented as a table. It will be more convenient if it can be expressed as an equation. So if the value of x is given we can calculate the corresponding probability from the equation. There are several discrete distributions depending on situations. Our discussion is limited to following discrete distributions.
+A discrete probability distribution represents the probabilities of outcomes of a discrete random variable, which takes on a countable number of distinct values. For example, the number of heads when flipping a coin three times or the number of defective items in a batch are described by discrete distributions. Each possible outcome is assigned a specific probability, and the sum of these probabilities is always 1.
+
+We have seen that a probability distribution lists all possible outcomes of a random variable along with their corresponding probabilities, often represented as a table. However, it is often more convenient to express the distribution as an equation. With such an equation, the probability corresponding to any given value of $x$ can be calculated directly. Depending on the situation, various discrete probability distributions are used to model different scenarios. In this chapter, we will focus on the following discrete distributions.
 
 -   Bernoulli distribution
 
@@ -106,15 +104,25 @@ We have seen that a **probability distribution** is a list of all of the possi
 
 -   Poisson distribution
 
+[**Probability mass function**]{.underline}
+
+When a probability function is used to describe a discrete probability distribution, it is referred to as a probability mass function (commonly abbreviated as *p.m.f*). A probability mass function assigns a probability to each specific outcome of a discrete random variable. It is expressed as: $p(x) = P(X = x)$. Here, $X$ is the discrete random variable, and $p(x)$ represents the probability of $X$ taking the specific value $x$. The function ensures that all probabilities are non-negative and sum to 1 across all possible outcomes of $X$.
+
+Properties of *p.m.f*
+
+-   The probability of each outcome is always non-negative. For a discrete random variable $X$ and its *p.m.f* $p(x) \geq 0 \quad \text{for all } x$
+
+-   The sum of the probabilities over all possible values of the random variable equals 1. That is:$\sum_{x \in S} p(x) = 1$. where $S$ is the sample space of ($X$), representing all possible values.
+
+-   The *p.m.f* gives the exact probability for each specific value of the discrete random variable. For a value $x:p(X = x) = p(x)$
+
+-   If a value $x$ is not in the sample space $S$, its probability is zero: $p(x) = 0 \quad \text{for } x \notin S$
+
+The *p.m.f* is defined only for the discrete values in the sample space of the random variable $X$. It does not apply to continuous ranges or non-discrete variables.
+
 ### Bernoulli distribution
 
-A Bernoulli distribution is a discrete probability distribution. This distribution applies to random experiment that has only two outcomes (usually called a "Success" or a "Failure").
-
-For example tossing a coin has only two outcomes which can be termed as success and failure by the experimenter.
-
-Success: getting head
-
-Failure: getting tail
+A Bernoulli distribution is a discrete probability distribution that applies to a random experiment with exactly two possible outcomes, commonly referred to as "success" and "failure." For example, tossing a coin results in two outcomes, which the experimenter can label as success and failure based on their context. Success might be defined as getting a head and failure as getting a tail. The definition of success and failure is flexible and can be tailored by the experimenter to suit the specific scenario under study.
 
 The probability mass function of the distribution is
 
