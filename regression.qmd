@@ -354,6 +354,7 @@ library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/Book12.csv")
 colnames(dt) <- c("Sl No.", "Soil moisture ($x$)", "Crop yield in Rs($y$)", "$(x_{i}-\\overline{x})$","$(y_{i}-\\overline{y})$ ", "$(x_{i}-\\overline{x})(y_{i}-\\overline{y})$", "$(x_{i}-\\overline{x})^2$")
+dt$`Sl No.` <- as.character(dt$`Sl No.`)
 dt %>%
   kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
    kable_classic(full_width = F, html_font = "Georgia") %>%
