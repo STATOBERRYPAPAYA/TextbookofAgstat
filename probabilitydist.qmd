@@ -146,7 +146,7 @@ The expected value for a random variable, $X$, from a Bernoulli distribution i
 
 **Example 11.3**: Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
 
-Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-benoulli
+**Solution 11.3**: Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-benoulli
 
 $P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6$
 
@@ -189,38 +189,21 @@ $p$= probability of getting a success in one trial
 
 $q$ = $1-p$ = probability of getting a failure in one trial
 
-E($X$) = $np$
-
-V($X$) = $npq$;  
-
 ::: {.callout-important title="Note"}
 In a binomial distribution, the parameters are $n$, the number of independent trials, and $p$, the probability of success in a single trial. If X follows a binomial distribution we denote $X \sim \text{Bin}(n, p)$. The mean of $X$ is given by $E(X) = np$, while the variance is $\text{Var}(X) = npq$, where$q = 1 - p$. Since $0 < p < 1$, it follows that $q$ is also positive but less than 1. This implies that $np > npq$, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.
 :::
 
+**Example 11.4**: A coin is tossed 10 times. What is the probability of getting exactly 6 heads?
 
-#### Example {.unnumbered}
+**Solution 11.4**: here, $n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}$
 
-A coin is tossed 10 times. What is the probability of getting exactly 6 heads?
+We have to find $p(X=6)$; using the @eq-binomial
 
-here,
-
-$n$ = 10
-
-$x$ = 6
-
-$p$ = ½
-
-$q$ = $1-p$ = ½
-
-We have to find $p(X=6)$; using the formula $p(X=x)$ $=$ ^n^*C*~x~ $p^x$ $q^{n-x}$
-
-$p(X=6)$ = ^10^\$c\$~6~ $\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6}$= 0.2050
+$p(X=6)=\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 0.2050$
 
 ### Poisson distribution
 
-Discovered by the French Mathematician Simeon Denis Poisson (1781 -1840). It is developed to describe the number of times a gambler would win a rarely won game of chance in a large number of tries, *i*.*e*. Poisson distribution **deals with rare events**.
-
-Poisson distribution is first applied to study the number of death by horse kicking in the Prussian army.
+The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781–1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its earliest applications was in studying the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.
 
 Other applications and examples where Poisson distribution is used
 
@@ -244,147 +227,146 @@ Other applications and examples where Poisson distribution is used
 
 A random variable $X$ is said to follow a Poisson distribution; if it assumes non-negative values and its probability mass function is given by:
 
-$$p\left( X = x \right) = \frac{e^{- \lambda}.\lambda^{x}}{x!}$$
+$$p\left( X = x \right) = \frac{e^{- \lambda}.\lambda^{x}}{x!}$$ {#eq-poisson}
 
-where $x$ = 0,1,2,... ., ∞,
+where $x$ = 0,1,2,... ., $\infty$,
 
-$e$ = 2.7183.
+$e$ = Is the base of the natural logarithm. It is a constant approximately equal to 2.71828.
 
-$λ$ : Average number of successes occurring in a given time interval or region in the Poisson distribution
+$\lambda$ : Average number of successes occurring in a given time interval or region in the Poisson distribution
 
-It is a discrete distribution with a single parameter λ
+::: {.callout-important title="Note"}
+The parameter of Poisson distribution is $λ$. If X follows a Poisson distribution we denote $X \sim \text{poisson}(\lambda)$. The mean and the variance of the Poisson distribution are both equal to $\lambda$
+:::
 
-> The **mean** and the **variance** of the Poisson distribution are both equal to $λ$
+**Example 11.5**: The average number of homes sold by a Realty company is 2 homes per day. Assuming Poisson distribution what is the probability that exactly 3 homes will be sold tomorrow?
 
-#### Example {.unnumbered}
+**Solution 11.5**: here $\lambda = 2$; since 2 homes are sold per day, on average.$x= 3$; since we want to find the probability that 3 homes will be sold tomorrow. Using @eq-poisson.
 
-The average number of homes sold by a Realty company is 2 homes per day. Assuming Poisson distribution what is the probability that exactly 3 homes will be sold tomorrow?
+$p(X=3)= \ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}= 0.180$
 
-**Solution:**
+**Example 11.6**: If the random variable X follows a Poisson distribution with mean 3.4, find $p(X = 6)$
 
-$λ$ = 2; since 2 homes are sold per day, on average.
+**Example 11.7**: The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be: (a) Less than 2 accidents (b) More than 2 accidents
 
-$x$ = 3; since we want to find the probability that 3 homes will be sold tomorrow.
-
-$e$ = 2.71828; since e is a constant equal to approximately 2.71828.
-
-$$p\left( X = x \right) = \frac{e^{- \lambda}.\lambda^{x}}{x!}$$
-
-$p(X=3)$ = $\ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}$
-
-$p(X = 3)$ = 0.180
-
-### Questions {.unnumbered}
-
-1.  If the random variable X follows a Poisson distribution with mean 3.4, find $p(X = 6)$
-
-2.  The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be:
-
-> $i)$ Less than 2 accidents $$Hint: p(X<2) = p(X = 0) + p(X = 1)$$
->
-> $ii)$ More than 2 accidents $$Hint: p(X>2) = 1-{p(X = 0) + p(X = 1)
-> + p(X =2)}$$
-
-3.  A company known on the past experience that 3% of the bulbs they produced are defective. Assuming Poisson distribution find the probability of getting the following in a sample of 100 bulbs: $$Hint: here  \ λ = n × p = 100 × 0.03$$
-    a.  No defective $$ \text{Hint: let } X \text{ be the number of defectives; } x = 0 $$
-
-    b.  1 defective $$Hint: x = 1$$
-
-    c.  2 defectives $$Hint: x = 2$$
-
-    d.  3 defectives$$Hint: x = 3$$
-
-Distributions Bernoulli, Binomial and Poisson that we discussed so far are discrete distributions.
+**Example 11.8**: A company known on the past experience that 3% of the bulbs they produced are defective. Assuming Poisson distribution find the probability of getting the following in a sample of 100 bulbs. (a) No defective (b) 1 defective
 
 ## Continuous probability distributions
 
 If the random variable X is continuous, the corresponding probability distribution is termed as continuous probability distribution. There are several continuous distributions. Our discussion is limited to only **Normal distribution**.
 
+[**Probability density function**]{.underline}
+
+When a mathematical function is used to describe a continuous probability distribution, it is referred to as a probability density function (commonly abbreviated as *p.d.f*). It describes how values of a continuous random variable are distributed. It gives the relative likelihood of a variable taking a particular value within a given range. The area under the *pdf curve* over an interval represents the probability that the variable falls within that range. However, unlike pmf for discrete variables, the pdf itself does not give the probability of a single value but rather the density of possible values.
+
 ### Normal distribution
 
-The normal distribution is defined by the following probability density function (probability density function is explained in above section)
+The name "normal distribution" comes from its historical use in describing many natural and social phenomena that appeared to follow a similar symmetric, bell-shaped pattern. The term "normal" was popularized by Karl Pearson in the early 20th century, though the distribution itself was first studied by Abraham de Moivre and later formalized by Carl Friedrich Gauss.
 
-$$f\left( x \right) = \frac{1}{\sqrt{2\pi\sigma}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}$$
+The distribution was initially called the `Gaussian distribution`, as Gauss used it to model errors in astronomical observations. However, statisticians and scientists noticed that this pattern frequently appeared in various real-world data, such as heights, IQ scores, and measurement errors. Because it was so common, it became known as the normal distribution, implying that it represents a "normal" or typical way data is distributed in many natural processes.
 
-, where $- \infty < x < + \infty$ ; $μ$ is the population mean and \$σ\$^2^ is the variance, *e* = 2.718.
+It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean ($\mu$) and standard deviation ($\sigma$). Its significance lies in the Central Limit Theorem, which states that the sum of a large number of independent random variables tends to be normally distributed, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.
 
-If a random variable $X$ follows the normal distribution, then we write:
+$$f\left( x \right) = \frac{1}{\sqrt{2\pi\sigma}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}$$ {#eq-normaldist}
 
-$X$\~$N$($μ$, \$σ\$^2^)
+, where $- \infty < x < + \infty$ ; $μ$ is the population mean and $\sigma^2$ is the variance, $e = 2.718$
 
-In particular, the normal distribution with $μ$ = 0 and \$σ\$^2^ = 1 is called the standard normal distribution, and is denoted as $X$\~$N$(0,1).
+[**Parameters of Normal distribution**]{.underline}
 
-#### Properties of Normal distribution {.unnumbered}
+As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean ($\mu$) and standard deviation ($\sigma$). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.
 
-The normal distribution is the most frequently used among all probability laws. The normal distribution can be found in many practical problems.
+![Shape changes in normal distribution based on different means](images/normal6.jpg){#fig-normalchange fig-align="center" style="text-align:center;" width="40%"}
 
-If you plot density $f(x)$ against $x$ the graph will be **bell shaped** always
+**Standard deviation:**
 
-```{r noraml1, echo=FALSE,fig.cap='Normal distribution curve',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/normal1.png"))  
-```
+The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance the observations and the average.
 
-Many things closely follow a Normal Distribution:
+![Shape changes in normal distribution based on different standard deviation](images/normal7.jpg){#fig-normalchange2 fig-align="center" style="text-align:center;" width="40%"}
 
--   yield of crops
+When you have normally distributed data, the standard deviation can be used to determine the proportion of the values that fall within a specified number of standard deviations from the mean. For example, in a normal distribution, 68% of the observation falls within $\mu\pm  \sigma$. This property is called as **Area Property**.
 
--   heights of people
+::: {.callout-important title="Note"}
+The parameters of normal distribution are $\mu$ and $\sigma$. If a random variable $X$ follows the normal distribution, then we write $X\sim\text{N}(\mu,\sigma^2)$. In particular, the normal distribution with $\mu = 0$ and $\sigma^2 =1$ is called the standard normal distribution, and is denoted as $X\sim\text{N}(0,1)$
+:::
 
--   size of things produced by machines
+[**Properties of Normal distribution**]{.underline}
 
--   errors in measurements
+1.  The normal distribution is the most frequently used among all probability laws. The normal distribution can be found in many practical problems. If you plot density $f(x)$ against $x$ the graph will be **bell shaped** always.
 
--   blood pressure
+![Normal distribution curve](images/normal1.png){#fig-normalcurve fig-align="center" style="text-align:center;" width="40%"}
 
--   marks on a test
+2.  The Normal Distribution has mean = median = mode. Mean, median and mode is located to the center of the curve.
 
-The Normal Distribution has:
+![Mean=Median=Mode in normal distribution](images/normal2.png){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="40%"}
 
-mean = median = mode
+3.  Normal distribution is symmetric about the center, 50% of values less than the mean and 50% greater than the mean  
 
-Mean is located to the centre of the curve. mean = median = mode, all these locate towards the centre
+![Normal distribution is a symmetric distribution](images/normal3.jpg){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="40%"}  
 
-```{r noraml2, echo=FALSE,fig.cap='Mean=Median=Mode in normal distribution',out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/normal2.png"))  
-```
+4. Area Property  
+The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See @tbl-areaproperty for detailed information on the area property of the normal distribution.
 
-Normal distribution is symmetric about the centre, 50% of values less than the mean and 50% greater than the mean
+![Area property of normal distribution](images/normal8.jpg){#fig-areaproperty fig-align="center" style="text-align:center;" width="50%"}
 
-```{r noraml3, echo=FALSE,fig.cap='Normal distribution is a symmetric distribution',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/normal3.jpg"))  
-```
+| Area                    | $\%$ of value contained |
+|:------------------------|:------------------------|
+| $\mu \pm 0.745\sigma$   | 50                      |
+| $\mu \pm \sigma$        | 68.26                   |
+| $\mu \pm 1.96\sigma$    | 95                      |
+| $\mu \pm 2\sigma$       | 95.44                   |
+| $\mu \pm 2.58\sigma$    | 99                      |
+| $\mu \pm 3\sigma$       | 99.73                   |
 
-#### Standardisation of Normal distribution
+: Area property of normal distribution {#tbl-areaproperty .bordered}  
 
-The standard normal distribution is a special case of the normal distribution where the mean is zero and the standard deviation is 1.
+In short, a normal distribution is bell-shaped, symmetric, and has the property that the mean, median, and mode are all equal. It also has the area property. Other important properties of the normal distribution are listed below:  
 
-This distribution is also known as the Z-distribution. A value on the standard normal distribution is known as a standard score or a Z-score.
+1. **Defined by two parameters**: The normal distribution is fully defined by its mean ($\mu$) and standard deviation ($\sigma$), where $\mu$ determines the center and $\sigma$ determines the spread or width of the curve.
 
-A **standard score** or **Z-score** represents the number of standard deviations above or below the mean that a specific observation falls.
+2. **Total area under the curve**: The total area under the normal distribution curve is equal to 1, representing the total probability of all possible outcomes.
 
-[**So to convert a value to a Standard Score ("z-score"):**]{.underline}
+3. **Asymptotic**: The tails of the normal distribution approach, but never actually touch, the horizontal x-axis. This means the probability of extreme values is never exactly zero, but it becomes infinitesimally small.
+
+4. **Skewness and Kurtosis**: A normal distribution has skewness equal to 0 (no skew), and kurtosis equal to 3 (mesokurtic), meaning it has a moderate peak and tails.
+
+5. **Linear combination**: A linear combination of independent normal variables is also normally distributed. This property is crucial in statistical analysis and is a key reason for the widespread use of the normal distribution.
+
+6. **Central Limit Theorem**: The normal distribution is central to the Central Limit Theorem, which states that the distribution of the sample mean will tend to be normal regardless of the shape of the original distribution, provided the sample size is sufficiently large.  
+
+7. **Moments**: All odd order moments are zero in normal distribution.  
+
+8. **Dispersion**: Quartile Deviation. Q.D = $\frac{2}{3}\sigma$ and Mean Deviation. M.D = $\frac{4}{5}\sigma$.  
+
+### Standard Normal distribution
+
+The **standard normal distribution** is a special case of the normal distribution where the mean is 0 and the standard deviation is 1. This distribution is also known as the **Z-distribution**. In the standard normal distribution, a value is referred to as a **standard score** or **Z-score**. The Z-score indicates how many standard deviations a data point is from the mean.
+
+A normal distribution can be converted to a standard normal distribution, which provides several advantages:
+
+1. **Simplifies calculations**: With a mean of 0 and standard deviation of 1, performing statistical calculations becomes more straightforward.
+2. **Universal comparison**: Converting to a standard normal distribution allows comparison between different normal distributions on a common scale, regardless of their original means and standard deviations.
+3. **Z-scores**: The conversion enables the calculation of Z-scores, which measure the relative position of a data point in terms of standard deviations from the mean.
+4. **Consistent analysis**: It allows the use of standard normal distribution tables, making probability calculations more accessible and consistent across different datasets.  
+
+To convert a normal variate to a Standard Score ("z-score")
 
 -   First subtract the mean,
 
 -   Then divide by the Standard Deviation
 
-And doing that is called "Standardizing".
+And doing that is called "Standardizing".  
 
-```{r normall4, echo=FALSE,fig.cap='Standardization of Normal distribution',out.width="90%", fig.align='center'}
-knitr::include_graphics(rep("images/normal4.jpg"))  
-```
+When a normal variate $ X \sim N(\mu, \sigma^2)$ is converted to a standard normal variate, it follows the transformation:  
 
-Example: A survey of daily travel time had these results (in minutes):
+$$z = \frac{X - \mu}{\sigma}$$ {#eq-standard}
 
-$X$: 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34
+Here, $X$ is a normal variate with mean $\mu$ and variance $\sigma^2$, and $z$ is the corresponding standard normal variate. This transformation converts $X$ into a standard normal distribution $z \sim N(0, 1)$, where the mean is 0 and the standard deviation is 1.  
 
-Convert it in to standard scores (Z-score).
+![Standardization of normal distribution](images/normal4.jpg){#fig-normalstandardize fig-align="center" style="text-align:center;" width="50%"}   
 
-The Mean is 38.8 minutes, and the Standard Deviation is 11.4
+**Example 11.6**: A survey of daily travel time ($X$) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it in to standard scores (Z-score).
 
-1.  First subtract the mean from observation
-
-2.  Then divide by the Standard Deviation
+**Solution 11.6**: The Mean ($\mu$) is 38.8 minutes, and the Standard Deviation ($\sigma$) is 11.4. Using @eq-standard.  
 
 | $X$ | $X-\mu$ | $$z = \frac{X - \mu}{\sigma}$$ |
 |:----|:-------:|:------------------------------:|
@@ -407,92 +389,48 @@ The Mean is 38.8 minutes, and the Standard Deviation is 11.4
 | 45  |   6.2   |              0.54              |
 | 32  |  -6.8   |             -0.60              |
 | 28  |  -10.8  |             -0.95              |
-| 34  |  -4.8   |             -0.42              |
+| 34  |  -4.8   |             -0.42              |  
 
-```{r normal5, echo=FALSE,fig.cap='Z score values for X',out.width="50%", fig.align='center'}
-knitr::include_graphics(rep("images/normal5.jpg"))  
-```
+: Z-score calculation {#tbl-zscorecalc .bordered}  
 
-The **z-score formula** that we have been using is:
 
-$$z = \frac{x - \mu}{\sigma}$$
 
--   z is the "z-score" (Standard Score)
+![Z score values for X](images/normal5.jpg){#fig-zscoreandx fig-align="center" style="text-align:center;" width="40%"}  
 
--   $x$ is the value to be standardized
+**Example 11.7**: What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2 ?
 
--   $μ$ ('mu") is the mean
+**Solution 11.7**: To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2.$z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5$. This indicates that 27 is +1.5 standard deviations above the mean.  
 
--   $σ$ ("sigma") is the standard deviation
+### Z-Score Table  
 
-#### Parameters of Normal distribution {.unnumbered}
+A **Z-score table** (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table is given @fig-zscoretable.  
 
-As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean ($μ$) and standard deviation ($σ$). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.
+![Z-score table](images/ztable.png){#fig-zscoretable fig-align="center" style="text-align:center; height:80%;" width="50%"}
 
-```{r normal6, echo=FALSE,fig.cap='Shape changes in normal distribution based on different means',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/normal6.jpg"))  
-```
+Procedure to use a Z-Score Table is given below:  
 
-**Standard deviation:**
+1. **Calculate the Z-score**:  
+   First, calculate the Z-score using the formula @eq-standard
 
-The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance the observations and the average.
+2. **Find the Z-score in the table**:  
+Once you have the Z-score, locate its value in the Z-score table @fig-zscoretable. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability. 
 
-```{r normal7, echo=FALSE,fig.cap='Shape changes in normal distribution based on different standard deviation',out.width="80%", fig.align='center'}
-knitr::include_graphics(rep("images/normal7.jpg"))  
-```
+3. **Interpret the table value**:  
+The value from the Z-table represents the cumulative probability (area under the curve) to the left of the Z-score. For example A Z-score of 1.23 corresponds to a cumulative probability of about **0.8907**, which means there is an 89.07% chance that a value from the distribution is less than or equal to 1.23 standard deviations above the mean.
 
-When you have normally distributed data, the standard deviation can be used to determine the proportion of the values that fall within a specified number of standard deviations from the mean. For example, in a normal distribution, 68% of the observation falls within +/- 1 standard deviation from the mean. This property is called as **Area Property**.
+4. **Use the table for finding areas**:  
+To find the probability that a value lies **above** a certain Z-score, subtract the table value from 1. For example, if the Z-score is 1.23, the probability of a value being greater than 1.23 is: $P(z > 1.23) = 1 - 0.8907 = 0.1093$. So, there is a 10.93% chance the value is above 1.23 standard deviations.
 
-#### Area Property {.unnumbered}
+5. **For ranges of Z-scores**:  
+If you're looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that $X$ lies between 0.5 and 1.23 is:$P(0.5 < z < 1.23) = 0.8907 - 0.6915 = 0.1992$. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.
 
-```{r normal8, echo=FALSE,fig.cap='Area property of normal distribution',out.width="90%", fig.align='center'}
-knitr::include_graphics(rep("images/normal8.jpg"))  
-```
 
-| mean +/- standard deviation | \% of value contained |
-|:----------------------------|:----------------------|
-| 0.745                       | 50                    |
-| 1                           | 68.26                 |
-| 1.96                        | 95                    |
-| 2                           | 95.44                 |
-| 2.58                        | 99                    |
-| 3                           | 99.73                 |
+**Example 11.8**:Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?  
 
-In short the properties of Normal distribution
+**Solution 11.8**: The z score for the given data using @eq-standard is 
+$z = \frac{85 - 70}{12}=1.25$. From the z score table @fig-zscoretable, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.
 
--   Normal distribution curve is bell shaped
 
--   Normal distribution is symmetric about the line x=$μ$ , not skewed.
-
--   The mean, median, and mode are all equal.
-
--   Half of the population is less than the mean and half is greater than the mean.
-
--   Area property allows you to determine the proportion of values that fall within certain distances from the mean.
-
--   The area under the normal curve is always unity.
-
--   All odd order moments are zero in normal distribution.
-
--   Quartile Deviation. Q.D = $\frac{2}{3}\sigma$
-
--   Mean Deviation. M.D = $\frac{4}{5}\sigma$
-
-#### Solved example {.unnumbered}
-
-1.  What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2 ?
-
-**Solution**
-
-To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2.
-
-$$z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5$$
-
-This indicates that 27 is +1.5 standard deviations above the mean.
-
- \
- \
- 
 
 ::: {#hello10 .greeting .message style="color: #c9c6c5;"}
 <center>**"If your experiment needs statistics, you ought to have done a better experiment”:- Lord Ernest Rutherford**</center>
