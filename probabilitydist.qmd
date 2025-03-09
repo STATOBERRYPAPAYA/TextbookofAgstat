@@ -23,43 +23,45 @@ In simple terms, a probability distribution is a way to represent all possible o
 
 : Possible outcomes on tossing a coin three times {#tbl-tossingcoin .bordered}
 
-$p(X = x)$ = $\frac{No: \ of \ times\ X\ takes\ value\ x}{8}$
+$P(X = x)$ = $\frac{No: \ of \ times\ X\ takes\ value\ x}{8}$
 
-$p(X = 3)$ = 1/8; $p(X = 2)$ = 3/8; $p(X = 1)$ = 3/8; $p(X = 0)$ = 1/8
+$P(X = 3)$ = 1/8; $P(X = 2)$ = 3/8; $P(X = 1)$ = 3/8; $P(X = 0)$ = 1/8
 
 @tbl-probabilitydistncoin below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.
 
-| $X$ | $p(x)$ |
+| $X$ | $P(x)$ |
 |:----|:-------|
 | 0   | 1/8    |
 | 1   | 3/8    |
 | 2   | 3/8    |
 | 3   | 1/8    |
 
-: Probability distribution of tossing the coing three times {#tbl-probabilitydistncoin .bordered}
+: Probability distribution of tossing the coin three times {#tbl-probabilitydistncoin .bordered}
 
 This is an example of discrete probability distribution as $X$ takes only discrete values. If $X$ takes continuous values, it is termed as continuous probability distribution.
 
-## Probability density function
-
-When we use a probability function to describe a continuous probability distribution, we call it a probability density function (commonly abbreviated as *p*.*d*.*f*).
-
 ## Expected value of a random variable
 
-Expected value is exactly what you might think it means. The return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because the average of all the numbers that come up is 3.5 as the number of rolls approaches infinity. Expected value of random variable $X$ is denoted as $E(X)$.\
-The formula for calculating the Expected Value of random variable where there are multiple probabilities is
+Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5! The expected value of a random variable $X$ is denoted as $E(X)$.\
+The formula for calculating the Expected Value of random variable where there are multiple probabilities is given for discrete and continuous in @eq-expdiscrete and @eq-expcont.
 
--   E($X$) = $\sum_{i = 1}^{\infty}xp(x)$ (discrete case)
+**Discrete case** {.underline}
 
--   E($X$) = $\int_{- \infty}^{\infty}{x p(x)\ \text{dx }}$ (continuous case); $- \infty \leq x \leq \infty$
+$$E(X) = \sum_{i = 1}^{\infty}xP(x)$$ {#eq-expdiscrete}
+
+**Continuous case** {.underline}
+
+$$E(X) = \int_{- \infty}^{\infty}{x P(x)\ \text{dx }};- \infty \leq x \leq \infty$$ {#eq-expcont}
 
 here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
 
-### Example {.unnumbered}
-
-1.  Find Expected value of $X$ of tossing a single unfair die
+**Example 11.1**: Find Expected value of $X$ of tossing a single unfair die
 
 ```{r ex91, echo=FALSE,warning=FALSE,results='asis'}
+#| label: tbl-expectedval1
+#| tbl-cap: "Expected value of an unfair die"
+#| fig-cap: "Expected value of an unfair die" 
+
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr1.csv")
@@ -69,9 +71,13 @@ dt %>%
 kable_styling(latex_options = "HOLD_position")
 ```
 
-Solution:
+**Solution 11.1**:
 
 ```{r ex92, echo=FALSE,warning=FALSE,results='asis'}
+#| label: tbl-expectedval2
+#| tbl-cap: "Solution: Expected value of an unfair die"
+#| fig-cap: "Solution: Expected value of an unfair die" 
+
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr2.csv")
@@ -81,16 +87,18 @@ dt %>%
 kable_styling(latex_options = "HOLD_position")
 ```
 
-$E(X)$ = $\sum_{i = 1}^{6}xp(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
+Using equation @eq-expdiscrete, $E(X)$ = $\sum_{i = 1}^{6}xP(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
 
-2.  Find E(X) in the following case (Practice question)
+**Example 11.2**: Find E(X) in the following case (solve it yourself)
 
-| $x$ | $p(x)$ |
+| $x$ | $P(x)$ |
 |-----|--------|
 | 0   | 1/8    |
 | 1   | 3/8    |
 | 2   | 3/8    |
 | 3   | 1/8    |
+
+: Find the expected value {#tbl-expectedsolyu .bordered}
 
 ## Discrete probability distributions
 
@@ -106,17 +114,17 @@ We have seen that a probability distribution lists all possible outcomes of a ra
 
 [**Probability mass function**]{.underline}
 
-When a probability function is used to describe a discrete probability distribution, it is referred to as a probability mass function (commonly abbreviated as *p.m.f*). A probability mass function assigns a probability to each specific outcome of a discrete random variable. It is expressed as: $p(x) = P(X = x)$. Here, $X$ is the discrete random variable, and $p(x)$ represents the probability of $X$ taking the specific value $x$. The function ensures that all probabilities are non-negative and sum to 1 across all possible outcomes of $X$.
+When a probability function is used to describe a discrete probability distribution, it is referred to as a probability mass function (commonly abbreviated as *p.m.f*). A probability mass function assigns a probability to each specific outcome of a discrete random variable. It is expressed as: $P(x) = P(X = x)$. Here, $X$ is the discrete random variable, and $P(x)$ represents the probability of $X$ taking the specific value $x$. The function ensures that all probabilities are non-negative and sum to 1 across all possible outcomes of $X$.
 
 Properties of *p.m.f*
 
--   The probability of each outcome is always non-negative. For a discrete random variable $X$ and its *p.m.f* $p(x) \geq 0 \quad \text{for all } x$
+-   The probability of each outcome is always non-negative. For a discrete random variable $X$ and its *p.m.f*, $P(x) \geq 0 \quad \text{for all } x$
 
--   The sum of the probabilities over all possible values of the random variable equals 1. That is:$\sum_{x \in S} p(x) = 1$. where $S$ is the sample space of ($X$), representing all possible values.
+-   The sum of the probabilities over all possible values of the random variable equals 1. That is:$\sum_{x \in S} P(x) = 1$. where $S$ is the sample space of ($X$), representing all possible values.
 
--   The *p.m.f* gives the exact probability for each specific value of the discrete random variable. For a value $x:p(X = x) = p(x)$
+-   The *p.m.f* gives the exact probability for each specific value of the discrete random variable. For a value $x:P(X = x) = P(x)$
 
--   If a value $x$ is not in the sample space $S$, its probability is zero: $p(x) = 0 \quad \text{for } x \notin S$
+-   If a value $x$ is not in the sample space $S$, its probability is zero: $P(x) = 0 \quad \text{for } x \notin S$
 
 The *p.m.f* is defined only for the discrete values in the sample space of the random variable $X$. It does not apply to continuous ranges or non-discrete variables.
 
@@ -126,44 +134,50 @@ A Bernoulli distribution is a discrete probability distribution that applies to 
 
 The probability mass function of the distribution is
 
-$p(X = x)$ = $p(x)$ = $p$$x$ $(1-p)$$1-x$, where $X$ takes only two values = 0,1
+$$P(X = x) = p^x (1 - p)^{1 - x}$$ {#eq-bernoulli}
+
+in @eq-benoulli $X$ takes only two values = 0,1. Where $p$ is the probability of success and $1-p$ is the probability of failure.
+
+::: {.callout-important title="Note"}
+A parameter of a distribution is a fixed value that describes a key characteristic of the distribution. The parameter of a Bernoulli distribution is $p$, which represents the probability of success in a single trial
+:::
 
 The expected value for a random variable, $X$, from a Bernoulli distribution is: E($X$) = $p$ and the variance of a Bernoulli random variable is: var($X$) = $p(1 - p)$.
 
-#### Example {.unnumbered}
+**Example 11.3**: Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
 
-Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
+Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-benoulli
 
-Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation
+$P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6$
 
-p($X$ = $x$) = p($X$) = p$X$ $(1-p)$$1-x$
+$P(X = 1) = (0.4)^1 (1-0.4)^0 =0.4$
 
-P($X$ = 0) = (0.4)^0^(1-0.4)^1^ =0.6
+the distribution can be shown as below:
 
-P($X$ = 1) = (0.4)^1^(1-0.4)^0^ =0.4
-
-| $x$ | $p(x)$ |
+| $x$ | $P(x)$ |
 |-----|--------|
 | 0   | 0.6    |
 | 1   | 0.4    |
 
-> A **Bernoulli trial** is one of the simplest experiments you can conduct in probability and statistics. It's an experiment where you can have one of two possible outcomes. For example, "Yes" and "No" or "Heads" and "Tails."
+::: {.callout-important title="Note"}
+A Bernoulli trial is one of the simplest experiments you can conduct in probability and statistics. It's an experiment where you can have one of two possible outcomes. For example, "Yes" and "No" or "Heads" and "Tails."
+:::
 
 ### Binomial distribution
 
-Binomial distribution can be thought of as simply the probability of a SUCCESS or FAILURE outcome in an experiment or survey that is repeated multiple times; *i.e*. a Binomial distribution happens, when a Bernoulli trial is repeated $n$ number of times. The binomial is a type of distribution that has two possible outcomes (the prefix "bi" means two, or twice). For example when a coin toss is repeated 5 times, the random variable, $X$ = no: of heads will follow a binomial distribution with $n$ = 5.
+Binomial distribution can be thought of as simply the probability of a success or failure outcome in an experiment or survey that is repeated multiple times; *i.e*. a Binomial distribution happens, when a Bernoulli trial is repeated $n$ number of times. The binomial is a type of distribution that has two possible outcomes (the prefix "bi" means two, or twice). For example, if you toss a coin 5 times and count the number of heads, that count, $X$, follows a binomial distribution with $n = 5$. In short, a single coin toss is a Bernoulli trial, but repeating it several times (more than once) turns it into a binomial experiment.
 
 **Binomial distributions must also meet the following three criteria:**
 
--   The number of observations or trials is fixed. ($n$)
+-   The number of observations or trials ($n$) is fixed.
 
--   Each observation or trial is independent
+-   Each observation or trial is independent
 
--   The probability of success (tails, heads, fail or pass) is exactly the same from one trial to another ($p$)
+-   The probability of success($p$) is exactly the same from one trial to another
 
 The probability mass function of the distribution is
 
-$p(x)$ = ^n^*C*~x~ $p^x$ $q^{n-x}$ = $\frac{n!}{\left( n - x \right)!x!\ }$ $p^x$ $q^{n-x}$
+$$P(x) = \binom{n}{x} p^x q^{n-x} = \frac{n!}{x!(n-x)!} p^x q^{n-x}$$ {#eq-binomial}
 
 where x takes values = 0,1,2,..., $n$
 
@@ -177,9 +191,12 @@ $q$ = $1-p$ = probability of getting a failure in one trial
 
 E($X$) = $np$
 
-V($X$) = $npq$; $n$ and $p$ are the most important parameters in binomial distribution.
+V($X$) = $npq$;  
 
-> Mean of binomial distribution is $np$ and variance is $npq$
+::: {.callout-important title="Note"}
+In a binomial distribution, the parameters are $n$, the number of independent trials, and $p$, the probability of success in a single trial. If X follows a binomial distribution we denote $X \sim \text{Bin}(n, p)$. The mean of $X$ is given by $E(X) = np$, while the variance is $\text{Var}(X) = npq$, where$q = 1 - p$. Since $0 < p < 1$, it follows that $q$ is also positive but less than 1. This implies that $np > npq$, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.
+:::
+
 
 #### Example {.unnumbered}
 
