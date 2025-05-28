@@ -1,4 +1,4 @@
-# Probability distributions
+# Probability distributions  
 
 In statistics, a probability distribution gives the possibility of each possible outcome of a random experiment or event. It provides a systematic way to understand and quantify the probabilities of different occurrences.
 
@@ -57,7 +57,7 @@ here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
 
 **Example 11.1**: Find Expected value of $X$ of tossing a single unfair die
 
-```{r ex91, echo=FALSE,warning=FALSE,results='asis'}
+```{r, echo=FALSE,warning=FALSE,results='asis'}
 #| label: tbl-expectedval1
 #| tbl-cap: "Expected value of an unfair die"
 #| fig-cap: "Expected value of an unfair die" 
@@ -73,7 +73,7 @@ kable_styling(latex_options = "HOLD_position")
 
 **Solution 11.1**:
 
-```{r ex92, echo=FALSE,warning=FALSE,results='asis'}
+```{r, echo=FALSE,warning=FALSE,results='asis'}
 #| label: tbl-expectedval2
 #| tbl-cap: "Solution: Expected value of an unfair die"
 #| fig-cap: "Solution: Expected value of an unfair die" 
@@ -136,7 +136,7 @@ The probability mass function of the distribution is
 
 $$P(X = x) = p^x (1 - p)^{1 - x}$$ {#eq-bernoulli}
 
-in @eq-benoulli $X$ takes only two values = 0,1. Where $p$ is the probability of success and $1-p$ is the probability of failure.
+in @eq-bernoulli $X$ takes only two values = 0,1. Where $p$ is the probability of success and $1-p$ is the probability of failure.
 
 ::: {.callout-important title="Note"}
 A parameter of a distribution is a fixed value that describes a key characteristic of the distribution. The parameter of a Bernoulli distribution is $p$, which represents the probability of success in a single trial
@@ -146,7 +146,7 @@ The expected value for a random variable, $X$, from a Bernoulli distribution i
 
 **Example 11.3**: Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
 
-**Solution 11.3**: Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-benoulli
+**Solution 11.3**: Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-bernoulli
 
 $P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6$
 
@@ -303,7 +303,7 @@ The parameters of normal distribution are $\mu$ and $\sigma$. If a random variab
 
 ![Normal distribution is a symmetric distribution](images/normal3.jpg){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="40%"}
 
-4.  Area Property  
+4.  Area Property\
     The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See @tbl-areaproperty for detailed information on the area property of the normal distribution.
 
 ![Area property of normal distribution](images/normal8.jpg){#fig-areaproperty fig-align="center" style="text-align:center;" width="50%"}
@@ -426,17 +426,16 @@ Procedure to use a Z-Score Table is given below:
 
 **Solution 11.8**: The z score for the given data using @eq-standard is $z = \frac{85 - 70}{12}=1.25$. From the z score table @fig-zscoretable, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.
 
-**Example 11.9**: The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7 . Determine the probability that the height of a randomly chosen tree will be less
-than 12 metres.  
+**Example 11.9**: The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7 . Determine the probability that the height of a randomly chosen tree will be less than 12 metres.
 
-**Solution 11.9**:  Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We nee to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.  
+**Solution 11.9**: Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We nee to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.
 
 ::: {.callout-caution title="Historical Insights"}
-**De Moivre’s Final Prediction**  
+**De Moivre’s Final Prediction**
 
-Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the **normal distribution**, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true—he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.  
-:::  
+Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the **normal distribution**, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true—he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.
+:::
 
-::: {.callout-tip title="Quotes to Inspire"}  
+::: {.callout-tip title="Quotes to Inspire"}
 **"To understand God’s thoughts, we must study statistics, for these are the measure of his purpose." — Florence Nightingale**
-:::  
+:::
