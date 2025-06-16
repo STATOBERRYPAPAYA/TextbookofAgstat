@@ -324,9 +324,12 @@ $$L = min - \frac{C^{'} \times k^{'} - (max - min)}{2}$$
 
 where, *C* and *k* here are final approximated class width and number of classes respectively in our example, $L = 1 - \frac{(3 \times 7) - (18 - 1)}{2}$ = 1-2 = -1; since there is no negative values in data = 0. Final frequency table will be as shown in @tbl-freq
 
-```{r ch1, echo=FALSE,warning=FALSE,results='asis'}
+```{r}
 #| label: tbl-freq
-#| tbl-cap: "Frequency distribution table"  
+#| tbl-cap: "Frequency distribution table"
+#| echo: false
+#| warning: false
+#| results: 'asis' 
 
 library(knitr)
 library(kableExtra)
@@ -342,7 +345,7 @@ kable_styling(
   ) %>% 
   column_spec(1, width = "7em") %>%  
   column_spec(2, width = "7em")
-```
+```  
 
 Even though the student only measured in whole numbers, the data is continuous, so "4 cm" means the actual value could have been anywhere from 3.5 cm to 4.5 cm.
 
@@ -358,12 +361,15 @@ The specified value for LCF in the case of grouped frequency distribution will b
 
 It is sometimes useful to know the proportion, rather than the number, of values falling within a particular class interval. We obtain this information by dividing the frequency of the particular class interval by the total number of observations. **Relative frequency** of a class is the frequency of class divided by total observations. Relative frequencies all add up to 1. See relative frequency calculated in @tbl-cf .
 
-```{r ch2, echo=FALSE, warning=FALSE, results='asis'}
+```{r}
 #| label: tbl-cf
-#| tbl-cap: "LCF,GCF and Relative frequency"  
+#| tbl-cap: "LCF, GCF and Relative frequency"
+#| echo: false
+#| warning: false
+#| results: 'asis'
 
 library(kableExtra)
-library(knitr)
+library(knitr) 
 
 dt <- read.csv("csv/c1e2.csv")
 
