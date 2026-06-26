@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>12&nbsp; Hypothesis Testing – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./appendix1.html" rel="next">
+<link href="./probabilitydist.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="12&nbsp; Hypothesis Testing – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://cleaning-data-r.ala.org.au/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="12&nbsp; Hypothesis Testing – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://cleaning-data-r.ala.org.au/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./hypothesisTest.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probabilitydist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTest.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#a-hypothesis" id="toc-a-hypothesis" class="nav-link active" data-scroll-target="#a-hypothesis"><span class="header-section-number">12.1</span> A hypothesis</a></li>
+  <li><a href="#the-falsification-principle" id="toc-the-falsification-principle" class="nav-link" data-scroll-target="#the-falsification-principle">The Falsification Principle</a></li>
+  <li><a href="#null-and-alternative-hypothesis" id="toc-null-and-alternative-hypothesis" class="nav-link" data-scroll-target="#null-and-alternative-hypothesis"><span class="header-section-number">12.2</span> Null and alternative hypothesis</a>
+  <ul class="collapse">
+  <li><a href="#definitions" id="toc-definitions" class="nav-link" data-scroll-target="#definitions">Definitions</a></li>
+  <li><a href="#example" id="toc-example" class="nav-link" data-scroll-target="#example">Example</a></li>
+  <li><a href="#state" id="toc-state" class="nav-link" data-scroll-target="#state"><span class="header-section-number">12.2.1</span> Stating a hypothesis</a></li>
+  </ul></li>
+  <li><a href="#hypo" id="toc-hypo" class="nav-link" data-scroll-target="#hypo"><span class="header-section-number">12.3</span> Hypothesis testing</a></li>
+  <li><a href="#errors-in-hypothesis-testing" id="toc-errors-in-hypothesis-testing" class="nav-link" data-scroll-target="#errors-in-hypothesis-testing"><span class="header-section-number">12.4</span> Errors in hypothesis testing</a></li>
+  <li><a href="#level-of-significance-and-power-of-test" id="toc-level-of-significance-and-power-of-test" class="nav-link" data-scroll-target="#level-of-significance-and-power-of-test"><span class="header-section-number">12.5</span> Level of significance and power of test</a></li>
+  <li><a href="#region-of-acceptance-and-rejection" id="toc-region-of-acceptance-and-rejection" class="nav-link" data-scroll-target="#region-of-acceptance-and-rejection"><span class="header-section-number">12.6</span> Region of acceptance and rejection</a></li>
+  <li><a href="#one-tailed-and-two-tailed-tests" id="toc-one-tailed-and-two-tailed-tests" class="nav-link" data-scroll-target="#one-tailed-and-two-tailed-tests"><span class="header-section-number">12.7</span> One-tailed and two-tailed tests</a>
+  <ul class="collapse">
+  <li><a href="#one-tailed-tests" id="toc-one-tailed-tests" class="nav-link" data-scroll-target="#one-tailed-tests">One-tailed tests</a></li>
+  <li><a href="#two-tailed-test" id="toc-two-tailed-test" class="nav-link" data-scroll-target="#two-tailed-test">Two-tailed test</a></li>
+  </ul></li>
+  <li><a href="#decision-rule" id="toc-decision-rule" class="nav-link" data-scroll-target="#decision-rule"><span class="header-section-number">12.8</span> Decision Rule</a></li>
+  <li><a href="#a-worked-example" id="toc-a-worked-example" class="nav-link" data-scroll-target="#a-worked-example"><span class="header-section-number">12.9</span> A worked example</a></li>
+  <li><a href="#confidence-interval" id="toc-confidence-interval" class="nav-link" data-scroll-target="#confidence-interval"><span class="header-section-number">12.10</span> Confidence Interval</a></li>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">12.11</span> p-value</a></li>
+  <li><a href="#steps-in-hypothesis-testing" id="toc-steps-in-hypothesis-testing" class="nav-link" data-scroll-target="#steps-in-hypothesis-testing"><span class="header-section-number">12.12</span> Steps in hypothesis testing</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Hypothesis Testing</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>In the previous chapters, we have learned how to describe and summarize data using measures of central tendency and dispersion. These tools help us understand what a sample of data looks like. But in agricultural research or in any research, we often go a step further, where we want to use the sample to draw conclusions about the larger population. This is where the branch of statistics named as <strong>inferential statistics</strong> come in to play, and at its core lies the process of <strong>hypothesis testing</strong>.</p>
+<section id="a-hypothesis" class="level2" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="a-hypothesis"><span class="header-section-number">12.1</span> A hypothesis</h2>
+<p>Scientific research often involves conducting experiments to study natural phenomena or to evaluate the effect of different conditions or practices. In a scientific experiment, observations are made systematically and data are collected to answer specific research questions.</p>
+<p>To conduct an experiment in a meaningful way, the researcher must begin with a clear <code>hypothesis</code>. A <code>hypothesis</code> is a tentative and testable <em>statement</em> formulated on the basis of prior knowledge, observations, or scientific reasoning. It provides direction to the study by clearly stating what is to be examined and guides the collection and interpretation of experimental data.</p>
+<p>Examples of hypotheses from agriculture:</p>
+<ul>
+<li><p>“Application of nitrogen fertilizer increases the grain yield of rice.”</p></li>
+<li><p>“Improved seed treatment results in higher germination percentage than untreated seeds.”</p></li>
+<li><p>“Drip irrigation leads to better water-use efficiency compared to surface irrigation.”</p></li>
+<li><p>“A new crop variety produces higher average yield than the existing variety.”</p></li>
+</ul>
+<p>These hypotheses can be tested by conducting a properly designed scientific experiment.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A <strong>statistical hypothesis</strong> is a specific, <em>testable</em> statement about a population parameter. It expresses an assumption or claim that can be tested using statistical methods based on sample data. Statistical hypotheses are generally formulated in pairs: the null hypothesis (denoted as <span class="math inline">\(H_0\)</span>), which represents the default or no-effect assumption, and the alternative hypothesis (denoted as <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>), which represents a statement that contradicts the null hypothesis.</p>
+</div>
+</div>
+</section>
+<section id="the-falsification-principle" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="the-falsification-principle">The Falsification Principle</h2>
+<p>The falsification principle, proposed by the philosopher Karl Popper, is a way of distinguishing science from non-science. It suggests that for a theory to be considered scientific, it must be capable of being tested and potentially proven <strong>false</strong>. For example, the hypothesis “all swans are white” can be falsified by observing a single black swan. According to Popper, science should attempt to <em>disprove</em> a theory, rather than continuously seek evidence that confirms it. <span class="citation" data-cites="Popper1959">(<a href="references.html#ref-Popper1959" role="doc-biblioref">Popper 1959</a>)</span></p>
+<p>This idea forms the philosophical backbone of hypothesis testing in statistics.</p>
+</section>
+<section id="null-and-alternative-hypothesis" class="level2" data-number="12.2">
+<h2 data-number="12.2" class="anchored" data-anchor-id="null-and-alternative-hypothesis"><span class="header-section-number">12.2</span> Null and alternative hypothesis</h2>
+<p>Considering the Popperian Principle of Falsification, we need to translate the working hypothesis into a framework of two competing statements. These are termed the <strong>null hypothesis</strong> and the <strong>alternative hypothesis</strong>.</p>
+<p><u><strong>Null hypothesis</strong></u></p>
+<p>The null hypothesis (<span class="math inline">\(H_0\)</span>) is a statement that there is no effect, no difference, or no relationship between variables. It represents the default or status quo assumption. In hypothesis testing, we assume the null hypothesis is true unless we have strong statistical evidence against it.</p>
+<blockquote class="blockquote">
+<p>Why do we need a null hypothesis?<br>
+In an experiment, the results seen in the sample may differ from expectation either because a real effect exists, or simply because of random chance. The null hypothesis begins with the assumption that no real difference or effect exists in the population. Using this assumption, statistical tests examine the sample data and calculate how likely it is to obtain such results purely by chance. This helps us decide whether the observed difference is likely to be real or just a fluke.<br>
+For example, suppose a researcher tests a new fertilizer and finds that plants in the sample are 3 cm taller than usual. This difference may be due to the fertilizer or simply to natural variation among plants. By assuming that the fertilizer has no effect (the null hypothesis), a statistical test determines whether the observed difference is likely to have occurred by chance. If it is very unlikely, we reject the null hypothesis and conclude that the fertilizer probably has a real effect.</p>
+</blockquote>
+<p><u><strong>Alternative hypothesis</strong></u></p>
+<p>The alternative hypothesis (denoted by <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>) is a statement that contradicts the null hypothesis. It proposes that a real effect, difference, or relationship exists in the population and that the observed results are not due to random chance. In most studies, the alternative hypothesis represents the researcher’s expectation or claim that they aim to find evidence to support.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Important">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In statistics, we say <strong>“fail to reject”</strong> the null hypothesis - not “accept” the null hypothesis. Failing to reject <span class="math inline">\(H_0\)</span> does not prove that it is true; it only means we do not have sufficient evidence against it.</p>
+</div>
+</div>
+<section id="definitions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="definitions">Definitions</h3>
+<p><strong>Null hypothesis (</strong><span class="math inline">\(H_0\)</span>): A statement of ‘no effect’ or ‘no difference’. It is the hypothesis that the researcher attempts to disprove.</p>
+<p><strong>Alternative hypothesis (</strong><span class="math inline">\(H_1\)</span>): The opposite of the null hypothesis. It represents the effect or difference the researcher is looking for.</p>
+</section>
+<section id="example" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="example">Example</h3>
+<p>Not so long ago, people believed that the world was flat. The research question was: Is the Earth flat?</p>
+<p>Null hypothesis, <span class="math inline">\(H_0\)</span>: The Earth is flat.</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: The Earth is round.</p>
+<p>Several scientists, including Copernicus, set out to disprove the null hypothesis. This eventually led to the rejection of <span class="math inline">\(H_0\)</span> and the acceptance of <span class="math inline">\(H_1\)</span>.</p>
+<p><strong>Example 12.1</strong>: A plant biologist wants to test whether different fertilizers affect plant height.</p>
+<p><span class="math inline">\(H_0\)</span>: There is no difference in plant height among different fertilizer treatments.</p>
+<p><span class="math inline">\(H_1\)</span>: There is a difference in plant height among different fertilizer treatments.</p>
+<p><strong>Example 12.2</strong>: A pharmaceutical company wants to know if a new drug is more effective than the standard treatment.</p>
+<p><span class="math inline">\(H_0\)</span>: The new drug is equally effective as the standard treatment.</p>
+<p><span class="math inline">\(H_1\)</span>: The new drug is more effective than the standard treatment.</p>
+</section>
+<section id="state" class="level3" data-number="12.2.1">
+<h3 data-number="12.2.1" class="anchored" data-anchor-id="state"><span class="header-section-number">12.2.1</span> Stating a hypothesis</h3>
+<blockquote class="blockquote">
+<p><strong>Problem 1</strong>: A researcher applies a certain chemical twice a week after flowering on a fruit tree and expects that the average fruit weight per plant is 8 kg.</p>
+</blockquote>
+<p><strong>Step 1</strong>: Identify the hypothesis from the problem.</p>
+<p>The researcher expects the average fruit weight per plant to be 8 kg. If <span class="math inline">\(\mu\)</span> (pronounced as ‘mu’) denotes the average fruit weight, the null hypothesis is:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = 8</p>
+<p><strong>Step 2</strong>: State the alternative hypothesis.</p>
+<p>If the average fruit weight is not 8 kg, and there is no reason to believe the chemical will increase yield, the only remaining possibility is that the weight is less than 8 kg. So:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &lt; 8</p>
+<p><strong>But what if the researcher has no prior idea of the direction of the effect?</strong></p>
+<blockquote class="blockquote">
+<p><strong>Problem 2</strong>: A researcher is studying the effect of a pesticide chemical on plant yield. He wants to determine whether this chemical has any effect on yield. The chemical could either reduce or boost the yield.</p>
+</blockquote>
+<p><strong>Step 1</strong>: Identify the hypothesis.</p>
+<p>The researcher expects the change in average yield before and after application of the chemical to be zero. If <span class="math inline">\(\mu\)</span> denotes this change:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = 0</p>
+<p><strong>Step 2</strong>: Since the researcher does not know whether the chemical will increase or decrease the yield, the alternative hypothesis is:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0</p>
+</section>
+</section>
+<section id="hypo" class="level2" data-number="12.3">
+<h2 data-number="12.3" class="anchored" data-anchor-id="hypo"><span class="header-section-number">12.3</span> Hypothesis testing</h2>
+<p>In hypothesis testing, a decision must be made between two alternatives <em>i.e.</em> the null hypothesis and the alternative hypothesis. To make the decision, an experiment is performed, and the null hypothesis is either rejected or not rejected based on a <strong>decision rule</strong>.</p>
+<p><strong>Example 12.3</strong>: You have a coin and want to check whether it is biased or unbiased. An unbiased coin has a 50:50 chance of landing heads or tails.</p>
+<p>If the coin is unbiased, the probability of obtaining a head is 0.5, i.e., <span class="math inline">\(p\)</span> = 0.5. The hypotheses are:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(p\)</span> = 0.5 (coin is unbiased)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(p\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0.5 (coin is biased)</p>
+<p>You toss the coin 10 times and note the outcomes, as shown in <a href="#tbl-cointoss" class="quarto-xref">Table&nbsp;<span>12.1</span></a>.</p>
+<div id="tbl-cointoss" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cointoss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.1: Results of 10 coin tosses
+</figcaption>
+<div aria-describedby="tbl-cointoss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 21%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 7%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"><strong>Toss No.</strong></th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">2</th>
+<th style="text-align: left;">3</th>
+<th style="text-align: left;">4</th>
+<th style="text-align: left;">5</th>
+<th style="text-align: left;">6</th>
+<th style="text-align: left;">7</th>
+<th style="text-align: left;">8</th>
+<th style="text-align: left;">9</th>
+<th style="text-align: left;">10</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>Result</strong></td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">T</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">H</td>
+<td style="text-align: left;">H</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In hypothesis testing, acceptance or rejection of the null hypothesis is based on a <strong>decision rule</strong>, and this rule is driven by a quantity called the <strong>test statistic</strong>.</p>
+<p>A <strong>test statistic</strong> is a function of the sample observations that summarizes the sample data into a single numerical value. It is calculated using a specific formula and is used to determine whether the observed sample result is consistent with the null hypothesis. Different statistical tests use different test statistics. For example, the <strong>(z)-statistic</strong> is used in a (z)-test, the <strong>(t)-statistic</strong> in a (t)-test, the <strong>(^2)-statistic</strong> in a chi-square test, and the <strong>(F)-statistic</strong> in an (F)-test. These test statistics will be discussed in detail in the following chapters.</p>
+<p>In this example, suppose you decide to reject <span class="math inline">\(H_0\)</span> if 8 or more heads occur in 10 tosses, i.e., reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \geq \frac{8}{10} = 0.8\)</span>.</p>
+<p>From the experiment:</p>
+<p>Number of heads = 8; Number of tosses = 10</p>
+<p>Test statistic: <span class="math inline">\(p\)</span> = 8/10 = 0.8</p>
+<p>Based on the decision rule, you reject the null hypothesis and conclude that the coin is likely biased.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In this example, the decision rule was set informally for illustration. In practice, decision rules are derived from statistical theory, taking into account the sample size and the chosen level of significance. This is discussed in the sections that follow.</p>
+</div>
+</div>
+</section>
+<section id="errors-in-hypothesis-testing" class="level2" data-number="12.4">
+<h2 data-number="12.4" class="anchored" data-anchor-id="errors-in-hypothesis-testing"><span class="header-section-number">12.4</span> Errors in hypothesis testing</h2>
+<p>Since hypothesis testing is based on sample data, it is possible to arrive at an incorrect conclusion. Two types of errors can occur, as shown in <a href="#tbl-errors" class="quarto-xref">Table&nbsp;<span>12.2</span></a>.</p>
+<p><strong>Type I error</strong>: Rejecting the null hypothesis when it is actually true.</p>
+<p><strong>Type II error</strong>: Failing to reject the null hypothesis when it is actually false.</p>
+<div id="tbl-errors" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.2: The two types of errors in hypothesis testing
+</figcaption>
+<div aria-describedby="tbl-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 29%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th style="text-align: left;"><strong>In fact</strong> <span class="math inline">\(H_0\)</span> is true</th>
+<th style="text-align: left;"><strong>In fact</strong> <span class="math inline">\(H_0\)</span> is false</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Test concludes</strong> <span class="math inline">\(H_0\)</span> is true</td>
+<td style="text-align: left;"><em>Correct Decision</em></td>
+<td style="text-align: left;"><em>Type II error</em></td>
+</tr>
+<tr class="even">
+<td><strong>Test concludes</strong> <span class="math inline">\(H_0\)</span> is false</td>
+<td style="text-align: left;"><em>Type I error</em></td>
+<td style="text-align: left;"><em>Correct Decision</em></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Seriousness of Type I and Type II errors</strong></p>
+<p>Which error is more serious? The answer depends on the context. Consider the following examples.</p>
+<p><em>Comparing two medications</em></p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2\)</span> - The two medications are equally effective.</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1 \neq \mu_2\)</span> - The two medications differ in effectiveness.</p>
+<p>A <strong>Type I error</strong> here means concluding the medications differ when they actually do not - perhaps leading to an unnecessary change in treatment. A <strong>Type II error</strong> means concluding they are equally effective when one is actually better - potentially life-threatening if the inferior medication continues to be prescribed.</p>
+<p><em>Cancer diagnosis</em></p>
+<p><span class="math inline">\(H_0\)</span>: The patient does not have cancer.</p>
+<p><span class="math inline">\(H_1\)</span>: The patient has cancer.</p>
+<p>A <strong>Type I error</strong> means falsely diagnosing a healthy patient with cancer, leading to unnecessary treatment and distress. A <strong>Type II error</strong> means missing the diagnosis in a patient who actually has cancer - which could be fatal.</p>
+<p>There is an inherent trade-off: reducing Type I error tends to increase Type II error, and vice versa. Think of it this way - a Type I error is like a false alarm: a fire alarm ringing when there is no fire. A Type II error is like a missed alarm: the alarm fails to ring when there actually is a fire.</p>
+<p>Consider a person accused of a crime and facing a death sentence.</p>
+<p><span class="math inline">\(H_0\)</span>: He is innocent. <span class="math inline">\(\quad\)</span> <span class="math inline">\(H_1\)</span>: He is guilty.</p>
+<p>A <strong>Type I error</strong> → an innocent person is executed.</p>
+<p>A <strong>Type II error</strong> → a guilty person is set free.</p>
+<p>Most people would agree that wrongly executing an innocent person is the more severe error. This is why many textbooks treat Type I error as more serious.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Exam Tip">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Exam Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If an exam question asks which error is more serious, the safe answer is <strong>Type I error</strong>. But the honest answer is - <em>it depends on the context</em>.</p>
+</div>
+</div>
+</section>
+<section id="level-of-significance-and-power-of-test" class="level2" data-number="12.5">
+<h2 data-number="12.5" class="anchored" data-anchor-id="level-of-significance-and-power-of-test"><span class="header-section-number">12.5</span> Level of significance and power of test</h2>
+<p><u><strong>Level of significance (</strong><span class="math inline">\(\alpha\)</span>)</u></p>
+<p>The significance level, denoted as <span class="math inline">\(\alpha\)</span> (alpha), is the probability of rejecting the null hypothesis when it is true. In other words, the level of significance is the probability of committing a Type I error. <span class="citation" data-cites="Fisher1925">(<a href="references.html#ref-Fisher1925" role="doc-biblioref">Fisher 1925</a>)</span>. We fix a small value of <span class="math inline">\(\alpha\)</span> before the experiment to keep Type I error fixed.</p>
+<blockquote class="blockquote">
+<p>In practice, we fix the Type I error by selecting a suitable value of <span class="math inline">\(\alpha\)</span> before the experiment, and reduce Type II error by using an adequate sample size. Commonly used values are <span class="math inline">\(\alpha\)</span> = 0.05 (for agricultural research) or <span class="math inline">\(\alpha\)</span> = 0.01 (medical research).</p>
+</blockquote>
+<p><u><strong>Power of test (1 -</strong> <span class="math inline">\(\beta\)</span>)</u></p>
+<p>The probability of a Type II error is denoted as <span class="math inline">\(\beta\)</span> (beta). The quantity <span class="math inline">\(1 - \beta\)</span> is called the <strong>power of the test</strong>. Power is the probability of correctly rejecting the null hypothesis when it is false - in other words, the ability of the test to detect a real effect when it exists. <span class="citation" data-cites="NeymanPearson1933">(<a href="references.html#ref-NeymanPearson1933" role="doc-biblioref">Neyman and Pearson 1933</a>)</span></p>
+<p>Both <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> play a role in deciding the decision rule for hypothesis testing. Power is primarily determined by the sample size of the experiment: larger samples give more power.</p>
+</section>
+<section id="region-of-acceptance-and-rejection" class="level2" data-number="12.6">
+<h2 data-number="12.6" class="anchored" data-anchor-id="region-of-acceptance-and-rejection"><span class="header-section-number">12.6</span> Region of acceptance and rejection</h2>
+<p>The test statistic calculated from the sample will follow a probability distribution. For example, in the coin-tossing experiment, the value of the test statistic obtained by person A will differ from that obtained by person B, since both may get different outcomes from the same experiment. The probability distribution of the test statistic is called its <strong>sampling distribution</strong>.</p>
+<p>You will reject the null hypothesis if the test statistic falls in a particular region of the sampling distribution. This region is called the <strong>region of rejection</strong> (also known as the <strong>critical region</strong>). The complementary region, where the test statistic leads to non-rejection of <span class="math inline">\(H_0\)</span>, is called the <strong>region of acceptance</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/region.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Acceptance and rejection region in the sampling distribution of the test statistic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li>Size of the region of rejection, which is also the probability of type I error = level of significance = <span class="math inline">\(\alpha\)</span></li>
+<li>Size of the region of acceptance = <span class="math inline">\(1 - \alpha\)</span></li>
+</ul>
+<p>The <em>value of the test statistic</em> that separates the region of acceptance from the region of rejection is called the <strong>critical value</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/region2.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Critical value of the test statistic</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="one-tailed-and-two-tailed-tests" class="level2" data-number="12.7">
+<h2 data-number="12.7" class="anchored" data-anchor-id="one-tailed-and-two-tailed-tests"><span class="header-section-number">12.7</span> One-tailed and two-tailed tests</h2>
+<p>The type of alternative hypothesis <span class="math inline">\(H_1\)</span> determines whether a test is one-tailed or two-tailed.</p>
+<section id="one-tailed-tests" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="one-tailed-tests">One-tailed tests</h3>
+<p>Consider Problem 1 in <span class="citation" data-cites="state">(<a href="references.html#ref-state" role="doc-biblioref"><strong>state?</strong></a>)</span>, where the alternative hypothesis is:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &lt; 8</p>
+<p>Here, we reject <span class="math inline">\(H_0\)</span> if the test statistic falls towards the <strong>left</strong> side of the sampling distribution. This is called a <strong>left-tailed test</strong>.</p>
+<p>If instead the alternative hypothesis were:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &gt; 8</p>
+<p>We would reject <span class="math inline">\(H_0\)</span> if the test statistic falls towards the <strong>right</strong> side. This is called a <strong>right-tailed test</strong>.</p>
+<p><strong>Left-tailed test</strong>: Critical region is on the left side of the sampling distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/left.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Left-tailed test: Critical region towards left side (shown is the Student t distribution for 20 degrees of freedom)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Right-tailed test</strong>: Critical region is on the right side of the sampling distribution.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/right.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Right-tailed test: Critical region towards right side (shown is the Student t distribution for 20 degrees of freedom)</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="two-tailed-test" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="two-tailed-test">Two-tailed test</h3>
+<p>Consider Problem 2 from <span class="citation" data-cites="state">(<a href="references.html#ref-state" role="doc-biblioref"><strong>state?</strong></a>)</span>, where the alternative hypothesis is:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0</p>
+<p>Or consider another example:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 8</p>
+<p>In both cases, the critical region lies on <strong>both sides</strong> of the sampling distribution. Each tail has an area of <span class="math inline">\(\alpha/2\)</span>, giving a total critical area of <span class="math inline">\(\alpha\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/twotailed.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Two-tailed test: Critical region on both sides</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="decision-rule" class="level2" data-number="12.8">
+<h2 data-number="12.8" class="anchored" data-anchor-id="decision-rule"><span class="header-section-number">12.8</span> Decision Rule</h2>
+<blockquote class="blockquote">
+<p><strong>After calculating the test statistic from the sample, how do we decide whether to reject the null hypothesis?</strong></p>
+</blockquote>
+<p>The <strong>decision rule</strong> specifies whether the null hypothesis (<span class="math inline">\(H_0\)</span>) should be rejected based on the calculated value of the test statistic. It depends on the <strong>level of significance</strong> (()) selected by the researcher and the <strong>alternative hypothesis</strong> (<span class="math inline">\(H_1\)</span>), which determines whether the test is right-tailed, left-tailed, or two-tailed.</p>
+<p>The chosen significance level (()) determines the <strong>critical value(s)</strong> that divide the sampling distribution into the <strong>rejection region</strong> and the <strong>non-rejection region</strong>. After computing the test statistic, it is compared with the critical value(s) to make a decision.</p>
+<p>The decision rules are:</p>
+<ul>
+<li><strong>Right-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>greater than</strong> the critical value.</li>
+<li><strong>Left-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>less than</strong> the critical value.</li>
+<li><strong>Two-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>less than the lower critical value</strong> or <strong>greater than the upper critical value</strong>.</li>
+</ul>
+<p>If the calculated test statistic does not fall in the rejection region, we <strong>do not reject (<span class="math inline">\(H_0\)</span>)</strong>. This does not prove that <span class="math inline">\(H_0\)</span> is true; it simply indicates that the sample does not provide sufficient evidence to reject it at the chosen level of significance.</p>
+<p>A well-designed statistical test has <strong>high power</strong> ((1-)), meaning it has a high probability of correctly rejecting a false null hypothesis while controlling the probability of a <strong>Type I error</strong> at the chosen significance level (()).</p>
+</section>
+<section id="a-worked-example" class="level2" data-number="12.9">
+<h2 data-number="12.9" class="anchored" data-anchor-id="a-worked-example"><span class="header-section-number">12.9</span> A worked example</h2>
+<p>Returning to the coin-tossing experiment from <span class="citation" data-cites="hypo">(<a href="references.html#ref-hypo" role="doc-biblioref"><strong>hypo?</strong></a>)</span>. Let <span class="math inline">\(X\)</span> be the number of heads in 10 tosses. Under the null hypothesis (<span class="math inline">\(p\)</span> = 0.5), <span class="math inline">\(X\)</span> follows a binomial distribution with <span class="math inline">\(n\)</span> = 10 and <span class="math inline">\(p\)</span> = 0.5.</p>
+<p>The binomial probability formula is:</p>
+<p><span class="math display">\[p(X = x) = \binom{n}{x} p^x q^{n-x} = \frac{n!}{(n-x)!\, x!} \, p^x q^{n-x}\]</span></p>
+<p>The probability distribution of <span class="math inline">\(X\)</span> under <span class="math inline">\(H_0\)</span> is given in <a href="#tbl-bindist" class="quarto-xref">Table&nbsp;<span>12.3</span></a>. This table gives the probabilities of <span class="math inline">\(X\)</span> when the <span class="math inline">\(H_0\)</span> is true.</p>
+<div id="tbl-bindist" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bindist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;12.3: Probability distribution of X (number of heads) under <span class="math inline">\(H_0\)</span>
+</figcaption>
+<div aria-describedby="tbl-bindist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(X\)</span></th>
+<th style="text-align: left;"><span class="math inline">\(p(x)\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">0.001</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">0.044</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">0.117</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">0.205</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">0.246</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">0.205</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">7</td>
+<td style="text-align: left;">0.117</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">8</td>
+<td style="text-align: left;">0.044</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">9</td>
+<td style="text-align: left;">0.010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">10</td>
+<td style="text-align: left;">0.001</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hypoplot.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Sampling distribution of test statistic X</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>For a two-tailed test at <span class="math inline">\(\alpha\)</span> = 0.05, each tail should have an area of <span class="math inline">\(\alpha/2\)</span> = 0.025. From <a href="#tbl-bindist" class="quarto-xref">Table&nbsp;<span>12.3</span></a>:</p>
+<ul>
+<li><span class="math inline">\(P(X \leq 1)\)</span> = 0.001 + 0.010 = 0.011</li>
+<li><span class="math inline">\(P(X \leq 2)\)</span> = 0.011 + 0.044 = 0.055</li>
+</ul>
+<p>The left critical value is approximately <span class="math inline">\(X\)</span> = 2, and by symmetry the right critical value is <span class="math inline">\(X\)</span> = 8. This means: if the number of heads is <strong>less than 2 or more than 8</strong>, reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/hypoplot2.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>Probability distribution of X with critical region</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>In our experiment, we obtained 8 heads. Since 8 equals - but does not exceed - the critical value, we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05. We do not have sufficient evidence to conclude the coin is biased.</p>
+<p>Commonly used test statistics are <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(Z\)</span>, and <span class="math inline">\(\chi^2\)</span> (chi-square). Critical values of these statistics are available in standard statistical tables and will be used in later chapters.</p>
+</section>
+<section id="confidence-interval" class="level2" data-number="12.10">
+<h2 data-number="12.10" class="anchored" data-anchor-id="confidence-interval"><span class="header-section-number">12.10</span> Confidence Interval</h2>
+<p>A <strong>confidence interval (CI)</strong> is a range of values that is likely to contain the true value of a population parameter. The confidence level of the interval is <strong>100(1 - ())%</strong>, where () is the level of significance.</p>
+<p>For example:</p>
+<ul>
+<li>If (= 0.05), the confidence level is <strong>95%</strong>.</li>
+<li>If (= 0.01), the confidence level is <strong>99%</strong>.</li>
+</ul>
+<p>A <strong>95% confidence interval</strong> means that if the same study were repeated many times and a confidence interval were calculated from each sample, <strong>about 95% of those intervals would contain the true population parameter</strong>. Similarly, a <strong>99% confidence interval</strong> would contain the true parameter in about <strong>99% of repeated studies</strong>.</p>
+<blockquote class="blockquote">
+<p><strong>Note:</strong> A common misconception is that “if an experiment is repeated 100 times, the same conclusion will be obtained exactly 95 times.” This is <strong>not</strong> the correct interpretation. The confidence level refers to the proportion of confidence intervals that would contain the true population parameter when the study is repeated many times.</p>
+</blockquote>
+<p>In simple terms, a <strong>95% confidence interval</strong> is a range of plausible values for the true population parameter based on the sample data.</p>
+</section>
+<section id="p-value" class="level2" data-number="12.11">
+<h2 data-number="12.11" class="anchored" data-anchor-id="p-value"><span class="header-section-number">12.11</span> p-value</h2>
+<p>Traditionally, hypothesis testing involved comparing the calculated test statistic with a critical value obtained from statistical tables. If the test statistic exceeded the critical value (or fell beyond it in the rejection region), the null hypothesis was rejected.</p>
+<p>Today, statistical softwares automatically calculates the <strong>p-value</strong> along with the test statistic. As a result, researchers rarely use printed statistical tables to make decisions. Instead, they compare the <strong>p-value</strong> directly with the chosen level of significance (()).</p>
+<p>The p-value provides a more informative and convenient approach because it indicates the <strong>smallest level of significance at which the null hypothesis would be rejected</strong>. Therefore, modern statistical analysis is primarily based on the p-value rather than on critical values.</p>
+<p>The <strong>p-value</strong> is the probability of obtaining a test statistic <strong>as extreme as or more extreme than</strong> the one observed in the sample, <strong>assuming that the null hypothesis is true</strong>.</p>
+<p>A <strong>small p-value</strong> indicates that the observed result is unlikely to have occurred by random chance alone if the null hypothesis is true. Therefore, it provides <strong>strong evidence against the null hypothesis</strong>. On the other hand, a <strong>large p-value</strong> indicates that the observed result is reasonably consistent with the null hypothesis, and there is not enough evidence to reject it.</p>
+<p>The decision rule based on the p-value is simple:</p>
+<ul>
+<li>If <strong>p-value ()</strong>, reject the null hypothesis (<span class="math inline">\(H_0\)</span>).</li>
+<li>If <strong>p-value (&gt; )</strong>, do not reject the null hypothesis (<span class="math inline">\(H_0\)</span>).</li>
+</ul>
+<p>Thus, the p-value helps us decide whether the sample provides sufficient evidence to reject the null hypothesis at the chosen level of significance.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pvalue.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<figcaption>p-value in a right-tailed test. The shaded region represents the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="steps-in-hypothesis-testing" class="level2" data-number="12.12">
+<h2 data-number="12.12" class="anchored" data-anchor-id="steps-in-hypothesis-testing"><span class="header-section-number">12.12</span> Steps in hypothesis testing</h2>
+<p>The following eight steps summarize the process of hypothesis testing.</p>
+<p><strong>Step 1</strong>: State the null hypothesis (<span class="math inline">\(H_0\)</span>).</p>
+<p><strong>Step 2</strong>: State the alternative hypothesis (<span class="math inline">\(H_1\)</span>).</p>
+<p><strong>Step 3</strong>: Set the level of significance (<span class="math inline">\(\alpha\)</span>).</p>
+<p><strong>Step 4</strong>: Collect data from the experiment or other scientific methods.</p>
+<p><strong>Step 5</strong>: Calculate the test statistic.</p>
+<p><strong>Step 6</strong>: Identify the critical value (or critical region) for the specified <span class="math inline">\(\alpha\)</span>.</p>
+<p><strong>Step 7</strong>: Compare the calculated test statistic with the critical value.</p>
+<p><strong>Step 8</strong>: If the calculated value falls in the critical region, reject <span class="math inline">\(H_0\)</span> with 100(1 - <span class="math inline">\(\alpha\)</span>)% confidence. Otherwise, state that there is insufficient evidence to reject <span class="math inline">\(H_0\)</span>.</p>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>The Lady, the Tea, and the Birth of Hypothesis Testing</strong></p>
+<p>It was an otherwise unremarkable summer afternoon at an agricultural research station in Cambridge, England, in the 1920s. A group of colleagues sat down for tea. When statistician Ronald Fisher poured a cup and offered it to his colleague Dr.&nbsp;Muriel Bristol, she politely declined. She preferred tea into which the milk had been added first, she explained - and she could tell the difference just by tasting.</p>
+<p>Fisher was sceptical. “Nonsense,” he reportedly said. “Surely it makes no difference.” But Bristol was adamant. A third colleague, William Roach, suggested they settle the matter with an experiment.</p>
+<p>Fisher prepared eight cups of tea - four with milk added first, four with tea added first - and presented them to Dr.&nbsp;Bristol in a random order. She was told that four cups had been prepared each way, and her task was to identify them. She correctly identified all eight.</p>
+<p>Fisher used this experiment in his landmark 1935 book <em>The Design of Experiments</em> to introduce the concept of the null hypothesis and significance testing. The null hypothesis was that Dr.&nbsp;Bristol had no ability to tell the difference and was merely guessing. Fisher showed that the probability of correctly identifying all eight cups by chance alone was only 1 in 70, or about 1.4% - well below any reasonable threshold of significance. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span></p>
+<p>This charming episode gave the world a framework that now underlies every clinical trial, every agricultural experiment, and every scientific study that draws a conclusion from data. The next time you test a hypothesis in your research, you are following in the footsteps of a tea party in Cambridge.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of.” - Sir Ronald A. Fisher</strong></p>
+</div>
+</div>
+
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Fisher1925" class="csl-entry" role="listitem">
+Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver; Boyd.
+</div>
+<div id="ref-Fisher1935" class="csl-entry" role="listitem">
+———. 1935. <em>The Design of Experiments</em>. Edinburgh: Oliver; Boyd.
+</div>
+<div id="ref-NeymanPearson1933" class="csl-entry" role="listitem">
+Neyman, Jerzy, and Egon S. Pearson. 1933. <span>“On the Problem of the Most Efficient Tests of Statistical Hypotheses.”</span> <em>Philosophical Transactions of the Royal Society of London, Series A</em> 231: 289–337. <a href="https://doi.org/10.1098/rsta.1933.0009">https://doi.org/10.1098/rsta.1933.0009</a>.
+</div>
+<div id="ref-Popper1959" class="csl-entry" role="listitem">
+Popper, Karl R. 1959. <em>The Logic of Scientific Discovery</em>. London: Routledge.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/cleaning-data-r\.ala\.org\.au\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./probabilitydist.html" class="pagination-link" aria-label="Probability distributions">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability distributions</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
