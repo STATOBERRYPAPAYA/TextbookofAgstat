@@ -1,0 +1,200 @@
+# MISSING PLOT ANALYSIS
+
+In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.
+
+The Analysis of such data may be done by different methods.
+
+(i) the most commonly used method currently adopted is known as ‘method of analysis of non – orthogonal data’ which is highly computer based
+
+(ii) Method of substitution by Yates based on minimization of the error sum of squares and
+
+(iii) Analysis of the data with missing values by the technique of Analysis of Covariance by Bartlett’s.
+
+## Covariance Method by Bartlett’s
+
+Assume an imaginary covariate X taking values zero for every plot except the missing plot for which it will take the value 1 (or –1) . Now the value of the main variate Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.
+
+In missing plot analysis the degrees of freedom for error and total will be based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one ( when there is one missing value).
+
+## Method of Substitution
+
+(i) In this method we will calculate with the aid of a formula an estimate of the missing value. The formula will vary from design to design and actually it will not supply the exact missing value. But the procedure permits the researcher to complete the analysis without resorting to more complex procedures.
+
+(ii) Insert the estimated value in the missing position and workout the estimates of treatment means and mean error sum of squares.
+
+(iii) Some additional adjustments to treatment sum of squares are needed. In pair comparison also some changes are made.
+
+(iv) An iterative procedure is adopted when more than one observation is missing.
+
+### Randomised Block Design with a single missing value
+
+(i) The missing value in RBD is estimated as $$x=\frac{rB+vT-G}{(r-1)(v-1)}$$ {#eq-msRBD} where,\
+    x = estimate of the missing data;\
+    v = number of treatments;\
+    r = number of replications;\
+    B =Total of the observed values of the replication that contain the missing data\
+    T = Total of the observed values of the treatment that contain the missing data\
+    G = Grand total of all existing observations.
+
+(ii) This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom. This method provides a proper estimate of the error variance per plot but there is an inflation in treatment sum of squares; ( the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turns out to be just significant it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula.
+
+(iii) Estimate of Bias in the case of RBD: $$Bias=\frac{(B+vT-G)^2}{v(v-1)(r-1)^2}$$ {#eq-biasRBD}
+
+This bias is subtracted from the treatment sum of squares. Now test this actual treatment mean square against the Mean Square for error: and make the conclusion about the significance of treatments.
+
+(iv) Pair comparison
+
+<!-- -->
+
+(a) For comparing two treatment means in which one of them contain a missing observation $$CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} +  \frac{v}{r(r - 1)(v-1)}\right)}$$ {#eq-CDmsRBD}
+
+(b) For comparing other pairs of treatment means: (in which none of them contain any missing observation )
+
+$$CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$$
+
+\[$t_{\alpha}$ denote the t table value at (r-1)(v-1)-1 degrees of freedom\].
+
+**Example 22.1**: Data of a RBD with 5 source of surplus (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the future weight are represented below. Somehow one sample was spoiled due to negligence of analysis. Find the missing value and do further analysis.
+
+| Treatment |       | Blocks |       |       |
+|:---------:|:-----:|:------:|:-----:|:-----:|
+|           |   1   |   2    |   3   |   4   |
+|   $S_0$   | 0.679 | 0.852  | 0.513 | 0.507 |
+|   $S_1$   | 0.952 | 1.002  |  $x$  | 0.621 |
+|   $S_2$   | 0.899 | 0.919  | 0.718 | 0.679 |
+|   $S_3$   | 0.986 |  0949  | 0.845 | 0.780 |
+|   $S_4$   | 0.911 | 0.922  | 0.668 | 0.746 |
+
+**Solution 22.1**
+
+| Treatment |       | Blocks |             |       |             |
+|:---------:|:-----:|:------:|:-----------:|:-----:|:-----------:|
+|           |   1   |   2    |      3      |   4   |   $Total$   |
+|   $S_0$   | 0.679 | 0.852  |    0.513    | 0.507 |    2.551    |
+|   $S_1$   | 0.952 | 1.002  |     $x$     | 0.621 | 2.575 + $x$ |
+|   $S_2$   | 0.899 | 0.919  |    0.718    | 0.679 |    3.215    |
+|   $S_3$   | 0.986 |  0949  |    0.845    | 0.780 |    3.56     |
+|   $S_4$   | 0.911 | 0.922  |    0.668    | 0.746 |    3.247    |
+|  $Total$  | 4.427 | 4.644  | 2.744 + $x$ | 3.333 |             |
+
+Here, $r=4$, $v=5$
+
+Using @eq-msRBD
+
+$$x=\frac{10.976+12.875-15.148}{4\times3}=0.725$$
+
+$CF=\frac{(15.873)^2}{20}=12.597$
+
+$Total SS=13.036-CF=13.036-12.597=0.439$
+
+$Treatment SS=\frac{50.95}{4}-12.597=0.1406$
+
+$Block SS=\frac{64.307}{5}-12.597=0.264$
+
+Using @eq-biasRBD
+
+$$Bias=\frac{(2.744+12.875-15.148)^2}{5\times4\times9}=0.00123$$
+
+$Treatment Adj. SS = 0.1406-0.00123 = 0.139$
+
+$Total Adj. SS = 0.439-0.00123 = 0.437$
+
+| Source         | df  | S.S   | M. S.S | $F_{cal}$ | $F_{tab}$ |
+|----------------|-----|-------|--------|-----------|-----------|
+| Block          | 3   | 0.264 | 0.088  | 29.33     | 3.59      |
+| Treatment Adj. | 4   | 0.139 | 0.034  | 11.003    | 3.36      |
+| Error Adj.     | 11  | 0.034 | 0.003  |           |           |
+| Total Adj.     | 18  | 0.437 |        |           |           |
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+CD for missing data using @eq-CDmsRBD
+
+$CD=2.201\times\sqrt{\frac{0.003}{4}[2+\frac{5}{12}]}=0.095$
+
+CD for other data is
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.201\times\sqrt{\frac{2\times0.003}{4}}=0.086$
+
+Here, the mean of $S_3$ is maximum, which was found to be on par with mean of $S_1$ and $S_4$. Also $S_1$ was on par with $S_4$ and $S_2$. Mean of $S_0$ is minimum.
+
+### Latin Square Design with a single missing value
+
+The same procedure as in RBD is used here also.
+
+(i) The missing value in RBD is estimated as $$x=\frac{v(R+C+T)-2G}{(v-1)(v-2)}$$ {#eq-msLSD} where\
+    x = estimate of the missing data\
+    v = number of treatments/ rows or blocks/ columns\
+    R = Total of the observed values of the row that contain the missing data\
+    C = Total of the observed values of the column that contain the missing data\
+    T = Total of the observed values of the treatment that contain the missing data\
+    G = Grand total of all existing observations.
+
+(ii) Carry out the analysis similar to the above method after substitution. The estimate of Bias in this case is $$Bias=\frac{[(v-1)T+R+C-G]^2}{[(v-1)(v-2)]^2}$$ {#eq-biasLSD}
+
+(iii) For pair wise comparison involving a treatment with a missing observation- ( comparing two treatment means in which one of them contain a missing observation ) $$CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} +  \frac{1}{(v-1)(v-2)}\right)}$$ {#eq-CDmsLSD}
+
+**Example 22.2**: The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.
+
+|        |        |        |         |        |
+|:------:|:------:|:------:|:-------:|:------:|
+| E (26) | C (42) | D (39) | B (37)  | A (24) |
+| A (24) | D (33) | E (21) | C ($x$) | B (38) |
+| D (47) | B (45) | A (31) | E (29)  | C (31) |
+| B (38) | A (24) | C (36) | D (41)  | E (34) |
+| C (41) | E (24) | B (44) | A (26)  | D (30) |
+
+**Solution 22.2**
+
+Here, $v=5$
+
+|         |         |         |             |         |             |
+|:-------:|:-------:|:-------:|:-----------:|:-------:|:-----------:|
+| E (26)  | C (42)  | D (39)  |   B (37)    | A (24)  |   **168**   |
+| A (24)  | D (33)  | E (21)  |   C ($x$)   | B (38)  | **116+**$x$ |
+| D (47)  | B (45)  | A (31)  |   E (29)    | C (31)  |   **183**   |
+| B (38)  | A (24)  | C (36)  |   D (41)    | E (34)  |   **173**   |
+| C (41)  | E (24)  | B (44)  |   A (26)    | D (30)  |   **165**   |
+| **176** | **168** | **171** | **133+**$x$ | **157** |             |
+
+Using @eq-msLSD
+
+$$x=\frac{[5(116+133+150)-(2\times 805)]}{4\times3}=32.083\approx 32$$
+
+$CF=\frac{(837)^2}{25}=28022.76$
+
+$Total SS=29399-CF=29399-28022.76=1376.24$
+
+$Treatment SS=\frac{129^2+202^2+182^2+190^2+134^2}{5}-28022.76=902.24$
+
+$Row SS=\frac{168^2+148^2+183^2+173^2+165^2}{5}-28022.76=131.44$
+
+$Column SS=\frac{176^2+168^2+171^2+165^2+157^2}{5}-28022.76=40.24$
+
+Using @eq-biasLSD
+
+$$Bias=\frac{[(4\times150)+133+116-805]^2}{(4\times3)^2}=13.44$$
+
+$Treatment Adj. SS=902.24-13.44=888.8$
+
+$Total Adj. SS=1376.24-13.44=1362.8$
+
+|     Source     | df  |   SS   |  MSS  | $F_{cal}$ | $F_{tab}$ |
+|:--------------:|:---:|:------:|:-----:|:---------:|:---------:|
+|      Row       |  4  | 131.44 | 32.86 |   1.19    |   3.36    |
+|     Column     |  4  | 40.24  | 10.06 |   0.36    |   3.36    |
+| Treatment Adj. |  4  | 888.8  | 222.2 |   8.08    |   3.36    |
+|   Error Adj.   | 11  | 302.32 | 27.48 |           |           |
+|   Total Adj.   | 23  | 1362.8 |       |           |           |
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+CD for missing data using @eq-CDmsLSD
+
+$CD=2.201\times\sqrt{27.48(\frac{2}{5}+\frac{1}{4\times3})}=8.021$
+
+CD for other data is
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297$
+
+Here, the mean of B is maximum, which was found to be on par with mean of D and C. Mean of A is minimum which is on par with E.

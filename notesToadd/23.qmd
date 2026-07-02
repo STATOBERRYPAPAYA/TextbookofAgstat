@@ -1,0 +1,433 @@
+# Factorial Experiments
+
+Factorial experiments are designed to investigate the effects of two or more factors, or input parameters, on the output response of a process. Factorial experiment design, often referred to simply as factorial design, is a systematic approach that outlines the steps necessary to implement such experiments effectively. A key objective of this methodology is to estimate the effects of various factors on the output of a process while minimizing the number of observations required, thereby optimizing the process outcome efficiently.
+
+In factorial experiments, the effects of varying the levels of different factors influencing the process output are systematically studied. Each complete trial or replication of the experiment considers all possible combinations of the levels of these factors. An effective factorial design ensures that the maximum amount of information about the influence of input variables on the output is obtained with the minimum number of experimental runs.
+
+For example, a factorial experiment in a study on the rooting of cuttings might involve two factors, each at two levels, such as two types of hormones applied at two different doses. This setup is known as a 2×22 \\times 2 or 222\^2 factorial experiment. The treatments in such an experiment would include four possible combinations, corresponding to all the level permutations of the two factors.
+
+The total number of treatments in a factorial experiment is determined by the product of the number of levels for each factor. For instance, in a (2\^2) factorial design, the number of treatments is (2 \times 2 = 4). Similarly, for a (2\^3) factorial design, the treatments total (2 \times 2 \times 2 = 8). As the number of factors or their levels increases, the total number of treatments grows exponentially. For example, a factorial experiment involving five clones, four espacements, and three weed-control methods would require (5 \times 4 \times 3 = 60) treatments.
+
+The rapid increase in the number of treatments with added factors or levels underscores the need for cautious use of factorial experiments due to their size, complexity, and associated costs. Undertaking overly large experiments without preliminary investigation may lead to challenges in financing, securing adequate experimental areas, and controlling factors like soil heterogeneity.
+
+A tree breeder, for instance, may collect 30 clones from a neighboring country to study their adaptability to the local environment, which is variable in soil fertility, moisture levels, and other factors. Ideally, such an experiment could involve a factorial design, combining these 30 clones with factors like fertilizer, moisture levels, or population density. However, including just one additional factor, such as nitrogen with three levels, would inflate the treatments to (30 \times 3 = 90), leading to significant practical difficulties in execution.
+
+A more efficient approach would involve initial single-factor experiments to screen the clones. This preliminary study might identify a subset of five promising clones. These selected clones could then be tested in a factorial design with three nitrogen levels, reducing the number of treatments to (5 \times 3 = 15) rather than the original 90. This strategy not only simplifies experimentation but also optimizes resource allocation while maintaining robust insights for subsequent detailed studies.
+
+The change produced in the process output for a change in the "level" of a given factor is referred to as the **main effect** of that factor. Table 1 provides an example of a simple factorial experiment involving two factors, each with two levels. These levels are commonly denoted as "low" and "high," symbolized by "-" and "+" in factorial designs, respectively.
+
+Table 1: A Simple 2-Factorial Experiment
+
+|       | A (-) | A (+) |
+|-------|-------|-------|
+| B (-) | 20    | 40    |
+| B (+) | 30    | 52    |
+
+The main effect of a factor is essentially the **average change** in the output response as that factor transitions from "-" to "+". This is calculated as the average of two values: 1. The change in output when the factor goes from low to high level while the other factor remains low. 2. The change in output when the factor goes from low to high level while the other factor remains high.
+
+For the example in Table 1: - The output is 20 (minimum) when both A and B are at their "-" levels. - The output is 52 (maximum) when both A and B are at their "+" levels.
+
+The **main effect of A** is calculated as follows: - When B remains "-", the change in output as A transitions from "-" to "+" is (40 - 20 = 20). - When B remains "+", the change in output as A transitions from "-" to "+" is (52 - 30 = 22).
+
+Thus, the main effect of A is the average of these changes:\
+\[ \text{Main effect of A} = \frac{20 + 22}{2} = 21 \]
+
+Similarly, the **main effect of B** is calculated as: - When A remains "-", the change in output as B transitions from "-" to "+" is (30 - 20 = 10). - When A remains "+", the change in output as B transitions from "-" to "+" is (52 - 40 = 12).
+
+Thus, the main effect of B is:\
+\[ \text{Main effect of B} = \frac{10 + 12}{2} = 11 \]
+
+In this example, factor A has a greater influence on the process output, with a main effect of 21 compared to factor B's main effect of 11.
+
+Aside from main effects, factors can also exhibit **interaction effects**. Interaction effects occur when two or more factors interact, causing changes in the process output. These effects become significant when the influence of one factor depends on the levels of another. In Table 1, since the effects of A (B) vary across the levels of B (A), factors A and B are interacting.
+
+Interaction is defined as the failure of the differences in response to changes in the levels of one factor to retain the same order or magnitude across all levels of another factor. Alternatively, factors are said to interact if the effect of one factor changes as the levels of another factor are altered.
+
+Graphical representation can illustrate interaction. If two factors are non-interacting, their effects will result in parallel lines on a graph. Conversely, interaction effects will manifest as non-parallel lines.
+
+If interactions exist, as they often do, experiments must be designed to estimate and test these effects. Varying only one factor at a time will not suffice. Instead, **multilevel, multifactor experiments** are necessary.
+
+Factorial experiments involve running factorial combinations and interpreting the mathematical output responses of these combinations. This allows researchers to identify which factors most significantly affect the process and make improvements or corrections accordingly.
+
+Factorial experiments are defined as experiments in which the effects (main effects and interactions) of more than one factor are studied together. If there are (n) factors (F~1~, F~2~, ... , F~n~), where the (i^th^) factor has (s~i~) levels, the total number of treatment combinations is given by $\prod_{i=1}^{n} s_i$.
+
+Factorial experiments can be classified into two types:
+
+1.  **Symmetrical factorial experiments**: All factors have the same number of levels *i.e.* s~i~ are equal.
+
+2.  **Asymmetrical factorial experiments**: At least two factors have different numbers of levels. It is also known as mixed factorials.
+
+::: {.callout-important title="Note"}
+The term complete factorial is used when the treatments include all combinations of all the selected levels of the factors used. Incomplete or fractional factorials are used when only a part of all the combinations are tested.
+:::
+
+Factorial experiments not only provide insights into individual factor effects but also their interactions. They offer the additional advantage of economizing on experimental resources. Compared to factor-by-factor experiments, factorial designs achieve the same level of precision with fewer resources.
+
+## Representation of the levels of the factors
+
+Factors are usually represented by lower case letters like a, b, c, n, p, k etc. and the levels by adding suffixes like n~0~, n~1~, n~2~ etc. For example a nitrogen fertilizer is applied at three doses say 40, 60 and 80 kg/ha then these levels are denoted by n~0~, n~1~ and n~2~ . An irrigation treatment of two levels applied (Without and with irrigation) can be represented as i~0~ and i~1~ . The treatment ‘application of 60 kg Nitrogen per ha with irrigation’ will be represented by the combination ( taking corresponding levels from each of the factor as n~1~ i~1~). Thus for the above experiment involving application of three doses of nitrogen under the irrigated and non irrigated condition will make up 6 treatment combinations namely n~0~i~0~, n~1~i~0~, n~2~i~0~, n~0~i~1~, n~1~i~1~, n~2~i~1~.
+
+## Main effects and interactions
+
+When the response of a factor of interest is expected to differ under different levels of the other factors, then we have to go for factorial experiments. The interaction effect can be measured only when the factors are tested simultaneously in the same experiment.
+
+Thus for the above six combinations, the effect of irrigation at a lower level is the sum of the combinations *i.e.* n~0~i~0~ + n~1~i~0~ + n~2~i~0~ = denoted as (*I*)~o~ and at the higher level of irrigation = n~0~i~1~ + n~1~i~1~ + n~2~i~1~ = (*I*)~1~
+
+The difference between the sums (*I*)~0~ and (*I*)~1~ give a comparison between the response from the two levels of irrigation.
+
+Similarly the comparison among the totals (*N*)~0~ = (n~0~i~0~+ n~0~i~1~), (*N*)~1~ = (n~1~ i~0~ + n~1~ i~1~), and (*N*)~2~ = (n~2~i~o~+ n~2~i~1~) represent the main effect of nitrogen. (For these three totals representing three levels of N will give rise to 2 independent comparisons *i.e.* two degrees of freedom for nitrogen; and the two levels of irrigation will give rise to one degree of freedom for irrigation.
+
+::: {.callout-important title="Note"}
+Thus the main effect of a factor represents the average change in response when the level of that factor is increased from a lower to a higher level.
+:::
+
+To study interaction we have to find the effect of one factor in the presence of another: say effect of irrigation under different levels of nitrogen: at n~0~ level: (n~0~i~1~ - n~0~i~0~) at n~1~ level: (n~1~i~1~ - n~1~i~0~) at n~2~ level : (n~2~i~1~ - n~2~i~0~)
+
+Comparison among these quantities indicate equality (or inequality) of the effects of irrigation at different levels of n. This sort of comparisons indicates whether the factors act independently or they interact to influence the yield of the experimental unit on which they appear simultaneously. Effects representing such comparisons (n~0~i~1~ - n~0~i~0~) - (n~1~i~1~- n~1~i~0~) are called interaction effects. Here we can write two such independent comparisons among the combinations of two factors N and *I* taken at 3 and 2 levels respectively, to get (3–1)×(2–1) = 2 degree of freedom for the interaction *N × I* or *NI*.
+
+**Interaction of two factors the failure of the levels of one factor to retain the order and magnitude of performance (within random sampling errors) throughout all levels of the second factor.**
+
+(Differences like: (n~0~i~1~ - n~0~i~0~) are called as simple effects of a factor (say irrigation in this case)
+
+## Factorial experiements 2^n^ series
+
+When we take all possible combinations of n factors each at two levels each, this will make up a 2^n^ factorial experiment. The two levels of a factor are usually denoted by suffixes 0 and 1 attached to the factors represented by small letters. The simplest 2^n^ factorial is obtained when n = 2. *i.e.* (2^2^ factorial experiment). If the two factors are A and B each at two levels we get a 2^2^ factorial experiment with four treatment combinations represented as
+
+$$a_0b_0, a_0b_1, a_1b_0, a_1b_1$$
+
+If these four treatment combinations are allocated ( at random) to a single block of a Randomised block design, and if there are r such blocks we get a 2^2^ factorial experiment in a Randomised block design.
+
+### Analysis of 2^2^ factorial experiments
+
+Let the two factors are A and B each at two levels .Then the four treatment combinations represented as $$a_0b_0, a_0b_1, a_1b_0, a_1b_1$$ Then the two main effects of A and B and interaction A×B can be worked out by making use of the following relations Work out the total responses of the treatment combinations $(A)_{i=0} = a_0b_0 + a_0b_1$
+
+$(A)_{i=1} = a_1b_0 + a_1b_1$
+
+Then main effect of $A = 1/2r [(A)_{i=1}-(A)_{i=0}]$
+
+Sum of squares due to $A = (\frac{(A)_{i=0}^2}{2r}+\frac{(A)_{i=1}^2}{2r})-C.F=1/4r[(A)_{i=1}-(A)_{i=0}]^2$
+
+Similarly, $(B)_{j=0} = a_0b_0 + a_1b_0$
+
+$(B)_{j=1} = a_0b_1 + a_1b_1$
+
+Then main effect of $B = 1/2r [(B)_{j=1}-(B)_{j=0}]$
+
+Sum of squares due to $B = (\frac{(B)_{j=0}^2}{2r}+\frac{(B)_{j=1}^2}{2r})-C.F=1/4r[(B)_{j=1}-(B)_{j=0}]^2$
+
+For interaction A×B find,
+
+$(AB)_{i+j=0} = a_0b_0 + a_1b_1$
+
+$(AB)_{i+j=1} = a_0b_1 + a_1b_0$
+
+(Here the sum of the suffixes are to be reduced modulo 2; *i.e.* 0 ≡ 2 ≡ 4 etc. and 1≡ 3≡ 5 and so on ) Then interaction effect of $A×B  =  1/2r [(AB)_{i+j=0}-(AB)_{i+j=1}]$
+
+Sum of squares due to $A\times B = 1/4r[(AB)_{i+j=0}-(AB)_{i+j=1}]^2$\
+(Obviously interaction A×B is same as interaction B ×A).
+
+Analysis is same as that of a Randomised block design except that the sum of squares due to treatments will be split into (2^n^–1) = (2^2^–1) = 3 components each having one degree of freedom; Each of these one degree of freedom will correspond to one main effect or interaction. Each of the corresponding mean square is compared against Mean error sum of squares.
+
+| Source         | df     |
+|----------------|--------|
+| Blocks         | r-1    |
+| Treatments (3) |        |
+| A              | 1      |
+| B              | 1      |
+| AxB            | 1      |
+| Error          | 3(r-1) |
+| Total          | 4r-1   |
+
+If the interaction turns out to be significant a two way table (factor A versus factor B)of treatment means are prepared and comparison can be made.\
+In that case Critical difference can be obtained as = $t_\alpha \times \sqrt{\frac{2MSE}{r}}$
+
+### Analysis of 2^3^ factorial experiments
+
+There will be three factors are A ,B and C each at two levels. Then the eight treatment combinations are represented as\
+$$a_0b_0c_0, a_0b_0c_1 , a_0b_1c_o , a_0b_1c_1 , a_1b_0c_o, a_1b_0c_1 , a_1b_1c_0 , a_1b_1c_1$$ If these eight combinations are allotted at random to a single block of a RBD and if there are r such blocks( replications); we get a 2^3^ factorial design in r blocks. Then there are three main effects A, B and C ; $(^3_2) = 3$, two factor interactions (A×B, A×C and B×C) and $(^3_3) = 1$, three factor interaction (A×B×C).\
+These can be worked out by making use of the following relations:\
+The total responses of the treatment combinations representing levels of the factors in the following way. (Sum of suffixes i, j etc. representing levels of the factors A, B etc. to be reduced modulo 2)
+
+$(A)_{i=0} = a_0b_0c_0 + a_0b_0c_1+ a_0b_1c_0 + a_0b_1c_1$
+
+$(A)_{i=1} = a_1b_0c_0+ a_1b_0c_1 + a_1b_1c_0 + a_1b_1c_1$
+
+The main effect of $A = 1/4r [(A)_{i=1}-(A)_{i=0}]$
+
+Sum of squares due to $A = 1/8r[(A)_{i=1}-(A)_{i=0}]^2$
+
+$(B)_{j=0} = a_0b_0c_0 + a_0b_0c_1+ a_1b_0c_0 + a_1b_0c_1$
+
+$(B)_{j=1} = a_0b_1c_0+ a_0b_1c_1 + a_1b_1c_0 + a_1b_1c_1$
+
+Then main effect of $B = 1/4r [(B)_{j=1}-(B)_{j=0}]$
+
+Sum of squares due to $B = 1/8r[(B)_{j=1}-(B)_{j=0}]^2$
+
+The main effect and Sum of squares due to factor C also can be found in a similar way.\
+The interactions also can be worked out by taking the treatment combinations satisfying the respective equations as shown below:\
+For Example for interaction B×C:\
+
+$(BC)_{j+k=0} = a_0b_0c_0 + a_1b_0c_0+ a_0b_1c_1 + a_1b_1c_1$
+
+$(BC)_{j+k=1} = a_0b_0c_1+ a_1b_0c_1 + a_0b_1c_0 + a_1b_1c_0$
+
+The interaction effect $B\times C  =  1/4r [(BC)_{j+k=0}-(BC)_{j+k=1}]$
+
+Sum of squares due to $B\times C = 1/8r[(BC)_{j+k=0}-(BC)_{j+k=1}]^2$
+
+For interaction A×B×C:\
+
+$(ABC)_{i+j+k=0} = a_0b_0c_0 + a_0b_1c_1+ a_1b_0c_1 + a_1b_1c_0$
+
+$(ABC)_{i+j+k=1} = a_0b_0c_1 + a_0b_1c_0+ a_1b_0c_0 + a_1b_1c_1$
+
+The interaction effect $A\times B\times C  =  1/4r [(ABC)_{i+j+k=1}-(ABC)_{i+j+k=0}]$
+
+Sum of squares due to $A\times B\times C = 1/8r[(ABC)_{i+j+k=1}-(ABC)_{i+j+k=0}]^2$\
+The other sum of squares can be obtained in a similar way.
+
+|     Source     |   df   |
+|:--------------:|:------:|
+|     Blocks     |  r-1   |
+| Treatments (7) |        |
+|       A        |   1    |
+|       B        |   1    |
+|       C        |   1    |
+|      AxB       |   1    |
+|      AxC       |   1    |
+|      BxC       |   1    |
+|     AxBxC      |   1    |
+|     Error      | 7(r-1) |
+|     Total      |  8r-1  |
+
+If the two factor interactions(A×B, A×C or B×C) turns out to be significant a two way table of treatment means of that two factors is prepared and comparison can be made.\
+In that case Critical difference can be obtained as = $t_\alpha \times \sqrt{\frac{2MSE}{r\times 2}}=t_\alpha \times \sqrt{\frac{MSE}{r}}$\
+When the three factor interaction A×B×C is significant a three way table of treatment means is prepared and comparison among the mean values can be made. The Critical difference in that case is $t_\alpha \times \sqrt{\frac{2MSE}{r}}$
+
+### Analysis of 2^4^ and higher factorial experiments
+
+For 2^4^ factorial there are 16 treatment combinations. If these 16 combinations are allotted to a single block of a RBD, and if there are r such blocks, we get designs for 2^4^ factorial experiment. The 15 degrees of freedom due to treatments is bifurcated to 15 components, namely 4 main effects, 6 two factor interactions, 4 three factor interactions and one four factor interaction. The sum of squares can be obtained by the above method or by one of methods discussed below.
+
+When the number of factors are more than 4 the RBD as such cannot be used for conducting the experiment since the number of treatment combinations become very large. There will be difficulty in getting homogeneous blocks accommodating large number of treatment combinations. Special techniques like fractional factorials, Confounding etc. are adopted in those circumstances. This will be discussed in later portion of this chapter.
+
+### Other methods for writing treatment combinations
+
+We have seen that for 2^3^ factorial experiment, the eight treatment combinations can be represented as
+
+$a_0b_0c_0, a_0b_0c_1 , a_0b_1c_0 , a_0b_1c_1 , a_1b_0c_0, a_1b_0c_1 , a_1b_1c_0 , a_1b_1c_1$
+
+There is another standard method of writing the treatment combinations in 2^n^ series experiments. The lower level of all the factors is represented by the symbol (1) and the higher level by the letter itself without any suffix. The combinations are now expressed as product of (1) and the corresponding letters. Thus the above 8 combinations can written as
+
+$(1), c, b, bc, a, ac, ab, abc$
+
+|   RUN    | Comb. |  M  |  A  |  B  | AB  |  C  | AC  | BC  | ABC |
+|:--------:|:-----:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|    1     | \(1\) | \+  | \-  | \-  | \+  | \-  | \+  | \+  | \-  |
+|    2     |   a   | \+  | \+  | \-  | \-  | \-  | \-  | \+  | \+  |
+|    3     |   b   | \+  | \-  | \+  | \-  | \-  | \+  | \-  | \+  |
+|    4     |  ab   | \+  | \+  | \+  | \+  | \-  | \-  | \-  | \-  |
+|    5     |   c   | \+  | \-  | \-  | \+  | \+  | \-  | \-  | \+  |
+|    6     |  ac   | \+  | \+  | \-  | \-  | \+  | \+  | \-  | \-  |
+|    7     |  bc   | \+  | \-  | \+  | \-  | \+  | \-  | \+  | \-  |
+| 8 = 2^3^ |  abc  | \+  | \+  | \+  | \+  | \+  | \+  | \+  | \+  |
+
+**Standard way of writing the treatment combinations by this method**\
+
+Large number of treatment combinations can be expressed very easily by this method. Write (1) first. Take the higher level of the first factor say a and multiply it by (1) to get the second combination a. Now take the second factor b and multiply it with the first two combinations to get two more combinations *i.e.* (1), a, b and ab. (Thus in the case of a 2^2^ factorial ab ≡ a~1~b~1~ while for a 2^3^ factorial ab ≡ a~1~b~1~c~0~).
+
+If there is a third factor say, c then multiply the first four combinations by c to get four more combinations to get a total of 8 combinations.\
+(1), a, b, ab, c, ac, bc, abc\
+If we have a 24 factorial then multiply the above 8 combinations by factor ‘d’ to get 8 more combinations.\
+(1), a, b, ab, c, ac, bc, abc, d, ad, bd, abd, cd, acd, bcd, abcd\
+This method can be continued to write any number of treatment combinations.
+
+#### Fisher’s algebraic method of computation of main effects and interactions
+
+By the above first notation we can express various effects and interactions in the following way:\
+For the 2^3^ factorial experiment we have seen that\
+$(A)_{i=0} = a_0b_0c_0 + a_0b_0c_1+ a_0b_1c_0 + a_0b_1c_1$
+
+$(A)_{i=1} = a_1b_0c_0+ a_1b_0c_1 + a_1b_1c_0 + a_1b_1c_1$
+
+The main effect of $A = 1/4r [(A)_{i=1}-(A)_{i=0}]$
+
+By the above notation main effect of $A= [a + ac + ab + ab c − (1) − c − b − bc] / 4r =[(a-1)(b+1)(c+1)] / 4r$
+
+Similarly we can obtain the interaction $A×B = [ (a–1)(b–1)(c+1)]/4r$\
+And interaction $A×B ×C  = [(a–1)(b–1)(c–1)]/4r$
+
+The method can be extended to any factorial of the 2^n^ series.
+
+(The above expression for A×B ×C can be expressed as $[(a1–a0)(b1–b0)(c1–c0) ]/4r$ so that the expansion will give treatment combinations in the original form like a~0~b~0~c~0~ etc.)
+
+#### Yate’s method of estimating sum of squares
+
+This is a tabular method of computing effects / interactions and sum of squares in 2^n^ series factorial experiments. We have to prepare a table of (n+2) columns by the following method.
+
+In the first column of the table enter the treatment combinations in the above standard order *i.e.* like (1) a, b, ab, c, ac, bc, abc etc. selecting the factors in a certain order. (The standard order must not be altered). In the second column of the table enter the sum of responses corresponding to these treatment combinations from r replications.
+
+Now we have to develop n more additional columns other than the first two by the following method. Group the entries of the second column into pairs starting from the top. The first half of the entries of the third column are the sum of these pairs; and the second half of the entries of the third column are the difference of the pairs of the previous column, difference being taken as: lower entry – upper entry.
+
+Example for 2^2^ factorial experiment
+
+| Treatment combination | Total of response from r replications | Process 1^st^ step | Process 2^nd^ step | Estimation of effects |
+|---------------|---------------|---------------|---------------|---------------|
+| \(1\) | Y~1~ | Y~1~+Y~2~ | Y~1~+Y~2~ + Y~3~+Y~4~ | $(\rightarrow)^2/4r$ = CF |
+| a | Y~2~ | Y~3~+Y~4~ | Y~2~-Y~1~ + Y~4~-Y~3~ | $(\rightarrow)^2/4r$ = SS for A |
+| b | Y~3~ | Y~2~-Y~1~ | Y~3~+Y~4~ - Y~1~-Y~2~ | $(\rightarrow)^2/4r$ = SS for B |
+| ab | Y~4~ | Y~4~-Y~3~ | Y~4~-Y~3~ - Y~2~+Y~1~ | $(\rightarrow)^2/4r$ = SS for AB |
+
+$\rightarrow$ denote value in the just previous cell
+
+Now continue grouping of the entries into pairs for the third column and repeat the process to develop the fourth column. The procedure must be continued to n columns other than the first two in the case of a 2^n^ factorial. When the process is completed, the first entry of the last column (the row starting with (1)) will be the grand total. The second entry will be the numerator of the estimate of main effect represented by first treatment combination, third will be numerator part of the estimate of the main effect of second factor, Fourth will be numerator part of the estimate of the interaction effect of first and second factors, and so on.
+
+Thus in general we can say that (i) The first entry of the last column after the Yate’s Process will give the grand total of the observations (ii) The other values of the last column divided by 2^(n-1)^r will give the respective effects and interactions (represented by the first column) (iii) Square of the entries of the last column divided by 2^n^r will give the respective sum of squares of the effects and interactions (represented by the first column).
+
+## Factorial experiements of 3^n^ series
+
+When we take all possible combinations of n factors each at three levels this will make up a 3^n^ factorial experiment. The three levels of a factor are usually denoted by suffixes 0 1, and 2 attached to the factors represented by small letters. The simplest 3^n^ factorial is obtained when n = 2. *i.e.* (3^2^ Factorial experiment). The two factors say A and B each at three levels give nine treatment combinations represented as
+
+$a_0b_0, a_0b_1, a_0b_2, a_1b_0, a_1b_1, a_1b_2, a_2b_0, a_2b_1, a_2b_2$
+
+If these nine treatment combinations are allocated (at random) to a single block of a Randomised block design and if there are r such blocks we get a 3^2^ factorial experiment in a Randomised block design.
+
+### Analysis of 3^2^ factorial experiments
+
+The two main effects A and B and interaction A×B can be worked out by making use of the following relations
+
+The total responses of the treatment combinations
+
+$(A)_{i=0} = a_0b_0 + a_0b_1 + a_0b_2$
+
+$(A)_{i=1} = a_1b_0 + a_1b_1 + a_1b_2$
+
+$(A)_{i=2} = a_2b_0 + a_2b_1 + a_2b_2$
+
+Then main effect of A is comparison among these three totals (or mean values) with two degree of freedom.
+
+Comparison of the type (A)~i=1~ − (A)~i=0~ involving two levels is called as a linear (A~L~)comparison and (A)~i=2~ +(A)~i=0~ − 2(A)~i=1~ will make a quadratic comparison(A~Q~).
+
+Sum of squares due to $A=\frac{(A)_{i=0}^2+(A)_{i=1}^2+(A)_{i=2}^2}{3r}-CF$
+
+Similarly, $(B)_{j=0} = a_0b_0 + a_1b_0 + a_2b_0$
+
+$(B)_{j=1} = a_0b_1 + a_1b_1 + a_2b_1$
+
+$(B)_{j=2} = a_0b_2 + a_1b_2 + a_2b_2$
+
+Sum of squares due to $B=\frac{(B)_{j=0}^2+(B)_{j=1}^2+(B)_{j=2}^2}{3r}-CF$
+
+| Treatments | \[1\] | \[a\] | \[a^2^\] | \[b\] | \[ab\] | \[a^2^ b\] | \[b^2^\] | \[ab^2^\] | \[a^2^b^2^\] | Divisor |
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|
+| M | +1 | +1 | +1 | +1 | +1 | +1 | +1 | +1 | +1 | 9r |
+| A~L~ | -1 | 0 | +1 | -1 | 0 | +1 | -1 | 0 | +1 | 6r |
+| A~Q~ | +1 | -2 | +1 | +1 | -2 | +1 | +1 | -2 | +1 | 18r |
+| B~L~ | -1 | -1 | -1 | 0 | 0 | 0 | +1 | +1 | +1 | 6r |
+| A~L~B~L~ | +1 | 0 | -1 | 0 | 0 | 0 | -1 | 0 | +1 | 4r |
+| A~Q~B~L~ | -1 | +2 | -1 | 0 | 0 | 0 | +1 | -2 | +1 | 12r |
+| B~Q~ | +1 | +1 | +1 | -2 | -2 | -2 | +1 | +1 | +1 | 18r |
+| A~L~B~Q~ | -1 | 0 | +1 | +2 | 0 | -2 | -1 | 0 | +1 | 12r |
+| A~Q~B~Q~ | +1 | -2 | +1 | -2 | +4 | -2 | +1 | -2 | +1 | 36r |
+
+The interaction A×B with four degrees of freedom can be estimated using four components viz. A~L~×B~L~; A~L~×B~Q~; A~Q~×B~L~ and A~Q~×B~Q~ (L for linear and Q for quadratic parts. But in general the component wise estimations of interactions were not made).
+
+The sum of square due to A×B interaction with four degrees of freedom can be worked out as follows:\
+Prepare a two way table of treatment totals of factors A and B over all replications. The Interaction sum of square can be obtained as = Total sum of squares due to this table –( Sum of squares due to Factor A+ Sum of squares due to factor B).
+
+| Source         | df     |
+|----------------|--------|
+| Blocks         | r-1    |
+| Treatments (8) |        |
+| A              | 2      |
+| B              | 2      |
+| AxB            | 4      |
+| Error          | 8(r-1) |
+| Total          | 9r-1   |
+
+If the main effects A or B turns out to be significant then the mean values over the levels of the factors are worked out and compared by using the critical difference
+
+$CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r\times 3}}$
+
+If the interaction(A×B) turns out to be significant a two way table of treatment means of that two factors is prepared and comparison can be made then the $CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$
+
+### Analysis of 3^3^ factorial experiments
+
+The 3×3×3 factorial contains 27 treatment combinations. For field studies, as such the 27 treatment combinations cannot be accommodated in a single block of a Randomised block design. (Special type of incomplete blocks called as confounded factorial designs are used in such situations – experiments involving large number of treatment combinations e.g. 3^3^, 3^4^, 3^5^, 2^5^, 2^6^, 2^7^ etc.). Here the 27 treatment combinations give rise to 26 degree of freedom. For three factors A, B and C the break up of the degree of freedom are as follows:
+
+| Treatment Effects         | df  |
+|---------------------------|-----|
+| Main effects              |     |
+| A                         | 2   |
+| B                         | 2   |
+| C                         | 2   |
+| Two factor interactions   |     |
+| AxB                       | 4   |
+| AxC                       | 4   |
+| BxC                       | 4   |
+| Three factor interactions |     |
+| AxBxC                     | 8   |
+
+## Analysis of asymmetrical factorial experiments
+
+Asymmetrical or mixed factorials are those involving factors at different (unequal) levels. The simplest among them is the 2×3 factorial experiment. Here the first factor say A has got two levels denoted as a0 and a1 and the second factor say, B has got three levels denoted as b0, b1 and b2. Hence we have six treatment combinations involving both these factors denoted as a0b0, a0b1, a0b2, a1b0, a1b1 and a1b2. If these six treatment combinations are allotted at random to each block of a randomised block design, and if there are r such blocks we will get a 2×3 factorial in r blocks (or replications).
+
+|               |           |           |             |
+|---------------|-----------|-----------|-------------|
+| Levels of A/B | a~0~      | a~1~      | Total       |
+| b~0~          | a~0~b~0~  | a~1~b~0~  | $B_{j=0}$   |
+| b~1~          | a~0~b~1~  | a~1~b~1~  | $B_{j=1}$   |
+| b~2~          | a~0~b~2~  | a~1~b~2~  | $B_{j=2}$   |
+| Total         | $A_{i=0}$ | $A_{i=1}$ | Grand total |
+
+Sum of squares due to $A=\frac{(A_{i=0}^2 + A_{i=1}^2)}{3r}-C.F$
+
+Sum of squares due to $B=\frac{(B_{j=0}^2 + B_{j=1}^2 + B_{j=2}^2)}{2r}-C.F$
+
+Sum of squares due to interaction A×B= Total sum of squares based on the above table – (Sum of squares due to A + Sum of squares due to B).
+
+The total Sum of squares, Block sum of squares (or replication sum of squares) and error sum of squares are calculated as usual. The ANOVA will be as follows:
+
+| Source         | df     |
+|----------------|--------|
+| Blocks         | r-1    |
+| Treatments (5) |        |
+| A              | 1      |
+| B              | 2      |
+| AxB            | 2      |
+| Error          | 5(r-1) |
+| Total          | 6r-1   |
+
+If the main effects A or B turns out to be significant then the mean values over the levels of the factors are worked out and compared by using the critical difference
+
+CD for computing mean values of A levels = $t_{\alpha} \cdot \sqrt{\frac{2MSE}{r\times 3}}$
+
+CD for computing mean values of B levels = $t_{\alpha} \cdot \sqrt{\frac{2MSE}{r\times 2}}$
+
+If the interaction(A×B) turns out to be significant the mean values are obtained from the above two way table and comparison can be made then 
+$CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$
+
+## Confounding 
+
+When the number of factors or their levels increase, the treatment combinations grow exponentially, making it challenging to fit all combinations into a single homogeneous block. For instance, a 2^5^ factorial design results in 32 treatment combinations, and creating blocks with 32 plots may compromise homogeneity. To address this, alternative experimental designs are required to handle a large number of treatments effectively. One approach involves dividing the treatments into smaller groups that match the number of blocks per replication. These smaller groups are then distributed across multiple blocks within each replication, allowing for better management of block size while maintaining experimental integrity.
+
+There are various methods for grouping treatments into as many groups as there are blocks per replication. In factorial experiments where each factor has two levels, treatment combinations can be split into two groups to obtain interaction contrasts. These two groups, representing a specific interaction, can form contrasts of two blocks, each containing half the total treatments. In this arrangement, the interaction contrast and the contrast between the two block totals become identical and inseparable. This means the interaction has been confounded with the blocks, effectively making it unmeasurable. However, by reducing block size through this approach, the precision of estimating other interactions and main effects improves. This technique of reducing block size by aligning one or more interaction contrasts with block contrasts is known as **confounding**. Generally, higher-order interactions (those involving three or more factors) are chosen for confounding since their loss is considered less significant. Experimenters typically focus on estimating main effects and two-factor interactions, which should be preserved and not confounded whenever possible.
+
+When two or more replications are involved, confounding can be classified as either **complete** or **partial**, depending on the interactions confounded across replications. In complete confounding, the same set of interactions is confounded in all replications, resulting in a total loss of information on those interactions. In contrast, partial confounding involves confounding different sets of interactions in different replications, allowing the recovery of information on the confounded interactions from the replications where they are not confounded.
+
+**Advantages of Confounding**
+
+- Confounding significantly reduces experimental error by dividing the experimental material into homogeneous subsets or blocks.
+
+- By eliminating variation among incomplete blocks within replications, the error mean square is reduced compared to a randomized block design (RBD), thereby increasing the precision of comparisons for certain treatment effects.
+
+**Disadvantages of Confounding**
+
+- The increased precision is achieved at the expense of losing partial or complete information on certain interactions, often those deemed less important.
+
+- Confounded contrasts are replicated fewer times than other contrasts, leading to lower precision in estimating them due to reduced replication.
+
+- Indiscriminate confounding can result in the loss of critical information, including contrasts or comparisons of significant importance. Experimenters must carefully confound only those interactions considered less relevant.
+
+- The algebraic computations involved in confounding are more complex, and the statistical analysis becomes challenging, especially if some observations are missing.
+

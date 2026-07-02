@@ -1,0 +1,140 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Multiple comparison test  
+<style>
+body {
+text-align: justify}
+</style>
+ANOVA is an omnibus test. *Omnibus test*, as a general name, refers to an overall or a global test. Omnibus test means it is implemented on an overall hypothesis that tends to find whether there is any significant difference between any treatment means (in case of ANOVA) or not.
+
+ANOVA doesn't tell which treatment pairs are different; more clearly on rejecting a null hypothesis in ANOVA, we conclude that at least a pair of treatment means are different, it didn't give any idea on which treatments are different. In order to identify which treatment means are significantly different one need to employ **multiple comparison tests** or **post-hoc tests**.
+
+Multiple comparison tests are also known as post-hoc tests. A significant omnibus F test in ANOVA procedure, is an advance requirement before conducting the post-hoc comparison, otherwise those comparisons are not required.
+
+Post hoc tests (Multiple Comparison tests) or planned tests should be conducted after obtaining a significant F test in ANOVA. There are several methods for performing post hoc tests, few of them are:-
+
+-   Fisher's LSD test (Least Significant Difference test)
+
+-   DMRT (Duncan's Multiple Range Test)
+
+-   Tukey's test
+
+-   Bonferroni method
+
+-   Dunnett method
+
+-   Scheffe's test
+
+-   Newman-Keuls method
+
+## Why do we need a post-hoc test.
+
+Type I error occurs when H~0~ is statistically rejected even though it is actually true, whereas type II error refers to a false negative. We are comparing each of treatment pairs individually in a post-hoc test. For example, consider a situation in which three treatments A, B and C are compared, they may form the following three pairs: A versus B, A
+versus C, and B versus C. A pair for this comparison is called 'family.' The type I error that occurs when each family is compared is called the 'family-wise error' (FWE).[@Lee]  
+
+For example, if one performs a pairwise test between two given groups A and B under 5% α level of significance and observed that they are not significantly different, then the chance that a correct decision is made (not to perform a type I error) is 95%. If another pairwise tests between the groups B and C simultaneously and has a non-significant result, then the real probability of a correct decision made between A and B, and B and C is 0.95 × 0.95 = 0.9025, 90.25% and, consequently, the testing α error is 1 − 0.9025 = 0.0975,
+not 0.05. At the same time, if the statistical analysis between groups A and C also has a non significant result, the probability of non-significance of all the three pairs (families) is 0.95 × 0.95 × 0.95
+= 0.857 and the actual testing α error is 1 − 0.857 = 0.143, which is more than 14%. So now the chance of type I error has increased in testing several treatment pairs together. Multiple comparison tests are devised in such a way that a correction is incorporated to control the inflation in $\alpha$, so that actual level of significance remain at
+the prescribed rate (in our case 0.05).
+
+Inflated $\alpha = 1 - \left( 1 - \alpha \right)^{N}$, where $N$ =
+number of hypotheses tested
+
+The inflation of probability of type I error increases with the increase
+in the number of comparisons.
+
+## Fisher's LSD test {#lsd}
+
+The first pairwise comparison technique was developed by Fisher in 1935 and is called the least significant difference (LSD) test. This technique can be used only if the ANOVA F statistic is significant. Fisher\'s least significant difference (LSD) procedure is a two-step
+testing procedure for pairwise comparisons of several treatment groups. In the first step of the procedure, ANOVA is performed. If the null hypothesis can be rejected at the pre-specified level of significance, in ANOVA, then in the second step of the procedure, all pairwise comparisons of treatment means are performed.
+
+Steps in Fisher's LSD test
+
+1.  ANOVA is performed and if the null hypothesis is rejected proceed to
+    step 2
+
+2.  An LSD (Least Significant Difference) value will be calculated. For
+    each pair of treatments, if the difference between treatment means
+    is greater that the LSD value, we conclude that treatment means are
+    significantly different.
+
+>Note among agricultural researchers in India they use the term CD (Critical Difference) instead of LSD, both the terms are same and used interchangeably.
+
+### LSD (Least Significant Difference)
+
+Consider two treatments $T_{i}$ and $T_{j}$ with replications $r_{i}$
+and $r_{j}$. Then LSD or CD is given by the formula given below
+
+$$\text{LSD} = \ t_{\frac{\alpha}{2},edf}.SE(d)$$
+
+$$SE(d) = \ \sqrt{\text{MSE}\left( \frac{1}{r_{i}} + \frac{1}{r_{j}} \right)}$$
+
+Where, $\text{MSE}$ is the Mean Square Error from ANOVA.
+$t_{\frac{\alpha}{2},edf}$ is the critical value of two tailed student's t distribution at $\alpha$ level of significance and error degrees of
+freedom.
+
+If the replications are same $r_{i} = r_{j} = r$, then   $$\text{SE}\left( d \right) = \ \sqrt{\text{MSE}\left( \frac{1}{r} + \frac{1}{r} \right)}\  = \ \sqrt{\text{MSE}\left( \frac{2}{r} \right)} = \sqrt{\frac{2\ MSE}{r}}$$
+
+$$LSD = \ t_{\frac{\alpha}{2},edf}.\sqrt{\frac{2\ MSE}{r}}$$
+
+If the difference between the means of two treatments $T_{i}$ and $T_{j}$ is greater than LSD we say that $T_{i}$ and $T_{j}$ are significantly different at specified level of significance ($\alpha)$.
+
+### Logic behind LSD test
+
+If $\overline{T_{i}}$ and $\overline{T_{j}}$ are the treatment means obtained from the experiment. $\mu_{i}$ and $\mu_{j}$ are corresponding unknown population mean of the treatments, then the null hypothesis for a pairwise comparison is
+
+H~0~: $\mu_{i} = \ \mu_{j}$
+
+*i*.*e*. $\mu_{i} - \ \mu_{j\ } = 0$
+
+A t-test can be used to test this hypothesis
+
+$$t = \frac{T_{i} - T_{j}}{SE(d)}$$
+
+The $100\left( 1 - \alpha \right)\%$ confidence interval for the mean difference $T_{i} - T_{j}$ is given by
+$\left( T_{i} - T_{j} \right) \pm t_{\frac{\alpha}{2},edf}SE(d)$. Which
+can be written as $\left( T_{i} - T_{j} \right) \pm \text{LSD}$. So, if
+$\left( T_{i} - T_{j} \right) > \text{LSD}$ the
+$100\left( 1 - \alpha \right)\%$ confidence interval does not include 0.
+Then we can reject the null hypothesis, population mean of the treatments are equal with $100\left( 1 - \alpha \right)\%$ confidence.
+
+### Advantages and disadvantages of LSD
+
+LSD test is also known as protected Fisher\'s LSD test. Protection means that you only perform the calculations described above when the null hypothesis is rejected based on ANOVA. This first step sort of controls the false positive rate (Type I error) for the entire family of
+comparisons [@Hayter].  
+
+While the protected Fisher\'s LSD test is the first post-hoc test ever developed, it is no longer recommended as it will not correct for $\alpha$ inflation in multiple comparisons effectively when compared to other post-hoc tests. Still LSD is the most common post-hoc
+test used in agricultural research experiments. 
+
+Fisher\'s LSD procedure is known to preserve the experiment wise type I error rate at the nominal level of significance, if the number of treatments is just three. [@Meier]. So, when the number of treatments is more, it is recommended to conduct DMRT or Tukey's test.
+
+>Note that other multiple comparison tests (Bonferroni, Tukey, etc.) do not require the ANOVA. The results of these multiple comparisons tests are valid even if the null hypothesis is not rejected based on the ANOVA.
+
+## Duncan's Multuiple Range Test (DMRT)
+ In a set of treatments if comparison of all possible pairs of treatment means is required we can use DMRT. It is useful when the number to be compared is large. The standard error of mean is multiplied by table values (r~p~) for different values of p (the number of treatment means involved) and comparison is made.
+ 
+  (i) Arrange the treatment means in decreasing or increasing order along with the ranks.
+  
+  (ii) Calculate the standard error of a mean as $SE(\overline{Y})=\sqrt{\frac{\ MSE}{r}}$
+  
+  (iii) From statistical tables (known as Studentised Ranges) note the (r~p~) values for p=2,3... v treatments corresponding to error degrees of freedom.
+  
+  (iv) Calculate the shortest significant ranges (R~p~) where $R_p=r_p.SE(\overline{Y})$
+  
+  (v) From the largest mean subtract the R~p~ (for largest p). Declare the means less than this value as significantly different from the largest mean. For the remaining treatments whose values are larger than the difference (Largest Mean- Largest R~p~), compare the differences with the appropriate R~p~ value.(If two treatments are remaining compare with R~2~, for three treatments with R~3~ and so on).
+  
+  (vi) From the second largest mean subtract the second largest R~p~ and compare the treatments as in step v.
+  
+  (vii) Present the results by using either a line notation (separate line under each homogeneous group) or by an alphabet notation (same alphabet representing homogeneous group) to indicate the treatments that are on par or those are significantly different.  
+  
+  
+ \
+ \
+ 
+
+::: {#hello .greeting .message style="color: #c9c6c5;"}
+<center>**"The method of difference is the most potent of all methods in experimental inquiry.":-  John Stuart Mill**</center>
+:::

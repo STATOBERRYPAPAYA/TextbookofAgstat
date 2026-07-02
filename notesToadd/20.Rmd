@@ -1,0 +1,44 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# How to use F table {#ftable}  
+<style>
+body {
+text-align: justify}
+</style>
+The table below gives a model critical values table of F (also known as statistical table of F) at the $\alpha$ = 0.05 level of significance. Critical values of F can be generated now a days using softwares (Microsoft Excel, R) 
+
+1.	Obtain your F-ratio from ANOVA or using the formula. 
+2.	This has (**x**,**y**) degrees of freedom associated with it. For example, in ANOVA there are treatment degrees of freedom (**x**) and error degrees of freedom (**y**)
+3.	Go along **x** columns, and down **y** rows. The point of intersection is your critical F-ratio. 
+4.	If your obtained value of F is equal to or larger than this critical F-value, then you can reject the null hypothesis stating all the population means are equal with 100(1-$\alpha$)%, here 100(1-0.05) % = 95% confidence. 
+5.	An example: If you obtain an F ratio of 3.26 with (2, 24) degrees of freedom. Go along 2 columns and down 24 rows. The critical value of F is 3.40. My obtained F-ratio is less than this, and so I conclude that there is no enough evidence to reject null hypothesis.  
+
+
+```{r ftab, echo=FALSE,fig.cap='A model critical value table of F at alpha=0.05',out.width="80%", fig.align='center'}
+knitr::include_graphics(rep("images/ftable.png"))
+```  
+
+[Click here to download full statistical table](https://drive.google.com/file/d/1zN8fmmUFajNwGHFHyUz1K55FUL2PlArs/view?usp=sharing)
+
+## Generate critical value of F using excel  
+
+To find the F critical value in Excel, you can use the F.INV.RT() function, which uses the following syntax:  
+
+= F.INV.RT(probability, deg_freedom1, deg_freedom2).  
+
+for example for F(2, 24) at $\alpha$=0.05, Excel function will be 
+> = F.INV.RT(0.05, 2, 24). 
+
+
+
+ \
+ \
+ 
+
+::: {#hello .greeting .message style="color: #c9c6c5;"}
+<center>**"The experimenter who does not know what he is looking for will not understand what he finds":-  Leonard Jimmie Savage**</center>
+:::
+

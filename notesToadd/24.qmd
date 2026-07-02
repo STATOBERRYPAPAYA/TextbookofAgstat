@@ -1,0 +1,223 @@
+# Data transformation
+
+Data often requires transformation when it fails to satisfy the assumptions necessary for valid statistical analysis. Applying an appropriate transformation before analysis is essential to avoid a significant loss of precision and accuracy in the results.
+
+The analysis of variance (ANOVA) on transformed data typically yields conclusions comparable to those from raw data. However, the transformed analysis is more valid when it ensures that the assumptions of ANOVA are met. It is crucial to avoid transforming data merely to achieve desired outcomes. Instead, transformations should be applied objectively to improve the validity of the analysis.
+
+Statistical tests of significance and mean separations must be performed on the transformed data rather than the raw data. Once the analysis is completed, the means of the transformed data should be computed and re-transformed back into the original units for meaningful interpretation. Additionally, after applying a transformation, it is advisable to test the data for normality to confirm that the assumptions of ANOVA are satisfied. If the data meets the assumptions post-transformation, the analysis can proceed confidently, leading to more reliable and robust conclusions.
+
+The following are the most commonly used transformations
+
+$(i)$ Logarithmic transformation\
+
+$(ii)$ Square root transformation\
+
+$(iii)$ Arc sine transformation (Angular transformation)\
+
+## Logarithmic transformation
+
+When the standard deviation of the samples are highly proportional to the mean, the most effective transformation is the logarithmic transformation. In this case the coefficient of variation will be a constant. Another criterion for deciding on this transformation is the evidence of multiplicative rather than additive effects. Then this transformation brings about both additivity of the effects and equality of variance.
+
+If zero values or negative observations are present add a positive quantity to remove this. Usually log(x+1) or log (x + k) ; k \>0 is taken. If data values are less than one then multiply by a constant and then take the logarithms. Usually we use common logarithms.
+
+**Example 24.1**: The following data in weed counts are recorded from a weedicide trial with 5 treatments and absolute control laid out in RBD. Analyze the data with suitable transformation.
+
+| Treatments | R~1~ | R~2~ | R~3~ | R~4~ |
+|:----------:|:----:|:----:|:----:|:----:|
+|    T~1~    | 169  | 132  | 180  | 105  |
+|    T~2~    | 210  | 172  | 158  | 125  |
+|    T~3~    | 160  |  94  | 103  |  65  |
+|    T~4~    | 100  | 120  |  98  |  74  |
+|    T~5~    |  42  |  40  |  84  |  28  |
+|    T~6~    | 368  | 300  | 610  | 200  |
+
+**Solution 24.1**
+
+The transformation used is $X=logY$
+
+| Treatments | R~1~  | R~2~  | R~3~  | R~4~  | $Total$ |
+|:----------:|:-----:|:-----:|:-----:|:-----:|:-------:|
+|    T~1~    | 2.227 | 2.120 | 2.255 | 2.021 |  8.63   |
+|    T~2~    | 2.322 | 2.235 | 2.198 | 2.096 |  8.86   |
+|    T~3~    | 2.204 | 1.973 | 2.012 | 1.812 |  7.99   |
+|    T~4~    |   2   | 2.079 | 1.991 | 1.869 |  7.94   |
+|    T~5~    | 1.623 | 1.602 | 1.924 | 1.447 |  6.59   |
+|    T~6~    | 2.565 | 2.477 | 2.785 | 2.301 |  10.14  |
+|  $Total$   | 12.94 | 12.49 | 13.17 | 11.55 |         |
+
+Here, n = 24, $\sum X=\sum logY=50.15$
+
+$\sum X^2=\sum (logY)^2=106.93$, $CF=104.79$
+
+The remaining procedure for estimation of sum of squares is same as that of RBD analysis.
+
+|  Source   | df  |  SS  |  MSS   | F~cal~ |      F~tab~      |
+|:---------:|:---:|:----:|:------:|:------:|:----------------:|
+| Treatment |  5  | 1.74 | 0.348  | 37.42  | F~(5,15)~ = 2.9  |
+|   Block   |  3  | 0.26 | 0.0867 |  9.32  | F~(3,15)~ = 3.29 |
+|   Error   | 15  | 0.14 | 0.0093 |        |                  |
+|   Total   | 23  | 2.14 |        |        |                  |
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.131\times\sqrt{\frac{2\times0.0093}{4}}=0.145$
+
+Here, the mean of T~6~ is maximum, T~2~ and T~1~ is on par. Also T~3~ is on par with T~4~. Mean of T~5~ is minimum.
+
+Retransformed mean values: $Y=antilogX$
+
+| Treatments | Mean  | Retransformed means |
+|:----------:|:-----:|:-------------------:|
+|    T~1~    | 2.157 |       143.71        |
+|    T~2~    | 2.215 |       164.06        |
+|    T~3~    | 1.997 |        99.61        |
+|    T~4~    | 1.985 |        96.61        |
+|    T~5~    | 1.647 |        44.41        |
+|    T~6~    | 2.535 |       342.77        |
+
+## Square root transformation
+
+When data following Poisson distributions are available first take the square root of the observations, then apply the analysis of variance. Counts of rare events (very little probability) such as number of defectives, insect counts, percentage of seeds affected by a disease etc. tend to follow the Poisson fashion. For the Poisson distribution the counts appear such that the variance of x is proportional to the mean *i.e.* $σ_x^2=k.\bar x$. For a Poisson distribution of errors k =1 but usually the value of k\>1.
+
+The data of these types are transformed to square roots. If some counts are very small then transformations like $\sqrt {x+1}$ or $\sqrt x+\sqrt {x+1}$ (for x \<10) or $\sqrt {x+k}$ stabilizes the variance more effectively.
+
+The means of the square root scale are reconverted to the original scale by squaring. These values are slightly lower than the original mean because the mean of a set of square roots is less than the square root of the original mean. A rough correction is applied by adding the MSE in square root analysis to each of the converted mean. In general, we can say that the data requiring square root transformation do not violate assumptions of the ANOVA as drastically as data requiring logarithmic transformations.
+
+**Example 24.2**: The number of living larvae recorded from the plots under seven treatments from a RBD experiments on rice is given below. Analyze the data and draw the inference.
+
+| Treatments |      | Replications |      |      |
+|:----------:|:----:|:------------:|:----:|:----:|
+|            | R~1~ |     R~2~     | R~3~ | R~4~ |
+|    T~1~    |  9   |      12      |  0   |  1   |
+|    T~2~    |  4   |      8       |  5   |  1   |
+|    T~3~    |  6   |      15      |  6   |  2   |
+|    T~4~    |  9   |      6       |  4   |  5   |
+|    T~5~    |  27  |      17      |  10  |  10  |
+|    T~6~    |  35  |      28      |  2   |  15  |
+|    T~7~    |  1   |      0       |  0   |  0   |
+
+**Solution 24.2**
+
+The given data is that of RBD, relating to certain larva count observed from various plots. This type of count data follows Poisson distribution and attain normality of error, the square root transformation is used before conducting ANOVA. When the data contains observations '0', transformation is obtained by taking $\sqrt {X+1}$.
+
+| Treatments |  R~1~  | R~2~  | R~3~  |  R~4~  | Total  | Mean  |
+|:----------:|:------:|:-----:|:-----:|:------:|:------:|:-----:|
+|    T~1~    | 3.162  | 3.606 |   1   | 1.414  | 9.182  | 2.296 |
+|    T~2~    | 2.236  |   3   | 2.449 | 1.414  | 9.099  | 2.275 |
+|    T~3~    | 2.646  |   4   | 2.646 | 1.732  | 11.024 | 2.756 |
+|    T~4~    | 3.162  | 2.646 | 2.236 | 2.449  | 10.493 | 2.623 |
+|    T~5~    | 5.292  | 4.243 | 3.317 | 3.317  | 16.169 | 4.042 |
+|    T~6~    |   6    | 5.385 | 1.732 |   4    | 17.117 | 4.279 |
+|    T~7~    | 1.414  |   1   |   1   |   1    | 4.414  | 1.104 |
+|  $Total$   | 23.912 | 23.88 | 14.38 | 15.326 | 77.498 |       |
+
+Here, $r=4$, $v=7$, $n=28$, $CF=214.498$
+
+|  Source   | df  |   SS   |  MSS  | F~cal~ | F~tab~ |
+|:---------:|:---:|:------:|:-----:|:------:|:------:|
+| Treatment |  6  | 28.663 | 4.777 | 7.743  |  4.01  |
+|   Block   |  3  | 11.746 | 3.915 | 6.346  |  5.09  |
+|   Error   | 18  | 11.101 | 0.617 |        |        |
+|   Total   | 27  | 51.510 |       |        |        |
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.101\times\sqrt{\frac{2\times0.617}{4}}=1.17$
+
+Here, the mean of T~6~ is maximum, T~3~ is found to be on par with mean of T~4~, T~1~ and T~2~. Mean of T~7~ is minimum.
+
+Retransformed mean values: $X=Y^2-1$
+
+| Treatments | Mean  | Retransformed means |
+|:----------:|:-----:|:-------------------:|
+|    T~1~    | 2.296 |        4.272        |
+|    T~2~    | 2.275 |        4.176        |
+|    T~3~    | 2.756 |        6.596        |
+|    T~4~    | 2.623 |        5.880        |
+|    T~5~    | 4.042 |       15.338        |
+|    T~6~    | 4.279 |       17.310        |
+|    T~7~    | 1.104 |        0.219        |
+
+## Angular transformation
+
+This transformation is appropriate for percentage data that derived from counts which follows Binomial distribution. However, the data like percentage of carbohydrates, percentage of protein, etc need not to be transformed before applying analysis of variance.
+
+If $a_{ij}$ success out of n trials are obtained in the j^th^ replicate of the i^th^ treatment the estimate of proportion $p _{ij}=a_{ij}/n$ has variance $p_{ij}(1- p_{ij})/ n$. Usually these proportions are expressed in percentages. The transformation is useful when the values of $p_{ij}$ lie outside 30% and 70%.In binomial data variance tends to be small at the two ends of the range of values but larger towards the middle. This tendency also can be used to identify the transformation.
+
+::: {.callout-important title="Note"}
+If $p_{ij}$ lies inside 30 and 70% then no transformation is required. If at least a single proportion lie outside the range, all the observations are to be transformed.
+:::
+
+The transformation is obtained by taking the angle whose sine is the square root of the proportion. (percentage / 100) *i.e* $arcSin \sqrt p_{ij}$ or $Sin^{-1} \sqrt p_{ij}$. For $p_{ij}$ = 0 or 1 (*i.e.* 0% or 100%) the angular transformation is improved by replacing 0 by 1/4n and 1 by 1-1/4n where, n is the total number of units under observation.
+
+**Example 24.3**: The following are results on percentage mortality of insects recorded from a laboratory experiment using 6 levels of ekalux - 0, 1, 2, 3, 4 and 5%. Hundred insects were treated and mortality percentages are recorded below. Analyze the data.
+
+| Treatments |  I  | II  | III | IV  |
+|:----------:|:---:|:---:|:---:|:---:|
+|    T~1~    |  0  |  0  |  3  |  2  |
+|    T~2~    | 12  | 15  | 18  | 17  |
+|    T~3~    | 33  | 30  | 35  | 34  |
+|    T~4~    | 52  | 54  | 58  | 55  |
+|    T~5~    | 86  | 78  | 80  | 79  |
+|    T~6~    | 88  | 79  | 100 | 100 |
+
+**Solution**
+
+When percentage values are given the transformation used is angular transformation.
+
+$X=sin^{-1}\sqrt p$, where $p=Y/100$, the proportion of percentages. Here, 0% is replaced by 1/4n
+
+$p=\frac {1/4n}{100}=0.0025$, where n = 100, number of insects.
+
+$X=sin^{-1}(\sqrt {\frac{0.0025}{100}})=0.286$
+
+and 100% is replaced by 100-1/4n *i.e.*
+
+$p=\frac {100-1/4n}{100}=0.999$
+
+and $X=sin^{-1}\sqrt {0.999}=89.714$
+
+| Treatments |   I   |  II   |  III   |   IV   |  Total  |  Means  |
+|:----------:|:-----:|:-----:|:------:|:------:|:-------:|:-------:|
+|    T~1~    | 0.286 | 0.286 |  9.97  |  8.13  | 18.672  |  4.668  |
+|    T~2~    | 20.26 | 22.79 | 25.10  | 24.35  |  92.5   | 23.125  |
+|    T~3~    | 35.06 | 33.21 | 36.27  | 35.67  | 140.21  | 35.0525 |
+|    T~4~    | 46.15 | 47.29 | 49.60  | 47.87  | 190.91  | 47.7275 |
+|    T~5~    | 68.03 | 62.03 | 63.43  | 62.73  | 256.22  | 64.055  |
+|    T~6~    | 69.73 | 62.73 | 89.714 | 89.714 | 311.888 | 77.972  |
+
+The sum of squares are estimated as the same procedure of CRD
+
+| Source    | df  | SS       | MSS      | F~cal~ | F~tab~ |
+|-----------|-----|----------|----------|--------|--------|
+| Treatment | 5   | 14445.45 | 2889.091 | 74.107 | 2.77   |
+| Error     | 18  | 701.732  | 38.985   |        |        |
+| Total     | 23  | 15147.19 |          |        |        |
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=1.734\times\sqrt{\frac{2\times38.985}{4}}=7.655$
+
+Here, the mean of T~6~ is maximum and mean of T~1~ is minimum. Every treatments pairs are significantly different from each other.
+
+Retransformed mean values: $Y=100\times sin^2X$
+
+| Treatments |  Mean  | Retransformed means |
+|:----------:|:------:|:-------------------:|
+|    T~1~    | 4.668  |        0.662        |
+|    T~2~    | 23.125 |       15.424        |
+|    T~3~    | 35.052 |       32.985        |
+|    T~4~    | 47.727 |       54.753        |
+|    T~5~    | 64.055 |       80.858        |
+|    T~6~    | 77.972 |       95.657        |
+
+::: {.callout-important title="Note"}
+The following table gives an idea about the appropriate transformation which is used for different types of data.
+
+| Distribution | Relation between mean & variance | Appropriate transformation |
+|:------------:|:--------------------------------:|:--------------------------:|
+|   Poisson    |         $\sigma ^2=\mu$          |         $\sqrt x$          |
+|  Empirical   |        $\sigma ^2=c^2\mu$        |         $\sqrt x$          |
+|   Binomial   |   $\sigma ^2=\frac{p(1-p)}{n}$   |     $sin^{-1} \sqrt p$     |
+|  Empirical   |      $\sigma ^2=c^2\mu ^2$       |          $log(x)$          |
+:::

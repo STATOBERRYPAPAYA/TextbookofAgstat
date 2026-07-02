@@ -1,0 +1,469 @@
+# ANALYSIS OF COVARIANCE
+
+Analysis of Covariance (ANCOVA) is a statistical method that integrates features of Analysis of Variance (ANOVA) and regression. It is designed to analyze a continuous outcome variable influenced by one or more categorical predictor variables (factors) while incorporating continuous variables, known as covariates. By accounting for the variability associated with these covariates, ANCOVA adjusts the outcome variable to a standardized value, enhancing statistical power and reducing experimental error. This adjustment is particularly valuable in experimental designs, where precise detection of treatment effects is crucial.
+
+A well-designed experiment minimizes experimental error to detect significant differences among treatments. While blocking is commonly employed for this purpose, it may not fully address variability arising from unpredictable factors. ANCOVA provides an additional layer of control by incorporating covariates with known functional relationships to the primary outcome variable. This reduces variability among experimental units and isolates the effects of treatments.
+
+### Applications in Experimental Design
+
+ANCOVA is widely applied in experimental studies to adjust for variability. For example, in animal feeding trials, initial differences in body weight can influence final weight measurements. Using initial body weight as a covariate allows adjustments to final weights, simulating a scenario where all animals started with identical weights. Similarly, in field experiments where rodent damage varies across plots, ANCOVA can adjust plot yields to estimate what they would have been in the absence of damage.
+
+The effective application of ANCOVA requires measuring both the primary outcome variable and one or more covariates. Additionally, there must be a known functional relationship, often assumed to be linear between the covariates and the outcome variable. For instance, in variety trials where weed incidence impacts grain yield, ANCOVA adjusts yield data to a common level of weed incidence, enabling a clearer comparison of varietal differences. While the technique accommodates multiple covariates and nonlinear relationships, a single linear covariate often suffices for most agricultural research scenarios.
+
+### ANCOVA in Agricultural Research
+
+#### Error Control and Treatment Mean Adjustment
+
+Controlling experimental error is fundamental in research, as variability among experimental units can obscure treatment effects. Blocking, a common method for error reduction, groups similar units together to minimize variability within blocks. However, unpredictable factors such as irregular soil heterogeneity or pest outbreaks may not align with blocking strategies. ANCOVA becomes particularly useful in such cases, as it adjusts the primary outcome variable based on measurable covariates related to the variability.
+
+For example, if soil fertility differences influence crop yield, measuring soil fertility as a covariate allows the yield data to be adjusted to a standardized fertility level. This adjustment achieves two important objectives: it recalculates treatment means to reflect a scenario without covariate differences and reduces experimental error, thereby improving the precision of treatment comparisons.
+
+#### Comparison with Blocking
+
+Although both blocking and ANCOVA aim to reduce experimental error, their application differs. Blocking is a pre-experiment strategy that addresses predictable sources of variability, such as soil type or environmental gradients. In contrast, ANCOVA is applied after the experiment to adjust for unforeseen sources of variability, such as pest damage or uneven irrigation. While blocking does not require quantitative measurements, ANCOVA relies on measurable covariates with known relationships to the primary variable. Pre-treatment measurements, such as soil nutrient levels, are ideal covariates if they remain unaffected by the treatments being tested.
+
+#### Assumptions
+
+Essentially analysis of covariance is an extension of the analysis of variance and all assumptions of ANOVA are applicable here also. In addition it is assumed that: - Y (study variable) and X (covariate) are linearly related; a part of the variation in Y is due to variation in X over the experimental units ; Values of X are not subject to error. - The linear relationship remains constant over the other known causes of variation like blocks, treatments etc.
+
+#### Analysis
+
+i)  Basically estimation of the relation between X and Y taking X as independent variable.
+
+ii) Removing the effects of the covariates to get adjusted treatment and error variance for Y
+
+iii) Estimate the values of Y as expected from a linear relation corresponding to each of the values of X.
+
+The method of analysis of Covariance for CRD with v treatments and n experimental units and RBD with v treatments and r replications / blocks with one ancillary variable is presented below.
+
+# Analysis of Covariance – CRD
+
+Record the main character of interest ($Y$, i.e., $y_{ij}$) as well as the covariate ($X$, i.e., $x_{ij}$) for each of the experimental plots. The model used for the study is:
+
+$$
+y_{ij} = \mu + \tau_i + \beta x_{ij} + e_{ij} \quad i = 1, 2, ..., v; \, j = 1, 2, ..., r_i
+$$
+
+Where,\
+$\mu$: General mean effect\
+$\tau_i$: Effect due to the $i$th treatment\
+$\beta$: Regression coefficient of $Y$ on $X$\
+$e_{ij}$: Random error terms associated with each plot\
+$\tau_i$ and $\mu$ are assumed to be fixed effects.
+
+## Compute the Sum of Squares
+
+1.  **Correction factor for** $X$: $$
+    C.F.(X) = \frac{(\text{Grand total for } X)^2}{n}
+    $$
+
+2.  **Correction factor for** $Y$: $$
+    C.F.(Y) = \frac{(\text{Grand total for } Y)^2}{n}
+    $$
+
+3.  **Correction for sum of products of** $X$ and $Y$: $$
+    C.S.P.(X, Y) = \frac{(\text{Grand total for } X) \cdot (\text{Grand total for } Y)}{n}
+    $$
+
+4.  **Total sum of squares for** $X$: $$
+    G_{xx} = \sum x_{ij}^2 - C.F.(X)
+    $$
+
+5.  **Total sum of squares for** $Y$: $$
+    G_{yy} = \sum y_{ij}^2 - C.F.(Y)
+    $$
+
+6.  **Total sum of products for** $X$ and $Y$: $$
+    G_{xy} = \sum (x_{ij} \cdot y_{ij}) - C.S.P.(X, Y)
+    $$
+
+7.  **Treatment Sum of Squares for** $X$: $$
+    T_{xx} = \text{Treatment sum of squares for } X
+    $$
+
+8.  **Treatment Sum of Squares for** $Y$: $$
+    T_{yy} = \text{Treatment sum of squares for } Y
+    $$
+
+9.  **Treatment Sum of Products for** $X$ and $Y$: $$
+    T_{xy} = \sum_{i} T_{ix} \cdot T_{iy} - \frac{\text{C.S.P.}(X, Y)}{r}
+    $$ Where:
+
+    -   $T_{ix}$: Treatment total for $X$ for the $i^{th}$ treatment\
+    -   $T_{iy}$: Treatment total for $Y$ for the $i^{th}$ treatment
+
+10. **Error Sum of Squares for** $X$: $$
+       E_{xx} = \text{Error sum of squares for } X
+       $$
+
+11. **Error Sum of Squares for** $Y$: $$
+       E_{yy} = \text{Error sum of squares for } Y
+       $$
+
+12. **Error Sum of Products for** $X$ and $Y$: $$
+       E_{xy} = \text{Error sum of products for } X \text{ and } Y$$
+
+::: {.callout-important title="Note"}
+Error sums of squares or sums of products are calculated by subtracting treatment sums of squares or sums of products from total sums of squares or sums of products.
+:::
+
+## Analysis of Covariance Table (CRD)
+
+| Source | Degrees of Freedom | Sum of Squares($X$) | Sum of Squares($Y$) | Sum of Products($X$ and $Y$) |
+|:--:|:--:|:--:|:--:|:--:|
+| Total | $n-1$ | $G_{xx}$ | $G_{yy}$ | $G_{xy}$ |
+| Treatment | $v-1$ | $T_{xx}$ | $T_{yy}$ | $T_{xy}$ |
+| Error | $n-v$ | $E_{xx}$ | $E_{yy}$ | $E_{xy}$ |
+
+1.  **Testing the significance of the covariate** $X$
+
+    This is performed using the $F$ test:
+
+    $F = \frac{\text{Mean Square due to treatments for } X}{\text{Mean Square due to error for } X}$
+
+    The F-ratio is calculated as: $$F = \frac{T_{xx}/(v-1)}{E_{xx}/(n-v)}$$
+
+    Non-significance of this F-ratio will indicate that the covariate is not influenced by the treatments.
+
+2.  **Estimate of Regression Coefficient**
+
+    The regression coefficient (b) of (Y) on (X) is given by:\
+    $$ b = \frac{E_{xy}}{E_{xx}} $$
+
+3.  **Estimate of Correlation Coefficient**
+
+    The correlation coefficient between the main variate and covariate is calculated as:\
+    $$ r = \frac{E_{xy}}{\sqrt{E_{xx} \cdot E_{yy}}} $$\
+    The magnitude of this value will indicate the linear relationship between (X) and (Y).
+
+4.  **Sum of Squares Due to Regression**
+
+    The sum of squares due to regression (with 1 degree of freedom) is defined as:\
+    $$ SS_{\text{regression}} = \frac{E_{xy}^2}{E_{xx}} $$
+
+## Table of Adjusted Values
+
++---------------------+--------------------+--------------------------------------------+---------------------+-------------------------------------------+
+| Source of Variation | Degrees of Freedom | Sum of Squares                             | Mean Sum of Squares | F Value                                   |
++=====================+====================+============================================+=====================+===========================================+
+| Total               | $(n-1)$            | $G_{yy}-\frac{G_{xy}^2}{G_{xx}}$......(i)  |                     |                                           |
++---------------------+--------------------+--------------------------------------------+---------------------+-------------------------------------------+
+| Error               | $(n-v)-1$          | $E_{yy}-\frac{E_{xy}^2}{E_{xx}}$......(ii) | $\text{MSE (adj.)}$ |                                           |
++---------------------+--------------------+--------------------------------------------+---------------------+-------------------------------------------+
+| Treatments          | $(v-1)$            | (by subtraction)                           | $\text{MST (adj.)}$ | $\frac{\text{MST(adj)}}{\text{MSE(adj)}}$ |
+|                     |                    |                                            |                     |                                           |
+|                     |                    | \(i\) - (ii)                               |                     |                                           |
++---------------------+--------------------+--------------------------------------------+---------------------+-------------------------------------------+
+| Regression          | $1$                | $\frac{E_{xy}^2}{E_{xx}}$                  | $\text{MS.Reg}$     | $\frac{\text{MS.Reg}}{\text{MSE(adj)}}$   |
++---------------------+--------------------+--------------------------------------------+---------------------+-------------------------------------------+
+
+By removing the sum of squares due to regression from the error sum of squares for (Y), we obtain the sum of squares for residual random variation in (Y), called the adjusted error sum of squares. The corresponding error degrees of freedom are reduced by one.
+
+**From the analysis**
+
+1.  The significane of the regression coefficient $\frac{\text{MS.Reg}}{\text{MSE(adj)}}$ indicates that the covariate has an effect on the main variate, reducing the error variance of (Y) significantly.
+
+2.  Estimate of Coefficient of Variation $=\frac{\sqrt{\text{MSE(adj)}}}{\text{Mean of } Y} \times 100$
+
+3.  The adjusted treatment means of (Y) are obtained assuming a linear relation between (X) and (Y);$\bar{y_{(i,adj.)}} = \bar{y}_i - b (\bar{x}_i - \bar{x})$\
+    where, $\bar{y}_i$ is the treatment mean of (Y); b is the regression coefficient; $\bar{x}_i$ is the corresponding treatment mean of (X) and $\bar{x}$ is the grand mean of (X).
+
+When the treatments differ significantly, the pairwise comparison can be carried out by computing the critical difference (CD).
+
+The standard error (SE) to compare a pair of treatment means with ($r_1$) and ($r_2$) replications depends on the corresponding mean values of ( X ) and can be derived as: $$ 
+SE = \sqrt{MSE(\text{adj.}) \left[ \frac{1}{r_1} + \frac{1}{r_2} + \frac{(\bar{x_{1}} - \bar{x_{2}})^2}{ \, E_{xx}} \right]}
+$$\
+where,  $r_1$ and $r_2$: Replications for the two treatment means;  $x_1$ and $x_2$: Mean values of (X) for the two treatment;  $MSE(\text{adj.})$: Adjusted Mean Square Error;  $E_{xx}$: Error sum of squares for the covariate
+
+For cases where the error degrees of freedom are large (\>20), and the comparison is independent of mean values of (X), the averaged standard error is: $$ 
+SE = \sqrt{\frac{2MSE(\text{adj.})}{r} \left( 1 + \frac{T_{xx}}{(v-1) E_{xx}} \right)}
+$$\
+where, v: Number of treatments; T: Total number of replications; r: Replications for equally replicated treatments.
+
+The Least Significant Difference (CD) is calculated as: $$ 
+\text{CD} = t_{\alpha} \cdot SE 
+$$
+
+where, $t_{\alpha}$: t-value corresponding to the error degrees of freedom (n-v-1); SE: Standard error for the comparison.
+
+**Example 21.1**: A green house trail was conducted to study BPH damage to rice. This trial tested varying no. of BPH nymphs per tiller. The main character of interest was no. of productive panicles. Tiller count made before BPH nymphs were placed on the plant is considered as covariate. Data on panicle no. per hill (Y), initial tiller number per hill (X) recorded from this experiment are given below
+
+|            |       |     |       |     |       |     |       |     |           |           |
+|------------|-------|-----|-------|-----|-------|-----|-------|-----|-----------|-----------|
+| Treatments | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     | Total (Y) | Total (X) |
+|            | Y     | X   | Y     | X   | Y     | X   | Y     | X   |           |           |
+| 0.0        | 5     | 5   | 12    | 12  | 11    | 11  | 5     | 8   | 33        | 36        |
+| 0.1        | 7     | 7   | 9     | 9   | 14    | 8   | 9     | 8   | 39        | 32        |
+| 0.2        | 9     | 9   | 5     | 5   | 12    | 12  | 5     | 7   | 31        | 34        |
+| 0.5        | 7     | 6   | 10    | 10  | 6     | 8   | 8     | 8   | 31        | 32        |
+| 1.0        | 8     | 8   | 5     | 5   | 13    | 11  | 5     | 5   | 31        | 29        |
+| 10.0       | 7     | 8   | 20    | 16  | 6     | 7   | 9     | 9   | 42        | 40        |
+
+**Solution 21.1**
+
+Here, $v$ = 6; $\sum X$ = 203; $\sum Y$ = 207
+
+$CF_X=\frac{203^2}{v r}=1717.041$
+
+$CF_Y=\frac{207^2}{v r}=1785.375$
+
+$CSP_{XY}=\frac{20 \times 207}{v r}=1750.88$
+
+**Total SS**
+
+$TSS_X= \sum X^2-CF_X=167.96$
+
+$TSS_Y= \sum Y^2-CF_Y=309.625$
+
+$TSCP_{XY}=\sum X_{ij}Y_{ij}-CSP_{XY}=200.13$
+
+**Treatment SS**
+
+$SST_X=T_{XX}=\frac{\sum T_{ix}^2}{r}-CF_X=\frac{6941}{4}-1717.04=18.21$
+
+$SST_Y=T_{YY}=\frac{\sum T_{iy}^2}{r}-CF_Y=1814.25-1785.375=28.875$
+
+$SSPT_{XY}=T_{XY}=\frac{\sum T_{ix} \times \sum T_{iy}}{r}-CSP_{XY}=14.375$
+
+**Error SS**
+
+$E_{XX}=TSS_X-T_{XX}=167.96-18.21=149.75$
+
+$E_{YY}=TSS_Y-T_{YY}=309.625-28.875=280.75$
+
+$E_{XY}=200.125-14.375=185.75$
+
+$E=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=50.3$
+
+$E_1=TSS_Y-\frac{TSCP_{XY}^2}{TSS_X}=71.17$
+
+Regression coefficient, $b=\frac{E_{XY}}{E_{XX}}=1.24$
+
+SS due to regression, $SSR=\frac{E_{XY}^2}{E_{XX}}=230.48$
+
+|            |        |        |        |         |               |     |       |           |
+|------------|--------|--------|--------|---------|---------------|-----|-------|-----------|
+|            | Source | df     |        |         | $Adj. SS$     | df  | $MSS$ | $F_{cal}$ |
+|            |        | $XX$   | $YY$   | $XY$    |               |     |       |           |
+| Treatment  | 5      | 18.21  | 28.875 | 14.375  | $E_1-E=20.87$ | 5   | 4.174 | 1.43      |
+| Error      | 18     | 149.75 | 280.75 | 185.75  | $E=50.3$      | 17  | 2.95  |           |
+| Total      | 23     | 167.96 | 309.6  | 200.125 | $E_1=71.17$   | 22  |       |           |
+| Regression | 1      |        |        |         |               | 1   | 230.4 | 78.128    |
+
+Here, $F_{(5,22)}=2.65$ which is greater than the $F_{cal}$, so there is no significant interaction between the treatments.
+
+# Analysis of Covariance – RBD
+
+As in the Analysis of covariance - CRD, the main character of interest ((Y) *ie.,* $y_{ij}$) as well as the covariate ((X) *ie.,* $x_{ij}$) for each of the experimental plots.
+
+For RBD, the model includes the effect of blocks: $$
+y_{ij} = \mu + \tau_i + R_j + \beta (x_{ij} - \overline{x}) + e_{ij} ;\quad i = 1, 2, ..., v; \, j = 1, 2, ..., r
+$$
+
+where, $R_j$ represents the effect of the $j^{th}$ block, other terms are same as that of in analysis of covariance - CRD.
+
+The various sum of squares for each of the two variables following the standard analysis of variance procedure for RBD are:
+
+1.  **Correction factor for** $X$: $$
+    C.F.(X) = \frac{(\text{Grand total for } X)^2}{n}
+    $$
+
+2.  **Correction factor for** $Y$: $$
+    C.F.(Y) = \frac{(\text{Grand total for } Y)^2}{n}
+    $$
+
+3.  **Correction for sum of products of** $X$ and $Y$: $$
+    C.S.P.(X, Y) = \frac{(\text{Grand total for } X) \cdot (\text{Grand total for } Y)}{n}
+    $$
+
+4.  **Total sum of squares for** $X$: $$
+    G_{xx} = \sum x_{ij}^2 - C.F.(X)
+    $$
+
+5.  **Total sum of squares for** $Y$: $$
+    G_{yy} = \sum y_{ij}^2 - C.F.(Y)
+    $$
+
+6.  **Total sum of products for** $X$ and $Y$: $$
+    G_{xy} = \sum (x_{ij} \cdot y_{ij}) - C.S.P.(X, Y)
+    $$
+
+7.  **Treatment Sum of Squares for** $X$: $$
+    T_{xx} = \text{Treatment sum of squares for } X
+    $$
+
+8.  **Treatment Sum of Squares for** $Y$: $$
+    T_{yy} = \text{Treatment sum of squares for } Y
+    $$
+
+9.  **Treatment Sum of Products for** $X$ and $Y$: $$
+    T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
+    $$ where,
+
+    -   $T_{ix}$: Treatment total for $X$ for the $i^{th}$ treatment\
+    -   $T_{iy}$: Treatment total for $Y$ for the $i^{th}$ treatment
+
+10. **Block Sum of Squares for** $X$: $$
+        B_{xx} = \text{Block sum of squares for } X
+        $$
+
+11. **Block Sum of Squares for** $Y$: $$
+        B_{yy} = \text{Block sum of squares for } Y
+        $$
+
+12. **Block Sum of Products for** $X$ and $Y$: $$
+        B_{xy} = \frac{\sum_{i} (B_{ix} \cdot B_{iy})}{v} - \text{C.S.P.}(X, Y)$$ where:
+
+    -   $B_{ix}$: Block total for $X$ for the $i^{th}$ treatment\
+    -   $B_{iy}$: Block total for $Y$ for the $i^{th}$ treatment
+
+13. **Error Sum of Squares for** $X$: $$
+       E_{xx} = \text{Error sum of squares for } X
+       $$
+
+14. **Error Sum of Squares for** $Y$: $$
+       E_{yy} = \text{Error sum of squares for } Y
+       $$
+
+15. **Error Sum of Products for** $X$ and $Y$: $$
+       E_{xy} = \text{Error sum of products for } X \text{ and } Y
+       $$
+
+| Source | Degrees of Freedom | Sum of Squares ($X$) | Sum of Squares ($Y$) | Sum of Products ($X$ and $Y$) |
+|:--:|:--:|:--:|:--:|:--:|
+| Blocks | $r-1$ | $B_{xx}$ | $B_{yy}$ | $B_{xy}$ |
+| Treatment | $v-1$ | $T_{xx}$ | $T_{yy}$ | $T_{xy}$ |
+| Error | $(r-1)(v-1)$ | $E_{xx}$ | $E_{yy}$ | $E_{xy}$ |
+
+From the above analysis we can test for the significance of the covariate X due to the treatments by the F test = Mean square due to treatments for X / Mean square due to error for X. The correlation coefficient, regression coefficient and coefficient of variation also can be obtained similar to the case of CRD.
+
+**Estimation of Adjusted values**
+
+By removing the sum of squares due to regression from the error sum of squares for Y we can obtain the sum of squares for residual random variation in Y (called as adjusted error sum of squares). The corresponding error degrees of freedom are also reduced by one. The adjusted treatment sum of squares is obtained as = (Treatment + error) adjusted for Y– Error adjusted for Y. (So the treatment degree of freedom remain unaffected).
+
+**Table of Adjusted values**
+
+| Source of variation | Degrees of Freedom | Sum of Squares | Mean Sum of Squares |
+|----|----|----|----|
+| Treatments + Error | $r(v-1) - 1$ | $(T_{yy}+E_{yy})-\frac{(T_{xy}+E_{xy})^2}{(T_{xx}+E_{xx})}=E_{1}$ |  |
+| Error | $(r-1)(v-1) - 1$ | $E_{yy}-\frac{ E_{xy}^2}{E_{xx}}=E$ | $MSE_{adj} =\frac{E}{(r-1)(v-1)-1}$ |
+| Treatments | $v-1$ | $E_{1}-E$ | $\frac{(E_{1}-E)}{(v-1)}$ |
+| Regression | $1$ | $\frac{E_{xy}^2}{E_{xx}}$ | $MS.Reg$ |
+
+The significance of the treatment effects is tested as $F = \frac{(E_{1} - E) / (v - 1)}{MSE(adj)}$
+
+The significance of regression coefficient by the ratio $F = \frac{MS(Reg)}{MSE(adj)}$
+
+The adjusted treatment means of (Y) are obtained assuming a similar linear relationship as in the case of CRD.
+
+The standard error to compare a pair of treatment means ( when error degree of freedom is large (\>20):\
+
+$SE = \sqrt{\frac{2MSE(adj)}{r} \cdot \left(1 +  \frac{T_{xx}}{(v - 1)E_{xx}}\right)}$
+
+and Critical Difference
+
+$CD = t_{\alpha} \cdot SE$, where the (t) value corresponds to the error degrees of freedom (r - 1)(v - 1) - 1 at a 5% level.
+
+**Example 21.2**: A varietal trial on cotton was laid out in RBD with 4 replications, 7 varieties were evaluated for the yield of seed cotton. The crop stands per plots of size 30m2 were also recorded because of wide variation in plant numbers. Analyze the data on the yield of seed cotton per plot in 10gm units (Y) after adjusting for plant stand (X).
+
+|           |       |     |       |     |       |     |       |     |
+|:---------:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:-----:|:---:|
+| $Variety$ | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     |
+|           |   X   |  Y  |   X   |  Y  |   X   |  Y  |   X   |  Y  |
+|   $V_1$   |  114  | 42  |  88   | 21  |  140  | 51  |  137  | 32  |
+|   $V_2$   |  196  | 51  |  105  | 35  |  149  | 24  |  165  | 33  |
+|   $V_3$   |  139  | 30  |  110  | 21  |  115  | 20  |  107  | 25  |
+|   $V_4$   |  182  | 50  |  113  | 27  |  157  | 55  |  194  | 34  |
+|   $V_5$   |  126  | 36  |  125  | 27  |  98   | 36  |  147  | 24  |
+|   $V_6$   |  153  | 45  |  90   | 15  |  140  | 51  |  120  | 27  |
+|   $V_7$   |  175  | 45  |  97   | 19  |  135  | 48  |  189  | 24  |
+
+**Solution 21.2**
+
+|           |       |     |       |     |       |     |       |     |           |           |
+|:---------:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:---------:|:---------:|
+| $Variety$ | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     | $Sum (X)$ | $Sum (Y)$ |
+|           |   X   |  Y  |   X   |  Y  |   X   |  Y  |   X   |  Y  |           |           |
+|   $V_1$   |  114  | 42  |  88   | 21  |  140  | 51  |  137  | 32  |    479    |    146    |
+|   $V_2$   |  196  | 51  |  105  | 35  |  149  | 24  |  165  | 33  |    615    |    143    |
+|   $V_3$   |  139  | 30  |  110  | 21  |  115  | 20  |  107  | 25  |    471    |    96     |
+|   $V_4$   |  182  | 50  |  113  | 27  |  157  | 55  |  194  | 34  |    646    |    166    |
+|   $V_5$   |  126  | 36  |  125  | 27  |  98   | 36  |  147  | 24  |    496    |    123    |
+|   $V_6$   |  153  | 45  |  90   | 15  |  140  | 51  |  120  | 27  |    503    |    138    |
+|   $V_7$   |  175  | 45  |  97   | 19  |  135  | 48  |  189  | 24  |    596    |    136    |
+|  $Total$  | 1085  | 299 |  728  | 165 |  934  | 285 | 1059  | 199 |   3806    |    948    |
+
+Here, $r=4$, $v=7$
+
+[**Analysis of X**]{.ui}
+
+$GT_X=3806$
+
+$CF_X=\frac{3806^2}{28}=517344.1$
+
+$T_{XX}=\frac{479^2+615^2+...+596^2}{4}-517344.1=7921.857$
+
+$B_{XX}=\frac{1085^2+728^2+934^2+1059^2}{7}-517344.1=11376.71$
+
+$TSS_X=114^2+196^2+...+189^2-517344.1=27107.86$
+
+$Error SS (E_{XX})=27107.86-(7921.857+11376.71)=7809.286$
+
+[**Analysis of Y**]{.ui}
+
+$GT_Y=948$
+
+$CF_Y=\frac{948^2}{28}=32096.57$
+
+$T_{YY}=\frac{146^2+143^2+...+136^2}{4}-32096.57=704.928$
+
+$B_{YY}=\frac{299^2+165^2+285^2+199^2}{7}-32096.57=1825.143$
+
+$TSS_Y=42^2+51^2+...+24^2-32096.57=3743.429$
+
+$Error SS (E_{YY})=3743.429-(704.928+1825.143)=1213.357$
+
+[**Analysis of X and Y**]{.ui}
+
+$CSP_{XY}=\frac{3806 \times 948}{4 \times 7}=128860.3$
+
+$T_{XY}=\frac{(479 \times 146)+(615 \times 143)+...+(596 \times 136)}{4}-128860.3=1591.964$
+
+$B_{XY}=\frac{(1085\times299)+(728\times165)+...+(1059\times199)}{7}-128860.3=2777.714$
+
+$TSS_{XY}=[(114\times42)+(88\times21)+...+(189\times24)]-128860.3=5144.714$
+
+$ESS_{XY}=5144.714-(1591.964+2777.714)=775.035$
+
+|  |  |  |  |  |
+|:--:|:--:|:--:|:--:|:--:|
+| Source | df | $Sum square X$ | $Sum square Y$ | $Sum product X,Y$ |
+| Block | 3 | 11376.71 | 1825.143 | 2777.714 |
+| Treatment | 6 | 7921.857 | 704.928 | 1591.964 |
+| Error | 18 | 7809.286 | 123.357 | 775.035 |
+| Total | 27 | 27107.86 | 3743.429 | 5144.714 |
+| Treatment+Error | 24 | $T_{XX}+E_{XX}=15731.14$ | $T_{YY}+E_{YY}=1918.286$ | $T_{XY}+E_{XY}=2367$ |
+
+Regression of Y on X, $b=\frac{E_{XY}}{E_{XX}}=0.099$
+
+Sum of squares due to regression of Y on X, $SSR_{YX}=\frac{E_{XY}^2}{E_{XX}}= 76.918$
+
+Correlation between X and Y, $COR_{x,Y}=\frac{E_{XY}}{\sqrt{E_{XX}E_{YY}}}=0.251$
+
+[**Adjusted values**]{.ui}
+
+$Adj.ESS_{YY}=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=1136.438$
+
+$Adj. Treatment + Error = (E_{YY}+T_{YY})-\frac{(E_{XY}+T_{XY})^2}{E_{XX}+T_{XX}}=1562.133$
+
+$Treatment Adj.=(Adj. Treatment + Error)-Adj.ESS_{YY}=1562.133-1136.438=425.694$
+
+|                        |     |          |        |           |                   |
+|------------------------|-----|----------|--------|-----------|-------------------|
+| Source                 | df  | SS       | MSS    | $F_{cal}$ | $F_{tab}$         |
+| Adj. Error             | 17  | 1136.438 | 66.849 |           |                   |
+| Adj. (Treatment+Error) | 23  | 1562.133 |        |           |                   |
+| Adj. Treatment         | 6   | 425.694  | 70.949 | 1.06      | $F_{(6,17)}=2.70$ |
+| Regression             | 1   | 76.918   | 76.918 | 1.15      | $F_{(1,17)}=4.45$ |
+
+Since the $F_{cal}<F_{tab}$, there is no significant interaction between the treatment pairs.
