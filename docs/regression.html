@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./probability.html" rel="next">
 <link href="./association.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +144,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -164,7 +330,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -302,8 +469,8 @@ window.Quarto = {
   </ul></li>
   <li><a href="#two-lines-of-regression" id="toc-two-lines-of-regression" class="nav-link" data-scroll-target="#two-lines-of-regression"><span class="header-section-number">9.2</span> Two lines of regression</a>
   <ul class="collapse">
-  <li><a href="#properties-of-regression-coefficients" id="toc-properties-of-regression-coefficients" class="nav-link" data-scroll-target="#properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of regression coefficients</a></li>
-  <li><a href="#properties-of-regression-lines" id="toc-properties-of-regression-lines" class="nav-link" data-scroll-target="#properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of regression lines</a></li>
+  <li><a href="#properties-of-regression-coefficients" id="toc-properties-of-regression-coefficients" class="nav-link" data-scroll-target="#properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of Regression Coefficients</a></li>
+  <li><a href="#properties-of-regression-lines" id="toc-properties-of-regression-lines" class="nav-link" data-scroll-target="#properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of Regression Lines</a></li>
   </ul></li>
   <li><a href="#uses-of-regression" id="toc-uses-of-regression" class="nav-link" data-scroll-target="#uses-of-regression"><span class="header-section-number">9.3</span> Uses of regression</a></li>
   <li><a href="#correlation-and-regression" id="toc-correlation-and-regression" class="nav-link" data-scroll-target="#correlation-and-regression"><span class="header-section-number">9.4</span> Correlation and regression</a></li>
@@ -312,6 +479,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -332,11 +500,11 @@ window.Quarto = {
 </header>
 
 
-<p>Regression analysis is one of the most important tools in statistics, used to understand and quantify the relationships between variables. In essence, regression helps us answer questions such as: “How does a change in one factor (like fertilizer usage) affect another factor (like crop yield)?” It provides a mathematical framework to explore these relationships based on observed data <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
+<p>Regression analysis is one of the most important tools in statistics, used to understand and quantify the relationships between variables. In essence, regression helps us answer questions such as: “How does a change in one variable (like fertilizer usage) affect another variable (like crop yield)?” It provides a mathematical framework to explore these relationships based on observed data <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
 <p>Regression analysis involves two types of variables:</p>
 <ul>
-<li><p><strong>Dependent variable</strong> (<em>y</em>): This is the main outcome — the variable you are trying to predict or explain. For example, crop yield might be the dependent variable in an agricultural study. The dependent variable is also known by various names such as the target variable, response variable, outcome variable, predicted variable, explained variable, <strong>regressand</strong>, <em>y</em>-variable, criterion variable, or output variable.</p></li>
-<li><p><strong>Independent variable</strong> (<em>x</em>): This is the factor that is thought to influence or predict changes in the dependent variable, such as the amount of water, fertilizer, or sunlight received by plants. The independent variable is also known as the predictor variable, explanatory variable, input variable, <strong>regressor</strong>, feature, covariate, <em>x</em>-variable, or control variable.</p></li>
+<li><p><strong>Dependent variable</strong> (<em>y</em>): The dependent variable (usually denoted as <em>y</em>) is the variable whose values are to be explained, predicted, or modeled based on one or more independent variables. It represents the outcome or response of interest and is assumed to depend on the values of the explanatory variables. For example, crop yield is often the dependent variable in agricultural experiments. In regression analysis, it is commonly referred to as the response variable, outcome variable, criterion variable, target variable, explained variable, regressand, or simply the response.</p></li>
+<li><p><strong>Independent variable</strong> (<em>x</em>): The independent variable (usually denoted as <em>x</em>) is a variable used to explain, predict, or account for variation in the dependent variable. It is considered the explanatory or predictor variable in the model and is used as an input to estimate the response. Examples include fertilizer dose, irrigation level, rainfall, temperature, or plant density. In regression analysis, it is also known as the predictor variable, explanatory variable, regressor, covariate, feature (in machine learning), input variable, or simply the predictor.</p></li>
 </ul>
 <p><strong>Why use regression analysis?</strong></p>
 <p>Regression analysis is particularly useful because it allows you to:</p>
@@ -364,7 +532,7 @@ window.Quarto = {
 <p>By the end of this chapter, you will learn how to perform regression analysis, interpret its results, and understand its assumptions and limitations.</p>
 <section id="simple-linear-regression" class="level2" data-number="9.1">
 <h2 data-number="9.1" class="anchored" data-anchor-id="simple-linear-regression"><span class="header-section-number">9.1</span> Simple linear regression</h2>
-<p>Regression can be simply defined as a technique of fitting a line of best fit to estimate the value of one variable on the basis of another variable. But what is a <em>line of best fit</em>? To understand this concept, consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, which shows the average daily soil moisture content and the corresponding monetary yield from crops in Example 8.2 of <a href="association.html#fig-reglinecorrdata" class="quarto-xref">Figure&nbsp;<span>8.4</span></a>. This example helps visualise how the relationship between two variables — soil moisture content (independent variable) and crop yield (dependent variable) — can be captured by a line.</p>
+<p>Regression can be simply defined as a technique of fitting a line of best fit to estimate the value of one variable on the basis of another variable. But what is a <em>line of best fit</em>? To understand this concept, consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a> of Example 8.2, which shows the average daily soil moisture content and the corresponding monetary yield from crops. This example helps visualise how the relationship between two variables <em>i.e.</em> soil moisture content (independent variable) and crop yield (dependent variable) can be captured by a line.</p>
 <p>We can use regression analysis to answer the following questions: What will the crop yield be (in rupees) when soil moisture content is maintained at 20%? What is the functional form of the relationship between soil moisture content and monetary crop yield?</p>
 <p>Refer to the scatter diagram of <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a> in <a href="association.html#fig-scattercorrdata" class="quarto-xref">Figure&nbsp;<span>8.3</span></a>. To represent the relationship between soil moisture content and monetary crop yield, we might attempt to draw a line through the data points, as illustrated in <a href="#fig-funcrel" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>. However, as shown in <a href="#fig-funcrel" class="quarto-xref">Figure&nbsp;<span>9.1</span></a>, it is possible to draw numerous lines through the same set of data points. This raises the question: <em>which line is the best fit?</em></p>
 <div id="fig-funcrel" class="quarto-layout-panel">
@@ -419,10 +587,10 @@ Figure&nbsp;9.1: Possible lines drawn to show the functional relationship betwee
 <p>The best fit line is the one that minimises the distances between the observed data points and the line itself. These distances are minimised collectively using a specific mathematical criterion. The regression technique provides a systematic approach to determine and draw this best fit line. Before going further into regression, it is essential to understand the concepts of <strong>error</strong> and <strong>residual</strong>, which play a critical role in determining the best fit line.</p>
 <section id="error-and-residual" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="error-and-residual"><span class="header-section-number">9.1.1</span> Error and residual</h3>
-<p>In regression analysis, an <strong>error</strong> represents the difference between an observed value and the true regression line — the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.</p>
+<p>In regression analysis, an <strong>error</strong> represents the difference between an observed value and the value based on the true regression line. True regression line here what we meant is the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.</p>
 <p>A <strong>residual</strong> is the difference between an observed value and the value predicted by the regression line fitted from sample data. For a given data point, the residual is calculated as:</p>
 <p><span class="math display">\[\text{Residual} = \text{Observed value} - \text{Predicted value}\]</span></p>
-<p>Residuals are measurable because they are derived from the observed data and the fitted regression line. Unlike errors — which are theoretical deviations from the true underlying model — residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.</p>
+<p>Residuals are measurable because they are derived from the observed data and the fitted regression line. Unlike the errors which are theoretical deviations from the true underlying model, the residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.</p>
 <p>In essence, a residual serves as an estimate of the error. From <a href="#fig-residual" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>, you can see the residual <span class="math inline">\(e_i\)</span> of the <span class="math inline">\(i\)</span>th observation in a fitted regression line.</p>
 <div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
@@ -477,7 +645,7 @@ Figure&nbsp;9.3: Intercept and slope of a straight line
 </figcaption>
 </figure>
 </div>
-<p>The values <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> act as a fingerprint of a line — with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that the error <span class="math inline">\(e_i\)</span> of each observation is minimised. For this, we use the <em>method of least squares</em>.</p>
+<p>The values <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that the error <span class="math inline">\(e_i\)</span> of each observation is minimised. For this, we use the <em>method of least squares</em>.</p>
 </section>
 <section id="sec-leastsquares" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="sec-leastsquares"><span class="header-section-number">9.1.3</span> Method of least squares</h3>
@@ -490,7 +658,7 @@ Figure&nbsp;9.3: Intercept and slope of a straight line
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -502,9 +670,10 @@ Note
 <p>Starting from <a href="#eq-simpleregression" class="quarto-xref">Equation&nbsp;<span>9.2</span></a>:</p>
 <p><span id="eq-leastsq1"><span class="math display">\[e_i = y_i - (\alpha + \beta x_i) \tag{9.3}\]</span></span></p>
 <p><span id="eq-leastsq2"><span class="math display">\[e_i^2 = [y_i - (\alpha + \beta x_i)]^2 \tag{9.4}\]</span></span></p>
-<p><span id="eq-leastsq3"><span class="math display">\[\sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} [y_i - (\alpha + \beta x_i)]^2 \tag{9.5}\]</span></span></p>
+<p>Let <span class="math inline">\(E = \sum_{i=1}^{n} e_i^2\)</span>.</p>
+<p><span id="eq-leastsq3"><span class="math display">\[E=\sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} [y_i - (\alpha + \beta x_i)]^2 \tag{9.5}\]</span></span></p>
 <p>We want to minimise <a href="#eq-leastsq3" class="quarto-xref">Equation&nbsp;<span>9.5</span></a> to estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. This is done by taking the partial derivative of <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> separately, and equating each to zero. Doing so yields two equations called the <strong>normal equations</strong>. Solving these normal equations gives the formulas for estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
-<p>Let <span class="math inline">\(E = \sum_{i=1}^{n} e_i^2\)</span>. Differentiating with respect to <span class="math inline">\(\alpha\)</span> and equating to zero:</p>
+<p>Differentiating with respect to <span class="math inline">\(\alpha\)</span> and equating to zero:</p>
 <p><span id="eq-lssquares1"><span class="math display">\[\frac{\partial E}{\partial \alpha} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-1) = 0 \tag{9.6}\]</span></span></p>
 <p><span id="eq-lssquares2"><span class="math display">\[\Rightarrow -2 \sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right] = 0 \tag{9.7}\]</span></span></p>
 <p>Simplifying <a href="#eq-lssquares2" class="quarto-xref">Equation&nbsp;<span>9.7</span></a>:</p>
@@ -519,22 +688,26 @@ Note
 <p>Rearranging gives the <strong>second normal equation</strong>:</p>
 <p><span id="eq-normaleq2"><span class="math display">\[\sum_{i=1}^n x_i y_i = \alpha \sum_{i=1}^n x_i + \beta \sum_{i=1}^n x_i^2 \tag{9.13}\]</span></span></p>
 <p>Solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a> together gives the formulas for estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. Since <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> are population parameters and are usually unknown, we estimate them from sample data. The estimated values are denoted <span class="math inline">\(\hat{\alpha}\)</span> and <span class="math inline">\(\hat{\beta}\)</span> (pronounced “alpha hat” and “beta hat”), and are used as approximations of the true population parameters.</p>
-</section>
-<section id="sec-regressionbeta" class="level3" data-number="9.1.4">
-<h3 data-number="9.1.4" class="anchored" data-anchor-id="sec-regressionbeta"><span class="header-section-number">9.1.4</span> Regression coefficient</h3>
-<p>The regression coefficient <span class="math inline">\(\beta\)</span> in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable (<span class="math inline">\(x\)</span>) and the dependent variable (<span class="math inline">\(y\)</span>). Specifically, <span class="math inline">\(\hat{\beta}\)</span> indicates the expected change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x\)</span>, when all other factors are held constant <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>)</span>.</p>
-<p>Regression coefficients can take any real value from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>. A positive <span class="math inline">\(\hat{\beta}\)</span> implies a direct relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> increases), while a negative <span class="math inline">\(\hat{\beta}\)</span> implies an inverse relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> decreases). A coefficient of zero suggests no linear relationship between the variables.</p>
-<p>The formula for <span class="math inline">\(\hat{\beta}\)</span> is obtained by solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>, and is given by <a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.14</span></a>, which can be used for hand calculations:</p>
-<p><span id="eq-regeqn3"><span class="math display">\[\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}} \tag{9.14}\]</span></span></p>
-<p><a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.14</span></a> can be written more compactly as:</p>
-<p><span id="eq-regeqn4"><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)} \tag{9.15}\]</span></span></p>
-</section>
-<section id="intercept" class="level3" data-number="9.1.5">
-<h3 data-number="9.1.5" class="anchored" data-anchor-id="intercept"><span class="header-section-number">9.1.5</span> Intercept</h3>
-<p>The intercept <span class="math inline">\(\alpha\)</span> represents the value of the dependent variable <span class="math inline">\(y\)</span> when the independent variable <span class="math inline">\(x\)</span> equals zero. It is the point at which the regression line crosses the <span class="math inline">\(y\)</span>-axis, and provides a baseline value for <span class="math inline">\(y\)</span> before any influence from <span class="math inline">\(x\)</span> is considered.</p>
-<p>The intercept can take any real value (<span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>). Its practical interpretation depends on the specific context. In many agricultural datasets, <span class="math inline">\(x = 0\)</span> may not lie within the range of observed data, in which case the intercept may not carry a meaningful practical interpretation.</p>
-<p>The formula for <span class="math inline">\(\hat{\alpha}\)</span> is obtained by solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>:</p>
-<p><span id="eq-regeqn5"><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} \tag{9.16}\]</span></span></p>
+<p><strong>Solving for <span class="math inline">\(\hat{\beta}\)</span></strong></p>
+<p>From the first normal equation (<a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a>), divide both sides by <span class="math inline">\(n\)</span>:</p>
+<p><span class="math display">\[\frac{\sum_{i=1}^n y_i}{n} = \alpha + \beta \frac{\sum_{i=1}^n x_i}{n}\]</span><br>
+<span id="eq-solve1"><span class="math display">\[\overline{y} = \alpha + \beta \overline{x} \tag{9.14}\]</span></span><br>
+This gives us:</p>
+<p><span id="eq-solve2"><span class="math display">\[\alpha = \overline{y} - \beta \overline{x} \tag{9.15}\]</span></span></p>
+<p>Substitute <a href="#eq-solve2" class="quarto-xref">Equation&nbsp;<span>9.15</span></a> into the second normal equation (<a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>):</p>
+<p><span class="math display">\[\sum_{i=1}^n x_i y_i = (\overline{y} - \beta \overline{x})\sum_{i=1}^n x_i + \beta \sum_{i=1}^n x_i^2\]</span><br>
+<span class="math display">\[\sum_{i=1}^n x_i y_i = \overline{y}\sum_{i=1}^n x_i - \beta \overline{x}\sum_{i=1}^n x_i + \beta \sum_{i=1}^n x_i^2\]</span></p>
+<p>Collecting the <span class="math inline">\(\beta\)</span> terms on the right:</p>
+<p><span class="math display">\[\sum_{i=1}^n x_i y_i - \overline{y}\sum_{i=1}^n x_i = \beta \left(\sum_{i=1}^n x_i^2 - \overline{x}\sum_{i=1}^n x_i\right)\]</span> Since <span class="math inline">\(\overline{x} = \frac{\sum x_i}{n}\)</span>, we have <span class="math inline">\(\overline{x} \sum_{i=1}^n x_i = \frac{\left(\sum_{i=1}^n x_i\right)^2}{n}\)</span>. Similarly, <span class="math inline">\(\overline{y} \sum_{i=1}^n x_i = \frac{\sum_{i=1}^n y_i \sum_{i=1}^n x_i}{n}\)</span>. Substituting:</p>
+<p><span class="math display">\[\sum_{i=1}^n x_i y_i - \frac{\sum_{i=1}^n y_i \sum_{i=1}^n x_i}{n} = \beta \left(\sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n}\right)\]</span> Solving for <span class="math inline">\(\beta\)</span>:</p>
+<p><span id="eq-regeqn3"><span class="math display">\[\hat{\beta} = \frac{\sum_{i=1}^n x_i y_i - \dfrac{\sum_{i=1}^n x_i \sum_{i=1}^n y_i}{n}}{\sum_{i=1}^n x_i^2 - \dfrac{\left(\sum_{i=1}^n x_i\right)^2}{n}} \tag{9.16}\]</span></span></p>
+<p>This is the formula for <span class="math inline">\(\hat{\beta}\)</span> used for hand calculations. It can be written more compactly by recognising that:</p>
+<p><span class="math display">\[\sum_{i=1}^n x_i y_i - \frac{\sum_{i=1}^n x_i \sum_{i=1}^n y_i}{n} = n \cdot cov(x, y)\]</span></p>
+<p><span class="math display">\[\sum_{i=1}^n x_i^2 - \frac{\left(\sum_{i=1}^n x_i\right)^2}{n} = n \cdot var(x)\]</span> Therefore:</p>
+<p><span id="eq-regeqn4"><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)} \tag{9.17}\]</span></span><br>
+<strong>Solving for <span class="math inline">\(\hat{\alpha}\)</span></strong></p>
+<p>Once <span class="math inline">\(\hat{\beta}\)</span> is known, the intercept is obtained directly from <a href="#eq-solve2" class="quarto-xref">Equation&nbsp;<span>9.15</span></a>:</p>
+<p><span id="eq-regeqn5"><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} \tag{9.18}\]</span></span></p>
 <p>where <span class="math inline">\(\overline{y}\)</span> = mean of <span class="math inline">\(y\)</span> and <span class="math inline">\(\overline{x}\)</span> = mean of <span class="math inline">\(x\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
@@ -542,15 +715,32 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Once the estimates <span class="math inline">\(\hat{\alpha}\)</span> and <span class="math inline">\(\hat{\beta}\)</span> are obtained using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.15</span></a> and <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.16</span></a>, the estimated regression line can be written as:</p>
-<p><span id="eq-regestimate"><span class="math display">\[\hat{y} = \hat{\alpha} + \hat{\beta}\, x \tag{9.17}\]</span></span></p>
-<p>Note that the predicted value of <span class="math inline">\(y\)</span> is written as <span class="math inline">\(\hat{y}\)</span> (y-hat) to distinguish it from the observed value <span class="math inline">\(y\)</span>.</p>
+<p>Once the estimates <span class="math inline">\(\hat{\alpha}\)</span> and <span class="math inline">\(\hat{\beta}\)</span> are obtained using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.21</span></a> and <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.22</span></a>, the estimated regression line can be written as:</p>
+<p><span id="eq-regestimate"><span class="math display">\[\hat{y} = \hat{\alpha} + \hat{\beta}\, x \tag{9.19}\]</span></span></p>
+<p>Note that the predicted value of <span class="math inline">\(y\)</span> is written as <span class="math inline">\(\hat{y}\)</span> (y-hat) to distinguish it from the observed value <span class="math inline">\(y\)</span>. Also note that the regression line always passes through the point <span class="math inline">\((\overline{x},\, \overline{y})\)</span>, which can be verified by substituting <span class="math inline">\(x = \overline{x}\)</span> into <a href="#eq-regestimate" class="quarto-xref">Equation&nbsp;<span>9.19</span></a>.</p>
 </div>
 </div>
+</section>
+<section id="sec-regressionbeta" class="level3" data-number="9.1.4">
+<h3 data-number="9.1.4" class="anchored" data-anchor-id="sec-regressionbeta"><span class="header-section-number">9.1.4</span> Regression coefficient</h3>
+<p>The regression coefficient <span class="math inline">\(\beta\)</span> in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable (<span class="math inline">\(x\)</span>) and the dependent variable (<span class="math inline">\(y\)</span>). Specifically, <span class="math inline">\(\hat{\beta}\)</span> indicates the expected change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x\)</span>, when all other factors are held constant <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>)</span>.</p>
+<p>Regression coefficients can take any real value from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>. A positive <span class="math inline">\(\hat{\beta}\)</span> implies a direct relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> increases), while a negative <span class="math inline">\(\hat{\beta}\)</span> implies an inverse relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> decreases). A coefficient of zero suggests no linear relationship between the variables.</p>
+<p>The formula for <span class="math inline">\(\hat{\beta}\)</span> is obtained by solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>, and is given by <a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.20</span></a>, which can be used for hand calculations:</p>
+<p><span id="eq-regeqn3"><span class="math display">\[\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}} \tag{9.20}\]</span></span></p>
+<p><a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.20</span></a> can be written more compactly as:</p>
+<p><span id="eq-regeqn4"><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)} \tag{9.21}\]</span></span></p>
+</section>
+<section id="intercept" class="level3" data-number="9.1.5">
+<h3 data-number="9.1.5" class="anchored" data-anchor-id="intercept"><span class="header-section-number">9.1.5</span> Intercept</h3>
+<p>The intercept <span class="math inline">\(\alpha\)</span> represents the value of the dependent variable <span class="math inline">\(y\)</span> when the independent variable <span class="math inline">\(x\)</span> equals zero. It is the point at which the regression line crosses the <span class="math inline">\(y\)</span>-axis, and provides a baseline value for <span class="math inline">\(y\)</span> before any influence from <span class="math inline">\(x\)</span> is considered.</p>
+<p>The intercept can take any real value (<span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>). Its practical interpretation depends on the specific context. In many agricultural datasets, <span class="math inline">\(x = 0\)</span> may not lie within the range of observed data, in which case the intercept may not carry a meaningful practical interpretation.</p>
+<p>The formula for <span class="math inline">\(\hat{\alpha}\)</span> is obtained by solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>:</p>
+<p><span id="eq-regeqn5"><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} \tag{9.22}\]</span></span></p>
+<p>where <span class="math inline">\(\overline{y}\)</span> = mean of <span class="math inline">\(y\)</span> and <span class="math inline">\(\overline{x}\)</span> = mean of <span class="math inline">\(x\)</span>.</p>
 </section>
 <section id="assumptions" class="level3" data-number="9.1.6">
 <h3 data-number="9.1.6" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">9.1.6</span> Assumptions</h3>
@@ -578,7 +768,7 @@ The model should include all relevant variables and exclude irrelevant ones. The
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -595,7 +785,7 @@ Note
 </section>
 <section id="two-lines-of-regression" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="two-lines-of-regression"><span class="header-section-number">9.2</span> Two lines of regression</h2>
-<p>Consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, showing average daily soil moisture content and the corresponding monetary crop yield from Example 8.2 of <a href="association.html#sec-scatterdiag" class="quarto-xref"><span>Section 8.2</span></a>. For any two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can draw two lines of regression — one by treating <span class="math inline">\(x\)</span> as independent and <span class="math inline">\(y\)</span> as dependent, and the other by interchanging their roles — as shown in <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>.</p>
+<p>Consider the data presented in <a href="association.html#tbl-corrdata" class="quarto-xref">Table&nbsp;<span>8.2</span></a>, showing average daily soil moisture content and the corresponding monetary crop yield from Example 8.2 of <a href="association.html#sec-scatterdiag" class="quarto-xref"><span>Section 8.2</span></a>. For any two variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, we can draw two lines of regression :- one by treating <span class="math inline">\(x\)</span> as independent and <span class="math inline">\(y\)</span> as dependent, and the other by interchanging their roles as shown in <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.4</span></a>.</p>
 <div id="fig-twolines" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-twolines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -634,132 +824,119 @@ Figure&nbsp;9.4: Two lines of regression
 <p>From <a href="#fig-twolines" class="quarto-xref">Figure&nbsp;<span>9.4</span></a> it is clear that two distinct lines of regression are possible: the regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span>, and the regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</p>
 <p><u>Regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span></u></p>
 <p>When <span class="math inline">\(y\)</span> is the dependent variable and <span class="math inline">\(x\)</span> is the independent variable, the regression equation is:</p>
-<p><span id="eq-yonx"><span class="math display">\[y = \alpha + \beta_{yx}\, x \tag{9.18}\]</span></span></p>
+<p><span id="eq-yonx"><span class="math display">\[y = \alpha + \beta_{yx}\, x \tag{9.23}\]</span></span></p>
 <p>This is used to predict the unknown value of <span class="math inline">\(y\)</span> when the value of <span class="math inline">\(x\)</span> is known. The regression coefficient here is denoted <span class="math inline">\(\beta_{yx}\)</span> and is obtained using:</p>
-<p><span id="eq-betayonx"><span class="math display">\[\beta_{yx} = \frac{cov(x,y)}{var(x)} \tag{9.19}\]</span></span></p>
+<p><span id="eq-betayonx"><span class="math display">\[\beta_{yx} = \frac{cov(x,y)}{var(x)} \tag{9.24}\]</span></span></p>
 <p><u>Regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span></u></p>
 <p>When <span class="math inline">\(x\)</span> is the dependent variable and <span class="math inline">\(y\)</span> is the independent variable, the regression equation is:</p>
-<p><span id="eq-xony"><span class="math display">\[x = \alpha_1 + \beta_{xy}\, y \tag{9.20}\]</span></span></p>
+<p><span id="eq-xony"><span class="math display">\[x = \alpha_1 + \beta_{xy}\, y \tag{9.25}\]</span></span></p>
 <p>This is used to predict the unknown value of <span class="math inline">\(x\)</span> when the value of <span class="math inline">\(y\)</span> is known. The regression coefficient here is denoted <span class="math inline">\(\beta_{xy}\)</span> and is obtained using:</p>
-<p><span id="eq-betaxony"><span class="math display">\[\beta_{xy} = \frac{cov(x,y)}{var(y)} \tag{9.21}\]</span></span></p>
-<p>As seen from <a href="#eq-betayonx" class="quarto-xref">Equation&nbsp;<span>9.19</span></a> and <a href="#eq-betaxony" class="quarto-xref">Equation&nbsp;<span>9.21</span></a>, the two regression coefficients are different. It is the experimenter’s responsibility to choose which variable is treated as dependent and which as independent, based on the objective of the study. In Example 8.2, predicting soil moisture based on monetary crop yield may not be meaningful in practice — the choice of dependent and independent variable must reflect the scientific question being asked.</p>
+<p><span id="eq-betaxony"><span class="math display">\[\beta_{xy} = \frac{cov(x,y)}{var(y)} \tag{9.26}\]</span></span></p>
+<p>As seen from <a href="#eq-betayonx" class="quarto-xref">Equation&nbsp;<span>9.24</span></a> and <a href="#eq-betaxony" class="quarto-xref">Equation&nbsp;<span>9.26</span></a>, the two regression coefficients are different. It is the experimenter’s responsibility to choose which variable is treated as dependent and which as independent, based on the objective of the study. In Example 8.2, predicting soil moisture based on monetary crop yield may not be meaningful in practice, the choice of dependent and independent variable must reflect the scientific question being asked.</p>
 <section id="properties-of-regression-coefficients" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of regression coefficients</h3>
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="properties-of-regression-coefficients"><span class="header-section-number">9.2.1</span> Properties of Regression Coefficients</h3>
 <ol type="1">
-<li>The correlation coefficient between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>, denoted <span class="math inline">\(r_{xy}\)</span>, is the geometric mean of the two regression coefficients <span class="math inline">\(\beta_{yx}\)</span> and <span class="math inline">\(\beta_{xy}\)</span>:</li>
-</ol>
-<p><span id="eq-corndbeta"><span class="math display">\[r_{xy} = \sqrt{\beta_{yx} \cdot \beta_{xy}} \tag{9.22}\]</span></span></p>
-<ol start="2" type="1">
-<li><p>Regression coefficients are independent of a change of <strong>origin</strong> but not of <strong>scale</strong>. Adding or subtracting a constant from either variable (change of origin) does not affect the slope <span class="math inline">\(\beta\)</span>, but does affect the intercept <span class="math inline">\(\alpha\)</span>. Multiplying or dividing a variable by a constant (change of scale) changes <span class="math inline">\(\beta\)</span> proportionally.</p></li>
-<li><p>If one regression coefficient is greater than unity, the other must be less than unity — but not vice versa. Both regression coefficients can be less than one, but both cannot exceed one simultaneously. That is, if <span class="math inline">\(\beta_{yx} &gt; 1\)</span> then <span class="math inline">\(\beta_{xy} &lt; 1\)</span>, and if <span class="math inline">\(\beta_{xy} &gt; 1\)</span> then <span class="math inline">\(\beta_{yx} &lt; 1\)</span>.</p></li>
-<li><p>Both regression coefficients have the same sign. If one is positive, the other is also positive (and the correlation coefficient is positive); if one is negative, the other is also negative (and the correlation coefficient is negative).</p></li>
-<li><p>The range of regression coefficients is <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>.</p></li>
-<li><p>If <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are independent, both regression coefficients equal zero. This is referred to as the <strong>independence property</strong> of regression coefficients.</p></li>
+<li><p><strong>Relationship with the correlation coefficient</strong></p>
+<p>The product of the two regression coefficients equals the square of the correlation coefficient:</p>
+<p><span class="math display">\[\beta_{yx}\beta_{xy}=r_{xy}^{\,2}\]</span></p>
+<p>Hence,</p>
+<p><span class="math display">\[|r_{xy}|=\sqrt{\beta_{yx}\beta_{xy}}\]</span></p>
+<p>Since the regression coefficients always have the same sign,</p>
+<p><span class="math display">\[
+r_{xy}=
+   \begin{cases}
+   \sqrt{\beta_{yx}\beta_{xy}}, &amp; \text{if } \beta_{yx},\beta_{xy}&gt;0,\\[4pt]
+   -\sqrt{\beta_{yx}\beta_{xy}}, &amp; \text{if } \beta_{yx},\beta_{xy}&lt;0.
+   \end{cases}
+\]</span></p></li>
+<li><p><strong>Both regression coefficients have the same sign</strong></p>
+<p>The two regression coefficients always possess the same sign.</p>
+<ul>
+<li>If <span class="math inline">\(\beta_{yx}&gt;0\)</span>, then <span class="math inline">\(\beta_{xy}&gt;0\)</span>, and the correlation coefficient is positive.</li>
+<li>If <span class="math inline">\(\beta_{yx}&lt;0\)</span>, then <span class="math inline">\(\beta_{xy}&lt;0\)</span>, and the correlation coefficient is negative.</li>
+<li>If one regression coefficient is zero, the other is also zero, implying <span class="math inline">\(r_{xy}=0\)</span>.</li>
+</ul></li>
+<li><p><strong>Regression coefficients are independent of change of origin but not of scale</strong></p>
+<ul>
+<li>Adding or subtracting a constant from either variable (<strong>change of origin</strong>) does not affect the regression coefficients (slopes), although it changes the intercepts.</li>
+<li>Multiplying or dividing a variable by a constant (<strong>change of scale</strong>) changes the regression coefficients.</li>
+</ul>
+<p>If</p>
+<p><span class="math display">\[
+X=\frac{x-a}{h},\qquad
+Y=\frac{y-b}{k},
+\]</span></p>
+<p>then</p>
+<p><span class="math display">\[
+\beta_{YX}=\frac{h}{k}\beta_{yx},
+\qquad
+\beta_{XY}=\frac{k}{h}\beta_{xy}.
+\]</span></p></li>
+<li><p><strong>Relationship with unity</strong></p>
+<p>Since</p>
+<p><span class="math display">\[\beta_{yx}\beta_{xy}=r^2\le1,\]</span></p>
+<ul>
+<li>if one regression coefficient is greater than unity, the other must be less than unity;</li>
+<li>both regression coefficients may be less than one;</li>
+<li>both regression coefficients cannot exceed one simultaneously.</li>
+</ul></li>
+<li><p><strong>Regression coefficients are not bounded</strong></p>
+<p>Unlike the correlation coefficient, whose value lies between <span class="math inline">\(-1\)</span> and <span class="math inline">\(+1\)</span>, regression coefficients can take any real value. Thus,</p>
+<p><span class="math display">\[-\infty&lt;\beta&lt;+\infty.\]</span></p></li>
+<li><p><strong>Regression coefficients in terms of correlation and standard deviations</strong></p>
+<p>The regression coefficients are related to the correlation coefficient and the standard deviations by</p>
+<p><span class="math display">\[
+\beta_{yx}=r\frac{\sigma_y}{\sigma_x},
+\qquad
+\beta_{xy}=r\frac{\sigma_x}{\sigma_y}.
+\]</span></p>
+<p>Thus, the magnitude of a regression coefficient depends on both the strength of association and the relative variability of the two variables.</p></li>
+<li><p><strong>Independence property</strong></p>
+<p>If the variables <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> are statistically independent,</p>
+<p><span class="math display">\[r_{xy}=0,\]</span></p>
+<p>and therefore</p>
+<p><span class="math display">\[\beta_{yx}=\beta_{xy}=0.\]</span></p>
+<p>In this case, neither variable can be used to predict the other through a linear regression model.</p></li>
+<li><p><strong>Perfect correlation</strong></p>
+<p>If the variables are perfectly correlated (<span class="math inline">\(r=\pm1\)</span>),</p>
+<p><span class="math display">\[\beta_{yx}\beta_{xy}=1.\]</span></p>
+<p>The two regression lines coincide, indicating a perfect linear relationship between the variables.</p></li>
 </ol>
 </section>
 <section id="properties-of-regression-lines" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of regression lines</h3>
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of Regression Lines</h3>
 <ol type="1">
-<li><p>Regression lines minimise the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.</p></li>
-<li><p>The two regression lines always intersect at the point <span class="math inline">\((\overline{x},\, \overline{y})\)</span> — the means of <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
-<li><p>The slopes of the regression lines are related to the correlation coefficient <span class="math inline">\(r\)</span>. If <span class="math inline">\(r = 0\)</span>, the two regression lines are perpendicular to each other, indicating no linear relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
+<li><p><strong>Regression lines are the lines of best fit</strong></p>
+<p>Each regression line is obtained using the <strong>least squares principle</strong>, which minimises the sum of the squared deviations between the observed and predicted values.</p>
+<ul>
+<li>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> minimises the sum of squared <strong>vertical</strong> deviations.</li>
+<li>The regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> minimises the sum of squared <strong>horizontal</strong> deviations.</li>
+</ul></li>
+<li><p><strong>Both regression lines pass through the point of means</strong></p>
+<p>The regression lines of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> always intersect at the point</p>
+<p><span class="math display">\[(\bar{x},\,\bar{y}),\]</span></p>
+<p>where <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> are the arithmetic means of the variables.</p></li>
+<li><p><strong>The position of the regression lines depends on the correlation coefficient</strong></p>
+<p>The angle between the two regression lines depends on the magnitude of the correlation coefficient (<span class="math inline">\(r\)</span>).</p>
+<ul>
+<li>If <span class="math inline">\(|r|=1\)</span>, the two regression lines coincide, indicating a perfect linear relationship.</li>
+<li>If <span class="math inline">\(r=0\)</span>, the regression lines are perpendicular to each other, indicating no linear relationship.</li>
+<li>For <span class="math inline">\(0&lt;|r|&lt;1\)</span>, the two regression lines intersect at an angle between <span class="math inline">\(0^\circ\)</span> and <span class="math inline">\(90^\circ\)</span>.</li>
+</ul>
+<p>The position and angle of the regression lines therefore reflect the strength of the linear relationship between the variables (see <a href="#fig-twolines2" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>).</p></li>
+<li><p><strong>Regression lines are unique</strong></p>
+<p>For a given dataset, there is only one regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and one regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</p></li>
+<li><p><strong>The two regression lines are identical only under perfect correlation</strong></p>
+<p>The regression lines coincide only when</p>
+<p><span class="math display">\[r=\pm1,\]</span></p>
+<p>indicating a perfect positive or perfect negative linear relationship. Otherwise, they are distinct.</p></li>
+<li><p><strong>Prediction depends on the direction of regression</strong></p>
+<p>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is used to predict the value of <span class="math inline">\(y\)</span> from a given value of <span class="math inline">\(x\)</span>, whereas the regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is used to predict the value of <span class="math inline">\(x\)</span> from a given value of <span class="math inline">\(y\)</span>. These two regression equations are generally different unless <span class="math inline">\(|r|=1\)</span>.</p></li>
 </ol>
-<p>The position and angle of the regression lines change with the strength of the correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>. As shown in <a href="#fig-twolines2" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>, the two lines coincide when <span class="math inline">\(|r| = 1\)</span> (perfect correlation) and are at right angles when <span class="math inline">\(r = 0\)</span> (no correlation).</p>
-<div id="fig-twolines2" class="quarto-layout-panel">
+<div id="fig-twolines2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-twolines2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-nocorrel" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-nocorrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/no_correlation.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-nocorrel-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) When correlation = 0
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-perfpos" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-perfpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/perfect_positive.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-perfpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Perfect positive correlation
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-perfneg" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-perfneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/perfect_negative.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-perfneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(c) Perfect negative correlation
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-highpos" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-highpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/highdegree_positive.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-highpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(d) High degree positive correlation
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-highneg" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-highneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/highdegree_negative.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-highneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(e) High degree negative correlation
-</figcaption>
-</figure>
-</div>
-</div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-lowneg" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-lowneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/lowdegree_negative.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-lowneg-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(f) Low degree negative correlation
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines2" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-lowpos" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-lowpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/lowdegree_positive.png" data-ref-parent="fig-twolines2" width="200" height="150" class="figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-lowpos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(g) Low degree positive correlation
-</figcaption>
-</figure>
-</div>
-</div>
-</div>
+<img src="images/corrregline.png" width="450" height="300" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twolines2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;9.5: Effect of correlation strength on the position of regression lines
@@ -806,13 +983,13 @@ Regression is valuable for modelling trends and forecasting future values. Appli
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Multiple regression</strong> is an extension of simple linear regression that models the relationship between a dependent variable and two or more independent variables <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>)</span>. It allows researchers to account for the combined effect of multiple factors on an outcome. For instance, crop yield can be predicted based on a combination of soil nutrients, rainfall, temperature, and fertilizer application.</p>
 <p>In a multiple regression model, the relationship between the dependent variable <span class="math inline">\(y\)</span> and independent variables <span class="math inline">\(x_1, x_2, \ldots, x_k\)</span> is expressed as:</p>
-<p><span id="eq-multireg"><span class="math display">\[y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + e \tag{9.23}\]</span></span></p>
+<p><span id="eq-multireg"><span class="math display">\[y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + e \tag{9.27}\]</span></span></p>
 <p>Where <span class="math inline">\(y\)</span> is the dependent variable; <span class="math inline">\(\alpha\)</span> is the intercept; <span class="math inline">\(\beta_1, \beta_2, \ldots, \beta_k\)</span> are the coefficients for each independent variable; <span class="math inline">\(x_1, x_2, \ldots, x_k\)</span> are the independent variables; and <span class="math inline">\(e\)</span> is the error term.</p>
 </div>
 </div>
@@ -822,340 +999,143 @@ Note
 <li>What will be the estimated monetary crop yield when average daily soil moisture is maintained at 20%?</li>
 </ol>
 <p><strong>Solution 9.1</strong>:</p>
-<p>Step 1: Fit a model treating monetary crop yield as the dependent variable (<span class="math inline">\(y\)</span>) and average soil moisture as the independent variable (<span class="math inline">\(x\)</span>). Fitting a model means estimating <span class="math inline">\(\hat{\beta}\)</span> using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.15</span></a> and <span class="math inline">\(\hat{\alpha}\)</span> using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.16</span></a>.</p>
+<p>Step 1: Fit a model treating monetary crop yield as the dependent variable (<span class="math inline">\(y\)</span>) and average soil moisture as the independent variable (<span class="math inline">\(x\)</span>). Fitting a model means estimating <span class="math inline">\(\hat{\beta}\)</span> using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.21</span></a> and <span class="math inline">\(\hat{\alpha}\)</span> using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.22</span></a>.</p>
 <p>Step 2: Substitute <span class="math inline">\(x = 20\)</span> into the fitted equation to obtain the predicted crop yield.</p>
-<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Calculation table for regression">
+<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regressioncalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;9.1: `````
+Table&nbsp;9.1: Calculation table for regression
 </figcaption>
 <div aria-describedby="tbl-regressioncalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-systemfonts and textshaping have been compiled with different versions of Freetype. Because of this, textshaping will not use the font cache provided by systemfonts`````{=html}
-<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
 <thead>
-<tr>
-<th style="text-align:center;">
-Sl No.&nbsp;
-</th>
-<th style="text-align:center;">
-Soil moisture (<span class="math inline">\(x\)</span>)
-</th>
-<th style="text-align:center;">
-Crop yield in Rs (<span class="math inline">\(y\)</span>)
-</th>
-<th style="text-align:center;">
-<span class="math inline">\((x_{i}-\overline{x})\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\((y_{i}-\overline{y})\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\((x_{i}-\overline{x})(y_{i}-\overline{y})\)</span>
-</th>
-<th style="text-align:center;">
-<span class="math inline">\((x_{i}-\overline{x})^2\)</span>
-</th>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sl No.</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Soil moisture ($x$)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Crop yield in Rs ($y$)</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">$(x_{i}-\overline{x})$</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">$(y_{i}-\overline{y})$</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">$(x_{i}-\overline{x})(y_{i}-\overline{y})$</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">$(x_{i}-\overline{x})^2$</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-1
-</td>
-<td style="text-align:center;">
-14.2
-</td>
-<td style="text-align:center;">
-215
-</td>
-<td style="text-align:center;">
--4.48
-</td>
-<td style="text-align:center;">
--187.42
-</td>
-<td style="text-align:center;">
-838.69
-</td>
-<td style="text-align:center;">
-20.03
-</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">14.2</td>
+<td style="text-align: center;">215</td>
+<td style="text-align: center;">-4.48</td>
+<td style="text-align: center;">-187.42</td>
+<td style="text-align: center;">838.69</td>
+<td style="text-align: center;">20.03</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-2
-</td>
-<td style="text-align:center;">
-16.4
-</td>
-<td style="text-align:center;">
-325
-</td>
-<td style="text-align:center;">
--2.28
-</td>
-<td style="text-align:center;">
--77.42
-</td>
-<td style="text-align:center;">
-176.12
-</td>
-<td style="text-align:center;">
-5.18
-</td>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">16.4</td>
+<td style="text-align: center;">325</td>
+<td style="text-align: center;">-2.28</td>
+<td style="text-align: center;">-77.42</td>
+<td style="text-align: center;">176.12</td>
+<td style="text-align: center;">5.18</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-3
-</td>
-<td style="text-align:center;">
-11.9
-</td>
-<td style="text-align:center;">
-185
-</td>
-<td style="text-align:center;">
--6.78
-</td>
-<td style="text-align:center;">
--217.42
-</td>
-<td style="text-align:center;">
-1473.00
-</td>
-<td style="text-align:center;">
-45.90
-</td>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">11.9</td>
+<td style="text-align: center;">185</td>
+<td style="text-align: center;">-6.78</td>
+<td style="text-align: center;">-217.42</td>
+<td style="text-align: center;">1473.00</td>
+<td style="text-align: center;">45.90</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-4
-</td>
-<td style="text-align:center;">
-15.2
-</td>
-<td style="text-align:center;">
-332
-</td>
-<td style="text-align:center;">
--3.48
-</td>
-<td style="text-align:center;">
--70.42
-</td>
-<td style="text-align:center;">
-244.70
-</td>
-<td style="text-align:center;">
-12.08
-</td>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">15.2</td>
+<td style="text-align: center;">332</td>
+<td style="text-align: center;">-3.48</td>
+<td style="text-align: center;">-70.42</td>
+<td style="text-align: center;">244.70</td>
+<td style="text-align: center;">12.08</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-5
-</td>
-<td style="text-align:center;">
-18.5
-</td>
-<td style="text-align:center;">
-406
-</td>
-<td style="text-align:center;">
--0.18
-</td>
-<td style="text-align:center;">
-3.58
-</td>
-<td style="text-align:center;">
--0.63
-</td>
-<td style="text-align:center;">
-0.03
-</td>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">18.5</td>
+<td style="text-align: center;">406</td>
+<td style="text-align: center;">-0.18</td>
+<td style="text-align: center;">3.58</td>
+<td style="text-align: center;">-0.63</td>
+<td style="text-align: center;">0.03</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-6
-</td>
-<td style="text-align:center;">
-22.1
-</td>
-<td style="text-align:center;">
-522
-</td>
-<td style="text-align:center;">
-3.43
-</td>
-<td style="text-align:center;">
-119.58
-</td>
-<td style="text-align:center;">
-409.57
-</td>
-<td style="text-align:center;">
-11.73
-</td>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">22.1</td>
+<td style="text-align: center;">522</td>
+<td style="text-align: center;">3.43</td>
+<td style="text-align: center;">119.58</td>
+<td style="text-align: center;">409.57</td>
+<td style="text-align: center;">11.73</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-7
-</td>
-<td style="text-align:center;">
-19.4
-</td>
-<td style="text-align:center;">
-412
-</td>
-<td style="text-align:center;">
-0.73
-</td>
-<td style="text-align:center;">
-9.58
-</td>
-<td style="text-align:center;">
-6.95
-</td>
-<td style="text-align:center;">
-0.53
-</td>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">19.4</td>
+<td style="text-align: center;">412</td>
+<td style="text-align: center;">0.73</td>
+<td style="text-align: center;">9.58</td>
+<td style="text-align: center;">6.95</td>
+<td style="text-align: center;">0.53</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-8
-</td>
-<td style="text-align:center;">
-25.1
-</td>
-<td style="text-align:center;">
-614
-</td>
-<td style="text-align:center;">
-6.43
-</td>
-<td style="text-align:center;">
-211.58
-</td>
-<td style="text-align:center;">
-1359.42
-</td>
-<td style="text-align:center;">
-41.28
-</td>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">25.1</td>
+<td style="text-align: center;">614</td>
+<td style="text-align: center;">6.43</td>
+<td style="text-align: center;">211.58</td>
+<td style="text-align: center;">1359.42</td>
+<td style="text-align: center;">41.28</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-9
-</td>
-<td style="text-align:center;">
-23.4
-</td>
-<td style="text-align:center;">
-544
-</td>
-<td style="text-align:center;">
-4.73
-</td>
-<td style="text-align:center;">
-141.58
-</td>
-<td style="text-align:center;">
-668.98
-</td>
-<td style="text-align:center;">
-22.33
-</td>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">23.4</td>
+<td style="text-align: center;">544</td>
+<td style="text-align: center;">4.73</td>
+<td style="text-align: center;">141.58</td>
+<td style="text-align: center;">668.98</td>
+<td style="text-align: center;">22.33</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-10
-</td>
-<td style="text-align:center;">
-18.1
-</td>
-<td style="text-align:center;">
-421
-</td>
-<td style="text-align:center;">
--0.58
-</td>
-<td style="text-align:center;">
-18.58
-</td>
-<td style="text-align:center;">
--10.69
-</td>
-<td style="text-align:center;">
-0.33
-</td>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">18.1</td>
+<td style="text-align: center;">421</td>
+<td style="text-align: center;">-0.58</td>
+<td style="text-align: center;">18.58</td>
+<td style="text-align: center;">-10.69</td>
+<td style="text-align: center;">0.33</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-11
-</td>
-<td style="text-align:center;">
-22.6
-</td>
-<td style="text-align:center;">
-445
-</td>
-<td style="text-align:center;">
-3.93
-</td>
-<td style="text-align:center;">
-42.58
-</td>
-<td style="text-align:center;">
-167.14
-</td>
-<td style="text-align:center;">
-15.41
-</td>
+<tr class="odd">
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">22.6</td>
+<td style="text-align: center;">445</td>
+<td style="text-align: center;">3.93</td>
+<td style="text-align: center;">42.58</td>
+<td style="text-align: center;">167.14</td>
+<td style="text-align: center;">15.41</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-12
-</td>
-<td style="text-align:center;">
-17.2
-</td>
-<td style="text-align:center;">
-408
-</td>
-<td style="text-align:center;">
--1.48
-</td>
-<td style="text-align:center;">
-5.58
-</td>
-<td style="text-align:center;">
--8.24
-</td>
-<td style="text-align:center;">
-2.18
-</td>
+<tr class="even">
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">17.2</td>
+<td style="text-align: center;">408</td>
+<td style="text-align: center;">-1.48</td>
+<td style="text-align: center;">5.58</td>
+<td style="text-align: center;">-8.24</td>
+<td style="text-align: center;">2.18</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-SUM
-</td>
-<td style="text-align:center;">
-224.1
-</td>
-<td style="text-align:center;">
-4829
-</td>
-<td style="text-align:center;">
-0.00
-</td>
-<td style="text-align:center;">
-0.00
-</td>
-<td style="text-align:center;">
-5325.03
-</td>
-<td style="text-align:center;">
-176.98
-</td>
+<tr class="odd">
+<td style="text-align: center;">SUM</td>
+<td style="text-align: center;">224.1</td>
+<td style="text-align: center;">4829</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">5325.03</td>
+<td style="text-align: center;">176.98</td>
 </tr>
 </tbody>
 </table>
@@ -1167,9 +1147,9 @@ SUM
 <p><span class="math display">\[\overline{y} = \frac{4829}{12} = 402.416\]</span></p>
 <p><span class="math display">\[cov(x,y) = \frac{1}{n}\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y}) = \frac{5325.03}{12} = 443.752\]</span></p>
 <p><span class="math display">\[var(x) = \frac{1}{n}\sum_{i=1}^{n}(x_i - \overline{x})^2 = \frac{176.983}{12} = 14.749\]</span></p>
-<p>Using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.15</span></a>:</p>
+<p>Using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.21</span></a>:</p>
 <p><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)} = \frac{443.752}{14.749} = 30.088\]</span></p>
-<p>Using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.16</span></a>:</p>
+<p>Using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.22</span></a>:</p>
 <p><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} = 402.416 - 30.088 \times 18.675 = -159.477\]</span></p>
 <p>The estimated regression equation is therefore:</p>
 <p><span class="math display">\[\hat{y} = -159.477 + 30.088\, x\]</span></p>
@@ -1196,56 +1176,76 @@ Table&nbsp;9.2: Correlation versus regression
 </colgroup>
 <thead>
 <tr class="header">
-<th><strong>Item</strong></th>
-<th><strong>Correlation</strong></th>
-<th><strong>Regression</strong></th>
+<th style="text-align: left;"><strong>Aspect</strong></th>
+<th style="text-align: left;"><strong>Correlation</strong></th>
+<th style="text-align: left;"><strong>Regression</strong></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Definition</strong></td>
-<td>Measures the strength and direction of the relationship between two variables.</td>
-<td>Models the relationship between a dependent variable and one or more independent variables.</td>
+<td style="text-align: left;"><strong>Definition</strong></td>
+<td style="text-align: left;">A statistical measure that quantifies the strength and direction of the linear relationship between two variables.</td>
+<td style="text-align: left;">A statistical technique that models the relationship between a dependent variable and one or more independent variables for explanation or prediction.</td>
 </tr>
 <tr class="even">
-<td><strong>Objective</strong></td>
-<td>To quantify the degree of association between variables.</td>
-<td>To predict the value of the dependent variable based on the independent variable(s).</td>
+<td style="text-align: left;"><strong>Primary objective</strong></td>
+<td style="text-align: left;">To measure the degree of association between variables.</td>
+<td style="text-align: left;">To estimate or predict the value of the dependent variable from the independent variable(s).</td>
 </tr>
 <tr class="odd">
-<td><strong>Causation</strong></td>
-<td>Does not imply causation; measures association only.</td>
-<td>Can imply causation if assumptions are met and the model is well-specified.</td>
+<td style="text-align: left;"><strong>Nature of relationship</strong></td>
+<td style="text-align: left;">Describes association only.</td>
+<td style="text-align: left;">Describes the functional relationship between variables through a fitted mathematical model.</td>
 </tr>
 <tr class="even">
-<td><strong>Equation</strong></td>
-<td>No equation is derived.</td>
-<td>Derives an equation: <span class="math inline">\(\hat{y} = \hat{\alpha} + \hat{\beta}\, x\)</span>.</td>
+<td style="text-align: left;"><strong>Causation</strong></td>
+<td style="text-align: left;">Does not imply causation.</td>
+<td style="text-align: left;">Does not establish causation by itself; causal interpretation requires appropriate study design and valid assumptions.</td>
 </tr>
 <tr class="odd">
-<td><strong>Variables involved</strong></td>
-<td>Considers two variables at a time.</td>
-<td>Can involve one or multiple independent variables to predict a dependent variable.</td>
+<td style="text-align: left;"><strong>Variables involved</strong></td>
+<td style="text-align: left;">Treats both variables equally; no distinction between dependent and independent variables.</td>
+<td style="text-align: left;">Clearly distinguishes between the dependent (response) variable and the independent (predictor) variable(s).</td>
 </tr>
 <tr class="even">
-<td><strong>Symmetry</strong></td>
-<td>Correlation between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span> equals correlation between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span>.</td>
-<td>The regression coefficient of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> differs from that of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</td>
+<td style="text-align: left;"><strong>Symmetry</strong></td>
+<td style="text-align: left;">Symmetric: <span class="math inline">\(r_{xy}=r_{yx}\)</span>.</td>
+<td style="text-align: left;">Asymmetric: the regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> differs from the regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</td>
 </tr>
 <tr class="odd">
-<td><strong>Range</strong></td>
-<td>The correlation coefficient <span class="math inline">\(r\)</span> ranges from <span class="math inline">\(-1\)</span> to <span class="math inline">\(1\)</span>.</td>
-<td>Regression coefficients (<span class="math inline">\(\hat{\alpha}\)</span>, <span class="math inline">\(\hat{\beta}\)</span>) range from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>.</td>
+<td style="text-align: left;"><strong>Equation</strong></td>
+<td style="text-align: left;">Summarised by the correlation coefficient, e.g., <span class="math inline">\(r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}\)</span>.</td>
+<td style="text-align: left;">Produces a regression equation, e.g., <span class="math inline">\(\hat{y}=\hat{\alpha}+\hat{\beta}x\)</span>.</td>
 </tr>
 <tr class="even">
-<td><strong>Units</strong></td>
-<td>Unitless measure.</td>
-<td>Dependent on the units of the variables involved.</td>
+<td style="text-align: left;"><strong>Output</strong></td>
+<td style="text-align: left;">Produces a single correlation coefficient (<span class="math inline">\(r\)</span>).</td>
+<td style="text-align: left;">Produces regression coefficients (intercept and slope), fitted values, residuals, and prediction equations.</td>
 </tr>
 <tr class="odd">
-<td><strong>Purpose</strong></td>
-<td>To understand the strength of the relationship.</td>
-<td>To predict outcomes or explain variability in the dependent variable.</td>
+<td style="text-align: left;"><strong>Range</strong></td>
+<td style="text-align: left;">The correlation coefficient lies between <span class="math inline">\(-1\)</span> and <span class="math inline">\(+1\)</span>.</td>
+<td style="text-align: left;">Regression coefficients are not bounded and may take any real value (<span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>).</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Units</strong></td>
+<td style="text-align: left;">Dimensionless (unit-free).</td>
+<td style="text-align: left;">Regression coefficients depend on the units of measurement of the variables.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Effect of interchanging variables</strong></td>
+<td style="text-align: left;">Unchanged; the value of <span class="math inline">\(r\)</span> remains the same.</td>
+<td style="text-align: left;">Changes the regression equation and regression coefficients.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>Prediction</strong></td>
+<td style="text-align: left;">Cannot be used directly for prediction.</td>
+<td style="text-align: left;">Specifically designed for prediction and estimation of the dependent variable.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>Applications</strong></td>
+<td style="text-align: left;">Assessing the strength and direction of relationships between variables.</td>
+<td style="text-align: left;">Prediction, estimation, trend analysis, forecasting, and quantifying the effect of explanatory variables.</td>
 </tr>
 </tbody>
 </table>
@@ -1258,13 +1258,13 @@ Table&nbsp;9.2: Correlation versus regression
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Regression and the Study of Heights</strong></p>
-<p>The story of regression begins with Sir Francis Galton’s groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon <strong>“regression toward the mean”</strong> — the offspring’s heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term “regression” into statistics but also inspired the development of tools for studying relationships between variables. <span class="citation" data-cites="Galton1886">(<a href="references.html#ref-Galton1886" role="doc-biblioref">Galton 1886</a>)</span></p>
-<p>Galton’s work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient — the same <span class="math inline">\(r\)</span> we use today. <span class="citation" data-cites="Pearson1896">(<a href="references.html#ref-Pearson1896" role="doc-biblioref">Pearson 1896</a>)</span> Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.</p>
+<p>The story of regression begins with Sir Francis Galton’s groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon <strong>“regression toward the mean”</strong> - the offspring’s heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term “regression” into statistics but also inspired the development of tools for studying relationships between variables. <span class="citation" data-cites="Galton1886">(<a href="references.html#ref-Galton1886" role="doc-biblioref">Galton 1886</a>)</span></p>
+<p>Galton’s work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient - the same <span class="math inline">\(r\)</span> we use today. <span class="citation" data-cites="Pearson1896">(<a href="references.html#ref-Pearson1896" role="doc-biblioref">Pearson 1896</a>)</span> Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1273,11 +1273,11 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Statistics is the art of never having to say you’re wrong.” — Robert P. Abelson</strong></p>
+<p><strong>“Statistics is the art of never having to say you’re wrong.”- Robert P. Abelson</strong></p>
 </div>
 </div>
 
@@ -1301,380 +1301,256 @@ Pearson, Karl. 1896. <span>“Mathematical Contributions to the Theory of Evolut
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1682,185 +1558,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./association.html" class="pagination-link" aria-label="Measures of association">

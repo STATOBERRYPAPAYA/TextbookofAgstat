@@ -66,13 +66,13 @@ The best fit line is the one that minimises the distances between the observed d
 
 ### Error and residual
 
-In regression analysis, an **error** represents the difference between an observed value and the true regression line — the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.
+In regression analysis, an **error** represents the difference between an observed value and the value based on the true regression line. True regression line here what we meant is the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.
 
 A **residual** is the difference between an observed value and the value predicted by the regression line fitted from sample data. For a given data point, the residual is calculated as:
 
 $$\text{Residual} = \text{Observed value} - \text{Predicted value}$$
 
-Residuals are measurable because they are derived from the observed data and the fitted regression line. Unlike errors — which are theoretical deviations from the true underlying model — residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.
+Residuals are measurable because they are derived from the observed data and the fitted regression line. Unlike the errors which are theoretical deviations from the true underlying model, the residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.
 
 In essence, a residual serves as an estimate of the error. From @fig-residual, you can see the residual $e_i$ of the $i$th observation in a fitted regression line.
 
@@ -98,7 +98,7 @@ A line has two important features: the **intercept** ($\alpha$) and the **slope*
 Intercept and slope of a straight line
 :::
 
-The values $\alpha$ and $\beta$ act as a fingerprint of a line — with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating $\alpha$ and $\beta$ such that the error $e_i$ of each observation is minimised. For this, we use the *method of least squares*.
+The values $\alpha$ and $\beta$ act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating $\alpha$ and $\beta$ such that the error $e_i$ of each observation is minimised. For this, we use the *method of least squares*.
 
 ### Method of least squares {#sec-leastsquares}
 
@@ -231,15 +231,7 @@ The formula for $\hat{\alpha}$ is obtained by solving normal equations @eq-norma
 
 $$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x}$$ {#eq-regeqn5}
 
-where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.
-
-::: {.callout-important title="Note"}
-Once the estimates $\hat{\alpha}$ and $\hat{\beta}$ are obtained using @eq-regeqn4 and @eq-regeqn5, the estimated regression line can be written as:
-
-$$\hat{y} = \hat{\alpha} + \hat{\beta}\, x$$ {#eq-regestimate}
-
-Note that the predicted value of $y$ is written as $\hat{y}$ (y-hat) to distinguish it from the observed value $y$.
-:::
+where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.  
 
 ### Assumptions
 
@@ -279,7 +271,7 @@ The essence of the assumptions in linear regression can be summarised as $e \sim
 
 ## Two lines of regression
 
-Consider the data presented in @tbl-corrdata, showing average daily soil moisture content and the corresponding monetary crop yield from Example 8.2 of @sec-scatterdiag. For any two variables $x$ and $y$, we can draw two lines of regression — one by treating $x$ as independent and $y$ as dependent, and the other by interchanging their roles — as shown in @fig-twolines.
+Consider the data presented in @tbl-corrdata, showing average daily soil moisture content and the corresponding monetary crop yield from Example 8.2 of @sec-scatterdiag. For any two variables $x$ and $y$, we can draw two lines of regression :- one by treating $x$ as independent and $y$ as dependent, and the other by interchanging their roles as shown in @fig-twolines.
 
 ::: {#fig-twolines layout-ncol="2"}
 ![Moisture on X-axis, yield on Y-axis (regression of *y* on *x*)](images/yonx.png){#fig-yonx_plot width="200px" height="150px"}
@@ -311,53 +303,154 @@ This is used to predict the unknown value of $x$ when the value of $y$ is known.
 
 $$\beta_{xy} = \frac{cov(x,y)}{var(y)}$$ {#eq-betaxony}
 
-As seen from @eq-betayonx and @eq-betaxony, the two regression coefficients are different. It is the experimenter's responsibility to choose which variable is treated as dependent and which as independent, based on the objective of the study. In Example 8.2, predicting soil moisture based on monetary crop yield may not be meaningful in practice — the choice of dependent and independent variable must reflect the scientific question being asked.
+As seen from @eq-betayonx and @eq-betaxony, the two regression coefficients are different. It is the experimenter's responsibility to choose which variable is treated as dependent and which as independent, based on the objective of the study. In Example 8.2, predicting soil moisture based on monetary crop yield may not be meaningful in practice, the choice of dependent and independent variable must reflect the scientific question being asked.
 
-### Properties of regression coefficients
+### Properties of Regression Coefficients
 
-1.  The correlation coefficient between $x$ and $y$, denoted $r_{xy}$, is the geometric mean of the two regression coefficients $\beta_{yx}$ and $\beta_{xy}$:
+1.  **Relationship with the correlation coefficient**
 
-$$r_{xy} = \sqrt{\beta_{yx} \cdot \beta_{xy}}$$ {#eq-corndbeta}
+    The product of the two regression coefficients equals the square of the correlation coefficient:
 
-2.  Regression coefficients are independent of a change of **origin** but not of **scale**. Adding or subtracting a constant from either variable (change of origin) does not affect the slope $\beta$, but does affect the intercept $\alpha$. Multiplying or dividing a variable by a constant (change of scale) changes $\beta$ proportionally.
+    $$\beta_{yx}\beta_{xy}=r_{xy}^{\,2}$$
 
-3.  If one regression coefficient is greater than unity, the other must be less than unity — but not vice versa. Both regression coefficients can be less than one, but both cannot exceed one simultaneously. That is, if $\beta_{yx} > 1$ then $\beta_{xy} < 1$, and if $\beta_{xy} > 1$ then $\beta_{yx} < 1$.
+    Hence,
 
-4.  Both regression coefficients have the same sign. If one is positive, the other is also positive (and the correlation coefficient is positive); if one is negative, the other is also negative (and the correlation coefficient is negative).
+    $$|r_{xy}|=\sqrt{\beta_{yx}\beta_{xy}}$$
 
-5.  The range of regression coefficients is $-\infty$ to $+\infty$.
+    Since the regression coefficients always have the same sign,
 
-6.  If $x$ and $y$ are independent, both regression coefficients equal zero. This is referred to as the **independence property** of regression coefficients.
+    $$
+    r_{xy}=
+       \begin{cases}
+       \sqrt{\beta_{yx}\beta_{xy}}, & \text{if } \beta_{yx},\beta_{xy}>0,\\[4pt]
+       -\sqrt{\beta_{yx}\beta_{xy}}, & \text{if } \beta_{yx},\beta_{xy}<0.
+       \end{cases}
+    $$
 
-### Properties of regression lines
+2.  **Both regression coefficients have the same sign**
 
-1.  Regression lines minimise the sum of squared deviations of observed values from the predicted values, ensuring the best possible fit.
+    The two regression coefficients always possess the same sign.
 
-2.  The two regression lines always intersect at the point $(\overline{x},\, \overline{y})$ — the means of $x$ and $y$.
+    -   If $\beta_{yx}>0$, then $\beta_{xy}>0$, and the correlation coefficient is positive.
+    -   If $\beta_{yx}<0$, then $\beta_{xy}<0$, and the correlation coefficient is negative.
+    -   If one regression coefficient is zero, the other is also zero, implying $r_{xy}=0$.
 
-3.  The slopes of the regression lines are related to the correlation coefficient $r$. If $r = 0$, the two regression lines are perpendicular to each other, indicating no linear relationship between $x$ and $y$.
+3.  **Regression coefficients are independent of change of origin but not of scale**
 
-The position and angle of the regression lines change with the strength of the correlation between $x$ and $y$. As shown in @fig-twolines2, the two lines coincide when $|r| = 1$ (perfect correlation) and are at right angles when $r = 0$ (no correlation).
+    -   Adding or subtracting a constant from either variable (**change of origin**) does not affect the regression coefficients (slopes), although it changes the intercepts.
+    -   Multiplying or dividing a variable by a constant (**change of scale**) changes the regression coefficients.
 
-::: {#fig-twolines2 layout-ncol="2"}
-![When correlation = 0](images/no_correlation.png){#fig-nocorrel width="200px" height="150px"}
+    If
 
-![Perfect positive correlation](images/perfect_positive.png){#fig-perfpos width="200px" height="150px"}
+    $$
+    X=\frac{x-a}{h},\qquad
+    Y=\frac{y-b}{k},
+    $$
 
-![Perfect negative correlation](images/perfect_negative.png){#fig-perfneg width="200px" height="150px"}
+    then
 
-![High degree positive correlation](images/highdegree_positive.png){#fig-highpos width="200px" height="150px"}
+    $$
+    \beta_{YX}=\frac{h}{k}\beta_{yx},
+    \qquad
+    \beta_{XY}=\frac{k}{h}\beta_{xy}.
+    $$
 
-![High degree negative correlation](images/highdegree_negative.png){#fig-highneg width="200px" height="150px"}
+4.  **Relationship with unity**
 
-![Low degree negative correlation](images/lowdegree_negative.png){#fig-lowneg width="200px" height="150px"}
+    Since
 
-![Low degree positive correlation](images/lowdegree_positive.png){#fig-lowpos width="200px" height="150px"}
+    $$\beta_{yx}\beta_{xy}=r^2\le1,$$
 
-Effect of correlation strength on the position of regression lines
-:::
+    -   if one regression coefficient is greater than unity, the other must be less than unity;
+    -   both regression coefficients may be less than one;
+    -   both regression coefficients cannot exceed one simultaneously.
 
-## Uses of regression
+5.  **Regression coefficients are not bounded**
+
+    Unlike the correlation coefficient, whose value lies between $-1$ and $+1$, regression coefficients can take any real value. Thus,
+
+    $$-\infty<\beta<+\infty.$$
+
+6.  **Regression coefficients in terms of correlation and standard deviations**
+
+    The regression coefficients are related to the correlation coefficient and the standard deviations by
+
+    $$
+    \beta_{yx}=r\frac{\sigma_y}{\sigma_x},
+    \qquad
+    \beta_{xy}=r\frac{\sigma_x}{\sigma_y}.
+    $$
+
+    Thus, the magnitude of a regression coefficient depends on both the strength of association and the relative variability of the two variables.
+
+7.  **Independence property**
+
+    If the variables $x$ and $y$ are statistically independent,
+
+    $$r_{xy}=0,$$
+
+    and therefore
+
+    $$\beta_{yx}=\beta_{xy}=0.$$
+
+    In this case, neither variable can be used to predict the other through a linear regression model.
+
+8.  **Perfect correlation**
+
+    If the variables are perfectly correlated ($r=\pm1$),
+
+    $$\beta_{yx}\beta_{xy}=1.$$
+
+    The two regression lines coincide, indicating a perfect linear relationship between the variables.
+
+### Properties of Regression Lines
+
+1.  **Regression lines are the lines of best fit**
+
+    Each regression line is obtained using the **least squares principle**, which minimises the sum of the squared deviations between the observed and predicted values.
+
+    -   The regression line of $y$ on $x$ minimises the sum of squared **vertical** deviations.
+    -   The regression line of $x$ on $y$ minimises the sum of squared **horizontal** deviations.
+
+2.  **Both regression lines pass through the point of means**
+
+    The regression lines of $y$ on $x$ and $x$ on $y$ always intersect at the point
+
+    $$(\bar{x},\,\bar{y}),$$
+
+    where $\bar{x}$ and $\bar{y}$ are the arithmetic means of the variables.
+
+3.  **The position of the regression lines depends on the correlation coefficient**
+
+    The angle between the two regression lines depends on the magnitude of the correlation coefficient ($r$).
+
+    -   If $|r|=1$, the two regression lines coincide, indicating a perfect linear relationship.
+    -   If $r=0$, the regression lines are perpendicular to each other, indicating no linear relationship.
+    -   For $0<|r|<1$, the two regression lines intersect at an angle between $0^\circ$ and $90^\circ$.
+
+    The position and angle of the regression lines therefore reflect the strength of the linear relationship between the variables (see @fig-twolines2).
+
+4.  **Regression lines are unique**
+
+    For a given dataset, there is only one regression line of $y$ on $x$ and one regression line of $x$ on $y$.
+
+5.  **The two regression lines are identical only under perfect correlation**
+
+    The regression lines coincide only when
+
+    $$r=\pm1,$$
+
+    indicating a perfect positive or perfect negative linear relationship. Otherwise, they are distinct.
+
+6.  **Prediction depends on the direction of regression**
+
+    The regression line of $y$ on $x$ is used to predict the value of $y$ from a given value of $x$, whereas the regression line of $x$ on $y$ is used to predict the value of $x$ from a given value of $y$. These two regression equations are generally different unless $|r|=1$.  
+    
+    
+![Effect of correlation strength on the position of regression lines](images/corrregline.png){#fig-twolines2 width="450px" height="300px"}
+
+
+## Uses of regression  
 
 -   **Prediction**\
     Regression is used to predict the value of a dependent variable ($y$) based on one or more independent variables ($x$). Examples in agricultural research include:
@@ -401,8 +494,12 @@ Step 1: Fit a model treating monetary crop yield as the dependent variable ($y$)
 
 Step 2: Substitute $x = 20$ into the fitted equation to obtain the predicted crop yield.
 
-```{r tbl-regressioncalc, echo=FALSE, warning=FALSE, results='asis'}
+```{r}
+#| label: tbl-regressioncalc
 #| tbl-cap: "Calculation table for regression"
+#| echo: false
+#| warning: false
+#| results: asis
 
 library(knitr)
 library(kableExtra)
@@ -458,28 +555,32 @@ Correlation and regression are closely related concepts in statistics, often use
 
 Correlation focuses on measuring the strength and direction of an association between two variables, without assuming causation. Regression goes a step further by modelling the relationship, enabling predictions of one variable based on another. @tbl-corrndregression below provides a comparison of the two approaches.
 
-| **Item** | **Correlation** | **Regression** |
-|---|---|---|
-| **Definition** | Measures the strength and direction of the relationship between two variables. | Models the relationship between a dependent variable and one or more independent variables. |
-| **Objective** | To quantify the degree of association between variables. | To predict the value of the dependent variable based on the independent variable(s). |
-| **Causation** | Does not imply causation; measures association only. | Can imply causation if assumptions are met and the model is well-specified. |
-| **Equation** | No equation is derived. | Derives an equation: $\hat{y} = \hat{\alpha} + \hat{\beta}\, x$. |
-| **Variables involved** | Considers two variables at a time. | Can involve one or multiple independent variables to predict a dependent variable. |
-| **Symmetry** | Correlation between $x$ and $y$ equals correlation between $y$ and $x$. | The regression coefficient of $y$ on $x$ differs from that of $x$ on $y$. |
-| **Range** | The correlation coefficient $r$ ranges from $-1$ to $1$. | Regression coefficients ($\hat{\alpha}$, $\hat{\beta}$) range from $-\infty$ to $+\infty$. |
-| **Units** | Unitless measure. | Dependent on the units of the variables involved. |
-| **Purpose** | To understand the strength of the relationship. | To predict outcomes or explain variability in the dependent variable. |
+| **Aspect** | **Correlation** | **Regression** |
+|:---|:---|:---|
+| **Definition** | A statistical measure that quantifies the strength and direction of the linear relationship between two variables. | A statistical technique that models the relationship between a dependent variable and one or more independent variables for explanation or prediction. |
+| **Primary objective** | To measure the degree of association between variables. | To estimate or predict the value of the dependent variable from the independent variable(s). |
+| **Nature of relationship** | Describes association only. | Describes the functional relationship between variables through a fitted mathematical model. |
+| **Causation** | Does not imply causation. | Does not establish causation by itself; causal interpretation requires appropriate study design and valid assumptions. |
+| **Variables involved** | Treats both variables equally; no distinction between dependent and independent variables. | Clearly distinguishes between the dependent (response) variable and the independent (predictor) variable(s). |
+| **Symmetry** | Symmetric: $r_{xy}=r_{yx}$. | Asymmetric: the regression of $y$ on $x$ differs from the regression of $x$ on $y$. |
+| **Equation** | Summarised by the correlation coefficient, e.g., $r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}$. | Produces a regression equation, e.g., $\hat{y}=\hat{\alpha}+\hat{\beta}x$. |
+| **Output** | Produces a single correlation coefficient ($r$). | Produces regression coefficients (intercept and slope), fitted values, residuals, and prediction equations. |
+| **Range** | The correlation coefficient lies between $-1$ and $+1$. | Regression coefficients are not bounded and may take any real value ($-\infty$ to $+\infty$). |
+| **Units** | Dimensionless (unit-free). | Regression coefficients depend on the units of measurement of the variables. |
+| **Effect of interchanging variables** | Unchanged; the value of $r$ remains the same. | Changes the regression equation and regression coefficients. |
+| **Prediction** | Cannot be used directly for prediction. | Specifically designed for prediction and estimation of the dependent variable. |
+| **Applications** | Assessing the strength and direction of relationships between variables. | Prediction, estimation, trend analysis, forecasting, and quantifying the effect of explanatory variables. |
 
 : Correlation versus regression {#tbl-corrndregression .bordered}
 
 ::: {.callout-caution title="Historical Insights"}
 **Regression and the Study of Heights**
 
-The story of regression begins with Sir Francis Galton's groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon **"regression toward the mean"** — the offspring's heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term "regression" into statistics but also inspired the development of tools for studying relationships between variables. [@Galton1886]
+The story of regression begins with Sir Francis Galton's groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon **"regression toward the mean"** - the offspring's heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term "regression" into statistics but also inspired the development of tools for studying relationships between variables. [@Galton1886]
 
-Galton's work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient — the same $r$ we use today. [@Pearson1896] Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.
+Galton's work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient - the same $r$ we use today. [@Pearson1896] Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"Statistics is the art of never having to say you're wrong." — Robert P. Abelson**
+**"Statistics is the art of never having to say you're wrong."- Robert P. Abelson**
 :::
