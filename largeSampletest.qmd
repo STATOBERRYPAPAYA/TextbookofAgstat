@@ -1,10 +1,10 @@
-# Large sample test  
+# Large sample test
 
-The sample for which sample size $n$ is greater than 30 ($n$ ≥ 30) is known as large sample. The study of sampling distribution of statistic for large sample is known as large sample theory .
+A sample for which the sample size $n$ is 30 or more ($n \geq 30$) is known as a **large sample**. The study of the sampling distribution of a statistic for large samples is known as **large sample theory**.
 
-## Large Sample Tests
+## Z test
 
-In this section we shall discuss the application of $Z$-test. The test statistic $Z$ calculated from the large sample follows a standard normal distribution. $Z$ $\sim N(0,1)$
+In this section we shall discuss the application of the $Z$-test. The test statistic $Z$ calculated from a large sample follows a standard normal distribution, $Z \sim N(0,1)$. The following large sample tests are covered in this chapter:
 
 -   Test for a single proportion
 
@@ -12,340 +12,314 @@ In this section we shall discuss the application of $Z$-test. The test statistic
 
 -   Test for a single mean
 
--   Test for equality of two means
+-   Test for the equality of two means
 
--   Test for equality of two standard deviations
+### Decision rule for the Z test {#sec-decision}
 
--   Test for significance of correlation coefficient
+Let $Z$ be the calculated value and $\alpha$ be the level of significance. We reject the null hypothesis if:
 
-### Decision rule for Z test {#decision}
+-   $|Z| > Z_{\alpha/2}$ ; for a two-tailed test
 
-Let $Z$ be the calculated value and α be the level of significance, then we reject the null hypothesis if
+-   $Z > Z_{\alpha}$ ; for a right-tailed test
 
--   $|Z|$ \> $Z$~α/2~ ; for two tailed test
+-   $Z < -Z_{\alpha}$ ; for a left-tailed test
 
--   $Z$ \> $Z$~α~ ; for right tailed test
+The critical values of $Z$ for specified levels of significance are given in @tbl-zcrit.
 
--   $Z$ \< - $Z$~α~ ; for left tailed test
+| $\alpha$ (one tail) | $Z$ value |
+|:-------------------:|:---------:|
+|        0.10         |   1.282   |
+|        0.05         |   1.645   |
+|        0.025        |   1.960   |
+|        0.01         |   2.326   |
+|        0.005        |   2.576   |
 
-Table values (critical values) of Z for specified level of significance is shown below
+: Critical values of the standard normal distribution {#tbl-zcrit .bordered}
 
-|  $α$  | $Z-value$ |
-|:-----:|:---------:|
-| 0.10  |   1.645   |
-| 0.05  |   1.960   |
-| 0.025 |   2.241   |
-| 0.01  |   2.576   |
-| 0.005 |   2.807   |
+::: {.callout-note title="Note"}
+For a two-tailed test at $\alpha$ = 0.05, we split the significance level equally between the two tails and use the value at $\alpha/2$ = 0.025, which is $Z_{0.025}$ = 1.960. Similarly, for a two-tailed test at $\alpha$ = 0.01 we use $Z_{0.005}$ = 2.576.
+:::
 
 ## Test for a single population proportion
 
-Consider there is a population with proportion value, say $P$; $P$ is unknown, we will take a random sample of size $n$ from the population and calculate a sample proportion $p$. We want to test whether the population proportion $P$, which is unknown is equal to \$P\$~0~, based on the sample proportion $p$.
+Consider a population with proportion $P$, where $P$ is unknown. We take a random sample of size $n$ from the population and calculate the sample proportion $p$. We want to test whether the population proportion $P$ is equal to a specified value $P_0$, based on the sample proportion $p$.
 
-The null hypothesis to be tested is
+The null hypothesis to be tested is:
 
-H~0~ : $P$ = \$P\$~0~
+$H_0$: $P$ = $P_0$
 
-The alternative hypothesis may be either
+The alternative hypothesis may be either:
 
-H~1~ : $P$ \< \$P\$~0~ (called left tailed alternative)
+$H_1$: $P$ \< $P_0$ (left-tailed alternative)
 
-Or
+$H_1$: $P$ \> $P_0$ (right-tailed alternative)
 
-H~1~ : $P$ \> \$P\$~0~ (called right tailed alternative)
+$H_1$: $P$ $\mathbf{\neq}$ $P_0$ (two-tailed alternative)
 
-Or
+For this test, we calculate the test statistic $Z$ using the following formula:
 
-H~1~ : $P$ ≠ \$P\$~0~ (called two tailed alternative)
+$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}}$$
 
-For this test, we will calculate test statistic, $Z$ using the following formula.
+where $Q_0 = 1 - P_0$.
 
-$$Z = \frac{p - P_{0}}{\sqrt{\text{pq/n}}}$$
+When the null hypothesis is true, this $Z$ follows a standard normal distribution with mean 0 and variance 1, $Z \sim N(0,1)$.
 
-Where $q$ = 1 - $p$
+The calculated value of $Z$ is then compared with the critical value of $Z$ from the table of the standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See @sec-decision.
 
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ $\sim N(0,1)$
+::: {.callout-note title="Note"}
+The standard error in the single-proportion test is computed using the null value $P_0$, giving $\sqrt{P_0 Q_0/n}$, because the test statistic is derived under the assumption that the null hypothesis is true. Some textbooks use the sample-based standard error $\sqrt{pq/n}$; for large samples the two give very similar results.
+:::
 
-This calculated of $Z$ is then compared with critical value of $Z$ from the table of standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than table value, we conclude that we don't have enough evidence in our sample to reject the null hypothesis. See section \@ref(decision)
+::: {#exm-prop1}
+A sample of 500 apples was taken from a large consignment and 60 were found to be bad. Test whether the proportion of bad apples in the consignment is 0.1 or not, at the 5% level of significance.
 
-### Example 1 {.unnumbered}
-
-> A sample of 500 apples were taken from a large consignment and 60 were found to be bad. Test whether the proportion of bad apples in the consignment is 0.1 or not at 5% level of significance.
-
-**Solution:**
+**Solution**
 
 Sample size ($n$) = 500
 
 Proportion of bad apples in the sample ($p$) = 60/500 = 0.12
 
-Proportion of good apples in the sample ($q$) = 1 - 0.12 = 0.88
+We want to test whether the proportion of bad apples in the population is 0.1, so $P_0$ = 0.1 and $Q_0$ = 1 - 0.1 = 0.9.
 
-We want to test whether the proportion of bad apple in the population = 0.1 ; Here \$P\$~0~ = 0.1
+The null hypothesis is:
 
-The null hypothesis to be tested is
+$H_0$: $P$ = 0.1
 
-H~0~ : $P$ = 0.1
+Since we want to test whether the proportion is 0.1 or not, we use a two-tailed test with the alternative hypothesis:
 
-If we want to prove that proportion of bad apples is 0.1 or not we can use a two tailed test with alternative hypothesis as below
+$H_1$: $P$ $\mathbf{\neq}$ 0.1
 
-H~1~ : $P$ ≠ 0.1
+The level of significance is 5%, so $\alpha$ = 0.05.
 
-So that if null hypothesis is rejected, we accept this alternative hypothesis
+Now we calculate $Z$:
 
-Level of significance is given at 5% , so α=0.05
+$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} = \frac{0.12 - 0.1}{\sqrt{0.1 \times 0.9 / 500}} = \frac{0.02}{0.01342} = 1.49$$
 
-Now we calculate $Z$
+Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). The calculated value (1.49) is less than the table value (1.960), so we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the proportion of bad apples differs from 0.1.
+:::
 
-$Z = \frac{p - P_{0}}{\sqrt{\text{pq/n}}}$
-
-$Z = \frac{0.12 - 0.1}{\sqrt{0.12 \times 0.88/500}}$
-
-$= 1.428$
-
-Here in our case since it is a two tailed test, we have to look for the critical value of $Z$ at α/2. So we have to look for the value of $Z$ at α/2 = 0.05/2 = 0.025, which is 2.241 (see section \@ref(decision)). The calculated value of Z is less than the table value. So, we conclude that, we don't have enough evidence to reject the null hypothesis. So, it can be stated that proportion of bad apples in the population is 0.1.
-
-### Self excercise {.unnumbered}
-
-> 1.  A random sample of 500 plants was taken from a large experimental field and 65 plants were found to be affected by yellowing disease. Is the disease rate significant? (α = 0.05)
+::: {#exr-prop1}
+A random sample of 500 plants was taken from a large experimental field and 65 plants were found to be affected by yellowing disease. Test whether the proportion of affected plants differs significantly from 0.1. ($\alpha$ = 0.05)
+:::
 
 ## Test for equality of two proportions
 
-Consider there are two populations with proportion values, say \$P\$~1~ and \$P\$~2~ ; both are unknown, we will take a random sample of sizes \$n\$~1~ and \$n\$~2~ from the both populations respectively and calculate sample proportions \$p\$~1~ and \$p\$~2~. We want to test whether the population proportions \$P\$~1~ and \$P\$~2~ are equal, based on the sample proportions \$p\$~1~ and \$p\$~2~.
+Consider two populations with proportions $P_1$ and $P_2$, both unknown. We take random samples of sizes $n_1$ and $n_2$ from the two populations respectively and calculate the sample proportions $p_1$ and $p_2$. We want to test whether the population proportions $P_1$ and $P_2$ are equal, based on the sample proportions.
 
-The null hypothesis to be tested is
+The null hypothesis to be tested is:
 
-H~0~ : \$P\$~1~ = \$P\$~2~
+$H_0$: $P_1$ = $P_2$
 
-The alternative hypothesis may be either
+The alternative hypothesis may be either:
 
-H~1~ : \$P\$~1~ \< \$P\$~2~ (called left tailed alternative)
+$H_1$: $P_1$ \< $P_2$ (left-tailed alternative)
 
-Or
+$H_1$: $P_1$ \> $P_2$ (right-tailed alternative)
 
-H~1~ : \$P\$~1~\> \$P\$~2~ (called right tailed alternative)
+$H_1$: $P_1$ $\mathbf{\neq}$ $P_2$ (two-tailed alternative)
 
-Or
+For this test, we calculate the test statistic $Z$ using the following formula:
 
-H~1~ : \$P\$~1~≠ \$P\$~2~ (called two tailed alternative)
+$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}}$$
 
-For this test, we will calculate test statistic, $Z$ using the following formula.
+where $\widehat{P} = \dfrac{n_1 p_1 + n_2 p_2}{n_1 + n_2}$ is the pooled proportion and $\widehat{Q} = 1 - \widehat{P}$.
 
-$$Z = \frac{p_{1} - p_{2}}{\sqrt{\widehat{P}\widehat{Q}\left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}}$$
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$.
 
-Where $\widehat{P} = \frac{n_{1}p_{1} + n_{2}p_{2}}{n_{1} + n_{2}}$ and $\widehat{Q} = 1 - \widehat{P}$
+The calculated value of $Z$ is compared with the critical value of $Z$ from the standard normal table (see @sec-decision). If the calculated value is higher than the table value, we reject the null hypothesis. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.
 
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ \~ *N*(0,1).
+::: {#exm-prop2}
+In order to assess the adoption of a new variety of paddy by farmers, a survey was conducted in a locality. The survey covered 80 farmers with large land holdings and 250 farmers with small land holdings. It was observed that 50 of the large-holding farmers and 78 of the small-holding farmers adopted the new paddy variety. Test whether there is any significant difference in the adoption behaviour of the two groups of farmers. ($\alpha$ = 0.01)
 
-This calculated value of $z$ is then compared with critical value of $Z$ from the table of standard normal distribution. See section \@ref(decision). If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than table value, we conclude that we don't have enough evidence in our sample to reject the null hypothesis.
+**Solution**
 
-### Example 2 {.unnumbered}
+Sample size of large-holding farmers ($n_1$) = 80
 
-> In order to assess the adoption of a new variety of paddy by farmers, a survey was conducted in a locality. The survey covered 80 farmers with large land holding and 250 farmers with small land holding. It was observed that 50 out of big farmers and 78 out of small farmers adopted the new paddy variety. Test whether there is any significant difference in the adoption behaviour of the two groups of farmers (Take α = 0.01)
+Sample size of small-holding farmers ($n_2$) = 250
 
-**Solution:**
+Proportion of large-holding farmers who adopted the variety ($p_1$) = 50/80 = 0.625
 
-Sample size of first population, framers with large land holding (\$n\$~1~) = 80
+Proportion of small-holding farmers who adopted the variety ($p_2$) = 78/250 = 0.312
 
-Sample size of first population, framers with small land holding (\$n\$~2~) = 250
+We want to test whether the proportion is significantly different between the two populations, so:
 
-Proportion of framers with large land holding who adopted paddy variety (\$p\$~1~) = 50/80 = 0.625
+$H_0$: $P_1$ = $P_2$
 
-Proportion of framers with large land holding who adopted paddy variety (\$p\$~2~) =78/250 = 0.312
+$H_1$: $P_1$ $\mathbf{\neq}$ $P_2$
 
-We want to test whether the proportion is significantly different between both populations so,
+This is a two-tailed test.
 
-H~0~ : \$P\$~1~= \$P\$~2~
+**Step 1**: Calculate the pooled proportion.
 
-Here the alternate hypothesis is
-
-H~1~ : \$P\$~1~ ≠ \$P\$~2~
-
-So, it is a two tailed test
-
-$$\widehat{P} = \frac{n_{1}p_{1} + n_{1}p_{1}}{n_{1} + n_{2}}$$
-
-$$\widehat{P} = \frac{80 \times 0.625 + 250 \times 0.312}{80 + 250}$$
-
-$$= 0.3879$$
+$$\widehat{P} = \frac{n_1 p_1 + n_2 p_2}{n_1 + n_2} = \frac{80 \times 0.625 + 250 \times 0.312}{80 + 250} = 0.3879$$
 
 $$\widehat{Q} = 1 - 0.3879 = 0.6121$$
 
-So that if null hypothesis is rejected, we accept this alternative hypothesis
+**Step 2**: The level of significance is 1%, so $\alpha$ = 0.01.
 
-Level of significance is given at 1% , so α=0.01
+**Step 3**: Calculate $Z$.
 
-Now we calculate $Z$ using the formula
+$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} = \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121 \left( \dfrac{1}{80} + \dfrac{1}{250} \right)}}$$
 
-$$Z = \frac{p_{1} - p_{2}}{\sqrt{\widehat{P}\widehat{Q}\left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}}$$
+$$= \frac{0.313}{\sqrt{0.2374 \times 0.0165}} = \frac{0.313}{0.06258} = 5.00$$
 
-$$= \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121\left( \frac{1}{80} + \frac{1}{250} \right)}}$$
-
-$$= \frac{0.313}{\sqrt{0.2374 \times 0.0165}}$$
-
-$$= 5.008$$
-
-Since it is a two tailed test, we have to look for the critical value of $Z$ at α/2. Here in this case so we have to look for the value of $Z$ at α/2 = 0.01/2 = 0.005, which is 2.807 (see section \@ref(decision)). Since the calculated value (5.008) is greater than the table value (2.807) we reject the null hypothesis and conclude that there is a significant difference between two population proportions.
+Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.005, which is 2.576 (see @sec-decision). Since the calculated value (5.00) is greater than the table value (2.576), we reject the null hypothesis and conclude that there is a significant difference between the two population proportions.
+:::
 
 ## Test for a single population mean
 
-Consider there is a population with mean, say $μ$; where $μ$ is unknown, we will take a random sample of size *n* from the population and calculate a sample mean, denoted as $\overline{x}$. We want to test whether the population mean $μ$, which is unknown is equal to some known constant \$μ\$~0~, based on the sample mean $\overline{x}$.
+Consider a population with mean $\mu$, where $\mu$ is unknown. We take a random sample of size $n$ from the population and calculate the sample mean $\overline{x}$. We want to test whether the population mean $\mu$ is equal to a known constant $\mu_0$, based on the sample mean.
 
-The null hypothesis to be tested is
+The null hypothesis to be tested is:
 
-H~0~ : $μ$ = \$μ\$~0~
+$H_0$: $\mu$ = $\mu_0$
 
-The alternative hypothesis may be either
+The alternative hypothesis may be either:
 
-H~1~ : $μ$ \< \$μ\$~0~ (called left tailed alternative)
+$H_1$: $\mu$ \< $\mu_0$ (left-tailed alternative)
 
-Or
+$H_1$: $\mu$ \> $\mu_0$ (right-tailed alternative)
 
-H~1~ : $μ$ \> \$μ\$~0~ (called right tailed alternative)
+$H_1$: $\mu$ $\mathbf{\neq}$ $\mu_0$ (two-tailed alternative)
 
-Or
+This test has two cases:
 
-H~1~ : $μ$ ≠ \$μ\$~0~ (called two tailed alternative)
+-   Case when the population standard deviation $\sigma$ is known
 
-This particular test has two cases
+-   Case when the population standard deviation $\sigma$ is unknown
 
--   Case when the population standard deviation σ is known
+### Population standard deviation is known {.unnumbered}
 
--   Case when the population standard deviation σ is unknown
+When $\sigma$ is known, we calculate the test statistic $Z$ using the following formula:
 
-We will discuss each case below
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}}$$
 
-### Population standard deviation σ is known {.unnumbered}
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
 
-Population standard deviation σ is known and for this test, we will calculate test statistic, $Z$ using the following formula.
+### Population standard deviation is unknown {.unnumbered}
 
-$$Z = \frac{\overline{x} - \mu_{0}}{\frac{\sigma}{\sqrt{n}}}$$
+When $\sigma$ is unknown, it is replaced by its sample estimate $s$, and we calculate the test statistic $Z$ using the following formula:
 
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ \~ *N*(0,1). Decision rule is given in section \@ref(decision)
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$
 
-### Population standard deviation σ is unknown {.unnumbered}
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
 
-Population standard deviation σ is unknown and for this test, 𝜎 is replaced by its sample estimate *s*, we will calculate test statistic, $Z$ using the following formula.
+::: {#exm-mean1}
+A sample of 900 items has a mean of 3.4 cm and a standard deviation of 2.61 cm. Test whether the population mean is 3.25 cm at the 5% significance level.
 
-$$Z = \frac{\overline{x} - \mu_{0}}{\frac{s}{\sqrt{n}}}$$
+**Solution**
 
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ \~ *N*(0,1). Decision rule is given in section \@ref(decision)
+Null hypothesis, $H_0$: $\mu$ = 3.25
 
-### Example 3 {.unnumbered}
-
-> A sample of 900 items has a mean 3.4 cm and standard deviation 2.61cm. Test whether the population mean is 3.25cm at 5% significance level.
-
-**Solution:**
-
-Null hypothesis, H~0~ : $μ$ = 3.25
-
-Alternate hypothesis, H~1~ : $μ$ ≠ 3.25; two tailed test
+Alternative hypothesis, $H_1$: $\mu$ $\mathbf{\neq}$ 3.25 (two-tailed test)
 
 Sample size ($n$) = 900
 
-Sample mean, $\overline{x}$ = 3.4
+Sample mean ($\overline{x}$) = 3.4
 
 Sample standard deviation ($s$) = 2.61
 
-Population mean (\$μ\$~0~) = 3.25
+Population mean ($\mu_0$) = 3.25
 
-Level of significance, α = 0.05
+Level of significance, $\alpha$ = 0.05
 
-$Z = \frac{\overline{x} - \mu_{0}}{\frac{s}{\sqrt{n}}}$
+Since $\sigma$ is unknown, we use $s$ in place of $\sigma$:
 
-$Z = \frac{3.4 - 3.25}{\frac{2.61}{\sqrt{900}}} = 1.724$
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{3.4 - 3.25}{\dfrac{2.61}{\sqrt{900}}} = \frac{0.15}{0.087} = 1.724$$
 
-Since it is a two tailed test, we have to look for the critical value of $Z$ at α/2. Here in this case so we have to look for the value of Z at α/2=0.05/2 =0.025, which is 2.241 (Decision rule see section \@ref(decision)). Since the calculated value (1.724) is less than the table value (2.241), we conclude that, we don't have enough evidence to reject the null hypothesis. So, it can be stated that mean is 3.25 cm.
+Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (1.724) is less than the table value (1.960), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 3.25 cm.
+:::
 
-### Self exercise {.unnumbered}
-
-> 2.  From a paddy field a sample of 36 plants were selected at random. From these plants, the panicle lengths were observed. The mean and standard deviation of these measurements were 18.7cm and 1.25cm respectively. Test whether the mean length of panicle of paddy is 19cm. (α = 0.05)
+::: {#exr-mean1}
+From a paddy field a sample of 36 plants was selected at random and the panicle lengths were observed. The mean and standard deviation of these measurements were 18.7 cm and 1.25 cm respectively. Test whether the mean panicle length of paddy is 19 cm. ($\alpha$ = 0.05)
+:::
 
 ## Test for equality of two means
 
-Let there be two normally distributed populations with means \$µ\$~1~ and \$µ\$~2~ and standard deviations be \$σ\$~1~ and \$σ\$~2~ respectively. Let samples of sizes \$n\$~1~ and \$n\$~2~ were taken from these populations. Let the sample means were $\overline{x}_{1}$ and $\overline{x}_{2}$ respectively. We want to test whether these population means are significantly different or not based on the sample means.
+Let there be two normally distributed populations with means $\mu_1$ and $\mu_2$ and standard deviations $\sigma_1$ and $\sigma_2$ respectively. Let samples of sizes $n_1$ and $n_2$ be taken from these populations, with sample means $\overline{x}_1$ and $\overline{x}_2$. We want to test whether the two population means are significantly different, based on the sample means.
 
-The null hypothesis to be tested is
+The null hypothesis to be tested is:
 
-H~0~ : \$µ\$~1~ = \$µ\$~2~
+$H_0$: $\mu_1$ = $\mu_2$
 
-The alternative hypothesis may be either
+The alternative hypothesis may be either:
 
-H~1~ : \$µ\$~1~ \< \$µ\$~2~ (called left tailed alternative)
+$H_1$: $\mu_1$ \< $\mu_2$ (left-tailed alternative)
 
-Or
+$H_1$: $\mu_1$ \> $\mu_2$ (right-tailed alternative)
 
-H~1~ : \$µ\$~1~\> \$µ\$~2~ (called right tailed alternative)
+$H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
 
-Or
+There are two cases under this test:
 
-H~1~ : \$µ\$~1~≠ \$µ\$~2~ (called two tailed alternative)
+-   Case when the population standard deviations are equal, $\sigma_1 = \sigma_2 = \sigma$
 
-There are two cases under this test
-
--   Case when the population standard deviations are not equal \$σ\$~1~ ≠ \$σ\$~2~
-
--   Case when the population standard deviations are equal \$σ\$~1~ = \$σ\$~2~ = $σ$
+-   Case when the population standard deviations are not equal, $\sigma_1 \neq \sigma_2$
 
 ### When the population standard deviations are equal {.unnumbered}
 
-Under this case, we will calculate test statistic, $Z$ using the following formula.
+In this case, we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{{\overline{x}}_{1} - {\overline{x}}_{2}}{\sigma\sqrt{\left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}}$$
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$
 
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ \~ *N*(0,1). Decision rule is same as that of above tests (section \@ref(decision)).
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
 
-Note: If $σ$ is unknown then it is replaced by its estimate $\sqrt{\frac{n_{1}s_{1}^{2} + n_{2}s_{2}^{2}}{n_{1} + n_{2}}}$ where \$n\$~1~ and \$n\$~2~ are the sample sizes, \$s\$~1~ and \$s\$~2~ are the sample standard deviations.
-
-### When the population standard deviations are not equal
-
-Under this case, we will calculate test statistic, $Z$ using the following formula.
-
-$$Z = \frac{{\overline{x}}_{1} - {\overline{x}}_{2}}{\sqrt{\left( \frac{\sigma_{1}^{2}}{n_{1}} + \frac{\sigma_{2}^{2}}{n_{2}} \right)}}$$
-
-When the null hypothesis is true this $Z$ will follow a standard normal distribution with mean 0 and variance 1. $Z$ \~ *N*(0,1). Decision rule is same as that of above tests (section \@ref(decision)).
-
-### Example 4 {.unnumbered}
-
-> The means of two single large samples of 1000 and 2000 members are 67.5 inches and 68 inches respectively. Can the samples be regarded as drawn from the same population of standard deviation 2.5 inches. (Test at 5% significance level).
-
-**Solution:**
-
-Null hypothesis, \$H\$~0~ : \$μ\$~1~ = \$μ\$~2~
-
-Alternate hypothesis, \$H\$~1~ : \$μ\$~1~≠ \$μ\$~2~; two tailed test
-
-Sample size (\$n\$~1~) = 2000
-
-Sample size (\$n\$~2~) = 1000
-
-Sample mean of first group, ${\overline{x}}_{1}$ = 68
-
-Sample mean of second group, ${\overline{x}}_{2}$ = 67.5
-
-Population standard deviation ($σ$) = 2.5
-
-Level of significance, α = 0.05
-
-we will calculate test statistic, $Z$ using the following formula.
-
-$Z = \frac{{\overline{x}}_{1} - {\overline{x}}_{2}}{\sigma\sqrt{\left( \frac{1}{n_{1}} + \frac{1}{n_{2}} \right)}}$
-
-$Z = \frac{68 - 67.5}{2.5\sqrt{\left( \frac{1}{2000} + \frac{1}{1000} \right)}} = \frac{0.5}{0.0968} = 5.20$
-
-Since it is a two tailed test, we have to look for the critical value of $Z$ at α/2. Here in this case so we have to look for the value of $Z$ at α/2=0.05/2 =0.025, which is 2.241 (see section \@ref(decision)). Calculated value (5.20) is greater than table value, so we reject the null hypothesis. We may conclude that samples are not drawn from the same population.
-
-### Self exercise {.unnumbered}
-
-> 3.  Two random samples were drawn from two populations and the following data were obtained. Test whether the population means are equal. \$n\$~1~ = 400, \$n\$~2~ = 400, $\overline{x}_{1}$ = 250, $\overline{x}_{2}$ = 220, \$s\$~1~ = 40, \$s\$~2~ = 55
-
- \
- \
- 
-
-::: {#hello .greeting .message style="color: #c9c6c5;"}
-<center>**"It is a capital mistake to theorize before one has data”:- Sir Arthur Conan Doyle**</center>
+::: {.callout-note title="Note"}
+If the common $\sigma$ is unknown, it is replaced by its pooled estimate $\sqrt{\dfrac{n_1 s_1^2 + n_2 s_2^2}{n_1 + n_2}}$, where $n_1$ and $n_2$ are the sample sizes and $s_1$ and $s_2$ are the sample standard deviations.
 :::
 
----
-title: "Untitled"
----
+### When the population standard deviations are not equal {.unnumbered}
+
+In this case, we calculate the test statistic $Z$ using the following formula:
+
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$$
+
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+
+::: {#exm-mean2}
+The means of two large samples of sizes 1000 and 2000 members are 67.5 inches and 68 inches respectively. Can the samples be regarded as drawn from the same population with standard deviation 2.5 inches? (Test at the 5% significance level.)
+
+**Solution**
+
+Null hypothesis, $H_0$: $\mu_1$ = $\mu_2$
+
+Alternative hypothesis, $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed test)
+
+Sample size ($n_1$) = 2000
+
+Sample size ($n_2$) = 1000
+
+Sample mean of the first group ($\overline{x}_1$) = 68
+
+Sample mean of the second group ($\overline{x}_2$) = 67.5
+
+Population standard deviation ($\sigma$) = 2.5
+
+Level of significance, $\alpha$ = 0.05
+
+Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate $Z$:
+
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} = \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}} = \frac{0.5}{0.0968} = 5.16$$
+
+Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.
+:::
+
+::: {#exr-mean2}
+Two random samples were drawn from two populations and the following data were obtained. Test whether the population means are equal. $n_1$ = 400, $n_2$ = 400, $\overline{x}_1$ = 250, $\overline{x}_2$ = 220, $s_1$ = 40, $s_2$ = 55. ($\alpha$ = 0.05)
+:::
+
+::: {.callout-caution title="Historical Insights"}
+**Why 30? The bell curve, the astronomer, and the birth of large-sample theory**
+
+The reason large-sample tests work at all traces back to one of the most remarkable results in statistics: the **Central Limit Theorem**. It says that no matter what the shape of the parent population, the distribution of the sample mean approaches a normal distribution as the sample size grows. This is why the $Z$-test, which assumes normality, can be applied to almost any large sample.
+
+The normal curve itself was first derived by Abraham de Moivre in 1733 as an approximation to the binomial distribution, while he was studying games of chance. It was later rediscovered by Carl Friedrich Gauss around 1809, who used it to model the errors astronomers made when measuring the positions of stars and planets. Because the same bell-shaped curve kept appearing whenever many small independent errors were added together, it came to be called the *normal* distribution, and for a long time the *Gaussian* distribution. [@Gauss1809]
+
+But where did the famous cut-off of "$n \geq 30$" come from? It was never a law of nature. It emerged as a practical rule of thumb in the early twentieth century, around the time William Gosset (writing under the pen name *Student*) developed the $t$-distribution in 1908 while working as a brewer at Guinness in Dublin. Gosset showed that for small samples the normal approximation is unreliable and a separate distribution is needed. As the sample size increases, the $t$-distribution steadily approaches the normal curve, and by about 30 observations the two are so close that the difference rarely matters in practice. That convenient meeting point gave us the boundary between "small" and "large" samples that we still use today. [@Student1908]
+
+So the next time you check whether your sample size crosses 30, remember that you are standing on the shoulders of a gambler, an astronomer, and a brewer.
+:::
+
+::: {.callout-tip title="Quotes to Inspire"}
+**"It is a capital mistake to theorize before one has data." - Sir Arthur Conan Doyle**
+:::
