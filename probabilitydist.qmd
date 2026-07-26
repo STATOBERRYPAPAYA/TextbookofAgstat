@@ -8,10 +8,10 @@ In this chapter, we explore the definition, functions, formulas, and types of pr
 
 ## Probability distribution
 
-In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment—tossing an unbiased coin three times. Let $X$ represent the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space $X = \{0, 1, 2, 3\}$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
+In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let $X$ be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space $X = \{0, 1, 2, 3\}$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
 
 | On tossing thrice | No: of heads ($X$) |
-|:------------------|--------------------|
+|------------------|--------------------|
 | HHH               | 3                  |
 | HHT               | 2                  |
 | HTH               | 2                  |
@@ -30,7 +30,7 @@ $P(X = 3)$ = 1/8; $P(X = 2)$ = 3/8; $P(X = 1)$ = 3/8; $P(X = 0)$ = 1/8
 @tbl-probabilitydistncoin below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.
 
 | $X$ | $P(x)$ |
-|:----|:-------|
+|----|-------|
 | 0   | 1/8    |
 | 1   | 3/8    |
 | 2   | 3/8    |
@@ -42,26 +42,28 @@ This is an example of discrete probability distribution as $X$ takes only discre
 
 ## Expected value of a random variable
 
-Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5! The expected value of a random variable $X$ is denoted as $E(X)$.\
+Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!  
+
+The expected value of a random variable $X$ is denoted as $E(X)$.\  
+
 The formula for calculating the Expected Value of random variable where there are multiple probabilities is given for discrete and continuous in @eq-expdiscrete and @eq-expcont.
 
-**Discrete case** {.underline}
+[**Discrete case**]{.underline}  
+
 
 $$E(X) = \sum_{i = 1}^{\infty}xP(x)$$ {#eq-expdiscrete}
 
-**Continuous case** {.underline}
+[**Continuous case**]{.underline}  
+
 
 $$E(X) = \int_{- \infty}^{\infty}{x P(x)\ \text{dx }};- \infty \leq x \leq \infty$$ {#eq-expcont}
 
 here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
 
-**Example 11.1**: Find Expected value of $X$ of tossing a single unfair die
+::: {#exm-expval1}
+Find the expected value of $X$ of tossing a single unfair die.
 
 ```{r, echo=FALSE,warning=FALSE,results='asis'}
-#| label: tbl-expectedval1
-#| tbl-cap: "Expected value of an unfair die"
-#| fig-cap: "Expected value of an unfair die" 
-
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr1.csv")
@@ -71,13 +73,9 @@ dt %>%
 kable_styling(latex_options = "HOLD_position")
 ```
 
-**Solution 11.1**:
+**Solution**
 
 ```{r, echo=FALSE,warning=FALSE,results='asis'}
-#| label: tbl-expectedval2
-#| tbl-cap: "Solution: Expected value of an unfair die"
-#| fig-cap: "Solution: Expected value of an unfair die" 
-
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr2.csv")
@@ -88,17 +86,21 @@ kable_styling(latex_options = "HOLD_position")
 ```
 
 Using equation @eq-expdiscrete, $E(X)$ = $\sum_{i = 1}^{6}xP(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
+:::
 
-**Example 11.2**: Find E(X) in the following case (solve it yourself)
+::: {#exr-expval1}
+Find $E(X)$ in the following case.  
 
-| $x$ | $P(x)$ |
-|-----|--------|
-| 0   | 1/8    |
-| 1   | 3/8    |
-| 2   | 3/8    |
-| 3   | 1/8    |
-
-: Find the expected value {#tbl-expectedsolyu .bordered}
+```{r, echo=FALSE,warning=FALSE,results='asis'}
+library(knitr)
+library(kableExtra)
+dt<-read.csv("csv/pr1.csv")
+dt %>%
+  kbl(col.names=NULL, booktabs = FALSE, align = "c") %>%
+   kable_classic(full_width = F, html_font = "Cambria")%>%
+kable_styling(latex_options = "HOLD_position")
+```
+:::
 
 ## Discrete probability distributions
 
@@ -144,9 +146,12 @@ A parameter of a distribution is a fixed value that describes a key characterist
 
 The expected value for a random variable, $X$, from a Bernoulli distribution is: E($X$) = $p$ and the variance of a Bernoulli random variable is: var($X$) = $p(1 - p)$.
 
-**Example 11.3**: Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
+::: {#exm-bernoulli1}
+Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) $p$ = 0.4
 
-**Solution 11.3**: Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-bernoulli
+**Solution**
+
+Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-bernoulli
 
 $P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6$
 
@@ -158,6 +163,7 @@ the distribution can be shown as below:
 |-----|--------|
 | 0   | 0.6    |
 | 1   | 0.4    |
+:::
 
 ::: {.callout-important title="Note"}
 A Bernoulli trial is one of the simplest experiments you can conduct in probability and statistics. It's an experiment where you can have one of two possible outcomes. For example, "Yes" and "No" or "Heads" and "Tails."
@@ -193,13 +199,65 @@ $q$ = $1-p$ = probability of getting a failure in one trial
 In a binomial distribution, the parameters are $n$, the number of independent trials, and $p$, the probability of success in a single trial. If X follows a binomial distribution we denote $X \sim \text{Bin}(n, p)$. The mean of $X$ is given by $E(X) = np$, while the variance is $\text{Var}(X) = npq$, where$q = 1 - p$. Since $0 < p < 1$, it follows that $q$ is also positive but less than 1. This implies that $np > npq$, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.
 :::
 
-**Example 11.4**: A coin is tossed 10 times. What is the probability of getting exactly 6 heads?
+::: {#exm-binom1}
+A coin is tossed 10 times. What is the probability of getting exactly 6 heads?
 
-**Solution 11.4**: here, $n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}$
+**Solution**
+
+here, $n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}$
 
 We have to find $p(X=6)$; using the @eq-binomial
 
-$p(X=6)=\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 0.2050$
+$p(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2050$
+:::
+
+### Fitting of binomial distribution
+
+In practice, we often have a set of observed frequencies obtained from an experiment and we wish to know whether a binomial distribution provides a good description of the data. Fitting a distribution means finding a theoretical distribution that closely matches the observed data, so that we can compare the observed frequencies with the expected (theoretical) frequencies.
+
+To fit a binomial distribution to an observed frequency distribution, we follow these steps:
+
+-   Determine the number of trials $n$ from the nature of the experiment.
+
+-   Estimate the probability of success $p$ from the data. Since the mean of a binomial distribution is $np$, we equate it to the observed mean and obtain $p = \dfrac{\overline{x}}{n}$, where $\overline{x}$ is the mean number of successes. Then $q = 1 - p$.
+
+-   Compute the expected probability $P(x)$ for each value of $x$ using @eq-binomial.
+
+-   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times P(x)$.
+
+::: {#exm-binomfit1}
+In a study on the survival of mango seedlings after transplanting, 100 groups of 5 seedlings each were transplanted. The number of seedlings surviving in each group was recorded as given below. Fit a binomial distribution to the data.
+
+| Number surviving ($x$) | 0   | 1   | 2   | 3   | 4   | 5   |
+|:-----------------------|:----|:----|:----|:----|:----|:----|
+| Number of groups       | 3   | 16  | 32  | 28  | 17  | 4   |
+
+**Solution**
+
+Here the number of trials is $n = 5$ and the total frequency is $N = 100$.
+
+Mean number of surviving seedlings,
+
+$$\overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 3) + (1 \times 16) + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)}{100} = \frac{252}{100} = 2.52$$
+
+The probability of success is estimated as $p = \dfrac{\overline{x}}{n} = \dfrac{2.52}{5} = 0.504$, so $q = 1 - 0.504 = 0.496$.
+
+The expected frequency for each value of $x$ is obtained from $N \times \binom{5}{x} p^x q^{5-x}$, as shown in @tbl-binomfit1.
+
+| $x$   | Observed frequency | Expected frequency |
+|:------|:-------------------|:-------------------|
+| 0     | 3                  | 3.0                |
+| 1     | 16                 | 15.3               |
+| 2     | 32                 | 31.0               |
+| 3     | 28                 | 31.5               |
+| 4     | 17                 | 16.0               |
+| 5     | 4                  | 3.3                |
+| Total | 100                | 100.0              |
+
+: Fitting of binomial distribution to seedling survival data {#tbl-binomfit1 .bordered}
+
+The expected frequencies are close to the observed frequencies, indicating that the binomial distribution provides a good fit to the data.
+:::
 
 ### Poisson distribution
 
@@ -239,17 +297,68 @@ $\lambda$ : Average number of successes occurring in a given time interval or re
 The parameter of Poisson distribution is $λ$. If X follows a Poisson distribution we denote $X \sim \text{poisson}(\lambda)$. The mean and the variance of the Poisson distribution are both equal to $\lambda$
 :::
 
-**Example 11.5**: The average number of homes sold by a Realty company is 2 homes per day. Assuming Poisson distribution what is the probability that exactly 3 homes will be sold tomorrow?
+::: {#exm-poisson1}
+The average number of homes sold by a Realty company is 2 homes per day. Assuming a Poisson distribution, what is the probability that exactly 3 homes will be sold tomorrow?
 
-**Solution 11.5**: here $\lambda = 2$; since 2 homes are sold per day, on average.$x= 3$; since we want to find the probability that 3 homes will be sold tomorrow. Using @eq-poisson.
+**Solution**
+
+here $\lambda = 2$; since 2 homes are sold per day, on average. $x = 3$; since we want to find the probability that 3 homes will be sold tomorrow. Using @eq-poisson.
 
 $p(X=3)= \ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}= 0.180$
+:::
 
-**Example 11.6**: If the random variable X follows a Poisson distribution with mean 3.4, find $p(X = 6)$
+::: {#exr-poisson1}
+If the random variable $X$ follows a Poisson distribution with mean 3.4, find $p(X = 6)$.
+:::
 
-**Example 11.7**: The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be: (a) Less than 2 accidents (b) More than 2 accidents
+::: {#exr-poisson2}
+The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be: (a) less than 2 accidents (b) more than 2 accidents.
+:::
 
-**Example 11.8**: A company known on the past experience that 3% of the bulbs they produced are defective. Assuming Poisson distribution find the probability of getting the following in a sample of 100 bulbs. (a) No defective (b) 1 defective
+::: {#exr-poisson3}
+A company knows from past experience that 3% of the bulbs they produce are defective. Assuming a Poisson distribution, find the probability of getting the following in a sample of 100 bulbs. (a) no defective (b) 1 defective.
+:::
+
+### Fitting of Poisson distribution
+
+Fitting a Poisson distribution to an observed frequency distribution allows us to check whether the Poisson distribution provides a good description of the data, which is especially useful when we are dealing with rare events such as pest counts or defects.
+
+To fit a Poisson distribution to an observed frequency distribution, we follow these steps:
+
+-   Estimate the parameter $\lambda$ from the data. Since the mean of a Poisson distribution is $\lambda$, we take $\lambda = \overline{x}$, the observed mean.
+
+-   Compute the expected probability $P(x)$ for each value of $x$ using @eq-poisson.
+
+-   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times P(x)$.
+
+::: {#exm-poissonfit1}
+In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were examined and the number of larvae per plant was recorded as given below. Fit a Poisson distribution to the data.
+
+| Number of larvae ($x$) | 0   | 1   | 2   | 3   | 4 or more |
+|:-----------------------|:----|:----|:----|:----|:----------|
+| Number of plants       | 37  | 37  | 18  | 6   | 2         |
+
+**Solution**
+
+The total frequency is $N = 100$. The mean number of larvae per plant is
+
+$$\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 37) + (2 \times 18) + (3 \times 6) + (4 \times 2)}{100} = \frac{99}{100} = 0.99$$
+
+The expected frequency for each value of $x$ is obtained from $N \times \dfrac{e^{-\lambda} \lambda^x}{x!}$, as shown in @tbl-poissonfit1. The frequency for the class "4 or more" is obtained by subtracting the sum of the other expected frequencies from the total, $N$.
+
+| $x$       | Observed frequency | Expected frequency |
+|:----------|:-------------------|:-------------------|
+| 0         | 37                 | 37.2               |
+| 1         | 37                 | 36.8               |
+| 2         | 18                 | 18.2               |
+| 3         | 6                  | 6.0                |
+| 4 or more | 2                  | 1.8                |
+| Total     | 100                | 100.0              |
+
+: Fitting of Poisson distribution to larval count data {#tbl-poissonfit1 .bordered}
+
+The expected frequencies agree closely with the observed frequencies, indicating that the Poisson distribution provides a good fit to the data.
+:::
 
 ## Continuous probability distributions
 
@@ -275,13 +384,13 @@ $$f\left( x \right) = \frac{1}{\sqrt{2\pi\sigma}}e^{- \frac{{(x - \mu)}^{2}}{2\s
 
 As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean ($\mu$) and standard deviation ($\sigma$). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.
 
-![Shape changes in normal distribution based on different means](images/normal6.jpg){#fig-normalchange fig-align="center" style="text-align:center;" width="40%"}
+![Shape changes in normal distribution based on different means](images/normal6.png){#fig-normalchange fig-align="center" style="text-align:center;" width="80%"}
 
 **Standard deviation:**
 
 The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance the observations and the average.
 
-![Shape changes in normal distribution based on different standard deviation](images/normal7.jpg){#fig-normalchange2 fig-align="center" style="text-align:center;" width="40%"}
+![Shape changes in normal distribution based on different standard deviation](images/normal7.png){#fig-normalchange2 fig-align="center" style="text-align:center;" width="80%"}
 
 When you have normally distributed data, the standard deviation can be used to determine the proportion of the values that fall within a specified number of standard deviations from the mean. For example, in a normal distribution, 68% of the observation falls within $\mu\pm  \sigma$. This property is called as **Area Property**.
 
@@ -293,20 +402,20 @@ The parameters of normal distribution are $\mu$ and $\sigma$. If a random variab
 
 1.  The normal distribution is the most frequently used among all probability laws. The normal distribution can be found in many practical problems. If you plot density $f(x)$ against $x$ the graph will be **bell shaped** always.
 
-![Normal distribution curve](images/normal1.png){#fig-normalcurve fig-align="center" style="text-align:center;" width="40%"}
+![Normal distribution curve](images/normal1.png){#fig-normalcurve fig-align="center" style="text-align:center;" width="80%"}
 
 2.  The Normal Distribution has mean = median = mode. Mean, median and mode is located to the center of the curve.
 
-![Mean=Median=Mode in normal distribution](images/normal2.png){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="40%"}
+![Mean=Median=Mode in normal distribution](images/normal2.png){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="80%"}
 
 3.  Normal distribution is symmetric about the center, 50% of values less than the mean and 50% greater than the mean
 
-![Normal distribution is a symmetric distribution](images/normal3.jpg){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="40%"}
+![Normal distribution is a symmetric distribution](images/normal3.png){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="80%"}
 
 4.  Area Property\
     The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See @tbl-areaproperty for detailed information on the area property of the normal distribution.
 
-![Area property of normal distribution](images/normal8.jpg){#fig-areaproperty fig-align="center" style="text-align:center;" width="50%"}
+![Area property of normal distribution](images/normal8.png){#fig-areaproperty fig-align="center" style="text-align:center;" width="80%"}
 
 | Area                  | $\%$ of value contained |
 |:----------------------|:------------------------|
@@ -362,11 +471,14 @@ $$z = \frac{X - \mu}{\sigma}$$ {#eq-standard}
 
 Here, $X$ is a normal variate with mean $\mu$ and variance $\sigma^2$, and $z$ is the corresponding standard normal variate. This transformation converts $X$ into a standard normal distribution $z \sim N(0, 1)$, where the mean is 0 and the standard deviation is 1.
 
-![Standardization of normal distribution](images/normal4.jpg){#fig-normalstandardize fig-align="center" style="text-align:center;" width="50%"}
+![Standardization of normal distribution](images/normal4.png){#fig-normalstandardize fig-align="center" style="text-align:center;" width="50%"}
 
-**Example 11.6**: A survey of daily travel time ($X$) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it in to standard scores (Z-score).
+::: {#exm-zscore1}
+A survey of daily travel time ($X$) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it into standard scores (Z-score).
 
-**Solution 11.6**: The Mean ($\mu$) is 38.8 minutes, and the Standard Deviation ($\sigma$) is 11.4. Using @eq-standard.
+**Solution**
+
+The Mean ($\mu$) is 38.8 minutes, and the Standard Deviation ($\sigma$) is 11.4. Using @eq-standard.
 
 | $X$ | $X-\mu$ | $$z = \frac{X - \mu}{\sigma}$$ |
 |:----|:-------:|:------------------------------:|
@@ -393,11 +505,16 @@ Here, $X$ is a normal variate with mean $\mu$ and variance $\sigma^2$, and $z$ i
 
 : Z-score calculation {#tbl-zscorecalc .bordered}
 
-![Z score values for X](images/normal5.jpg){#fig-zscoreandx fig-align="center" style="text-align:center;" width="40%"}
+![Z score values of X for @exm-zscore1](images/normal5.png){#fig-zscoreandx fig-align="center" style="text-align:center;" width="80%"}
+:::
 
-**Example 11.7**: What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2 ?
+::: {#exm-zscore2}
+What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2?
 
-**Solution 11.7**: To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2.$z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5$. This indicates that 27 is +1.5 standard deviations above the mean.
+**Solution**
+
+To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2. $z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5$. This indicates that 27 is +1.5 standard deviations above the mean.
+:::
 
 ### Z-Score Table
 
@@ -422,13 +539,21 @@ Procedure to use a Z-Score Table is given below:
 5.  **For ranges of Z-scores**:\
     If you're looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that $X$ lies between 0.5 and 1.23 is:$P(0.5 < z < 1.23) = 0.8907 - 0.6915 = 0.1992$. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.
 
-**Example 11.8**: Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?
+::: {#exm-zscore3}
+Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?
 
-**Solution 11.8**: The z score for the given data using @eq-standard is $z = \frac{85 - 70}{12}=1.25$. From the z score table @fig-zscoretable, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.
+**Solution**
 
-**Example 11.9**: The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7 . Determine the probability that the height of a randomly chosen tree will be less than 12 metres.
+The z score for the given data using @eq-standard is $z = \frac{85 - 70}{12}=1.25$. From the z score table @fig-zscoretable, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.
+:::
 
-**Solution 11.9**: Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We nee to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.
+::: {#exm-zscore4}
+The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7. Determine the probability that the height of a randomly chosen tree will be less than 12 metres.
+
+**Solution**
+
+Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We nee to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.
+:::
 
 ::: {.callout-caution title="Historical Insights"}
 **De Moivre’s Final Prediction**
@@ -437,5 +562,5 @@ Abraham de Moivre, a French mathematician exiled to England, spent his life unco
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"To understand God’s thoughts, we must study statistics, for these are the measure of his purpose." — Florence Nightingale**
+**"To understand God’s thoughts, we must study statistics, for these are the measure of his purpose." - Florence Nightingale**
 :::

@@ -251,20 +251,20 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sampleSurvey.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Sample survey</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./largeSampletest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Untitled</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Large sample test</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./smallsampleTest.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Small sample tests</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Small sample tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampleSurvey.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Sample survey</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -295,7 +295,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution"><span class="header-section-number">11.3.1</span> Bernoulli distribution</a></li>
   <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution"><span class="header-section-number">11.3.2</span> Binomial distribution</a></li>
-  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution"><span class="header-section-number">11.3.3</span> Poisson distribution</a></li>
+  <li><a href="#fitting-of-binomial-distribution" id="toc-fitting-of-binomial-distribution" class="nav-link" data-scroll-target="#fitting-of-binomial-distribution"><span class="header-section-number">11.3.3</span> Fitting of binomial distribution</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution"><span class="header-section-number">11.3.4</span> Poisson distribution</a></li>
+  <li><a href="#fitting-of-poisson-distribution" id="toc-fitting-of-poisson-distribution" class="nav-link" data-scroll-target="#fitting-of-poisson-distribution"><span class="header-section-number">11.3.5</span> Fitting of Poisson distribution</a></li>
   </ul></li>
   <li><a href="#continuous-probability-distributions" id="toc-continuous-probability-distributions" class="nav-link" data-scroll-target="#continuous-probability-distributions"><span class="header-section-number">11.4</span> Continuous probability distributions</a>
   <ul class="collapse">
@@ -333,7 +335,7 @@ window.Quarto = {
 <p>In this chapter, we explore the definition, functions, formulas, and types of probability distributions.</p>
 <section id="probability-distribution" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="probability-distribution"><span class="header-section-number">11.1</span> Probability distribution</h2>
-<p>In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment—tossing an unbiased coin three times. Let <span class="math inline">\(X\)</span> represent the number of heads that appear in these tosses. The possible outcomes for <span class="math inline">\(X\)</span> are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space <span class="math inline">\(X = \{0, 1, 2, 3\}\)</span>. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in <a href="#tbl-tossingcoin" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-tossingcoin</span></a>.</p>
+<p>In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let <span class="math inline">\(X\)</span> be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for <span class="math inline">\(X\)</span> are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space <span class="math inline">\(X = \{0, 1, 2, 3\}\)</span>. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in <a href="#tbl-tossingcoin" class="quarto-xref">Table&nbsp;<span>11.1</span></a>.</p>
 <div id="tbl-tossingcoin" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tossingcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -343,41 +345,41 @@ Table&nbsp;11.1: Possible outcomes on tossing a coin three times
 <table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">On tossing thrice</th>
+<th>On tossing thrice</th>
 <th>No: of heads (<span class="math inline">\(X\)</span>)</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">HHH</td>
+<td>HHH</td>
 <td>3</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">HHT</td>
+<td>HHT</td>
 <td>2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">HTH</td>
+<td>HTH</td>
 <td>2</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">THH</td>
+<td>THH</td>
 <td>2</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">HTT</td>
+<td>HTT</td>
 <td>1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">THT</td>
+<td>THT</td>
 <td>1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">TTH</td>
+<td>TTH</td>
 <td>1</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">TTT</td>
+<td>TTT</td>
 <td>0</td>
 </tr>
 </tbody>
@@ -387,7 +389,7 @@ Table&nbsp;11.1: Possible outcomes on tossing a coin three times
 </div>
 <p><span class="math inline">\(P(X = x)\)</span> = <span class="math inline">\(\frac{No: \ of \ times\ X\ takes\ value\ x}{8}\)</span></p>
 <p><span class="math inline">\(P(X = 3)\)</span> = 1/8; <span class="math inline">\(P(X = 2)\)</span> = 3/8; <span class="math inline">\(P(X = 1)\)</span> = 3/8; <span class="math inline">\(P(X = 0)\)</span> = 1/8</p>
-<p><a href="#tbl-probabilitydistncoin" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-probabilitydistncoin</span></a> below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.</p>
+<p><a href="#tbl-probabilitydistncoin" class="quarto-xref">Table&nbsp;<span>11.2</span></a> below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.</p>
 <div id="tbl-probabilitydistncoin" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-probabilitydistncoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -397,153 +399,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;"><span class="math inline">\(X\)</span></th>
-<th style="text-align: left;"><span class="math inline">\(P(x)\)</span></th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">1/8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">3/8</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">3/8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">1/8</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>This is an example of discrete probability distribution as <span class="math inline">\(X\)</span> takes only discrete values. If <span class="math inline">\(X\)</span> takes continuous values, it is termed as continuous probability distribution.</p>
-</section>
-<section id="expected-value-of-a-random-variable" class="level2" data-number="11.2">
-<h2 data-number="11.2" class="anchored" data-anchor-id="expected-value-of-a-random-variable"><span class="header-section-number">11.2</span> Expected value of a random variable</h2>
-<p>Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5! The expected value of a random variable <span class="math inline">\(X\)</span> is denoted as <span class="math inline">\(E(X)\)</span>.<br>
-The formula for calculating the Expected Value of random variable where there are multiple probabilities is given for discrete and continuous in <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-expdiscrete</span></a> and <a href="#eq-expcont" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-expcont</span></a>.</p>
-<p><strong>Discrete case</strong> {.underline}</p>
-<p><span id="eq-expdiscrete"><span class="math display">\[E(X) = \sum_{i = 1}^{\infty}xP(x) \tag{11.1}\]</span></span></p>
-<p><strong>Continuous case</strong> {.underline}</p>
-<p><span id="eq-expcont"><span class="math display">\[E(X) = \int_{- \infty}^{\infty}{x P(x)\ \text{dx }};- \infty \leq x \leq \infty \tag{11.2}\]</span></span></p>
-<p>here the random variable <span class="math inline">\(X\)</span> lies between <span class="math inline">\({-\infty}\)</span> and <span class="math inline">\({+\infty}\)</span></p>
-<p><strong>Example 11.1</strong>: Find Expected value of <span class="math inline">\(X\)</span> of tossing a single unfair die</p>
-<div id="tbl-expectedval1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Expected value of an unfair die">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expectedval1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.3: Expected value of an unfair die
-</figcaption>
-<div aria-describedby="tbl-expectedval1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-systemfonts and textshaping have been compiled with different versions of Freetype. Because of this, textshaping will not use the font cache provided by systemfonts
-<table class=" lightable-classic table" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:center;">
-x
-</td>
-<td style="text-align:center;">
-1.0
-</td>
-<td style="text-align:center;">
-2.0
-</td>
-<td style="text-align:center;">
-3.0
-</td>
-<td style="text-align:center;">
-4.0
-</td>
-<td style="text-align:center;">
-5.0
-</td>
-<td style="text-align:center;">
-6.0
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-p(x)
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.5
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p><strong>Solution 11.1</strong>:</p>
-<div id="tbl-expectedval2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Solution: Expected value of an unfair die">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expectedval2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.4: Solution: Expected value of an unfair die
-</figcaption>
-<div aria-describedby="tbl-expectedval2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class=" lightable-classic table" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<tbody>
-<tr>
-<td style="text-align:center;">
-xp(x)
-</td>
-<td style="text-align:center;">
-0.1
-</td>
-<td style="text-align:center;">
-0.2
-</td>
-<td style="text-align:center;">
-0.3
-</td>
-<td style="text-align:center;">
-0.4
-</td>
-<td style="text-align:center;">
-0.5
-</td>
-<td style="text-align:center;">
-3
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>Using equation <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-expdiscrete</span></a>, <span class="math inline">\(E(X)\)</span> = <span class="math inline">\(\sum_{i = 1}^{6}xP(x)\)</span> = 0.1+0.2+0.3+0.4+0.5+3 = 4.5</p>
-<p><strong>Example 11.2</strong>: Find E(X) in the following case (solve it yourself)</p>
-<div id="tbl-expectedsolyu" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-expectedsolyu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.5: Find the expected value
-</figcaption>
-<div aria-describedby="tbl-expectedsolyu-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
-<thead>
-<tr class="header">
-<th><span class="math inline">\(x\)</span></th>
+<th><span class="math inline">\(X\)</span></th>
 <th><span class="math inline">\(P(x)\)</span></th>
 </tr>
 </thead>
@@ -568,6 +424,89 @@ Table&nbsp;11.5: Find the expected value
 </table>
 </div>
 </figure>
+</div>
+<p>This is an example of discrete probability distribution as <span class="math inline">\(X\)</span> takes only discrete values. If <span class="math inline">\(X\)</span> takes continuous values, it is termed as continuous probability distribution.</p>
+</section>
+<section id="expected-value-of-a-random-variable" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="expected-value-of-a-random-variable"><span class="header-section-number">11.2</span> Expected value of a random variable</h2>
+<p>Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!</p>
+<p>The expected value of a random variable <span class="math inline">\(X\)</span> is denoted as <span class="math inline">\(E(X)\)</span>.&nbsp;</p>
+<p>The formula for calculating the Expected Value of random variable where there are multiple probabilities is given for discrete and continuous in <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a> and <a href="#eq-expcont" class="quarto-xref">Equation&nbsp;<span>11.2</span></a>.</p>
+<p><u><strong>Discrete case</strong></u></p>
+<p><span id="eq-expdiscrete"><span class="math display">\[E(X) = \sum_{i = 1}^{\infty}xP(x) \tag{11.1}\]</span></span></p>
+<p><u><strong>Continuous case</strong></u></p>
+<p><span id="eq-expcont"><span class="math display">\[E(X) = \int_{- \infty}^{\infty}{x P(x)\ \text{dx }};- \infty \leq x \leq \infty \tag{11.2}\]</span></span></p>
+<p>here the random variable <span class="math inline">\(X\)</span> lies between <span class="math inline">\({-\infty}\)</span> and <span class="math inline">\({+\infty}\)</span></p>
+<div id="exm-expval1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.1</strong></span> Find the expected value of <span class="math inline">\(X\)</span> of tossing a single unfair die.</p>
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">2.0</td>
+<td style="text-align: center;">3.0</td>
+<td style="text-align: center;">4.0</td>
+<td style="text-align: center;">5.0</td>
+<td style="text-align: center;">6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p(x)</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.5</td>
+</tr>
+</tbody>
+</table>
+
+
+<p><strong>Solution</strong></p>
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">xp(x)</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.2</td>
+<td style="text-align: center;">0.3</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.5</td>
+<td style="text-align: center;">3</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>Using equation <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, <span class="math inline">\(E(X)\)</span> = <span class="math inline">\(\sum_{i = 1}^{6}xP(x)\)</span> = 0.1+0.2+0.3+0.4+0.5+3 = 4.5</p>
+</div>
+<div id="exr-expval1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.1</strong></span> Find <span class="math inline">\(E(X)\)</span> in the following case.</p>
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">x</td>
+<td style="text-align: center;">1.0</td>
+<td style="text-align: center;">2.0</td>
+<td style="text-align: center;">3.0</td>
+<td style="text-align: center;">4.0</td>
+<td style="text-align: center;">5.0</td>
+<td style="text-align: center;">6.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">p(x)</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.5</td>
+</tr>
+</tbody>
+</table>
+
+
 </div>
 </section>
 <section id="discrete-probability-distributions" class="level2" data-number="11.3">
@@ -594,7 +533,7 @@ Table&nbsp;11.5: Find the expected value
 <p>A Bernoulli distribution is a discrete probability distribution that applies to a random experiment with exactly two possible outcomes, commonly referred to as “success” and “failure.” For example, tossing a coin results in two outcomes, which the experimenter can label as success and failure based on their context. Success might be defined as getting a head and failure as getting a tail. The definition of success and failure is flexible and can be tailored by the experimenter to suit the specific scenario under study.</p>
 <p>The probability mass function of the distribution is</p>
 <p><span id="eq-bernoulli"><span class="math display">\[P(X = x) = p^x (1 - p)^{1 - x} \tag{11.3}\]</span></span></p>
-<p>in <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bernoulli</span></a> <span class="math inline">\(X\)</span> takes only two values = 0,1. Where <span class="math inline">\(p\)</span> is the probability of success and <span class="math inline">\(1-p\)</span> is the probability of failure.</p>
+<p>in <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a> <span class="math inline">\(X\)</span> takes only two values = 0,1. Where <span class="math inline">\(p\)</span> is the probability of success and <span class="math inline">\(1-p\)</span> is the probability of failure.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -609,8 +548,10 @@ Note
 </div>
 </div>
 <p>The&nbsp;expected value&nbsp;for a random variable, <span class="math inline">\(X\)</span>, from a Bernoulli distribution is: E(<span class="math inline">\(X\)</span>) = <span class="math inline">\(p\)</span> and the&nbsp;variance&nbsp;of a Bernoulli random variable is: var(<span class="math inline">\(X\)</span>) = <span class="math inline">\(p(1 - p)\)</span>.</p>
-<p><strong>Example 11.3</strong>: Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) <span class="math inline">\(p\)</span> = 0.4</p>
-<p><strong>Solution 11.3</strong>: Let <span class="math inline">\(X\)</span> be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bernoulli</span></a></p>
+<div id="exm-bernoulli1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.2</strong></span> Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) <span class="math inline">\(p\)</span> = 0.4</p>
+<p><strong>Solution</strong></p>
+<p>Let <span class="math inline">\(X\)</span> be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a></p>
 <p><span class="math inline">\(P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6\)</span></p>
 <p><span class="math inline">\(P(X = 1) = (0.4)^1 (1-0.4)^0 =0.4\)</span></p>
 <p>the distribution can be shown as below:</p>
@@ -632,6 +573,7 @@ Note
 </tr>
 </tbody>
 </table>
+</div>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -675,13 +617,116 @@ Note
 <p>In a binomial distribution, the parameters are <span class="math inline">\(n\)</span>, the number of independent trials, and <span class="math inline">\(p\)</span>, the probability of success in a single trial. If X follows a binomial distribution we denote <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>. The mean of <span class="math inline">\(X\)</span> is given by <span class="math inline">\(E(X) = np\)</span>, while the variance is <span class="math inline">\(\text{Var}(X) = npq\)</span>, where<span class="math inline">\(q = 1 - p\)</span>. Since <span class="math inline">\(0 &lt; p &lt; 1\)</span>, it follows that <span class="math inline">\(q\)</span> is also positive but less than 1. This implies that <span class="math inline">\(np &gt; npq\)</span>, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.</p>
 </div>
 </div>
-<p><strong>Example 11.4</strong>: A coin is tossed 10 times. What is the probability of getting exactly 6 heads?</p>
-<p><strong>Solution 11.4</strong>: here, <span class="math inline">\(n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}\)</span></p>
-<p>We have to find <span class="math inline">\(p(X=6)\)</span>; using the <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-binomial</span></a></p>
-<p><span class="math inline">\(p(X=6)=\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 0.2050\)</span></p>
+<div id="exm-binom1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.3</strong></span> A coin is tossed 10 times. What is the probability of getting exactly 6 heads?</p>
+<p><strong>Solution</strong></p>
+<p>here, <span class="math inline">\(n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}\)</span></p>
+<p>We have to find <span class="math inline">\(p(X=6)\)</span>; using the <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a></p>
+<p><span class="math inline">\(p(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2050\)</span></p>
+</div>
 </section>
-<section id="poisson-distribution" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">11.3.3</span> Poisson distribution</h3>
+<section id="fitting-of-binomial-distribution" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="fitting-of-binomial-distribution"><span class="header-section-number">11.3.3</span> Fitting of binomial distribution</h3>
+<p>In practice, we often have a set of observed frequencies obtained from an experiment and we wish to know whether a binomial distribution provides a good description of the data. Fitting a distribution means finding a theoretical distribution that closely matches the observed data, so that we can compare the observed frequencies with the expected (theoretical) frequencies.</p>
+<p>To fit a binomial distribution to an observed frequency distribution, we follow these steps:</p>
+<ul>
+<li><p>Determine the number of trials <span class="math inline">\(n\)</span> from the nature of the experiment.</p></li>
+<li><p>Estimate the probability of success <span class="math inline">\(p\)</span> from the data. Since the mean of a binomial distribution is <span class="math inline">\(np\)</span>, we equate it to the observed mean and obtain <span class="math inline">\(p = \dfrac{\overline{x}}{n}\)</span>, where <span class="math inline">\(\overline{x}\)</span> is the mean number of successes. Then <span class="math inline">\(q = 1 - p\)</span>.</p></li>
+<li><p>Compute the expected probability <span class="math inline">\(P(x)\)</span> for each value of <span class="math inline">\(x\)</span> using <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a>.</p></li>
+<li><p>Multiply each probability by the total frequency <span class="math inline">\(N\)</span> to obtain the expected frequency, that is, expected frequency = <span class="math inline">\(N \times P(x)\)</span>.</p></li>
+</ul>
+<div id="exm-binomfit1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.4</strong></span> In a study on the survival of mango seedlings after transplanting, 100 groups of 5 seedlings each were transplanted. The number of seedlings surviving in each group was recorded as given below. Fit a binomial distribution to the data.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Number surviving (<span class="math inline">\(x\)</span>)</th>
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">2</th>
+<th style="text-align: left;">3</th>
+<th style="text-align: left;">4</th>
+<th style="text-align: left;">5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of groups</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">4</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution</strong></p>
+<p>Here the number of trials is <span class="math inline">\(n = 5\)</span> and the total frequency is <span class="math inline">\(N = 100\)</span>.</p>
+<p>Mean number of surviving seedlings,</p>
+<p><span class="math display">\[\overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 3) + (1 \times 16) + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)}{100} = \frac{252}{100} = 2.52\]</span></p>
+<p>The probability of success is estimated as <span class="math inline">\(p = \dfrac{\overline{x}}{n} = \dfrac{2.52}{5} = 0.504\)</span>, so <span class="math inline">\(q = 1 - 0.504 = 0.496\)</span>.</p>
+<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \binom{5}{x} p^x q^{5-x}\)</span>, as shown in <a href="#tbl-binomfit1" class="quarto-xref">Table&nbsp;<span>11.3</span></a>.</p>
+<div id="tbl-binomfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-binomfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
+</figcaption>
+<div aria-describedby="tbl-binomfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: left;">Observed frequency</th>
+<th style="text-align: left;">Expected frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">3.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">16</td>
+<td style="text-align: left;">15.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">32</td>
+<td style="text-align: left;">31.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">28</td>
+<td style="text-align: left;">31.5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">17</td>
+<td style="text-align: left;">16.0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">3.3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">100.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The expected frequencies are close to the observed frequencies, indicating that the binomial distribution provides a good fit to the data.</p>
+</div>
+</section>
+<section id="poisson-distribution" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">11.3.4</span> Poisson distribution</h3>
 <p>The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781–1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its earliest applications was in studying the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.</p>
 <p>Other applications and examples where Poisson distribution is used</p>
 <ul>
@@ -713,12 +758,111 @@ Note
 <p>The parameter of Poisson distribution is <span class="math inline">\(λ\)</span>. If X follows a Poisson distribution we denote <span class="math inline">\(X \sim \text{poisson}(\lambda)\)</span>. The mean and the variance of the Poisson distribution are both equal to <span class="math inline">\(\lambda\)</span></p>
 </div>
 </div>
-<p><strong>Example 11.5</strong>: The average number of homes sold by a Realty company is 2 homes per day. Assuming Poisson distribution what is the probability that exactly 3 homes will be sold tomorrow?</p>
-<p><strong>Solution 11.5</strong>: here <span class="math inline">\(\lambda = 2\)</span>; since 2 homes are sold per day, on average.<span class="math inline">\(x= 3\)</span>; since we want to find the probability that 3 homes will be sold tomorrow. Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-poisson</span></a>.</p>
+<div id="exm-poisson1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.5</strong></span> The average number of homes sold by a Realty company is 2 homes per day. Assuming a Poisson distribution, what is the probability that exactly 3 homes will be sold tomorrow?</p>
+<p><strong>Solution</strong></p>
+<p>here <span class="math inline">\(\lambda = 2\)</span>; since 2 homes are sold per day, on average. <span class="math inline">\(x = 3\)</span>; since we want to find the probability that 3 homes will be sold tomorrow. Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>.</p>
 <p><span class="math inline">\(p(X=3)= \ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}= 0.180\)</span></p>
-<p><strong>Example 11.6</strong>: If the random variable X follows a Poisson distribution with mean 3.4, find <span class="math inline">\(p(X = 6)\)</span></p>
-<p><strong>Example 11.7</strong>: The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be: (a) Less than 2 accidents (b) More than 2 accidents</p>
-<p><strong>Example 11.8</strong>: A company known on the past experience that 3% of the bulbs they produced are defective. Assuming Poisson distribution find the probability of getting the following in a sample of 100 bulbs. (a) No defective (b) 1 defective</p>
+</div>
+<div id="exr-poisson1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.2</strong></span> If the random variable <span class="math inline">\(X\)</span> follows a Poisson distribution with mean 3.4, find <span class="math inline">\(p(X = 6)\)</span>.</p>
+</div>
+<div id="exr-poisson2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.3</strong></span> The number of industrial injuries per working week in a particular factory is known to follow a Poisson distribution with mean 0.5. Find the probability that in a particular week there will be: (a) less than 2 accidents (b) more than 2 accidents.</p>
+</div>
+<div id="exr-poisson3" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 11.4</strong></span> A company knows from past experience that 3% of the bulbs they produce are defective. Assuming a Poisson distribution, find the probability of getting the following in a sample of 100 bulbs. (a) no defective (b) 1 defective.</p>
+</div>
+</section>
+<section id="fitting-of-poisson-distribution" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="fitting-of-poisson-distribution"><span class="header-section-number">11.3.5</span> Fitting of Poisson distribution</h3>
+<p>Fitting a Poisson distribution to an observed frequency distribution allows us to check whether the Poisson distribution provides a good description of the data, which is especially useful when we are dealing with rare events such as pest counts or defects.</p>
+<p>To fit a Poisson distribution to an observed frequency distribution, we follow these steps:</p>
+<ul>
+<li><p>Estimate the parameter <span class="math inline">\(\lambda\)</span> from the data. Since the mean of a Poisson distribution is <span class="math inline">\(\lambda\)</span>, we take <span class="math inline">\(\lambda = \overline{x}\)</span>, the observed mean.</p></li>
+<li><p>Compute the expected probability <span class="math inline">\(P(x)\)</span> for each value of <span class="math inline">\(x\)</span> using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>.</p></li>
+<li><p>Multiply each probability by the total frequency <span class="math inline">\(N\)</span> to obtain the expected frequency, that is, expected frequency = <span class="math inline">\(N \times P(x)\)</span>.</p></li>
+</ul>
+<div id="exm-poissonfit1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.6</strong></span> In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were examined and the number of larvae per plant was recorded as given below. Fit a Poisson distribution to the data.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Number of larvae (<span class="math inline">\(x\)</span>)</th>
+<th style="text-align: left;">0</th>
+<th style="text-align: left;">1</th>
+<th style="text-align: left;">2</th>
+<th style="text-align: left;">3</th>
+<th style="text-align: left;">4 or more</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Number of plants</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">2</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution</strong></p>
+<p>The total frequency is <span class="math inline">\(N = 100\)</span>. The mean number of larvae per plant is</p>
+<p><span class="math display">\[\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 37) + (2 \times 18) + (3 \times 6) + (4 \times 2)}{100} = \frac{99}{100} = 0.99\]</span></p>
+<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \dfrac{e^{-\lambda} \lambda^x}{x!}\)</span>, as shown in <a href="#tbl-poissonfit1" class="quarto-xref">Table&nbsp;<span>11.4</span></a>. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, <span class="math inline">\(N\)</span>.</p>
+<div id="tbl-poissonfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-poissonfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.4: Fitting of Poisson distribution to larval count data
+</figcaption>
+<div aria-describedby="tbl-poissonfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: left;">Observed frequency</th>
+<th style="text-align: left;">Expected frequency</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">0</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">37.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">37</td>
+<td style="text-align: left;">36.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">18.2</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">6</td>
+<td style="text-align: left;">6.0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">4 or more</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: left;">100</td>
+<td style="text-align: left;">100.0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The expected frequencies agree closely with the observed frequencies, indicating that the Poisson distribution provides a good fit to the data.</p>
+</div>
 </section>
 </section>
 <section id="continuous-probability-distributions" class="level2" data-number="11.4">
@@ -735,10 +879,10 @@ Note
 <p>, where <span class="math inline">\(- \infty &lt; x &lt; + \infty\)</span> ; <span class="math inline">\(μ\)</span> is the population mean and <span class="math inline">\(\sigma^2\)</span> is the variance, <span class="math inline">\(e = 2.718\)</span></p>
 <p><u><strong>Parameters of Normal distribution</strong></u></p>
 <p>As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.</p>
-<div id="fig-normalchange" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalchange" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal6.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalchange-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.1: Shape changes in normal distribution based on different means
@@ -747,10 +891,10 @@ Figure&nbsp;11.1: Shape changes in normal distribution based on different means
 </div>
 <p><strong>Standard deviation:</strong></p>
 <p>The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance the observations and the average.</p>
-<div id="fig-normalchange2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalchange2" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalchange2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal7.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalchange2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.2: Shape changes in normal distribution based on different standard deviation
@@ -775,10 +919,10 @@ Note
 <ol type="1">
 <li>The normal distribution is the most frequently used among all probability laws. The normal distribution can be found in many practical problems. If you plot density <span class="math inline">\(f(x)\)</span> against <span class="math inline">\(x\)</span> the graph will be <strong>bell shaped</strong> always.</li>
 </ol>
-<div id="fig-normalcurve" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalcurve" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalcurve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalcurve-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.3: Normal distribution curve
@@ -788,10 +932,10 @@ Figure&nbsp;11.3: Normal distribution curve
 <ol start="2" type="1">
 <li>The Normal Distribution has mean = median = mode. Mean, median and mode is located to the center of the curve.</li>
 </ol>
-<div id="fig-normalcurve2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalcurve2" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalcurve2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalcurve2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.4: Mean=Median=Mode in normal distribution
@@ -801,10 +945,10 @@ Figure&nbsp;11.4: Mean=Median=Mode in normal distribution
 <ol start="3" type="1">
 <li>Normal distribution is symmetric about the center, 50% of values less than the mean and 50% greater than the mean</li>
 </ol>
-<div id="fig-normalsymmetry" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalsymmetry" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalsymmetry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalsymmetry-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.5: Normal distribution is a symmetric distribution
@@ -813,12 +957,12 @@ Figure&nbsp;11.5: Normal distribution is a symmetric distribution
 </div>
 <ol start="4" type="1">
 <li>Area Property<br>
-The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See <a href="#tbl-areaproperty" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-areaproperty</span></a> for detailed information on the area property of the normal distribution.</li>
+The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See <a href="#tbl-areaproperty" class="quarto-xref">Table&nbsp;<span>11.5</span></a> for detailed information on the area property of the normal distribution.</li>
 </ol>
-<div id="fig-areaproperty" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-areaproperty" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal8.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+<img src="images/normal8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.6: Area property of normal distribution
@@ -828,7 +972,7 @@ Figure&nbsp;11.6: Area property of normal distribution
 <div id="tbl-areaproperty" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.6: Area property of normal distribution
+Table&nbsp;11.5: Area property of normal distribution
 </figcaption>
 <div aria-describedby="tbl-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -899,22 +1043,24 @@ Table&nbsp;11.6: Area property of normal distribution
 <p>When a normal variate $ X N(, ^2)$ is converted to a standard normal variate, it follows the transformation:</p>
 <p><span id="eq-standard"><span class="math display">\[z = \frac{X - \mu}{\sigma} \tag{11.7}\]</span></span></p>
 <p>Here, <span class="math inline">\(X\)</span> is a normal variate with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, and <span class="math inline">\(z\)</span> is the corresponding standard normal variate. This transformation converts <span class="math inline">\(X\)</span> into a standard normal distribution <span class="math inline">\(z \sim N(0, 1)\)</span>, where the mean is 0 and the standard deviation is 1.</p>
-<div id="fig-normalstandardize" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-normalstandardize" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-normalstandardize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal4.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
+<img src="images/normal4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-normalstandardize-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;11.7: Standardization of normal distribution
 </figcaption>
 </figure>
 </div>
-<p><strong>Example 11.6</strong>: A survey of daily travel time (<span class="math inline">\(X\)</span>) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it in to standard scores (Z-score).</p>
-<p><strong>Solution 11.6</strong>: The Mean (<span class="math inline">\(\mu\)</span>) is 38.8 minutes, and the Standard Deviation (<span class="math inline">\(\sigma\)</span>) is 11.4. Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-standard</span></a>.</p>
+<div id="exm-zscore1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.7</strong></span> A survey of daily travel time (<span class="math inline">\(X\)</span>) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it into standard scores (Z-score).</p>
+<p><strong>Solution</strong></p>
+<p>The Mean (<span class="math inline">\(\mu\)</span>) is 38.8 minutes, and the Standard Deviation (<span class="math inline">\(\sigma\)</span>) is 11.4. Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>.</p>
 <div id="tbl-zscorecalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-zscorecalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.7: Z-score calculation
+Table&nbsp;11.6: Z-score calculation
 </figcaption>
 <div aria-describedby="tbl-zscorecalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1031,23 +1177,27 @@ Table&nbsp;11.7: Z-score calculation
 </div>
 </figure>
 </div>
-<div id="fig-zscoreandx" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-zscoreandx" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-zscoreandx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/normal5.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
+<img src="images/normal5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-zscoreandx-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;11.8: Z score values for X
+Figure&nbsp;11.8: Z score values of X for <a href="#exm-zscore1" class="quarto-xref">Example&nbsp;<span>11.7</span></a>
 </figcaption>
 </figure>
 </div>
-<p><strong>Example 11.7</strong>: What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2 ?</p>
-<p><strong>Solution 11.7</strong>: To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2.<span class="math inline">\(z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5\)</span>. This indicates that 27 is +1.5 standard deviations above the mean.</p>
+</div>
+<div id="exm-zscore2" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.8</strong></span> What is the z-score of a value of 27, given a set mean of 24, and a standard deviation of 2?</p>
+<p><strong>Solution</strong></p>
+<p>To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2. <span class="math inline">\(z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5\)</span>. This indicates that 27 is +1.5 standard deviations above the mean.</p>
+</div>
 </section>
 <section id="z-score-table" class="level3" data-number="11.4.3">
 <h3 data-number="11.4.3" class="anchored" data-anchor-id="z-score-table"><span class="header-section-number">11.4.3</span> Z-Score Table</h3>
-<p>A <strong>Z-score table</strong> (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table is given <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-zscoretable</span></a>.</p>
-<div id="fig-zscoretable" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center; height:80%;">
+<p>A <strong>Z-score table</strong> (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table is given <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span>11.9</span></a>.</p>
+<div id="fig-zscoretable" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center; height:80%;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-zscoretable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/ztable.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center; height:80%;;width:50.0%">
@@ -1060,9 +1210,9 @@ Figure&nbsp;11.9: Z-score table
 <p>Procedure to use a Z-Score Table is given below:</p>
 <ol type="1">
 <li><p><strong>Calculate the Z-score</strong>:<br>
-First, calculate the Z-score using the formula <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-standard</span></a></p></li>
+First, calculate the Z-score using the formula <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a></p></li>
 <li><p><strong>Find the Z-score in the table</strong>:<br>
-Once you have the Z-score, locate its value in the Z-score table <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-zscoretable</span></a>. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.</p></li>
+Once you have the Z-score, locate its value in the Z-score table <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span>11.9</span></a>. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.</p></li>
 <li><p><strong>Interpret the table value</strong>:<br>
 The value from the Z-table represents the cumulative probability (area under the curve) to the left of the Z-score. For example A Z-score of 1.23 corresponds to a cumulative probability of about <strong>0.8907</strong>, which means there is an 89.07% chance that a value from the distribution is less than or equal to 1.23 standard deviations above the mean.</p></li>
 <li><p><strong>Use the table for finding areas</strong>:<br>
@@ -1070,10 +1220,16 @@ To find the probability that a value lies <strong>above</strong> a certain Z-sco
 <li><p><strong>For ranges of Z-scores</strong>:<br>
 If you’re looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that <span class="math inline">\(X\)</span> lies between 0.5 and 1.23 is:<span class="math inline">\(P(0.5 &lt; z &lt; 1.23) = 0.8907 - 0.6915 = 0.1992\)</span>. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.</p></li>
 </ol>
-<p><strong>Example 11.8</strong>: Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?</p>
-<p><strong>Solution 11.8</strong>: The z score for the given data using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-standard</span></a> is <span class="math inline">\(z = \frac{85 - 70}{12}=1.25\)</span>. From the z score table <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-zscoretable</span></a>, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.</p>
-<p><strong>Example 11.9</strong>: The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7 . Determine the probability that the height of a randomly chosen tree will be less than 12 metres.</p>
-<p><strong>Solution 11.9</strong>: Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We nee to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9442)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9442)=P(z &gt; 0.9442)\)</span>. <span class="math inline">\(P(z &gt; 0.9442)= 1-P(z \leq 0.9442)\)</span>. From the table <span class="math inline">\(P(z \leq 0.95) =0.8289\)</span> so the probability is 1-0.8289=0.171.</p>
+<div id="exm-zscore3" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.9</strong></span> Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?</p>
+<p><strong>Solution</strong></p>
+<p>The z score for the given data using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a> is <span class="math inline">\(z = \frac{85 - 70}{12}=1.25\)</span>. From the z score table <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span>11.9</span></a>, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.</p>
+</div>
+<div id="exm-zscore4" class="theorem example">
+<p><span class="theorem-title"><strong>Example 11.10</strong></span> The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7. Determine the probability that the height of a randomly chosen tree will be less than 12 metres.</p>
+<p><strong>Solution</strong></p>
+<p>Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We nee to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9442)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9442)=P(z &gt; 0.9442)\)</span>. <span class="math inline">\(P(z &gt; 0.9442)= 1-P(z \leq 0.9442)\)</span>. From the table <span class="math inline">\(P(z \leq 0.95) =0.8289\)</span> so the probability is 1-0.8289=0.171.</p>
+</div>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1098,7 +1254,7 @@ Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“To understand God’s thoughts, we must study statistics, for these are the measure of his purpose.” — Florence Nightingale</strong></p>
+<p><strong>“To understand God’s thoughts, we must study statistics, for these are the measure of his purpose.” - Florence Nightingale</strong></p>
 </div>
 </div>
 

@@ -305,21 +305,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#z-test" id="toc-z-test" class="nav-link active" data-scroll-target="#z-test"><span class="header-section-number">13.1</span> Z test</a>
+  <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link active" data-scroll-target="#central-limit-theorem"><span class="header-section-number">13.1</span> Central Limit Theorem</a></li>
+  <li><a href="#z-test" id="toc-z-test" class="nav-link" data-scroll-target="#z-test"><span class="header-section-number">13.2</span> Z test</a>
   <ul class="collapse">
-  <li><a href="#sec-decision" id="toc-sec-decision" class="nav-link" data-scroll-target="#sec-decision"><span class="header-section-number">13.1.1</span> Decision rule for the Z test</a></li>
+  <li><a href="#sec-decision" id="toc-sec-decision" class="nav-link" data-scroll-target="#sec-decision"><span class="header-section-number">13.2.1</span> Decision rule for the Z test</a></li>
   </ul></li>
-  <li><a href="#test-for-a-single-population-proportion" id="toc-test-for-a-single-population-proportion" class="nav-link" data-scroll-target="#test-for-a-single-population-proportion"><span class="header-section-number">13.2</span> Test for a single population proportion</a></li>
-  <li><a href="#test-for-equality-of-two-proportions" id="toc-test-for-equality-of-two-proportions" class="nav-link" data-scroll-target="#test-for-equality-of-two-proportions"><span class="header-section-number">13.3</span> Test for equality of two proportions</a></li>
-  <li><a href="#test-for-a-single-population-mean" id="toc-test-for-a-single-population-mean" class="nav-link" data-scroll-target="#test-for-a-single-population-mean"><span class="header-section-number">13.4</span> Test for a single population mean</a>
+  <li><a href="#test-for-a-single-population-proportion" id="toc-test-for-a-single-population-proportion" class="nav-link" data-scroll-target="#test-for-a-single-population-proportion"><span class="header-section-number">13.3</span> Test for a single population proportion</a></li>
+  <li><a href="#test-for-equality-of-two-proportions" id="toc-test-for-equality-of-two-proportions" class="nav-link" data-scroll-target="#test-for-equality-of-two-proportions"><span class="header-section-number">13.4</span> Test for equality of two proportions</a></li>
+  <li><a href="#test-for-a-single-population-mean" id="toc-test-for-a-single-population-mean" class="nav-link" data-scroll-target="#test-for-a-single-population-mean"><span class="header-section-number">13.5</span> Test for a single population mean</a>
   <ul class="collapse">
-  <li><a href="#population-standard-deviation-is-known" id="toc-population-standard-deviation-is-known" class="nav-link" data-scroll-target="#population-standard-deviation-is-known">Population standard deviation is known</a></li>
-  <li><a href="#population-standard-deviation-is-unknown" id="toc-population-standard-deviation-is-unknown" class="nav-link" data-scroll-target="#population-standard-deviation-is-unknown">Population standard deviation is unknown</a></li>
+  <li><a href="#standard-deviation-is-known" id="toc-standard-deviation-is-known" class="nav-link" data-scroll-target="#standard-deviation-is-known"><span class="header-section-number">13.5.1</span> Standard deviation is known</a></li>
+  <li><a href="#standard-deviation-is-unknown" id="toc-standard-deviation-is-unknown" class="nav-link" data-scroll-target="#standard-deviation-is-unknown"><span class="header-section-number">13.5.2</span> Standard deviation is unknown</a></li>
   </ul></li>
-  <li><a href="#test-for-equality-of-two-means" id="toc-test-for-equality-of-two-means" class="nav-link" data-scroll-target="#test-for-equality-of-two-means"><span class="header-section-number">13.5</span> Test for equality of two means</a>
+  <li><a href="#test-for-equality-of-two-means" id="toc-test-for-equality-of-two-means" class="nav-link" data-scroll-target="#test-for-equality-of-two-means"><span class="header-section-number">13.6</span> Test for equality of two means</a>
   <ul class="collapse">
-  <li><a href="#when-the-population-standard-deviations-are-equal" id="toc-when-the-population-standard-deviations-are-equal" class="nav-link" data-scroll-target="#when-the-population-standard-deviations-are-equal">When the population standard deviations are equal</a></li>
-  <li><a href="#when-the-population-standard-deviations-are-not-equal" id="toc-when-the-population-standard-deviations-are-not-equal" class="nav-link" data-scroll-target="#when-the-population-standard-deviations-are-not-equal">When the population standard deviations are not equal</a></li>
+  <li><a href="#standard-deviations-are-equal" id="toc-standard-deviations-are-equal" class="nav-link" data-scroll-target="#standard-deviations-are-equal"><span class="header-section-number">13.6.1</span> Standard deviations are equal</a></li>
+  <li><a href="#standard-deviations-are-not-equal" id="toc-standard-deviations-are-not-equal" class="nav-link" data-scroll-target="#standard-deviations-are-not-equal"><span class="header-section-number">13.6.2</span> Standard deviations are not equal</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -346,18 +347,37 @@ window.Quarto = {
 </header>
 
 
-<p>A sample for which the sample size <span class="math inline">\(n\)</span> is 30 or more (<span class="math inline">\(n \geq 30\)</span>) is known as a <strong>large sample</strong>. The study of the sampling distribution of a statistic for large samples is known as <strong>large sample theory</strong>.</p>
-<section id="z-test" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="z-test"><span class="header-section-number">13.1</span> Z test</h2>
-<p>In this section we shall discuss the application of the <span class="math inline">\(Z\)</span>-test. The test statistic <span class="math inline">\(Z\)</span> calculated from a large sample follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The following large sample tests are covered in this chapter:</p>
+<p>A sample with a size of 30 or more (<span class="math inline">\(n≥30\)</span>) is generally referred to as a large sample. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.</p>
+<section id="central-limit-theorem" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="central-limit-theorem"><span class="header-section-number">13.1</span> Central Limit Theorem</h2>
+<p>The Central Limit Theorem states that when the sample size is sufficiently large (generally <span class="math inline">\(n≥30\)</span>), the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.</p>
+<p>Mathematically, if a random sample of size <span class="math inline">\(n\)</span> is drawn from a population with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, then as <span class="math inline">\(n\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(\infty\)</span>,</p>
+<p><span id="eq-clt"><span class="math display">\[
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\xrightarrow{d}
+N(0,1),
+\tag{13.1}\]</span></span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(\bar{X}\)</span> = sample mean</li>
+<li><span class="math inline">\(\mu\)</span> = population mean</li>
+<li><span class="math inline">\(\sigma\)</span> = population standard deviation</li>
+<li><span class="math inline">\(N(0,1)\)</span> = standard normal distribution</li>
+<li><span class="math inline">\(\xrightarrow{d}\)</span> denotes convergence in distribution. For now just think as “tends to follow” or “approaches” the standard normal distribution as the sample size increases.</li>
+</ul>
+</section>
+<section id="z-test" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="z-test"><span class="header-section-number">13.2</span> Z test</h2>
+<p>The <span class="math inline">\(Z\)</span>-test is a statistical test based on the standard normal distribution. It is used to test hypotheses about population means and proportions when the sample size is sufficiently large and the necessary assumptions are satisfied. The value of the test statistic is compared with the critical value from the standard normal distribution to decide whether the null hypothesis should be accepted or rejected.</p>
+<p>The test statistic <span class="math inline">\(Z\)</span> is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The following large sample tests are covered in this chapter:</p>
 <ul>
 <li><p>Test for a single proportion</p></li>
 <li><p>Test for the equality of two proportions</p></li>
 <li><p>Test for a single mean</p></li>
 <li><p>Test for the equality of two means</p></li>
 </ul>
-<section id="sec-decision" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="sec-decision"><span class="header-section-number">13.1.1</span> Decision rule for the Z test</h3>
+<section id="sec-decision" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="sec-decision"><span class="header-section-number">13.2.1</span> Decision rule for the Z test</h3>
 <p>Let <span class="math inline">\(Z\)</span> be the calculated value and <span class="math inline">\(\alpha\)</span> be the level of significance. We reject the null hypothesis if:</p>
 <ul>
 <li><p><span class="math inline">\(|Z| &gt; Z_{\alpha/2}\)</span> ; for a two-tailed test</p></li>
@@ -419,9 +439,9 @@ Note
 </div>
 </section>
 </section>
-<section id="test-for-a-single-population-proportion" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="test-for-a-single-population-proportion"><span class="header-section-number">13.2</span> Test for a single population proportion</h2>
-<p>Consider a population with proportion <span class="math inline">\(P\)</span>, where <span class="math inline">\(P\)</span> is unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and calculate the sample proportion <span class="math inline">\(p\)</span>. We want to test whether the population proportion <span class="math inline">\(P\)</span> is equal to a specified value <span class="math inline">\(P_0\)</span>, based on the sample proportion <span class="math inline">\(p\)</span>.</p>
+<section id="test-for-a-single-population-proportion" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="test-for-a-single-population-proportion"><span class="header-section-number">13.3</span> Test for a single population proportion</h2>
+<p>Consider a population with proportion <span class="math inline">\(P\)</span>, where <span class="math inline">\(P\)</span> is unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and calculate the sample proportion <span class="math inline">\(p\)</span>. We want to test whether the population proportion <span class="math inline">\(P\)</span> is equal to a specified value <span class="math inline">\(P_0\)</span>, based on the sample proportion <span class="math inline">\(p\)</span>. Note here we always frame null hypothesis on population parameter and test using the sample statistics.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(P\)</span> = <span class="math inline">\(P_0\)</span></p>
 <p>The alternative hypothesis may be either:</p>
@@ -429,10 +449,10 @@ Note
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(P\)</span> &gt; <span class="math inline">\(P_0\)</span> (right-tailed alternative)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(P\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(P_0\)</span> (two-tailed alternative)</p>
 <p>For this test, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}}\]</span></p>
+<p><span id="eq-zprop1"><span class="math display">\[Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} \tag{13.2}\]</span></span></p>
 <p>where <span class="math inline">\(Q_0 = 1 - P_0\)</span>.</p>
 <p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution with mean 0 and variance 1, <span class="math inline">\(Z \sim N(0,1)\)</span>.</p>
-<p>The calculated value of <span class="math inline">\(Z\)</span> is then compared with the critical value of <span class="math inline">\(Z\)</span> from the table of the standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>.</p>
+<p>The calculated value of <span class="math inline">\(Z\)</span> is then compared with the critical value of <span class="math inline">\(Z\)</span> from the table of the standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -457,16 +477,16 @@ Note
 <p>Since we want to test whether the proportion is 0.1 or not, we use a two-tailed test with the alternative hypothesis:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(P\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0.1</p>
 <p>The level of significance is 5%, so <span class="math inline">\(\alpha\)</span> = 0.05.</p>
-<p>Now we calculate <span class="math inline">\(Z\)</span>:</p>
+<p>Now we calculate <span class="math inline">\(Z\)</span> using <a href="#eq-zprop1" class="quarto-xref">Equation&nbsp;<span>13.2</span></a>:</p>
 <p><span class="math display">\[Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} = \frac{0.12 - 0.1}{\sqrt{0.1 \times 0.9 / 500}} = \frac{0.02}{0.01342} = 1.49\]</span></p>
-<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>). The calculated value (1.49) is less than the table value (1.960), so we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the proportion of bad apples differs from 0.1.</p>
+<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). The calculated value (1.49) is less than the table value (1.960), so we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the proportion of bad apples differs from 0.1.</p>
 </div>
 <div id="exr-prop1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 13.1</strong></span> A random sample of 500 plants was taken from a large experimental field and 65 plants were found to be affected by yellowing disease. Test whether the proportion of affected plants differs significantly from 0.1. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
-<section id="test-for-equality-of-two-proportions" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="test-for-equality-of-two-proportions"><span class="header-section-number">13.3</span> Test for equality of two proportions</h2>
+<section id="test-for-equality-of-two-proportions" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="test-for-equality-of-two-proportions"><span class="header-section-number">13.4</span> Test for equality of two proportions</h2>
 <p>Consider two populations with proportions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span>, both unknown. We take random samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> from the two populations respectively and calculate the sample proportions <span class="math inline">\(p_1\)</span> and <span class="math inline">\(p_2\)</span>. We want to test whether the population proportions <span class="math inline">\(P_1\)</span> and <span class="math inline">\(P_2\)</span> are equal, based on the sample proportions.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(P_1\)</span> = <span class="math inline">\(P_2\)</span></p>
@@ -475,10 +495,10 @@ Note
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(P_1\)</span> &gt; <span class="math inline">\(P_2\)</span> (right-tailed alternative)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(P_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(P_2\)</span> (two-tailed alternative)</p>
 <p>For this test, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}}\]</span></p>
+<p><span id="eq-zprop2"><span class="math display">\[Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} \tag{13.3}\]</span></span></p>
 <p>where <span class="math inline">\(\widehat{P} = \dfrac{n_1 p_1 + n_2 p_2}{n_1 + n_2}\)</span> is the pooled proportion and <span class="math inline">\(\widehat{Q} = 1 - \widehat{P}\)</span>.</p>
 <p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>.</p>
-<p>The calculated value of <span class="math inline">\(Z\)</span> is compared with the critical value of <span class="math inline">\(Z\)</span> from the standard normal table (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>). If the calculated value is higher than the table value, we reject the null hypothesis. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.</p>
+<p>The calculated value of <span class="math inline">\(Z\)</span> is compared with the critical value of <span class="math inline">\(Z\)</span> from the standard normal table (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). If the calculated value is higher than the table value, we reject the null hypothesis. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.</p>
 <div id="exm-prop2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 13.2</strong></span> In order to assess the adoption of a new variety of paddy by farmers, a survey was conducted in a locality. The survey covered 80 farmers with large land holdings and 250 farmers with small land holdings. It was observed that 50 of the large-holding farmers and 78 of the small-holding farmers adopted the new paddy variety. Test whether there is any significant difference in the adoption behaviour of the two groups of farmers. (<span class="math inline">\(\alpha\)</span> = 0.01)</p>
 <p><strong>Solution</strong></p>
@@ -494,14 +514,14 @@ Note
 <p><span class="math display">\[\widehat{P} = \frac{n_1 p_1 + n_2 p_2}{n_1 + n_2} = \frac{80 \times 0.625 + 250 \times 0.312}{80 + 250} = 0.3879\]</span></p>
 <p><span class="math display">\[\widehat{Q} = 1 - 0.3879 = 0.6121\]</span></p>
 <p><strong>Step 2</strong>: The level of significance is 1%, so <span class="math inline">\(\alpha\)</span> = 0.01.</p>
-<p><strong>Step 3</strong>: Calculate <span class="math inline">\(Z\)</span>.</p>
+<p><strong>Step 3</strong>: Calculate <span class="math inline">\(Z\)</span> using <a href="#eq-zprop2" class="quarto-xref">Equation&nbsp;<span>13.3</span></a>.</p>
 <p><span class="math display">\[Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} = \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121 \left( \dfrac{1}{80} + \dfrac{1}{250} \right)}}\]</span></p>
 <p><span class="math display">\[= \frac{0.313}{\sqrt{0.2374 \times 0.0165}} = \frac{0.313}{0.06258} = 5.00\]</span></p>
-<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.005, which is 2.576 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>). Since the calculated value (5.00) is greater than the table value (2.576), we reject the null hypothesis and conclude that there is a significant difference between the two population proportions.</p>
+<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.005, which is 2.576 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). Since the calculated value (5.00) is greater than the table value (2.576), we reject the null hypothesis and conclude that there is a significant difference between the two population proportions.</p>
 </div>
 </section>
-<section id="test-for-a-single-population-mean" class="level2" data-number="13.4">
-<h2 data-number="13.4" class="anchored" data-anchor-id="test-for-a-single-population-mean"><span class="header-section-number">13.4</span> Test for a single population mean</h2>
+<section id="test-for-a-single-population-mean" class="level2" data-number="13.5">
+<h2 data-number="13.5" class="anchored" data-anchor-id="test-for-a-single-population-mean"><span class="header-section-number">13.5</span> Test for a single population mean</h2>
 <p>Consider a population with mean <span class="math inline">\(\mu\)</span>, where <span class="math inline">\(\mu\)</span> is unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and calculate the sample mean <span class="math inline">\(\overline{x}\)</span>. We want to test whether the population mean <span class="math inline">\(\mu\)</span> is equal to a known constant <span class="math inline">\(\mu_0\)</span>, based on the sample mean.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = <span class="math inline">\(\mu_0\)</span></p>
@@ -514,19 +534,33 @@ Note
 <li><p>Case when the population standard deviation <span class="math inline">\(\sigma\)</span> is known</p></li>
 <li><p>Case when the population standard deviation <span class="math inline">\(\sigma\)</span> is unknown</p></li>
 </ul>
-<section id="population-standard-deviation-is-known" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="population-standard-deviation-is-known">Population standard deviation is known</h3>
+<section id="standard-deviation-is-known" class="level3" data-number="13.5.1">
+<h3 data-number="13.5.1" class="anchored" data-anchor-id="standard-deviation-is-known"><span class="header-section-number">13.5.1</span> Standard deviation is known</h3>
 <p>When <span class="math inline">\(\sigma\)</span> is known, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}}\]</span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>.</p>
+<p><span id="eq-zmean-known"><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} \tag{13.4}\]</span></span></p>
+<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>.</p>
+<div id="exm-mean-known" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.3</strong></span> A fertilizer packing unit is set to fill bags with a mean weight of 50 kg. From long experience the population standard deviation of the filling process is known to be 3.2 kg. A random sample of 64 bags was drawn and the mean weight was found to be 49.2 kg. Test whether the packing process is working at the intended mean weight of 50 kg, at the 5% level of significance.</p>
+<p><strong>Solution</strong></p>
+<p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = 50</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 50 (two-tailed test)</p>
+<p>Sample size (<span class="math inline">\(n\)</span>) = 64</p>
+<p>Sample mean (<span class="math inline">\(\overline{x}\)</span>) = 49.2</p>
+<p>Population standard deviation (<span class="math inline">\(\sigma\)</span>) = 3.2</p>
+<p>Population mean (<span class="math inline">\(\mu_0\)</span>) = 50</p>
+<p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p>Since <span class="math inline">\(\sigma\)</span> is known, we use <a href="#eq-zmean-known" class="quarto-xref">Equation&nbsp;<span>13.4</span></a>:</p>
+<p><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} = \frac{49.2 - 50}{\dfrac{3.2}{\sqrt{64}}} = \frac{-0.8}{0.4} = -2.0\]</span></p>
+<p>Since it is a two-tailed test, we compare <span class="math inline">\(|Z|\)</span> with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). Since the calculated value (2.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the packing process is not working at the intended mean weight of 50 kg.</p>
+</div>
 </section>
-<section id="population-standard-deviation-is-unknown" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="population-standard-deviation-is-unknown">Population standard deviation is unknown</h3>
+<section id="standard-deviation-is-unknown" class="level3" data-number="13.5.2">
+<h3 data-number="13.5.2" class="anchored" data-anchor-id="standard-deviation-is-unknown"><span class="header-section-number">13.5.2</span> Standard deviation is unknown</h3>
 <p>When <span class="math inline">\(\sigma\)</span> is unknown, it is replaced by its sample estimate <span class="math inline">\(s\)</span>, and we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}\]</span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>.</p>
+<p><span id="eq-zmean-unknown"><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} \tag{13.5}\]</span></span></p>
+<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>.</p>
 <div id="exm-mean1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 13.3</strong></span> A sample of 900 items has a mean of 3.4 cm and a standard deviation of 2.61 cm. Test whether the population mean is 3.25 cm at the 5% significance level.</p>
+<p><span class="theorem-title"><strong>Example 13.4</strong></span> A sample of 900 items has a mean of 3.4 cm and a standard deviation of 2.61 cm. Test whether the population mean is 3.25 cm at the 5% significance level.</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = 3.25</p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 3.25 (two-tailed test)</p>
@@ -535,17 +569,17 @@ Note
 <p>Sample standard deviation (<span class="math inline">\(s\)</span>) = 2.61</p>
 <p>Population mean (<span class="math inline">\(\mu_0\)</span>) = 3.25</p>
 <p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p>Since <span class="math inline">\(\sigma\)</span> is unknown, we use <span class="math inline">\(s\)</span> in place of <span class="math inline">\(\sigma\)</span>:</p>
+<p>Since <span class="math inline">\(\sigma\)</span> is unknown, we use <span class="math inline">\(s\)</span> in place of <span class="math inline">\(\sigma\)</span>, applying <a href="#eq-zmean-unknown" class="quarto-xref">Equation&nbsp;<span>13.5</span></a>:</p>
 <p><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{3.4 - 3.25}{\dfrac{2.61}{\sqrt{900}}} = \frac{0.15}{0.087} = 1.724\]</span></p>
-<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>). Since the calculated value (1.724) is less than the table value (1.960), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 3.25 cm.</p>
+<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). Since the calculated value (1.724) is less than the table value (1.960), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 3.25 cm.</p>
 </div>
 <div id="exr-mean1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 13.2</strong></span> From a paddy field a sample of 36 plants was selected at random and the panicle lengths were observed. The mean and standard deviation of these measurements were 18.7 cm and 1.25 cm respectively. Test whether the mean panicle length of paddy is 19 cm. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
 </section>
-<section id="test-for-equality-of-two-means" class="level2" data-number="13.5">
-<h2 data-number="13.5" class="anchored" data-anchor-id="test-for-equality-of-two-means"><span class="header-section-number">13.5</span> Test for equality of two means</h2>
+<section id="test-for-equality-of-two-means" class="level2" data-number="13.6">
+<h2 data-number="13.6" class="anchored" data-anchor-id="test-for-equality-of-two-means"><span class="header-section-number">13.6</span> Test for equality of two means</h2>
 <p>Let there be two normally distributed populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span> and standard deviations <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> respectively. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations, with sample means <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span>. We want to test whether the two population means are significantly different, based on the sample means.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
@@ -558,11 +592,11 @@ Note
 <li><p>Case when the population standard deviations are equal, <span class="math inline">\(\sigma_1 = \sigma_2 = \sigma\)</span></p></li>
 <li><p>Case when the population standard deviations are not equal, <span class="math inline">\(\sigma_1 \neq \sigma_2\)</span></p></li>
 </ul>
-<section id="when-the-population-standard-deviations-are-equal" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="when-the-population-standard-deviations-are-equal">When the population standard deviations are equal</h3>
-<p>In this case, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}\]</span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>).</p>
+<section id="standard-deviations-are-equal" class="level3" data-number="13.6.1">
+<h3 data-number="13.6.1" class="anchored" data-anchor-id="standard-deviations-are-equal"><span class="header-section-number">13.6.1</span> Standard deviations are equal</h3>
+<p>When the population standard deviations are equal, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
+<p><span id="eq-zmean2-equal"><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} \tag{13.6}\]</span></span></p>
+<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>).</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -576,14 +610,8 @@ Note
 <p>If the common <span class="math inline">\(\sigma\)</span> is unknown, it is replaced by its pooled estimate <span class="math inline">\(\sqrt{\dfrac{n_1 s_1^2 + n_2 s_2^2}{n_1 + n_2}}\)</span>, where <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes and <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are the sample standard deviations.</p>
 </div>
 </div>
-</section>
-<section id="when-the-population-standard-deviations-are-not-equal" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="when-the-population-standard-deviations-are-not-equal">When the population standard deviations are not equal</h3>
-<p>In this case, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
-<p><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}\]</span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>).</p>
 <div id="exm-mean2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 13.4</strong></span> The means of two large samples of sizes 1000 and 2000 members are 67.5 inches and 68 inches respectively. Can the samples be regarded as drawn from the same population with standard deviation 2.5 inches? (Test at the 5% significance level.)</p>
+<p><span class="theorem-title"><strong>Example 13.5</strong></span> The means of two large samples of sizes 1000 and 2000 members are 67.5 inches and 68 inches respectively. Can the samples be regarded as drawn from the same population with standard deviation 2.5 inches? (Test at the 5% significance level.)</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed test)</p>
@@ -593,9 +621,31 @@ Note
 <p>Sample mean of the second group (<span class="math inline">\(\overline{x}_2\)</span>) = 67.5</p>
 <p>Population standard deviation (<span class="math inline">\(\sigma\)</span>) = 2.5</p>
 <p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p>Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate <span class="math inline">\(Z\)</span>:</p>
+<p>Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate <span class="math inline">\(Z\)</span> using <a href="#eq-zmean2-equal" class="quarto-xref">Equation&nbsp;<span>13.6</span></a>:</p>
 <p><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} = \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}} = \frac{0.5}{0.0968} = 5.16\]</span></p>
-<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.1.1</span></a>). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.</p>
+<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.</p>
+</div>
+</section>
+<section id="standard-deviations-are-not-equal" class="level3" data-number="13.6.2">
+<h3 data-number="13.6.2" class="anchored" data-anchor-id="standard-deviations-are-not-equal"><span class="header-section-number">13.6.2</span> Standard deviations are not equal</h3>
+<p>When the population standard deviations are not equal, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
+<p><span id="eq-zmean2-unequal"><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} \tag{13.7}\]</span></span></p>
+<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>).</p>
+<div id="exm-mean2-unequal" class="theorem example">
+<p><span class="theorem-title"><strong>Example 13.6</strong></span> Two paddy varieties were compared for their grain yield. A random sample of 100 plots of variety A gave a mean yield of 52 quintals per hectare with a population standard deviation of 8 quintals per hectare, while a random sample of 100 plots of variety B gave a mean yield of 49 quintals per hectare with a population standard deviation of 6 quintals per hectare. The two population standard deviations are known and unequal. Test whether the two varieties differ significantly in mean yield, at the 5% level of significance.</p>
+<p><strong>Solution</strong></p>
+<p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed test)</p>
+<p>Sample size (<span class="math inline">\(n_1\)</span>) = 100</p>
+<p>Sample size (<span class="math inline">\(n_2\)</span>) = 100</p>
+<p>Sample mean of variety A (<span class="math inline">\(\overline{x}_1\)</span>) = 52</p>
+<p>Sample mean of variety B (<span class="math inline">\(\overline{x}_2\)</span>) = 49</p>
+<p>Population standard deviation of variety A (<span class="math inline">\(\sigma_1\)</span>) = 8</p>
+<p>Population standard deviation of variety B (<span class="math inline">\(\sigma_2\)</span>) = 6</p>
+<p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p>Since the two population standard deviations are unequal, we use <a href="#eq-zmean2-unequal" class="quarto-xref">Equation&nbsp;<span>13.7</span></a>:</p>
+<p><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} = \frac{52 - 49}{\sqrt{\dfrac{8^2}{100} + \dfrac{6^2}{100}}} = \frac{3}{\sqrt{0.64 + 0.36}} = \frac{3}{1} = 3.0\]</span></p>
+<p>Since it is a two-tailed test, we compare <span class="math inline">\(|Z|\)</span> with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 13.2.1</span></a>). Since the calculated value (3.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the two paddy varieties differ significantly in mean yield.</p>
 </div>
 <div id="exr-mean2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 13.3</strong></span> Two random samples were drawn from two populations and the following data were obtained. Test whether the population means are equal. <span class="math inline">\(n_1\)</span> = 400, <span class="math inline">\(n_2\)</span> = 400, <span class="math inline">\(\overline{x}_1\)</span> = 250, <span class="math inline">\(\overline{x}_2\)</span> = 220, <span class="math inline">\(s_1\)</span> = 40, <span class="math inline">\(s_2\)</span> = 55. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>

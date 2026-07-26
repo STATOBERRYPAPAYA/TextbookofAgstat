@@ -314,15 +314,21 @@ window.Quarto = {
   <li><a href="#test-for-a-single-population-mean" id="toc-test-for-a-single-population-mean" class="nav-link" data-scroll-target="#test-for-a-single-population-mean"><span class="header-section-number">14.1.1</span> Test for a single population mean</a></li>
   <li><a href="#sec-tdecision" id="toc-sec-tdecision" class="nav-link" data-scroll-target="#sec-tdecision"><span class="header-section-number">14.1.2</span> Decision rule for the t test</a></li>
   </ul></li>
-  <li><a href="#testing-the-significance-of-a-correlation-coefficient" id="toc-testing-the-significance-of-a-correlation-coefficient" class="nav-link" data-scroll-target="#testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">14.2</span> Testing the significance of a correlation coefficient</a></li>
-  <li><a href="#chi-square-test-chi2" id="toc-chi-square-test-chi2" class="nav-link" data-scroll-target="#chi-square-test-chi2"><span class="header-section-number">14.3</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</a>
+  <li><a href="#test-for-equality-of-two-means" id="toc-test-for-equality-of-two-means" class="nav-link" data-scroll-target="#test-for-equality-of-two-means"><span class="header-section-number">14.2</span> Test for equality of two means</a>
   <ul class="collapse">
-  <li><a href="#chi-square-test-for-goodness-of-fit" id="toc-chi-square-test-for-goodness-of-fit" class="nav-link" data-scroll-target="#chi-square-test-for-goodness-of-fit"><span class="header-section-number">14.3.1</span> Chi-square test for goodness of fit</a></li>
-  <li><a href="#chi-square-test-for-independence-of-attributes" id="toc-chi-square-test-for-independence-of-attributes" class="nav-link" data-scroll-target="#chi-square-test-for-independence-of-attributes"><span class="header-section-number">14.3.2</span> Chi-square test for independence of attributes</a></li>
-  <li><a href="#chi-square-test-for-a-22-contingency-table" id="toc-chi-square-test-for-a-22-contingency-table" class="nav-link" data-scroll-target="#chi-square-test-for-a-22-contingency-table"><span class="header-section-number">14.3.3</span> Chi-square test for a 2×2 contingency table</a></li>
-  <li><a href="#chi-square-test-for-a-population-variance" id="toc-chi-square-test-for-a-population-variance" class="nav-link" data-scroll-target="#chi-square-test-for-a-population-variance"><span class="header-section-number">14.3.4</span> Chi-square test for a population variance</a></li>
+  <li><a href="#when-the-population-variances-are-equal-homogeneous" id="toc-when-the-population-variances-are-equal-homogeneous" class="nav-link" data-scroll-target="#when-the-population-variances-are-equal-homogeneous">When the population variances are equal (homogeneous)</a></li>
+  <li><a href="#when-the-population-variances-are-unequal" id="toc-when-the-population-variances-are-unequal" class="nav-link" data-scroll-target="#when-the-population-variances-are-unequal">When the population variances are unequal</a></li>
   </ul></li>
-  <li><a href="#sec-ftest" id="toc-sec-ftest" class="nav-link" data-scroll-target="#sec-ftest"><span class="header-section-number">14.4</span> F-test for equality of two population variances</a>
+  <li><a href="#paired-t-test" id="toc-paired-t-test" class="nav-link" data-scroll-target="#paired-t-test"><span class="header-section-number">14.3</span> Paired t-test</a></li>
+  <li><a href="#testing-the-significance-of-a-correlation-coefficient" id="toc-testing-the-significance-of-a-correlation-coefficient" class="nav-link" data-scroll-target="#testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">14.4</span> Testing the significance of a correlation coefficient</a></li>
+  <li><a href="#chi-square-test-chi2" id="toc-chi-square-test-chi2" class="nav-link" data-scroll-target="#chi-square-test-chi2"><span class="header-section-number">14.5</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</a>
+  <ul class="collapse">
+  <li><a href="#chi-square-test-for-goodness-of-fit" id="toc-chi-square-test-for-goodness-of-fit" class="nav-link" data-scroll-target="#chi-square-test-for-goodness-of-fit"><span class="header-section-number">14.5.1</span> Chi-square test for goodness of fit</a></li>
+  <li><a href="#chi-square-test-for-independence-of-attributes" id="toc-chi-square-test-for-independence-of-attributes" class="nav-link" data-scroll-target="#chi-square-test-for-independence-of-attributes"><span class="header-section-number">14.5.2</span> Chi-square test for independence of attributes</a></li>
+  <li><a href="#chi-square-test-for-a-22-contingency-table" id="toc-chi-square-test-for-a-22-contingency-table" class="nav-link" data-scroll-target="#chi-square-test-for-a-22-contingency-table"><span class="header-section-number">14.5.3</span> Chi-square test for a 2×2 contingency table</a></li>
+  <li><a href="#chi-square-test-for-a-population-variance" id="toc-chi-square-test-for-a-population-variance" class="nav-link" data-scroll-target="#chi-square-test-for-a-population-variance"><span class="header-section-number">14.5.4</span> Chi-square test for a population variance</a></li>
+  </ul></li>
+  <li><a href="#sec-ftest" id="toc-sec-ftest" class="nav-link" data-scroll-target="#sec-ftest"><span class="header-section-number">14.6</span> F-test for equality of two population variances</a>
   <ul class="collapse">
   <li><a href="#decision-rule-for-the-f-test" id="toc-decision-rule-for-the-f-test" class="nav-link" data-scroll-target="#decision-rule-for-the-f-test">Decision rule for the F-test</a></li>
   </ul></li>
@@ -351,6 +357,18 @@ window.Quarto = {
 </header>
 
 
+<style>
+/* Remove alternating row shading from tables in this chapter, matching the
+   plain table style used elsewhere in the book. */
+.lightable-classic tbody tr:nth-child(odd),
+.lightable-classic tbody tr:nth-child(even),
+table.table tbody tr:nth-child(odd),
+table.table tbody tr:nth-child(even),
+table tbody tr:nth-child(odd),
+table tbody tr:nth-child(even) {
+  background-color: transparent !important;
+}
+</style>
 <p>If the sample size <span class="math inline">\(n\)</span> is less than 30 (<span class="math inline">\(n &lt; 30\)</span>), it is known as a <strong>small sample</strong>. For small samples, the sampling distributions commonly used are the <span class="math inline">\(\chi^2\)</span> (chi-square), <span class="math inline">\(F\)</span>, and <span class="math inline">\(t\)</span> distributions. The study of the sampling distribution of a statistic for small samples is known as <strong>small sample theory</strong>.</p>
 <section id="tests-based-on-students-t-distribution-t-tests" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="tests-based-on-students-t-distribution-t-tests"><span class="header-section-number">14.1</span> Tests based on Student’s t distribution (t-tests)</h2>
@@ -370,7 +388,7 @@ window.Quarto = {
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &gt; <span class="math inline">\(\mu_0\)</span> (right-tailed alternative)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_0\)</span> (two-tailed alternative)</p>
 <p>The test statistic is:</p>
-<p><span class="math display">\[t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}\]</span></p>
+<p><span id="eq-t-single"><span class="math display">\[t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} \tag{14.1}\]</span></span></p>
 <p>where <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}\)</span>.</p>
 <p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom.</p>
 </section>
@@ -393,474 +411,345 @@ window.Quarto = {
 <p>Sample standard deviation (<span class="math inline">\(s\)</span>) = 1.0853</p>
 <p><span class="math inline">\(\mu_0\)</span> = 12</p>
 <p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
-<p>The calculation of the sample mean and sample standard deviation is shown in <span class="quarto-unresolved-ref">?tbl-tmean1</span>.</p>
-systemfonts and textshaping have been compiled with different versions of Freetype. Because of this, textshaping will not use the font cache provided by systemfonts`````{=html}
-<table class=" lightable-classic table table-striped" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
-<caption>
-Calculation of sample mean and standard deviation
-</caption>
+<p>The calculation of the sample mean and sample standard deviation is shown in <a href="#tbl-tmean1" class="quarto-xref">Table&nbsp;<span>14.1</span></a>.</p>
+<div id="tbl-tmean1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tmean1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.1: Calculation of sample mean and standard deviation
+</figcaption>
+<div aria-describedby="tbl-tmean1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
-<tr>
-<th style="text-align:left;font-weight: bold;text-align: center;">
-Sl No.&nbsp;
-</th>
-<th style="text-align:right;font-weight: bold;text-align: center;">
-Yield
-</th>
-<th style="text-align:left;font-weight: bold;text-align: center;">
-<span class="math display">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)\]</span>
-</th>
-<th style="text-align:right;font-weight: bold;text-align: center;">
-<span class="math display">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)^{\mathbf{2}}\]</span>
-</th>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sl No.</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Yield</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)^{\mathbf{2}}\]</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-1
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-14.30
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-1.67
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-2.788900
-</td>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">14.3</td>
+<td style="text-align: center;">1.67</td>
+<td style="text-align: center;">2.7889</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-2
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-12.60
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--0.03
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-0.000900
-</td>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">12.6</td>
+<td style="text-align: center;">-0.03</td>
+<td style="text-align: center;">9e-04</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-3
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-13.70
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-1.07
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-1.144900
-</td>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">13.7</td>
+<td style="text-align: center;">1.07</td>
+<td style="text-align: center;">1.1449</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-4
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-10.90
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--1.73
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-2.992900
-</td>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">10.9</td>
+<td style="text-align: center;">-1.73</td>
+<td style="text-align: center;">2.9929</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-5
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-13.70
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-1.07
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-1.144900
-</td>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">13.7</td>
+<td style="text-align: center;">1.07</td>
+<td style="text-align: center;">1.1449</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-6
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-12.00
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--0.63
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-0.396900
-</td>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">-0.63</td>
+<td style="text-align: center;">0.3969</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-7
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-11.40
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--1.23
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-1.512900
-</td>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">11.4</td>
+<td style="text-align: center;">-1.23</td>
+<td style="text-align: center;">1.5129</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-8
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-12.00
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--0.63
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-0.396900
-</td>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">-0.63</td>
+<td style="text-align: center;">0.3969</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-9
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-12.60
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
--0.03
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-0.000900
-</td>
+<tr class="odd">
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">12.6</td>
+<td style="text-align: center;">-0.03</td>
+<td style="text-align: center;">9e-04</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-10
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-13.10
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-0.47
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-0.220900
-</td>
+<tr class="even">
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">13.1</td>
+<td style="text-align: center;">0.47</td>
+<td style="text-align: center;">0.2209</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-Sum = <span class="math inline">\(\sum_{i = 1}^{n}x_{i}\)</span>
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-126.30
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-<span class="math display">\[\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\]</span>
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-10.601000
-</td>
+<tr class="odd">
+<td style="text-align: center;">Sum = \(\sum_{i = 1}^{n}x_{i}\)</td>
+<td style="text-align: center;">126.3</td>
+<td style="text-align: center;">\[\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}\]</td>
+<td style="text-align: center;">10.601</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-Mean, <span class="math inline">\(\overline{x}\)</span> =<span class="math inline">\(\ \frac{\sum_{i = 1}^{n}x_{i}}{10}\)</span>
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-12.63
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-<span class="math display">\[s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}\]</span>
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-1.177889
-</td>
+<tr class="even">
+<td style="text-align: center;">Mean, \(\overline{x}\) =\(\ \frac{\sum_{i = 1}^{n}x_{i}}{10}\)</td>
+<td style="text-align: center;">12.63</td>
+<td style="text-align: center;">\[s^{2} = \frac{\sum_{i = 1}^{n}\left( x_{i} - \overline{x} \right)^{2}}{n - 1}\]</td>
+<td style="text-align: center;">1.177889</td>
 </tr>
-<tr>
-<td style="text-align:left;width: 4cm; text-align: center;">
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-NA
-</td>
-<td style="text-align:left;width: 4cm; text-align: center;">
-<span class="math display">\[s = \sqrt{s^{2}}\]</span>
-</td>
-<td style="text-align:right;width: 4cm; text-align: center;">
-1.085306
-</td>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">\[s = \sqrt{s^{2}}\]</td>
+<td style="text-align: center;">1.085306</td>
 </tr>
 </tbody>
 </table>
-<pre><code>
 
 
-
-
-The test statistic is:
-
-$$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfrac{1.0853}{\sqrt{10}}} = \frac{0.63}{0.3432} = 1.835$$
-
-The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the $t$ table at the end of this chapter, @fig-ttable).
-
-Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare.
-:::
-
-::: {#exr-tmean1}
-The mean weekly sales of soap bars in departmental stores were 146.3 bars per store. After an advertising campaign, the mean weekly sales in 22 stores for a typical week was 153.7, with a standard deviation of 17.2. Was the advertising campaign successful? ($\alpha$ = 0.05)
-:::
-
-## Test for equality of two means
-
-Let there be two normally distributed populations with means $\mu_1$ and $\mu_2$. Let the population standard deviations be equal and unknown. Let samples of sizes $n_1$ and $n_2$ be taken from these populations, with sample means $\overline{x}_1$ and $\overline{x}_2$ respectively. We want to test whether the two population means are significantly different, based on the sample means.
-
-There are two cases under this situation:
-
-1.  Population variances are equal.
-
-2.  Population variances are unequal.
-
-Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see @sec-ftest).
-
-### When the population variances are equal (homogeneous) {.unnumbered}
-
-The null hypothesis to be tested is:
-
-$H_0$: $\mu_1$ = $\mu_2$
-
-The alternative hypothesis may be either:
-
-$H_1$: $\mu_1$ \&lt; $\mu_2$ (left-tailed alternative)
-
-$H_1$: $\mu_1$ \&gt; $\mu_2$ (right-tailed alternative)
-
-$H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
-
-We calculate the test statistic $t$ using the following formula:
-
-$$t = \frac{\overline{x}_1 - \overline{x}_2}{s \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$
-
-where $s^2 = \dfrac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}$ is the pooled variance, and $\overline{x}_1$ and $\overline{x}_2$ are the sample means from populations 1 and 2 respectively.
-
-Under the null hypothesis, $t$ follows a $t$ distribution with $n_1 + n_2 - 2$ degrees of freedom. The decision rule is the same as for the previous t-test (see @sec-tdecision).
-
-### When the population variances are unequal {.unnumbered}
-
-The Welch t-test is an adaptation of Student's t-test. It is used to compare the means of two groups when the variances are different.
-
-The null hypothesis to be tested is:
-
-$H_0$: $\mu_1$ = $\mu_2$
-
-The alternative hypothesis may be either:
-
-$H_1$: $\mu_1$ \&lt; $\mu_2$ (left-tailed alternative)
-
-$H_1$: $\mu_1$ \&gt; $\mu_2$ (right-tailed alternative)
-
-$H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
-
-We calculate the test statistic $t$ using the following formula:
-
-$$t = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}$$
-
-where $s_1$ and $s_2$ are the sample standard deviations from the two populations respectively.
-
-The degrees of freedom of the Welch t-test are calculated as follows:
-
-$$\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\dfrac{s_1^4}{n_1^2 (n_1 - 1)} + \dfrac{s_2^4}{n_2^2 (n_2 - 1)}}$$
-
-Once the $t$ value is determined, read the critical value of Student's $t$ distribution from the table corresponding to the significance level. The decision rule is the same as for the previous t-test (see @sec-tdecision).
-
-::: {#exr-tmean2}
-In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. ($\alpha$ = 0.05)
-
-**Ammonium chloride**: 13.4, 10.9, 11.2, 11.8, 14, 15.3, 14.2, 12.6, 17, 16.2, 16.5, 15.7
-
-**Urea**: 12, 11.7, 10.7, 11.2, 14.8, 14.4, 13.9, 13.7, 16.9, 16, 15.6, 16
-:::
-
-## Paired t-test
-
-The paired t-test is used to compare the means of two related samples, that is, when we have two values (a pair of values) for the same experimental unit. For example, suppose 20 cows receive a treatment for 3 months and the question is whether the treatment has an impact on milk yield. The milk yield of the 20 cows is measured before and after the treatment. This gives 20 values before treatment and 20 values after treatment. To test whether there is any significant difference between before and after, the paired t-test can be used, because the two sets of values being compared are related. We have a pair of values for each cow, one before and one after treatment.
-
-Suppose we have two correlated random samples $x_1, x_2, \ldots, x_n$ and $y_1, y_2, \ldots, y_n$. We want to test whether the two population means are significantly different.
-
-The null hypothesis to be tested is:
-
-$H_0$: $\mu_1$ = $\mu_2$
-
-The alternative hypothesis may be either:
-
-$H_1$: $\mu_1$ \&lt; $\mu_2$ (left-tailed alternative)
-
-$H_1$: $\mu_1$ \&gt; $\mu_2$ (right-tailed alternative)
-
-$H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
-
-We calculate the test statistic $t$ using the following formula:
-
-$$t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}}$$
-
-where $\overline{d} = \dfrac{\sum_{i=1}^{n} d_i}{n}$, $d_i = x_i - y_i$, and $s^2 = \dfrac{\sum_{i=1}^{n}\left( d_i - \overline{d} \right)^2}{n - 1}$.
-
-Under the null hypothesis, $t$ follows a $t$ distribution with $n - 1$ degrees of freedom. For a two-tailed test, we compare $|t|$ with the critical value. The decision rule is the same as for the previous t-test (see @sec-tdecision).
-
-::: {#exm-paired1}
-In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.
-
-| Soil Treatment A | 49  | 53  | 51  | 52  | 47  | 50  | 52  | 53  |
-|:-----------------|:----|:----|:----|:----|:----|:----|:----|:----|
-| Soil Treatment B | 52  | 55  | 52  | 53  | 50  | 54  | 54  | 53  |
-
-**Solution**
-
-Null hypothesis, $H_0$: $\mu_1$ = $\mu_2$ (there is no significant difference between the effects of the two soil treatments)
-
-Alternative hypothesis, $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed test; there is a significant difference between the effects of the two soil treatments)
-
-Level of significance, $\alpha$ = 0.05
-
-The calculation of the differences is shown in @tbl-paired1.
-
-
-
-
-
-`````{=html}
-&lt;table class=" lightable-classic table table-striped" style="font-family: Cambria; width: auto !important; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;"&gt;
-&lt;caption&gt;Calculation of paired differences&lt;/caption&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:right;font-weight: bold;text-align: center;"&gt; Sl No. &lt;/th&gt;
-   &lt;th style="text-align:right;font-weight: bold;text-align: center;"&gt; $$\mathbf{A}$$ &lt;/th&gt;
-   &lt;th style="text-align:left;font-weight: bold;text-align: center;"&gt; $$\mathbf{B}$$ &lt;/th&gt;
-   &lt;th style="text-align:left;font-weight: bold;text-align: center;"&gt; $$\mathbf{d}_{\mathbf{i}} \mathbf{= A - B}$$ &lt;/th&gt;
-   &lt;th style="text-align:left;font-weight: bold;text-align: center;"&gt; $$\mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}}$$ &lt;/th&gt;
-   &lt;th style="text-align:left;font-weight: bold;text-align: center;"&gt; $$\left( \mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}} \right)^{\mathbf{2}}$$ &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 49 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 52 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -3 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 55 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -2 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 51 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 52 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 52 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 47 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 50 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -3 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -1 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 1 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 50 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 54 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -4 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -2 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 52 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 54 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -2 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 0 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 4 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $$\sum_{i = 1}^{8}d_{i}$$ &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; -16 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $$\sum_{i = 1}^{8}\left( d_{i} - \overline{d} \right)^{2}$$ &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; 12 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $$\overline{d} = \frac{\sum_{i = 1}^{8}d_{i}}{n} = \frac{- 16}{8}$$ &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $\overline{d} =$-2 &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $$s^{2} = \frac{\sum_{i = 1}^{8}\left( d_{i} - \overline{d} \right)^{2}}{n - 1}$$ &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $s^{2}$=1.7143 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:right;width: 2cm; text-align: center;"&gt; NA &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:left;width: 2cm; text-align: center;"&gt; $s = \sqrt{1.7143}$ =1.309 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-</code></pre>
+</div>
+</figure>
+</div>
+<p>The test statistic is:</p>
+<p><span class="math display">\[t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfrac{1.0853}{\sqrt{10}}} = \frac{0.63}{0.3432} = 1.835\]</span></p>
+<p>The table value of <span class="math inline">\(t\)</span> for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the <span class="math inline">\(t\)</span> table at the end of this chapter, <a href="#fig-ttable" class="quarto-xref">Figure&nbsp;<span>14.1</span></a>).</p>
+<p>Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare.</p>
+</div>
+<div id="exr-tmean1" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.1</strong></span> The mean weekly sales of soap bars in departmental stores were 146.3 bars per store. After an advertising campaign, the mean weekly sales in 22 stores for a typical week was 153.7, with a standard deviation of 17.2. Was the advertising campaign successful? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+</div>
+</section>
+</section>
+<section id="test-for-equality-of-two-means" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="test-for-equality-of-two-means"><span class="header-section-number">14.2</span> Test for equality of two means</h2>
+<p>Let there be two normally distributed populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Let the population standard deviations be equal and unknown. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations, with sample means <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> respectively. We want to test whether the two population means are significantly different, based on the sample means.</p>
+<p>There are two cases under this situation:</p>
+<ol type="1">
+<li><p>Population variances are equal.</p></li>
+<li><p>Population variances are unequal.</p></li>
+</ol>
+<p>Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see <a href="#sec-ftest" class="quarto-xref"><span>Section 14.6</span></a>).</p>
+<section id="when-the-population-variances-are-equal-homogeneous" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="when-the-population-variances-are-equal-homogeneous">When the population variances are equal (homogeneous)</h3>
+<p>The null hypothesis to be tested is:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
+<p>The alternative hypothesis may be either:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &lt; <span class="math inline">\(\mu_2\)</span> (left-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &gt; <span class="math inline">\(\mu_2\)</span> (right-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed alternative)</p>
+<p>We calculate the test statistic <span class="math inline">\(t\)</span> using the following formula:</p>
+<p><span id="eq-t-two-equal"><span class="math display">\[t = \frac{\overline{x}_1 - \overline{x}_2}{s \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} \tag{14.2}\]</span></span></p>
+<p>where <span class="math inline">\(s^2 = \dfrac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}\)</span> is the pooled variance, and <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> are the sample means from populations 1 and 2 respectively.</p>
+<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n_1 + n_2 - 2\)</span> degrees of freedom. The decision rule is the same as for the previous t-test (see <a href="#sec-tdecision" class="quarto-xref"><span>Section 14.1.2</span></a>).</p>
+</section>
+<section id="when-the-population-variances-are-unequal" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="when-the-population-variances-are-unequal">When the population variances are unequal</h3>
+<p>The Welch t-test is an adaptation of Student’s t-test. It is used to compare the means of two groups when the variances are different.</p>
+<p>The null hypothesis to be tested is:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
+<p>The alternative hypothesis may be either:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &lt; <span class="math inline">\(\mu_2\)</span> (left-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &gt; <span class="math inline">\(\mu_2\)</span> (right-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed alternative)</p>
+<p>We calculate the test statistic <span class="math inline">\(t\)</span> using the following formula:</p>
+<p><span id="eq-t-welch"><span class="math display">\[t = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}} \tag{14.3}\]</span></span></p>
+<p>where <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are the sample standard deviations from the two populations respectively.</p>
+<p>The degrees of freedom of the Welch t-test are calculated as follows:</p>
+<p><span id="eq-welch-df"><span class="math display">\[\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\dfrac{s_1^4}{n_1^2 (n_1 - 1)} + \dfrac{s_2^4}{n_2^2 (n_2 - 1)}} \tag{14.4}\]</span></span></p>
+<p>Once the <span class="math inline">\(t\)</span> value is determined, read the critical value of Student’s <span class="math inline">\(t\)</span> distribution from the table corresponding to the significance level. The decision rule is the same as for the previous t-test (see <a href="#sec-tdecision" class="quarto-xref"><span>Section 14.1.2</span></a>).</p>
+<div id="exr-tmean2" class="theorem exercise">
+<p><span class="theorem-title"><strong>Exercise 14.2</strong></span> In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><strong>Ammonium chloride</strong>: 13.4, 10.9, 11.2, 11.8, 14, 15.3, 14.2, 12.6, 17, 16.2, 16.5, 15.7</p>
+<p><strong>Urea</strong>: 12, 11.7, 10.7, 11.2, 14.8, 14.4, 13.9, 13.7, 16.9, 16, 15.6, 16</p>
+</div>
+</section>
+</section>
+<section id="paired-t-test" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="paired-t-test"><span class="header-section-number">14.3</span> Paired t-test</h2>
+<p>The paired t-test is used to compare the means of two related samples, that is, when we have two values (a pair of values) for the same experimental unit. For example, suppose 20 cows receive a treatment for 3 months and the question is whether the treatment has an impact on milk yield. The milk yield of the 20 cows is measured before and after the treatment. This gives 20 values before treatment and 20 values after treatment. To test whether there is any significant difference between before and after, the paired t-test can be used, because the two sets of values being compared are related. We have a pair of values for each cow, one before and one after treatment.</p>
+<p>Suppose we have two correlated random samples <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> and <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span>. We want to test whether the two population means are significantly different.</p>
+<p>The null hypothesis to be tested is:</p>
+<p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
+<p>The alternative hypothesis may be either:</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &lt; <span class="math inline">\(\mu_2\)</span> (left-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> &gt; <span class="math inline">\(\mu_2\)</span> (right-tailed alternative)</p>
+<p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed alternative)</p>
+<p>We calculate the test statistic <span class="math inline">\(t\)</span> using the following formula:</p>
+<p><span id="eq-t-paired"><span class="math display">\[t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}} \tag{14.5}\]</span></span></p>
+<p>where <span class="math inline">\(\overline{d} = \dfrac{\sum_{i=1}^{n} d_i}{n}\)</span>, <span class="math inline">\(d_i = x_i - y_i\)</span>, and <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( d_i - \overline{d} \right)^2}{n - 1}\)</span>.</p>
+<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. For a two-tailed test, we compare <span class="math inline">\(|t|\)</span> with the critical value. The decision rule is the same as for the previous t-test (see <a href="#sec-tdecision" class="quarto-xref"><span>Section 14.1.2</span></a>).</p>
+<div id="exm-paired1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 14.2</strong></span> In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Soil Treatment A</th>
+<th style="text-align: left;">49</th>
+<th style="text-align: left;">53</th>
+<th style="text-align: left;">51</th>
+<th style="text-align: left;">52</th>
+<th style="text-align: left;">47</th>
+<th style="text-align: left;">50</th>
+<th style="text-align: left;">52</th>
+<th style="text-align: left;">53</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Soil Treatment B</td>
+<td style="text-align: left;">52</td>
+<td style="text-align: left;">55</td>
+<td style="text-align: left;">52</td>
+<td style="text-align: left;">53</td>
+<td style="text-align: left;">50</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">54</td>
+<td style="text-align: left;">53</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution</strong></p>
+<p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span> (there is no significant difference between the effects of the two soil treatments)</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\mu_2\)</span> (two-tailed test; there is a significant difference between the effects of the two soil treatments)</p>
+<p>Level of significance, <span class="math inline">\(\alpha\)</span> = 0.05</p>
+<p>The calculation of the differences is shown in <a href="#tbl-paired1" class="quarto-xref">Table&nbsp;<span>14.2</span></a>.</p>
+<div id="tbl-paired1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-paired1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.2: Calculation of paired differences
+</figcaption>
+<div aria-describedby="tbl-paired1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<thead>
+<tr class="header">
+<th style="text-align: center;" data-quarto-table-cell-role="th">Sl No.</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\mathbf{A}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\mathbf{B}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\mathbf{d}_{\mathbf{i}} \mathbf{= A - B}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\left( \mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}} \right)^{\mathbf{2}}\]</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">49</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">47</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">-4</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">7</td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">-2</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">53</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">\[\sum_{i = 1}^{8}d_{i}\]</td>
+<td style="text-align: center;">-16</td>
+<td style="text-align: center;">\[\sum_{i = 1}^{8}\left( d_{i} - \overline{d} \right)^{2}\]</td>
+<td style="text-align: center;">12</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">\[\overline{d} = \frac{\sum_{i = 1}^{8}d_{i}}{n} = \frac{- 16}{8}\]</td>
+<td style="text-align: center;">\(\overline{d} =\)-2</td>
+<td style="text-align: center;">\[s^{2} = \frac{\sum_{i = 1}^{8}\left( d_{i} - \overline{d} \right)^{2}}{n - 1}\]</td>
+<td style="text-align: center;">\(s^{2}\)=1.7143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">\(s = \sqrt{1.7143}\) =1.309</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</figure>
+</div>
 <p>Here <span class="math inline">\(\overline{d} = -2\)</span> and <span class="math inline">\(s\)</span> = 1.309.</p>
 <p><span class="math display">\[t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}} = \frac{-2}{\dfrac{1.309}{\sqrt{8}}} = \frac{-2}{0.4629} = -4.321\]</span></p>
 <p>The table value of <span class="math inline">\(t\)</span> for 7 degrees of freedom at the 5% level of significance is 2.365.</p>
 <p>Since the calculated value <span class="math inline">\(|t|\)</span> = 4.321 is greater than the table value (2.365), we reject the null hypothesis. We conclude that there is a significant difference between soil treatments A and B. Because <span class="math inline">\(d_i = A - B\)</span> is negative on average, soil treatment B increases the yield of sorghum significantly.</p>
 </div>
 <div id="exr-paired1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.1</strong></span> A certain stimulus administered to each of 12 patients resulted in the following increase in blood pressure: 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, 6. Can it be concluded that the stimulus is, in general, accompanied by an increase in blood pressure? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 14.3</strong></span> A certain stimulus administered to each of 12 patients resulted in the following increase in blood pressure: 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, 6. Can it be concluded that the stimulus is, in general, accompanied by an increase in blood pressure? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
-</section>
-<section id="testing-the-significance-of-a-correlation-coefficient" class="level2" data-number="14.2">
-<h2 data-number="14.2" class="anchored" data-anchor-id="testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">14.2</span> Testing the significance of a correlation coefficient</h2>
+<section id="testing-the-significance-of-a-correlation-coefficient" class="level2" data-number="14.4">
+<h2 data-number="14.4" class="anchored" data-anchor-id="testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">14.4</span> Testing the significance of a correlation coefficient</h2>
 <p>Let there be two normally distributed populations with correlation coefficient <span class="math inline">\(\rho\)</span>. We want to test the null hypothesis that the population correlation coefficient is zero (<span class="math inline">\(\rho = 0\)</span>). A t-test can be used for this purpose. If we reject the null hypothesis, we conclude that there is a significant correlation in the population (<span class="math inline">\(\rho \neq 0\)</span>). If we do not have enough evidence to reject the null hypothesis, we conclude that there is no significant correlation.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho\)</span> = 0</p>
 <p>The alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (two-tailed alternative)</p>
 <p>The test statistic is:</p>
-<p><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}\]</span></p>
+<p><span id="eq-t-corr"><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} \tag{14.6}\]</span></span></p>
 <p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of <span class="math inline">\(t\)</span> corresponding to <span class="math inline">\(n - 2\)</span> degrees of freedom and the level of significance <span class="math inline">\(\alpha\)</span>. In our case <span class="math inline">\(\alpha\)</span> = 0.05.</p>
 <div id="exm-corr1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.2</strong></span> A correlation coefficient of 0.2 was derived from a random sample of 625 pairs of observations. Test whether the population correlation coefficient is significant.</p>
+<p><span class="theorem-title"><strong>Example 14.3</strong></span> A correlation coefficient of 0.2 was derived from a random sample of 625 pairs of observations. Test whether the population correlation coefficient is significant.</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho\)</span> = 0 (population correlation coefficient is zero)</p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (population correlation coefficient is not zero)</p>
@@ -870,8 +759,8 @@ The calculation of the differences is shown in @tbl-paired1.
 <p>Since the sample size is large (<span class="math inline">\(n &gt; 30\)</span>), the <span class="math inline">\(t\)</span> distribution can be approximated by the standard normal distribution. The critical value for a two-tailed test at the 5% level of significance is 1.96. Since the calculated value (5.095) is greater than 1.96, we reject the null hypothesis and conclude that there is a significant correlation in the population.</p>
 </div>
 </section>
-<section id="chi-square-test-chi2" class="level2" data-number="14.3">
-<h2 data-number="14.3" class="anchored" data-anchor-id="chi-square-test-chi2"><span class="header-section-number">14.3</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</h2>
+<section id="chi-square-test-chi2" class="level2" data-number="14.5">
+<h2 data-number="14.5" class="anchored" data-anchor-id="chi-square-test-chi2"><span class="header-section-number">14.5</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</h2>
 <p>Chi-square tests are based on the sampling distribution called the chi-square distribution (<span class="math inline">\(\chi^2\)</span> distribution). The <span class="math inline">\(\chi^2\)</span> tests are based on the following assumptions:</p>
 <ol type="1">
 <li><p>The sample observations are independent.</p></li>
@@ -899,21 +788,21 @@ Note
 <li><p>Chi-square test for independence of attributes.</p></li>
 <li><p>Chi-square test for a variance.</p></li>
 </ul>
-<section id="chi-square-test-for-goodness-of-fit" class="level3" data-number="14.3.1">
-<h3 data-number="14.3.1" class="anchored" data-anchor-id="chi-square-test-for-goodness-of-fit"><span class="header-section-number">14.3.1</span> Chi-square test for goodness of fit</h3>
+<section id="chi-square-test-for-goodness-of-fit" class="level3" data-number="14.5.1">
+<h3 data-number="14.5.1" class="anchored" data-anchor-id="chi-square-test-for-goodness-of-fit"><span class="header-section-number">14.5.1</span> Chi-square test for goodness of fit</h3>
 <p>A very powerful test for the significance of the discrepancy between theory and experiment was given by Prof.&nbsp;Karl Pearson in 1900 and is known as the “<span class="math inline">\(\chi^2\)</span> test for goodness of fit”. <span class="citation" data-cites="Pearson1900">(<a href="references.html#ref-Pearson1900" role="doc-biblioref">Pearson 1900</a>)</span></p>
 <p>We want to test the null hypothesis:</p>
 <p><span class="math inline">\(H_0\)</span>: There is no significant difference between theory and experiment.</p>
 <p>against the alternative hypothesis:</p>
 <p><span class="math inline">\(H_1\)</span>: There is a significant difference between theory and experiment.</p>
 <p>If <span class="math inline">\(O_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is a set of observed frequencies and <span class="math inline">\(E_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is the corresponding set of expected (theoretical) frequencies, then Karl Pearson’s chi-square test statistic is:</p>
-<p><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i}\]</span></p>
+<p><span id="eq-chi-gof"><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} \tag{14.7}\]</span></span></p>
 <p>Here <span class="math inline">\(O_i\)</span> represents the <span class="math inline">\(i^{\text{th}}\)</span> observed frequency and <span class="math inline">\(E_i\)</span> the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom (when no parameter is estimated from the data).</p>
 <section id="decision-rule-for-the-goodness-of-fit-test" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-goodness-of-fit-test">Decision rule for the goodness-of-fit test</h4>
 <p>Let <span class="math inline">\(\chi^2_{\text{cal}}\)</span> be the calculated value, degrees of freedom = <span class="math inline">\(n - 1\)</span>, and <span class="math inline">\(\alpha\)</span> the level of significance. We reject the null hypothesis if <span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{\text{tab}}\)</span>, where <span class="math inline">\(\chi^2_{\text{tab}}\)</span> is the table value of <span class="math inline">\(\chi^2\)</span> at <span class="math inline">\(n - 1\)</span> degrees of freedom. In the case of the <span class="math inline">\(\chi^2\)</span> test, only a one-tailed (right-tailed) test is used.</p>
 <div id="exm-gof1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.3</strong></span> In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. In a cross between parents of genetic constitution AAbb and aaBB, the phenotypes in the sample are classified as follows:</p>
+<p><span class="theorem-title"><strong>Example 14.4</strong></span> In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. In a cross between parents of genetic constitution AAbb and aaBB, the phenotypes in the sample are classified as follows:</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -936,69 +825,77 @@ Note
 </table>
 <p>They are expected to occur in a 9:3:3:1 ratio. Do the data agree with the theoretical ratio?</p>
 <p><strong>Solution</strong></p>
-<p>The calculation of the chi-square statistic is shown in <span class="quarto-unresolved-ref">?tbl-gof1</span>.</p>
-<table class="lightable-classic table table-striped caption-top" data-quarto-postprocess="true">
-<caption>Calculation of chi-square for goodness of fit</caption>
+<p>The calculation of the chi-square statistic is shown in <a href="#tbl-gof1" class="quarto-xref">Table&nbsp;<span>14.3</span></a>.</p>
+<div id="tbl-gof1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-gof1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.3: Calculation of chi-square for goodness of fit
+</figcaption>
+<div aria-describedby="tbl-gof1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Phenotypes</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">AB</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Ab</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">aB</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">ab</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Total</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Phenotypes</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">AB</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Ab</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">aB</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">ab</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">Observed (Oi)</td>
-<td style="text-align: left; width: 3cm;">87</td>
-<td style="text-align: left; width: 3cm;">29</td>
-<td style="text-align: left; width: 3cm;">32</td>
-<td style="text-align: left; width: 3cm;">12</td>
-<td style="text-align: right; width: 3cm;">160.000</td>
+<td style="text-align: center;">Observed (Oi)</td>
+<td style="text-align: center;">87</td>
+<td style="text-align: center;">29</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">160</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">Expected (Ei)</td>
-<td style="text-align: left; width: 3cm;">$\frac{9}{16}\ \times 160$ =90</td>
-<td style="text-align: left; width: 3cm;">$\frac{3}{16}\ \times 160$ =30</td>
-<td style="text-align: left; width: 3cm;">$\frac{3}{16}\ \times 160$ =30</td>
-<td style="text-align: left; width: 3cm;">$\frac{1}{16}\ \times 160$ =10</td>
-<td style="text-align: right; width: 3cm;">160.000</td>
+<td style="text-align: center;">Expected (Ei)</td>
+<td style="text-align: center;">\(\frac{9}{16}\ \times 160\) =90</td>
+<td style="text-align: center;">\(\frac{3}{16}\ \times 160\) =30</td>
+<td style="text-align: center;">\(\frac{3}{16}\ \times 160\) =30</td>
+<td style="text-align: center;">\(\frac{1}{16}\ \times 160\) =10</td>
+<td style="text-align: center;">160</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">$$\mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}}$$</td>
-<td style="text-align: left; width: 3cm;">-3</td>
-<td style="text-align: left; width: 3cm;">-1</td>
-<td style="text-align: left; width: 3cm;">2</td>
-<td style="text-align: left; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">NA</td>
+<td style="text-align: center;">\[\mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}}\]</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">-1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">$$\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}$$</td>
-<td style="text-align: left; width: 3cm;">9</td>
-<td style="text-align: left; width: 3cm;">1</td>
-<td style="text-align: left; width: 3cm;">4</td>
-<td style="text-align: left; width: 3cm;">4</td>
-<td style="text-align: right; width: 3cm;">NA</td>
+<td style="text-align: center;">\[\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}\]</td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">$$\frac{\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}}{\mathbf{E}_{\mathbf{i}}}$$</td>
-<td style="text-align: left; width: 3cm;">0.11</td>
-<td style="text-align: left; width: 3cm;">0.033</td>
-<td style="text-align: left; width: 3cm;">0.133</td>
-<td style="text-align: left; width: 3cm;">0.4</td>
-<td style="text-align: right; width: 3cm;">0.676</td>
+<td style="text-align: center;">\[\frac{\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}}{\mathbf{E}_{\mathbf{i}}}\]</td>
+<td style="text-align: center;">0.11</td>
+<td style="text-align: center;">0.033</td>
+<td style="text-align: center;">0.133</td>
+<td style="text-align: center;">0.4</td>
+<td style="text-align: center;">0.676</td>
 </tr>
 </tbody>
 </table>
 
 
-<p><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.676\]</span></p>
-<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 0.676. The table value of chi-square for <span class="math inline">\(4 - 1 = 3\)</span> degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.</p>
+</div>
+</figure>
+</div>
+<p><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667\]</span></p>
+<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 0.667. The table value of chi-square for <span class="math inline">\(4 - 1 = 3\)</span> degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.</p>
 </div>
 <div id="exr-gof1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.2</strong></span> The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 14.4</strong></span> The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1043,134 +940,150 @@ Note
 </div>
 </section>
 </section>
-<section id="chi-square-test-for-independence-of-attributes" class="level3" data-number="14.3.2">
-<h3 data-number="14.3.2" class="anchored" data-anchor-id="chi-square-test-for-independence-of-attributes"><span class="header-section-number">14.3.2</span> Chi-square test for independence of attributes</h3>
+<section id="chi-square-test-for-independence-of-attributes" class="level3" data-number="14.5.2">
+<h3 data-number="14.5.2" class="anchored" data-anchor-id="chi-square-test-for-independence-of-attributes"><span class="header-section-number">14.5.2</span> Chi-square test for independence of attributes</h3>
 <p>The chi-square test of independence checks whether two attributes are likely to be related. For example, chemical treatment and germination can be two attributes. If we want to know whether chemical treatment has any influence on germination, we can use the chi-square test. For this purpose, the data are arranged in the form of a contingency table.</p>
 <section id="contingency-table" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="contingency-table">Contingency table</h4>
 <p>A contingency table is a tabular representation of categorical data, consisting of a collection of cells containing counts. It usually shows frequencies for particular combinations of values of two discrete random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Each cell represents a mutually exclusive combination of <span class="math inline">\(X\)</span>-<span class="math inline">\(Y\)</span> values.</p>
 <div id="exm-conting1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.4</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
-<table class="lightable-classic table table-striped caption-top" data-quarto-postprocess="true">
-<caption>Contingency table for germination of cotton seeds</caption>
+<p><span class="theorem-title"><strong>Example 14.5</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
+<div id="tbl-conting1" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.4: Contingency table for germination of cotton seeds
+</figcaption>
+<div aria-describedby="tbl-conting1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">X = Germination</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;"></th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">X = Germination</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th"></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">Y= Chemical treatment</td>
-<td style="text-align: left; width: 4cm;">X/Y</td>
-<td style="text-align: left; width: 4cm;">Germinated(X~1~)</td>
-<td style="text-align: left; width: 4cm;">Not Germinated(X~2~)</td>
-<td style="text-align: left; width: 4cm;">Total</td>
+<td style="text-align: center;">Y= Chemical treatment</td>
+<td style="text-align: center;">X/Y</td>
+<td style="text-align: center;">Germinated(X~1~)</td>
+<td style="text-align: center;">Not Germinated(X~2~)</td>
+<td style="text-align: center;">Total</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;"></td>
-<td style="text-align: left; width: 4cm;">Treated(Y~1~)</td>
-<td style="text-align: left; width: 4cm;">118</td>
-<td style="text-align: left; width: 4cm;">22</td>
-<td style="text-align: left; width: 4cm;">140</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Treated(Y~1~)</td>
+<td style="text-align: center;">118</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">140</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;"></td>
-<td style="text-align: left; width: 4cm;">Untreated(Y~2~)</td>
-<td style="text-align: left; width: 4cm;">120</td>
-<td style="text-align: left; width: 4cm;">40</td>
-<td style="text-align: left; width: 4cm;">160</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Untreated(Y~2~)</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">160</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;"></td>
-<td style="text-align: left; width: 4cm;">Total</td>
-<td style="text-align: left; width: 4cm;">238</td>
-<td style="text-align: left; width: 4cm;">62</td>
-<td style="text-align: left; width: 4cm;">300</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">238</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;">300</td>
 </tr>
 </tbody>
 </table>
 
 
-<p>The solution is worked out in <a href="#sec-yates" class="quarto-xref"><span>Section 14.3.3.1</span></a> using the shortcut formula for a 2×2 table.</p>
+</div>
+</figure>
+</div>
+<p>The solution is worked out in <a href="#sec-yates" class="quarto-xref"><span>Section 14.5.3.1</span></a> using the shortcut formula for a 2×2 table.</p>
 </div>
 <p>Let us consider two attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, where <span class="math inline">\(A\)</span> is divided into <span class="math inline">\(r\)</span> classes <span class="math inline">\(A_1, A_2, \ldots, A_r\)</span> and <span class="math inline">\(B\)</span> into <span class="math inline">\(s\)</span> classes <span class="math inline">\(B_1, B_2, \ldots, B_s\)</span>. The cell frequencies can be expressed in the form of an <span class="math inline">\(r \times s\)</span> contingency table as shown below.</p>
-<table class="lightable-classic table table-striped caption-top" data-quarto-postprocess="true">
-<caption>General form of an r x s contingency table</caption>
+<div id="tbl-rscontingency" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rscontingency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.5: General form of an r x s contingency table
+</figcaption>
+<div aria-describedby="tbl-rscontingency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">A.B</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">A1</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">A2</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">.....</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Ar</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Total</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">A/B</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">A1</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">A2</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">. . .</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Ar</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">B1</td>
-<td style="text-align: left; width: 4cm;">(A1 B1)</td>
-<td style="text-align: left; width: 4cm;">(A2 B1)</td>
-<td style="text-align: left; width: 4cm;">. . .</td>
-<td style="text-align: left; width: 4cm;">(Ar B~1~)</td>
-<td style="text-align: left; width: 4cm;">(B1)</td>
+<td style="text-align: center;">B1</td>
+<td style="text-align: center;">(A1 B1)</td>
+<td style="text-align: center;">(A2 B1)</td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;">(Ar B~1~)</td>
+<td style="text-align: center;">(B1)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;">B2</td>
-<td style="text-align: left; width: 4cm;">(A1 B2)</td>
-<td style="text-align: left; width: 4cm;">(A2 B2)</td>
-<td style="text-align: left; width: 4cm;">. . .</td>
-<td style="text-align: left; width: 4cm;">(Ar B2)</td>
-<td style="text-align: left; width: 4cm;">(B2)</td>
+<td style="text-align: center;">B2</td>
+<td style="text-align: center;">(A1 B2)</td>
+<td style="text-align: center;">(A2 B2)</td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;">(Ar B2)</td>
+<td style="text-align: center;">(B2)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
-<td style="text-align: left; width: 4cm;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;">Bs</td>
-<td style="text-align: left; width: 4cm;">(A1 Bs)</td>
-<td style="text-align: left; width: 4cm;">(A2 Bs)</td>
-<td style="text-align: left; width: 4cm;">. . .</td>
-<td style="text-align: left; width: 4cm;">(Ar Bs)</td>
-<td style="text-align: left; width: 4cm;">(Bs)</td>
+<td style="text-align: center;">Bs</td>
+<td style="text-align: center;">(A1 Bs)</td>
+<td style="text-align: center;">(A2 Bs)</td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;">(Ar Bs)</td>
+<td style="text-align: center;">(Bs)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">Total</td>
-<td style="text-align: left; width: 4cm;">(A1)</td>
-<td style="text-align: left; width: 4cm;">(A2)</td>
-<td style="text-align: left; width: 4cm;">. . .</td>
-<td style="text-align: left; width: 4cm;">(Ar)</td>
-<td style="text-align: left; width: 4cm;"></td>
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">(A1)</td>
+<td style="text-align: center;">(A2)</td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;">(Ar)</td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 
 
+</div>
+</figure>
+</div>
 <p><span class="math inline">\((A_i B_j)\)</span> = the number of items possessing both attributes <span class="math inline">\(A_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, r\)</span>) and <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
 <p><span class="math inline">\((A_i)\)</span> = the number of items possessing attribute <span class="math inline">\(A_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, r\)</span>)</p>
 <p><span class="math inline">\((B_j)\)</span> = the number of items possessing attribute <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
@@ -1179,7 +1092,7 @@ Note
 <section id="expected-frequencies" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="expected-frequencies">Expected frequencies</h4>
 <p>The expected frequency corresponding to each observed frequency <span class="math inline">\((A_i B_j)\)</span> is calculated from the formula:</p>
-<p><span class="math display">\[E_{ij} = \frac{(A_i)(B_j)}{N}\]</span></p>
+<p><span id="eq-expected"><span class="math display">\[E_{ij} = \frac{(A_i)(B_j)}{N} \tag{14.8}\]</span></span></p>
 </section>
 <section id="degrees-of-freedom" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="degrees-of-freedom">Degrees of freedom</h4>
@@ -1192,16 +1105,16 @@ Note
 <p>The alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: The two attributes under consideration are not independent.</p>
 <p>The test statistic is:</p>
-<p><span class="math display">\[\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}}\]</span></p>
+<p><span id="eq-chi-indep"><span class="math display">\[\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}} \tag{14.9}\]</span></span></p>
 <p>where <span class="math inline">\(O_{ij}\)</span> = observed frequencies, <span class="math inline">\(E_{ij}\)</span> = expected frequencies, <span class="math inline">\(r\)</span> = number of rows, and <span class="math inline">\(s\)</span> = number of columns.</p>
 <p>It can be verified that <span class="math inline">\(\sum_{i=1}^{r} \sum_{j=1}^{s} O_{ij} = \sum_{i=1}^{r} \sum_{j=1}^{s} E_{ij}\)</span>.</p>
 <p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\((r - 1)(s - 1)\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
 <div id="exm-conting2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.5</strong></span> In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.</p>
+<p><span class="theorem-title"><strong>Example 14.6</strong></span> In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.</p>
 <div id="tbl-conting2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.1: Classification of farms by tenure status and soil fertility
+Table&nbsp;14.6: Classification of farms by tenure status and soil fertility
 </figcaption>
 <div aria-describedby="tbl-conting2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1249,138 +1162,153 @@ Table&nbsp;14.1: Classification of farms by tenure status and soil fertility
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>The expected value <span class="math inline">\(E_{ij}\)</span> for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The calculation of the chi-square statistic is shown in <span class="quarto-unresolved-ref">?tbl-conting2calc</span>.</p>
-<table class="lightable-classic table table-striped caption-top" data-quarto-postprocess="true">
-<caption>Expected frequencies for the tenure and fertility data</caption>
+<p>The expected value <span class="math inline">\(E_{ij}\)</span> for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in <a href="#tbl-conting2exp" class="quarto-xref">Table&nbsp;<span>14.7</span></a>, and the calculation of the chi-square statistic is shown in <a href="#tbl-conting2calc" class="quarto-xref">Table&nbsp;<span>14.8</span></a>.</p>
+<div id="tbl-conting2exp" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.7: Expected frequencies for the tenure and fertility data
+</figcaption>
+<div aria-describedby="tbl-conting2exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">X</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Owned</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Rented</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Mixed</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Owned</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Rented</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">Mixed</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">High</td>
-<td style="text-align: left; width: 4cm;">$\frac{62\ \times 84}{198} =26.3$</td>
-<td style="text-align: left; width: 4cm;">$\frac{62\ \times 48}{198} =15.0$</td>
-<td style="text-align: left; width: 4cm;">$\frac{62\ \times 66}{198} =20.7$</td>
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">\(\frac{62\ \times 84}{198} =26.3\)</td>
+<td style="text-align: center;">\(\frac{62\ \times 48}{198} =15.0\)</td>
+<td style="text-align: center;">\(\frac{62\ \times 66}{198} =20.7\)</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 4cm;">Moderate</td>
-<td style="text-align: left; width: 4cm;">$\frac{46\ \times 84}{198} =19.5$</td>
-<td style="text-align: left; width: 4cm;">$\frac{46\ \times 48}{198} =11.2$</td>
-<td style="text-align: left; width: 4cm;">$\frac{46\ \times 66}{198} =15.3$</td>
+<td style="text-align: center;">Moderate</td>
+<td style="text-align: center;">\(\frac{46\ \times 84}{198} =19.5\)</td>
+<td style="text-align: center;">\(\frac{46\ \times 48}{198} =11.2\)</td>
+<td style="text-align: center;">\(\frac{46\ \times 66}{198} =15.3\)</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 4cm;">Low</td>
-<td style="text-align: left; width: 4cm;">$\frac{90\ \times 84}{198} =38.2$</td>
-<td style="text-align: left; width: 4cm;">$\frac{90\ \times 48}{198} =21.8$</td>
-<td style="text-align: left; width: 4cm;">$\frac{90\ \times 66}{198} =30.0$</td>
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">\(\frac{90\ \times 84}{198} =38.2\)</td>
+<td style="text-align: center;">\(\frac{90\ \times 48}{198} =21.8\)</td>
+<td style="text-align: center;">\(\frac{90\ \times 66}{198} =30.0\)</td>
 </tr>
 </tbody>
 </table>
 
 
-
-<table class="lightable-classic table table-striped caption-top" data-quarto-postprocess="true">
-<caption>Calculation of chi-square for independence of attributes</caption>
+</div>
+</figure>
+</div>
+<div id="tbl-conting2calc" class="cell quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2calc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;14.8: Calculation of chi-square for independence of attributes
+</figcaption>
+<div aria-describedby="tbl-conting2calc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$$O_{ij}$$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$$E_{ij}$$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$$O_{ij} - E_{ij}$$</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">$$\left( O_{ij} - E_{ij} \right)^{2}$$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$$\frac{\left( O_{ij} - E_{ij} \right)^{2}}{E_{ij}}$$</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[O_{ij}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[E_{ij}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[O_{ij} - E_{ij}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\left( O_{ij} - E_{ij} \right)^{2}\]</th>
+<th style="text-align: center;" data-quarto-table-cell-role="th">\[\frac{\left( O_{ij} - E_{ij} \right)^{2}}{E_{ij}}\]</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right; width: 4cm;">40</td>
-<td style="text-align: right; width: 4cm;">26.3</td>
-<td style="text-align: right; width: 4cm;">13.7</td>
-<td style="text-align: left; width: 4cm;">187.6</td>
-<td style="text-align: right; width: 4cm;">7.1</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">26.3</td>
+<td style="text-align: center;">13.7</td>
+<td style="text-align: center;">187.6</td>
+<td style="text-align: center;">7.1</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 4cm;">12</td>
-<td style="text-align: right; width: 4cm;">15.0</td>
-<td style="text-align: right; width: 4cm;">-3.0</td>
-<td style="text-align: left; width: 4cm;">9.2</td>
-<td style="text-align: right; width: 4cm;">0.6</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">-3</td>
+<td style="text-align: center;">9.2</td>
+<td style="text-align: center;">0.6</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 4cm;">10</td>
-<td style="text-align: right; width: 4cm;">20.7</td>
-<td style="text-align: right; width: 4cm;">-10.7</td>
-<td style="text-align: left; width: 4cm;">113.8</td>
-<td style="text-align: right; width: 4cm;">5.5</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">20.7</td>
+<td style="text-align: center;">-10.7</td>
+<td style="text-align: center;">113.8</td>
+<td style="text-align: center;">5.5</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 4cm;">22</td>
-<td style="text-align: right; width: 4cm;">19.5</td>
-<td style="text-align: right; width: 4cm;">2.5</td>
-<td style="text-align: left; width: 4cm;">6.2</td>
-<td style="text-align: right; width: 4cm;">0.3</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">19.5</td>
+<td style="text-align: center;">2.5</td>
+<td style="text-align: center;">6.2</td>
+<td style="text-align: center;">0.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 4cm;">10</td>
-<td style="text-align: right; width: 4cm;">11.2</td>
-<td style="text-align: right; width: 4cm;">-1.2</td>
-<td style="text-align: left; width: 4cm;">1.3</td>
-<td style="text-align: right; width: 4cm;">0.1</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">11.2</td>
+<td style="text-align: center;">-1.2</td>
+<td style="text-align: center;">1.3</td>
+<td style="text-align: center;">0.1</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 4cm;">14</td>
-<td style="text-align: right; width: 4cm;">15.3</td>
-<td style="text-align: right; width: 4cm;">-1.3</td>
-<td style="text-align: left; width: 4cm;">1.8</td>
-<td style="text-align: right; width: 4cm;">0.1</td>
+<td style="text-align: center;">14</td>
+<td style="text-align: center;">15.3</td>
+<td style="text-align: center;">-1.3</td>
+<td style="text-align: center;">1.8</td>
+<td style="text-align: center;">0.1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 4cm;">22</td>
-<td style="text-align: right; width: 4cm;">38.2</td>
-<td style="text-align: right; width: 4cm;">-16.2</td>
-<td style="text-align: left; width: 4cm;">261.9</td>
-<td style="text-align: right; width: 4cm;">6.9</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">38.2</td>
+<td style="text-align: center;">-16.2</td>
+<td style="text-align: center;">261.9</td>
+<td style="text-align: center;">6.9</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 4cm;">26</td>
-<td style="text-align: right; width: 4cm;">21.8</td>
-<td style="text-align: right; width: 4cm;">4.2</td>
-<td style="text-align: left; width: 4cm;">17.5</td>
-<td style="text-align: right; width: 4cm;">0.8</td>
+<td style="text-align: center;">26</td>
+<td style="text-align: center;">21.8</td>
+<td style="text-align: center;">4.2</td>
+<td style="text-align: center;">17.5</td>
+<td style="text-align: center;">0.8</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 4cm;">42</td>
-<td style="text-align: right; width: 4cm;">30.0</td>
-<td style="text-align: right; width: 4cm;">12.0</td>
-<td style="text-align: left; width: 4cm;">144</td>
-<td style="text-align: right; width: 4cm;">4.8</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">144</td>
+<td style="text-align: center;">4.8</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 4cm;">NA</td>
-<td style="text-align: right; width: 4cm;">NA</td>
-<td style="text-align: right; width: 4cm;">NA</td>
-<td style="text-align: left; width: 4cm;">$$\chi_{\text{cal}}^{2} =$$</td>
-<td style="text-align: right; width: 4cm;">26.3</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">\[\chi_{\text{cal}}^{2} =\]</td>
+<td style="text-align: center;">26.3</td>
 </tr>
 </tbody>
 </table>
 
 
+</div>
+</figure>
+</div>
 <p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 26.3. The table value of chi-square for <span class="math inline">\((3 - 1)(3 - 1) = 4\)</span> degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.</p>
 </div>
 </section>
 </section>
-<section id="chi-square-test-for-a-22-contingency-table" class="level3" data-number="14.3.3">
-<h3 data-number="14.3.3" class="anchored" data-anchor-id="chi-square-test-for-a-22-contingency-table"><span class="header-section-number">14.3.3</span> Chi-square test for a 2×2 contingency table</h3>
+<section id="chi-square-test-for-a-22-contingency-table" class="level3" data-number="14.5.3">
+<h3 data-number="14.5.3" class="anchored" data-anchor-id="chi-square-test-for-a-22-contingency-table"><span class="header-section-number">14.5.3</span> Chi-square test for a 2×2 contingency table</h3>
 <p>When the number of rows and columns are both equal to 2, the table is called a 2×2 contingency table. Consider two attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> with classes <span class="math inline">\(A_1, A_2\)</span> and <span class="math inline">\(B_1, B_2\)</span> respectively, where <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span> are the frequencies in each cell.</p>
 <div id="tbl-2x2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;14.2: General form of a 2×2 contingency table
+Table&nbsp;14.9: General form of a 2×2 contingency table
 </figcaption>
 <div aria-describedby="tbl-2x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1419,14 +1347,14 @@ Table&nbsp;14.2: General form of a 2×2 contingency table
 <p>Here <span class="math inline">\(R_1, R_2\)</span> and <span class="math inline">\(C_1, C_2\)</span> are the row totals and column totals respectively, and <span class="math inline">\(n\)</span> is the total number of observations.</p>
 <p>The null hypothesis is <span class="math inline">\(H_0\)</span>: the two attributes are independent. The alternative hypothesis is <span class="math inline">\(H_1\)</span>: the two attributes are not independent.</p>
 <p>For a 2×2 contingency table, <span class="math inline">\(\chi^2\)</span> can be found directly using the shortcut formula:</p>
-<p><span class="math display">\[\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2}\]</span></p>
+<p><span id="eq-chi-2x2"><span class="math display">\[\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2} \tag{14.10}\]</span></span></p>
 <p>Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom.</p>
 <section id="sec-yates" class="level4">
 <h4 class="anchored" data-anchor-id="sec-yates">Yates’ correction for continuity</h4>
 <p>In a 2×2 contingency table, the number of degrees of freedom is <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span>. If any one of the cell frequencies is less than 5, then pooling would result in <span class="math inline">\(\chi^2\)</span> with 0 degrees of freedom, which is meaningless. In this case we apply a correction due to Yates, known as <strong>Yates’ correction for continuity</strong>. The correction is made by subtracting <span class="math inline">\(n/2\)</span> from the absolute value of <span class="math inline">\((ad - bc)\)</span>. The modified test statistic is:</p>
-<p><span class="math display">\[\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2}\]</span></p>
+<p><span id="eq-yates"><span class="math display">\[\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2} \tag{14.11}\]</span></span></p>
 <div id="exm-yates1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.6</strong></span> This is the solution to the germination experiment introduced in <a href="#exm-conting1" class="quarto-xref">Example&nbsp;<span>14.4</span></a>.</p>
+<p><span class="theorem-title"><strong>Example 14.7</strong></span> This is the solution to the germination experiment introduced in <a href="#exm-conting1" class="quarto-xref">Example&nbsp;<span>14.5</span></a>.</p>
 <p><span class="math inline">\(H_0\)</span>: The chemical treatment does not affect the germination rate of cotton seeds (the attributes are independent).</p>
 <p><span class="math inline">\(H_1\)</span>: The chemical treatment affects the germination rate of cotton seeds.</p>
 <p>Applying Yates’ correction with <span class="math inline">\(a = 118\)</span>, <span class="math inline">\(b = 22\)</span>, <span class="math inline">\(c = 120\)</span>, <span class="math inline">\(d = 40\)</span>, <span class="math inline">\(n = 300\)</span>:</p>
@@ -1434,7 +1362,7 @@ Table&nbsp;14.2: General form of a 2×2 contingency table
 <p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 3.38. The table value of chi-square for <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is less than the table value, we do not have enough evidence to reject the null hypothesis. The chemical treatment does not improve the germination rate of cotton seeds significantly.</p>
 </div>
 <div id="exr-yates1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.3</strong></span> In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.</p>
+<p><span class="theorem-title"><strong>Exercise 14.5</strong></span> In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1459,27 +1387,27 @@ Table&nbsp;14.2: General form of a 2×2 contingency table
 </div>
 </section>
 </section>
-<section id="chi-square-test-for-a-population-variance" class="level3" data-number="14.3.4">
-<h3 data-number="14.3.4" class="anchored" data-anchor-id="chi-square-test-for-a-population-variance"><span class="header-section-number">14.3.4</span> Chi-square test for a population variance</h3>
+<section id="chi-square-test-for-a-population-variance" class="level3" data-number="14.5.4">
+<h3 data-number="14.5.4" class="anchored" data-anchor-id="chi-square-test-for-a-population-variance"><span class="header-section-number">14.5.4</span> Chi-square test for a population variance</h3>
 <p>Consider a normal population with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, where both are unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and want to test whether the population variance <span class="math inline">\(\sigma^2\)</span> is equal to a known constant <span class="math inline">\(\sigma_0^2\)</span>, based on the sample variance.</p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2\)</span> = <span class="math inline">\(\sigma_0^2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma^2\)</span> &gt; <span class="math inline">\(\sigma_0^2\)</span></p>
 <p>The test statistic is:</p>
-<p><span class="math display">\[\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2}\]</span></p>
+<p><span id="eq-chi-var"><span class="math display">\[\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \tag{14.12}\]</span></span></p>
 <p>where <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}\)</span> is the sample variance.</p>
 <p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
 <div id="exr-chivar1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.4</strong></span> Test the null hypothesis that <span class="math inline">\(\sigma^2\)</span> = 0.16 against the alternative hypothesis <span class="math inline">\(\sigma^2\)</span> &gt; 0.16, given that <span class="math inline">\(s^2\)</span> = 0.01719 for a random sample of size 11 from a normal population. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 14.6</strong></span> Test the null hypothesis that <span class="math inline">\(\sigma^2\)</span> = 0.16 against the alternative hypothesis <span class="math inline">\(\sigma^2\)</span> &gt; 0.16, given that <span class="math inline">\(s^2\)</span> = 0.01719 for a random sample of size 11 from a normal population. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
 </section>
-<section id="sec-ftest" class="level2" data-number="14.4">
-<h2 data-number="14.4" class="anchored" data-anchor-id="sec-ftest"><span class="header-section-number">14.4</span> F-test for equality of two population variances</h2>
+<section id="sec-ftest" class="level2" data-number="14.6">
+<h2 data-number="14.6" class="anchored" data-anchor-id="sec-ftest"><span class="header-section-number">14.6</span> F-test for equality of two population variances</h2>
 <p>Let there be two normally distributed populations with variances <span class="math inline">\(\sigma_1^2\)</span> and <span class="math inline">\(\sigma_2^2\)</span> respectively. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations. We want to test whether the two population variances are significantly different, based on the sample variances.</p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma_1^2\)</span> = <span class="math inline">\(\sigma_2^2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1^2\)</span> &gt; <span class="math inline">\(\sigma_2^2\)</span></p>
 <p>The test statistic (taking the larger sample variance in the numerator) is:</p>
-<p><span class="math display">\[F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 &gt; s_2^2\]</span></p>
+<p><span id="eq-f"><span class="math display">\[F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 &gt; s_2^2 \tag{14.13}\]</span></span></p>
 <p>Under the null hypothesis, the test statistic follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span> degrees of freedom.</p>
 <section id="decision-rule-for-the-f-test" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-f-test">Decision rule for the F-test</h3>
@@ -1498,7 +1426,7 @@ Note
 </div>
 </div>
 <div id="exr-fvar1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 14.5</strong></span> For a random sample from one normal population, <span class="math inline">\(n_1\)</span> = 11 and <span class="math inline">\(s_1^2\)</span> = 21.87. For another random sample from a second normal population, <span class="math inline">\(n_2\)</span> = 8 and <span class="math inline">\(s_2^2\)</span> = 15.36. Test the equality of variances. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 14.7</strong></span> For a random sample from one normal population, <span class="math inline">\(n_1\)</span> = 11 and <span class="math inline">\(s_1^2\)</span> = 21.87. For another random sample from a second normal population, <span class="math inline">\(n_2\)</span> = 8 and <span class="math inline">\(s_2^2\)</span> = 15.36. Test the equality of variances. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -1512,6 +1440,22 @@ Figure&nbsp;14.1: Student t distribution table
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>A brewer, a secret, and the birth of the t distribution</strong></p>
+<p>At the beginning of the twentieth century, the Guinness brewery in Dublin employed a young Oxford-trained chemist named <strong>William Sealy Gosset</strong>. His job was to bring scientific rigour to brewing, judging the quality of barley and hops from only a handful of samples. The trouble was that the statistical methods of the day assumed large samples, while Gosset rarely had more than a few observations to work with. The normal-distribution based tests simply did not behave well for such small samples.</p>
+<p>Working through this problem, Gosset derived the exact sampling distribution of the mean when the population standard deviation is unknown and must be estimated from a small sample. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the <strong>t distribution</strong>. It was one of the first genuinely small-sample results in statistics.</p>
+<p>Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal <em>Biometrika</em> under the modest pen name <strong>“Student”</strong>. <span class="citation" data-cites="Student1908">(<a href="references.html#ref-Student1908" role="doc-biblioref">Student 1908</a>)</span> For this reason the distribution has been known ever since as <strong>Student’s t distribution</strong>, and the associated test as <strong>Student’s t-test</strong>, even though there was never any student involved. The true author was a brewer solving a very practical problem, one pint of statistics at a time.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1533,6 +1477,9 @@ Quotes to Inspire
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-Pearson1900" class="csl-entry" role="listitem">
 Pearson, Karl. 1900. <span>“On the Criterion That a Given System of Deviations from the Probable in the Case of a Correlated System of Variables Is Such That It Can Be Reasonably Supposed to Have Arisen from Random Sampling.”</span> <em>Philosophical Magazine, Series 5</em> 50 (302): 157–75. <a href="https://doi.org/10.1080/14786440009463897">https://doi.org/10.1080/14786440009463897</a>.
+</div>
+<div id="ref-Student1908" class="csl-entry" role="listitem">
+Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</em> 6 (1): 1–25. <a href="https://doi.org/10.1093/biomet/6.1.1">https://doi.org/10.1093/biomet/6.1.1</a>.
 </div>
 </div>
 </section>

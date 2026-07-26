@@ -1,5 +1,36 @@
 # Small sample tests
 
+```{=html}
+<style>
+/* Remove alternating row shading from tables in this chapter, matching the
+   plain table style used elsewhere in the book. */
+.lightable-classic tbody tr:nth-child(odd),
+.lightable-classic tbody tr:nth-child(even),
+table.table tbody tr:nth-child(odd),
+table.table tbody tr:nth-child(even),
+table tbody tr:nth-child(odd),
+table tbody tr:nth-child(even) {
+  background-color: transparent !important;
+}
+</style>
+```
+
+```{r setup-mathfix, include=FALSE}
+# Helper: convert math delimiters so MathJax reliably renders math inside
+# kable table cells (works even when the math is followed by text such as
+# "=90", and when a cell holds more than one math span). Display math
+# $$...$$ becomes \[...\] and inline math $...$ becomes \(...\). Empty CSV
+# cells (read by R as NA) are shown as blanks rather than "NA". The CSV
+# data on disk is left completely untouched.
+fix_math <- function(x) {
+  x <- as.character(x)
+  x[is.na(x)] <- ""                                                # blank out NA
+  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)  # display math
+  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)       # inline math
+  x
+}
+```
+
 If the sample size $n$ is less than 30 ($n < 30$), it is known as a **small sample**. For small samples, the sampling distributions commonly used are the $\chi^2$ (chi-square), $F$, and $t$ distributions. The study of the sampling distribution of a statistic for small samples is known as **small sample theory**.
 
 ## Tests based on Student's t distribution (t-tests)
@@ -30,7 +61,7 @@ $H_1$: $\mu$ $\mathbf{\neq}$ $\mu_0$ (two-tailed alternative)
 
 The test statistic is:
 
-$$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$
+$$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$ {#eq-t-single}
 
 where $s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}$.
 
@@ -69,16 +100,19 @@ Level of significance, $\alpha$ = 0.05
 
 The calculation of the sample mean and sample standard deviation is shown in @tbl-tmean1.
 
-```{r ex88, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-tmean1
+#| tbl-cap: "Calculation of sample mean and standard deviation"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book14.csv")
 colnames(dt) <- c("Sl No.", "Yield", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)$$", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)^{\\mathbf{2}}$$")
-kable(dt, escape = FALSE, caption = "Calculation of sample mean and standard deviation") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:4, width = "4cm", extra_css = "text-align: center;")
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 The test statistic is:
@@ -122,7 +156,7 @@ $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
 
 We calculate the test statistic $t$ using the following formula:
 
-$$t = \frac{\overline{x}_1 - \overline{x}_2}{s \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$
+$$t = \frac{\overline{x}_1 - \overline{x}_2}{s \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$ {#eq-t-two-equal}
 
 where $s^2 = \dfrac{(n_1 - 1)s_1^2 + (n_2 - 1)s_2^2}{n_1 + n_2 - 2}$ is the pooled variance, and $\overline{x}_1$ and $\overline{x}_2$ are the sample means from populations 1 and 2 respectively.
 
@@ -146,13 +180,13 @@ $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
 
 We calculate the test statistic $t$ using the following formula:
 
-$$t = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}$$
+$$t = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}}}$$ {#eq-t-welch}
 
 where $s_1$ and $s_2$ are the sample standard deviations from the two populations respectively.
 
 The degrees of freedom of the Welch t-test are calculated as follows:
 
-$$\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\dfrac{s_1^4}{n_1^2 (n_1 - 1)} + \dfrac{s_2^4}{n_2^2 (n_2 - 1)}}$$
+$$\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\dfrac{s_1^4}{n_1^2 (n_1 - 1)} + \dfrac{s_2^4}{n_2^2 (n_2 - 1)}}$$ {#eq-welch-df}
 
 Once the $t$ value is determined, read the critical value of Student's $t$ distribution from the table corresponding to the significance level. The decision rule is the same as for the previous t-test (see @sec-tdecision).
 
@@ -184,7 +218,7 @@ $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed alternative)
 
 We calculate the test statistic $t$ using the following formula:
 
-$$t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}}$$
+$$t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}}$$ {#eq-t-paired}
 
 where $\overline{d} = \dfrac{\sum_{i=1}^{n} d_i}{n}$, $d_i = x_i - y_i$, and $s^2 = \dfrac{\sum_{i=1}^{n}\left( d_i - \overline{d} \right)^2}{n - 1}$.
 
@@ -207,16 +241,19 @@ Level of significance, $\alpha$ = 0.05
 
 The calculation of the differences is shown in @tbl-paired1.
 
-```{r ex87, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-paired1
+#| tbl-cap: "Calculation of paired differences"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book13.csv")
 colnames(dt) <- c("Sl No.", "$$\\mathbf{A}$$", "$$\\mathbf{B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{= A - B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}}$$", "$$\\left( \\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}} \\right)^{\\mathbf{2}}$$")
-kable(dt, escape = FALSE, caption = "Calculation of paired differences") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:6, width = "2cm", extra_css = "text-align: center;")
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 Here $\overline{d} = -2$ and $s$ = 1.309.
@@ -246,7 +283,7 @@ $H_1$: $\rho$ $\mathbf{\neq}$ 0 (two-tailed alternative)
 
 The test statistic is:
 
-$$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}$$
+$$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}$$ {#eq-t-corr}
 
 Under the null hypothesis, $t$ follows a $t$ distribution with $n - 2$ degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of $t$ corresponding to $n - 2$ degrees of freedom and the level of significance $\alpha$. In our case $\alpha$ = 0.05.
 
@@ -308,7 +345,7 @@ $H_1$: There is a significant difference between theory and experiment.
 
 If $O_i$ ($i = 1, 2, \ldots, n$) is a set of observed frequencies and $E_i$ ($i = 1, 2, \ldots, n$) is the corresponding set of expected (theoretical) frequencies, then Karl Pearson's chi-square test statistic is:
 
-$$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i}$$
+$$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i}$$ {#eq-chi-gof}
 
 Here $O_i$ represents the $i^{\text{th}}$ observed frequency and $E_i$ the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic follows a chi-square distribution with $n - 1$ degrees of freedom (when no parameter is estimated from the data).
 
@@ -329,20 +366,23 @@ They are expected to occur in a 9:3:3:1 ratio. Do the data agree with the theore
 
 The calculation of the chi-square statistic is shown in @tbl-gof1.
 
-```{r ex89, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-gof1
+#| tbl-cap: "Calculation of chi-square for goodness of fit"
 library(knitr)
 library(kableExtra)
-dt <- read.csv("csv/Book15.csv")
-kable(dt, escape = FALSE, caption = "Calculation of chi-square for goodness of fit") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:6, width = "3cm", extra_css = "text-align: center;")
+dt <- read.csv("csv/Book15.csv", check.names = FALSE)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
-$$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.676$$
+$$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667$$
 
-$\chi^2_{\text{cal}}$ = 0.676. The table value of chi-square for $4 - 1 = 3$ degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.
+$\chi^2_{\text{cal}}$ = 0.667. The table value of chi-square for $4 - 1 = 3$ degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.
 :::
 
 ::: {#exr-gof1}
@@ -369,16 +409,19 @@ A contingency table is a tabular representation of categorical data, consisting 
 ::: {#exm-conting1}
 In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. ($X$ = germination, $Y$ = chemical treatment). Attribute $X$ has two classes, $X_1$ = germinated and $X_2$ = not germinated. Attribute $Y$ has two classes, $Y_1$ = treated and $Y_2$ = untreated.
 
-```{r ex90, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-conting1
+#| tbl-cap: "Contingency table for germination of cotton seeds"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book16.csv")
 colnames(dt) <- c("", "X = Germination", "", "", "")
-kable(dt, escape = FALSE, caption = "Contingency table for germination of cotton seeds") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:5, width = "4cm", extra_css = "text-align: center;")
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 The solution is worked out in @sec-yates using the shortcut formula for a 2×2 table.
@@ -386,15 +429,18 @@ The solution is worked out in @sec-yates using the shortcut formula for a 2×2 t
 
 Let us consider two attributes $A$ and $B$, where $A$ is divided into $r$ classes $A_1, A_2, \ldots, A_r$ and $B$ into $s$ classes $B_1, B_2, \ldots, B_s$. The cell frequencies can be expressed in the form of an $r \times s$ contingency table as shown below.
 
-```{r ex80, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-rscontingency
+#| tbl-cap: "General form of an r x s contingency table"
 library(knitr)
 library(kableExtra)
-dt <- read.csv("csv/Book17.csv")
-kable(dt, escape = FALSE, caption = "General form of an r x s contingency table") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:6, width = "4cm", extra_css = "text-align: center;")
+dt <- read.csv("csv/Book17.csv", check.names = FALSE)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 $(A_i B_j)$ = the number of items possessing both attributes $A_i$ ($i = 1, 2, \ldots, r$) and $B_j$ ($j = 1, 2, \ldots, s$)
@@ -409,7 +455,7 @@ $\sum (A_i) = \sum (B_j) = N$ is the total frequency.
 
 The expected frequency corresponding to each observed frequency $(A_i B_j)$ is calculated from the formula:
 
-$$E_{ij} = \frac{(A_i)(B_j)}{N}$$
+$$E_{ij} = \frac{(A_i)(B_j)}{N}$$ {#eq-expected}
 
 #### Degrees of freedom {.unnumbered}
 
@@ -427,7 +473,7 @@ $H_1$: The two attributes under consideration are not independent.
 
 The test statistic is:
 
-$$\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}}$$
+$$\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}}$$ {#eq-chi-indep}
 
 where $O_{ij}$ = observed frequencies, $E_{ij}$ = expected frequencies, $r$ = number of rows, and $s$ = number of columns.
 
@@ -449,29 +495,35 @@ In a survey, a random sample of 198 farms was classified into three classes acco
 
 **Solution**
 
-The expected value $E_{ij}$ for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The calculation of the chi-square statistic is shown in @tbl-conting2calc.
+The expected value $E_{ij}$ for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in @tbl-conting2exp, and the calculation of the chi-square statistic is shown in @tbl-conting2calc.
 
-```{r ex81, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-conting2exp
+#| tbl-cap: "Expected frequencies for the tenure and fertility data"
 library(knitr)
 library(kableExtra)
-dt <- read.csv("csv/Book18.csv")
-kable(dt, escape = FALSE, caption = "Expected frequencies for the tenure and fertility data") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:4, width = "4cm", extra_css = "text-align: center;")
+dt <- read.csv("csv/Book18.csv", check.names = FALSE)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
-```{r ex93, echo=FALSE, warning=FALSE, results='asis'}
+```{r echo=FALSE, warning=FALSE, results='asis'}
+#| label: tbl-conting2calc
+#| tbl-cap: "Calculation of chi-square for independence of attributes"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book19.csv")
 colnames(dt) <- c("$$O_{ij}$$", "$$E_{ij}$$", "$$O_{ij} - E_{ij}$$", "$$\\left( O_{ij} - E_{ij} \\right)^{2}$$", "$$\\frac{\\left( O_{ij} - E_{ij} \\right)^{2}}{E_{ij}}$$")
-kable(dt, escape = FALSE, caption = "Calculation of chi-square for independence of attributes") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(position = "center", bootstrap_options = c("striped")) %>%
-  row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:5, width = "4cm", extra_css = "text-align: center;")
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+dt %>%
+  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
+  kable_styling(latex_options = "HOLD_position")
 ```
 
 $\chi^2_{\text{cal}}$ = 26.3. The table value of chi-square for $(3 - 1)(3 - 1) = 4$ degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.
@@ -495,7 +547,7 @@ The null hypothesis is $H_0$: the two attributes are independent. The alternativ
 
 For a 2×2 contingency table, $\chi^2$ can be found directly using the shortcut formula:
 
-$$\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2}$$
+$$\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2}$$ {#eq-chi-2x2}
 
 Under the null hypothesis, the statistic follows a chi-square distribution with $(2 - 1)(2 - 1) = 1$ degree of freedom.
 
@@ -503,7 +555,7 @@ Under the null hypothesis, the statistic follows a chi-square distribution with 
 
 In a 2×2 contingency table, the number of degrees of freedom is $(2 - 1)(2 - 1) = 1$. If any one of the cell frequencies is less than 5, then pooling would result in $\chi^2$ with 0 degrees of freedom, which is meaningless. In this case we apply a correction due to Yates, known as **Yates' correction for continuity**. The correction is made by subtracting $n/2$ from the absolute value of $(ad - bc)$. The modified test statistic is:
 
-$$\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2}$$
+$$\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2}$$ {#eq-yates}
 
 ::: {#exm-yates1}
 This is the solution to the germination experiment introduced in @exm-conting1.
@@ -538,7 +590,7 @@ Alternative hypothesis, $H_1$: $\sigma^2$ \> $\sigma_0^2$
 
 The test statistic is:
 
-$$\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2}$$
+$$\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2}$$ {#eq-chi-var}
 
 where $s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}$ is the sample variance.
 
@@ -558,7 +610,7 @@ Alternative hypothesis, $H_1$: $\sigma_1^2$ \> $\sigma_2^2$
 
 The test statistic (taking the larger sample variance in the numerator) is:
 
-$$F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 > s_2^2$$
+$$F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 > s_2^2$$ {#eq-f}
 
 Under the null hypothesis, the test statistic follows an $F$ distribution with $n_1 - 1$ and $n_2 - 1$ degrees of freedom.
 
@@ -574,10 +626,21 @@ The larger sample variance is always placed in the numerator so that $F \geq 1$.
 For a random sample from one normal population, $n_1$ = 11 and $s_1^2$ = 21.87. For another random sample from a second normal population, $n_2$ = 8 and $s_2^2$ = 15.36. Test the equality of variances. ($\alpha$ = 0.05)
 :::
 
-```{r ttable, echo=FALSE, fig.cap='Student t distribution table', out.width="85%", fig.align='center'}
+```{r echo=FALSE, out.width="85%", fig.align='center'}
 #| label: fig-ttable
-knitr::include_graphics(rep("images/ttable.png"))
+#| fig-cap: "Student t distribution table"
+knitr::include_graphics("images/ttable.png")
 ```
+
+::: {.callout-caution title="Historical Insights"}
+**A brewer, a secret, and the birth of the t distribution**
+
+At the beginning of the twentieth century, the Guinness brewery in Dublin employed a young Oxford-trained chemist named **William Sealy Gosset**. His job was to bring scientific rigour to brewing, judging the quality of barley and hops from only a handful of samples. The trouble was that the statistical methods of the day assumed large samples, while Gosset rarely had more than a few observations to work with. The normal-distribution based tests simply did not behave well for such small samples.
+
+Working through this problem, Gosset derived the exact sampling distribution of the mean when the population standard deviation is unknown and must be estimated from a small sample. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the **t distribution**. It was one of the first genuinely small-sample results in statistics.
+
+Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal *Biometrika* under the modest pen name **"Student"**. [@Student1908] For this reason the distribution has been known ever since as **Student's t distribution**, and the associated test as **Student's t-test**, even though there was never any student involved. The true author was a brewer solving a very practical problem, one pint of statistics at a time.
+:::
 
 ::: {.callout-tip title="Quotes to Inspire"}
 **"Like dreams, statistics are a form of wish fulfillment." - Jean Baudrillard**

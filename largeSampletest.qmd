@@ -1,10 +1,32 @@
 # Large sample test
 
-A sample for which the sample size $n$ is 30 or more ($n \geq 30$) is known as a **large sample**. The study of the sampling distribution of a statistic for large samples is known as **large sample theory**.
+A sample with a size of 30 or more ($n≥30$) is generally referred to as a large sample. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.  
 
-## Z test
+## Central Limit Theorem  
+The Central Limit Theorem states that when the sample size is sufficiently large (generally $n≥30$), the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.  
 
-In this section we shall discuss the application of the $Z$-test. The test statistic $Z$ calculated from a large sample follows a standard normal distribution, $Z \sim N(0,1)$. The following large sample tests are covered in this chapter:
+Mathematically, if a random sample of size $n$ is drawn from a population with mean $\mu$ and variance $\sigma^2$, then as $n$ $\rightarrow$ $\infty$,
+
+$$
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
+\xrightarrow{d}
+N(0,1),
+$$ {#eq-clt}
+
+where:
+
+- $\bar{X}$ = sample mean
+- $\mu$ = population mean
+- $\sigma$ = population standard deviation
+- $N(0,1)$ = standard normal distribution
+- $\xrightarrow{d}$ denotes convergence in distribution. For now just think as "tends to follow" or "approaches" the standard normal distribution as the sample size increases.
+
+## Z test  
+
+The $Z$-test is a statistical test based on the standard normal distribution. It is used to test hypotheses about population means and proportions when the sample size is sufficiently large and the necessary assumptions are satisfied. The value of the test statistic is compared with the critical value from the standard normal distribution to decide whether the null hypothesis should 
+be accepted or rejected.  
+
+The test statistic $Z$ is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The following large sample tests are covered in this chapter:
 
 -   Test for a single proportion
 
@@ -42,7 +64,7 @@ For a two-tailed test at $\alpha$ = 0.05, we split the significance level equall
 
 ## Test for a single population proportion
 
-Consider a population with proportion $P$, where $P$ is unknown. We take a random sample of size $n$ from the population and calculate the sample proportion $p$. We want to test whether the population proportion $P$ is equal to a specified value $P_0$, based on the sample proportion $p$.
+Consider a population with proportion $P$, where $P$ is unknown. We take a random sample of size $n$ from the population and calculate the sample proportion $p$. We want to test whether the population proportion $P$ is equal to a specified value $P_0$, based on the sample proportion $p$. Note here we always frame null hypothesis on population parameter and test using the sample statistics.  
 
 The null hypothesis to be tested is:
 
@@ -58,7 +80,7 @@ $H_1$: $P$ $\mathbf{\neq}$ $P_0$ (two-tailed alternative)
 
 For this test, we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}}$$
+$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}}$$ {#eq-zprop1}
 
 where $Q_0 = 1 - P_0$.
 
@@ -91,7 +113,7 @@ $H_1$: $P$ $\mathbf{\neq}$ 0.1
 
 The level of significance is 5%, so $\alpha$ = 0.05.
 
-Now we calculate $Z$:
+Now we calculate $Z$ using @eq-zprop1:
 
 $$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} = \frac{0.12 - 0.1}{\sqrt{0.1 \times 0.9 / 500}} = \frac{0.02}{0.01342} = 1.49$$
 
@@ -120,7 +142,7 @@ $H_1$: $P_1$ $\mathbf{\neq}$ $P_2$ (two-tailed alternative)
 
 For this test, we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}}$$
+$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}}$$ {#eq-zprop2}
 
 where $\widehat{P} = \dfrac{n_1 p_1 + n_2 p_2}{n_1 + n_2}$ is the pooled proportion and $\widehat{Q} = 1 - \widehat{P}$.
 
@@ -157,7 +179,7 @@ $$\widehat{Q} = 1 - 0.3879 = 0.6121$$
 
 **Step 2**: The level of significance is 1%, so $\alpha$ = 0.01.
 
-**Step 3**: Calculate $Z$.
+**Step 3**: Calculate $Z$ using @eq-zprop2.
 
 $$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} = \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121 \left( \dfrac{1}{80} + \dfrac{1}{250} \right)}}$$
 
@@ -188,19 +210,45 @@ This test has two cases:
 
 -   Case when the population standard deviation $\sigma$ is unknown
 
-### Population standard deviation is known {.unnumbered}
+### Standard deviation is known  
 
 When $\sigma$ is known, we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}}$$
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}}$$ {#eq-zmean-known}
 
 When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
 
-### Population standard deviation is unknown {.unnumbered}
+::: {#exm-mean-known}
+A fertilizer packing unit is set to fill bags with a mean weight of 50 kg. From long experience the population standard deviation of the filling process is known to be 3.2 kg. A random sample of 64 bags was drawn and the mean weight was found to be 49.2 kg. Test whether the packing process is working at the intended mean weight of 50 kg, at the 5% level of significance.
+
+**Solution**
+
+Null hypothesis, $H_0$: $\mu$ = 50
+
+Alternative hypothesis, $H_1$: $\mu$ $\mathbf{\neq}$ 50 (two-tailed test)
+
+Sample size ($n$) = 64
+
+Sample mean ($\overline{x}$) = 49.2
+
+Population standard deviation ($\sigma$) = 3.2
+
+Population mean ($\mu_0$) = 50
+
+Level of significance, $\alpha$ = 0.05
+
+Since $\sigma$ is known, we use @eq-zmean-known:
+
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} = \frac{49.2 - 50}{\dfrac{3.2}{\sqrt{64}}} = \frac{-0.8}{0.4} = -2.0$$
+
+Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (2.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the packing process is not working at the intended mean weight of 50 kg.
+:::
+
+### Standard deviation is unknown
 
 When $\sigma$ is unknown, it is replaced by its sample estimate $s$, and we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$ {#eq-zmean-unknown}
 
 When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
 
@@ -223,7 +271,7 @@ Population mean ($\mu_0$) = 3.25
 
 Level of significance, $\alpha$ = 0.05
 
-Since $\sigma$ is unknown, we use $s$ in place of $\sigma$:
+Since $\sigma$ is unknown, we use $s$ in place of $\sigma$, applying @eq-zmean-unknown:
 
 $$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{3.4 - 3.25}{\dfrac{2.61}{\sqrt{900}}} = \frac{0.15}{0.087} = 1.724$$
 
@@ -256,25 +304,17 @@ There are two cases under this test:
 
 -   Case when the population standard deviations are not equal, $\sigma_1 \neq \sigma_2$
 
-### When the population standard deviations are equal {.unnumbered}
+### Standard deviations are equal
 
-In this case, we calculate the test statistic $Z$ using the following formula:
+When the population standard deviations are equal, we calculate the test statistic $Z$ using the following formula:
 
-$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$ {#eq-zmean2-equal}
 
 When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
 
 ::: {.callout-note title="Note"}
 If the common $\sigma$ is unknown, it is replaced by its pooled estimate $\sqrt{\dfrac{n_1 s_1^2 + n_2 s_2^2}{n_1 + n_2}}$, where $n_1$ and $n_2$ are the sample sizes and $s_1$ and $s_2$ are the sample standard deviations.
 :::
-
-### When the population standard deviations are not equal {.unnumbered}
-
-In this case, we calculate the test statistic $Z$ using the following formula:
-
-$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$$
-
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
 
 ::: {#exm-mean2}
 The means of two large samples of sizes 1000 and 2000 members are 67.5 inches and 68 inches respectively. Can the samples be regarded as drawn from the same population with standard deviation 2.5 inches? (Test at the 5% significance level.)
@@ -297,11 +337,49 @@ Population standard deviation ($\sigma$) = 2.5
 
 Level of significance, $\alpha$ = 0.05
 
-Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate $Z$:
+Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate $Z$ using @eq-zmean2-equal:
 
 $$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} = \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}} = \frac{0.5}{0.0968} = 5.16$$
 
 Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.
+:::
+
+### Standard deviations are not equal 
+
+When the population standard deviations are not equal, we calculate the test statistic $Z$ using the following formula:
+
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$$ {#eq-zmean2-unequal}
+
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+
+::: {#exm-mean2-unequal}
+Two paddy varieties were compared for their grain yield. A random sample of 100 plots of variety A gave a mean yield of 52 quintals per hectare with a population standard deviation of 8 quintals per hectare, while a random sample of 100 plots of variety B gave a mean yield of 49 quintals per hectare with a population standard deviation of 6 quintals per hectare. The two population standard deviations are known and unequal. Test whether the two varieties differ significantly in mean yield, at the 5% level of significance.
+
+**Solution**
+
+Null hypothesis, $H_0$: $\mu_1$ = $\mu_2$
+
+Alternative hypothesis, $H_1$: $\mu_1$ $\mathbf{\neq}$ $\mu_2$ (two-tailed test)
+
+Sample size ($n_1$) = 100
+
+Sample size ($n_2$) = 100
+
+Sample mean of variety A ($\overline{x}_1$) = 52
+
+Sample mean of variety B ($\overline{x}_2$) = 49
+
+Population standard deviation of variety A ($\sigma_1$) = 8
+
+Population standard deviation of variety B ($\sigma_2$) = 6
+
+Level of significance, $\alpha$ = 0.05
+
+Since the two population standard deviations are unequal, we use @eq-zmean2-unequal:
+
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} = \frac{52 - 49}{\sqrt{\dfrac{8^2}{100} + \dfrac{6^2}{100}}} = \frac{3}{\sqrt{0.64 + 0.36}} = \frac{3}{1} = 3.0$$
+
+Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (3.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the two paddy varieties differ significantly in mean yield.
 :::
 
 ::: {#exr-mean2}
