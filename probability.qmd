@@ -67,7 +67,7 @@ Random variables can be classified into two types:
 
 In mathematical terms, if $S$ is the sample space of a random experiment, a random variable $X$ is a function that maps sample space to real number set, which can be represented as $X: S \to \mathbb{R}$, where $\mathbb{R}$ represents the set of real numbers.
 
-The probability of a random variable can be represented by $p(X = x)$ or $p(x)$, where the small letter $x$ denotes the value taken by the random variable $X$.
+The probability of a random variable can be represented by $P(X = x)$ or $P(x)$, where the small letter $x$ denotes the value taken by the random variable $X$.
 
 Consider the example of throwing a die once.Here, you can define a random variable of your interest. Defining a random variable involves assigning a numerical value to the outcomes of the experiment. Let $X$ represent the number appearing on the die. The possible values of $X$ are: $x = \{1, 2, 3, 4, 5, 6\}$.
 
@@ -81,16 +81,24 @@ Probability is a measure of the likelihood or chance that a particular event wil
 
 Probability of an event $A$ happening:
 
-$$p(A) = \frac{\text{Number of favourable outcomes}}{\text{Total possible outcomes}}$$ {#eq-probability1}\
+$$P(A) = \frac{\text{Number of favourable outcomes}}{\text{Total possible outcomes}}$$ {#eq-probability1}\
 here favourable outcome means outcomes favouring the happening of event $A$.
 
-**Example 10.1**: What is the chances of rolling a "4" with a die ?
+::: {#exm-prob1}
+What is the chances of rolling a "4" with a die ?
 
-**Solution 10.1**: Let the event $A$ = rolling a "4" with a die. Number of ways event $A$ can happen is one, as there is only 1 face with a "4" on it. Total number of outcomes is 6 (there are 6 faces altogether). So using @eq-probability1; probability,$p(A)$ = $\frac{1}{6}$.
+**Solution**
 
-**Example 10.2**: There are 5 marbles in a bag: 4 are blue, and 1 is red. What is the probability that a blue marble gets picked?
+Let the event $A$ = rolling a "4" with a die. Number of ways event $A$ can happen is one, as there is only 1 face with a "4" on it. Total number of outcomes is 6 (there are 6 faces altogether). So using @eq-probability1; probability,$P(A)$ = $\frac{1}{6}$.
+:::
 
-**Solution 10.2**: Let the event $A$ = a blue marble gets picked. Number of ways event $A$ can happen is 4 (there are 4 blues). Total number of possible outcomes is 5 (there are 5 marbles in total). So using @eq-probability1; probability,$p(A)$ = $\frac{4}{5}$ = 0.8
+::: {#exm-prob2}
+There are 5 marbles in a bag: 4 are blue, and 1 is red. What is the probability that a blue marble gets picked?
+
+**Solution**
+
+Let the event $A$ = a blue marble gets picked. Number of ways event $A$ can happen is 4 (there are 4 blues). Total number of possible outcomes is 5 (there are 5 marbles in total). So using @eq-probability1; probability,$P(A)$ = $\frac{4}{5}$ = 0.8
+:::
 
 [**Common terms used**]{.underline}
 
@@ -100,11 +108,9 @@ here favourable outcome means outcomes favouring the happening of event $A$.
 
 **Sample point:** A sample point is an individual element of the sample space, representing a single possible outcome. For example, "heads" in a coin toss or the "5 of clubs" in a deck of cards are sample points. In the case of rolling a die, there are six distinct sample points within the sample space.
 
-![Sample space and sample point](images/dicesamplepoints.jpg){#fig-samplespacendpoint fig-align="center" style="text-align:center;" width="40%"}
+![Sample space and sample point](images/dicesamplepoints.png){#fig-samplespacendpoint fig-align="center" style="text-align:center;" width="80%"}
 
-::: {.callout-note appearance="simple"}
-**Try yourself**
-
+::: {#exr-prob1}
 If a die is tossed
 
 1.  What is the sample space?
@@ -119,9 +125,13 @@ An event refers to one or more outcomes of a random experiment. It can represent
 
 On the other hand, an event can also include multiple outcomes. For instance, when selecting a "king" from a deck of cards, the event includes any one of the four kings (king of hearts, king of diamonds, king of clubs, king of spades), forming a set of four possible outcomes. Similarly, when rolling an "even number" on a die, the event would encompass the outcomes {2, 4, 6}, which are all the even numbers in the sample space of a die roll. Thus, an event can be a single outcome or a combination of multiple outcomes depending on the context of the experiment.
 
-**Example 10.3**: Ram wants to see how many times a "double" (both dice have same number) comes up when throwing 2 dice.
+::: {#exm-prob3}
+Ram wants to see how many times a "double" (both dice have same number) comes up when throwing 2 dice.
 
-**Solution 10.3**: The *sample space* is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3} {1,4} ... {6,3} {6,4} {6,5} {6,6}. The *event* Ram is looking for is a "double", where both dice have the same number. It is made up of these 6 sample points: {1,1} {2,2} {3,3} {4,4} {5,5} and {6,6}. You can calculate the probability of the event using @eq-probability1. Probability = $\frac{6}{36}=0.17$.
+**Solution**
+
+The *sample space* is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3} {1,4} ... {6,3} {6,4} {6,5} {6,6}. The *event* Ram is looking for is a "double", where both dice have the same number. It is made up of these 6 sample points: {1,1} {2,2} {3,3} {4,4} {5,5} and {6,6}. You can calculate the probability of the event using @eq-probability1. Probability = $\frac{6}{36}=0.17$.
+:::
 
 ### Types of events
 
@@ -129,9 +139,13 @@ On the other hand, an event can also include multiple outcomes. For instance, wh
 
 Independent events are events where the occurrence of one does not influence the occurrence of another. For instance, consider tossing a coin. If it lands on "heads" three times in a row, the outcome of the next toss remains unaffected by the previous results. The probability of getting "heads" on the next toss is still $\frac{1}{2}$ (or 0.5), just as it is for any fair coin toss. This demonstrates that past outcomes do not influence the probabilities of future events in independent scenarios.
 
-**Example 10.4**: A coin is tossed 100 times, and heads appear in 99 of those tosses. What is the probability that heads will appear on the $100^{th}$ toss?
+::: {#exm-prob4}
+A coin is tossed 100 times, and heads appear in 99 of those tosses. What is the probability that heads will appear on the $100^{th}$ toss?
 
-**Solution 10.4**: Answer is $\frac{1}{2}$ as each toss is independent of previous toss.
+**Solution**
+
+Answer is $\frac{1}{2}$ as each toss is independent of previous toss.
+:::
 
 **Dependent events**
 
@@ -161,19 +175,23 @@ In probability theory, different approaches are used to define and calculate the
 
 It is also known as classical, theoretical or a priori approach to probability. If an experiment with $n$ `exhaustive`, `mutually exclusive` and `equally likely` outcomes, $m$ outcomes are favourable to the happening of an event $E$, the probability $p$ of happening of E is given by
 
-$$p\left( E \right) = \ \frac{m}{n}$$ {#eq-mathematicalapproach}
+$$P\left( E \right) = \ \frac{m}{n}$$ {#eq-mathematicalapproach}
 
 $p$ is termed as probability of success.
 
-**Example 10.5**: When a coin is tossed, there are two possible outcomes head or tail. Outcomes are exhaustive, mutually exclusive and equally likely. What is the probability of getting head?
+::: {#exm-prob5}
+When a coin is tossed, there are two possible outcomes head or tail. Outcomes are exhaustive, mutually exclusive and equally likely. What is the probability of getting head?
 
-**Solution 10.5**: Solution using mathematical approach, consider the event $E$ : getting a head; probability of event $E$, $p(E)$ can be determined using @eq-mathematicalapproach.
+**Solution**
+
+Solution using mathematical approach, consider the event $E$ : getting a head; probability of event $E$, $P(E)$ can be determined using @eq-mathematicalapproach.
 
 here, number of outcomes are favourable to the happening of event $E$, $m =1$; $n$ = total number of possible outcomes (head and tail) = 2
 
-$$p\left( E \right) =  \ \frac{1}{2}$$
+$$P\left( E \right) =  \ \frac{1}{2}$$
 
 *i*.*e*. probability of getting a head is $\frac{1}{2}$
+:::
 
 [**Limitations**]{.underline}
 
@@ -185,7 +203,7 @@ The statistical approach to probability, also known as the *empirical approach*,
 
 The probability $p$ of happening of $E$ is given by
 
-$$p\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n}$$ {#eq-statisticalapproach}
+$$P\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n}$$ {#eq-statisticalapproach}
 
 where $n$ is the number of times the process is performed which tends to infinity, and $m$ is the number of times the outcome '$E$' happens.
 
@@ -199,29 +217,36 @@ The axiomatic approach to probability, introduced by A.N. Kolmogorov, provides a
 
 Whole field of probability theory is based on the following three axioms
 
-1.  Probability of an event, $p(E)$ lies between $0$ and $1$. That is $0 \leq p(E) \leq 1$
+1.  Probability of an event, $P(E)$ lies between $0$ and $1$. That is $0 \leq P(E) \leq 1$
 
-2.  Probability of entire sample space is 1. That is $p\left( S \right) = 1$
+2.  Probability of entire sample space is 1. That is $P\left( S \right) = 1$
 
-3.  If $A$ and $B$ are mutually exclusive events then probability of occurrence of either $A$ or $B$ is denoted by $p(A \cup B)$ shall be given by $p\left( A \cup B \right) = p\left( A \right) + p(B)$
+3.  If $A$ and $B$ are mutually exclusive events then probability of occurrence of either $A$ or $B$ is denoted by $P(A \cup B)$ shall be given by $P\left( A \cup B \right) = P\left( A \right) + P(B)$
 
 ::: {.callout-important title="Note"}
-The probability $p$ of the occurrence of an event is referred to as the *probability of success*, while the probability $q$ of its non-occurrence is known as the *probability of failure*. Both $p$ and $q$ are non-negative and cannot exceed unity, *i*.*e*., $0 \leq p \leq 1$ and $0 \leq q \leq 1$. This means the probability of an event always lies between $0$ and $1$, inclusive. The probability of an impossible event is $0$, and the probability of a certain event is $1$. For instance, if $p(A) = 1$, event $A$ is guaranteed to occur, and if $p(A) = 0$, event $A$ cannot occur. Additionally, the number of favorable outcomes $m$ for an event cannot exceed the total number of outcomes $n$.
+The probability $p$ of the occurrence of an event is referred to as the *probability of success*, while the probability $q$ of its non-occurrence is known as the *probability of failure*. Both $p$ and $q$ are non-negative and cannot exceed unity, *i*.*e*., $0 \leq p \leq 1$ and $0 \leq q \leq 1$. This means the probability of an event always lies between $0$ and $1$, inclusive. The probability of an impossible event is $0$, and the probability of a certain event is $1$. For instance, if $P(A) = 1$, event $A$ is guaranteed to occur, and if $P(A) = 0$, event $A$ cannot occur. Additionally, the number of favorable outcomes $m$ for an event cannot exceed the total number of outcomes $n$.
 :::
 
-![Probability always lies between 0 and 1](images/probshow.png){#fig-probshow fig-align="center" style="text-align:center;" width="50%"}
+![Probability always lies between 0 and 1](images/probshow.png){#fig-probshow fig-align="center" style="text-align:center;" width="80%"}
 
-**Example 10.6**: In a simultaneous toss of two coins, find the probability of (i) getting 2 heads. (ii) exactly 1 head?
+::: {#exm-prob6}
+In a simultaneous toss of two coins, find the probability of (i) getting 2 heads. (ii) exactly 1 head?
 
-**Solution 10.6**: Here, the possible outcomes are HH, HT, TH, TT. *i*.*e*., Total number of possible outcomes = 4.
+**Solution**
+
+Here, the possible outcomes are HH, HT, TH, TT. *i*.*e*., Total number of possible outcomes = 4.
 
 (i) Number of outcomes favorable to the event (2 heads *i*.*e*.,HH) = 1. $p\text{(2 heads)} = \frac{1}{4}$.
 
 (ii) Now the event consisting of exactly one head has two favourable cases, namely HT and TH. $p\text{(exactly one head)} = \frac{2}{4} = \frac{1}{2}$
+:::
 
-**Example 10.7**: In a single throw of two dice, what is the probability that the sum is 9?
+::: {#exm-prob7}
+In a single throw of two dice, what is the probability that the sum is 9?
 
-**Solution 10.7**: The number of possible outcomes is 6 × 6 = 36.
+**Solution**
+
+The number of possible outcomes is 6 × 6 = 36.
 
 (1,1) (1,2) (1,3) (1,4) (1,5) (1,6)
 
@@ -236,14 +261,19 @@ The probability $p$ of the occurrence of an event is referred to as the *probabi
 (6,1) (6,2) (6,3) (6,4) (6,5) (6,6)
 
 Let the event $A$ be sum the is 9. Four outcomes are there with sum 9, they are (5,4), (6,3), (3,6), (4,5). $p (A) = \frac{4}{36} =\frac{1}{9}$
+:::
 
-**Example 10.8**: From a bag containing 10 red, 4 blue and 6 black balls, a ball is drawn at random. What is the probability of drawing (i) a red ball? (ii) a blue ball? (iii) not a black ball?
+::: {#exm-prob8}
+From a bag containing 10 red, 4 blue and 6 black balls, a ball is drawn at random. What is the probability of drawing (i) a red ball? (ii) a blue ball? (iii) not a black ball?
 
-**Solution 10.8**: There are 20 balls in all. So, the total number of possible outcomes is 20
+**Solution**
+
+There are 20 balls in all. So, the total number of possible outcomes is 20
 
 (i) Number of red balls = 10, $p\text{(getting a red ball)}=\frac{10}{20} =\frac{1}{2}$\
 (ii) Number of blue balls = 4, $p\text{(getting a blue ball)}=\frac{4}{20} =\frac{1}{5}$\
 (iii) Number of balls which are not black = 14, $p\text{(not a black ball)}=\frac{14}{20} =\frac{7}{10}$
+:::
 
 ## Event relations
 
@@ -263,62 +293,131 @@ The relationship in @eq-complement highlights that the probability of an event a
 
 **Event** $A$ or $B$
 
-Denoted as '$A \cup B$ ', spelled as $A$ union $B$, represents the occurrence of either event $A$, event $B$ or both. Let us consider the example of throwing a die. Suppose $A$ is an event of getting a multiple of 2 and $B$ be another event of getting a multiple of 3. The outcomes 2, 4 and 6 are favourable to the event $A$ and the outcomes 3 and 6 are favourable to the event $B$ *i*.*e*. $A = \{2, 4, 6\}$, $B= \{3, 6\}$ then $A \cup B = \{ 2, 3, 4, 6\}$.
+Denoted as '$A \cup B$', spelled as $A$ union $B$, represents the occurrence of either event $A$, event $B$ or both. Let us consider the example of throwing a die. Suppose $A$ is an event of getting a multiple of 2 and $B$ be another event of getting a multiple of 3. The outcomes 2, 4 and 6 are favourable to the event $A$ and the outcomes 3 and 6 are favourable to the event $B$ *i*.*e*. $A = \{2, 4, 6\}$, $B= \{3, 6\}$ then $A \cup B = \{ 2, 3, 4, 6\}$.
 
-![Venn diagram showing union of two events](images/union.png){#fig-unionevents fig-align="center" style="text-align:center;" width="50%"}
+![Venn diagram showing union of two events](images/union.png){#fig-unionevents fig-align="center" style="text-align:center;" width="80%"}
 
 **Event** $A$ and $B$
 
 Denoted as ' $A \cap B$ ' spelled as $A$ intersection $B$, represents the occurrence of both events $A$ and $B$ simultaneously. It includes only those outcomes that are common to both events. For example, on throwing a die in which $A$ is the event of getting a multiple of 2 and $B$ is the event of getting a multiple of 3. The outcomes favorable to $A$ are 2, 4, 6 and the outcomes favorable to $B$ are 3 and 6. Here 6 is present in both $A$ and $B$ so here $A \cap B = 6$. @fig-intersection below shows the venn diagram of intersection of two events.
 
-![Venn diagram showing intersection of two events](images/intersection.png){#fig-intersection fig-align="center" style="text-align:center;" width="50%"}
+![Venn diagram showing intersection of two events](images/intersection.png){#fig-intersection fig-align="center" style="text-align:center;" width="80%"}
 
 ## Additive law of probability
 
 According to additive law of probability, for any two events $A$ and $B$ of a sample space $S$, the probability of the union of two events $A$ and $B$ is equal to the sum of their individual probabilities, minus the probability of their intersection.
 
-$$p(A \cup B) = p(A)+p(B) − p(A \cap B)$$ {#eq-additivelaw}
+$$P(A \cup B) = P(A)+P(B) − P(A \cap B)$$ {#eq-additivelaw}
 
-For mutually exclusive case $p(AꓵB)=0$; in that case:\
-$$p(A \cup B) = p(A )+ p(B )$$ {#eq-additivelaw2}
+For mutually exclusive case $P(AꓵB)=0$; in that case:\
+$$P(A \cup B) = P(A )+ P(B )$$ {#eq-additivelaw2}
 
-**Example 10.9**: A card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is either a spade or a king?
+::: {#exm-prob9}
+A card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is either a spade or a king?
 
-**Solution 10.9**: If $A$ denotes the event of drawing a 'spade card'. $B$ denotes the events of drawing a 'king' respectively. The event $A$ consists of 13 sample points, whereas the event $B$ consists of 4 sample points. $p(A)= \frac{13}{52}$, $p(B)= \frac{4}{52}$, $p(A \cap B) = \frac{1}{52}$, $p(A \cup B) = p(A)+ p(B) − p(AꓵB)$ = $\frac{13}{52}+\frac{4}{52}-\frac{1}{52}= \frac{4}{13}$
+**Solution**
 
-**Example 10.10**: In a single throw of two dice, find the probability of a total of 9 or 11.
+If $A$ denotes the event of drawing a 'spade card'. $B$ denotes the events of drawing a 'king' respectively. The event $A$ consists of 13 sample points, whereas the event $B$ consists of 4 sample points. $P(A)= \frac{13}{52}$, $P(B)= \frac{4}{52}$, $P(A \cap B) = \frac{1}{52}$, $P(A \cup B) = P(A)+ P(B) − P(A \cap B)$ = $\frac{13}{52}+\frac{4}{52}-\frac{1}{52}= \frac{4}{13}$
+:::
 
-**Solution 10.10**: Let the events $A$ = a total of 9 and $B$ = a total of 11. Events are mutually exclusive $A \cap B = 0$. Now there are four such cases were sum = 9, such as (3, 6), (4, 5), (5, 4), (6, 3); therefore $p(A) = \frac{4}{36}$. Similarly there are two cases were sum = 11, such as (5, 6), (6, 5); therefore $p(B) = \frac{2}{36}$. Thus from @eq-additivelaw2, $p(A \cup B) = \frac{4}{36}+\frac{2}{36}= \frac{6}{36} = \frac{1}{6}$
+::: {#exm-prob10}
+In a single throw of two dice, find the probability of a total of 9 or 11.
+
+**Solution**
+
+Let the events $A$ = a total of 9 and $B$ = a total of 11. Events are mutually exclusive, so $P(A \cap B) = 0$. Now there are four such cases were sum = 9, such as (3, 6), (4, 5), (5, 4), (6, 3); therefore $P(A) = \frac{4}{36}$. Similarly there are two cases were sum = 11, such as (5, 6), (6, 5); therefore $P(B) = \frac{2}{36}$. Thus from @eq-additivelaw2, $P(A \cup B) = \frac{4}{36}+\frac{2}{36}= \frac{6}{36} = \frac{1}{6}$
+:::
 
 ## Conditional probability
 
 Conditional probability measures the likelihood of an event occurring, given that another event has already occurred. If $A$ and $B$ are two events, the conditional probability of $A$ given $B$ is denoted by $P(A \mid B)$ and is defined as:
 
-$$p(A \mid B) = \frac{p(A \cap B)}{p(B)}, \quad \text{provided } p(B) > 0$$ {#eq-conditionalprob}
+$$P(A \mid B) = \frac{P(A \cap B)}{P(B)}, \quad \text{provided } P(B) > 0$$ {#eq-conditionalprob}
 
 @eq-conditionalprob gives the probability of $A$ happening under the condition that $B$ has occurred.
 
-**Example 10.11**: If a card is drawn from a standard deck of 52 cards, what is the probability that it is a king, given that the card drawn is a face card?
+::: {#exm-prob11}
+If a card is drawn from a standard deck of 52 cards, what is the probability that it is a king, given that the card drawn is a face card?
 
-**Solution 10.11**: Let $A$ be the event of drawing a king, $B$ be the event of drawing a face card (king, queen, or jack). The probability of $B$, drawing a face card, is $p(B) = \frac{\text{Number of face cards}}{\text{Total cards}} = \frac{12}{52}$. The probability of $A \cap B$, drawing a King that is also a face card, is:$p(A \cap B) = \frac{\text{Number of Kings}}{\text{Total cards}} = \frac{4}{52}$. Using @eq-conditionalprob the conditional probability of drawing a king given that the card is a face card is $p(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{4}{52}}{\frac{12}{52}} = \frac{4}{12} = \frac{1}{3}$.
+**Solution**
+
+Let
+
+- $A$: The card drawn is a **King**.
+- $B$: The card drawn is a **face card** (King, Queen, or Jack).
+
+A standard deck contains **52 cards**, of which **12 are face cards** (4 Kings, 4 Queens, and 4 Jacks). Therefore,
+
+$$
+P(B)=\frac{\text{Number of face cards}}{\text{Total number of cards}}
+=\frac{12}{52}.
+$$
+
+Since every King is also a face card, the event $A \cap B$ represents drawing a card that is **both a King and a face card**. There are **4 Kings** in the deck. Hence,
+
+$$
+P(A \cap B)=\frac{\text{Number of Kings}}{\text{Total number of cards}}
+=\frac{4}{52}.
+$$
+
+Using the definition of conditional probability,
+
+$$
+P(A\mid B)=\frac{P(A\cap B)}{P(B)},
+$$
+
+we obtain
+
+$$
+\begin{aligned}
+P(A\mid B)
+&=\frac{\frac{4}{52}}{\frac{12}{52}}\\
+&=\frac{4}{12}\\
+&=\frac{1}{3}.
+\end{aligned}
+$$
+
+Hence, the probability of drawing a **King given that the card drawn is a face card** is
+
+$$
+P(A\mid B)=\frac{1}{3}
+$$
+
+:::  
+
+::: {#exm-prob19}
+In a seed-testing laboratory, 120 groundnut seeds were treated with a fungicide and 80 were left untreated. Out of the treated seeds, 96 germinated, while 40 of the untreated seeds germinated. If a seed is selected at random and found to be treated, what is the probability that it germinated?
+
+**Solution**
+
+Let $A$ be the event that the selected seed germinated, and $B$ be the event that the seed was treated with the fungicide. We need $P(A \mid B)$, the probability that a seed germinated given that it was treated. Out of 200 seeds, 120 were treated, so $P(B) = \frac{120}{200}$. The number of seeds that were both treated and germinated is 96, so $P(A \cap B) = \frac{96}{200}$. Using @eq-conditionalprob the conditional probability is $P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{\frac{96}{200}}{\frac{120}{200}} = \frac{96}{120} = \frac{4}{5}$.
+:::
 
 ## Multiplication law of probability
 
 The multiplication law of probability states that if $A$ and $B$ are two events, the probability of both events occurring (*i*.*e*., $A \cap B$) is given by:
 
-$$p(A \cap B) = p(A) \cdot p(B \mid A)$$ {#eq-multilaw}
+$$P(A \cap B) = P(A) \cdot P(B \mid A)$$ {#eq-multilaw}
 
-This formula expresses the relationship between the joint probability of two events and their conditional probability. If $A$ and $B$ are independent events, then $p(B \mid A) = p(B)$, and the formula simplifies to:
+This formula expresses the relationship between the joint probability of two events and their conditional probability. If $A$ and $B$ are independent events, then $P(B \mid A) = P(B)$, and the formula simplifies to:
 
-$$p(A \cap B) = p(A) \cdot p(B)$$ {#eq-multilaw2}
+$$P(A \cap B) = P(A) \cdot P(B)$$ {#eq-multilaw2}
 
-**Example 10.12**: What is the probability of drawing two aces in succession from a standard deck of 52 cards?
+::: {#exm-prob12}
+What is the probability of drawing two aces in succession from a standard deck of 52 cards?
 
-**Solution 10.12**: Let $A$ be the event that the first card drawn is an ace. $B$ be the event that the second card drawn is an ace. The probability of $A$ (drawing an ace on the first draw) is $p(A) = \frac{4}{52}$. If the first card is an ace, there are only 3 aces left in a deck of 51 cards. The probability of $B$ (drawing an ace on the second draw given that the first card was an ace) is $p(B \mid A) = \frac{3}{51}$. Now using @eq-multilaw the probability of drawing two aces in succession is given by $p(A \cap B) = p(A) \cdot p(B \mid A) = \frac{4}{52} \cdot \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}$
+**Solution**
 
-**Example 10.13**: A die is tossed twice. Find the probability of a number greater than 4 on each throw?
+Let $A$ be the event that the first card drawn is an ace. $B$ be the event that the second card drawn is an ace. The probability of $A$ (drawing an ace on the first draw) is $P(A) = \frac{4}{52}$. If the first card is an ace, there are only 3 aces left in a deck of 51 cards. The probability of $B$ (drawing an ace on the second draw given that the first card was an ace) is $P(B \mid A) = \frac{3}{51}$. Now using @eq-multilaw the probability of drawing two aces in succession is given by $P(A \cap B) = P(A) \cdot P(B \mid A) = \frac{4}{52} \cdot \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}$
+:::
 
-**Solution 10.13**: Let $A$ be the event that 'a number greater than 4' on first throw. $B$ be the event that 'a number greater than 4' in the second throw. Clearly $A$ and $B$ are independent events. In the first throw, there are two outcomes, namely, 5 and 6 favourable to the event $A$. $p(A) = \frac{2}{6} = \frac{1}{3}$. Similarly in the second throw, there are two outcomes, namely, 5 and 6 favourable to the event $B$, therefore $p(B) = \frac{2}{6} = \frac{1}{3}$. Now by @eq-additivelaw2, probability to get a number greater than 4 on each throw is given by $p(A \cap B) = p(A).p(B) = \frac{1}{3}.\frac{1}{3} = \frac{1}{9}$
+::: {#exm-prob13}
+A die is tossed twice. Find the probability of a number greater than 4 on each throw?
+
+**Solution**
+
+Let $A$ be the event that 'a number greater than 4' on first throw. $B$ be the event that 'a number greater than 4' in the second throw. Clearly $A$ and $B$ are independent events. In the first throw, there are two outcomes, namely, 5 and 6 favourable to the event $A$. $P(A) = \frac{2}{6} = \frac{1}{3}$. Similarly in the second throw, there are two outcomes, namely, 5 and 6 favourable to the event $B$, therefore $P(B) = \frac{2}{6} = \frac{1}{3}$. Now by @eq-multilaw2, probability to get a number greater than 4 on each throw is given by $P(A \cap B) = P(A).P(B) = \frac{1}{3}.\frac{1}{3} = \frac{1}{9}$
+:::
 
 ## Probability using combinations
 
@@ -326,17 +425,33 @@ Combinations can be used to calculate the total number of possible outcomes in a
 
 $$^n C_r = \frac{n!}{r!(n - r)!}$$ {#eq-combn}
 
-**Example 10.14**: Calculate $^3 C_2$
+::: {#exm-prob14}
+Calculate $^3 C_2$
 
-**Solution 10.14**: $^3 C_2 = \frac{3!}{2!(3 - 2)!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3$
+**Solution**
 
-**Example 10.15**: A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn are white and blue?
+$^3 C_2 = \frac{3!}{2!(3 - 2)!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3$
+:::
 
-**Solution 10.15**: Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by $^{16} C_2 =120$. The number of ways to draw one white ball from 6 white balls is $^6 C_1=6$, and the number of ways to draw one blue ball from 7 blue balls is $^7 C_1 =7$. Since the events are independent, the total number of favorable outcomes is $^6 C_1 \times ^7 C_1 = 6 \times 7 = 42$. Thus, the required probability is:$p(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}$
+::: {#exm-prob15}
+A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn are white and blue?
 
-**Example 10.16**: A bag contains 5 red and 4 black balls. What is the probability that both balls drawn are red?
+**Solution**
 
-**Solution 10.16**:Total number of balls = 5 + 4 = 9. The number of ways to draw 2 balls from 9 is given by $^9 C_2 = \frac{9 \times 8}{2 \times 1} = 36$. The number of ways to draw 2 red balls from 5 red balls is $^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10$. Thus, the required probability is: $p(\text{both red balls}) = \frac{^5 C_2}{^9 C_2} = \frac{10}{36} = \frac{5}{18}$
+Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by $^{16} C_2 =120$. The number of ways to draw one white ball from 6 white balls is $^6 C_1=6$, and the number of ways to draw one blue ball from 7 blue balls is $^7 C_1 =7$. Since the events are independent, the total number of favorable outcomes is $^6 C_1 \times ^7 C_1 = 6 \times 7 = 42$. Thus, the required probability is:$P(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}$
+:::
+
+::: {#exm-prob16}
+A bag contains 5 red and 4 black balls. What is the probability that both balls drawn are red?
+
+**Solution**
+
+Total number of balls = 5 + 4 = 9. The number of ways to draw 2 balls from 9 is given by $^9 C_2 = \frac{9 \times 8}{2 \times 1} = 36$. The number of ways to draw 2 red balls from 5 red balls is $^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10$. Thus, the required probability is: $P(\text{both red balls}) = \frac{^5 C_2}{^9 C_2} = \frac{10}{36} = \frac{5}{18}$
+:::  
+
+::: {#exr-prob2}
+Six cards are drawn at random from a pack of 52 cards. What is the probability that 3 will be red and 3 black?
+:::
 
 ## Bayes' theorem
 
@@ -344,43 +459,47 @@ Bayes' theorem gives a mathematical rule for inverting conditional probabilities
 
 Let $E_1, E_2, \dots, E_n$ be a set of events associated with a sample space $S$, where all the events $E_1, E_2,\dots, E_n$ have non-zero probability of occurrence and they form a partition of $S$. Let $A$ be any event associated with $S$, then according to Bayes theorem,
 
-$$p(E_i \mid A) =\frac{p(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}{p(E_k)}\cdot p(A \mid E_k)}$$ {#eq-bayestheorem}
+$$P(E_i \mid A) =\frac{P(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}{P(E_k)}\cdot P(A \mid E_k)}$$ {#eq-bayestheorem}
 
 The following terminologies are commonly used when applying Bayes' theorem:
 
 **Hypotheses**: The events $E_1, E_2, \dots, E_n$ are called the hypotheses.
 
-**Prior probability**: The probability $p(E_i)$ is considered the prior probability of hypothesis $E_i$.
+**Prior probability**: The probability $P(E_i)$ is considered the prior probability of hypothesis $E_i$.
 
-**Posterior probability**: The probability $p(E_i \mid A)$ is considered the posterior probability of hypothesis $E_i$.
+**Posterior probability**: The probability $P(E_i \mid A)$ is considered the posterior probability of hypothesis $E_i$.
 
 For any two events $A$ and $B$, the formula for the Bayes theorem is given by:
 
-$$p(A \mid B) =\frac{p(B\mid A)\cdot p(A)}{p(B)}, p(B)\neq 0$$ {#eq-bayestheorem2}
+$$P(A \mid B) =\frac{P(B\mid A)\cdot P(A)}{P(B)}, P(B)\neq 0$$ {#eq-bayestheorem2}
 
-Where $p(A)$ and $p(B)$ are the probabilities of events $A$ and $B$. $p(A \mid B)$ is the probability of event $A$ given $B$. $p(B \mid A)$ is the probability of event $B$ given $A$.
+Where $P(A)$ and $P(B)$ are the probabilities of events $A$ and $B$. $P(A \mid B)$ is the probability of event $A$ given $B$. $P(B \mid A)$ is the probability of event $B$ given $A$.
 
-**Example 10.17**: A bag I contains 4 white and 6 black balls while another bag II contains 4 white and 3 black balls. One ball is drawn at random from one of the bags, and it is found to be black. Find the probability that it was drawn from bag I.
+::: {#exm-prob17}
+A bag I contains 4 white and 6 black balls while another bag II contains 4 white and 3 black balls. One ball is drawn at random from one of the bags, and it is found to be black. Find the probability that it was drawn from bag I.
 
-**Solution 10.17**: Let $E_1$ be the event of choosing bag I, $E_2$ the event of choosing bag II, and $A$ be the event of drawing a black ball. $p(E_1)=p(E_2)=\frac{1}{2}$. Also,probability of drawing a black ball from bag I is given by $p(A \mid E_1) = \frac{6}{10}=\frac{3}{5}$. Probability of drawing a black ball from bag II $p(A \mid E_2=)\frac{3}{7}$.
+**Solution**
 
-By using Bayes’ theorem, the probability of drawing a black ball from bag I out of two bags,\
-$$p(E_1 \mid A) =\frac{p(E_1) \cdot P(A \mid E_1)}{p(E_1) \cdot P(A \mid E_1)+p(E_2) \cdot P(A \mid E_2)}$$\
+Let $E_1$ be the event of choosing bag I, $E_2$ the event of choosing bag II, and $A$ be the event of drawing a black ball. Since both bag has equal chance of being selected, $P(E_1)=P(E_2)=\frac{1}{2}$. Also, probability of drawing a black ball from bag I is given by $P(A \mid E_1) = \frac{6}{10}=\frac{3}{5}$. Probability of drawing a black ball from bag II is $P(A \mid E_2)=\frac{3}{7}$.
+
+By using Bayes' theorem, the probability of drawing a black ball from bag I out of two bags,\
+$$P(E_1 \mid A) =\frac{P(E_1) \cdot P(A \mid E_1)}{P(E_1) \cdot P(A \mid E_1)+P(E_2) \cdot P(A \mid E_2)}$$\
 $$= \frac{\frac{1}{2}\times \frac{3}{5}}{\frac{1}{2}\times \frac{3}{5}+\frac{1}{2}\times \frac{3}{7}} =\frac{7}{12}$$
-
-**Example 10.18**: A man is known to speak the truth 2 out of 3 times. He throws a die and reports that the number obtained is a four. Find the probability that the number obtained is actually a four.
-
-**Solution 10.18**: Let $A$ be the event that the man reports that number four is obtained. Let $E_1$ be the event that four is obtained and $E_2$ be its complementary event. Then, $p(E_1)$ = probability that four occurs = $\frac{1}{6}$. $p(E_2)$ = probability that four does not occur = $1-p(E_1) = 1-\frac{1}{6} = \frac{5}{6}$. Also, $p(A|E_1)=$ probability that man reports four and it is actually a four $= \frac{2}{3}$ (because man speaks truth 2 out of 3 times). $p(A|E_2)=$Probability that man reports four and it is not a four $= \frac{1}{3}$.
-
-By using Bayes’ theorem, probability that number obtained is actually a four, $p(E_1 \mid A) =\frac{p(E_1) \cdot P(A \mid E_1)}{p(E_1) \cdot P(A \mid E_1)+p(E_2) \cdot P(A \mid E_2)}$.
-
-$$p(E_1 \mid A)= \frac{\frac{1}{6}\times \frac{2}{3}}{\frac{1}{6}\times \frac{2}{3}+\frac{5}{6}\times \frac{1}{3}} =\frac{2}{7}$$
-
-::: {.callout-note appearance="simple"}
-**Try yourself**
-
-Six cards are drawn at random from a pack of 52 cards. What is the probability that 3 will be red and 3 black?
 :::
+
+::: {#exm-prob18}
+A man is known to speak the truth 2 out of 3 times. He throws a die and reports that the number obtained is a four. Find the probability that the number obtained is actually a four.
+
+**Solution**
+
+Let $A$ be the event that the man reports that number four is obtained. Let $E_1$ be the event that four is obtained and $E_2$ be its complementary event. Then, $P(E_1)$ = probability that four occurs = $\frac{1}{6}$. $P(E_2)$ = probability that four does not occur = $1-P(E_1) = 1-\frac{1}{6} = \frac{5}{6}$. Also, $P(A|E_1)=$ probability that man reports four and it is actually a four $= \frac{2}{3}$ (because man speaks truth 2 out of 3 times). $P(A|E_2)=$ Probability that man reports four and it is not a four $= \frac{1}{3}$.
+
+By using Bayes' theorem, probability that number obtained is actually a four, $P(E_1 \mid A) =\frac{P(E_1) \cdot P(A \mid E_1)}{P(E_1) \cdot P(A \mid E_1)+P(E_2) \cdot P(A \mid E_2)}$.
+
+$$P(E_1 \mid A)= \frac{\frac{1}{6}\times \frac{2}{3}}{\frac{1}{6}\times \frac{2}{3}+\frac{5}{6}\times \frac{1}{3}} =\frac{2}{7}$$
+:::
+
+
 
 ::: {.callout-caution title="Historical Insights"}
 **The gambler's fallacy**
