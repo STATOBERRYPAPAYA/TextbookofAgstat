@@ -10,7 +10,7 @@ In this chapter, we explore the definition, functions, formulas, and types of pr
 
 In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let $X$ be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space $X = \{0, 1, 2, 3\}$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
 
-| On tossing thrice | No: of heads ($X$) |
+| On tossing thrice | No. of heads ($X$) |
 |------------------|--------------------|
 | HHH               | 3                  |
 | HHT               | 2                  |
@@ -23,13 +23,13 @@ In simple terms, a probability distribution is a way to represent all possible o
 
 : Possible outcomes on tossing a coin three times {#tbl-tossingcoin .bordered}
 
-$P(X = x)$ = $\frac{No: \ of \ times\ X\ takes\ value\ x}{8}$
+$P(X = x)$ = $\dfrac{\text{Number of times } X \text{ takes value } x}{8}$
 
 $P(X = 3)$ = 1/8; $P(X = 2)$ = 3/8; $P(X = 1)$ = 3/8; $P(X = 0)$ = 1/8
 
 @tbl-probabilitydistncoin below shows the probability distribution of the number of heads that appear on tossing a coin 3 times.
 
-| $X$ | $P(x)$ |
+| $X$ | $p(x)$ |
 |----|-------|
 | 0   | 1/8    |
 | 1   | 3/8    |
@@ -51,12 +51,12 @@ The formula for calculating the Expected Value of random variable where there ar
 [**Discrete case**]{.underline}  
 
 
-$$E(X) = \sum_{i = 1}^{\infty}xP(x)$$ {#eq-expdiscrete}
+$$E(X) = \sum_{x} x\, p(x)$$ {#eq-expdiscrete}
 
 [**Continuous case**]{.underline}  
 
 
-$$E(X) = \int_{- \infty}^{\infty}{x P(x)\ \text{dx }};- \infty \leq x \leq \infty$$ {#eq-expcont}
+$$E(X) = \int_{- \infty}^{\infty}{x p(x)\ \text{dx }};- \infty \leq x \leq \infty$$ {#eq-expcont}
 
 here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
 
@@ -85,7 +85,7 @@ dt %>%
 kable_styling(latex_options = "HOLD_position")
 ```
 
-Using equation @eq-expdiscrete, $E(X)$ = $\sum_{i = 1}^{6}xP(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
+Using equation @eq-expdiscrete, $E(X)$ = $\sum_{x} x\, p(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
 :::
 
 ::: {#exr-expval1}
@@ -116,17 +116,17 @@ We have seen that a probability distribution lists all possible outcomes of a ra
 
 [**Probability mass function**]{.underline}
 
-When a probability function is used to describe a discrete probability distribution, it is referred to as a probability mass function (commonly abbreviated as *p.m.f*). A probability mass function assigns a probability to each specific outcome of a discrete random variable. It is expressed as: $P(x) = P(X = x)$. Here, $X$ is the discrete random variable, and $P(x)$ represents the probability of $X$ taking the specific value $x$. The function ensures that all probabilities are non-negative and sum to 1 across all possible outcomes of $X$.
+When a probability function is used to describe a discrete probability distribution, it is referred to as a probability mass function (commonly abbreviated as *p.m.f*). A probability mass function assigns a probability to each specific outcome of a discrete random variable. It is expressed as: $p(x) = P(X = x)$. Here, $X$ is the discrete random variable, and $p(x)$ represents the probability of $X$ taking the specific value $x$. The function ensures that all probabilities are non-negative and sum to 1 across all possible outcomes of $X$.
 
 Properties of *p.m.f*
 
--   The probability of each outcome is always non-negative. For a discrete random variable $X$ and its *p.m.f*, $P(x) \geq 0 \quad \text{for all } x$
+-   The probability of each outcome is always non-negative. For a discrete random variable $X$ and its *p.m.f*, $p(x) \geq 0 \quad \text{for all } x$
 
--   The sum of the probabilities over all possible values of the random variable equals 1. That is:$\sum_{x \in S} P(x) = 1$. where $S$ is the sample space of ($X$), representing all possible values.
+-   The sum of the probabilities over all possible values of the random variable equals 1. That is:$\sum_{x \in S} p(x) = 1$. where $S$ is the sample space of ($X$), representing all possible values.
 
--   The *p.m.f* gives the exact probability for each specific value of the discrete random variable. For a value $x:P(X = x) = P(x)$
+-   The *p.m.f* gives the exact probability for each specific value of the discrete random variable. For a value $x$, $P(X = x) = p(x)$
 
--   If a value $x$ is not in the sample space $S$, its probability is zero: $P(x) = 0 \quad \text{for } x \notin S$
+-   If a value $x$ is not in the sample space $S$, its probability is zero: $p(x) = 0 \quad \text{for } x \notin S$
 
 The *p.m.f* is defined only for the discrete values in the sample space of the random variable $X$. It does not apply to continuous ranges or non-discrete variables.
 
@@ -136,9 +136,9 @@ A Bernoulli distribution is a discrete probability distribution that applies to 
 
 The probability mass function of the distribution is
 
-$$P(X = x) = p^x (1 - p)^{1 - x}$$ {#eq-bernoulli}
+$$p(x) = p^x (1 - p)^{1 - x}; \quad x = 0, 1$$ {#eq-bernoulli}
 
-in @eq-bernoulli $X$ takes only two values = 0,1. Where $p$ is the probability of success and $1-p$ is the probability of failure.
+in @eq-bernoulli $X$ takes only two values, 0 and 1. Here $p$ is the probability of success and $1-p$ is the probability of failure.
 
 ::: {.callout-important title="Note"}
 A parameter of a distribution is a fixed value that describes a key characteristic of the distribution. The parameter of a Bernoulli distribution is $p$, which represents the probability of success in a single trial
@@ -159,7 +159,7 @@ $P(X = 1) = (0.4)^1 (1-0.4)^0 =0.4$
 
 the distribution can be shown as below:
 
-| $x$ | $P(x)$ |
+| $x$ | $p(x)$ |
 |-----|--------|
 | 0   | 0.6    |
 | 1   | 0.4    |
@@ -183,9 +183,9 @@ Binomial distribution can be thought of as simply the probability of a success o
 
 The probability mass function of the distribution is
 
-$$P(x) = \binom{n}{x} p^x q^{n-x} = \frac{n!}{x!(n-x)!} p^x q^{n-x}$$ {#eq-binomial}
+$$p(x) = \binom{n}{x} p^x q^{n-x} = \frac{n!}{x!(n-x)!} p^x q^{n-x}; \quad x = 0, 1, 2, \ldots, n$$ {#eq-binomial}
 
-where x takes values = 0,1,2,..., $n$
+where
 
 $n$= number of trials
 
@@ -206,9 +206,9 @@ A coin is tossed 10 times. What is the probability of getting exactly 6 heads?
 
 here, $n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}$
 
-We have to find $p(X=6)$; using the @eq-binomial
+We have to find $P(X=6)$; using the @eq-binomial
 
-$p(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2050$
+$P(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2050$
 :::
 
 ### Fitting of binomial distribution
@@ -221,9 +221,9 @@ To fit a binomial distribution to an observed frequency distribution, we follow 
 
 -   Estimate the probability of success $p$ from the data. Since the mean of a binomial distribution is $np$, we equate it to the observed mean and obtain $p = \dfrac{\overline{x}}{n}$, where $\overline{x}$ is the mean number of successes. Then $q = 1 - p$.
 
--   Compute the expected probability $P(x)$ for each value of $x$ using @eq-binomial.
+-   Compute the expected probability $p(x)$ for each value of $x$ using @eq-binomial.
 
--   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times P(x)$.
+-   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times p(x)$.
 
 ::: {#exm-binomfit1}
 In a study on the survival of mango seedlings after transplanting, 100 groups of 5 seedlings each were transplanted. The number of seedlings surviving in each group was recorded as given below. Fit a binomial distribution to the data.
@@ -285,11 +285,11 @@ Other applications and examples where Poisson distribution is used
 
 A random variable $X$ is said to follow a Poisson distribution; if it assumes non-negative values and its probability mass function is given by:
 
-$$p\left( X = x \right) = \frac{e^{- \lambda}.\lambda^{x}}{x!}$$ {#eq-poisson}
+$$p(x) = \frac{e^{- \lambda}.\lambda^{x}}{x!}; \quad x = 0, 1, 2, \ldots, \infty$$ {#eq-poisson}
 
-where $x$ = 0,1,2,... ., $\infty$,
+where
 
-$e$ = Is the base of the natural logarithm. It is a constant approximately equal to 2.71828.
+$e$ = base of the natural logarithm, a constant approximately equal to 2.71828.
 
 $\lambda$ : Average number of successes occurring in a given time interval or region in the Poisson distribution
 
@@ -304,11 +304,11 @@ The average number of homes sold by a Realty company is 2 homes per day. Assumin
 
 here $\lambda = 2$; since 2 homes are sold per day, on average. $x = 3$; since we want to find the probability that 3 homes will be sold tomorrow. Using @eq-poisson.
 
-$p(X=3)= \ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}= 0.180$
+$P(X=3)= \ \frac{{2.71828}^{- 2}{\  \times \ 2}^{3}}{3!}= 0.180$
 :::
 
 ::: {#exr-poisson1}
-If the random variable $X$ follows a Poisson distribution with mean 3.4, find $p(X = 6)$.
+If the random variable $X$ follows a Poisson distribution with mean 3.4, find $P(X = 6)$.
 :::
 
 ::: {#exr-poisson2}
@@ -327,9 +327,9 @@ To fit a Poisson distribution to an observed frequency distribution, we follow t
 
 -   Estimate the parameter $\lambda$ from the data. Since the mean of a Poisson distribution is $\lambda$, we take $\lambda = \overline{x}$, the observed mean.
 
--   Compute the expected probability $P(x)$ for each value of $x$ using @eq-poisson.
+-   Compute the expected probability $p(x)$ for each value of $x$ using @eq-poisson.
 
--   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times P(x)$.
+-   Multiply each probability by the total frequency $N$ to obtain the expected frequency, that is, expected frequency = $N \times p(x)$.
 
 ::: {#exm-poissonfit1}
 In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were examined and the number of larvae per plant was recorded as given below. Fit a Poisson distribution to the data.
@@ -376,9 +376,9 @@ The distribution was initially called the `Gaussian distribution`, as Gauss used
 
 It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean ($\mu$) and standard deviation ($\sigma$). Its significance lies in the Central Limit Theorem, which states that the sum of a large number of independent random variables tends to be normally distributed, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.
 
-$$f\left( x \right) = \frac{1}{\sqrt{2\pi\sigma}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}$$ {#eq-normaldist}
+$$f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}; \quad -\infty < x < +\infty$$ {#eq-normaldist}
 
-, where $- \infty < x < + \infty$ ; $μ$ is the population mean and $\sigma^2$ is the variance, $e = 2.718$
+where $\mu$ is the population mean and $\sigma^2$ is the variance, $e = 2.718$
 
 [**Parameters of Normal distribution**]{.underline}
 
@@ -388,7 +388,7 @@ As with any probability distribution, the parameters of the normal distribution 
 
 **Standard deviation:**
 
-The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance the observations and the average.
+The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance between the observations and the average.
 
 ![Shape changes in normal distribution based on different standard deviation](images/normal7.png){#fig-normalchange2 fig-align="center" style="text-align:center;" width="80%"}
 
@@ -404,7 +404,7 @@ The parameters of normal distribution are $\mu$ and $\sigma$. If a random variab
 
 ![Normal distribution curve](images/normal1.png){#fig-normalcurve fig-align="center" style="text-align:center;" width="80%"}
 
-2.  The Normal Distribution has mean = median = mode. Mean, median and mode is located to the center of the curve.
+2.  The Normal Distribution has mean = median = mode. Mean, median and mode are located at the center of the curve.
 
 ![Mean=Median=Mode in normal distribution](images/normal2.png){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="80%"}
 
@@ -465,7 +465,7 @@ To convert a normal variate to a Standard Score ("z-score")
 
 And doing that is called "Standardizing".
 
-When a normal variate \$ X \sim N(\mu, \sigma\^2)\$ is converted to a standard normal variate, it follows the transformation:
+When a normal variate $X \sim N(\mu, \sigma^2)$ is converted to a standard normal variate, it follows the transformation:
 
 $$z = \frac{X - \mu}{\sigma}$$ {#eq-standard}
 
@@ -540,11 +540,11 @@ Procedure to use a Z-Score Table is given below:
     If you're looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that $X$ lies between 0.5 and 1.23 is:$P(0.5 < z < 1.23) = 0.8907 - 0.6915 = 0.1992$. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.
 
 ::: {#exm-zscore3}
-Average yield of mango trees in an orchard has a mean of 70kg and with a standard deviation of 12kg. What is the probable percentage of mango trees with yield more than 85kg?
+Average yield of mango trees in an orchard has a mean of 70 kg and a standard deviation of 12 kg. What is the probable percentage of mango trees with yield more than 85 kg?
 
 **Solution**
 
-The z score for the given data using @eq-standard is $z = \frac{85 - 70}{12}=1.25$. From the z score table @fig-zscoretable, the fraction of the data within this score is 0.8944. This means 89.44 % of the trees are within the yield of 85kg and hence the percentage of trees with yield above 85kg = (100-89.44)% = 10.56 %.
+Let $X$ be the yield of a mango tree. It is given that $X \sim N(70, 12^2)$. We need to find $P(X > 85)$. This can be standardized to $P\left(z > \frac{85 - 70}{12}\right)$ = $P(z > 1.25)$. Now $P(z > 1.25) = 1 - P(z \leq 1.25)$. From the table $P(z \leq 1.25) = 0.8944$, so the probability is $1 - 0.8944 = 0.1056$. Hence the percentage of trees with yield above 85 kg = $10.56\%$.
 :::
 
 ::: {#exm-zscore4}
@@ -552,7 +552,7 @@ The heights of coconut trees, H metres, are Normally distributed with a mean of 
 
 **Solution**
 
-Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We nee to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.
+Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We need to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9442)$. Since normal distribution is symmetric, $P(z < -0.9442)=P(z > 0.9442)$. $P(z > 0.9442)= 1-P(z \leq 0.9442)$. From the table $P(z \leq 0.95) =0.8289$ so the probability is 1-0.8289=0.171.
 :::
 
 ::: {.callout-caution title="Historical Insights"}
