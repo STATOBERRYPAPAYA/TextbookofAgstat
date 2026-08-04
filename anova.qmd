@@ -9,7 +9,10 @@ After recording the yields, it is observed that the yield values are not identic
 
 Thus, the total observed variation in the data can be expressed as:  
 
-$$\text{Total variation} = \text{Variation due to treatments} + \text{Variation due to experimental error}$$ {#eq-totalvar}
+$$\begin{aligned}
+\text{Total variation} = \ &\text{Variation due to treatments} \\
+&+ \text{Variation due to experimental error}
+\end{aligned}$$ {#eq-totalvar}
 
 In general, every experiment is conducted on a sample of experimental units, and conclusions are drawn about the corresponding population. In this example, the objective is to determine whether the mean yields produced by fertilizers **A**, **B**, and **C** differ significantly. However, any observed differences in sample means may simply be due to random experimental error rather than true treatment effects. Therefore, a statistical test is required to distinguish genuine treatment differences from chance variation.  
 
@@ -59,7 +62,11 @@ The sum of squares is the sum of the squared differences of each observation fro
 
 Any function of sample values is known as a statistic. For example, the sample mean, sample variance, and the sum of all sample values are statistics, because these are all some functions of sample values. If a statistic is used to test a hypothesis, then it is known as a test statistic. Examples of test statistics are $t$, $F$, $\chi^2$, etc. The test statistic used in ANOVA is $F$.
 
-The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis $H_0$: $\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k$ is true, the ratio of the mean square treatment to the mean square error follows an F distribution. The F distribution is a right-skewed distribution. In general, if your calculated F value in ANOVA is larger than your F critical value, you can reject the null hypothesis.
+The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis $H_0$: $\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k$ is true, the ratio of the mean square treatment to the mean square error follows an F distribution.  
+
+The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in @fig-fdist, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.
+
+In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others.
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-fdist
@@ -89,7 +96,9 @@ Based on the model used and the sources of variation studied, ANOVA can be class
 
 ### One-way ANOVA
 
-The simplest type of analysis of variance is known as one-way analysis of variance, in which only one source of variation or factor of interest is controlled and its effect on the elementary units is observed. See the example in @sec-onewayexample where one-way ANOVA can be employed. There, only one source of variation is assumed to be causing variance other than error, namely the field.
+The simplest form of analysis of variance is one-way analysis of variance (one-way ANOVA). It is used when there is only one factor (source of variation) that is expected to influence the response variable. The objective of one-way ANOVA is to determine whether the means of two or more groups defined by this single factor differ significantly.
+
+For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertiliser treatments. In this case, the fertiliser treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.
 
 #### One-way ANOVA model {#sec-onewaymodel}
 
@@ -134,13 +143,22 @@ The Total Sum of Squares is partitioned into the Sum of Squares due to Treatment
 ::: {.callout-note title="Proof"}
 $$\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y} \right)^{2} = \sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y}_{i} + \overline{Y}_{i} - \overline{Y} \right)^{2}$$
 
-$$= \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \left( Y_{ij} - \overline{Y}_{i} \right)^{2} + \left( \overline{Y}_{i} - \overline{Y} \right)^{2} + 2\left( Y_{ij} - \overline{Y}_{i} \right)\left( \overline{Y}_{i} - \overline{Y} \right) \right)$$
+$$\begin{aligned}
+= \sum_{i=1}^{v}\sum_{j=1}^{r}\Big( &\left( Y_{ij} - \overline{Y}_{i} \right)^{2} + \left( \overline{Y}_{i} - \overline{Y} \right)^{2} \\
+&+ 2\left( Y_{ij} - \overline{Y}_{i} \right)\left( \overline{Y}_{i} - \overline{Y} \right) \Big)
+\end{aligned}$$
 
-$$= \sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y}_{i} \right)^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2} + 2\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y}_{i} \right)\left( \overline{Y}_{i} - \overline{Y} \right)$$
+$$\begin{aligned}
+= &\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y}_{i} \right)^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2} \\
+&+ 2\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \overline{Y}_{i} \right)\left( \overline{Y}_{i} - \overline{Y} \right)
+\end{aligned}$$
 
 Let $\left( Y_{ij} - \overline{Y}_{i} \right) = e_{ij}$, with $\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij} = 0$.
 
-$$= \sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2} + 2\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right)$$
+$$\begin{aligned}
+= &\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2} \\
+&+ 2\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right)
+\end{aligned}$$
 
 Since the sum of the weighted residuals is zero, $\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0$, and the above equation becomes
 
@@ -171,7 +189,10 @@ Treatment Sum of Squares, $\text{SST} = \dfrac{\sum_{i=1}^{v} T_{i}^{2}}{r} - \d
 
 **Error degrees of freedom** = Total degrees of freedom $-$ treatment degrees of freedom.
 
-$$\text{Error d.f.} = vr - 1 - (v - 1) = vr - 1 - v + 1 = vr - v = v(r - 1)$$ {#eq-onewaydf}
+$$\begin{aligned}
+\text{Error d.f.} &= vr - 1 - (v - 1) \\
+&= vr - 1 - v + 1 = vr - v = v(r - 1)
+\end{aligned}$$ {#eq-onewaydf}
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-onewayanova
@@ -202,13 +223,27 @@ The data are arranged as shown in @fig-onewayex.
 knitr::include_graphics("images/onewayex.png")
 ```
 
-Here, an equal number of observations are taken from all treatments, so $r_1 = r_2 = \ldots = r_6 = 4$.
+Here, an equal number of observations are taken from all treatments, so $r_1 = r_2 = \ldots = r_6 = 4$, and the total number of observations is $n = 24$. The grand total of all observations is $G = 1541$.  
 
-```{r echo=FALSE, out.width="95%", fig.align='center'}
+```{r echo=FALSE, out.width="75%", fig.align='center'}
 #| label: fig-onewayex1
-#| fig-cap: "One-way ANOVA calculation"
+#| fig-cap: "ANOVA calculations"
 knitr::include_graphics("images/onewayex1.png")
 ```
+
+Correction Factor, $CF = \dfrac{G^{2}}{n} = \dfrac{(1541)^{2}}{24} = \dfrac{2374681}{24} = 98945.04$
+
+Total Sum of Squares,
+
+$$\text{Total SS} = \sum_{i=1}^{6}\sum_{j=1}^{4} y_{ij}^{2} - CF = 112305 - 98945.04 = 13359.96$$
+
+Treatment Sum of Squares,
+
+$$\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.3 - 98945.04 = 10427.21$$
+
+Error Sum of Squares,
+
+$$\text{ESS} = \text{Total SS} - \text{Treatment SS} = 13359.96 - 10427.21 = 2932.75$$
 
 ```{r echo=FALSE, out.width="95%", fig.align='center'}
 #| label: fig-onewayresult
@@ -219,17 +254,18 @@ knitr::include_graphics("images/anovaresult.png")
 Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.
 :::
 
-### Two-way ANOVA
+### Two-way ANOVA  
 
-In the one-way ANOVA explained in the previous section, the treatments constitute different levels of a single factor which is controlled in the experiment. There are, however, many situations in which the response variable of interest may be affected by more than one factor. For example,
+In one-way analysis of variance (one-way ANOVA), only one factor is considered to influence the response variable. However, in many practical situations, the response variable may be affected by two factors simultaneously. When the objective is to study the effects of two factors on a response variable, two-way analysis of variance (two-way ANOVA) is used. Compared with one-way ANOVA, two-way ANOVA provides more information by allowing the effects of both factors to be examined in a single analysis.
 
--   Milk yield of a cow may be affected by differences in treatments, *i*.*e*., the feeds fed, as well as by differences in the breed of the cows.
+For example, the milk yield of cows may be influenced by both the type of feed provided and the breed of the cows. Similarly, the moisture content of butter may depend on the fat content of the cream as well as the churning speed used during preparation. In each of these examples, there are two factors that may contribute to the variation in the response variable.
 
--   Moisture content of butter prepared by churning cream may be affected by different levels of fat, churning speed, etc.
+In two-way ANOVA, the observations are classified according to two factors, and the total variation in the data is partitioned into variation due to Factor A, variation due to Factor B, and experimental error. This enables the researcher to determine whether each factor has a significant effect on the response variable.
 
-Here two independent factors might have an effect on the response variable of interest. These two factors are considered to be the sources of variation in the data, in addition to the experimental error. To compare means in such a situation, we use two-way ANOVA.
+In many experiments, the effect of one factor may depend on the level of the other factor. This phenomenon is known as the interaction effect. For example, a particular type of feed may improve milk yield more in one breed of cow than in another. When such an interaction is included in the statistical model, two-way ANOVA also tests whether the interaction between the two factors is statistically significant.
 
-In a two-way classification, the data are classified according to two different criteria or factors. The procedure for analysis of variance is somewhat different from the one followed earlier. One can also study the interaction between the two factors, if the interaction effect is included in the two-way ANOVA model.
+Thus, two-way ANOVA is a powerful extension of one-way ANOVA. It allows researchers to study the individual effects of two factors simultaneously and, when appropriate, to examine whether the factors interact with each other. Consequently, it is widely used in agricultural, biological, medical, and industrial experiments where more than one factor influences the response variable.
+
 
 #### Two-way ANOVA model {#sec-twowaymodel}
 
@@ -259,7 +295,11 @@ knitr::include_graphics("images/twoway.png")
 
 -   **Error degrees of freedom** = Total d.f. $-$ factor A d.f. $-$ factor B d.f.
 
-$$\text{Error d.f.} = vr - 1 - (v - 1) - (r - 1) = vr - 1 - v + 1 - r + 1 = vr - v - r + 1 = (v - 1)(r - 1)$$ {#eq-twowaydf}
+$$\begin{aligned}
+\text{Error d.f.} &= vr - 1 - (v - 1) - (r - 1) \\
+&= vr - 1 - v + 1 - r + 1 \\
+&= vr - v - r + 1 = (v - 1)(r - 1)
+\end{aligned}$$ {#eq-twowaydf}
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-twowaytable
