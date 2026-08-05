@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>17&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<title>18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,20 +50,24 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./appendix1.html" rel="next">
-<link href="./designofexperiments.html" rel="prev">
+<link href="./multipleComparison.html" rel="next">
+<link href="./uniformityTrials.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +110,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -122,12 +126,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="17&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:title" content="18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
-<meta name="twitter:title" content="17&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:title" content="18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
@@ -136,7 +140,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -145,7 +311,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +326,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -291,20 +458,44 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./uniformityTrials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Uniformity trials</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multipleComparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singleFactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
     </ul>
@@ -317,21 +508,21 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#null-hypothesis-in-anova" id="toc-null-hypothesis-in-anova" class="nav-link active" data-scroll-target="#null-hypothesis-in-anova"><span class="header-section-number">17.1</span> Null hypothesis in ANOVA</a></li>
-  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom"><span class="header-section-number">17.2</span> Degrees of freedom</a></li>
-  <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">17.3</span> Mean squares</a></li>
-  <li><a href="#test-statistic-f" id="toc-test-statistic-f" class="nav-link" data-scroll-target="#test-statistic-f"><span class="header-section-number">17.4</span> Test statistic F</a></li>
-  <li><a href="#assumptions-of-anova" id="toc-assumptions-of-anova" class="nav-link" data-scroll-target="#assumptions-of-anova"><span class="header-section-number">17.5</span> Assumptions of ANOVA</a></li>
-  <li><a href="#types-of-anova" id="toc-types-of-anova" class="nav-link" data-scroll-target="#types-of-anova"><span class="header-section-number">17.6</span> Types of ANOVA</a>
+  <li><a href="#null-hypothesis-in-anova" id="toc-null-hypothesis-in-anova" class="nav-link active" data-scroll-target="#null-hypothesis-in-anova"><span class="header-section-number">18.1</span> Null hypothesis in ANOVA</a></li>
+  <li><a href="#degrees-of-freedom" id="toc-degrees-of-freedom" class="nav-link" data-scroll-target="#degrees-of-freedom"><span class="header-section-number">18.2</span> Degrees of freedom</a></li>
+  <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">18.3</span> Mean squares</a></li>
+  <li><a href="#test-statistic-f" id="toc-test-statistic-f" class="nav-link" data-scroll-target="#test-statistic-f"><span class="header-section-number">18.4</span> Test statistic F</a></li>
+  <li><a href="#assumptions-of-anova" id="toc-assumptions-of-anova" class="nav-link" data-scroll-target="#assumptions-of-anova"><span class="header-section-number">18.5</span> Assumptions of ANOVA</a></li>
+  <li><a href="#types-of-anova" id="toc-types-of-anova" class="nav-link" data-scroll-target="#types-of-anova"><span class="header-section-number">18.6</span> Types of ANOVA</a>
   <ul class="collapse">
-  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">17.6.1</span> One-way ANOVA</a></li>
-  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">17.6.2</span> Two-way ANOVA</a></li>
+  <li><a href="#one-way-anova" id="toc-one-way-anova" class="nav-link" data-scroll-target="#one-way-anova"><span class="header-section-number">18.6.1</span> One-way ANOVA</a></li>
+  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">18.6.2</span> Two-way ANOVA</a></li>
   </ul></li>
-  <li><a href="#models-under-anova" id="toc-models-under-anova" class="nav-link" data-scroll-target="#models-under-anova"><span class="header-section-number">17.7</span> Models under ANOVA</a>
+  <li><a href="#models-under-anova" id="toc-models-under-anova" class="nav-link" data-scroll-target="#models-under-anova"><span class="header-section-number">18.7</span> Models under ANOVA</a>
   <ul class="collapse">
-  <li><a href="#sec-fixed" id="toc-sec-fixed" class="nav-link" data-scroll-target="#sec-fixed"><span class="header-section-number">17.7.1</span> Fixed effects model</a></li>
-  <li><a href="#sec-random" id="toc-sec-random" class="nav-link" data-scroll-target="#sec-random"><span class="header-section-number">17.7.2</span> Random effects model</a></li>
-  <li><a href="#sec-mixed" id="toc-sec-mixed" class="nav-link" data-scroll-target="#sec-mixed"><span class="header-section-number">17.7.3</span> Mixed effects model</a></li>
+  <li><a href="#sec-fixed" id="toc-sec-fixed" class="nav-link" data-scroll-target="#sec-fixed"><span class="header-section-number">18.7.1</span> Fixed effects model</a></li>
+  <li><a href="#sec-random" id="toc-sec-random" class="nav-link" data-scroll-target="#sec-random"><span class="header-section-number">18.7.2</span> Random effects model</a></li>
+  <li><a href="#sec-mixed" id="toc-sec-mixed" class="nav-link" data-scroll-target="#sec-mixed"><span class="header-section-number">18.7.3</span> Mixed effects model</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -339,9 +530,10 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></h1>
 </div>
 
 
@@ -368,17 +560,17 @@ window.Quarto = {
 <p><span id="eq-totalvar"><span class="math display">\[\begin{aligned}
 \text{Total variation} = \ &amp;\text{Variation due to treatments} \\
 &amp;+ \text{Variation due to experimental error}
-\end{aligned} \tag{17.1}\]</span></span></p>
+\end{aligned} \tag{18.1}\]</span></span></p>
 <p>In general, every experiment is conducted on a sample of experimental units, and conclusions are drawn about the corresponding population. In this example, the objective is to determine whether the mean yields produced by fertilizers <strong>A</strong>, <strong>B</strong>, and <strong>C</strong> differ significantly. However, any observed differences in sample means may simply be due to random experimental error rather than true treatment effects. Therefore, a statistical test is required to distinguish genuine treatment differences from chance variation.</p>
 <p><strong>Analysis of Variance (ANOVA)</strong> is the statistical procedure used for this purpose. ANOVA partitions the total observed variation into components attributable to different sources of variation, primarily treatment and experimental error. The fundamental principle of ANOVA is that if the treatment effect is real, the variation among treatment means (between-treatment variation) should be substantially larger than the random variation within treatments (error variation).</p>
 <p>To assess this, ANOVA compares the treatment variance (between-group variance) with the error variance (within-group variance). If the treatment variance is considerably greater than the error variance, it provides evidence that the treatment means are not all equal. Conversely, if the treatment variance is similar to the error variance, the observed differences among treatment means are likely due to random chance.</p>
 <p>In essence, ANOVA is a statistical hypothesis-testing procedure used to determine whether the <strong>means of two or more populations</strong> differ significantly by comparing the variation due to treatments with the variation due to experimental error. The method was developed by Sir Ronald A. Fisher, and it remains one of the most widely used techniques for analyzing experimental data.</p>
-<section id="null-hypothesis-in-anova" class="level2" data-number="17.1">
-<h2 data-number="17.1" class="anchored" data-anchor-id="null-hypothesis-in-anova"><span class="header-section-number">17.1</span> Null hypothesis in ANOVA</h2>
+<section id="null-hypothesis-in-anova" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="null-hypothesis-in-anova"><span class="header-section-number">18.1</span> Null hypothesis in ANOVA</h2>
 <p>The null hypothesis in ANOVA is that the population means are equal, which is denoted as <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k\)</span>. The alternative hypothesis is that at least a pair of treatment means are not equal, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_i \neq \mu_j\)</span>, where <span class="math inline">\(i \neq j\)</span>; <span class="math inline">\(i, j = 1, 2, \ldots, k\)</span>, and where <span class="math inline">\(\mu_1, \mu_2, \mu_3, \ldots, \mu_k\)</span> are the <span class="math inline">\(k\)</span> population means.</p>
 </section>
-<section id="degrees-of-freedom" class="level2" data-number="17.2">
-<h2 data-number="17.2" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">17.2</span> Degrees of freedom</h2>
+<section id="degrees-of-freedom" class="level2" data-number="18.2">
+<h2 data-number="18.2" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">18.2</span> Degrees of freedom</h2>
 <p>Before proceeding further, it is important to understand the concept of degrees of freedom (df). Simply put, degrees of freedom are the number of independent values that are free to vary after certain conditions or constraints have been taken into account.</p>
 <p>To understand this idea, consider a simple example. Suppose you have 7 different hats and you want to wear a different hat every day for one week. On the first day, you can choose any one of the 7 hats. On the second day, you have 6 hats left to choose from. Similarly, on the third day you have 5 choices, and so on. By the sixth day, only two hats remain, so you still have a choice. However, after selecting a hat on the sixth day, there is only one hat left for the seventh day. Therefore, the choice on the last day is no longer free, it is completely determined by the choices made on the previous six days. In this example, there are 6 independent choices, or 7 − 1 = 6 degrees of freedom.</p>
 <p>Now let us see how this idea applies to statistics.</p>
@@ -391,15 +583,15 @@ window.Quarto = {
 <p>If we divide by (n), the sample variance tends to underestimate the true population variance. Dividing by (n-1), a correction known as Bessel’s correction, removes this bias and provides an unbiased estimate of the population variance. Consequently, it also gives a better estimate of the population standard deviation.</p>
 <p>Degrees of freedom play an important role in many statistical methods. They determine the shape of probability distributions such as the t-distribution, chi-square distribution, and F-distribution, which are used in hypothesis testing. The degrees of freedom therefore influence the critical values and p-values used to decide whether the observed differences are statistically significant.</p>
 </section>
-<section id="mean-squares" class="level2" data-number="17.3">
-<h2 data-number="17.3" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">17.3</span> Mean squares</h2>
+<section id="mean-squares" class="level2" data-number="18.3">
+<h2 data-number="18.3" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">18.3</span> Mean squares</h2>
 <p>The sum of squares is the sum of the squared differences of each observation from the mean. That is, Sum of squares = <span class="math inline">\(\sum_{i=1}^{n}\left( x_{i} - \overline{x} \right)^{2}\)</span>, where <span class="math inline">\(i = 1, 2, \ldots, n\)</span>, and the mean <span class="math inline">\(\overline{x} = \dfrac{\sum_{i=1}^{n} x_{i}}{n}\)</span>. The sum of squares generates a measure of variability. In one-way ANOVA we calculate the sum of squares of all observations to get a measure of total variability, along with the within-group and between-group sums of squares, which give an idea of the within-group (error) and between-group (between treatments) variability respectively. Mean sum of squares, or mean squares, are obtained by dividing the sum of squares by the corresponding degrees of freedom. The mean square provides an unbiased estimate of variance. For example, in ANOVA the error mean square (MSE), given by <span class="math inline">\(\dfrac{\text{within-group sum of squares}}{\text{error degrees of freedom}}\)</span>, provides an unbiased estimate of the error variance.</p>
 </section>
-<section id="test-statistic-f" class="level2" data-number="17.4">
-<h2 data-number="17.4" class="anchored" data-anchor-id="test-statistic-f"><span class="header-section-number">17.4</span> Test statistic F</h2>
+<section id="test-statistic-f" class="level2" data-number="18.4">
+<h2 data-number="18.4" class="anchored" data-anchor-id="test-statistic-f"><span class="header-section-number">18.4</span> Test statistic F</h2>
 <p>Any function of sample values is known as a statistic. For example, the sample mean, sample variance, and the sum of all sample values are statistics, because these are all some functions of sample values. If a statistic is used to test a hypothesis, then it is known as a test statistic. Examples of test statistics are <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(\chi^2\)</span>, etc. The test statistic used in ANOVA is <span class="math inline">\(F\)</span>.</p>
 <p>The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k\)</span> is true, the ratio of the mean square treatment to the mean square error follows an F distribution.</p>
-<p>The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in <a href="#fig-fdist" class="quarto-xref">Figure&nbsp;<span>17.1</span></a>, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.</p>
+<p>The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in <a href="#fig-fdist" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.</p>
 <p>In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -409,15 +601,15 @@ window.Quarto = {
 <img src="images/fdist.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.1: The F distribution under different degrees of freedom
+Figure&nbsp;18.1: The F distribution under different degrees of freedom
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
 </section>
-<section id="assumptions-of-anova" class="level2" data-number="17.5">
-<h2 data-number="17.5" class="anchored" data-anchor-id="assumptions-of-anova"><span class="header-section-number">17.5</span> Assumptions of ANOVA</h2>
+<section id="assumptions-of-anova" class="level2" data-number="18.5">
+<h2 data-number="18.5" class="anchored" data-anchor-id="assumptions-of-anova"><span class="header-section-number">18.5</span> Assumptions of ANOVA</h2>
 <ul>
 <li><p>Observations under each treatment group are drawn randomly from a normally distributed population.</p></li>
 <li><p>All the populations from which observations are drawn have a common variance, that is, homogeneity of variance.</p></li>
@@ -426,26 +618,26 @@ Figure&nbsp;17.1: The F distribution under different degrees of freedom
 </ul>
 <p>As a result of the above assumptions, the experimental errors are independent and identically distributed (iid) with a normal distribution of mean 0 and variance <span class="math inline">\(\sigma^2\)</span>. In other words, we can say <span class="math inline">\(e_{ij} \sim iid\ N(0, \sigma^{2})\)</span>.</p>
 </section>
-<section id="types-of-anova" class="level2" data-number="17.6">
-<h2 data-number="17.6" class="anchored" data-anchor-id="types-of-anova"><span class="header-section-number">17.6</span> Types of ANOVA</h2>
+<section id="types-of-anova" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="types-of-anova"><span class="header-section-number">18.6</span> Types of ANOVA</h2>
 <p>Based on the model used and the sources of variation studied, ANOVA can be classified into the following types:</p>
 <ul>
 <li>One-way ANOVA</li>
 <li>Two-way ANOVA</li>
 <li><span class="math inline">\(m\)</span>-way ANOVA</li>
 </ul>
-<section id="one-way-anova" class="level3" data-number="17.6.1">
-<h3 data-number="17.6.1" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">17.6.1</span> One-way ANOVA</h3>
+<section id="one-way-anova" class="level3" data-number="18.6.1">
+<h3 data-number="18.6.1" class="anchored" data-anchor-id="one-way-anova"><span class="header-section-number">18.6.1</span> One-way ANOVA</h3>
 <p>The simplest form of analysis of variance is one-way analysis of variance (one-way ANOVA). It is used when there is only one factor (source of variation) that is expected to influence the response variable. The objective of one-way ANOVA is to determine whether the means of two or more groups defined by this single factor differ significantly.</p>
 <p>For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertiliser treatments. In this case, the fertiliser treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.</p>
 <section id="sec-onewaymodel" class="level4">
 <h4 class="anchored" data-anchor-id="sec-onewaymodel">One-way ANOVA model</h4>
-<p><span id="eq-onewaymodel"><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij} \tag{17.2}\]</span></span></p>
+<p><span id="eq-onewaymodel"><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij} \tag{18.2}\]</span></span></p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. <span class="math inline">\(Y_{ij}\)</span> is the observed value of the <span class="math inline">\(i^{\text{th}}\)</span> treatment from the <span class="math inline">\(j^{\text{th}}\)</span> replication, <span class="math inline">\(\tau_{i}\)</span> is the effect of the <span class="math inline">\(i^{\text{th}}\)</span> treatment, and <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{ij}\)</span> is the error effect, <span class="math inline">\(e_{ij} \sim iid\ N(0, \sigma^{2})\)</span>.</p>
 </section>
 <section id="one-way-classification" class="level4">
 <h4 class="anchored" data-anchor-id="one-way-classification">One-way classification</h4>
-<p>Consider an experiment with <span class="math inline">\(v\)</span> treatments with <span class="math inline">\(r\)</span> replications each. The observations are recorded as shown in <a href="#fig-oneway" class="quarto-xref">Figure&nbsp;<span>17.2</span></a>.</p>
+<p>Consider an experiment with <span class="math inline">\(v\)</span> treatments with <span class="math inline">\(r\)</span> replications each. The observations are recorded as shown in <a href="#fig-oneway" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-oneway" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -454,7 +646,7 @@ Figure&nbsp;17.1: The F distribution under different degrees of freedom
 <img src="images/oneway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.2: One-way classification of data
+Figure&nbsp;18.2: One-way classification of data
 </figcaption>
 </figure>
 </div>
@@ -472,7 +664,7 @@ Figure&nbsp;17.2: One-way classification of data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Proof
+<span class="screen-reader-only">Note</span>Proof
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -481,17 +673,17 @@ Proof
 <p><span class="math display">\[= \sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - n\bar{Y}^{2}\]</span></p>
 <p><span class="math display">\[= \sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - n\left( \frac{\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}}{n} \right)^{2}\]</span></p>
 <p>Denoting <span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij} = G\)</span>,</p>
-<p><span id="eq-totalss"><span class="math display">\[\text{Total Sum of Squares} = \sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - \frac{G^{2}}{n} \tag{17.3}\]</span></span></p>
+<p><span id="eq-totalss"><span class="math display">\[\text{Total Sum of Squares} = \sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - \frac{G^{2}}{n} \tag{18.3}\]</span></span></p>
 </div>
 </div>
-<p>The Total Sum of Squares is partitioned into the Sum of Squares due to Treatments and the Sum of Squares due to Error, as shown in <a href="#eq-sspartition" class="quarto-xref">Equation&nbsp;<span>17.4</span></a>.</p>
+<p>The Total Sum of Squares is partitioned into the Sum of Squares due to Treatments and the Sum of Squares due to Error, as shown in <a href="#eq-sspartition" class="quarto-xref">Equation&nbsp;<span>18.4</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Proof
+<span class="screen-reader-only">Note</span>Proof
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -512,7 +704,7 @@ Proof
 <p>Since the sum of the weighted residuals is zero, <span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0\)</span>, and the above equation becomes</p>
 <p><span class="math display">\[= \sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2}\]</span></p>
 <p>Total Sum of Squares = within-group sum of squares + between-group sum of squares, that is,</p>
-<p><span id="eq-sspartition"><span class="math display">\[\text{Total Sum of Squares} = \text{Error Sum of Squares} + \text{Treatment Sum of Squares} \tag{17.4}\]</span></span></p>
+<p><span id="eq-sspartition"><span class="math display">\[\text{Total Sum of Squares} = \text{Error Sum of Squares} + \text{Treatment Sum of Squares} \tag{18.4}\]</span></span></p>
 </div>
 </div>
 </section>
@@ -532,7 +724,7 @@ Proof
 <p><span id="eq-onewaydf"><span class="math display">\[\begin{aligned}
 \text{Error d.f.} &amp;= vr - 1 - (v - 1) \\
 &amp;= vr - 1 - v + 1 = vr - v = v(r - 1)
-\end{aligned} \tag{17.5}\]</span></span></p>
+\end{aligned} \tag{18.5}\]</span></span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-onewayanova" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -541,7 +733,7 @@ Proof
 <img src="images/onewayanova.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.3: One-way ANOVA table
+Figure&nbsp;18.3: One-way ANOVA table
 </figcaption>
 </figure>
 </div>
@@ -555,7 +747,7 @@ Figure&nbsp;17.3: One-way ANOVA table
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -566,9 +758,9 @@ Note
 <section id="sec-onewayexample" class="level4">
 <h4 class="anchored" data-anchor-id="sec-onewayexample">Example of one-way ANOVA</h4>
 <div id="exm-oneway" class="theorem example">
-<p><span class="theorem-title"><strong>Example 17.1</strong></span> The data on tiller count after transplanting were recorded from 4 hill sampling units for a fertilizer trial involving 6 treatments. Test for a significant difference between the treatments. The treatments are labeled as <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, <span class="math inline">\(T_5\)</span>, and <span class="math inline">\(T_6\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 18.1</strong></span> The data on tiller count after transplanting were recorded from 4 hill sampling units for a fertilizer trial involving 6 treatments. Test for a significant difference between the treatments. The treatments are labeled as <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, <span class="math inline">\(T_5\)</span>, and <span class="math inline">\(T_6\)</span>.</p>
 <p><strong>Solution</strong></p>
-<p>The data are arranged as shown in <a href="#fig-onewayex" class="quarto-xref">Figure&nbsp;<span>17.4</span></a>.</p>
+<p>The data are arranged as shown in <a href="#fig-onewayex" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-onewayex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -577,7 +769,7 @@ Note
 <img src="images/onewayex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.4: One-way classified data on tiller count
+Figure&nbsp;18.4: One-way classified data on tiller count
 </figcaption>
 </figure>
 </div>
@@ -592,7 +784,7 @@ Figure&nbsp;17.4: One-way classified data on tiller count
 <img src="images/onewayex1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.5: ANOVA calculations
+Figure&nbsp;18.5: ANOVA calculations
 </figcaption>
 </figure>
 </div>
@@ -613,7 +805,7 @@ Figure&nbsp;17.5: ANOVA calculations
 <img src="images/anovaresult.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayresult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.6: One-way ANOVA table for the tiller count data
+Figure&nbsp;18.6: One-way ANOVA table for the tiller count data
 </figcaption>
 </figure>
 </div>
@@ -623,8 +815,8 @@ Figure&nbsp;17.6: One-way ANOVA table for the tiller count data
 </div>
 </section>
 </section>
-<section id="two-way-anova" class="level3" data-number="17.6.2">
-<h3 data-number="17.6.2" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">17.6.2</span> Two-way ANOVA</h3>
+<section id="two-way-anova" class="level3" data-number="18.6.2">
+<h3 data-number="18.6.2" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">18.6.2</span> Two-way ANOVA</h3>
 <p>In one-way analysis of variance (one-way ANOVA), only one factor is considered to influence the response variable. However, in many practical situations, the response variable may be affected by two factors simultaneously. When the objective is to study the effects of two factors on a response variable, two-way analysis of variance (two-way ANOVA) is used. Compared with one-way ANOVA, two-way ANOVA provides more information by allowing the effects of both factors to be examined in a single analysis.</p>
 <p>For example, the milk yield of cows may be influenced by both the type of feed provided and the breed of the cows. Similarly, the moisture content of butter may depend on the fat content of the cream as well as the churning speed used during preparation. In each of these examples, there are two factors that may contribute to the variation in the response variable.</p>
 <p>In two-way ANOVA, the observations are classified according to two factors, and the total variation in the data is partitioned into variation due to Factor A, variation due to Factor B, and experimental error. This enables the researcher to determine whether each factor has a significant effect on the response variable.</p>
@@ -632,12 +824,12 @@ Figure&nbsp;17.6: One-way ANOVA table for the tiller count data
 <p>Thus, two-way ANOVA is a powerful extension of one-way ANOVA. It allows researchers to study the individual effects of two factors simultaneously and, when appropriate, to examine whether the factors interact with each other. Consequently, it is widely used in agricultural, biological, medical, and industrial experiments where more than one factor influences the response variable.</p>
 <section id="sec-twowaymodel" class="level4">
 <h4 class="anchored" data-anchor-id="sec-twowaymodel">Two-way ANOVA model</h4>
-<p><span id="eq-twowaymodel"><span class="math display">\[Y_{ij} = \mu + \tau_{i} + \gamma_{j} + e_{ij} \tag{17.6}\]</span></span></p>
+<p><span id="eq-twowaymodel"><span class="math display">\[Y_{ij} = \mu + \tau_{i} + \gamma_{j} + e_{ij} \tag{18.6}\]</span></span></p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. <span class="math inline">\(Y_{ij}\)</span> is the observed value of the response under the <span class="math inline">\(i^{\text{th}}\)</span> level of factor A and the <span class="math inline">\(j^{\text{th}}\)</span> level of factor B, <span class="math inline">\(\tau_{i}\)</span> is the effect of the <span class="math inline">\(i^{\text{th}}\)</span> level of factor A, and <span class="math inline">\(\gamma_{j}\)</span> is the effect of the <span class="math inline">\(j^{\text{th}}\)</span> level of factor B. <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{ij}\)</span> is the error effect, <span class="math inline">\(e_{ij} \sim iid\ N(0, \sigma^{2})\)</span>.</p>
 </section>
 <section id="two-way-classification" class="level4">
 <h4 class="anchored" data-anchor-id="two-way-classification">Two-way classification</h4>
-<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#fig-twoway" class="quarto-xref">Figure&nbsp;<span>17.7</span></a>. We have considered the situation of only one observation per cell.</p>
+<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#fig-twoway" class="quarto-xref">Figure&nbsp;<span>18.7</span></a>. We have considered the situation of only one observation per cell.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-twoway" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -646,7 +838,7 @@ Figure&nbsp;17.6: One-way ANOVA table for the tiller count data
 <img src="images/twoway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.7: Two-way classification of data
+Figure&nbsp;18.7: Two-way classification of data
 </figcaption>
 </figure>
 </div>
@@ -666,7 +858,7 @@ Figure&nbsp;17.7: Two-way classification of data
 \text{Error d.f.} &amp;= vr - 1 - (v - 1) - (r - 1) \\
 &amp;= vr - 1 - v + 1 - r + 1 \\
 &amp;= vr - v - r + 1 = (v - 1)(r - 1)
-\end{aligned} \tag{17.7}\]</span></span></p>
+\end{aligned} \tag{18.7}\]</span></span></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-twowaytable" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -675,7 +867,7 @@ Figure&nbsp;17.7: Two-way classification of data
 <img src="images/twowaytable.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twowaytable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.8: Two-way ANOVA table
+Figure&nbsp;18.8: Two-way ANOVA table
 </figcaption>
 </figure>
 </div>
@@ -688,7 +880,7 @@ Figure&nbsp;17.8: Two-way ANOVA table
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -705,7 +897,7 @@ Note
 <section id="example-of-two-way-anova" class="level4">
 <h4 class="anchored" data-anchor-id="example-of-two-way-anova">Example of two-way ANOVA</h4>
 <div id="exm-twoway" class="theorem example">
-<p><span class="theorem-title"><strong>Example 17.2</strong></span> Four chemicals <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, <span class="math inline">\(S_3\)</span>, and <span class="math inline">\(S_4\)</span> were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Consider that chemicals and breeds are independent.</p>
+<p><span class="theorem-title"><strong>Example 18.2</strong></span> Four chemicals <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, <span class="math inline">\(S_3\)</span>, and <span class="math inline">\(S_4\)</span> were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Consider that chemicals and breeds are independent.</p>
 <p><strong>Solution</strong></p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
@@ -715,7 +907,7 @@ Note
 <img src="images/twowayex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twowayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.9: Two-way classification of observations for chemicals and breeds
+Figure&nbsp;18.9: Two-way classification of observations for chemicals and breeds
 </figcaption>
 </figure>
 </div>
@@ -739,7 +931,7 @@ Figure&nbsp;17.9: Two-way classification of observations for chemicals and breed
 <img src="images/anovatabletwoway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anovatabletwoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;17.10: ANOVA table for chemicals and breeds
+Figure&nbsp;18.10: ANOVA table for chemicals and breeds
 </figcaption>
 </figure>
 </div>
@@ -750,29 +942,29 @@ Figure&nbsp;17.10: ANOVA table for chemicals and breeds
 </section>
 </section>
 </section>
-<section id="models-under-anova" class="level2" data-number="17.7">
-<h2 data-number="17.7" class="anchored" data-anchor-id="models-under-anova"><span class="header-section-number">17.7</span> Models under ANOVA</h2>
+<section id="models-under-anova" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="models-under-anova"><span class="header-section-number">18.7</span> Models under ANOVA</h2>
 <p>Analysis of variance is based on a linear statistical model. This linear model may be either</p>
 <ul>
 <li>Fixed effects model</li>
 <li>Random effects model</li>
 <li>Mixed effects model</li>
 </ul>
-<section id="sec-fixed" class="level3" data-number="17.7.1">
-<h3 data-number="17.7.1" class="anchored" data-anchor-id="sec-fixed"><span class="header-section-number">17.7.1</span> Fixed effects model</h3>
+<section id="sec-fixed" class="level3" data-number="18.7.1">
+<h3 data-number="18.7.1" class="anchored" data-anchor-id="sec-fixed"><span class="header-section-number">18.7.1</span> Fixed effects model</h3>
 <p>A fixed effects model is a statistical model in which the model parameters are fixed or non-random quantities. In using a fixed effects model in agricultural experiments, we assume that the treatment effects are unknown constants.</p>
 <p>The fixed effects model can be explained using an example. Consider an experiment where the experimenter wants to know whether three fields had any impact on the yield of a particular strain of wheat. Observations were taken from 12 plots from each field (replication). The analysis of variance model is</p>
 <p><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij}; \qquad e_{ij} \sim iid\ N(0, \sigma^{2})\]</span></p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. Here in our example <span class="math inline">\(t = 3\)</span> and <span class="math inline">\(r = 12\)</span>. <span class="math inline">\(Y_{ij}\)</span> is the observed value of the <span class="math inline">\(i^{\text{th}}\)</span> field from the <span class="math inline">\(j^{\text{th}}\)</span> plot, and <span class="math inline">\(\tau_{i}\)</span> is the effect of the <span class="math inline">\(i^{\text{th}}\)</span> treatment, which is considered to be an unknown constant. <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{ij}\)</span> is the error effect, which is independently and normally distributed with mean 0 and constant variance <span class="math inline">\(\sigma^2\)</span>. In this model, field is a “fixed effect”. Along with <span class="math inline">\(\mu\)</span>, the fixed parameters <span class="math inline">\(\tau_{1}\)</span>, <span class="math inline">\(\tau_{2}\)</span>, and <span class="math inline">\(\tau_{3}\)</span> are the quantities of interest. Using this model, the experimenter can make decisions only on the treatments (fields) tested.</p>
 </section>
-<section id="sec-random" class="level3" data-number="17.7.2">
-<h3 data-number="17.7.2" class="anchored" data-anchor-id="sec-random"><span class="header-section-number">17.7.2</span> Random effects model</h3>
+<section id="sec-random" class="level3" data-number="18.7.2">
+<h3 data-number="18.7.2" class="anchored" data-anchor-id="sec-random"><span class="header-section-number">18.7.2</span> Random effects model</h3>
 <p>A random effects model, also called a variance components model, is a statistical model where the model parameters are random variables. Consider the example above of the wheat fields. If a random effects model is used, then the fields are assumed to be randomly sampled from a population of fields in that area, and the analysis of variance model is</p>
 <p><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij}; \qquad e_{ij} \sim iid\ N(0, \sigma^{2}); \quad \tau_{i} \sim N(0, \sigma_{\tau}^{2})\]</span></p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. Here <span class="math inline">\(\tau_{i}\)</span> is considered as a random variable, <span class="math inline">\(\tau_{i} \sim N(0, \sigma_{\tau}^{2})\)</span>, and <span class="math inline">\(e_{ij} \sim N(0, \sigma^{2})\)</span>. In this model, field is a “random effect”. The statistical model describes the whole ensemble of possible repetitions of the experiment in the region from which the fields were selected. The experimenter could make generalisations about all the fields in that particular region based on the experiment. One important consequence of random effects is that the responses (the <span class="math inline">\(Y_{ij}\)</span>’s) are no longer independent. The random <span class="math inline">\(\tau_{i}\)</span>’s induce correlations among the responses. The responses jointly have a multivariate normal distribution.</p>
 </section>
-<section id="sec-mixed" class="level3" data-number="17.7.3">
-<h3 data-number="17.7.3" class="anchored" data-anchor-id="sec-mixed"><span class="header-section-number">17.7.3</span> Mixed effects model</h3>
+<section id="sec-mixed" class="level3" data-number="18.7.3">
+<h3 data-number="18.7.3" class="anchored" data-anchor-id="sec-mixed"><span class="header-section-number">18.7.3</span> Mixed effects model</h3>
 <p>A mixed model, mixed-effects model, or mixed error-component model is a statistical model containing both fixed effects and random effects. For example, in an agricultural trial where several specific fertilizers of interest (fixed effect) are tested across a random sample of fields drawn from a larger region (random effect), the model contains both kinds of effects and is therefore a mixed model.</p>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
@@ -780,7 +972,7 @@ Figure&nbsp;17.10: ANOVA table for chemicals and breeds
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -796,7 +988,7 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -816,380 +1008,256 @@ Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinb
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1197,194 +1265,170 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./designofexperiments.html" class="pagination-link" aria-label="Design of experiments">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Design of experiments</span></span>
+      <a href="./uniformityTrials.html" class="pagination-link" aria-label="Uniformity trials">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Uniformity trials</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
-        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./multipleComparison.html" class="pagination-link" aria-label="Multiple comparison tests">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

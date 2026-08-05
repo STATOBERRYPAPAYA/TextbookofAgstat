@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>20&nbsp; Single factor experiments – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./appendix1.html" rel="next">
+<link href="./multipleComparison.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="20&nbsp; Single factor experiments – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="20&nbsp; Single factor experiments – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./singleFactor.html"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probabilitydist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampleSurvey.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sample survey</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./largeSampletest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Large sample test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsampleTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Small sample tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./designofexperiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Design of experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uniformityTrials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Uniformity trials</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multipleComparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singleFactor.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#sec-crd" id="toc-sec-crd" class="nav-link active" data-scroll-target="#sec-crd"><span class="header-section-number">20.1</span> Completely Randomized Design (CRD)</a>
+  <ul class="collapse">
+  <li><a href="#sec-random1" id="toc-sec-random1" class="nav-link" data-scroll-target="#sec-random1"><span class="header-section-number">20.1.1</span> Randomization procedure</a></li>
+  <li><a href="#layout-of-crd" id="toc-layout-of-crd" class="nav-link" data-scroll-target="#layout-of-crd"><span class="header-section-number">20.1.2</span> Layout of CRD</a></li>
+  <li><a href="#statistical-model-for-crd" id="toc-statistical-model-for-crd" class="nav-link" data-scroll-target="#statistical-model-for-crd"><span class="header-section-number">20.1.3</span> Statistical model for CRD</a></li>
+  <li><a href="#analysis-of-crd" id="toc-analysis-of-crd" class="nav-link" data-scroll-target="#analysis-of-crd"><span class="header-section-number">20.1.4</span> Analysis of CRD</a></li>
+  <li><a href="#advantages-of-a-crd" id="toc-advantages-of-a-crd" class="nav-link" data-scroll-target="#advantages-of-a-crd"><span class="header-section-number">20.1.5</span> Advantages of a CRD</a></li>
+  <li><a href="#disadvantages-of-a-crd" id="toc-disadvantages-of-a-crd" class="nav-link" data-scroll-target="#disadvantages-of-a-crd"><span class="header-section-number">20.1.6</span> Disadvantages of a CRD</a></li>
+  <li><a href="#sec-replical" id="toc-sec-replical" class="nav-link" data-scroll-target="#sec-replical"><span class="header-section-number">20.1.7</span> Number of replications in CRD</a></li>
+  <li><a href="#example-1" id="toc-example-1" class="nav-link" data-scroll-target="#example-1"><span class="header-section-number">20.1.8</span> Example</a></li>
+  </ul></li>
+  <li><a href="#randomized-complete-block-designs-rcbd" id="toc-randomized-complete-block-designs-rcbd" class="nav-link" data-scroll-target="#randomized-complete-block-designs-rcbd"><span class="header-section-number">20.2</span> Randomized Complete Block Designs (RCBD)</a>
+  <ul class="collapse">
+  <li><a href="#blocking-technique" id="toc-blocking-technique" class="nav-link" data-scroll-target="#blocking-technique"><span class="header-section-number">20.2.1</span> Blocking technique</a></li>
+  <li><a href="#sec-rcbdrandom" id="toc-sec-rcbdrandom" class="nav-link" data-scroll-target="#sec-rcbdrandom"><span class="header-section-number">20.2.2</span> Randomization in RCBD</a></li>
+  <li><a href="#layout-of-rcbd" id="toc-layout-of-rcbd" class="nav-link" data-scroll-target="#layout-of-rcbd"><span class="header-section-number">20.2.3</span> Layout of RCBD</a></li>
+  <li><a href="#statistical-model-for-rcbd" id="toc-statistical-model-for-rcbd" class="nav-link" data-scroll-target="#statistical-model-for-rcbd"><span class="header-section-number">20.2.4</span> Statistical Model for RCBD</a></li>
+  <li><a href="#analysis-of-rcbd" id="toc-analysis-of-rcbd" class="nav-link" data-scroll-target="#analysis-of-rcbd"><span class="header-section-number">20.2.5</span> Analysis of RCBD</a></li>
+  <li><a href="#number-of-replications-in-rcbd" id="toc-number-of-replications-in-rcbd" class="nav-link" data-scroll-target="#number-of-replications-in-rcbd"><span class="header-section-number">20.2.6</span> Number of replications in RCBD</a></li>
+  <li><a href="#post-hoc-test-in-rcbd" id="toc-post-hoc-test-in-rcbd" class="nav-link" data-scroll-target="#post-hoc-test-in-rcbd"><span class="header-section-number">20.2.7</span> Post-hoc test in RCBD</a></li>
+  <li><a href="#advantages-of-rcbd" id="toc-advantages-of-rcbd" class="nav-link" data-scroll-target="#advantages-of-rcbd"><span class="header-section-number">20.2.8</span> Advantages of RCBD</a></li>
+  <li><a href="#disadvantages-of-rcbd" id="toc-disadvantages-of-rcbd" class="nav-link" data-scroll-target="#disadvantages-of-rcbd"><span class="header-section-number">20.2.9</span> Disadvantages of RCBD</a></li>
+  </ul></li>
+  <li><a href="#latin-square-design-lsd" id="toc-latin-square-design-lsd" class="nav-link" data-scroll-target="#latin-square-design-lsd"><span class="header-section-number">20.3</span> Latin Square Design (LSD)</a>
+  <ul class="collapse">
+  <li><a href="#layout-and-randaomization" id="toc-layout-and-randaomization" class="nav-link" data-scroll-target="#layout-and-randaomization"><span class="header-section-number">20.3.1</span> Layout and Randaomization</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">20.3.2</span> Analysis</a></li>
+  <li><a href="#example-3" id="toc-example-3" class="nav-link" data-scroll-target="#example-3"><span class="header-section-number">20.3.3</span> Example</a></li>
+  </ul></li>
+  <li><a href="#missing-plot-analysis" id="toc-missing-plot-analysis" class="nav-link" data-scroll-target="#missing-plot-analysis"><span class="header-section-number">20.4</span> MISSING PLOT ANALYSIS</a>
+  <ul class="collapse">
+  <li><a href="#randomised-block-design-with-a-single-missing-value" id="toc-randomised-block-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#randomised-block-design-with-a-single-missing-value"><span class="header-section-number">20.4.1</span> Randomised Block Design with a single missing value</a></li>
+  <li><a href="#latin-square-design-with-a-single-missing-value" id="toc-latin-square-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#latin-square-design-with-a-single-missing-value"><span class="header-section-number">20.4.2</span> Latin Square Design with a single missing value</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Experiments in which only a single factor varies while all others are kept constant are called single-factor experiments. In such experiments, the treatments consist solely of the different levels of the single variable factor. All other factors are maintained uniformly across all experimental units.</p>
+<p><strong>Examples:</strong></p>
+<ol type="1">
+<li><p>An experiment to find the best nitrogen level for getting a high yield, where 5 different nitrogen levels are tested. Here, the nitrogen levels are the treatments, and all other factors like irrigation, light, and fertility gradient are assumed to be homogeneous in all experimental units (here the plots are the experimental units).</p></li>
+<li><p>An experiment to find the best feed formulation for milk yield in cows from 4 feed formulas. Here, the feed formula is the only factor that varies, with 4 levels. All other factors like breed of cow, age, and so on are kept constant.</p></li>
+</ol>
+<section id="sec-crd" class="level2" data-number="20.1">
+<h2 data-number="20.1" class="anchored" data-anchor-id="sec-crd"><span class="header-section-number">20.1</span> Completely Randomized Design (CRD)</h2>
+<p>Completely Randomized Design is the basic single factor design. In this design the treatments are assigned completely at random so that each experimental unit has the same chance of receiving any one treatment. CRD is only appropriate for experiments with homogeneous experimental units, such as laboratory and green house experiments, where environmental effects are relatively easy to control. For field experiments, where there is generally large variation among experimental plots, CRD is rarely used.</p>
+<p>CRD provides a layout for conducting experiments, when experimental units are homogeneous. Only two basic principles of design, randomization <a href="designofexperiments.html#sec-rand" class="quarto-xref"><span>Section 16.7.1</span></a> and replication <a href="designofexperiments.html#sec-rep" class="quarto-xref"><span>Section 16.7.2</span></a> are followed in CRD. Local control <a href="designofexperiments.html#sec-local" class="quarto-xref"><span>Section 16.7.3</span></a> is not required as all the experimental units are homogeneous. Treatments can have unequal replications in CRD.</p>
+<section id="sec-random1" class="level3" data-number="20.1.1">
+<h3 data-number="20.1.1" class="anchored" data-anchor-id="sec-random1"><span class="header-section-number">20.1.1</span> Randomization procedure</h3>
+<p>Consider an experiment involving four treatments A, B, C, D in CRD. Each treatment is replicated 5 times. Randomization procedure is as explained below.</p>
+<ol type="1">
+<li><p>Determine the total number of experimental units (<span class="math inline">\(n\)</span>) as the product of the number of treatments (<span class="math inline">\(t\)</span>) and the number of replications (<span class="math inline">\(r\)</span>); that is, <span class="math inline">\(n = r\  \times t\)</span>. For our example, <span class="math inline">\(n = 5 \times 4 = 20\)</span></p></li>
+<li><p>Assign a unit number to each experimental units in any convenient manner; for example, consecutively from 1 to n.&nbsp;For our example, the unit numbers 1, 2,... , 20 are assigned to the 20 experimental units as shown in Figure <a href="#fig-crdnumbered" class="quarto-xref">Figure&nbsp;<span>20.1</span></a></p></li>
+<li><p>Assign the treatments to the experimental plots by using any randomization schemes. Here we explain a simple randomization scheme in section <a href="#sec-random" class="quarto-xref"><span>Section 20.1.1.1</span></a>.</p></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-crdnumbered" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crdnumbered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/crdnumbered.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crdnumbered-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.1: Numbered experimental units
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="sec-random" class="level4">
+<h4 class="anchored" data-anchor-id="sec-random">Randomization by drawing lots</h4>
+<ol type="1">
+<li><p>Prepare <span class="math inline">\(n\)</span> identical pieces of paper and divide them into <span class="math inline">\(t\)</span> groups, each group with <span class="math inline">\(r\)</span> pieces of paper. Label each piece of paper of the same group with the same letter (or number) corresponding to a treatment. Uniformly fold each of the <span class="math inline">\(n\)</span> labeled pieces of paper, mix them thoroughly, and place them in a container. For our example, there should be 20 pieces of paper, five each with treatments A, B, C, and D appearing on them.</p></li>
+<li><p>Draw one piece of paper at a time, without replacement and with constant shaking of the container after each draw to mix its content. For our example, the label and the corresponding sequence in which each piece of paper is drawn. The sequence number can be considered as the experimental unit number to which the treatment is to be assigned.</p></li>
+</ol>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-sequence" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-sequence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/sequence.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-sequence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.2: Sequence in which labelled lots are drawn
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="layout-of-crd" class="level3" data-number="20.1.2">
+<h3 data-number="20.1.2" class="anchored" data-anchor-id="layout-of-crd"><span class="header-section-number">20.1.2</span> Layout of CRD</h3>
+<p>After allotting the treatment according to the randomization procedure explained in section <a href="#sec-random1" class="quarto-xref"><span>Section 20.1.1</span></a>. The final layout will look like in the figure <a href="#fig-layout" class="quarto-xref">Figure&nbsp;<span>20.3</span></a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-layout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/layoutcrd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-layout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.3: Layout of Completely Randomized Design
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-model-for-crd" class="level3" data-number="20.1.3">
+<h3 data-number="20.1.3" class="anchored" data-anchor-id="statistical-model-for-crd"><span class="header-section-number">20.1.3</span> Statistical model for CRD</h3>
+<p>Consider a CRD with <em>v</em> treatments with <em>r</em> replications. Statistical model for CRD is same as that of one-way ANOVA (<span class="quarto-unresolved-ref">?sec-oneway</span>).<br>
+<span class="math display">\[Y_{\text{ij}} = \mu + \tau_{i} + e_{\text{ij}}\]</span><br>
+Where <em>i</em> = 1,2, …, <em>v</em> and <em>j</em> =1,2, …, <em>r</em><sub>i</sub>. <span class="math inline">\(Y_{\text{ij}}\)</span> is the observed value of <span class="math inline">\(i^{\text{th}}\)</span> treatment from <span class="math inline">\(j^{\text{th}}\)</span> replication, <span class="math inline">\(\tau_{i}\)</span> is the effect of <span class="math inline">\(i^{\text{th}}\)</span> treatment. <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{\text{ij}}\)</span> is the error effects.<span class="math inline">\(e_{ij}\)</span> <span class="math inline">\(\sim iid\ N(0,\sigma^{2})\)</span></p>
+</section>
+<section id="analysis-of-crd" class="level3" data-number="20.1.4">
+<h3 data-number="20.1.4" class="anchored" data-anchor-id="analysis-of-crd"><span class="header-section-number">20.1.4</span> Analysis of CRD</h3>
+<p>Analysis of CRD is same as that explained in section <span class="quarto-unresolved-ref">?sec-oneway</span> of one-way ANOVA.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Unequal replication (<em>i</em>.<em>e</em>. each treatment can have a different number of replications) is possible in CRD. So while calculating the treatment sum of squares, each treatment total is squared and divided by its corresponding replication, and then the sum is taken. If the replication is the same for all treatments, the treatment sum of squares is obtained by taking the sum of the squares of the treatment totals and dividing by the common replication number.</p>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-crdanova" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/crdanova.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.4: ANOVA table of CRD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="sec-postcrd" class="level4">
+<h4 class="anchored" data-anchor-id="sec-postcrd">Post hoc test (LSD)</h4>
+<p>If the null hypothesis is rejected in ANOVA; we proceed to post-hoc test explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a>. Fisher’s Least significant difference (LSD) test explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a> is the commonly employed test in agricultural experiments.<br>
+Arrange the treatment means in descending order. Critical difference (CD) is calculated for each treatment pair <span class="math inline">\(T_{i},\ T_{j}\)</span> using the following formula.</p>
+<p><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{\text{MSE}\left( \frac{1}{r_{i}} + \frac{1}{r_{j}} \right)}\]</span> (for CRD with unequal replication)</p>
+<p><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/r}\]</span> (for CRD with equal replication)</p>
+<p>Here <span class="math inline">\(t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\)</span> denotes the critical value of Student’s t for a two tailed test at α level of significance and error degrees of freedom. <span class="math inline">\(r_{i}\)</span> and <span class="math inline">\(r_{j}\)</span> are replications of <span class="math inline">\(T_{i},\ T_{j}\)</span> respectively. If the difference of any two treatment means is greater than the critical difference, they are significantly different. If the difference of any two treatment means is less than <span class="math inline">\(\text{C.D}\)</span>. they are said to be on par. (<em>i</em>.<em>e</em>., there is no any statistically significant difference). Those treatments which are at par is given same symbols or letters, such that treatment means without any common letters or symbols are significantly different at corresponding level of significance (α).</p>
+</section>
+</section>
+<section id="advantages-of-a-crd" class="level3" data-number="20.1.5">
+<h3 data-number="20.1.5" class="anchored" data-anchor-id="advantages-of-a-crd"><span class="header-section-number">20.1.5</span> Advantages of a CRD</h3>
+<ol type="1">
+<li><p>Its layout is very easy.</p></li>
+<li><p>There is complete flexibility in this design <em>i</em>.<em>e</em>. any number of treatments and replications for each treatment can be tried.</p></li>
+<li><p>Whole experimental material can be utilized in this design.</p></li>
+<li><p>This design yields maximum degrees of freedom for experimental error.</p></li>
+<li><p>The analysis of data is simplest as compared to any other design.</p></li>
+<li><p>Even if some values are missing the analysis can be done.</p></li>
+</ol>
+</section>
+<section id="disadvantages-of-a-crd" class="level3" data-number="20.1.6">
+<h3 data-number="20.1.6" class="anchored" data-anchor-id="disadvantages-of-a-crd"><span class="header-section-number">20.1.6</span> Disadvantages of a CRD</h3>
+<ol type="1">
+<li><p>Not suitable for field experiments.</p></li>
+<li><p>Relatively low accuracy due to lack of local control. Completely homogeneous experimental units are practically difficult in many situations.</p></li>
+</ol>
+</section>
+<section id="sec-replical" class="level3" data-number="20.1.7">
+<h3 data-number="20.1.7" class="anchored" data-anchor-id="sec-replical"><span class="header-section-number">20.1.7</span> Number of replications in CRD</h3>
+<p>An experimenter is free to choose any number of replications in the experiment. The precision in estimating experimental error variance increases as the number of replications increases. But the design should be such that the number of replications should be optimum, since increasing the replications will increase the experiment cost. So, there is a rule of thumb that says, error degrees of freedom should be at least 12 to keep type II error in check. One can easily find the number of replications required in a design by using the formula for error degrees of freedom of that design.</p>
+<section id="example" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example">Example</h4>
+<p>You have 5 treatments; you are planning to conduct the experiment in CRD. Find the minimum number of replications required.</p>
+<p>Formula for error degrees of freedom (<em>edf</em>) in CRD is <span class="math inline">\(n - t\)</span>; where <span class="math inline">\(n\)</span> is the total number of experimental units and <span class="math inline">\(t\)</span> is the number of treatments. <span class="math inline">\(n = rt\)</span>, <span class="math inline">\(r\)</span> is the number of replications.</p>
+<p><em>edf</em> should be <span class="math inline">\(\geq\)</span> 12</p>
+<p><em>edf</em> <span class="math inline">\(= n - t = rt - t = t\left( r - 1 \right) \geq 12\)</span></p>
+<p>Since t = 5, <em>edf</em> <span class="math inline">\(= 5\left( r - 1 \right) \geq 12\)</span></p>
+<p><span class="math inline">\(= r \geq 3.4\)</span>, Since <span class="math inline">\(r\)</span> cannot be a fraction <span class="math inline">\(r =\)</span> 4</p>
+<p>The number of replications required is 4</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Why is the minimum error degrees of freedom for a design taken as 12?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Why is the minimum error degrees of freedom for a design taken as 12?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The error degrees of freedom have a major role in deciding the critical value of F. As the error degrees of freedom (the degrees of freedom in the denominator) decrease, F tends to take larger critical values. This inflates the Type II error, <em>i</em>.<em>e</em>. we will be able to reject the null hypothesis only if there is a considerable difference between the treatments (a higher treatment sum of squares). Beyond about 12 denominator degrees of freedom, the F critical values stabilise and change very little with further increases, so 12 is taken as a practical minimum.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="example-1" class="level3" data-number="20.1.8">
+<h3 data-number="20.1.8" class="anchored" data-anchor-id="example-1"><span class="header-section-number">20.1.8</span> Example</h3>
+<p>In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-crdex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crdex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/crdex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crdex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.5: ANOVA table of CRD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<section id="solution" class="level4">
+<h4 class="anchored" data-anchor-id="solution">Solution</h4>
+<p><strong>Correction Factor</strong>:</p>
+<p><span class="math inline">\(= \frac{G^{2}}{n} = \frac{\left( 397 \right)^{2}}{20}\)</span>=7880.45</p>
+<p><strong>Total Sum of squares</strong>:</p>
+<p><span class="math inline">\(= \left( 25^{2} + 21^{2} + .... + 11^{2} \right) - CF\)</span></p>
+<p><span class="math inline">\(= 8307 - CF = 426.55\)</span></p>
+<p><strong>Treatment Sum of Squares</strong>:</p>
+<p><span class="math inline">\(\frac{1}{4}(85^{2} + 102^{2} + ... + 53^{2}) - CF\)</span><br>
+<span class="math inline">\(= 8211.75 - CF = 331.30\)</span></p>
+<p><strong>Error Sum of Square</strong>:<br>
+<span class="math inline">\(426.55 - 331.30 = 95.25\)</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-crdanovaex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-crdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/crdanovaex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-crdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.6: ANOVA table of CRD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find, which treatments are significantly different, we perform Fisher’s LSD test.</p>
+<p><span class="math display">\[\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{\text{2xMSE}}{r}} = \text{2.131}\sqrt{\frac{2\left( \text{6.350} \right)}{4}} = (\text{2.131})(\text{1.7819}) = \text{3.797}\text{2}\]</span></p>
+<p><span class="math inline">\(t_{0.025\text{ at }15 \text{ edf}} = 2.131\)</span> (Just look for the critical value of <em>t</em> for a two tailed test at α= 0.05 in the statistical table. (see section <span class="quarto-unresolved-ref">?sec-ftable</span>. It is shown as <span class="math inline">\(t_{\frac{\alpha}{2}}\)</span> , since it is a two tailed test in the one side of the t-distribution curve the probability will be <span class="math inline">\(\frac{\alpha}{2}\)</span>, so that combined probability is α.)</p>
+<p>Treatment means arranged in descending order. Those treatment pairs whose difference in means is greater than C.D. is labelled with a different letters.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Treatments</th>
+<th style="text-align: left;">means</th>
+<th style="text-align: left;">Grouping using alphabets</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{2}\)</span></td>
+<td style="text-align: left;">25.</td>
+<td style="text-align: left;">5 a</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(V_{1}\)</span></td>
+<td style="text-align: left;">21.</td>
+<td style="text-align: left;">5 b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{3}\)</span></td>
+<td style="text-align: left;">21.</td>
+<td style="text-align: left;">5 b</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(V_{4}\)</span></td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{5}\)</span></td>
+<td style="text-align: left;">13.</td>
+<td style="text-align: left;">5 c</td>
+</tr>
+</tbody>
+</table>
+<p>In the above table we can see that difference between mean of <span class="math inline">\(V_{2}\)</span> and <span class="math inline">\(V_{1}\)</span> is 4 which is greater than C.D. value. So <span class="math inline">\(V_{2}\)</span> and <span class="math inline">\(V_{1}\)</span> are significantly different; different letters are assigned to each of them. Instead of letters one can also use symbols as shown below. Those treatments with same letters/symbols are not significantly different.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Treatments</th>
+<th style="text-align: left;">means</th>
+<th style="text-align: left;">Grouping using symbols</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{2}\)</span></td>
+<td style="text-align: left;">25.</td>
+<td style="text-align: left;">5 @</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(V_{1}\)</span></td>
+<td style="text-align: left;">21.</td>
+<td style="text-align: left;">5 *</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{3}\)</span></td>
+<td style="text-align: left;">21.</td>
+<td style="text-align: left;">5 *</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><span class="math inline">\(V_{4}\)</span></td>
+<td style="text-align: left;">18</td>
+<td style="text-align: left;">*</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><span class="math inline">\(V_{5}\)</span></td>
+<td style="text-align: left;">13.</td>
+<td style="text-align: left;">5 &amp;</td>
+</tr>
+</tbody>
+</table>
+<p>So, in our example we can conclude that <span class="math inline">\(V_{2}\)</span> is the best variety because, it is having the highest mean and is significantly different from others.</p>
+<blockquote class="blockquote">
+<p>Note: in some cases, more than one alphabets can appear against a treatment mean, see the hypothetical example below.</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-groupingcrd" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-groupingcrd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/groupingcrd.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-groupingcrd-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.7: A hypothetical example of treatment grouping
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>If a lettering like this appears meaning is that those treatments having common alphabets are not significantly different. In the above table <span class="math inline">\(V_{2}\)</span> and <span class="math inline">\(V_{1}\)</span> is not significantly different as both of them are having common letter <em>a</em>. At the same time you can see <span class="math inline">\(V_{5}\)</span> and <span class="math inline">\(V_{4}\)</span> is significantly different as they don’t have any common letters.</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="randomized-complete-block-designs-rcbd" class="level2" data-number="20.2">
+<h2 data-number="20.2" class="anchored" data-anchor-id="randomized-complete-block-designs-rcbd"><span class="header-section-number">20.2</span> Randomized Complete Block Designs (RCBD)</h2>
+<p>In field experiments, the plots on which treatments are applied may not be uniform and there may be difference in plot-to-plot fertility. In such cases CRD cannot be recommended. If there is only one source constitutes the difference between the plots then we can recommend randomized block design.</p>
+<p>The randomized complete block (RCB) design is one of the most widely used experimental designs in agricultural research. The design is especially suited for field experiments where the number of treatments is not large and the experimental area has a predictable fertility gradient.</p>
+<p>When the experimental material is heterogeneous, the experimental material is grouped into homogeneous sub-groups called <strong>blocks</strong>. As each block consists of the entire set of treatments a block is equivalent to a replication. For example, in a field with known fertility gradient in one direction, plots perpendicular to this gradient will be considered as a block. In RCBD (Randomized Complete Block Design) blocks are of equal size and contains all the treatments. Since the block contains all the treatments, the term ‘complete block design’ is used. See figure <a href="designofexperiments.html#fig-field" class="quarto-xref">Figure&nbsp;<span>16.5</span></a> and <a href="designofexperiments.html#fig-field2" class="quarto-xref">Figure&nbsp;<span>16.6</span></a> to see how blocks are formed in a field.</p>
+<blockquote class="blockquote">
+<p>In RCBD number of replications, <span class="math inline">\(r\)</span> = number of blocks<br>
+Number of plots within a block = number of treatments, <span class="math inline">\(v\)</span></p>
+</blockquote>
+<section id="blocking-technique" class="level3" data-number="20.2.1">
+<h3 data-number="20.2.1" class="anchored" data-anchor-id="blocking-technique"><span class="header-section-number">20.2.1</span> Blocking technique</h3>
+<p>Blocking or local control, one of the basic principles of design is effectively implemented in RCBD. The primary purpose of blocking is to reduce experimental error by eliminating the contribution of known sources of variation among experimental units. This is achieved by grouping homogeneous units together, so that variability with in blocks is minimized, between blocks is maximized.</p>
+<p>Two important factors to be considered for blocking</p>
+<ul>
+<li><p>The selection of the source of variability to be used as the basis for blocking, in field experiments usually fertility gradient or productivity gradient is used as the identified source of variability.</p></li>
+<li><p>Proper selection of the block shape and orientation. For example, When the gradient is unidirectional use long and narrow blocks. Use square blocks for strong fertility gradient in both directions. An experimenter should use his common sense to identify the shape and orientation of the block after examining the field conditions, suc that plots in a block are homogeneous.</p></li>
+</ul>
+</section>
+<section id="sec-rcbdrandom" class="level3" data-number="20.2.2">
+<h3 data-number="20.2.2" class="anchored" data-anchor-id="sec-rcbdrandom"><span class="header-section-number">20.2.2</span> Randomization in RCBD</h3>
+<p>Consider an experiment involving four treatments A, B, C, D in RCBD. Each treatment is replicated 5 times. Randomization procedure is as explained below. The randomization process for a RCB design is applied separately and independently to each of the blocks.</p>
+<p>STEP 1. Divide the experimental area into <span class="math inline">\(r\)</span> equal blocks, where <span class="math inline">\(r\)</span> is the number of replications. In our example <span class="math inline">\(r =\)</span> 5.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rcbd1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.8: Division of an experimental field into five blocks, each consisting of four plots, for a RCBD with four treatments and five replications. Blocking is done such that blocks are rectangular and perpendicular to the direction of the unidirectional fertility gradient
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>STEP 2. Subdivide each block into <span class="math inline">\(v\)</span> experimental plots, where <span class="math inline">\(v\)</span> is the number of treatments. Number the <span class="math inline">\(v\)</span> plots consecutively from 1 to <span class="math inline">\(v\)</span>, and assign <span class="math inline">\(v\)</span> treatments at random to the <span class="math inline">\(v\)</span> plots following the randomization scheme for the CRD described in Section <a href="#sec-random" class="quarto-xref"><span>Section 20.1.1.1</span></a>. In our example each of the 5 blocks are divided into 4 plots. Plots are numbered 1 to 4 in each block. Now for each block, paper lots of 1 to 4 is prepared. Treatment names are written in order and plot number from each lot is recorded in order as shown below.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Treatments</th>
+<th style="text-align: left;">A</th>
+<th style="text-align: left;">B</th>
+<th style="text-align: left;">C</th>
+<th style="text-align: left;">D</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Plot number from lot</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">3</td>
+</tr>
+</tbody>
+</table>
+<p>STEP 3. All the treatments are allotted to the randomly selected plots. Step 2 is repeated in all blocks.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rcbd2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.9: Allotment of treatments in all blocks. In RCBD each block will have all the treatments and each treatment appear in a block exactly once.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="layout-of-rcbd" class="level3" data-number="20.2.3">
+<h3 data-number="20.2.3" class="anchored" data-anchor-id="layout-of-rcbd"><span class="header-section-number">20.2.3</span> Layout of RCBD</h3>
+<p>In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in section <a href="#sec-rcbdrandom" class="quarto-xref"><span>Section 20.2.2</span></a>. The final layout will look like in the figure <a href="#fig-rcbd3" class="quarto-xref">Figure&nbsp;<span>20.10</span></a>.</p>
+<blockquote class="blockquote">
+<p>Note:<br>
+In RBD every treatment will have the same number of replications. (All treatments are equally replicated say, <span class="math inline">\(r\)</span> times). So we need a total of <span class="math inline">\(v\)</span> <span class="math inline">\(\times\)</span> <span class="math inline">\(r\)</span> plots for conducting that experiment. Each of <span class="math inline">\(r\)</span> blocks will be containing <span class="math inline">\(v\)</span> plots. So in this design, the number of blocks = number of replication of the treatments = <span class="math inline">\(r\)</span> and number of plots within a block = number of treatments = <span class="math inline">\(v\)</span></p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rcbd3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.10: Layout of RCBD with four treatments and five replications
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="statistical-model-for-rcbd" class="level3" data-number="20.2.4">
+<h3 data-number="20.2.4" class="anchored" data-anchor-id="statistical-model-for-rcbd"><span class="header-section-number">20.2.4</span> Statistical Model for RCBD</h3>
+<p>Consider a RCBD with&nbsp;<span class="math inline">\(v\)</span> treatments with&nbsp;<span class="math inline">\(r\)</span>&nbsp;replications (Blocks). Statistical model for RCBD is same as that of two-way ANOVA&nbsp;described in section <span class="quarto-unresolved-ref">?sec-twoway</span>.</p>
+<p><span class="math display">\[Y_{\text{ij}} = \mu + \tau_{i} +  \gamma_{j}+ e_{\text{ij}}\]</span><br>
+where, <em>i</em> = 1,2, …, <em>v</em> and <em>j</em> =1,2, …, <em>r</em>. <span class="math inline">\(Y_{\text{ij}}\)</span> is the observed value of response under <span class="math inline">\(i^{\text{th}}\)</span> treatment and <span class="math inline">\(j^{\text{th}}\)</span> block, <span class="math inline">\(\tau_{i}\)</span> is the effect of <span class="math inline">\(i^{\text{th}}\)</span> factor,<span class="math inline">\(\gamma_{j}\)</span> is the effect of <span class="math inline">\(j^{\text{th}}\)</span> block . <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{\text{ij}}\)</span> is the error effects.<span class="math inline">\(e_{ij}\)</span> <span class="math inline">\(\sim iid\ N(0,\sigma^{2})\)</span></p>
+</section>
+<section id="analysis-of-rcbd" class="level3" data-number="20.2.5">
+<h3 data-number="20.2.5" class="anchored" data-anchor-id="analysis-of-rcbd"><span class="header-section-number">20.2.5</span> Analysis of RCBD</h3>
+<p>Analysis of RCBD is same as that explained in section <span class="quarto-unresolved-ref">?sec-twoway</span> of two-way ANOVA.</p>
+<p>Observation from <span class="math inline">\(v\)</span> treatments in <span class="math inline">\(r\)</span> blocks is arranged as shown below.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd4" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rcbd4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd4-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.11: Two-way arrangement of observations in RCBD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>The anova table following the calculations as in section <span class="quarto-unresolved-ref">?sec-twoway</span> is</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-rcbd5" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-rcbd5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/rcbd5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.12: ANOVA table of RCBD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><span class="math inline">\(F_{1}\)</span> ~ F <sub>(<span class="math inline">\(v\)</span>–1),&nbsp;(<span class="math inline">\(v\)</span>–1)(<span class="math inline">\(r\)</span>–1)</sub> and <span class="math inline">\(F_{2}\)</span> ~ F <sub>(<span class="math inline">\(r\)</span>–1),(<span class="math inline">\(v\)</span>–1)(<span class="math inline">\(r\)</span>–1)</sub> are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis is made by comparing corresponding F value to the table value as explained in section <span class="quarto-unresolved-ref">?sec-ftable</span>.</p>
+<blockquote class="blockquote">
+<p>What if <span class="math inline">\(F_{2}\)</span> is not significant?<br>
+If <span class="math inline">\(F_{2}\)</span> is not significant, it indicates that there is no significant difference between blocks, means blocking is not effective. Blocking is considered effective in reducing the experimental error if <span class="math inline">\(F_{2}\)</span> is significant.</p>
+</blockquote>
+</section>
+<section id="number-of-replications-in-rcbd" class="level3" data-number="20.2.6">
+<h3 data-number="20.2.6" class="anchored" data-anchor-id="number-of-replications-in-rcbd"><span class="header-section-number">20.2.6</span> Number of replications in RCBD</h3>
+<p>As explained in section <a href="#sec-replical" class="quarto-xref"><span>Section 20.1.7</span></a> number of replications is RCBD is found out using the formula of error degrees of freedom (<em>edf</em>).</p>
+<section id="example-2" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="example-2">Example</h4>
+<p>You have 4 treatments; you are planning to conduct the experiment in RCBD. Find the minimum number of replications required.</p>
+<p>Formula for error degrees of freedom (<em>edf</em>) in RCBD is <span class="math inline">\((v - 1) (r-1)\)</span>; where <span class="math inline">\(v\)</span> is the number of treatments and <span class="math inline">\(r\)</span> is the number of blocks.</p>
+<p><em>edf</em> should be <span class="math inline">\(\geq\)</span> 12</p>
+<p><em>edf</em> <span class="math inline">\(=(v - 1) (r-1) \geq 12\)</span></p>
+<p>Since <span class="math inline">\(v\)</span> = 4, <em>edf</em> <span class="math inline">\(= 3\left( r - 1 \right) \geq 12\)</span></p>
+<p><span class="math inline">\(\implies r \geq 5\)</span>, minimum replication required is 5</p>
+<p>The number of replications required is 5.</p>
+</section>
+</section>
+<section id="post-hoc-test-in-rcbd" class="level3" data-number="20.2.7">
+<h3 data-number="20.2.7" class="anchored" data-anchor-id="post-hoc-test-in-rcbd"><span class="header-section-number">20.2.7</span> Post-hoc test in RCBD</h3>
+<p>If the null hypothesis for treatments is rejected in ANOVA; we proceed to post-hoc test explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a>. Arrange the treatment means in descending order. Critical difference (CD) or LSD (Least Significant Difference) is calculated for each treatment pair <span class="math inline">\(T_{i},\ T_{j}\)</span> using the following formula.</p>
+<p><span class="math display">\[CD = \ t_{\frac{\alpha}{2},edf}.\sqrt{\frac{2\ MSE}{r}}\]</span> where, <span class="math inline">\(\text{MSE}\)</span> is the Mean Square Error from ANOVA. <span class="math inline">\(t_{\frac{\alpha}{2},edf}\)</span> is the critical value of two tailed student’s t distribution at <span class="math inline">\(\alpha\)</span> level of significance and error degrees of freedom. <span class="math inline">\(r\)</span> is the number of blocks/replication.<br>
+Procedure for grouping using symbols is same as that of CRD explained in section <a href="#sec-postcrd" class="quarto-xref"><span>Section 20.1.4.1</span></a>.</p>
+</section>
+<section id="advantages-of-rcbd" class="level3" data-number="20.2.8">
+<h3 data-number="20.2.8" class="anchored" data-anchor-id="advantages-of-rcbd"><span class="header-section-number">20.2.8</span> Advantages of RCBD</h3>
+<ol type="1">
+<li><p>Accuracy: RCB design has been shown to be more efficient or accurate than C.R.D. for most types of experimental work.</p></li>
+<li><p>Flexibility: In RCBD no restrictions are placed on the number of treatments or the number of replicates.</p></li>
+<li><p>Even if some values are missing, still the analysis can be done by using missing plot technique.</p></li>
+<li><p>Ease of analysis: Statistical analysis is simple, rapid and straight forward.</p></li>
+</ol>
+</section>
+<section id="disadvantages-of-rcbd" class="level3" data-number="20.2.9">
+<h3 data-number="20.2.9" class="anchored" data-anchor-id="disadvantages-of-rcbd"><span class="header-section-number">20.2.9</span> Disadvantages of RCBD</h3>
+<ol type="1">
+<li><p>RCBD may give misleading results if blocks are not homogeneous.</p></li>
+<li><p>RCBD is not suitable for large number of treatments because in that case the block size will increase and it may not be possible to keep large blocks homogeneous.</p></li>
+<li><p>If the data on more than two plots is missing the statistical analysis becomes tedious and complicated.</p></li>
+</ol>
+</section>
+</section>
+<section id="latin-square-design-lsd" class="level2" data-number="20.3">
+<h2 data-number="20.3" class="anchored" data-anchor-id="latin-square-design-lsd"><span class="header-section-number">20.3</span> Latin Square Design (LSD)</h2>
+<p>In this design, variations in the field in two different directions (or variations due to two different factors) are controlled simultaneously from affecting the treatment comparisons. A layout in RBD controls only one source of external variation affecting the treatment comparisons by the construction of homogeneous blocks. Sometimes when blocks were laid out in a field the environmental conditions within each block need not be the same. For example, soil variability in a North South direction and an environmental gradient in an East West Direction then the conditions within each block will vary. In such situations the variability can be controlled by a Latin Square design (LSD). The blocks in a LSD are called rows and columns; they represent two external factors. The entire experimental area can be divided into small plots arranged in the form of a square. The number of plots in each row and each column are equal, both equal to the number of treatments to be compared.</p>
+<section id="layout-and-randaomization" class="level3" data-number="20.3.1">
+<h3 data-number="20.3.1" class="anchored" data-anchor-id="layout-and-randaomization"><span class="header-section-number">20.3.1</span> Layout and Randaomization</h3>
+<p>A Latin square of <span class="math inline">\(v\)</span> treatments (usually called as side <span class="math inline">\(v\)</span>) is an arrangement of <span class="math inline">\(v\)</span> treatments into <span class="math inline">\(v\)</span> rows and <span class="math inline">\(v\)</span> columns such that every treatment is replicated in each row and each column exactly once.</p>
+<p>Latin squares of various sides are available in Statistical tables. If there are <span class="math inline">\(v\)</span> treatments to be compared, chose a Latin square of side <span class="math inline">\(v\)</span> from the statistical tables. In the Fisher and Yates (1948) tables for Statisticians and Biometricians these squares are presented for a given standard order of alphabets in the first row. Choose one of these squares for a given <span class="math inline">\(v\)</span> and carryout the randomization in the following way.</p>
+<p>Let <span class="math inline">\(v\)</span> = 6. Then a Latin Square of 6 treatments denoted by <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>, <em>E</em> and <em>F</em> can be denoted by keeping alphabetical order for first row and an order of symmetry for the remaining rows can be written as</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lsdlayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lsdlayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lsdlayout.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.13: Layout of LSD with six treatments and six replications
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>This square represents a Latin square for <span class="math inline">\(v\)</span> = 6 treatments in 6 replications. Blocks are represented in two directions as rows and columns and their number is also = <span class="math inline">\(v\)</span></p>
+<p><strong>Randomization</strong><br>
+If there are <span class="math inline">\(v\)</span> treatments take a square of order <span class="math inline">\(v\)</span> at random from the statistical tables.</p>
+<p>Number the rows of the square from 1 to <span class="math inline">\(v\)</span>. Keeping the first row fixed, the remaining rows are arranged randomly by using random numbers to develop another square. So the above square can be randomised in many ways like</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lsdlayout1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lsdlayout1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lsdlayout1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.14: Randomization of LSD with six treatments and six replications
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>After the randomisation of the rows the columns are randomised to get another randomized square.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lsdlayout2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lsdlayout2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lsdlayout2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.15: Randomization of LSD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Lastly , the <span class="math inline">\(v\)</span> treatments can be assigned randomly to these <span class="math inline">\(v\)</span> letters (A, B, …).</p>
+</section>
+<section id="analysis" class="level3" data-number="20.3.2">
+<h3 data-number="20.3.2" class="anchored" data-anchor-id="analysis"><span class="header-section-number">20.3.2</span> Analysis</h3>
+<p>The data collected from experiments in LSD are classified according to the levels of three factors. So it is called three way classified design. The two types of blockings (Rows and columns) and treatments will make up the three factors. The linear model for analysis as : <span class="math display">\[Y_{\text{ijk}} = \mu + \tau_{i} + R_{j}+ C_{k}+e_{\text{ijk}}\]</span> where i,j, k = 1,2,3,… <span class="math inline">\(v\)</span></p>
+<p><em>i.e.,</em> The response ( yield (<span class="math inline">\(Y_{ijk}\)</span>)) of each plot = A general mean effect (μ) + Effect due to the <span class="math inline">\(i^{th}\)</span> treatment (<span class="math inline">\(\tau_{i}\)</span>) + Effect of the <span class="math inline">\(j^{th}\)</span> Row ( <span class="math inline">\(R_{j}\)</span> ) + Effect due to the <span class="math inline">\(k^{th}\)</span> Column ( <span class="math inline">\(C_{k}\)</span>) + Random error terms associated with each plot ( <span class="math inline">\(e_{ijk}\)</span> ). The effect of the general mean is subtracted from each sum of squares ( by subtracting the correction factor <span class="math inline">\(C.F.  = \frac{(\sum{y_{ijk}})^2} {v^2}\)</span>). The total sum of squares is split into four components (i) variation between the treatments as treatment Sum of squares (ii) variation between the rows (iii) variation between the columns and (iv) Variation within the factors: <em>i.e.,</em> Error Sum of squares.</p>
+<p>To calculate the sum of squares, arrange the data according to the rows, columns and treatments and obtain the respective totals. Let the treatment totals be <span class="math inline">\(T_{1}\)</span>,<span class="math inline">\(T_{2}\)</span>, …. <span class="math inline">\(T_{v}\)</span>; Block totals be <span class="math inline">\(B_{1}\)</span>, <span class="math inline">\(B_{2}\)</span>, <span class="math inline">\(B_{3}\)</span>, …, <span class="math inline">\(B_{v}\)</span> and Column totals be <span class="math inline">\(C_{1}\)</span>, <span class="math inline">\(C_{2}\)</span>, <span class="math inline">\(C_{3}\)</span>, … <span class="math inline">\(C_{v}\)</span>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-lsdanova" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lsdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/lsdanova.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.16: ANOVA of LSD
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>All these computed F values are compared with F table values for (v-1) and (v-1)(v-2) degrees of freedom. If the treatments turns out to be significant then the means are compared pair wise by using <span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/v}\]</span></p>
+<p><strong>Advantages</strong><br>
+LSD is efficient when there are trends in fertility in two perpendicular directions or when there are two factors contributing to experimental error.</p>
+<p><strong>Disadvantages</strong><br>
+In RBD there is no restriction like number of replications = Number of treatments. The error degrees of freedom in this design is <span class="math inline">\((v-1)(v-2)\)</span>. For number of treatments like <span class="math inline">\(v\)</span> = 2 , 3 and 4 this value is 0 , 2 and 6. ( <em>ie.,</em> very small- hence we cannot carryout the experiment as such for these values of <span class="math inline">\(v\)</span>).</p>
+<p>Similarly when <span class="math inline">\(v&gt;10\)</span> the total number of plots required is <span class="math inline">\(v^2\)</span> &gt; 100. So there will be difficulty in getting large number of homogeneous plots. So LSD is commonly used for 5 to 10 treatments only.</p>
+</section>
+<section id="example-3" class="level3" data-number="20.3.3">
+<h3 data-number="20.3.3" class="anchored" data-anchor-id="example-3"><span class="header-section-number">20.3.3</span> Example</h3>
+<p>Consider a 5x5 LSD experimental setup as follows</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-LSDE1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/LSDE1.png" id="fig-LSDE1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.17
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Solution</strong></p>
+<p>The three null hypotheses (one each for treatments, rows, and columns) are</p>
+<p><span class="math inline">\(H_{01}\)</span>: <span class="math inline">\(\mu_{11} = \mu_{12} = \mu_{13} = \mu_{14} = \mu_{15}\)</span> (treatment means are equal)</p>
+<p><span class="math inline">\(H_{11}\)</span>: at least two of the treatment means are different</p>
+<p><span class="math inline">\(H_{02}\)</span>: <span class="math inline">\(\mu_{21} = \mu_{22} = \mu_{23} = \mu_{24} = \mu_{25}\)</span> (row means are equal)</p>
+<p><span class="math inline">\(H_{12}\)</span>: at least two of the row means are different</p>
+<p><span class="math inline">\(H_{03}\)</span>: <span class="math inline">\(\mu_{31} = \mu_{32} = \mu_{33} = \mu_{34} = \mu_{35}\)</span> (column means are equal)</p>
+<p><span class="math inline">\(H_{13}\)</span>: at least two of the column means are different</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-LSDE2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/LSDE2.png" id="fig-LSDE2" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.18
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Grand Total (G)</strong>= 829</p>
+<p><strong>Correction Factor(C.F)</strong> <span class="math inline">\(= \frac{G^{2}}{n} = \frac{\left( 829 \right)^{2}}{25}\)</span>= 27489.64</p>
+<p><strong>Total Sum of Squares(TSS)</strong>= <span class="math inline">\((28^2+36^2+18^2+...+31^2)-27489.64\)</span><br>
+<span class="math inline">\(=29243-27489.64 = 1753.36\)</span></p>
+<p><strong>Row Sum of Squares(RSS)</strong>=<span class="math inline">\(\frac{1}{5}(159^{2} + 163^{2} + 197^{2}+157^{2}+153^{2}) - CF\)</span><br>
+<span class="math inline">\(=27743.4-27489.64 = 253.76\)</span></p>
+<p><strong>Column Sum of Squares(CSS)</strong>=<span class="math inline">\(\frac{1}{5}(177^{2} + 165^{2} + 138^{2}+162^{2}+187^{2}) - CF\)</span> <span class="math inline">\(= 27762.2-27489.64 = 272.56\)</span></p>
+<p><strong>Treatment Sum of Squares(SSt)</strong>=<span class="math inline">\(\frac{1}{5}(188^{2} + 171^{2} + 142^{2}+210^{2}+118^{2}) - CF\)</span> <span class="math inline">\(= 28554.6 - 27489.64 = 1064.96\)</span><br>
+<strong>Error Sum of Squares</strong> <span class="math inline">\(= 1753.36 - 253.76- 272.56-1064.96 = 162.08\)</span></p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-LSDE3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-LSDE3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/LSDE3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-LSDE3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.19: ANOVA
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Since the F cal is greater than the F table value, All the null hypotheses are rejected.</p>
+<p><span class="math inline">\(C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/v}\)</span></p>
+<p><span class="math inline">\(C.D. = 2.18\sqrt{2x13.51/5}\)</span></p>
+<p><span class="math inline">\(C.D=5.06\)</span></p>
+<p>Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.</p>
+</section>
+</section>
+<section id="missing-plot-analysis" class="level2" data-number="20.4">
+<h2 data-number="20.4" class="anchored" data-anchor-id="missing-plot-analysis"><span class="header-section-number">20.4</span> MISSING PLOT ANALYSIS</h2>
+<p>In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.</p>
+<p>The Analysis of such data may be done by different methods. (i) the most commonly used method currently adopted is known as ‘method of analysis of non orthogonal data’ which is highly computer based (ii) Method of substitution by Yates based on minimization of the error sum of squares and (iii) Analysis of the data with missing values by the technique of Analysis of Covariance by Bartlett’s.</p>
+<p><strong>Covariance Method by Bartlett’s</strong><br>
+Assume an imaginary covariate X taking values zero for every plot except the missing plot for which it will take the value 1 (or –1) . Now the value of the main variate, Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.<br>
+In missing plot analysis the degrees of freedom for error and total will be based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one (when there is one missing value).</p>
+<p><strong>Method of Substitution</strong><br>
+<span class="math inline">\((i)\)</span> In this method we will calculate with the aid of a formula an estimate of the missing value. The formula will vary from design to design and actually it will not supply the exact missing value. But the procedure permits the researcher to complete the analysis without resorting to more complex procedures.<br>
+<span class="math inline">\((ii)\)</span> Insert the estimated value in the missing position and workout the estimates of treatment means and mean error sum of squares.<br>
+<span class="math inline">\((iii)\)</span> Some additional adjustments to treatment sum of squares are needed. In pair comparison also some changes are made.<br>
+<span class="math inline">\((iv)\)</span> An iterative procedure is adopted when more than one observation is missing.</p>
+<section id="randomised-block-design-with-a-single-missing-value" class="level3" data-number="20.4.1">
+<h3 data-number="20.4.1" class="anchored" data-anchor-id="randomised-block-design-with-a-single-missing-value"><span class="header-section-number">20.4.1</span> Randomised Block Design with a single missing value</h3>
+<p><span class="math inline">\((i)\)</span> The missing value in RBD is estimated as <span class="math display">\[x=\frac{rB+vT-G}{(r-1)(v-1)}\]</span> where,<br>
+x = estimate of the missing data<br>
+v = number of treatments<br>
+r = number of replications<br>
+B = Total of the observed values of the replication that contain the missing data<br>
+T = Total of the observed values of the treatment that contain the missing data<br>
+G = Grand total of all existing observations.</p>
+<p><span class="math inline">\((ii)\)</span> This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom.</p>
+<p>This method provides a proper estimate of the error variance per plot but there is an inflation in treatment sum of squares; (the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turns out to be just significant it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula.</p>
+<p><span class="math inline">\((iii)\)</span> Estimate of Bias in the case of RBD <span class="math display">\[Bias=\frac{(B+vT-G)^2}{v(v-1)(r-1)^2}\]</span> This bias is subtracted from the treatment sum of squares. Now test this actual treatment mean square against the Mean Square for error: and make the conclusion about the significance of treatments.<br>
+<span class="math inline">\((iv)\)</span> Pair comparison<br>
+<span class="math inline">\((a)\)</span> For comparing two treatment means in which one of them contain a missing observation <span class="math display">\[C.D. = t_{\alpha}\sqrt{MSE(\frac{2}{r}+\frac{v}{r(r-1)(v-1)})}\]</span><br>
+<span class="math inline">\((b)\)</span> For comparing other pairs of treatment means: (in which none of them contain any missing observation)<br>
+<span class="math display">\[C.D. = t_{\alpha}\sqrt{2MSE/r}\]</span> where, <span class="math inline">\(t_{\alpha}\)</span> denote the t value (r-1)(v-1)-1 degrees of freedom.</p>
+<p><span class="math inline">\((v)\)</span> If there are more than one missing value the estimates of the missing values are obtained by an iteration procedure.</p>
+</section>
+<section id="latin-square-design-with-a-single-missing-value" class="level3" data-number="20.4.2">
+<h3 data-number="20.4.2" class="anchored" data-anchor-id="latin-square-design-with-a-single-missing-value"><span class="header-section-number">20.4.2</span> Latin Square Design with a single missing value</h3>
+<p>The same procedure as in RBD is used here also.</p>
+<p><span class="math inline">\((i)\)</span> The missing value in LSD is obtained as <span class="math display">\[x=\frac{v(R+C+T)-2G}{(v-1)(v-2)}\]</span> where,<br>
+x = estimate of the missing data<br>
+v = number of treatments/rows/blocks/columns<br>
+R = Total of the observed values of the row that contain the missing data<br>
+C = Total of the observed values of the column that contain the missing data<br>
+T = Total of the observed values of the treatment that contain the missing data<br>
+G = Grand total of all existing observations.</p>
+<p><span class="math inline">\((ii)\)</span> Carry out the analysis similar to the above method after substitution. The estimate of Bias in this case is <span class="math display">\[Bias=\frac{[(v-1)T+R+C-G]^2}{[(v-1)(v-2)]^2}\]</span></p>
+<p><span class="math inline">\((iii)\)</span> For pairwise comparison involving a treatment with a missing observation (comparing two treatment means in which one of them contains a missing observation): <span class="math display">\[C.D. = t_{\alpha}\sqrt{MSE\left(\frac{2}{v}+\frac{1}{(v-1)(v-2)}\right)}\]</span></p>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>From a soldiers’ puzzle to the experimental field</strong></p>
+<p>The Latin square has a history far older than the science of experimental design. The great mathematician <strong>Leonhard Euler</strong> studied such squares in the eighteenth century, most famously through his “problem of the 36 officers”: can six regiments, each with six officers of six different ranks, be arranged in a 6 x 6 square so that every row and every column contains one officer of each rank and one from each regiment? Euler conjectured that no such arrangement exists for a 6 x 6 square, and he was eventually proved right. He called the arrangements <em>Latin squares</em> because he used Latin letters to fill them.</p>
+<p>For more than a century the Latin square remained a mathematical curiosity. Its transformation into a tool of science came in the 1920s at the <strong>Rothamsted Experimental Station</strong>, where <strong>Ronald A. Fisher</strong> recognised that the same combinatorial structure could solve a very practical agricultural problem: how to remove soil fertility variation running in <em>two</em> perpendicular directions at once. By assigning treatments so that each appears exactly once in every row and every column, the row and column effects (the two fertility gradients) can be separated out and removed from the experimental error. Fisher introduced the Latin square design in his 1925 book <em>Statistical Methods for Research Workers</em> and developed it further in <em>The Design of Experiments</em> (1935). What began as a puzzle about arranging officers thus became one of the most elegant designs in agricultural research, and a fine example of how pure mathematics can find unexpected use in the service of science. <span class="citation" data-cites="Fisher1925">(<a href="references.html#ref-Fisher1925" role="doc-biblioref">Fisher 1925</a>)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“The object of statistical methods is the reduction of data.” - R. A. Fisher</strong></p>
+</div>
+</div>
+
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Fisher1925" class="csl-entry" role="listitem">
+Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver; Boyd.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./multipleComparison.html" class="pagination-link" aria-label="Multiple comparison tests">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

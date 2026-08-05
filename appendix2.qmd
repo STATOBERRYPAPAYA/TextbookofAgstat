@@ -1,0 +1,31 @@
+# Appendix 2 {#sec-appendix-2}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-duncan
+#| tbl-cap: "Critical values $r_p (p, df, \\alpha = 0.05)$ for Duncan's multiple range tests."
+library(knitr)
+library(kableExtra)
+
+# Convert math delimiters so MathJax reliably renders math inside kable
+# table cells and headers: $$...$$ becomes \[...\] and $...$ becomes \(...\).
+fix_math <- function(x) {
+  x <- as.character(x)
+  x[is.na(x)] <- ""
+  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
+  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
+  x
+}
+
+dt <- read.csv("csv/duncan.csv", check.names = FALSE)
+dt[["df"]][dt[["df"]] == "Inf"] <- "$\\infty$"
+colnames(dt)[1] <- "$df \\backslash p$"
+
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- fix_math(colnames(dt))
+
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = c("HOLD_position", "repeat_header"),
+                font_size = 11) %>%
+  row_spec(0, bold = TRUE)
+```
