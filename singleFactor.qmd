@@ -47,11 +47,18 @@ knitr::include_graphics("images/crdnumbered.png")
 
 2.  Draw one piece of paper at a time, without replacement and with constant shaking of the container after each draw to mix its content. For our example, the label and the corresponding sequence in which each piece of paper is drawn. The sequence number can be considered as the experimental unit number to which the treatment is to be assigned.  
 
-```{r echo=FALSE, out.width="80%", fig.align='center'}
-#| label: fig-sequence
-#| fig-cap: "Sequence in which labelled lots are drawn"
-knitr::include_graphics("images/sequence.png")
-```  
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-sequence
+#| tbl-cap: "Sequence in which labelled lots are drawn"
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/crd_sequence.csv", header = FALSE, check.names = FALSE)
+kbl(dt, col.names = NULL, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position", font_size = 12) %>%
+  column_spec(1, bold = TRUE, width = "2.8cm") %>%
+  row_spec(c(1, 3), bold = TRUE)
+```
 
 ### Layout of CRD
 
@@ -80,20 +87,49 @@ Analysis of CRD is same as that explained in section @sec-oneway of one-way ANOV
 Unequal replication (*i*.*e*. each treatment can have a different number of replications) is possible in CRD. So while calculating the treatment sum of squares, each treatment total is squared and divided by its corresponding replication, and then the sum is taken. If the replication is the same for all treatments, the treatment sum of squares is obtained by taking the sum of the squares of the treatment totals and dividing by the common replication number.
 :::
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-crdanova
-#| fig-cap: "ANOVA table of CRD"
-knitr::include_graphics("images/crdanova.png")
-``` 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-crdanova
+#| tbl-cap: "ANOVA table of CRD"
+library(knitr)
+library(kableExtra)
+fix_math <- function(x) {
+  x <- as.character(x); x[is.na(x)] <- ""
+  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
+  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
+  x
+}
+dt <- data.frame(
+  Source = c("Treatments", "Error", "Total"),
+  df = c("$v-1$", "$n-v$", "$n-1$"),
+  SS = c("$\\text{SST} = \\sum_{i=1}^{v}\\dfrac{T_i^2}{r_i} - \\text{C.F.}$",
+         "$\\text{Total SS} - \\text{SST}$",
+         "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} y_{ij}^2 - \\text{C.F.}$"),
+  MSS = c("$\\text{MST}=\\dfrac{\\text{SST}}{v-1}$",
+          "$\\text{MSE}=\\dfrac{\\text{SSE}}{v(r-1)}$", ""),
+  F = c("$F = \\dfrac{\\text{MST}}{\\text{MSE}}$", "", "")
+)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- c("Source", "D.F.", "S.S", "M.S.S", "F")
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(3, width = "5.5cm", extra_css = "padding-right: 22px;") %>%
+  column_spec(4, width = "4cm", extra_css = "padding-left: 22px;")
+```
 
 
 #### Post hoc test (LSD) {#sec-postcrd}  
 If the null hypothesis is rejected in ANOVA; we proceed to post-hoc test explained in section @sec-lsd. Fisher's Least significant difference (LSD) test explained in section @sec-lsd is the commonly employed test in agricultural experiments.  
 Arrange the treatment means in descending order. Critical difference (CD) is calculated for each treatment pair $T_{i},\ T_{j}$ using the following formula.
 
-$$C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{\text{MSE}\left( \frac{1}{r_{i}} + \frac{1}{r_{j}} \right)}$$ (for CRD with unequal replication)
+$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\text{MSE}\left( \frac{1}{r_{i}} + \frac{1}{r_{j}} \right)}$$
 
-$$C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/r}$$ (for CRD with equal replication)
+(for CRD with unequal replication)
+
+$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{r}}$$
+
+(for CRD with equal replication)
 
 Here $t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}$ denotes the critical value of Student's t for a two tailed test at α level of significance and error degrees of freedom. $r_{i}$ and $r_{j}$ are replications of $T_{i},\ T_{j}$ respectively. If the difference of any two treatment means is greater
 than the critical difference, they are significantly different. If the difference of any two treatment means is less than $\text{C.D}$. they are said to be on par. (*i*.*e*., there is no any statistically significant difference). Those treatments which are at par is given same
@@ -149,11 +185,20 @@ The error degrees of freedom have a major role in deciding the critical value of
 ### Example  
 In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.  
 
-```{r echo=FALSE, out.width="60%", fig.align='center'}
-#| label: fig-crdex
-#| fig-cap: "ANOVA table of CRD"
-knitr::include_graphics("images/crdex.png")
-```  
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-crdex
+#| tbl-cap: "Yield data of five varieties of sesame under CRD"
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/crd_data.csv", check.names = FALSE)
+kbl(dt, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  add_header_above(c(" " = 1, "Variety" = 5), bold = TRUE) %>%
+  row_spec(0, bold = TRUE) %>%
+  row_spec(5:6, bold = TRUE) %>%
+  column_spec(1, bold = TRUE)
+```
 #### Solution  
 
 **Correction Factor**:  
@@ -175,14 +220,21 @@ $= 8211.75 - CF = 331.30$
 **Error Sum of Square**:  
 $426.55 - 331.30 = 95.25$
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-crdanovaex
-#| fig-cap: "ANOVA table of CRD"
-knitr::include_graphics("images/crdanovaex.png")
-```  
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-crdanovaex
+#| tbl-cap: "ANOVA table for the sesame variety trial"
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/crd_anova.csv", check.names = FALSE)
+kbl(dt, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1, bold = TRUE)
+```
 Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find, which treatments are significantly different, we perform Fisher's LSD test.  
 
-$$\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{\text{2xMSE}}{r}} = \text{2.131}\sqrt{\frac{2\left( \text{6.350} \right)}{4}} = (\text{2.131})(\text{1.7819}) = \text{3.797}\text{2}$$
+$$\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{2 \times \text{MSE}}{r}} = 2.131\sqrt{\frac{2(6.350)}{4}} = 2.131 \times 1.7819 = 3.7972$$
 
 $t_{0.025\text{ at }15 \text{ edf}} = 2.131$ (Just look for the critical value of
 *t* for a two tailed test at α= 0.05 in the statistical table. (see
@@ -198,24 +250,20 @@ different letters.
   Treatments   means   Grouping using alphabets
   ------------ ------- --------------------------
   $V_{2}$           25.5    a
-  $V_{1}$           21.5    b
-  $V_{3}$           21.5    b
+  $V_{1}$           21.25   b
+  $V_{3}$           21.25   b
   $V_{4}$           18      b
-  $V_{5}$           13.5    c
+  $V_{5}$           13.25   c
 
-In the above table we can see that difference between mean of $V_{2}$ and $V_{1}$
-is 4 which is greater than C.D. value. So $V_{2}$ and $V_{1}$ are significantly
-different; different letters are assigned to each of them. Instead of
-letters one can also use symbols as shown below. Those treatments with
-same letters/symbols are not significantly different.
+In the above table we can see that the difference between the means of $V_{2}$ and $V_{1}$ is 4.25, which is greater than the C.D. value. So $V_{2}$ and $V_{1}$ are significantly different, and different letters are assigned to each of them. Instead of letters one can also use symbols as shown below. Those treatments with the same letters/symbols are not significantly different.
 
   Treatments   means   Grouping using symbols
   ------------ ------- ------------------------
   $V_{2}$           25.5    @
-  $V_{1}$           21.5    \*
-  $V_{3}$           21.5    \*
+  $V_{1}$           21.25   \*
+  $V_{3}$           21.25   \*
   $V_{4}$           18      \*
-  $V_{5}$           13.5    &
+  $V_{5}$           13.25   &
 
 So, in our example we can conclude that $V_{2}$ is the best variety because,
 it is having the highest mean and is significantly different from
@@ -225,11 +273,17 @@ others.
 >Note: in some cases, more than one alphabets can appear against a
 treatment mean, see the hypothetical example below.  
 
-```{r echo=FALSE, out.width="40%", fig.align='center'}
-#| label: fig-groupingcrd
-#| fig-cap: "A hypothetical example of treatment grouping"
-knitr::include_graphics("images/groupingcrd.png")
-```  
+| Treatments | Grouping |
+|:----------:|:--------:|
+| $V_2$ | a |
+| $V_1$ | ab |
+| $V_3$ | bc |
+| $V_4$ | c |
+| $V_5$ | d |
+
+: A hypothetical example of treatment grouping {#tbl-groupingcrd}
+
+Here $V_1$ carries two letters (ab), meaning it is not significantly different from $V_2$ (they share **a**) and also not significantly different from $V_3$ (they share **b**), while $V_2$ and $V_3$ do not share a letter and so are significantly different from each other.
 
 >If a lettering like this appears meaning is that those treatments having common alphabets are not significantly different. In the above table $V_{2}$
 and $V_{1}$ is not significantly different as both of them are having common
@@ -315,19 +369,56 @@ Analysis of RCBD is same as that explained in section @sec-twoway of two-way ANO
 
 Observation from $v$ treatments in $r$ blocks is arranged as shown below.  
 
-```{r echo=FALSE, out.width="70%", fig.align='center'}
-#| label: fig-rcbd4
-#| fig-cap: "Two-way arrangement of observations in RCBD"
-knitr::include_graphics("images/rcbd4.png")
-```  
+| Treatment | Block 1 | Block 2 | Block 3 | $\cdots$ | Block $r$ | Total |
+|:---------:|:-------:|:-------:|:-------:|:--------:|:---------:|:-----:|
+| 1 | $Y_{11}$ | $Y_{12}$ | $Y_{13}$ | $\cdots$ | $Y_{1r}$ | $T_1$ |
+| 2 | $Y_{21}$ | $Y_{22}$ | $Y_{23}$ | $\cdots$ | $Y_{2r}$ | $T_2$ |
+| 3 | $Y_{31}$ | $Y_{32}$ | $Y_{33}$ | $\cdots$ | $Y_{3r}$ | $T_3$ |
+| $\vdots$ | | | | | | $\vdots$ |
+| $v$ | $Y_{v1}$ | $Y_{v2}$ | $Y_{v3}$ | $\cdots$ | $Y_{vr}$ | $T_v$ |
+| Total | $B_1$ | $B_2$ | $B_3$ | $\cdots$ | $B_r$ | $G$ |
 
-The anova table following the calculations as in section @sec-twoway is  
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-rcbd5
-#| fig-cap: "ANOVA table of RCBD"
-knitr::include_graphics("images/rcbd5.png")
+: Two-way arrangement of observations in RCBD {#tbl-rcbd4}
+
+The ANOVA table, following the calculations as in section @sec-twoway, is
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-rcbd5
+#| tbl-cap: "ANOVA table of RCBD"
+library(knitr)
+library(kableExtra)
+fix_math <- function(x) {
+  x <- as.character(x); x[is.na(x)] <- ""
+  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
+  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
+  x
+}
+dt <- data.frame(
+  Source = c("Treatments", "Blocks", "Error", "Total"),
+  df = c("$v-1$", "$r-1$", "$(v-1)(r-1)$", "$vr-1$"),
+  SS = c("$\\text{SST} = \\dfrac{\\sum_{i=1}^{v} T_i^2}{r} - \\text{C.F}$",
+         "$\\text{SSB} = \\dfrac{\\sum_{j=1}^{r} B_j^2}{v} - \\text{C.F}$",
+         "$\\text{ESS} = \\text{Total SS} - \\text{SST} - \\text{SSB}$",
+         "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} Y_{ij}^2 - \\text{C.F}$"),
+  MSS = c("$\\dfrac{\\text{SST}}{v-1} = \\text{MST}$",
+          "$\\dfrac{\\text{SSB}}{r-1} = \\text{MSR}$",
+          "$\\dfrac{\\text{ESS}}{(v-1)(r-1)} = \\text{MSE}$", ""),
+  F = c("$F_1 = \\dfrac{\\text{MST}}{\\text{MSE}}$",
+        "$F_2 = \\dfrac{\\text{MSR}}{\\text{MSE}}$", "", "")
+)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- c("Source", "d.f", "S.S", "M.S.S", "F")
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(3, width = "5cm") %>%
+  column_spec(4, width = "3.2cm")
 ```
-$F_{1}$ \~ F ~($v$--1),\ ($v$--1)($r$--1)~ and $F_{2}$ \~ F ~($r$--1),($v$--1)($r$--1)~ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis is made by comparing corresponding F value to the table value as explained in section @sec-ftable.  
+
+where $\text{C.F} = \dfrac{G^2}{rv}$.
+
+$F_{1} \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_{2} \sim F_{(r-1),\ (v-1)(r-1)}$ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value, as explained in section @sec-ftable.
 
 > What if $F_{2}$ is not significant?  
 > If $F_{2}$ is not significant, it indicates that there is no significant difference between blocks, means blocking is not effective. Blocking is considered effective in reducing the experimental error if $F_{2}$ is significant.  
@@ -461,14 +552,45 @@ where i,j, k = 1,2,3,... $v$
 The effect of the general mean  is subtracted from  each sum of squares ( by 
 subtracting the correction factor  $C.F.  = \frac{(\sum{y_{ijk}})^2} {v^2}$). The total sum of squares is split into four components  (i) variation between the treatments  as treatment Sum of squares (ii) variation between the rows (iii) variation between the columns and (iv) Variation within the factors: *i.e.,* Error Sum of squares. 
  
-To calculate the sum of squares, arrange the data according to the rows, columns and treatments and obtain the respective totals. Let the treatment totals be $T_{1}$,$T_{2}$, .... $T_{v}$; Block totals be $B_{1}$, $B_{2}$, $B_{3}$, ..., $B_{v}$ and Column totals be $C_{1}$, $C_{2}$, $C_{3}$, ... $C_{v}$. 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-lsdanova
-#| fig-cap: "ANOVA of LSD"
-knitr::include_graphics("images/lsdanova.jpg")
-``` 
-All these computed F values are compared with F table values for (v-1)  and     (v-1)(v-2) degrees of freedom. If the treatments turns out to be significant then the means are compared pair wise by using 
- $$C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/v}$$ 
+To calculate the sum of squares, arrange the data according to the rows, columns and treatments and obtain the respective totals. Let the treatment totals be $T_{1}$, $T_{2}$, ...., $T_{v}$; row totals be $R_{1}$, $R_{2}$, $R_{3}$, ..., $R_{v}$ and column totals be $C_{1}$, $C_{2}$, $C_{3}$, ..., $C_{v}$.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-lsdanova
+#| tbl-cap: "ANOVA of Latin Square Design"
+library(knitr)
+library(kableExtra)
+fix_math <- function(x) {
+  x <- as.character(x); x[is.na(x)] <- ""
+  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
+  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
+  x
+}
+dt <- data.frame(
+  Source = c("Between treatments", "Between rows", "Between columns", "Error", "Total"),
+  df = c("$v-1$", "$v-1$", "$v-1$", "$(v-1)(v-2)$", "$v^2-1$"),
+  SS = c("$\\dfrac{\\sum T_i^2}{v} - CF$",
+         "$\\dfrac{\\sum R_j^2}{v} - CF$",
+         "$\\dfrac{\\sum C_k^2}{v} - CF$",
+         "By subtraction",
+         "$\\sum Y_{ijk}^2 - CF$"),
+  MSS = c("MST", "MSR", "MSC", "MSE", ""),
+  F = c("$\\dfrac{\\text{MST}}{\\text{MSE}}$",
+        "$\\dfrac{\\text{MSR}}{\\text{MSE}}$",
+        "$\\dfrac{\\text{MSC}}{\\text{MSE}}$", "", "")
+)
+dt[] <- lapply(dt, fix_math)
+colnames(dt) <- c("Source of Variation", "d.f", "Sum of Squares", "M.S.S", "F value")
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1, width = "3.2cm") %>%
+  column_spec(3, width = "3cm")
+```
+
+All these computed F values are compared with the F table values for $(v-1)$ and $(v-1)(v-2)$ degrees of freedom. If the treatments turn out to be significant, then the means are compared pairwise by using
+
+$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}}$$
  
 **Advantages**  
 LSD is efficient when there are trends in fertility in two perpendicular 
@@ -529,92 +651,33 @@ $= \frac{G^{2}}{n} = \frac{\left( 829 \right)^{2}}{25}$= 27489.64
                              $= 28554.6 - 27489.64 = 1064.96$   
 **Error Sum of Squares** $= 1753.36 - 253.76- 272.56-1064.96 = 162.08$
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-LSDE3
-#| fig-cap: "ANOVA"
-knitr::include_graphics("images/LSDE3.png")
-``` 
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-lsdanovaex
+#| tbl-cap: "ANOVA table for the Latin Square example"
+library(knitr)
+library(kableExtra)
+dt <- data.frame(
+  Source = c("Row", "Column", "Treatment", "Error", "Total"),
+  df = c("4", "4", "4", "12", "24"),
+  SS = c("253.76", "272.56", "1064.96", "162.08", "1753.36"),
+  MSS = c("63.44", "68.14", "266.24", "13.51", ""),
+  FCal = c("4.70", "5.04", "19.71", "", ""),
+  FTab = c("3.26", "3.26", "3.26", "", "")
+)
+colnames(dt) <- c("Source of variation", "df", "Sum of squares",
+                  "Mean Sum of squares", "F Cal", "F tab")
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = "HOLD_position") %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1, bold = TRUE)
+```
 
 Since the F cal is greater than the F table value, All the null hypotheses are rejected.
 
-$C.D. = t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\sqrt{2MSE/v}$  
+$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} = 2.18\sqrt{\frac{2 \times 13.51}{5}} = 5.06$$
 
-$C.D. = 2.18\sqrt{2x13.51/5}$  
-
-$C.D=5.06$
-
-Mean of treatment D is maximum which is statistically at par with A. Mean of E is 
-minimum and statistically at par with C.  
-
-## MISSING PLOT ANALYSIS  
-In agricultural field experiments the experimenter is often encountered with 
-the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.  
-
-The Analysis of such data may be done by different methods. (i) the most 
-commonly used method currently adopted is  known as ‘method of analysis of non 
-orthogonal data’ which is highly computer based (ii) Method of substitution by Yates based on minimization of the error sum of squares and (iii) Analysis of the data with missing values by the technique of Analysis of Covariance by Bartlett’s.  
-
-**Covariance Method by Bartlett's**  
-Assume an imaginary covariate X taking values zero for every plot except the 
-missing plot for which it will take the value 1 (or –1) . Now the value of the main variate, Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.  
-In missing plot analysis the degrees of freedom for error and total will be 
-based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one (when there is one missing value). 
-
-**Method of Substitution**  
-$(i)$ In this method we will calculate with the aid of a formula an estimate of the missing value. The formula will vary from design to design and actually it will not supply the exact missing value.  But the procedure permits the researcher to complete the analysis without resorting to more complex procedures.  
-$(ii)$ Insert the estimated value in the missing position and workout the estimates of treatment means and mean error sum of squares.  
-$(iii)$ Some additional adjustments to treatment sum of squares are needed. In pair comparison also some changes are made.  
-$(iv)$ An iterative procedure is adopted when more than one observation is missing.  
-
-### Randomised Block Design with a single missing value  
-$(i)$ The missing value in RBD is estimated as 
-$$x=\frac{rB+vT-G}{(r-1)(v-1)}$$
-where,  
-x = estimate of the missing data  
-v = number of treatments  
-r = number of replications  
-B = Total of the observed values of the replication that contain the missing data  
-T = Total of the observed values of the treatment that contain the missing data  
-G = Grand total of all existing observations.  
-
-$(ii)$ This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom.  
-
-This method provides a proper estimate of the error variance per plot but there 
-is an inflation in treatment sum of squares; (the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turns out to be just significant it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula. 
-
-$(iii)$ Estimate of Bias in the case of RBD
-$$Bias=\frac{(B+vT-G)^2}{v(v-1)(r-1)^2}$$
-This bias is subtracted from the treatment sum of squares.  Now test this actual 
-treatment mean square against the Mean Square for error:  and make the conclusion about the significance of treatments.  
-$(iv)$ Pair comparison  
-$(a)$ For comparing two treatment means in which one of them contain a missing observation 
-$$C.D. = t_{\alpha}\sqrt{MSE(\frac{2}{r}+\frac{v}{r(r-1)(v-1)})}$$  
-$(b)$  For comparing other pairs of  treatment means: (in which none of 
-them contain any missing observation)   
-$$C.D. = t_{\alpha}\sqrt{2MSE/r}$$ 
-where, $t_{\alpha}$ denote the t value (r-1)(v-1)-1 degrees of freedom.  
-
-$(v)$ If there are more than one missing value the estimates of the missing 
-values are obtained by an  iteration procedure. 
-
-### Latin Square Design with a single missing value 
-The same procedure as in RBD is used here also.  
-
-$(i)$ The missing value in LSD is obtained as
-$$x=\frac{v(R+C+T)-2G}{(v-1)(v-2)}$$
-where,  
-x = estimate of the missing data  
-v = number of treatments/rows/blocks/columns    
-R = Total of the observed values of the row that contain the missing data   
-C = Total of the observed values of the column that contain the missing data  
-T = Total of the observed values of the treatment that contain the missing data  
-G = Grand total of all existing observations.  
-
-$(ii)$ Carry out the analysis similar to the above method  after substitution. The estimate of Bias in this case is 
-$$Bias=\frac{[(v-1)T+R+C-G]^2}{[(v-1)(v-2)]^2}$$
-
-$(iii)$ For pairwise comparison involving a treatment with a missing observation (comparing two treatment means in which one of them contains a missing observation):
-$$C.D. = t_{\alpha}\sqrt{MSE\left(\frac{2}{v}+\frac{1}{(v-1)(v-2)}\right)}$$
+Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.  
 
 ::: {.callout-caution title="Historical Insights"}
 **From a soldiers' puzzle to the experimental field**
