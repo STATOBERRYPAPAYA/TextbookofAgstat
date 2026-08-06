@@ -1,0 +1,2060 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>21&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./appendix1.html" rel="next">
+<link href="./singleFactor.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="21&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="21&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression Analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probabilitydist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampleSurvey.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sample survey</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./largeSampletest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Large sample test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsampleTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Small sample tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./designofexperiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Design of experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uniformityTrials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Uniformity trials</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multipleComparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singleFactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#applications-in-experimental-design" id="toc-applications-in-experimental-design" class="nav-link active" data-scroll-target="#applications-in-experimental-design"><span class="header-section-number">21.1</span> Applications in experimental design</a></li>
+  <li><a href="#ancova-in-agricultural-research" id="toc-ancova-in-agricultural-research" class="nav-link" data-scroll-target="#ancova-in-agricultural-research"><span class="header-section-number">21.2</span> ANCOVA in agricultural research</a>
+  <ul class="collapse">
+  <li><a href="#error-control-and-treatment-mean-adjustment" id="toc-error-control-and-treatment-mean-adjustment" class="nav-link" data-scroll-target="#error-control-and-treatment-mean-adjustment"><span class="header-section-number">21.2.1</span> Error control and treatment mean adjustment</a></li>
+  <li><a href="#comparison-with-blocking" id="toc-comparison-with-blocking" class="nav-link" data-scroll-target="#comparison-with-blocking"><span class="header-section-number">21.2.2</span> Comparison with blocking</a></li>
+  <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">21.2.3</span> Assumptions</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">21.2.4</span> Analysis</a></li>
+  </ul></li>
+  <li><a href="#analysis-of-covariance-for-crd" id="toc-analysis-of-covariance-for-crd" class="nav-link" data-scroll-target="#analysis-of-covariance-for-crd"><span class="header-section-number">21.3</span> Analysis of covariance for CRD</a>
+  <ul class="collapse">
+  <li><a href="#compute-the-sum-of-squares" id="toc-compute-the-sum-of-squares" class="nav-link" data-scroll-target="#compute-the-sum-of-squares"><span class="header-section-number">21.3.1</span> Compute the sum of squares</a></li>
+  <li><a href="#analysis-of-covariance-table-crd" id="toc-analysis-of-covariance-table-crd" class="nav-link" data-scroll-target="#analysis-of-covariance-table-crd"><span class="header-section-number">21.3.2</span> Analysis of covariance table (CRD)</a></li>
+  <li><a href="#table-of-adjusted-values" id="toc-table-of-adjusted-values" class="nav-link" data-scroll-target="#table-of-adjusted-values"><span class="header-section-number">21.3.3</span> Table of adjusted values</a></li>
+  </ul></li>
+  <li><a href="#analysis-of-covariance-for-rbd" id="toc-analysis-of-covariance-for-rbd" class="nav-link" data-scroll-target="#analysis-of-covariance-for-rbd"><span class="header-section-number">21.4</span> Analysis of covariance for RBD</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Analysis of Covariance (ANCOVA) is a statistical method that integrates features of Analysis of Variance (ANOVA) and regression. It is designed to analyze a continuous outcome variable influenced by one or more categorical predictor variables (factors) while incorporating continuous variables, known as covariates. By accounting for the variability associated with these covariates, ANCOVA adjusts the outcome variable to a standardized value, enhancing statistical power and reducing experimental error. This adjustment is particularly valuable in experimental designs, where precise detection of treatment effects is crucial.</p>
+<p>A well-designed experiment minimizes experimental error to detect significant differences among treatments. While blocking is commonly employed for this purpose, it may not fully address variability arising from unpredictable factors. ANCOVA provides an additional layer of control by incorporating covariates with known functional relationships to the primary outcome variable. This reduces variability among experimental units and isolates the effects of treatments.</p>
+<section id="applications-in-experimental-design" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="applications-in-experimental-design"><span class="header-section-number">21.1</span> Applications in experimental design</h2>
+<p>ANCOVA is widely applied in experimental studies to adjust for variability. For example, in animal feeding trials, initial differences in body weight can influence final weight measurements. Using initial body weight as a covariate allows adjustments to final weights, simulating a scenario where all animals started with identical weights. Similarly, in field experiments where rodent damage varies across plots, ANCOVA can adjust plot yields to estimate what they would have been in the absence of damage.</p>
+<p>The effective application of ANCOVA requires measuring both the primary outcome variable and one or more covariates. Additionally, there must be a known functional relationship, often assumed to be linear between the covariates and the outcome variable. For instance, in variety trials where weed incidence impacts grain yield, ANCOVA adjusts yield data to a common level of weed incidence, enabling a clearer comparison of varietal differences. While the technique accommodates multiple covariates and nonlinear relationships, a single linear covariate often suffices for most agricultural research scenarios.</p>
+</section>
+<section id="ancova-in-agricultural-research" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="ancova-in-agricultural-research"><span class="header-section-number">21.2</span> ANCOVA in agricultural research</h2>
+<section id="error-control-and-treatment-mean-adjustment" class="level3" data-number="21.2.1">
+<h3 data-number="21.2.1" class="anchored" data-anchor-id="error-control-and-treatment-mean-adjustment"><span class="header-section-number">21.2.1</span> Error control and treatment mean adjustment</h3>
+<p>Controlling experimental error is fundamental in research, as variability among experimental units can obscure treatment effects. Blocking, a common method for error reduction, groups similar units together to minimize variability within blocks. However, unpredictable factors such as irregular soil heterogeneity or pest outbreaks may not align with blocking strategies. ANCOVA becomes particularly useful in such cases, as it adjusts the primary outcome variable based on measurable covariates related to the variability.</p>
+<p>For example, if soil fertility differences influence crop yield, measuring soil fertility as a covariate allows the yield data to be adjusted to a standardized fertility level. This adjustment achieves two important objectives: it recalculates treatment means to reflect a scenario without covariate differences and reduces experimental error, thereby improving the precision of treatment comparisons.</p>
+</section>
+<section id="comparison-with-blocking" class="level3" data-number="21.2.2">
+<h3 data-number="21.2.2" class="anchored" data-anchor-id="comparison-with-blocking"><span class="header-section-number">21.2.2</span> Comparison with blocking</h3>
+<p>Although both blocking and ANCOVA aim to reduce experimental error, their application differs. Blocking is a pre-experiment strategy that addresses predictable sources of variability, such as soil type or environmental gradients. In contrast, ANCOVA is applied after the experiment to adjust for unforeseen sources of variability, such as pest damage or uneven irrigation. While blocking does not require quantitative measurements, ANCOVA relies on measurable covariates with known relationships to the primary variable. Pre-treatment measurements, such as soil nutrient levels, are ideal covariates if they remain unaffected by the treatments being tested.</p>
+</section>
+<section id="assumptions" class="level3" data-number="21.2.3">
+<h3 data-number="21.2.3" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">21.2.3</span> Assumptions</h3>
+<p>Essentially analysis of covariance is an extension of the analysis of variance and all assumptions of ANOVA are applicable here also. In addition it is assumed that: - Y (study variable) and X (covariate) are linearly related; a part of the variation in Y is due to variation in X over the experimental units ; Values of X are not subject to error. - The linear relationship remains constant over the other known causes of variation like blocks, treatments etc.</p>
+</section>
+<section id="analysis" class="level3" data-number="21.2.4">
+<h3 data-number="21.2.4" class="anchored" data-anchor-id="analysis"><span class="header-section-number">21.2.4</span> Analysis</h3>
+<ol type="i">
+<li><p>Basically estimation of the relation between X and Y taking X as independent variable.</p></li>
+<li><p>Removing the effects of the covariates to get adjusted treatment and error variance for Y</p></li>
+<li><p>Estimate the values of Y as expected from a linear relation corresponding to each of the values of X.</p></li>
+</ol>
+<p>The method of analysis of Covariance for CRD with v treatments and n experimental units and RBD with v treatments and r replications / blocks with one ancillary variable is presented below.</p>
+</section>
+</section>
+<section id="analysis-of-covariance-for-crd" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="analysis-of-covariance-for-crd"><span class="header-section-number">21.3</span> Analysis of covariance for CRD</h2>
+<p>Record the main character of interest (<span class="math inline">\(Y\)</span>, i.e., <span class="math inline">\(y_{ij}\)</span>) as well as the covariate (<span class="math inline">\(X\)</span>, i.e., <span class="math inline">\(x_{ij}\)</span>) for each of the experimental plots. The model used for the study is:</p>
+<p><span class="math display">\[
+y_{ij} = \mu + \tau_i + \beta x_{ij} + e_{ij} \quad i = 1, 2, ..., v; \, j = 1, 2, ..., r_i
+\]</span></p>
+<p>Where,<br>
+<span class="math inline">\(\mu\)</span>: General mean effect<br>
+<span class="math inline">\(\tau_i\)</span>: Effect due to the <span class="math inline">\(i\)</span>th treatment<br>
+<span class="math inline">\(\beta\)</span>: Regression coefficient of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span><br>
+<span class="math inline">\(e_{ij}\)</span>: Random error terms associated with each plot<br>
+<span class="math inline">\(\tau_i\)</span> and <span class="math inline">\(\mu\)</span> are assumed to be fixed effects.</p>
+<section id="compute-the-sum-of-squares" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="compute-the-sum-of-squares"><span class="header-section-number">21.3.1</span> Compute the sum of squares</h3>
+<ol type="1">
+<li><p><strong>Correction factor for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+\text{C.F.}(X) = \frac{(\text{Grand total for } X)^2}{n}
+\]</span></p></li>
+<li><p><strong>Correction factor for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+\text{C.F.}(Y) = \frac{(\text{Grand total for } Y)^2}{n}
+\]</span></p></li>
+<li><p><strong>Correction for sum of products of</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+C.S.P.(X, Y) = \frac{(\text{Grand total for } X) \cdot (\text{Grand total for } Y)}{n}
+\]</span></p></li>
+<li><p><strong>Total sum of squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+G_{xx} = \sum x_{ij}^2 - \text{C.F.}(X)
+\]</span></p></li>
+<li><p><strong>Total sum of squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+G_{yy} = \sum y_{ij}^2 - \text{C.F.}(Y)
+\]</span></p></li>
+<li><p><strong>Total sum of products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+G_{xy} = \sum (x_{ij} \cdot y_{ij}) - C.S.P.(X, Y)
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+T_{xx} = \text{Treatment sum of squares for } X
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+T_{yy} = \text{Treatment sum of squares for } Y
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
+\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(T_{ix}\)</span>: Treatment total for <span class="math inline">\(X\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment<br>
+</li>
+<li><span class="math inline">\(T_{iy}\)</span>: Treatment total for <span class="math inline">\(Y\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment</li>
+</ul></li>
+<li><p><strong>Error Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+   E_{xx} = \text{Error sum of squares for } X
+   \]</span></p></li>
+<li><p><strong>Error Sum of Squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+   E_{yy} = \text{Error sum of squares for } Y
+   \]</span></p></li>
+<li><p><strong>Error Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+   E_{xy} = \text{Error sum of products for } X \text{ and } Y\]</span></p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Error sums of squares or sums of products are calculated by subtracting treatment sums of squares or sums of products from total sums of squares or sums of products.</p>
+</div>
+</div>
+</section>
+<section id="analysis-of-covariance-table-crd" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="analysis-of-covariance-table-crd"><span class="header-section-number">21.3.2</span> Analysis of covariance table (CRD)</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">Degrees of Freedom</th>
+<th style="text-align: center;">Sum of Squares(<span class="math inline">\(X\)</span>)</th>
+<th style="text-align: center;">Sum of Squares(<span class="math inline">\(Y\)</span>)</th>
+<th style="text-align: center;">Sum of Products(<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(n-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(G_{xy}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;"><span class="math inline">\(v-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{xy}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;"><span class="math inline">\(n-v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{xy}\)</span></td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li><p><strong>Testing the significance of the covariate</strong> <span class="math inline">\(X\)</span></p>
+<p>This is performed using the <span class="math inline">\(F\)</span> test:</p>
+<p><span class="math inline">\(F = \frac{\text{Mean Square due to treatments for } X}{\text{Mean Square due to error for } X}\)</span></p>
+<p>The F-ratio is calculated as: <span class="math display">\[F = \frac{T_{xx}/(v-1)}{E_{xx}/(n-v)}\]</span></p>
+<p>Non-significance of this F-ratio will indicate that the covariate is not influenced by the treatments.</p></li>
+<li><p><strong>Estimate of Regression Coefficient</strong></p>
+<p>The regression coefficient (b) of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> is given by:<br>
+<span class="math display">\[ b = \frac{E_{xy}}{E_{xx}} \]</span></p></li>
+<li><p><strong>Estimate of Correlation Coefficient</strong></p>
+<p>The correlation coefficient between the main variate and covariate is calculated as:<br>
+<span class="math display">\[ r = \frac{E_{xy}}{\sqrt{E_{xx} \cdot E_{yy}}} \]</span><br>
+The magnitude of this value will indicate the linear relationship between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>.</p></li>
+<li><p><strong>Sum of Squares Due to Regression</strong></p>
+<p>The sum of squares due to regression (with 1 degree of freedom) is defined as:<br>
+<span class="math display">\[ SS_{\text{regression}} = \frac{E_{xy}^2}{E_{xx}} \]</span></p></li>
+</ol>
+</section>
+<section id="table-of-adjusted-values" class="level3" data-number="21.3.3">
+<h3 data-number="21.3.3" class="anchored" data-anchor-id="table-of-adjusted-values"><span class="header-section-number">21.3.3</span> Table of adjusted values</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 13%">
+<col style="width: 28%">
+<col style="width: 14%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of Variation</th>
+<th>Degrees of Freedom</th>
+<th>Sum of Squares</th>
+<th>Mean Sum of Squares</th>
+<th>F Value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Total</td>
+<td><span class="math inline">\((n-1)\)</span></td>
+<td><span class="math inline">\(G_{yy}-\frac{G_{xy}^2}{G_{xx}}\)</span>……(i)</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td><span class="math inline">\((n-v)-1\)</span></td>
+<td><span class="math inline">\(E_{yy}-\frac{E_{xy}^2}{E_{xx}}\)</span>……(ii)</td>
+<td><span class="math inline">\(\text{MSE (adj.)}\)</span></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Treatments</td>
+<td><span class="math inline">\((v-1)\)</span></td>
+<td><p>(by subtraction)</p>
+<p>(i) - (ii)</p></td>
+<td><span class="math inline">\(\text{MST (adj.)}\)</span></td>
+<td><span class="math inline">\(\frac{\text{MST(adj)}}{\text{MSE(adj)}}\)</span></td>
+</tr>
+<tr class="even">
+<td>Regression</td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(\frac{E_{xy}^2}{E_{xx}}\)</span></td>
+<td><span class="math inline">\(\text{MS.Reg}\)</span></td>
+<td><span class="math inline">\(\frac{\text{MS.Reg}}{\text{MSE(adj)}}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>By removing the sum of squares due to regression from the error sum of squares for <span class="math inline">\(Y\)</span>, we obtain the sum of squares for residual random variation in <span class="math inline">\(Y\)</span>, called the adjusted error sum of squares. The corresponding error degrees of freedom are reduced by one.</p>
+<p><strong>From the analysis</strong></p>
+<ol type="1">
+<li><p>The significance of the regression coefficient <span class="math inline">\(\frac{\text{MS.Reg}}{\text{MSE(adj)}}\)</span> indicates that the covariate has an effect on the main variate, reducing the error variance of <span class="math inline">\(Y\)</span> significantly.</p></li>
+<li><p>Estimate of Coefficient of Variation <span class="math inline">\(=\frac{\sqrt{\text{MSE(adj)}}}{\text{Mean of } Y} \times 100\)</span></p></li>
+<li><p>The adjusted treatment means of <span class="math inline">\(Y\)</span> are obtained assuming a linear relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>;<span class="math inline">\(\bar{y_{(i,adj.)}} = \bar{y}_i - b (\bar{x}_i - \bar{x})\)</span><br>
+where, <span class="math inline">\(\bar{y}_i\)</span> is the treatment mean of <span class="math inline">\(Y\)</span>; b is the regression coefficient; <span class="math inline">\(\bar{x}_i\)</span> is the corresponding treatment mean of <span class="math inline">\(X\)</span> and <span class="math inline">\(\bar{x}\)</span> is the grand mean of <span class="math inline">\(X\)</span>.</p></li>
+</ol>
+<p>When the treatments differ significantly, the pairwise comparison can be carried out by computing the critical difference (CD).</p>
+<p>The standard error (SE) to compare a pair of treatment means with (<span class="math inline">\(r_1\)</span>) and (<span class="math inline">\(r_2\)</span>) replications depends on the corresponding mean values of <span class="math inline">\(X\)</span> and can be derived as: <span class="math display">\[
+SE = \sqrt{MSE(\text{adj.}) \left[ \frac{1}{r_1} + \frac{1}{r_2} + \frac{(\bar{x_{1}} - \bar{x_{2}})^2}{ \, E_{xx}} \right]}
+\]</span><br>
+where,&nbsp; <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span>: Replications for the two treatment means;&nbsp; <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>: Mean values of <span class="math inline">\(X\)</span> for the two treatment;&nbsp; <span class="math inline">\(MSE(\text{adj.})\)</span>: Adjusted Mean Square Error;&nbsp; <span class="math inline">\(E_{xx}\)</span>: Error sum of squares for the covariate</p>
+<p>For cases where the error degrees of freedom are large (&gt;20), and the comparison is independent of mean values of <span class="math inline">\(X\)</span>, the averaged standard error is: <span class="math display">\[
+SE = \sqrt{\frac{2MSE(\text{adj.})}{r} \left( 1 + \frac{T_{xx}}{(v-1) E_{xx}} \right)}
+\]</span><br>
+where, v: Number of treatments; T: Total number of replications; r: Replications for equally replicated treatments.</p>
+<p>The Least Significant Difference (CD) is calculated as: <span class="math display">\[
+\text{CD} = t_{\alpha} \cdot SE
+\]</span></p>
+<p>where, <span class="math inline">\(t_{\alpha}\)</span>: t-value corresponding to the error degrees of freedom (n-v-1); SE: Standard error for the comparison.</p>
+<p><strong>Example 21.1</strong>: A greenhouse trial was conducted to study BPH damage to rice. This trial tested varying number of BPH nymphs per tiller. The main character of interest was the number of productive panicles. Tiller count made before BPH nymphs were placed on the plant is considered as covariate. Data on panicle number per hill <span class="math inline">\(Y\)</span>, initial tiller number per hill <span class="math inline">\(X\)</span> recorded from this experiment are given below</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Treatments</td>
+<td><span class="math inline">\(R_1\)</span></td>
+<td></td>
+<td><span class="math inline">\(R_2\)</span></td>
+<td></td>
+<td><span class="math inline">\(R_3\)</span></td>
+<td></td>
+<td><span class="math inline">\(R_4\)</span></td>
+<td></td>
+<td>Total <span class="math inline">\(Y\)</span></td>
+<td>Total <span class="math inline">\(X\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>Y</td>
+<td>X</td>
+<td>Y</td>
+<td>X</td>
+<td>Y</td>
+<td>X</td>
+<td>Y</td>
+<td>X</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>0.0</td>
+<td>5</td>
+<td>5</td>
+<td>12</td>
+<td>12</td>
+<td>11</td>
+<td>11</td>
+<td>5</td>
+<td>8</td>
+<td>33</td>
+<td>36</td>
+</tr>
+<tr class="even">
+<td>0.1</td>
+<td>7</td>
+<td>7</td>
+<td>9</td>
+<td>9</td>
+<td>14</td>
+<td>8</td>
+<td>9</td>
+<td>8</td>
+<td>39</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>0.2</td>
+<td>9</td>
+<td>9</td>
+<td>5</td>
+<td>5</td>
+<td>12</td>
+<td>12</td>
+<td>5</td>
+<td>7</td>
+<td>31</td>
+<td>34</td>
+</tr>
+<tr class="even">
+<td>0.5</td>
+<td>7</td>
+<td>6</td>
+<td>10</td>
+<td>10</td>
+<td>6</td>
+<td>8</td>
+<td>8</td>
+<td>8</td>
+<td>31</td>
+<td>32</td>
+</tr>
+<tr class="odd">
+<td>1.0</td>
+<td>8</td>
+<td>8</td>
+<td>5</td>
+<td>5</td>
+<td>13</td>
+<td>11</td>
+<td>5</td>
+<td>5</td>
+<td>31</td>
+<td>29</td>
+</tr>
+<tr class="even">
+<td>10.0</td>
+<td>7</td>
+<td>8</td>
+<td>20</td>
+<td>16</td>
+<td>6</td>
+<td>7</td>
+<td>9</td>
+<td>9</td>
+<td>42</td>
+<td>40</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution 21.1</strong></p>
+<div class="callout callout-style-default callout-warning callout-titled" title="Check the data">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>Check the data
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The worked solution below uses a grand total of <span class="math inline">\(\sum X = 203\)</span>. Note, however, that the <span class="math inline">\(X\)</span> (tiller-count) values printed in the data table for treatment 0.2 sum to 33, not 34, which would make <span class="math inline">\(\sum X = 202\)</span>. Please verify the treatment-0.2 tiller counts against the original data source before finalising, since a change here propagates through the whole example. The steps and formulae are correct regardless of which total is used.</p>
+</div>
+</div>
+<p>Here, <span class="math inline">\(v\)</span> = 6; <span class="math inline">\(\sum X\)</span> = 203; <span class="math inline">\(\sum Y\)</span> = 207</p>
+<p><span class="math inline">\(CF_X=\frac{203^2}{v r}=1717.041\)</span></p>
+<p><span class="math inline">\(CF_Y=\frac{207^2}{v r}=1785.375\)</span></p>
+<p><span class="math inline">\(CSP_{XY}=\frac{203 \times 207}{v r}=1750.88\)</span></p>
+<p><strong>Total SS</strong></p>
+<p><span class="math inline">\(TSS_X= \sum X^2-CF_X=167.96\)</span></p>
+<p><span class="math inline">\(TSS_Y= \sum Y^2-CF_Y=309.625\)</span></p>
+<p><span class="math inline">\(TSCP_{XY}=\sum X_{ij}Y_{ij}-CSP_{XY}=200.13\)</span></p>
+<p><strong>Treatment SS</strong></p>
+<p><span class="math inline">\(SST_X=T_{XX}=\frac{\sum T_{ix}^2}{r}-CF_X=\frac{6941}{4}-1717.04=18.21\)</span></p>
+<p><span class="math inline">\(SST_Y=T_{YY}=\frac{\sum T_{iy}^2}{r}-CF_Y=1814.25-1785.375=28.875\)</span></p>
+<p><span class="math inline">\(SSPT_{XY}=T_{XY}=\frac{\sum T_{ix} \times \sum T_{iy}}{r}-CSP_{XY}=14.375\)</span></p>
+<p><strong>Error SS</strong></p>
+<p><span class="math inline">\(E_{XX}=TSS_X-T_{XX}=167.96-18.21=149.75\)</span></p>
+<p><span class="math inline">\(E_{YY}=TSS_Y-T_{YY}=309.625-28.875=280.75\)</span></p>
+<p><span class="math inline">\(E_{XY}=200.125-14.375=185.75\)</span></p>
+<p><span class="math inline">\(E=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=50.3\)</span></p>
+<p><span class="math inline">\(E_1=TSS_Y-\frac{TSCP_{XY}^2}{TSS_X}=71.17\)</span></p>
+<p>Regression coefficient, <span class="math inline">\(b=\frac{E_{XY}}{E_{XX}}=1.24\)</span></p>
+<p>SS due to regression, <span class="math inline">\(SSR=\frac{E_{XY}^2}{E_{XX}}=230.48\)</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 9%">
+<col style="width: 10%">
+<col style="width: 18%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 13%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td></td>
+<td>Source</td>
+<td>df</td>
+<td></td>
+<td></td>
+<td><span class="math inline">\(Adj. SS\)</span></td>
+<td>df</td>
+<td><span class="math inline">\(MSS\)</span></td>
+<td><span class="math inline">\(F_{cal}\)</span></td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+<td><span class="math inline">\(XX\)</span></td>
+<td><span class="math inline">\(YY\)</span></td>
+<td><span class="math inline">\(XY\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Treatment</td>
+<td>5</td>
+<td>18.21</td>
+<td>28.875</td>
+<td>14.375</td>
+<td><span class="math inline">\(E_1-E=20.87\)</span></td>
+<td>5</td>
+<td>4.174</td>
+<td>1.43</td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td>18</td>
+<td>149.75</td>
+<td>280.75</td>
+<td>185.75</td>
+<td><span class="math inline">\(E=50.3\)</span></td>
+<td>17</td>
+<td>2.95</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Total</td>
+<td>23</td>
+<td>167.96</td>
+<td>309.6</td>
+<td>200.125</td>
+<td><span class="math inline">\(E_1=71.17\)</span></td>
+<td>22</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Regression</td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>230.4</td>
+<td>78.128</td>
+</tr>
+</tbody>
+</table>
+<p>Here, <span class="math inline">\(F_{(5,17)} = 2.81\)</span>, which is greater than the <span class="math inline">\(F_{cal}\)</span> of 1.43, so the adjusted treatment means do not differ significantly after adjusting for the tiller-count covariate.</p>
+</section>
+</section>
+<section id="analysis-of-covariance-for-rbd" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="analysis-of-covariance-for-rbd"><span class="header-section-number">21.4</span> Analysis of covariance for RBD</h2>
+<p>As in the Analysis of covariance - CRD, the main character of interest (<span class="math inline">\(Y\)</span> <em>i.e.,</em> <span class="math inline">\(y_{ij}\)</span>) as well as the covariate (<span class="math inline">\(X\)</span> <em>i.e.,</em> <span class="math inline">\(x_{ij}\)</span>) for each of the experimental plots.</p>
+<p>For RBD, the model includes the effect of blocks: <span class="math display">\[
+y_{ij} = \mu + \tau_i + R_j + \beta (x_{ij} - \overline{x}) + e_{ij} ;\quad i = 1, 2, ..., v; \, j = 1, 2, ..., r
+\]</span></p>
+<p>where, <span class="math inline">\(R_j\)</span> represents the effect of the <span class="math inline">\(j^{th}\)</span> block, other terms are same as that of in analysis of covariance - CRD.</p>
+<p>The various sum of squares for each of the two variables following the standard analysis of variance procedure for RBD are:</p>
+<ol type="1">
+<li><p><strong>Correction factor for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+\text{C.F.}(X) = \frac{(\text{Grand total for } X)^2}{n}
+\]</span></p></li>
+<li><p><strong>Correction factor for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+\text{C.F.}(Y) = \frac{(\text{Grand total for } Y)^2}{n}
+\]</span></p></li>
+<li><p><strong>Correction for sum of products of</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+C.S.P.(X, Y) = \frac{(\text{Grand total for } X) \cdot (\text{Grand total for } Y)}{n}
+\]</span></p></li>
+<li><p><strong>Total sum of squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+G_{xx} = \sum x_{ij}^2 - \text{C.F.}(X)
+\]</span></p></li>
+<li><p><strong>Total sum of squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+G_{yy} = \sum y_{ij}^2 - \text{C.F.}(Y)
+\]</span></p></li>
+<li><p><strong>Total sum of products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+G_{xy} = \sum (x_{ij} \cdot y_{ij}) - C.S.P.(X, Y)
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+T_{xx} = \text{Treatment sum of squares for } X
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+T_{yy} = \text{Treatment sum of squares for } Y
+\]</span></p></li>
+<li><p><strong>Treatment Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
+\]</span> where,</p>
+<ul>
+<li><span class="math inline">\(T_{ix}\)</span>: Treatment total for <span class="math inline">\(X\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment<br>
+</li>
+<li><span class="math inline">\(T_{iy}\)</span>: Treatment total for <span class="math inline">\(Y\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment</li>
+</ul></li>
+<li><p><strong>Block Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+    B_{xx} = \text{Block sum of squares for } X
+    \]</span></p></li>
+<li><p><strong>Block Sum of Squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+    B_{yy} = \text{Block sum of squares for } Y
+    \]</span></p></li>
+<li><p><strong>Block Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+    B_{xy} = \frac{\sum_{i} (B_{ix} \cdot B_{iy})}{v} - \text{C.S.P.}(X, Y)\]</span> where:</p>
+<ul>
+<li><span class="math inline">\(B_{ix}\)</span>: Block total for <span class="math inline">\(X\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment<br>
+</li>
+<li><span class="math inline">\(B_{iy}\)</span>: Block total for <span class="math inline">\(Y\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment</li>
+</ul></li>
+<li><p><strong>Error Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
+   E_{xx} = \text{Error sum of squares for } X
+   \]</span></p></li>
+<li><p><strong>Error Sum of Squares for</strong> <span class="math inline">\(Y\)</span>: <span class="math display">\[
+   E_{yy} = \text{Error sum of squares for } Y
+   \]</span></p></li>
+<li><p><strong>Error Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
+   E_{xy} = \text{Error sum of products for } X \text{ and } Y
+   \]</span></p></li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">Degrees of Freedom</th>
+<th style="text-align: center;">Sum of Squares (<span class="math inline">\(X\)</span>)</th>
+<th style="text-align: center;">Sum of Squares (<span class="math inline">\(Y\)</span>)</th>
+<th style="text-align: center;">Sum of Products (<span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Blocks</td>
+<td style="text-align: center;"><span class="math inline">\(r-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_{xy}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;"><span class="math inline">\(v-1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{xy}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;"><span class="math inline">\((r-1)(v-1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{xx}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{yy}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(E_{xy}\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>From the above analysis we can test for the significance of the covariate X due to the treatments by the F test = Mean square due to treatments for X / Mean square due to error for X. The correlation coefficient, regression coefficient and coefficient of variation also can be obtained similar to the case of CRD.</p>
+<p><strong>Estimation of Adjusted values</strong></p>
+<p>By removing the sum of squares due to regression from the error sum of squares for Y we can obtain the sum of squares for residual random variation in Y (called as adjusted error sum of squares). The corresponding error degrees of freedom are also reduced by one. The adjusted treatment sum of squares is obtained as = (Treatment + error) adjusted for Y– Error adjusted for Y. (So the treatment degree of freedom remain unaffected).</p>
+<p><strong>Table of Adjusted values</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Source of variation</th>
+<th>Degrees of Freedom</th>
+<th>Sum of Squares</th>
+<th>Mean Sum of Squares</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Treatments + Error</td>
+<td><span class="math inline">\(r(v-1) - 1\)</span></td>
+<td><span class="math inline">\((T_{yy}+E_{yy})-\frac{(T_{xy}+E_{xy})^2}{(T_{xx}+E_{xx})}=E_{1}\)</span></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Error</td>
+<td><span class="math inline">\((r-1)(v-1) - 1\)</span></td>
+<td><span class="math inline">\(E_{yy}-\frac{ E_{xy}^2}{E_{xx}}=E\)</span></td>
+<td><span class="math inline">\(MSE_{adj} =\frac{E}{(r-1)(v-1)-1}\)</span></td>
+</tr>
+<tr class="odd">
+<td>Treatments</td>
+<td><span class="math inline">\(v-1\)</span></td>
+<td><span class="math inline">\(E_{1}-E\)</span></td>
+<td><span class="math inline">\(\frac{(E_{1}-E)}{(v-1)}\)</span></td>
+</tr>
+<tr class="even">
+<td>Regression</td>
+<td><span class="math inline">\(1\)</span></td>
+<td><span class="math inline">\(\frac{E_{xy}^2}{E_{xx}}\)</span></td>
+<td><span class="math inline">\(MS.Reg\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>The significance of the treatment effects is tested as <span class="math inline">\(F = \frac{(E_{1} - E) / (v - 1)}{MSE(adj)}\)</span></p>
+<p>The significance of regression coefficient by the ratio <span class="math inline">\(F = \frac{MS(Reg)}{MSE(adj)}\)</span></p>
+<p>The adjusted treatment means of <span class="math inline">\(Y\)</span> are obtained assuming a similar linear relationship as in the case of CRD.</p>
+<p>The standard error to compare a pair of treatment means ( when error degree of freedom is large (&gt;20):<br>
+</p>
+<p><span class="math inline">\(SE = \sqrt{\frac{2MSE(adj)}{r} \cdot \left(1 +  \frac{T_{xx}}{(v - 1)E_{xx}}\right)}\)</span></p>
+<p>and Critical Difference</p>
+<p><span class="math inline">\(CD = t_{\alpha} \cdot SE\)</span>, where the (t) value corresponds to the error degrees of freedom (r - 1)(v - 1) - 1 at a 5% level.</p>
+<p><strong>Example 21.2</strong>: A varietal trial on cotton was laid out in RBD with 4 replications, 7 varieties were evaluated for the yield of seed cotton. The crop stands per plots of size 30 m² were also recorded because of wide variation in plant numbers. Analyze the data on the yield of seed cotton per plot in 10 gm units <span class="math inline">\(Y\)</span> after adjusting for plant stand <span class="math inline">\(X\)</span>.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Variety\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(R_1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_3\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_4\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_1\)</span></td>
+<td style="text-align: center;">114</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">137</td>
+<td style="text-align: center;">32</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_2\)</span></td>
+<td style="text-align: center;">196</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">105</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">149</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">165</td>
+<td style="text-align: center;">33</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_3\)</span></td>
+<td style="text-align: center;">139</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">115</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">25</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_4\)</span></td>
+<td style="text-align: center;">182</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">113</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">157</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">194</td>
+<td style="text-align: center;">34</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_5\)</span></td>
+<td style="text-align: center;">126</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">125</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">147</td>
+<td style="text-align: center;">24</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_6\)</span></td>
+<td style="text-align: center;">153</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">27</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_7\)</span></td>
+<td style="text-align: center;">175</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">97</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">135</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">189</td>
+<td style="text-align: center;">24</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution 21.2</strong></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 8%">
+<col style="width: 6%">
+<col style="width: 13%">
+<col style="width: 13%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Variety\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(R_1\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_2\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_3\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(R_4\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;">$Sum <span class="math inline">\(X\)</span>$</td>
+<td style="text-align: center;">$Sum <span class="math inline">\(Y\)</span>$</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;">X</td>
+<td style="text-align: center;">Y</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_1\)</span></td>
+<td style="text-align: center;">114</td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">137</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">479</td>
+<td style="text-align: center;">146</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_2\)</span></td>
+<td style="text-align: center;">196</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">105</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">149</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">165</td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">615</td>
+<td style="text-align: center;">143</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_3\)</span></td>
+<td style="text-align: center;">139</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">110</td>
+<td style="text-align: center;">21</td>
+<td style="text-align: center;">115</td>
+<td style="text-align: center;">20</td>
+<td style="text-align: center;">107</td>
+<td style="text-align: center;">25</td>
+<td style="text-align: center;">471</td>
+<td style="text-align: center;">96</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_4\)</span></td>
+<td style="text-align: center;">182</td>
+<td style="text-align: center;">50</td>
+<td style="text-align: center;">113</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">157</td>
+<td style="text-align: center;">55</td>
+<td style="text-align: center;">194</td>
+<td style="text-align: center;">34</td>
+<td style="text-align: center;">646</td>
+<td style="text-align: center;">166</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_5\)</span></td>
+<td style="text-align: center;">126</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">125</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">36</td>
+<td style="text-align: center;">147</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">496</td>
+<td style="text-align: center;">123</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(V_6\)</span></td>
+<td style="text-align: center;">153</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">90</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">140</td>
+<td style="text-align: center;">51</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">503</td>
+<td style="text-align: center;">138</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(V_7\)</span></td>
+<td style="text-align: center;">175</td>
+<td style="text-align: center;">45</td>
+<td style="text-align: center;">97</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">135</td>
+<td style="text-align: center;">48</td>
+<td style="text-align: center;">189</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;">596</td>
+<td style="text-align: center;">136</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(Total\)</span></td>
+<td style="text-align: center;">1085</td>
+<td style="text-align: center;">299</td>
+<td style="text-align: center;">728</td>
+<td style="text-align: center;">165</td>
+<td style="text-align: center;">934</td>
+<td style="text-align: center;">285</td>
+<td style="text-align: center;">1059</td>
+<td style="text-align: center;">199</td>
+<td style="text-align: center;">3806</td>
+<td style="text-align: center;">948</td>
+</tr>
+</tbody>
+</table>
+<p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=7\)</span></p>
+<p><strong>Analysis of X</strong></p>
+<p><span class="math inline">\(GT_X=3806\)</span></p>
+<p><span class="math inline">\(CF_X=\frac{3806^2}{28}=517344.1\)</span></p>
+<p><span class="math inline">\(T_{XX}=\frac{479^2+615^2+...+596^2}{4}-517344.1=7921.857\)</span></p>
+<p><span class="math inline">\(B_{XX}=\frac{1085^2+728^2+934^2+1059^2}{7}-517344.1=11376.71\)</span></p>
+<p><span class="math inline">\(TSS_X=114^2+196^2+...+189^2-517344.1=27107.86\)</span></p>
+<p><span class="math inline">\(Error SS (E_{XX})=27107.86-(7921.857+11376.71)=7809.286\)</span></p>
+<p><strong>Analysis of Y</strong></p>
+<p><span class="math inline">\(GT_Y=948\)</span></p>
+<p><span class="math inline">\(CF_Y=\frac{948^2}{28}=32096.57\)</span></p>
+<p><span class="math inline">\(T_{YY}=\frac{146^2+143^2+...+136^2}{4}-32096.57=704.928\)</span></p>
+<p><span class="math inline">\(B_{YY}=\frac{299^2+165^2+285^2+199^2}{7}-32096.57=1825.143\)</span></p>
+<p><span class="math inline">\(TSS_Y=42^2+51^2+...+24^2-32096.57=3743.429\)</span></p>
+<p><span class="math inline">\(Error SS (E_{YY})=3743.429-(704.928+1825.143)=1213.357\)</span></p>
+<p><strong>Analysis of X and Y</strong></p>
+<p><span class="math inline">\(CSP_{XY}=\frac{3806 \times 948}{4 \times 7}=128860.3\)</span></p>
+<p><span class="math inline">\(T_{XY}=\frac{(479 \times 146)+(615 \times 143)+...+(596 \times 136)}{4}-128860.3=1591.964\)</span></p>
+<p><span class="math inline">\(B_{XY}=\frac{(1085\times299)+(728\times165)+...+(1059\times199)}{7}-128860.3=2777.714\)</span></p>
+<p><span class="math inline">\(TSS_{XY}=[(114\times42)+(88\times21)+...+(189\times24)]-128860.3=5144.714\)</span></p>
+<p><span class="math inline">\(ESS_{XY}=5144.714-(1591.964+2777.714)=775.035\)</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Source</td>
+<td style="text-align: center;">df</td>
+<td style="text-align: center;"><span class="math inline">\(Sum square X\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Sum square Y\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Sum product X,Y\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Block</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">11376.71</td>
+<td style="text-align: center;">1825.143</td>
+<td style="text-align: center;">2777.714</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">7921.857</td>
+<td style="text-align: center;">704.928</td>
+<td style="text-align: center;">1591.964</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">7809.286</td>
+<td style="text-align: center;">1213.357</td>
+<td style="text-align: center;">775.035</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">27107.86</td>
+<td style="text-align: center;">3743.429</td>
+<td style="text-align: center;">5144.714</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Treatment+Error</td>
+<td style="text-align: center;">24</td>
+<td style="text-align: center;"><span class="math inline">\(T_{XX}+E_{XX}=15731.14\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{YY}+E_{YY}=1918.286\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_{XY}+E_{XY}=2367\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Regression of Y on X, <span class="math inline">\(b=\frac{E_{XY}}{E_{XX}}=0.099\)</span></p>
+<p>Sum of squares due to regression of Y on X, <span class="math inline">\(SSR_{YX}=\frac{E_{XY}^2}{E_{XX}}= 76.918\)</span></p>
+<p>Correlation between X and Y, <span class="math inline">\(COR_{x,Y}=\frac{E_{XY}}{\sqrt{E_{XX}E_{YY}}}=0.251\)</span></p>
+<p><strong>Adjusted values</strong></p>
+<p><span class="math inline">\(Adj.ESS_{YY}=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=1136.438\)</span></p>
+<p><span class="math inline">\(Adj. Treatment + Error = (E_{YY}+T_{YY})-\frac{(E_{XY}+T_{XY})^2}{E_{XX}+T_{XX}}=1562.133\)</span></p>
+<p><span class="math inline">\(Treatment Adj.=(Adj. Treatment + Error)-Adj.ESS_{YY}=1562.133-1136.438=425.694\)</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 6%">
+<col style="width: 12%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 24%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>Source</td>
+<td>df</td>
+<td>SS</td>
+<td>MSS</td>
+<td><span class="math inline">\(F_{cal}\)</span></td>
+<td><span class="math inline">\(F_{tab}\)</span></td>
+</tr>
+<tr class="even">
+<td>Adj. Error</td>
+<td>17</td>
+<td>1136.438</td>
+<td>66.849</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Adj. (Treatment+Error)</td>
+<td>23</td>
+<td>1562.133</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Adj. Treatment</td>
+<td>6</td>
+<td>425.694</td>
+<td>70.949</td>
+<td>1.06</td>
+<td><span class="math inline">\(F_{(6,17)}=2.70\)</span></td>
+</tr>
+<tr class="odd">
+<td>Regression</td>
+<td>1</td>
+<td>76.918</td>
+<td>76.918</td>
+<td>1.15</td>
+<td><span class="math inline">\(F_{(1,17)}=4.45\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Since <span class="math inline">\(F_{cal} &lt; F_{tab}\)</span> for the treatments, the adjusted treatment means do not differ significantly after adjusting for the plant stand covariate.</p>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Fisher’s marriage of two great ideas</strong></p>
+<p>By the mid-1920s, <strong>Ronald A. Fisher</strong> had already given the world two of the most powerful tools in all of statistics: the <strong>analysis of variance</strong>, for partitioning variation among groups, and <strong>regression</strong>, for describing how one variable depends on another. Working at the Rothamsted Experimental Station amid its long-running crop trials, Fisher saw that these two ideas could be combined into a single, more powerful procedure. Field plots were never perfectly uniform, some started with more plants, richer soil, or less pest damage than others, and this “nuisance” variation muddied the comparison of treatments. Fisher’s insight was that if such a nuisance factor could be measured as a covariate, its influence could be <em>regressed out</em> of the response before the treatments were compared by analysis of variance.</p>
+<p>This fusion, which he called the <strong>analysis of covariance</strong>, was presented in his 1932 edition of <em>Statistical Methods for Research Workers</em> and set out more fully with Frank Yates in the following years. Its beauty lies in its economy: instead of physically controlling every source of variation through elaborate blocking, the experimenter measures one or two covariates and lets the arithmetic do the adjusting. When you use the initial plant stand to adjust cotton yields, or pre-treatment body weight to adjust an animal’s final weight, you are applying exactly the tool Fisher devised, one that quietly draws on both of his monumental contributions at once. <span class="citation" data-cites="Fisher1932">(<a href="references.html#ref-Fisher1932" role="doc-biblioref">Fisher 1932</a>)</span></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“To consult the statistician after an experiment is finished is often merely to ask him to conduct a post mortem examination. He can perhaps say what the experiment died of.” - R. A. Fisher</strong></p>
+</div>
+</div>
+
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Fisher1932" class="csl-entry" role="listitem">
+Fisher, Ronald A. 1932. <em>Statistical Methods for Research Workers</em>. 4th ed. Edinburgh: Oliver; Boyd.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./singleFactor.html" class="pagination-link" aria-label="Single factor experiments">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
