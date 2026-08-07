@@ -245,14 +245,14 @@ Regression coefficient, $b=\frac{E_{XY}}{E_{XX}}=1.24$
 
 SS due to regression, $SSR=\frac{E_{XY}^2}{E_{XX}}=230.48$
 
-|            |        |        |        |         |               |     |       |           |
-|------------|--------|--------|--------|---------|---------------|-----|-------|-----------|
-|            | Source | df     |        |         | $Adj. SS$     | df  | $MSS$ | $F_{cal}$ |
-|            |        | $XX$   | $YY$   | $XY$    |               |     |       |           |
-| Treatment  | 5      | 18.21  | 28.875 | 14.375  | $E_1-E=20.87$ | 5   | 4.174 | 1.43      |
-| Error      | 18     | 149.75 | 280.75 | 185.75  | $E=50.3$      | 17  | 2.95  |           |
-| Total      | 23     | 167.96 | 309.6  | 200.125 | $E_1=71.17$   | 22  |       |           |
-| Regression | 1      |        |        |         |               | 1   | 230.4 | 78.128    |
+| Source | df | SS($XX$) | SS($YY$) | SP($XY$) | Adj. SS | Adj. df | MSS | $F_{cal}$ |
+|:--|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:--:|
+| Treatment | 5 | 18.21 | 28.875 | 14.375 | $E_1-E=20.87$ | 5 | 4.174 | 1.43 |
+| Error | 18 | 149.75 | 280.75 | 185.75 | $E=50.3$ | 17 | 2.95 | |
+| Total | 23 | 167.96 | 309.625 | 200.125 | $E_1=71.17$ | 22 | | |
+| Regression | 1 | | | | 230.48 | 1 | 230.48 | 78.128 |
+
+: Analysis of covariance table for Example 21.1 {#tbl-ancova-ex1}
 
 Here, $F_{(5,17)} = 2.81$, which is greater than the $F_{cal}$ of 1.43, so the adjusted treatment means do not differ significantly after adjusting for the tiller-count covariate.
 
@@ -372,7 +372,7 @@ $CD = t_{\alpha} \cdot SE$, where the (t) value corresponds to the error degrees
 
 |           |       |     |       |     |       |     |       |     |
 |:---------:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:-----:|:---:|
-| $Variety$ | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     |
+| Variety | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     |
 |           |   X   |  Y  |   X   |  Y  |   X   |  Y  |   X   |  Y  |
 |   $V_1$   |  114  | 42  |  88   | 21  |  140  | 51  |  137  | 32  |
 |   $V_2$   |  196  | 51  |  105  | 35  |  149  | 24  |  165  | 33  |
@@ -386,7 +386,7 @@ $CD = t_{\alpha} \cdot SE$, where the (t) value corresponds to the error degrees
 
 |           |       |     |       |     |       |     |       |     |           |           |
 |:---------:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:-----:|:---:|:---------:|:---------:|
-| $Variety$ | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     | $Sum $X$$ | $Sum $Y$$ |
+| Variety | $R_1$ |     | $R_2$ |     | $R_3$ |     | $R_4$ |     | Sum $X$ | Sum $Y$ |
 |           |   X   |  Y  |   X   |  Y  |   X   |  Y  |   X   |  Y  |           |           |
 |   $V_1$   |  114  | 42  |  88   | 21  |  140  | 51  |  137  | 32  |    479    |    146    |
 |   $V_2$   |  196  | 51  |  105  | 35  |  149  | 24  |  165  | 33  |    615    |    143    |
@@ -395,7 +395,7 @@ $CD = t_{\alpha} \cdot SE$, where the (t) value corresponds to the error degrees
 |   $V_5$   |  126  | 36  |  125  | 27  |  98   | 36  |  147  | 24  |    496    |    123    |
 |   $V_6$   |  153  | 45  |  90   | 15  |  140  | 51  |  120  | 27  |    503    |    138    |
 |   $V_7$   |  175  | 45  |  97   | 19  |  135  | 48  |  189  | 24  |    596    |    136    |
-|  $Total$  | 1085  | 299 |  728  | 165 |  934  | 285 | 1059  | 199 |   3806    |    948    |
+|  Total  | 1085  | 299 |  728  | 165 |  934  | 285 | 1059  | 199 |   3806    |    948    |
 
 Here, $r=4$, $v=7$
 
@@ -439,14 +439,17 @@ $TSS_{XY}=[(114\times42)+(88\times21)+...+(189\times24)]-128860.3=5144.714$
 
 $ESS_{XY}=5144.714-(1591.964+2777.714)=775.035$
 
-|  |  |  |  |  |
-|:--:|:--:|:--:|:--:|:--:|
-| Source | df | $Sum square X$ | $Sum square Y$ | $Sum product X,Y$ |
+| Source | df | Sum of squares $X$ | Sum of squares $Y$ | Sum of products $X,Y$ |
+|:--|:--:|:--:|:--:|:--:|
 | Block | 3 | 11376.71 | 1825.143 | 2777.714 |
 | Treatment | 6 | 7921.857 | 704.928 | 1591.964 |
 | Error | 18 | 7809.286 | 1213.357 | 775.035 |
 | Total | 27 | 27107.86 | 3743.429 | 5144.714 |
-| Treatment+Error | 24 | $T_{XX}+E_{XX}=15731.14$ | $T_{YY}+E_{YY}=1918.286$ | $T_{XY}+E_{XY}=2367$ |
+| Treatment + Error | 24 | 15731.14 | 1918.286 | 2367.00 |
+
+: Analysis of covariance table for Example 21.2 {#tbl-ancova-ex2}
+
+where the Treatment + Error row gives $T_{XX}+E_{XX}=15731.14$, $T_{YY}+E_{YY}=1918.286$, and $T_{XY}+E_{XY}=2367$.
 
 Regression of Y on X, $b=\frac{E_{XY}}{E_{XX}}=0.099$
 
@@ -456,19 +459,20 @@ Correlation between X and Y, $COR_{x,Y}=\frac{E_{XY}}{\sqrt{E_{XX}E_{YY}}}=0.251
 
 **Adjusted values**
 
-$Adj.ESS_{YY}=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=1136.438$
+Adjusted error sum of squares, $\text{Adj. ESS}_{YY}=E_{YY}-\dfrac{E_{XY}^2}{E_{XX}}=1136.438$
 
-$Adj. Treatment + Error = (E_{YY}+T_{YY})-\frac{(E_{XY}+T_{XY})^2}{E_{XX}+T_{XX}}=1562.133$
+Adjusted treatment + error, $(E_{YY}+T_{YY})-\dfrac{(E_{XY}+T_{XY})^2}{E_{XX}+T_{XX}}=1562.133$
 
-$Treatment Adj.=(Adj. Treatment + Error)-Adj.ESS_{YY}=1562.133-1136.438=425.694$
+Adjusted treatment sum of squares $= 1562.133-1136.438=425.694$
 
-|                        |     |          |        |           |                   |
-|------------------------|-----|----------|--------|-----------|-------------------|
-| Source                 | df  | SS       | MSS    | $F_{cal}$ | $F_{tab}$         |
-| Adj. Error             | 17  | 1136.438 | 66.849 |           |                   |
-| Adj. (Treatment+Error) | 23  | 1562.133 |        |           |                   |
-| Adj. Treatment         | 6   | 425.694  | 70.949 | 1.06      | $F_{(6,17)}=2.70$ |
-| Regression             | 1   | 76.918   | 76.918 | 1.15      | $F_{(1,17)}=4.45$ |
+| Source | df | SS | MSS | $F_{cal}$ | $F_{tab}$ |
+|:--|:--:|:--:|:--:|:--:|:--:|
+| Adj. Error | 17 | 1136.438 | 66.849 | | |
+| Adj. (Treatment + Error) | 23 | 1562.133 | | | |
+| Adj. Treatment | 6 | 425.694 | 70.949 | 1.06 | $F_{(6,17)}=2.70$ |
+| Regression | 1 | 76.918 | 76.918 | 1.15 | $F_{(1,17)}=4.45$ |
+
+: Adjusted analysis of covariance table for Example 21.2 {#tbl-ancova-ex2-adj}
 
 Since $F_{cal} < F_{tab}$ for the treatments, the adjusted treatment means do not differ significantly after adjusting for the plant stand covariate.
 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Statistics on agriculture – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<title>22&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,27 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -30,8 +50,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./3graph.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./appendix1.html" rel="next">
+<link href="./ancova.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -106,12 +126,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="2&nbsp; Statistics on agriculture – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:title" content="22&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
-<meta name="twitter:title" content="2&nbsp; Statistics on agriculture – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:title" content="22&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
@@ -291,7 +311,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./agstatindia.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html">Additional Topics</a></li><li class="breadcrumb-item"><a href="./missingPlot.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -348,7 +368,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link active">
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></span></a>
   </div>
 </li>
@@ -477,7 +497,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./missingPlot.html" class="sidebar-item-text sidebar-link">
+  <a href="./missingPlot.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
   </div>
 </li>
@@ -511,12 +531,12 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#compiling-crop-statistics" id="toc-compiling-crop-statistics" class="nav-link active" data-scroll-target="#compiling-crop-statistics"><span class="header-section-number">2.1</span> Compiling crop statistics</a>
+  <li><a href="#covariance-method-bartletts-approach" id="toc-covariance-method-bartletts-approach" class="nav-link active" data-scroll-target="#covariance-method-bartletts-approach"><span class="header-section-number">22.1</span> Covariance method (Bartlett’s approach)</a></li>
+  <li><a href="#method-of-substitution" id="toc-method-of-substitution" class="nav-link" data-scroll-target="#method-of-substitution"><span class="header-section-number">22.2</span> Method of substitution</a>
   <ul class="collapse">
-  <li><a href="#area-statistics" id="toc-area-statistics" class="nav-link" data-scroll-target="#area-statistics"><span class="header-section-number">2.1.1</span> Area statistics</a></li>
-  <li><a href="#crop-yield-estimation" id="toc-crop-yield-estimation" class="nav-link" data-scroll-target="#crop-yield-estimation"><span class="header-section-number">2.1.2</span> Crop yield estimation</a></li>
+  <li><a href="#randomised-block-design-with-a-single-missing-value" id="toc-randomised-block-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#randomised-block-design-with-a-single-missing-value"><span class="header-section-number">22.2.1</span> Randomised block design with a single missing value</a></li>
+  <li><a href="#latin-square-design-with-a-single-missing-value" id="toc-latin-square-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#latin-square-design-with-a-single-missing-value"><span class="header-section-number">22.2.2</span> Latin square design with a single missing value</a></li>
   </ul></li>
-  <li><a href="#agricultural-census" id="toc-agricultural-census" class="nav-link" data-scroll-target="#agricultural-census"><span class="header-section-number">2.2</span> Agricultural census</a></li>
   </ul>
 </nav>
     </div>
@@ -524,9 +544,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html">Additional Topics</a></li><li class="breadcrumb-item"><a href="./missingPlot.html"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Statistics on agriculture</span></h1>
+<h1 class="title"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></h1>
 </div>
 
 
@@ -543,55 +563,462 @@ window.Quarto = {
 </header>
 
 
-<p>The agricultural sector accounts for approximately 18% of India’s GDP and employs nearly half of its workforce. Reliable and timely information is vital for planners and policymakers to develop effective agricultural policies and make informed decisions on procurement, storage, public distribution, imports, exports, and other related matters. As such, the collection and management of agricultural statistics hold significant importance.</p>
-<p>This chapter provides an overview of the system for collecting agricultural statistics in India. While agriculture is a state subject, agricultural statistics fall under the concurrent list, resulting in a decentralised system. State Governments, through their State Agricultural Statistics Authorities (SASAs), play a central role in collecting and compiling agricultural statistics at the state level. At the national level, the Directorate of Economics and Statistics, under the Ministry of Agriculture and Farmers Welfare, is responsible for compiling the data. Other key agencies involved include the National Statistical Office (NSO) and the State Directorates of Economics and Statistics (DESs).</p>
-<section id="compiling-crop-statistics" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="compiling-crop-statistics"><span class="header-section-number">2.1</span> Compiling crop statistics</h2>
-<p>Crop statistics comprise two key components: the area sown and the average yield.<br>
-While area estimates are derived from land revenue systems, yield estimates are obtained through crop estimation surveys.</p>
-<section id="area-statistics" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="area-statistics"><span class="header-section-number">2.1.1</span> Area statistics</h3>
-<p>The system for collecting area statistics across states and Union Territories (UTs) in India can be broadly classified into three categories:</p>
-<ol type="1">
-<li><p><strong>States with complete enumeration systems</strong><br>
-These include states with land records or temporary settlement systems, covering 86% of the states (18 states and 3 UTs).</p></li>
-<li><p><strong>States using sample surveys</strong><br>
-These are states with no land record system or permanently settled states, representing 9% of the states.</p></li>
-<li><p><strong>States with no developed system for area statistics</strong><br>
-In these states, the collection is still based on conventional methods such as personal assessment, accounting for 5% of the states.</p></li>
+<p>In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.</p>
+<p>The Analysis of such data may be done by different methods.</p>
+<ol type="i">
+<li><p>the most commonly used method currently adopted is known as ‘method of analysis of non – orthogonal data’ which is highly computer based</p></li>
+<li><p>Method of substitution by Yates based on minimization of the error sum of squares and</p></li>
+<li><p>Analysis of the data with missing values by the technique of analysis of covariance, due to Bartlett.</p></li>
 </ol>
+<section id="covariance-method-bartletts-approach" class="level2" data-number="22.1">
+<h2 data-number="22.1" class="anchored" data-anchor-id="covariance-method-bartletts-approach"><span class="header-section-number">22.1</span> Covariance method (Bartlett’s approach)</h2>
+<p>Assume an imaginary covariate X taking values zero for every plot except the missing plot for which it will take the value 1 (or –1) . Now the value of the main variate Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.</p>
+<p>In missing plot analysis the degrees of freedom for error and total will be based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one ( when there is one missing value).</p>
 </section>
-<section id="crop-yield-estimation" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="crop-yield-estimation"><span class="header-section-number">2.1.2</span> Crop yield estimation</h3>
-<p>Crop yields are estimated through <strong>Crop Cutting Experiments (CCE)</strong>, which are conducted extensively across the country. The General Crop Estimation Survey (GCES) covers 65 crops, including 51 food crops and 14 non-food crops. Approximately 9 lakh CCEs are carried out annually in India to estimate the yield of key crops such as rice, maize, bajra, groundnut, and sugarcane. These experiments are conducted systematically to ensure accurate and reliable yield data for principal crops.</p>
-<div class="quarto-figure quarto-figure-center" style="text-align:center;">
-<figure class="figure">
-<p><img src="images/sampling.png" class="img-fluid figure-img" alt="Sampling Design under General Crop Estimation Survey" width="590"></p>
-<figcaption>Sampling design under General Crop Estimation Survey</figcaption>
-</figure>
-</div>
-<p>Final estimates of crop production are calculated using area figures obtained through complete enumeration and yield rates derived from crop-cutting experiments. These estimates become available only after the harvest. However, to support timely decision-making, the Government requires advance production estimates.</p>
-<p>The Directorate of Economics and Statistics (DES), under the Ministry of Agriculture and Farmers Welfare, provides advance estimates of crop area and production for key food and non-food crops such as food grains, oilseeds, sugarcane, and fibres. These estimates are issued in four stages:</p>
-<ol type="1">
-<li><strong>First forecast</strong>: Mid-September<br>
-</li>
-<li><strong>Second forecast</strong>: January<br>
-</li>
-<li><strong>Third forecast</strong>: Late March<br>
-</li>
-<li><strong>Fourth forecast</strong>: Late May</li>
+<section id="method-of-substitution" class="level2" data-number="22.2">
+<h2 data-number="22.2" class="anchored" data-anchor-id="method-of-substitution"><span class="header-section-number">22.2</span> Method of substitution</h2>
+<ol type="i">
+<li><p>In this method we will calculate with the aid of a formula an estimate of the missing value. The formula will vary from design to design and actually it will not supply the exact missing value. But the procedure permits the researcher to complete the analysis without resorting to more complex procedures.</p></li>
+<li><p>Insert the estimated value in the missing position and work out the estimates of treatment means and error sum of squares.</p></li>
+<li><p>Some additional adjustments to treatment sum of squares are needed. In pair comparison also some changes are made.</p></li>
+<li><p>An iterative procedure is adopted when more than one observation is missing.</p></li>
 </ol>
-<p>In addition to these forecasts, <strong>Final Estimates</strong> of crop area and production are published in December. Subsequently, <strong>Fully Revised Estimates</strong> for all-India crop statistics are released in December of the following crop year.</p>
-<p>Additionally, information on the structure and characteristics of the agricultural sector is gathered through the Agricultural Census.</p>
+<section id="randomised-block-design-with-a-single-missing-value" class="level3" data-number="22.2.1">
+<h3 data-number="22.2.1" class="anchored" data-anchor-id="randomised-block-design-with-a-single-missing-value"><span class="header-section-number">22.2.1</span> Randomised block design with a single missing value</h3>
+<ol type="i">
+<li>The missing value in RBD is estimated as</li>
+</ol>
+<p><span id="eq-msRBD"><span class="math display">\[x=\frac{rB+vT-G}{(r-1)(v-1)} \tag{22.1}\]</span></span></p>
+<p>where,<br>
+x = estimate of the missing data;<br>
+v = number of treatments;<br>
+r = number of replications;<br>
+B =Total of the observed values of the replication that contain the missing data<br>
+T = Total of the observed values of the treatment that contain the missing data<br>
+G = Grand total of all existing observations.</p>
+<ol start="2" type="i">
+<li><p>This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom. This method provides a proper estimate of the error variance per plot but there is an inflation in treatment sum of squares; ( the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turn out to be just significant, it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula.</p></li>
+<li><p>Estimate of bias in the case of RBD:</p></li>
+</ol>
+<p><span id="eq-biasRBD"><span class="math display">\[Bias=\frac{(B+vT-G)^2}{v(v-1)(r-1)^2} \tag{22.2}\]</span></span></p>
+<p>This bias is subtracted from the treatment sum of squares. Now test this actual treatment mean square against the mean square for error, and draw the conclusion about the significance of treatments.</p>
+<ol start="4" type="i">
+<li>Pair comparison</li>
+</ol>
+<!-- -->
+<ol type="a">
+<li>For comparing two treatment means in which one of them contains the missing observation:</li>
+</ol>
+<p><span id="eq-CDmsRBD"><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} + \frac{v}{r(r-1)(v-1)}\right)} \tag{22.3}\]</span></span></p>
+<ol start="2" type="a">
+<li>For comparing other pairs of treatment means (in which neither contains a missing observation):</li>
+</ol>
+<p><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{\frac{2\,MSE}{r}}\]</span></p>
+<p>where <span class="math inline">\(t_{\alpha}\)</span> denotes the <span class="math inline">\(t\)</span> table value at <span class="math inline">\((r-1)(v-1)-1\)</span> degrees of freedom.</p>
+<p><strong>Example 22.1</strong>: Data of a RBD with five sources of sulphur (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the fresh weight are represented below. One sample was spoiled due to negligence during analysis. Find the missing value and do further analysis.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatment</th>
+<th style="text-align: center;">Block 1</th>
+<th style="text-align: center;">Block 2</th>
+<th style="text-align: center;">Block 3</th>
+<th style="text-align: center;">Block 4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_0\)</span></td>
+<td style="text-align: center;">0.679</td>
+<td style="text-align: center;">0.852</td>
+<td style="text-align: center;">0.513</td>
+<td style="text-align: center;">0.507</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_1\)</span></td>
+<td style="text-align: center;">0.952</td>
+<td style="text-align: center;">1.002</td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">0.621</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_2\)</span></td>
+<td style="text-align: center;">0.899</td>
+<td style="text-align: center;">0.919</td>
+<td style="text-align: center;">0.718</td>
+<td style="text-align: center;">0.679</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_3\)</span></td>
+<td style="text-align: center;">0.986</td>
+<td style="text-align: center;">0.949</td>
+<td style="text-align: center;">0.845</td>
+<td style="text-align: center;">0.780</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_4\)</span></td>
+<td style="text-align: center;">0.911</td>
+<td style="text-align: center;">0.922</td>
+<td style="text-align: center;">0.668</td>
+<td style="text-align: center;">0.746</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution 22.1</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatment</th>
+<th style="text-align: center;">Block 1</th>
+<th style="text-align: center;">Block 2</th>
+<th style="text-align: center;">Block 3</th>
+<th style="text-align: center;">Block 4</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_0\)</span></td>
+<td style="text-align: center;">0.679</td>
+<td style="text-align: center;">0.852</td>
+<td style="text-align: center;">0.513</td>
+<td style="text-align: center;">0.507</td>
+<td style="text-align: center;">2.551</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_1\)</span></td>
+<td style="text-align: center;">0.952</td>
+<td style="text-align: center;">1.002</td>
+<td style="text-align: center;"><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">0.621</td>
+<td style="text-align: center;">2.575 + <span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_2\)</span></td>
+<td style="text-align: center;">0.899</td>
+<td style="text-align: center;">0.919</td>
+<td style="text-align: center;">0.718</td>
+<td style="text-align: center;">0.679</td>
+<td style="text-align: center;">3.215</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(S_3\)</span></td>
+<td style="text-align: center;">0.986</td>
+<td style="text-align: center;">0.949</td>
+<td style="text-align: center;">0.845</td>
+<td style="text-align: center;">0.780</td>
+<td style="text-align: center;">3.56</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(S_4\)</span></td>
+<td style="text-align: center;">0.911</td>
+<td style="text-align: center;">0.922</td>
+<td style="text-align: center;">0.668</td>
+<td style="text-align: center;">0.746</td>
+<td style="text-align: center;">3.247</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">4.427</td>
+<td style="text-align: center;">4.644</td>
+<td style="text-align: center;">2.744 + <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">3.333</td>
+<td style="text-align: center;">15.873 + <span class="math inline">\(x\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=5\)</span></p>
+<p>Using <a href="#eq-msRBD" class="quarto-xref">Equation&nbsp;<span>22.1</span></a></p>
+<p><span class="math display">\[x=\frac{10.976+12.875-15.148}{4\times3}=0.725\]</span></p>
+<p>Correction factor, <span class="math inline">\(CF=\dfrac{(15.873)^2}{20}=12.597\)</span></p>
+<p>Total SS <span class="math inline">\(=13.036-CF=13.036-12.597=0.439\)</span></p>
+<p>Treatment SS <span class="math inline">\(=\dfrac{50.95}{4}-12.597=0.1406\)</span></p>
+<p>Block SS <span class="math inline">\(=\dfrac{64.307}{5}-12.597=0.264\)</span></p>
+<p>Using <a href="#eq-biasRBD" class="quarto-xref">Equation&nbsp;<span>22.2</span></a></p>
+<p><span class="math display">\[Bias=\frac{(2.744+12.875-15.148)^2}{5\times4\times9}=0.00123\]</span></p>
+<p>Treatment Adj. SS <span class="math inline">\(=0.1406-0.00123=0.139\)</span></p>
+<p>Total Adj. SS <span class="math inline">\(=0.439-0.00123=0.437\)</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Source</th>
+<th>df</th>
+<th>S.S</th>
+<th>M. S.S</th>
+<th><span class="math inline">\(F_{cal}\)</span></th>
+<th><span class="math inline">\(F_{tab}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Block</td>
+<td>3</td>
+<td>0.264</td>
+<td>0.088</td>
+<td>29.33</td>
+<td>3.59</td>
+</tr>
+<tr class="even">
+<td>Treatment Adj.</td>
+<td>4</td>
+<td>0.139</td>
+<td>0.034</td>
+<td>11.003</td>
+<td>3.36</td>
+</tr>
+<tr class="odd">
+<td>Error Adj.</td>
+<td>11</td>
+<td>0.034</td>
+<td>0.003</td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Total Adj.</td>
+<td>18</td>
+<td>0.437</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> the treatment pairs are significantly different from each other.</p>
+<p>CD for missing data using <a href="#eq-CDmsRBD" class="quarto-xref">Equation&nbsp;<span>22.3</span></a></p>
+<p><span class="math display">\[CD=2.201\times\sqrt{\frac{0.003}{4}\left(2+\frac{5}{12}\right)}=0.095\]</span></p>
+<p>CD for other data is</p>
+<p><span class="math display">\[CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times0.003}{4}}=0.086\]</span></p>
+<p>Here, the mean of <span class="math inline">\(S_3\)</span> is maximum, which was found to be on par with the means of <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_4\)</span>. Also, <span class="math inline">\(S_1\)</span> was on par with <span class="math inline">\(S_4\)</span> and <span class="math inline">\(S_2\)</span>. The mean of <span class="math inline">\(S_0\)</span> is minimum.</p>
 </section>
-</section>
-<section id="agricultural-census" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="agricultural-census"><span class="header-section-number">2.2</span> Agricultural census</h2>
-<p>The Agricultural census is a comprehensive exercise conducted to gather and analyze data on the structure of the agricultural sector in India. It provides essential information about operational holdings, including their number, area, land use, cropping patterns, and input usage, down to the lowest geographical levels such as villages, tehsils (sub-districts), and districts. This census serves as a statistical framework for planning and conducting future agricultural surveys.</p>
-<p>Initiated in <strong>1970-71</strong>, the Agricultural census is conducted every five years by the Department of Agriculture and Farmers Welfare in collaboration with State and Union Territory administrations. In states with land records, the number and area of operational holdings are collected through <strong>complete enumeration</strong>, while detailed data on the characteristics of operational holdings are gathered on a <strong>sample basis</strong>.</p>
-<p>To date, <strong>eleven Agricultural censuses</strong> have been conducted, covering the reference years <strong>1970-71, 1976-77, 1980-81, 1985-86, 1990-91, 1995-96, 2000-01, 2005-06, 2010-11, 2015-16 and 2020-21</strong>. The reference period for each census corresponds to the agricultural year, spanning from <strong>July to June</strong>.</p>
-<p>The data derived from the Agricultural census plays a crucial role in policy formulation, resource allocation, and the overall development of the agricultural sector in India.</p>
-<p>Additional data pertaining to various sectors can be obtained from the sources listed in the <a href="appendix1.html">Appendix 1</a></p>
+<section id="latin-square-design-with-a-single-missing-value" class="level3" data-number="22.2.2">
+<h3 data-number="22.2.2" class="anchored" data-anchor-id="latin-square-design-with-a-single-missing-value"><span class="header-section-number">22.2.2</span> Latin square design with a single missing value</h3>
+<p>The same procedure as in RBD is used here also.</p>
+<ol type="i">
+<li>The missing value in LSD is estimated as</li>
+</ol>
+<p><span id="eq-msLSD"><span class="math display">\[x=\frac{v(R+C+T)-2G}{(v-1)(v-2)} \tag{22.4}\]</span></span></p>
+<p>where<br>
+x = estimate of the missing data<br>
+v = number of treatments/ rows or blocks/ columns<br>
+R = Total of the observed values of the row that contain the missing data<br>
+C = Total of the observed values of the column that contain the missing data<br>
+T = Total of the observed values of the treatment that contain the missing data<br>
+G = Grand total of all existing observations.</p>
+<ol start="2" type="i">
+<li>Carry out the analysis similar to the above method after substitution. The estimate of bias in this case is</li>
+</ol>
+<p><span id="eq-biasLSD"><span class="math display">\[Bias=\frac{[(v-1)T+R+C-G]^2}{[(v-1)(v-2)]^2} \tag{22.5}\]</span></span></p>
+<ol start="3" type="i">
+<li>For pairwise comparison involving a treatment with a missing observation (comparing two treatment means in which one of them contains a missing observation):</li>
+</ol>
+<p><span id="eq-CDmsLSD"><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\right)} \tag{22.6}\]</span></span></p>
+<p><strong>Example 22.2</strong>: The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Col 1</th>
+<th style="text-align: center;">Col 2</th>
+<th style="text-align: center;">Col 3</th>
+<th style="text-align: center;">Col 4</th>
+<th style="text-align: center;">Col 5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Row 1</td>
+<td style="text-align: center;">E (26)</td>
+<td style="text-align: center;">C (42)</td>
+<td style="text-align: center;">D (39)</td>
+<td style="text-align: center;">B (37)</td>
+<td style="text-align: center;">A (24)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Row 2</td>
+<td style="text-align: center;">A (24)</td>
+<td style="text-align: center;">D (33)</td>
+<td style="text-align: center;">E (21)</td>
+<td style="text-align: center;">C (<span class="math inline">\(x\)</span>)</td>
+<td style="text-align: center;">B (38)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Row 3</td>
+<td style="text-align: center;">D (47)</td>
+<td style="text-align: center;">B (45)</td>
+<td style="text-align: center;">A (31)</td>
+<td style="text-align: center;">E (29)</td>
+<td style="text-align: center;">C (31)</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Row 4</td>
+<td style="text-align: center;">B (38)</td>
+<td style="text-align: center;">A (24)</td>
+<td style="text-align: center;">C (36)</td>
+<td style="text-align: center;">D (41)</td>
+<td style="text-align: center;">E (34)</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Row 5</td>
+<td style="text-align: center;">C (41)</td>
+<td style="text-align: center;">E (24)</td>
+<td style="text-align: center;">B (44)</td>
+<td style="text-align: center;">A (26)</td>
+<td style="text-align: center;">D (30)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Solution 22.2</strong></p>
+<p>Here, <span class="math inline">\(v=5\)</span></p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 10%">
+<col style="width: 19%">
+<col style="width: 10%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Col 1</th>
+<th style="text-align: center;">Col 2</th>
+<th style="text-align: center;">Col 3</th>
+<th style="text-align: center;">Col 4</th>
+<th style="text-align: center;">Col 5</th>
+<th style="text-align: center;">Row total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Row 1</td>
+<td style="text-align: center;">E (26)</td>
+<td style="text-align: center;">C (42)</td>
+<td style="text-align: center;">D (39)</td>
+<td style="text-align: center;">B (37)</td>
+<td style="text-align: center;">A (24)</td>
+<td style="text-align: center;"><strong>168</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Row 2</td>
+<td style="text-align: center;">A (24)</td>
+<td style="text-align: center;">D (33)</td>
+<td style="text-align: center;">E (21)</td>
+<td style="text-align: center;">C (<span class="math inline">\(x\)</span>)</td>
+<td style="text-align: center;">B (38)</td>
+<td style="text-align: center;"><strong>116+</strong><span class="math inline">\(x\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Row 3</td>
+<td style="text-align: center;">D (47)</td>
+<td style="text-align: center;">B (45)</td>
+<td style="text-align: center;">A (31)</td>
+<td style="text-align: center;">E (29)</td>
+<td style="text-align: center;">C (31)</td>
+<td style="text-align: center;"><strong>183</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Row 4</td>
+<td style="text-align: center;">B (38)</td>
+<td style="text-align: center;">A (24)</td>
+<td style="text-align: center;">C (36)</td>
+<td style="text-align: center;">D (41)</td>
+<td style="text-align: center;">E (34)</td>
+<td style="text-align: center;"><strong>173</strong></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Row 5</td>
+<td style="text-align: center;">C (41)</td>
+<td style="text-align: center;">E (24)</td>
+<td style="text-align: center;">B (44)</td>
+<td style="text-align: center;">A (26)</td>
+<td style="text-align: center;">D (30)</td>
+<td style="text-align: center;"><strong>165</strong></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Column total</td>
+<td style="text-align: center;"><strong>176</strong></td>
+<td style="text-align: center;"><strong>168</strong></td>
+<td style="text-align: center;"><strong>171</strong></td>
+<td style="text-align: center;"><strong>133+</strong><span class="math inline">\(x\)</span></td>
+<td style="text-align: center;"><strong>157</strong></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Using <a href="#eq-msLSD" class="quarto-xref">Equation&nbsp;<span>22.4</span></a></p>
+<p><span class="math display">\[x=\frac{[5(116+133+150)-(2\times 805)]}{4\times3}=32.083\approx 32\]</span></p>
+<p>Correction factor, <span class="math inline">\(CF=\dfrac{(837)^2}{25}=28022.76\)</span></p>
+<p>Total SS <span class="math inline">\(=29399-CF=29399-28022.76=1376.24\)</span></p>
+<p>Treatment SS <span class="math inline">\(=\dfrac{129^2+202^2+182^2+190^2+134^2}{5}-28022.76=902.24\)</span></p>
+<p>Row SS <span class="math inline">\(=\dfrac{168^2+148^2+183^2+173^2+165^2}{5}-28022.76=131.44\)</span></p>
+<p>Column SS <span class="math inline">\(=\dfrac{176^2+168^2+171^2+165^2+157^2}{5}-28022.76=40.24\)</span></p>
+<p>Using <a href="#eq-biasLSD" class="quarto-xref">Equation&nbsp;<span>22.5</span></a></p>
+<p><span class="math display">\[Bias=\frac{[(4\times150)+133+116-805]^2}{(4\times3)^2}=13.44\]</span></p>
+<p>Treatment Adj. SS <span class="math inline">\(=902.24-13.44=888.8\)</span></p>
+<p>Total Adj. SS <span class="math inline">\(=1376.24-13.44=1362.8\)</span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MSS</th>
+<th style="text-align: center;"><span class="math inline">\(F_{cal}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(F_{tab}\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Row</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">131.44</td>
+<td style="text-align: center;">32.86</td>
+<td style="text-align: center;">1.19</td>
+<td style="text-align: center;">3.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Column</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">40.24</td>
+<td style="text-align: center;">10.06</td>
+<td style="text-align: center;">0.36</td>
+<td style="text-align: center;">3.36</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Treatment Adj.</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">888.8</td>
+<td style="text-align: center;">222.2</td>
+<td style="text-align: center;">8.08</td>
+<td style="text-align: center;">3.36</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Error Adj.</td>
+<td style="text-align: center;">11</td>
+<td style="text-align: center;">302.32</td>
+<td style="text-align: center;">27.48</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total Adj.</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">1362.8</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> the treatment pairs are significantly different from each other.</p>
+<p>CD for missing data using <a href="#eq-CDmsLSD" class="quarto-xref">Equation&nbsp;<span>22.6</span></a></p>
+<p><span class="math display">\[CD=2.201\times\sqrt{27.48\left(\frac{2}{5}+\frac{1}{4\times3}\right)}=8.021\]</span></p>
+<p>CD for other data is</p>
+<p><span class="math display">\[CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297\]</span></p>
+<p>Here, the mean of B is maximum, which was found to be on par with the means of D and C. The mean of A is minimum, which is on par with E.</p>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -602,8 +1029,9 @@ In these states, the collection is still based on conventional methods such as p
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Mahalanobis and statistical planning in India”</strong></p>
-<p>In post-independence India, statistician <em>Prasanta Chandra Mahalanobis</em> played a key role in shaping the country’s economic planning. He developed statistical methods to guide the allocation of resources in India’s <em>Five-Year Plans</em>. Mahalanobis introduced the <em>Mahalanobis Distance</em>, a method for analyzing multi-dimensional data, and created the <em>Input-Output Model</em> to understand how different sectors of the economy interacted. His work, especially in the first Five-Year Plan (1951-1956), helped optimize resource use and industrial growth. Mahalanobis’ contributions laid the foundation for using statistics in economic policy-making, which continues to guide India’s development. He is known as the ‘Father of Indian statistics’.</p>
+<p><strong>Frank Yates and the art of the missing value</strong></p>
+<p>In the field, experiments rarely go exactly to plan. A goat breaks into a plot, a flood washes out a corner, a technician mislabels a sample, and suddenly one of the neatly balanced yields is simply gone. In the early days of agricultural statistics this was a serious problem, because Fisher’s elegant analysis of variance relied on the tidy balance of equal numbers in every treatment and block. A single hole in the data destroyed that balance and, with it, the simple arithmetic of the analysis.</p>
+<p>The solution came from <strong>Frank Yates</strong>, Fisher’s brilliant younger colleague at the Rothamsted Experimental Station. In the early 1930s Yates worked out that a missing observation could be replaced by an estimated value, chosen precisely so as to <em>minimise the error sum of squares</em>, allowing the standard analysis to proceed almost unchanged. His formulae, one for the randomized block design, another for the Latin square, let researchers recover nearly all the information from a damaged experiment with only a small, correctable bias in the treatment sum of squares and the loss of a single degree of freedom. Yates set this out in his 1933 paper on the analysis of replicated experiments with missing values, and the “missing plot technique” quickly became a standard part of every field experimenter’s toolkit. It is a fine example of the statistician’s craft: not discarding hard-won data because of an accident, but finding a principled way to make the most of what remains. <span class="citation" data-cites="Yates1933">(<a href="references.html#ref-Yates1933" role="doc-biblioref">Yates 1933</a>)</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -616,12 +1044,18 @@ In these states, the collection is still based on conventional methods such as p
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Statistics is the art of never having to say you’re certain.”</strong> <strong>– W. Edwards Deming</strong></p>
+<p><strong>“The best time to plan an experiment is after you’ve done it.” - R. A. Fisher</strong></p>
 </div>
 </div>
 
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-Yates1933" class="csl-entry" role="listitem">
+Yates, Frank. 1933. <span>“The Analysis of Replicated Experiments When the Field Results Are Incomplete.”</span> <em>Empire Journal of Experimental Agriculture</em> 1 (2): 129–42.
+</div>
+</div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1040,13 +1474,13 @@ In these states, the collection is still based on conventional methods such as p
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Basics of statistics">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span>
+      <a href="./ancova.html" class="pagination-link" aria-label="Analysis of covariance">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./3graph.html" class="pagination-link" aria-label="Graphical representation">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
