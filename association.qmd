@@ -83,7 +83,7 @@ Scatter diagram for the Example 8.2 is given in @fig-scattercorrdata. You can se
 
 ![Linear relationship between variables](images/image3.5c.jpeg){#fig-reglinecorrdata fig-align="center" width="70%" style="text-align:center;"}
 
-From the examples above it is clear that scatter diagram gives an idea on linear association between variables, so it can also used as a graphical tool to see whether there any association is present or not. But we cannot quantify the association using scatter diagram.
+From the examples above it is clear that scatter diagram gives an idea on linear association between variables, so it can also be used as a graphical tool to see whether any association is present or not. But we cannot quantify the association using scatter diagram.
 
 ## Correlation
 
@@ -351,9 +351,9 @@ For example, the first student's physics rank is 3 and math rank is 5, so the di
 
 : Non tied rank case calculation table2 {#tbl-nontiedcalc2 .bordered}
 
-**Step 4**: Sum (add up) all of your *d*^2^ values. $\sum_{i = 1}^{n}d_{i}^{2} =$ 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12.
+**Step 3**: Sum (add up) all of your *d*^2^ values. $\sum_{i = 1}^{n}d_{i}^{2} =$ 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12.
 
-**Step 5**: Insert the values into @eq-spearman1
+**Step 4**: Insert the values into @eq-spearman1
 
 $$\rho = 1 - \frac{6 \times 12}{9\left( 81 - 1 \right)} = 0.90$$
 
@@ -450,11 +450,11 @@ You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 
 
 **Step 2**: Calculate $T_{x}$ and $T_{y}$
 
-In our example marks in Physics (*x*) there are two 23 values tied therefore *m* = 2; since only one such a set is there *s* = 1. Applying these values in @eq-spearmanx $T_{x} = \ \frac{1}{12}\left( 2 \times (2^{2} - 1 \right)$ = 0.5
+In our example marks in Physics (*x*) there are two 23 values tied therefore *m* = 2; since only one such a set is there *s* = 1. Applying these values in @eq-spearmanx $T_{x} = \frac{1}{12}\left[ 2 \times (2^{2} - 1) \right] = 0.5$
 
-In our example marks in Mathematics (*y*) there are three 33 values tied therefore *w* = 3; since only one such a set is there *s* = 1. Applying these values in @eq-spearmany $T_{y} = \ \frac{1}{12}\left( 3 \times (3^{2} - 1 \right)$ = 2
+In our example marks in Mathematics (*y*) there are three 33 values tied therefore *w* = 3; since only one such a set is there *s* = 1. Applying these values in @eq-spearmany $T_{y} = \frac{1}{12}\left[ 3 \times (3^{2} - 1) \right] = 2$
 
-**Step 2**: Calculate *d* and then use the @eq-spearman2
+**Step 3**: Calculate *d* and then use @eq-spearman2
 
 | Physics (*x*) | Rank | Mathematics (*y*) | Rank |  d   | d^2^ |
 |:-------------:|:----:|:-----------------:|:----:|:----:|:----:|
@@ -479,11 +479,11 @@ A Spearman rank correlation of 0.61 indicates a moderately strong positive monot
 Spearman's rank correlation is a non-parametric method, meaning it does not rely on assumptions about the data's distribution and is suitable for ordinal data or non-linear relationships. In contrast, Karl Pearson's correlation is a parametric method that assumes the data follows a normal distribution and is used for continuous variables with a linear relationship. Parametric methods are more sensitive to outliers and deviations from assumptions, while non-parametric methods are more robust and versatile for different types of data.
 :::
 
-### Kendall's Rank Correlation Coefficient
+### Kendall's coefficient of concordance
 
-Kendall's rank correlation coefficient, also known as Kendall's $\tau$ or the coefficient of concordance, is a measure of association that evaluates the degree of agreement between ranked variables. It ranges from 0 to 1 *i.e.* $0\leq \tau \leq1$, where $\tau = 0$: indicates no agreement. $\tau = 1$: indicates perfect agreement.
+Kendall's coefficient of concordance is a measure of association that evaluates the degree of agreement among several sets of ranks. It ranges from 0 to 1, *i.e.* $0\leq W \leq1$, where $W = 0$ indicates no agreement and $W = 1$ indicates perfect agreement. (This coefficient of concordance is a distinct measure from Kendall's $\tau$, which measures the rank correlation between just two variables and ranges from $-1$ to $+1$. In this book we follow the notation used in some texts and denote the coefficient of concordance by $\tau$ in the formula below.)
 
-When there are multiple sets of rankings (*k* sets), Kendall's coefficient of concordance ($\tau$) can be used to assess the association among them. This measure is particularly useful in evaluating the reliability or consistency of scores assigned by multiple judges or raters. By quantifying the agreement across different rankings, it provides a robust way to analyze consensus in subjective evaluations or repeated assessments.
+When there are multiple sets of rankings (*k* sets), Kendall's coefficient of concordance can be used to assess the association among them. This measure is particularly useful in evaluating the reliability or consistency of scores assigned by multiple judges or raters. By quantifying the agreement across different rankings, it provides a robust way to analyze consensus in subjective evaluations or repeated assessments.
 
 To calculate Kendall's coefficient of concordance ($\tau$), the data is organized into a table where each row represents the ranks assigned by a different judge to the same set of *n* objects. Each column in the table corresponds to the ranks given by a judge to *n* objects.
 
@@ -498,7 +498,7 @@ For *k* judges, there will be *k* sets of rankings for each object. The table sh
 
 : Model table for the calculation of Kendall's $\tau$ {#tbl-kendalltau .bordered}
 
-In @tbl-kendalltau each row represents the ranks assigned to an object by all (*k*) judges. Each column represents the ranks for each object assigned by a particular judge. $R_{ij}$ is the rank assigned to the *i*^th^ object by the *j*^th^ object, where *i* = 1, 2, ..., *n* and *j* = 1, 2, ..., *k.*
+In @tbl-kendalltau each row represents the ranks assigned to an object by all (*k*) judges. Each column represents the ranks for each object assigned by a particular judge. $R_{ij}$ is the rank assigned to the *i*^th^ object by the *j*^th^ judge, where *i* = 1, 2, ..., *n* and *j* = 1, 2, ..., *k.*
 
 Kendall's coefficient of concordance ($\tau$) is calculated using @eq-kendall.
 
@@ -540,13 +540,13 @@ where $R_{i} =\sum_{j = 1}^{k}{R_{ij}}$, *i*.*e*. the sum of ranks obtained by e
 |    10     |  9  | 10  |  7  |  8  |           34            |      1156       |
 | **Total** |     |     |     |     |           220           |      5900       |
 
-: Calculation of Kendall's $\tau$ {#tbl-kendaltau .bordered}
+: Calculation of Kendall's $\tau$ {#tbl-kendallcalc .bordered}
 
-here *k* = number of judges = 4; *n* = number of farmers = 10; $\sum_{i = 1}^{10}R_{i}^{2}$ = (220)^2^ = 48400; $\sum_{i = 1}^{10}R_{i}^{2}$ = 5900. Using @eq-kendall
+here *k* = number of judges = 4; *n* = number of farmers = 10; $\left(\sum_{i = 1}^{10}R_{i}\right)^{2}$ = (220)^2^ = 48400; $\sum_{i = 1}^{10}R_{i}^{2}$ = 5900. Using @eq-kendall
 
 $$\tau = \frac{12\left\lbrack 5900 - \frac{48400}{10} \right\rbrack}{16 \times 10\left( 100 - 1 \right)} = 0.80$$
 
-A Kendall's $\tau$ of 0.80 suggests that the judges’ rankings are highly consistent. This level of concordance implies that the rankings are strongly aligned, indicating a high level of agreement across the judges' evaluations.
+A coefficient of concordance of 0.80 suggests that the judges’ rankings are highly consistent. This level of concordance implies that the rankings are strongly aligned, indicating a high level of agreement across the judges' evaluations.
 
 ## Correlation matrix
 
@@ -554,8 +554,9 @@ A correlation matrix is a table that displays the correlation coefficients betwe
 
 **Example 8.7**: Data below gives the measurement on several plant growth characters. Create a correlation matrix.
 
-```{r tbl-corrmat, echo=FALSE,warning=FALSE,results='asis'}
-#| tbl-cap: "Plant growth characters"  
+```{r echo=FALSE,warning=FALSE,results='asis'}
+#| label: tbl-corrmat
+#| tbl-cap: "Plant growth characters"
 
 library(knitr)
 library(kableExtra)
@@ -604,4 +605,409 @@ The concept of correlation dates back to Sir Francis Galton, who introduced the 
 
 ::: {.callout-tip title="Quotes to Inspire"}
 **"Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands".- Herman Chernoff**
-:::
+:::  
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. Measures of association are used to study the __________ between two or more variables.
+
+2. A straight-line relationship between two variables is called a __________ relationship.
+
+3. A relationship in which variables move in the same direction but not necessarily at a constant rate is called a __________ relationship.
+
+4. All linear relationships are __________, but not all monotonic relationships are linear.
+
+5. A graphical method used to examine the relationship between two variables is called a __________ diagram.
+
+6. In a scatter diagram, the values of the two variables are plotted on the __________ and __________ axes.
+
+7. When two variables move in the same direction, they are said to have __________ correlation.
+
+8. When one variable increases while the other decreases, they have __________ correlation.
+
+9. A correlation coefficient of zero indicates __________ linear correlation.
+
+10. The relationship between only two variables is called __________ correlation.
+
+11. The relationship involving more than two variables is called __________ correlation.
+
+12. Correlation that can be represented by a straight line is called __________ correlation.
+
+13. Correlation that cannot be represented by a straight line is called __________ correlation.
+
+14. Correlation between two variables after controlling the effect of other variables is called __________ correlation.
+
+15. Pearson's correlation coefficient is denoted by __________.
+
+16. Pearson's correlation coefficient measures the strength and direction of __________ association.
+
+17. Covariance measures the joint __________ variability of two variables.
+
+18. The units of covariance are the __________ of the units of the two variables.
+
+19. Pearson's correlation coefficient is also called the __________ correlation coefficient.
+
+20. The range of Pearson's correlation coefficient is from __________ to __________.
+
+21. A correlation coefficient of $+1$ indicates __________ positive correlation.
+
+22. A correlation coefficient of $-1$ indicates __________ negative correlation.
+
+23. Pearson's correlation coefficient is sensitive to __________.
+
+24. One important assumption of Pearson's correlation is __________.
+
+25. Another assumption of Pearson's correlation is __________ of variance across the range of the other variable.
+
+26. Spearman's rank correlation coefficient is denoted by the Greek letter __________.
+
+27. Spearman's rank correlation measures the strength of a __________ relationship.
+
+28. Spearman's correlation is based on the __________ of observations rather than their raw values.
+
+29. Spearman's rank correlation is particularly useful for __________ data.
+
+30. When no ranks are tied, Spearman's coefficient is calculated using the differences between the two __________.
+
+31. When two or more observations have the same value and are assigned the same rank, they are called __________ ranks.
+
+32. In the tied-rank method, tied observations are assigned their __________ rank.
+
+33. Kendall's coefficient of concordance is used to measure the degree of __________ among rankings.
+
+34. Kendall's coefficient of concordance is particularly useful when rankings are provided by multiple __________ or raters.
+
+35. A table showing correlation coefficients among several variables is called a correlation __________.
+
+36. The diagonal elements of a correlation matrix are always __________.
+
+37. A correlation matrix is __________ about its principal diagonal.
+
+38. A graphical representation of a correlation matrix is called a __________.
+
+### Short-answer questions {.unnumbered}
+
+1. Define measures of association and explain their importance.
+
+2. What is a linear relationship?
+
+3. What is a monotonic relationship?
+
+4. Distinguish between linear and monotonic relationships.
+
+5. What is a scatter diagram? Explain its uses.
+
+6. Explain positive, negative, and no correlation.
+
+7. Explain the different types of correlation based on the number of variables.
+
+8. Distinguish between simple and multiple correlation.
+
+9. Distinguish between linear and non-linear correlation.
+
+10. What is partial correlation?
+
+11. What is total correlation?
+
+12. What is perfect correlation? Explain its characteristics.
+
+13. Define covariance and explain its interpretation.
+
+14. Define Pearson's correlation coefficient.
+
+15. State the assumptions of Pearson's correlation coefficient.
+
+16. Explain the interpretation of the sign and magnitude of Pearson's correlation coefficient.
+
+17. Why is Pearson's correlation coefficient called product-moment correlation?
+
+18. What are the limitations of Pearson's correlation coefficient?
+
+19. Define Spearman's rank correlation coefficient.
+
+20. When is Spearman's rank correlation preferred over Pearson's correlation?
+
+21. Explain the calculation of Spearman's rank correlation when there are no tied ranks.
+
+22. Explain the calculation of Spearman's rank correlation when tied ranks are present.
+
+23. What are tied ranks? How are tied observations assigned ranks?
+
+24. Define Kendall's coefficient of concordance.
+
+25. Explain the use of Kendall's coefficient of concordance.
+
+26. What is a correlation matrix? Explain its important properties.
+
+27. What is a correlogram? Explain its use.
+
+28. Distinguish between Pearson's correlation and Spearman's rank correlation.
+
+29. Distinguish between correlation and covariance.
+
+30. Explain the difference between correlation matrix and correlogram.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. Draw a scatter diagram for a given set of paired observations and identify whether the relationship is positive, negative, or absent.
+
+2. Explain whether a strong monotonic relationship must always be linear.
+
+3. Calculate the covariance for the following paired observations:
+
+| $x$ | $y$ |
+|:---:|:---:|
+| 2 | 5 |
+| 4 | 7 |
+| 6 | 9 |
+| 8 | 11 |
+| 10 | 13 |
+
+4. Calculate Pearson's correlation coefficient for the following data:
+
+| $x$ | $y$ |
+|:---:|:---:|
+| 2 | 4 |
+| 4 | 8 |
+| 6 | 12 |
+| 8 | 16 |
+| 10 | 20 |
+
+5. If Pearson's correlation coefficient is $r=0.85$, interpret the result.
+
+6. If Pearson's correlation coefficient is $r=-0.72$, interpret the result.
+
+7. If $r=0$, what can be concluded about the linear relationship between the variables?
+
+8. If $r=1$, what does it indicate?
+
+9. If $r=-1$, what does it indicate?
+
+10. Calculate Spearman's rank correlation coefficient for the following data:
+
+Physics: 35, 23, 47, 17, 10, 43, 9, 6, 28
+
+Mathematics: 30, 33, 45, 23, 8, 49, 12, 4, 31
+
+11. For the data in Question 10, calculate the rank differences and verify that $\sum d_i^2=12$.
+
+12. Calculate Spearman's rank correlation coefficient when $\sum d_i^2=12$ and $n=9$.
+
+13. Interpret a Spearman rank correlation coefficient of $\rho=0.90$.
+
+14. Calculate Spearman's rank correlation for a dataset containing tied ranks using the correction terms $T_x$ and $T_y$.
+
+15. If two observations in the $X$ series are tied, calculate the correction term $T_x$.
+
+16. If three observations in the $Y$ series are tied, calculate the correction term $T_y$.
+
+17. Interpret a Spearman rank correlation coefficient of $\rho=0.61$.
+
+18. Four scientists rank 10 farmers in a crop production competition. Calculate Kendall's coefficient of concordance using the given ranking data.
+
+19. If Kendall's coefficient of concordance is $\tau=0.80$, interpret the result.
+
+20. Construct a correlation matrix for a given set of variables.
+
+21. Explain why the diagonal elements of a correlation matrix are equal to 1.
+
+22. Explain why a correlation matrix is symmetrical.
+
+23. Interpret the following correlation coefficients: $0.988$, $-0.343$, and $0.986$.
+
+24. Distinguish between a strong correlation and a weak correlation using a scatter diagram.
+
+### Important formulae {.unnumbered}
+
+Covariance:
+
+$$
+cov(x,y)=\frac{1}{n}\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})
+$$
+
+Pearson's correlation coefficient:
+
+$$
+r=\frac{cov(x,y)}{sd(x)sd(y)}
+$$
+
+Pearson's correlation coefficient using deviations:
+
+$$
+r=
+\frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}
+{\sqrt{\sum_{i=1}^{n}(x_i-\bar{x})^2\sum_{i=1}^{n}(y_i-\bar{y})^2}}
+$$
+
+Spearman's rank correlation coefficient without tied ranks:
+
+$$
+\rho=1-\frac{6\sum_{i=1}^{n}d_i^2}{n(n^2-1)}
+$$
+
+where $d_i$ is the difference between the ranks of the $i$th pair of observations.
+
+Spearman's rank correlation coefficient with tied ranks:
+
+$$
+\rho=1-\frac{6\left(\sum_{i=1}^{n}d_i^2+T_x+T_y\right)}
+{n(n^2-1)}
+$$
+
+Correction for tied ranks in $X$:
+
+$$
+T_x=\frac{1}{12}\sum_{i=1}^{s}m_i(m_i^2-1)
+$$
+
+Correction for tied ranks in $Y$:
+
+$$
+T_y=\frac{1}{12}\sum_{i=1}^{s'}w_i(w_i^2-1)
+$$
+
+Kendall's coefficient of concordance:
+
+$$
+\tau=
+\frac{12\left[\sum_{i=1}^{n}R_i^2-\frac{\left(\sum_{i=1}^{n}R_i\right)^2}{n}\right]}
+{k^2n(n^2-1)}
+$$
+
+where $R_i$ is the sum of ranks obtained by the $i$th object and $k$ is the number of judges.
+
+### Quick revision {.unnumbered}
+
+- Measures of association → describe relationships between variables.
+- Linear relationship → relationship that can be represented by a straight line.
+- Monotonic relationship → variables move in the same direction, but not necessarily at a constant rate.
+- Scatter diagram → graphical method for examining association between two variables.
+- Positive correlation → both variables tend to move in the same direction.
+- Negative correlation → variables tend to move in opposite directions.
+- No correlation → no systematic linear association.
+- Simple correlation → relationship between two variables.
+- Multiple correlation → relationship involving more than two variables.
+- Linear correlation → relationship represented by a straight line.
+- Non-linear correlation → relationship represented by a curved pattern.
+- Partial correlation → relationship between two variables after controlling other variables.
+- Perfect correlation → all points lie on a straight line.
+- Pearson's correlation → measures linear association.
+- Pearson's $r$ ranges from $-1$ to $+1$.
+- $r=+1$ → perfect positive correlation.
+- $r=-1$ → perfect negative correlation.
+- $r=0$ → no linear correlation.
+- Covariance → measures joint linear variability.
+- Covariance depends on the units of measurement.
+- Pearson's correlation is unit-free.
+- Pearson's correlation is sensitive to outliers.
+- Pearson's correlation requires a linear relationship.
+- Spearman's $\rho$ → rank-based measure of monotonic association.
+- Spearman's correlation is useful for ordinal data and non-linear monotonic relationships.
+- Spearman's correlation ranges from $-1$ to $+1$.
+- No tied ranks → use the basic Spearman formula.
+- Tied ranks → use average ranks and correction terms.
+- Kendall's coefficient of concordance → measures agreement among multiple rankings.
+- Correlation matrix → table of pairwise correlation coefficients.
+- Diagonal elements of a correlation matrix → 1.
+- Correlation matrix → symmetrical about the diagonal.
+- Correlogram → graphical representation of a correlation matrix.
+- Strong positive correlation → coefficient close to $+1$.
+- Strong negative correlation → coefficient close to $-1$.
+- Correlation measures association, not necessarily causation.
+
+### Answers to fill in the blanks {.unnumbered}
+
+1. Relationships
+2. Linear
+3. Monotonic
+4. Monotonic
+5. Scatter
+6. X; Y
+7. Positive
+8. Negative
+9. No
+10. Simple
+11. Multiple
+12. Linear
+13. Non-linear
+14. Partial
+15. $r$
+16. Linear
+17. Linear
+18. Product
+19. Product-moment
+20. $-1$; $+1$
+21. Perfect
+22. Perfect
+23. Outliers
+24. Linearity
+25. Homoscedasticity
+26. $\rho$
+27. Monotonic
+28. Ranks
+29. Ordinal
+30. Ranks
+31. Tied
+32. Average
+33. Agreement
+34. Judges
+35. Matrix
+36. 1
+37. Symmetrical
+38. Correlogram
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  Plot each pair $(x_i,y_i)$ on the $X$-$Y$ plane: points rising left to right indicate positive correlation, points falling left to right indicate negative correlation, and points with no systematic pattern indicate no correlation.
+
+2.  No. A monotonic relationship only requires the variables to move consistently in the same direction, at a possibly varying rate; so all linear relationships are monotonic, but not all monotonic relationships are linear.
+
+3.  Using @eq-covariance, $\bar{x}=6$, $\bar{y}=9$, $\sum(x_i-\bar{x})(y_i-\bar{y})=40$, so $cov(x,y)=\frac{40}{5}=8$.
+
+4.  Here $y=2x$, so all points lie on a straight line with positive slope; using @eq-correlation3, $r=+1$ (perfect positive correlation).
+
+5.  $r=0.85$ is positive and close to $+1$, indicating a strong positive linear relationship.
+
+6.  $r=-0.72$ is negative and fairly close to $-1$, indicating a strong negative linear relationship.
+
+7.  $r=0$ means there is no linear correlation, though a non-linear or monotonic relationship may still exist.
+
+8.  $r=1$ indicates perfect positive linear correlation; all points lie on a straight line with positive slope.
+
+9.  $r=-1$ indicates perfect negative linear correlation; all points lie on a straight line with negative slope.
+
+10. Using @eq-spearman1 with $\sum d_i^2=12$ and $n=9$, $\rho=1-\frac{6(12)}{9(81-1)}=0.90$, a high positive monotonic relationship.
+
+11. The rank differences are $d=-2,2,-1,0,-1,1,1,0,0$, so $d^2=4,4,1,0,1,1,1,0,0$ and $\sum d_i^2=12$.
+
+12. Using @eq-spearman1 with $\sum d_i^2=12$ and $n=9$, $\rho=1-\frac{6(12)}{9(81-1)}=0.90$.
+
+13. $\rho=0.90$ indicates a high positive monotonic relationship between the two variables.
+
+14. Assign tied observations their average rank, compute $\sum d_i^2$, $T_x$ and $T_y$, then apply @eq-spearman2.
+
+15. Using @eq-spearmanx with $m=2$, $T_x=\frac{1}{12}[2(2^2-1)]=0.5$.
+
+16. Using @eq-spearmany with $w=3$, $T_y=\frac{1}{12}[3(3^2-1)]=2$.
+
+17. $\rho=0.61$ indicates a moderately strong positive monotonic relationship.
+
+18. Using @eq-kendall with $k=4$, $n=10$, $\sum R_i=220$ and $\sum R_i^2=5900$, $\tau=\frac{12\left[5900-\frac{220^2}{10}\right]}{4^2(10)(99)}=0.80$.
+
+19. A coefficient of concordance of $\tau=0.80$ indicates a high degree of agreement among the judges' rankings.
+
+20. A correlation matrix lists the pairwise correlation coefficients among all variables, with 1 on the diagonal and symmetry about it.
+
+21. The diagonal elements equal 1 because every variable is perfectly correlated with itself, $r(X,X)=1$.
+
+22. A correlation matrix is symmetrical because $r(X,Y)=r(Y,X)$, so the entries above and below the diagonal are equal.
+
+23. $r=0.988$ is a very strong positive correlation, $r=-0.343$ a weak to moderate negative correlation, and $r=0.986$ a very strong positive correlation.
+
+24. A strong correlation shows points clustering closely around a straight line, whereas a weak correlation shows points more widely scattered with a less clearly defined pattern.

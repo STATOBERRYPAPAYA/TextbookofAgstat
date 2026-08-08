@@ -1,4 +1,4 @@
-# Regression Analysis {#sec-regression}
+# Regression analysis {#sec-regression}
 
 Regression analysis is one of the most important tools in statistics, used to understand and quantify the relationships between variables. In essence, regression helps us answer questions such as: "How does a change in one variable (like fertilizer usage) affect another variable (like crop yield)?" It provides a mathematical framework to explore these relationships based on observed data [@Montgomery2021; @Draper1998].
 
@@ -86,7 +86,7 @@ A straight line is the simplest figure in geometry. The mathematical equation of
 
 $$Y = \alpha + \beta X$$ {#eq-straightline}
 
-A line has two important features: the **intercept** ($\alpha$) and the **slope** ($\beta$). The intercept $\alpha$ is the value of $Y$ at the point where the line crosses the $Y$-axis (i.e., when $X = 0$). The slope $\beta$ is a number that measures the steepness of the line — it is the change in $Y$ for a one-unit change in $X$. In regression, $\beta$ is called the **regression coefficient**, explained further in @sec-regressionbeta.
+A line has two important features: the **intercept** ($\alpha$) and the **slope** ($\beta$). The intercept $\alpha$ is the value of $Y$ at the point where the line crosses the $Y$-axis (i.e., when $X = 0$). The slope $\beta$ is a number that measures the steepness of the line, it is the change in $Y$ for a one-unit change in $X$. In regression, $\beta$ is called the **regression coefficient**, explained further in @sec-regressionbeta.
 
 [Intercept and slope]{.underline}
 
@@ -215,11 +215,11 @@ Regression coefficients can take any real value from $-\infty$ to $+\infty$. A p
 
 The formula for $\hat{\beta}$ is obtained by solving normal equations @eq-normaleq1 and @eq-normaleq2, and is given by @eq-regeqn3, which can be used for hand calculations:
 
-$$\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}$$ {#eq-regeqn3}
+$$\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}$$
 
-@eq-regeqn3 can be written more compactly as:
+@eq-regeqn3 can be written more compactly as @eq-regeqn4:
 
-$$\hat{\beta} = \frac{cov(x,y)}{var(x)}$$ {#eq-regeqn4}
+$$\hat{\beta} = \frac{cov(x,y)}{var(x)}$$
 
 ### Intercept
 
@@ -227,9 +227,9 @@ The intercept $\alpha$ represents the value of the dependent variable $y$ when t
 
 The intercept can take any real value ($-\infty$ to $+\infty$). Its practical interpretation depends on the specific context. In many agricultural datasets, $x = 0$ may not lie within the range of observed data, in which case the intercept may not carry a meaningful practical interpretation.
 
-The formula for $\hat{\alpha}$ is obtained by solving normal equations @eq-normaleq1 and @eq-normaleq2:
+The formula for $\hat{\alpha}$, from @eq-regeqn5, is
 
-$$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x}$$ {#eq-regeqn5}
+$$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x}$$
 
 where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.  
 
@@ -238,7 +238,7 @@ where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.
 For the results of a regression analysis to be reliable and meaningful, certain underlying assumptions must be met. These ensure that the estimates are accurate, predictions are unbiased, and conclusions drawn from the model are valid [@Montgomery2021; @Draper1998].
 
 1.  **Linearity**\
-    The relationship between the independent variable(s) and the dependent variable is linear — changes in $y$ are proportional to changes in $x$.
+    The relationship between the independent variable(s) and the dependent variable is linear, changes in $y$ are proportional to changes in $x$.
 
 2.  **Independence**\
     The observations in the dataset are independent of each other, and the residuals (errors) are also independent.
@@ -253,7 +253,7 @@ For the results of a regression analysis to be reliable and meaningful, certain 
     In the case of multiple regression, the independent variables should not be highly correlated with each other. Multicollinearity can distort the estimates of regression coefficients and make them difficult to interpret.
 
 6.  **No autocorrelation**\
-    There should be no autocorrelation in the residuals — the residual of one observation should not be correlated with the residual of another.
+    There should be no autocorrelation in the residuals, the residual of one observation should not be correlated with the residual of another.
 
 7.  **Correct model specification**\
     The model should include all relevant variables and exclude irrelevant ones. The functional form of the relationship between variables should be correctly specified.
@@ -583,4 +583,542 @@ Galton's work was later placed on a firm mathematical foundation by Karl Pearson
 
 ::: {.callout-tip title="Quotes to Inspire"}
 **"Statistics is the art of never having to say you're wrong."- Robert P. Abelson**
-:::
+:::  
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. Regression analysis is used to understand and quantify the __________ between variables.
+
+2. The variable whose value is explained, predicted, or modelled is called the __________ variable.
+
+3. The variable used to explain or predict the dependent variable is called the __________ variable.
+
+4. The dependent variable is commonly denoted by __________.
+
+5. The independent variable is commonly denoted by __________.
+
+6. In agricultural research, crop yield is commonly treated as the __________ variable.
+
+7. A regression involving one dependent variable and one independent variable is called __________ linear regression.
+
+8. Regression involving one dependent variable and two or more independent variables is called __________ linear regression.
+
+9. Regression used when the relationship between variables is not a straight line is called __________ regression.
+
+10. Regression used when the dependent variable is categorical is called __________ regression.
+
+11. A fitted line used to represent the relationship between two variables is called the line of __________ fit.
+
+12. The difference between an observed value and the value predicted by the fitted regression line is called a __________.
+
+13. The difference between an observed value and the value based on the true regression line is called an __________.
+
+14. Residuals are __________, whereas errors are theoretical and generally unknown.
+
+15. The principle used to obtain the line of best fit by minimising the sum of squared residuals is called the principle of __________ squares.
+
+16. The equation of a straight line is $Y=\alpha+\beta X$, where $\alpha$ is the __________ and $\beta$ is the __________.
+
+17. The slope of a regression line represents the expected change in $Y$ for a __________-unit increase in $X$.
+
+18. The regression coefficient is denoted by __________.
+
+19. The intercept represents the value of $Y$ when $X$ is equal to __________.
+
+20. The fitted regression equation is written as $\hat{y}=$ __________.
+
+21. The regression line always passes through the point __________.
+
+22. The two normal equations are obtained by differentiating the sum of squared errors with respect to __________ and __________.
+
+23. The regression coefficient $\hat{\beta}$ can be expressed as the ratio of __________ to __________.
+
+24. A positive regression coefficient indicates a __________ relationship between $x$ and $y$.
+
+25. A negative regression coefficient indicates an __________ relationship between $x$ and $y$.
+
+26. Regression coefficients can take any real value from __________ to __________.
+
+27. The regression of $y$ on $x$ is used to predict __________ from __________.
+
+28. The regression of $x$ on $y$ is used to predict __________ from __________.
+
+29. The regression coefficient of $y$ on $x$ is denoted by __________.
+
+30. The regression coefficient of $x$ on $y$ is denoted by __________.
+
+31. The product of the two regression coefficients is equal to the __________ of the correlation coefficient.
+
+32. The two regression coefficients always have the same __________.
+
+33. If one regression coefficient is greater than one, the other must be __________ than one.
+
+34. Both regression coefficients cannot exceed __________ simultaneously.
+
+35. Regression coefficients are independent of change of __________ but not of change of __________.
+
+36. If $r=0$, both regression coefficients are __________.
+
+37. If $r=\pm1$, the two regression lines __________.
+
+38. The regression lines of $y$ on $x$ and $x$ on $y$ intersect at the point __________.
+
+39. The regression line of $y$ on $x$ minimises the sum of squared __________ deviations.
+
+40. The regression line of $x$ on $y$ minimises the sum of squared __________ deviations.
+
+41. One of the assumptions of linear regression is __________.
+
+42. Constant variance of residuals is called __________.
+
+43. In multiple regression, the independent variables should not be highly correlated with each other. This condition is called absence of __________.
+
+44. The errors in a regression model should not exhibit __________.
+
+45. The errors are often summarised as $e\sim\text{i.i.d.}(0,\sigma^2)$, where i.i.d. means __________ and __________ distributed.
+
+46. Regression does not establish __________ by itself.
+
+47. Correlation treats the two variables __________, whereas regression distinguishes between dependent and independent variables.
+
+48. Correlation is __________ when the two variables are interchanged, whereas regression is not.
+
+49. The correlation coefficient is bounded between __________ and __________, whereas regression coefficients are unbounded.
+
+50. The regression coefficient can be expressed in terms of correlation and standard deviations as $\beta_{yx}=$ __________.
+
+### Short-answer questions {.unnumbered}
+
+1. Define regression analysis and explain its importance.
+
+2. Distinguish between dependent and independent variables.
+
+3. Explain the different types of regression.
+
+4. What is simple linear regression?
+
+5. What is multiple linear regression?
+
+6. What is nonlinear regression?
+
+7. What is logistic regression?
+
+8. What is a line of best fit?
+
+9. Explain the difference between error and residual.
+
+10. Define the principle of least squares.
+
+11. Why is the sum of errors not minimised directly in least squares estimation?
+
+12. Explain the meaning of intercept and slope in a straight line.
+
+13. Derive the normal equations for simple linear regression.
+
+14. Explain the estimation of the regression coefficient using the normal equations.
+
+15. Explain how the intercept of a regression line is estimated.
+
+16. What is the meaning of a regression coefficient?
+
+17. What is the interpretation of a positive regression coefficient?
+
+18. What is the interpretation of a negative regression coefficient?
+
+19. Explain the assumptions of simple linear regression.
+
+20. What is homoscedasticity?
+
+21. What is multicollinearity?
+
+22. What is autocorrelation?
+
+23. Why is normality of residuals important in regression analysis?
+
+24. What is meant by correct model specification?
+
+25. Explain the two lines of regression.
+
+26. Distinguish between regression of $y$ on $x$ and regression of $x$ on $y$.
+
+27. State the important properties of regression coefficients.
+
+28. State the relationship between regression coefficients and correlation coefficient.
+
+29. Explain the relationship between regression coefficients and standard deviations.
+
+30. What happens to regression coefficients when the origin is changed?
+
+31. What happens to regression coefficients when the scale is changed?
+
+32. Explain the relationship between regression coefficients and unity.
+
+33. State the properties of regression lines.
+
+34. Why do the two regression lines always pass through $(\bar{x},\bar{y})$?
+
+35. Under what condition do the two regression lines coincide?
+
+36. Explain the uses of regression analysis in agricultural research.
+
+37. Distinguish between correlation and regression.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. The fitted regression equation is $\hat{y}=10+2x$. Interpret the intercept and regression coefficient.
+
+2. For the regression equation $\hat{y}=25-3x$, interpret the regression coefficient.
+
+3. If $\bar{x}=10$, $\bar{y}=30$, and $\hat{\beta}=2$, calculate the intercept.
+
+4. If $\bar{x}=15$, $\bar{y}=50$, and $\hat{\beta}=-2$, calculate the intercept.
+
+5. If $\hat{\alpha}=5$ and $\hat{\beta}=3$, calculate the predicted value of $y$ when $x=10$.
+
+6. The regression equation is $\hat{y}=-159.477+30.088x$. Estimate the crop yield when soil moisture is $20\%$.
+
+7. If $cov(x,y)=20$ and $var(x)=5$, calculate the regression coefficient of $y$ on $x$.
+
+8. If $cov(x,y)=18$ and $var(y)=9$, calculate the regression coefficient of $x$ on $y$.
+
+9. If $\beta_{yx}=0.8$ and $\beta_{xy}=0.45$, calculate the correlation coefficient.
+
+10. If $\beta_{yx}=-0.8$ and $\beta_{xy}=-0.45$, calculate the correlation coefficient.
+
+11. If $r=0.6$ and $\sigma_y=12$, $\sigma_x=8$, calculate $\beta_{yx}$.
+
+12. If $r=0.6$, $\sigma_x=8$, and $\sigma_y=12$, calculate $\beta_{xy}$.
+
+13. If $r=0$, what are the values of the two regression coefficients?
+
+14. If $r=1$, what is the product of the two regression coefficients?
+
+15. If $r=-1$, what is the product of the two regression coefficients?
+
+16. If $\beta_{yx}=2$ and $\beta_{xy}=0.25$, verify the relationship between the regression coefficients and the correlation coefficient.
+
+17. If one regression coefficient is 1.5, what can be said about the other regression coefficient?
+
+18. If both regression coefficients are negative, what can be said about the sign of the correlation coefficient?
+
+19. A fitted regression equation is $\hat{y}=20+4x$. Estimate $y$ for $x=5$, $x=10$, and $x=15$.
+
+20. A regression equation has $\bar{x}=20$, $\bar{y}=80$, and slope $=2.5$. Find the intercept and write the regression equation.
+
+21. Given the data below, calculate the regression coefficient of $y$ on $x$.
+
+| $x$ | 2 | 4 | 6 | 8 | 10 |
+|:---:|---:|---:|---:|---:|---:|
+| $y$ | 4 | 8 | 12 | 16 | 20 |
+
+22. Using the data in Question 21, obtain the regression equation of $y$ on $x$.
+
+23. Explain why the regression of $y$ on $x$ and regression of $x$ on $y$ are generally different.
+
+24. Explain why correlation cannot be directly used to predict the value of $y$ for a given value of $x$.
+
+25. If the residual for an observation is $-5$, what does this indicate about the observed and predicted values?
+
+26. If the residuals become increasingly spread out as $x$ increases, which regression assumption may be violated?
+
+27. If the residuals show a systematic pattern against $x$, what does this suggest about the regression model?
+
+28. If two independent variables in a multiple regression model are highly correlated, what problem may arise?
+
+### Important formulae {.unnumbered}
+
+Straight-line equation:
+
+$$
+Y=\alpha+\beta X
+$$
+
+Simple linear regression model:
+
+$$
+y_i=\alpha+\beta x_i+e_i
+$$
+
+Residual:
+
+$$
+e_i=y_i-(\alpha+\beta x_i)
+$$
+
+Sum of squared errors:
+
+$$
+E=\sum_{i=1}^{n}e_i^2
+$$
+
+Sum of squared errors in terms of the regression model:
+
+$$
+E=\sum_{i=1}^{n}[y_i-(\alpha+\beta x_i)]^2
+$$
+
+First normal equation:
+
+$$
+\sum_{i=1}^{n}y_i=n\alpha+\beta\sum_{i=1}^{n}x_i
+$$
+
+Second normal equation:
+
+$$
+\sum_{i=1}^{n}x_iy_i=\alpha\sum_{i=1}^{n}x_i+\beta\sum_{i=1}^{n}x_i^2
+$$
+
+Mean relationship:
+
+$$
+\bar{y}=\alpha+\beta\bar{x}
+$$
+
+Intercept:
+
+$$
+\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}
+$$
+
+Regression coefficient of $y$ on $x$:
+
+$$
+\hat{\beta}_{yx}=
+\frac{\sum x_iy_i-\frac{\sum x_i\sum y_i}{n}}
+{\sum x_i^2-\frac{(\sum x_i)^2}{n}}
+$$
+
+Regression coefficient using covariance and variance:
+
+$$
+\hat{\beta}_{yx}=\frac{cov(x,y)}{var(x)}
+$$
+
+Regression equation of $y$ on $x$:
+
+$$
+\hat{y}=\hat{\alpha}+\hat{\beta}_{yx}x
+$$
+
+Regression coefficient of $x$ on $y$:
+
+$$
+\hat{\beta}_{xy}=\frac{cov(x,y)}{var(y)}
+$$
+
+Regression equation of $x$ on $y$:
+
+$$
+\hat{x}=\hat{\alpha}_1+\hat{\beta}_{xy}y
+$$
+
+Relationship between regression coefficients and correlation:
+
+$$
+\beta_{yx}\beta_{xy}=r_{xy}^2
+$$
+
+Correlation coefficient from regression coefficients:
+
+$$
+|r_{xy}|=\sqrt{\beta_{yx}\beta_{xy}}
+$$
+
+If both regression coefficients are positive:
+
+$$
+r_{xy}=\sqrt{\beta_{yx}\beta_{xy}}
+$$
+
+If both regression coefficients are negative:
+
+$$
+r_{xy}=-\sqrt{\beta_{yx}\beta_{xy}}
+$$
+
+Regression coefficient in terms of correlation and standard deviations:
+
+$$
+\beta_{yx}=r\frac{\sigma_y}{\sigma_x}
+$$
+
+$$
+\beta_{xy}=r\frac{\sigma_x}{\sigma_y}
+$$
+
+Change of origin and scale:
+
+$$
+X=\frac{x-a}{h},\qquad Y=\frac{y-b}{k}
+$$
+
+Transformed regression coefficients:
+
+$$
+\beta_{YX}=\frac{h}{k}\beta_{yx}
+$$
+
+$$
+\beta_{XY}=\frac{k}{h}\beta_{xy}
+$$
+
+Multiple linear regression model:
+
+$$
+y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
+$$
+
+### Quick revision {.unnumbered}
+
+- Regression → models the relationship between a dependent variable and one or more independent variables.
+- Dependent variable → response or outcome to be predicted or explained.
+- Independent variable → predictor or explanatory variable.
+- Simple linear regression → one dependent variable and one independent variable.
+- Multiple linear regression → one dependent variable and two or more independent variables.
+- Nonlinear regression → relationship is not a straight line.
+- Logistic regression → categorical dependent variable.
+- Line of best fit → fitted line obtained using least squares.
+- Error → theoretical difference from the true regression relationship.
+- Residual → observed value minus fitted value.
+- Least squares → minimises the sum of squared residuals.
+- Slope $\beta$ → expected change in $y$ for a one-unit increase in $x$.
+- Intercept $\alpha$ → value of $y$ when $x=0$.
+- Regression coefficient can range from $-\infty$ to $+\infty$.
+- Positive regression coefficient → direct relationship.
+- Negative regression coefficient → inverse relationship.
+- Regression of $y$ on $x$ → predict $y$ from $x$.
+- Regression of $x$ on $y$ → predict $x$ from $y$.
+- The regression line passes through $(\bar{x},\bar{y})$.
+- Both regression coefficients have the same sign.
+- $\beta_{yx}\beta_{xy}=r^2$.
+- If $r=0$, both regression coefficients are zero.
+- If $r=\pm1$, the two regression lines coincide.
+- If one regression coefficient exceeds 1, the other must be less than 1.
+- Both regression coefficients cannot exceed 1 simultaneously.
+- Regression coefficients are independent of change of origin but not of change of scale.
+- Regression coefficients depend on the correlation and the relative standard deviations of the variables.
+- Linearity, independence, homoscedasticity, normality of residuals, absence of multicollinearity, absence of autocorrelation, and correct model specification are important assumptions.
+- Regression lines are unique for a given dataset.
+- Correlation measures association; regression models the relationship and allows prediction.
+- Correlation is symmetric; regression is asymmetric.
+- Correlation coefficient is unit-free and lies between $-1$ and $+1$.
+- Regression coefficients have units and are not bounded.
+- Regression does not establish causation by itself.
+
+### Answers to fill in the blanks {.unnumbered}
+
+1. Relationships
+2. Dependent
+3. Independent
+4. $y$
+5. $x$
+6. Dependent
+7. Simple
+8. Multiple
+9. Nonlinear
+10. Logistic
+11. Best
+12. Residual
+13. Error
+14. Measurable
+15. Least
+16. Intercept; Slope
+17. One
+18. $\beta$
+19. Zero
+20. $\hat{\alpha}+\hat{\beta}x$
+21. $(\bar{x},\bar{y})$
+22. $\alpha$; $\beta$
+23. Covariance; Variance
+24. Direct
+25. Inverse
+26. $-\infty$; $+\infty$
+27. $y$; $x$
+28. $x$; $y$
+29. $\beta_{yx}$
+30. $\beta_{xy}$
+31. Square
+32. Sign
+33. Less
+34. One
+35. Origin; Scale
+36. Zero
+37. Coincide
+38. $(\bar{x},\bar{y})$
+39. Vertical
+40. Horizontal
+41. Linearity
+42. Homoscedasticity
+43. Multicollinearity
+44. Autocorrelation
+45. Independent; identically
+46. Causation
+47. Equally
+48. Symmetric
+49. $-1$; $+1$
+50. $r\frac{\sigma_y}{\sigma_x}$
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  In $\hat{y}=10+2x$, the intercept $\hat{\alpha}=10$ is the predicted $y$ when $x=0$, and the coefficient $\hat{\beta}=2$ means $y$ increases by 2 units for every one-unit increase in $x$.
+
+2.  In $\hat{y}=25-3x$, the coefficient $\hat{\beta}=-3$ means $y$ decreases by 3 units for every one-unit increase in $x$.
+
+3.  Using @eq-regeqn5, $\hat{\alpha}=\bar{y}-\hat{\beta}\bar{x}=30-2(10)=10$.
+
+4.  Using @eq-regeqn5, $\hat{\alpha}=50-(-2)(15)=80$.
+
+5.  Using @eq-regestimate, $\hat{y}=5+3(10)=35$.
+
+6.  Using @eq-regestimate, $\hat{y}=-159.477+30.088(20)=442.28$ (Rs).
+
+7.  Using @eq-betayonx, $\hat{\beta}_{yx}=\frac{cov(x,y)}{var(x)}=\frac{20}{5}=4$.
+
+8.  Using @eq-betaxony, $\hat{\beta}_{xy}=\frac{cov(x,y)}{var(y)}=\frac{18}{9}=2$.
+
+9.  Since $r=\sqrt{\beta_{yx}\beta_{xy}}$, $r=\sqrt{0.8\times0.45}=0.6$.
+
+10. Since both coefficients are negative, $r=-\sqrt{\beta_{yx}\beta_{xy}}=-\sqrt{0.8\times0.45}=-0.6$.
+
+11. Using $\beta_{yx}=r\frac{\sigma_y}{\sigma_x}=0.6\times\frac{12}{8}=0.9$.
+
+12. Using $\beta_{xy}=r\frac{\sigma_x}{\sigma_y}=0.6\times\frac{8}{12}=0.4$.
+
+13. If $r=0$, both regression coefficients are zero, so $\beta_{yx}=\beta_{xy}=0$.
+
+14. If $r=1$, $\beta_{yx}\beta_{xy}=r^2=1$.
+
+15. If $r=-1$, $\beta_{yx}\beta_{xy}=r^2=1$.
+
+16. $\beta_{yx}\beta_{xy}=2\times0.25=0.5=r^2$, so $r=\sqrt{0.5}=0.707$, verifying $\beta_{yx}\beta_{xy}=r^2$.
+
+17. Since $\beta_{yx}\beta_{xy}=r^2\le1$, if one coefficient is $1.5$ the other must be less than 1 (here at most $1/1.5=0.667$).
+
+18. If both regression coefficients are negative, the correlation coefficient is also negative.
+
+19. Using @eq-regestimate with $\hat{y}=20+4x$: $\hat{y}=40$ at $x=5$, $\hat{y}=60$ at $x=10$, and $\hat{y}=80$ at $x=15$.
+
+20. Using @eq-regeqn5, $\hat{\alpha}=80-2.5(20)=30$, so the regression equation is $\hat{y}=30+2.5x$.
+
+21. Using @eq-betayonx, $\bar{x}=6$, $\bar{y}=12$, $cov(x,y)=16$, $var(x)=8$, so $\hat{\beta}_{yx}=\frac{16}{8}=2$.
+
+22. Using @eq-regeqn5, $\hat{\alpha}=12-2(6)=0$, so the regression equation is $\hat{y}=2x$.
+
+23. The two lines use different coefficients, $\beta_{yx}=\frac{cov(x,y)}{var(x)}$ and $\beta_{xy}=\frac{cov(x,y)}{var(y)}$, so the regression of $y$ on $x$ and of $x$ on $y$ are generally different (they coincide only when $|r|=1$).
+
+24. Correlation gives only the strength and direction of association, not an equation; regression produces a fitted equation $\hat{y}=\hat{\alpha}+\hat{\beta}x$ that can predict $y$ for a given $x$.
+
+25. A residual $e=y-\hat{y}=-5$ means the observed value lies 5 units below the predicted value.
+
+26. Residuals spreading out as $x$ increases violates the assumption of constant variance, i.e. homoscedasticity.
+
+27. A systematic pattern in the residuals suggests the model is misspecified (wrong functional form, omitted variables, or non-linearity).
+
+28. If two independent variables are highly correlated, multicollinearity arises, making the coefficient estimates unstable and hard to interpret.

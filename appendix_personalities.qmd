@@ -1,0 +1,39 @@
+# Notable personalities in the development of statistics {#sec-appendix-personalities}
+
+The science of statistics, as we know it today, is the product of more than three centuries of work by mathematicians, scientists, and thinkers from many countries. What began as *political arithmetic*, the counting of births, deaths, and trade for the purposes of the state, gradually grew into a rigorous mathematical discipline for reasoning under uncertainty. The following table lists some of the personalities who shaped this journey, from the early students of probability and demography to the founders of modern statistical inference and experimental design. The list is by no means exhaustive; it is meant to give the student a sense of the people and the ideas behind the methods studied in this book.
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-personalities
+#| tbl-cap: "Some notable personalities in the development of statistics."
+library(knitr)
+library(kableExtra)
+
+# Convert $...$ delimiters so MathJax renders italic distribution names
+# (such as the t- and F-distributions) reliably inside kable cells.
+fix_math <- function(x) {
+  x <- as.character(x); x[is.na(x)] <- ""
+  x <- gsub("\\*([^*]+)\\*", "<em>\\1</em>", x, perl = TRUE)
+  x
+}
+
+dt <- read.csv("csv/personalities.csv", check.names = FALSE)
+dt[] <- lapply(dt, fix_math)
+
+kbl(dt, escape = FALSE, booktabs = FALSE, align = "l") %>%
+  kable_classic(full_width = F, html_font = "Cambria") %>%
+  kable_styling(latex_options = c("HOLD_position", "repeat_header"),
+                font_size = 11) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(1, width = "3.2cm", bold = TRUE) %>%
+  column_spec(2, width = "2cm") %>%
+  column_spec(3, width = "7cm") %>%
+  column_spec(4, width = "3.5cm")
+```
+
+::: {.callout-note title="Note"}
+The dates given are the years of birth and death. Where a specific discovery is mentioned, the year in parentheses refers to the year of its publication. Many of these workers contributed to several areas of statistics; only their best-known contribution is listed here for brevity.
+:::
+
+::: {.callout-tip title="Did you know?"}
+In India, **29 June**, the birthday of Prasanta Chandra Mahalanobis, is celebrated every year as **National Statistics Day** in recognition of his contributions to statistics and national planning.
+:::
