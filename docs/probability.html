@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,21 +33,17 @@ ul.task-list li input[type="checkbox"] {
 <link href="./probabilitydist.html" rel="next">
 <link href="./regression.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -90,7 +86,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -120,169 +116,7 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -306,8 +140,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -539,7 +372,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#mathematical-approach" id="toc-mathematical-approach" class="nav-link" data-scroll-target="#mathematical-approach"><span class="header-section-number">10.5.1</span> Mathematical approach</a></li>
   <li><a href="#statistical-approach" id="toc-statistical-approach" class="nav-link" data-scroll-target="#statistical-approach"><span class="header-section-number">10.5.2</span> Statistical approach</a></li>
-  <li><a href="#axiomatic-approach" id="toc-axiomatic-approach" class="nav-link" data-scroll-target="#axiomatic-approach"><span class="header-section-number">10.5.3</span> Axiomatic Approach</a></li>
+  <li><a href="#axiomatic-approach" id="toc-axiomatic-approach" class="nav-link" data-scroll-target="#axiomatic-approach"><span class="header-section-number">10.5.3</span> Axiomatic approach</a></li>
   </ul></li>
   <li><a href="#event-relations" id="toc-event-relations" class="nav-link" data-scroll-target="#event-relations"><span class="header-section-number">10.6</span> Event relations</a></li>
   <li><a href="#additive-law-of-probability" id="toc-additive-law-of-probability" class="nav-link" data-scroll-target="#additive-law-of-probability"><span class="header-section-number">10.7</span> Additive law of probability</a></li>
@@ -547,12 +380,21 @@ window.Quarto = {
   <li><a href="#multiplication-law-of-probability" id="toc-multiplication-law-of-probability" class="nav-link" data-scroll-target="#multiplication-law-of-probability"><span class="header-section-number">10.9</span> Multiplication law of probability</a></li>
   <li><a href="#probability-using-combinations" id="toc-probability-using-combinations" class="nav-link" data-scroll-target="#probability-using-combinations"><span class="header-section-number">10.10</span> Probability using combinations</a></li>
   <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">10.11</span> Bayes’ theorem</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">10.12</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#important-formulae" id="toc-important-formulae" class="nav-link" data-scroll-target="#important-formulae">Important formulae</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -599,7 +441,7 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -691,9 +533,9 @@ Figure&nbsp;10.2: Four suits in playing cards
 </ol>
 <p>In mathematical terms, if <span class="math inline">\(S\)</span> is the sample space of a random experiment, a random variable <span class="math inline">\(X\)</span> is a function that maps sample space to real number set, which can be represented as <span class="math inline">\(X: S \to \mathbb{R}\)</span>, where <span class="math inline">\(\mathbb{R}\)</span> represents the set of real numbers.</p>
 <p>The probability of a random variable can be represented by <span class="math inline">\(P(X = x)\)</span> or <span class="math inline">\(P(x)\)</span>, where the small letter <span class="math inline">\(x\)</span> denotes the value taken by the random variable <span class="math inline">\(X\)</span>.</p>
-<p>Consider the example of throwing a die once.Here, you can define a random variable of your interest. Defining a random variable involves assigning a numerical value to the outcomes of the experiment. Let <span class="math inline">\(X\)</span> represent the number appearing on the die. The possible values of <span class="math inline">\(X\)</span> are: <span class="math inline">\(x = \{1, 2, 3, 4, 5, 6\}\)</span>.</p>
+<p>Consider the example of throwing a die once. Here, you can define a random variable of your interest. Defining a random variable involves assigning a numerical value to the outcomes of the experiment. Let <span class="math inline">\(X\)</span> represent the number appearing on the die. The possible values of <span class="math inline">\(X\)</span> are: <span class="math inline">\(x = \{1, 2, 3, 4, 5, 6\}\)</span>.</p>
 <p>Consider another example of even number appearing on the die. Let <span class="math inline">\(X\)</span> represent the even number appearing on the die. The possible values of <span class="math inline">\(X\)</span> are: <span class="math inline">\(x = \{2, 4, 6\}\)</span>.</p>
-<p>In each of the above case, you can see that the random variable <span class="math inline">\(X\)</span> assigns a value to the outcomes of the experiment.</p>
+<p>In each of the above cases, you can see that the random variable <span class="math inline">\(X\)</span> assigns a value to the outcomes of the experiment.</p>
 </section>
 <section id="probability" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="probability"><span class="header-section-number">10.3</span> Probability</h2>
@@ -730,7 +572,7 @@ Figure&nbsp;10.3: Sample space and sample point
 <ol type="1">
 <li>What is the sample space?</li>
 <li>What is the probability of getting a 1?</li>
-<li>What is the probability of obtaining a even number?</li>
+<li>What is the probability of obtaining an even number?</li>
 <li>What is the probability of getting a 7?</li>
 </ol>
 </div>
@@ -761,7 +603,7 @@ Figure&nbsp;10.3: Sample space and sample point
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -800,14 +642,14 @@ Figure&nbsp;10.3: Sample space and sample point
 <p>The statistical approach to probability, also known as the <em>empirical approach</em>, is based on observing and recording outcomes from repeated experiments. The probability of an event is determined as the ratio of the number of times the event occurs <span class="math inline">\(m\)</span> to the total number of trials <span class="math inline">\(n\)</span> as when <span class="math inline">\(n\)</span> approaches infinity. This method is useful when theoretical probabilities cannot be calculated but relies on the practicality of conducting a large number of trials and assumes consistency in experimental conditions.</p>
 <p>The probability <span class="math inline">\(p\)</span> of happening of <span class="math inline">\(E\)</span> is given by</p>
 <p><span id="eq-statisticalapproach"><span class="math display">\[P\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n} \tag{10.3}\]</span></span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of times the process is performed which tends to infinity, and <span class="math inline">\(m\)</span> is the number of times the outcome ‘<span class="math inline">\(E\)</span>’ happens.</p>
+<p>where <span class="math inline">\(n\)</span> is the number of times the process is performed which tends to infinity, and <span class="math inline">\(m\)</span> is the number of times the outcome ’<span class="math inline">\(E\)</span>’ happens.</p>
 <p><u><strong>Limitations</strong></u></p>
 <p>The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large (<span class="math inline">\(n\)</span>) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which does not rely on precise definitions but instead establishes probability based on a set of fundamental axioms or postulates.</p>
 </section>
 <section id="axiomatic-approach" class="level3" data-number="10.5.3">
-<h3 data-number="10.5.3" class="anchored" data-anchor-id="axiomatic-approach"><span class="header-section-number">10.5.3</span> Axiomatic Approach</h3>
+<h3 data-number="10.5.3" class="anchored" data-anchor-id="axiomatic-approach"><span class="header-section-number">10.5.3</span> Axiomatic approach</h3>
 <p>The axiomatic approach to probability, introduced by A.N. Kolmogorov, provides a formal framework based on a set of foundational axioms rather than specific definitions. This approach overcomes the limitations of earlier methods by establishing universally accepted rules that apply to all probability calculations, making it applicable to a wide range of theoretical and practical scenarios.</p>
-<p>Whole field of probability theory is based on the following three axioms</p>
+<p>The whole field of probability theory is based on the following three axioms</p>
 <ol type="1">
 <li><p>Probability of an event, <span class="math inline">\(P(E)\)</span> lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. That is <span class="math inline">\(0 \leq P(E) \leq 1\)</span></p></li>
 <li><p>Probability of entire sample space is 1. That is <span class="math inline">\(P\left( S \right) = 1\)</span></p></li>
@@ -819,7 +661,7 @@ Figure&nbsp;10.3: Sample space and sample point
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -881,7 +723,7 @@ Figure&nbsp;10.4: Probability always lies between 0 and 1
 <p><span id="eq-complement"><span class="math display">\[P(A^c) = 1 - P(A) \tag{10.4}\]</span></span></p>
 <p>The relationship in <a href="#eq-complement" class="quarto-xref">Equation&nbsp;<span>10.4</span></a> highlights that the probability of an event and its complement together always sum to 1. <em>i</em>.<em>e</em>. <span class="math inline">\(P(A) + P(A^c) = 1\)</span></p>
 <p><strong>Event</strong> <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span></p>
-<p>Denoted as ‘<span class="math inline">\(A \cup B\)</span>’, spelled as <span class="math inline">\(A\)</span> union <span class="math inline">\(B\)</span>, represents the occurrence of either event <span class="math inline">\(A\)</span>, event <span class="math inline">\(B\)</span> or both. Let us consider the example of throwing a die. Suppose <span class="math inline">\(A\)</span> is an event of getting a multiple of 2 and <span class="math inline">\(B\)</span> be another event of getting a multiple of 3. The outcomes 2, 4 and 6 are favourable to the event <span class="math inline">\(A\)</span> and the outcomes 3 and 6 are favourable to the event <span class="math inline">\(B\)</span> <em>i</em>.<em>e</em>. <span class="math inline">\(A = \{2, 4, 6\}\)</span>, <span class="math inline">\(B= \{3, 6\}\)</span> then <span class="math inline">\(A \cup B = \{ 2, 3, 4, 6\}\)</span>.</p>
+<p>Denoted as ’<span class="math inline">\(A \cup B\)</span>’, spelled as <span class="math inline">\(A\)</span> union <span class="math inline">\(B\)</span>, represents the occurrence of either event <span class="math inline">\(A\)</span>, event <span class="math inline">\(B\)</span> or both. Let us consider the example of throwing a die. Suppose <span class="math inline">\(A\)</span> is an event of getting a multiple of 2 and <span class="math inline">\(B\)</span> be another event of getting a multiple of 3. The outcomes 2, 4 and 6 are favourable to the event <span class="math inline">\(A\)</span> and the outcomes 3 and 6 are favourable to the event <span class="math inline">\(B\)</span> <em>i</em>.<em>e</em>. <span class="math inline">\(A = \{2, 4, 6\}\)</span>, <span class="math inline">\(B= \{3, 6\}\)</span> then <span class="math inline">\(A \cup B = \{ 2, 3, 4, 6\}\)</span>.</p>
 <div id="fig-unionevents" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unionevents-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -893,7 +735,7 @@ Figure&nbsp;10.5: Venn diagram showing union of two events
 </figure>
 </div>
 <p><strong>Event</strong> <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span></p>
-<p>Denoted as ’ <span class="math inline">\(A \cap B\)</span> ’ spelled as <span class="math inline">\(A\)</span> intersection <span class="math inline">\(B\)</span>, represents the occurrence of both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> simultaneously. It includes only those outcomes that are common to both events. For example, on throwing a die in which <span class="math inline">\(A\)</span> is the event of getting a multiple of 2 and <span class="math inline">\(B\)</span> is the event of getting a multiple of 3. The outcomes favorable to <span class="math inline">\(A\)</span> are 2, 4, 6 and the outcomes favorable to <span class="math inline">\(B\)</span> are 3 and 6. Here 6 is present in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> so here <span class="math inline">\(A \cap B = 6\)</span>. <a href="#fig-intersection" class="quarto-xref">Figure&nbsp;<span>10.6</span></a> below shows the venn diagram of intersection of two events.</p>
+<p>Denoted as ‘<span class="math inline">\(A \cap B\)</span>’, spelled as <span class="math inline">\(A\)</span> intersection <span class="math inline">\(B\)</span>, represents the occurrence of both events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> simultaneously. It includes only those outcomes that are common to both events. For example, on throwing a die, let <span class="math inline">\(A\)</span> be the event of getting a multiple of 2 and <span class="math inline">\(B\)</span> be the event of getting a multiple of 3, so that <span class="math inline">\(A = \{2, 4, 6\}\)</span> and <span class="math inline">\(B = \{3, 6\}\)</span>. Here 6 is present in both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, so <span class="math inline">\(A \cap B = \{6\}\)</span>. <a href="#fig-intersection" class="quarto-xref">Figure&nbsp;<span>10.6</span></a> below shows the Venn diagram of the intersection of two events.</p>
 <div id="fig-intersection" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-intersection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -914,12 +756,12 @@ Figure&nbsp;10.6: Venn diagram showing intersection of two events
 <div id="exm-prob9" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.9</strong></span> A card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is either a spade or a king?</p>
 <p><strong>Solution</strong></p>
-<p>If <span class="math inline">\(A\)</span> denotes the event of drawing a ‘spade card’. <span class="math inline">\(B\)</span> denotes the events of drawing a ‘king’ respectively. The event <span class="math inline">\(A\)</span> consists of 13 sample points, whereas the event <span class="math inline">\(B\)</span> consists of 4 sample points. <span class="math inline">\(P(A)= \frac{13}{52}\)</span>, <span class="math inline">\(P(B)= \frac{4}{52}\)</span>, <span class="math inline">\(P(A \cap B) = \frac{1}{52}\)</span>, <span class="math inline">\(P(A \cup B) = P(A)+ P(B) − P(A \cap B)\)</span> = <span class="math inline">\(\frac{13}{52}+\frac{4}{52}-\frac{1}{52}= \frac{4}{13}\)</span></p>
+<p>If <span class="math inline">\(A\)</span> denotes the event of drawing a ‘spade card’, and <span class="math inline">\(B\)</span> denotes the event of drawing a ‘king’, the event <span class="math inline">\(A\)</span> consists of 13 sample points, whereas the event <span class="math inline">\(B\)</span> consists of 4 sample points. <span class="math inline">\(P(A)= \frac{13}{52}\)</span>, <span class="math inline">\(P(B)= \frac{4}{52}\)</span>, <span class="math inline">\(P(A \cap B) = \frac{1}{52}\)</span>, <span class="math inline">\(P(A \cup B) = P(A)+ P(B) − P(A \cap B)\)</span> = <span class="math inline">\(\frac{13}{52}+\frac{4}{52}-\frac{1}{52}= \frac{4}{13}\)</span></p>
 </div>
 <div id="exm-prob10" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.10</strong></span> In a single throw of two dice, find the probability of a total of 9 or 11.</p>
 <p><strong>Solution</strong></p>
-<p>Let the events <span class="math inline">\(A\)</span> = a total of 9 and <span class="math inline">\(B\)</span> = a total of 11. Events are mutually exclusive, so <span class="math inline">\(P(A \cap B) = 0\)</span>. Now there are four such cases were sum = 9, such as (3, 6), (4, 5), (5, 4), (6, 3); therefore <span class="math inline">\(P(A) = \frac{4}{36}\)</span>. Similarly there are two cases were sum = 11, such as (5, 6), (6, 5); therefore <span class="math inline">\(P(B) = \frac{2}{36}\)</span>. Thus from <a href="#eq-additivelaw2" class="quarto-xref">Equation&nbsp;<span>10.6</span></a>, <span class="math inline">\(P(A \cup B) = \frac{4}{36}+\frac{2}{36}= \frac{6}{36} = \frac{1}{6}\)</span></p>
+<p>Let the events <span class="math inline">\(A\)</span> = a total of 9 and <span class="math inline">\(B\)</span> = a total of 11. Events are mutually exclusive, so <span class="math inline">\(P(A \cap B) = 0\)</span>. Now there are four such cases where sum = 9, such as (3, 6), (4, 5), (5, 4), (6, 3); therefore <span class="math inline">\(P(A) = \frac{4}{36}\)</span>. Similarly there are two cases where sum = 11, such as (5, 6), (6, 5); therefore <span class="math inline">\(P(B) = \frac{2}{36}\)</span>. Thus from <a href="#eq-additivelaw2" class="quarto-xref">Equation&nbsp;<span>10.6</span></a>, <span class="math inline">\(P(A \cup B) = \frac{4}{36}+\frac{2}{36}= \frac{6}{36} = \frac{1}{6}\)</span></p>
 </div>
 </section>
 <section id="conditional-probability" class="level2" data-number="10.8">
@@ -954,7 +796,7 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <div id="exm-prob13" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.14</strong></span> A die is tossed twice. Find the probability of a number greater than 4 on each throw?</p>
 <p><strong>Solution</strong></p>
-<p>Let <span class="math inline">\(A\)</span> be the event that ‘a number greater than 4’ on first throw. <span class="math inline">\(B\)</span> be the event that ‘a number greater than 4’ in the second throw. Clearly <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events. In the first throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(A\)</span>. <span class="math inline">\(P(A) = \frac{2}{6} = \frac{1}{3}\)</span>. Similarly in the second throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(B\)</span>, therefore <span class="math inline">\(P(B) = \frac{2}{6} = \frac{1}{3}\)</span>. Now by <a href="#eq-multilaw2" class="quarto-xref">Equation&nbsp;<span>10.9</span></a>, probability to get a number greater than 4 on each throw is given by <span class="math inline">\(P(A \cap B) = P(A).P(B) = \frac{1}{3}.\frac{1}{3} = \frac{1}{9}\)</span></p>
+<p>Let <span class="math inline">\(A\)</span> be the event that ‘a number greater than 4’ occurs on the first throw, and <span class="math inline">\(B\)</span> be the event that ‘a number greater than 4’ occurs on the second throw. Clearly <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events. In the first throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(A\)</span>. <span class="math inline">\(P(A) = \frac{2}{6} = \frac{1}{3}\)</span>. Similarly in the second throw, there are two outcomes, namely, 5 and 6 favourable to the event <span class="math inline">\(B\)</span>, therefore <span class="math inline">\(P(B) = \frac{2}{6} = \frac{1}{3}\)</span>. Now by <a href="#eq-multilaw2" class="quarto-xref">Equation&nbsp;<span>10.9</span></a>, probability to get a number greater than 4 on each throw is given by <span class="math inline">\(P(A \cap B) = P(A).P(B) = \frac{1}{3}.\frac{1}{3} = \frac{1}{9}\)</span></p>
 </div>
 </section>
 <section id="probability-using-combinations" class="level2" data-number="10.10">
@@ -995,7 +837,7 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <div id="exm-prob17" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.18</strong></span> A bag I contains 4 white and 6 black balls while another bag II contains 4 white and 3 black balls. One ball is drawn at random from one of the bags, and it is found to be black. Find the probability that it was drawn from bag I.</p>
 <p><strong>Solution</strong></p>
-<p>Let <span class="math inline">\(E_1\)</span> be the event of choosing bag I, <span class="math inline">\(E_2\)</span> the event of choosing bag II, and <span class="math inline">\(A\)</span> be the event of drawing a black ball. Since both bag has equal chance of being selected, <span class="math inline">\(P(E_1)=P(E_2)=\frac{1}{2}\)</span>. Also, probability of drawing a black ball from bag I is given by <span class="math inline">\(P(A \mid E_1) = \frac{6}{10}=\frac{3}{5}\)</span>. Probability of drawing a black ball from bag II is <span class="math inline">\(P(A \mid E_2)=\frac{3}{7}\)</span>.</p>
+<p>Let <span class="math inline">\(E_1\)</span> be the event of choosing bag I, <span class="math inline">\(E_2\)</span> the event of choosing bag II, and <span class="math inline">\(A\)</span> be the event of drawing a black ball. Since both bags have equal chance of being selected, <span class="math inline">\(P(E_1)=P(E_2)=\frac{1}{2}\)</span>. Also, probability of drawing a black ball from bag I is given by <span class="math inline">\(P(A \mid E_1) = \frac{6}{10}=\frac{3}{5}\)</span>. Probability of drawing a black ball from bag II is <span class="math inline">\(P(A \mid E_2)=\frac{3}{7}\)</span>.</p>
 <p>By using Bayes’ theorem, the probability of drawing a black ball from bag I out of two bags,<br>
 <span class="math display">\[P(E_1 \mid A) =\frac{P(E_1) \cdot P(A \mid E_1)}{P(E_1) \cdot P(A \mid E_1)+P(E_2) \cdot P(A \mid E_2)}\]</span><br>
 <span class="math display">\[= \frac{\frac{1}{2}\times \frac{3}{5}}{\frac{1}{2}\times \frac{3}{5}+\frac{1}{2}\times \frac{3}{7}} =\frac{7}{12}\]</span></p>
@@ -1013,12 +855,12 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Historical Insights
+Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>The gambler’s fallacy</strong></p>
-<p>In 1913, a group of gamblers gathered at a casino in Monte Carlo, where they witnessed a highly unusual event at the roulette table. The ball landed on black 26 times in a row—an incredibly rare streak. As the streak continued, more and more gamblers bet heavily on red, convinced that red was “due” to appear. But to their shock, black kept winning, and many lost fortunes that night. This event is now a famous example of the <em>gambler’s fallacy</em> also known as the <em>Monte Carlo fallacy</em> or <em>the fallacy of the maturity of chances</em>, the mistaken belief that past events influence future outcomes in independent events, like the spin of a roulette wheel. In reality, the probability of the ball landing on black or red remains the same on every spin, regardless of previous results.</p>
+<p>In 1913, a group of gamblers gathered at a casino in Monte Carlo, where they witnessed a highly unusual event at the roulette table. The ball landed on black 26 times in a row, an incredibly rare streak. As the streak continued, more and more gamblers bet heavily on red, convinced that red was “due” to appear. But to their shock, black kept winning, and many lost fortunes that night. This event is now a famous example of the <em>gambler’s fallacy</em> also known as the <em>Monte Carlo fallacy</em> or <em>the fallacy of the maturity of chances</em>, the mistaken belief that past events influence future outcomes in independent events, like the spin of a roulette wheel. In reality, the probability of the ball landing on black or red remains the same on every spin, regardless of previous results.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1027,270 +869,673 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Quotes to Inspire
+Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“The theory of probabilities is at bottom nothing but common sense reduced to calculus.” – Pierre-Simon Laplace</strong></p>
+<p><strong>“The theory of probabilities is at bottom nothing but common sense reduced to calculus.”</strong><br>
+<strong>- Pierre-Simon Laplace</strong></p>
 </div>
 </div>
+</section>
+<section id="chapter-summary" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">10.12</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A process or procedure that produces an outcome which cannot be predicted with certainty beforehand is called a __________.</p></li>
+<li><p>The set of all possible outcomes of a random experiment is called the __________.</p></li>
+<li><p>An individual element of the sample space is called a __________.</p></li>
+<li><p>A numerical value assigned to the outcomes of a random experiment is called a __________.</p></li>
+<li><p>A random variable that takes countable values is called a __________ random variable.</p></li>
+<li><p>A random variable that can take any value within a given range is called a __________ random variable.</p></li>
+<li><p>Probability is expressed as a number between __________ and __________.</p></li>
+<li><p>An event whose probability is 0 is called an __________ event.</p></li>
+<li><p>An event whose probability is 1 is called a __________ event.</p></li>
+<li><p>An event that consists of one or more outcomes of a random experiment is called an __________.</p></li>
+<li><p>Events that cannot occur at the same time are called __________ events.</p></li>
+<li><p>Events that together contain all possible outcomes are called __________ events.</p></li>
+<li><p>Events having the same probability of occurrence are called __________ likely events.</p></li>
+<li><p>Events in which the occurrence of one does not influence the occurrence of another are called __________ events.</p></li>
+<li><p>Events in which the occurrence of one influences the probability of another are called __________ events.</p></li>
+<li><p>Drawing cards without replacement generally results in __________ events.</p></li>
+<li><p>Drawing cards with replacement generally results in __________ events.</p></li>
+<li><p>The classical approach to probability is also called the __________ approach.</p></li>
+<li><p>The statistical approach to probability is also called the __________ approach.</p></li>
+<li><p>The axiomatic approach to probability was developed by __________.</p></li>
+<li><p>According to the axiomatic approach, <span class="math inline">\(P(E)\)</span> always lies between __________ and __________.</p></li>
+<li><p>The probability of the entire sample space is __________.</p></li>
+<li><p>The complement of event <span class="math inline">\(A\)</span> is denoted by __________.</p></li>
+<li><p>The union of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
+<li><p>The intersection of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
+<li><p>The probability of an event and its complement together is __________.</p></li>
+<li><p>Conditional probability measures the probability of one event given that another event has already __________.</p></li>
+<li><p>The probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
+<li><p>The multiplication law is used to find the probability of __________ events occurring together.</p></li>
+<li><p>For independent events, <span class="math inline">\(P(A \cap B)\)</span> is equal to __________.</p></li>
+<li><p>The number of ways of selecting <span class="math inline">\(r\)</span> objects from <span class="math inline">\(n\)</span> objects without considering order is called a __________.</p></li>
+<li><p>The notation for combination is __________.</p></li>
+<li><p>Bayes’ theorem is used to find the probability of a __________ given an effect or observed event.</p></li>
+<li><p>In Bayes’ theorem, <span class="math inline">\(P(E_i)\)</span> is called the __________ probability.</p></li>
+<li><p>In Bayes’ theorem, <span class="math inline">\(P(E_i\mid A)\)</span> is called the __________ probability.</p></li>
+<li><p>In Bayes’ theorem, the events <span class="math inline">\(E_1,E_2,\ldots,E_n\)</span> are called the __________.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Define a random experiment and state its characteristics.</p></li>
+<li><p>Explain the concepts of outcome, sample space, and sample point.</p></li>
+<li><p>Define a random variable and explain its two types.</p></li>
+<li><p>Distinguish between discrete and continuous random variables.</p></li>
+<li><p>Define probability.</p></li>
+<li><p>Explain the meaning of an event with suitable examples.</p></li>
+<li><p>Explain independent and dependent events.</p></li>
+<li><p>Distinguish between mutually exclusive and exhaustive events.</p></li>
+<li><p>What are equally likely events?</p></li>
+<li><p>Explain the mathematical or classical approach to probability.</p></li>
+<li><p>State the limitations of the mathematical approach to probability.</p></li>
+<li><p>Explain the statistical or empirical approach to probability.</p></li>
+<li><p>State the limitations of the statistical approach to probability.</p></li>
+<li><p>Explain the axiomatic approach to probability.</p></li>
+<li><p>State the three axioms of probability.</p></li>
+<li><p>Explain the complement of an event.</p></li>
+<li><p>Explain union and intersection of events.</p></li>
+<li><p>State and explain the additive law of probability.</p></li>
+<li><p>What is conditional probability?</p></li>
+<li><p>State and explain the multiplication law of probability.</p></li>
+<li><p>Explain the difference between independent and dependent events using the multiplication law.</p></li>
+<li><p>Explain how combinations are used in probability calculations.</p></li>
+<li><p>Define Bayes’ theorem and explain its purpose.</p></li>
+<li><p>Explain prior probability and posterior probability.</p></li>
+<li><p>What are hypotheses in Bayes’ theorem?</p></li>
+<li><p>Distinguish between prior and posterior probability.</p></li>
+<li><p>Explain the gambler’s fallacy.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A die is tossed once. Write the sample space and find the probability of obtaining an even number.</p></li>
+<li><p>A die is tossed once. Find the probability of obtaining a number greater than 4.</p></li>
+<li><p>A die is tossed once. Find the probability of obtaining a 7.</p></li>
+<li><p>A coin is tossed twice. Find the probability of getting two heads.</p></li>
+<li><p>A coin is tossed twice. Find the probability of getting exactly one head.</p></li>
+<li><p>Two dice are thrown simultaneously. Find the probability that the sum is 9.</p></li>
+<li><p>Two dice are thrown simultaneously. Find the probability that the sum is either 9 or 11.</p></li>
+<li><p>A bag contains 10 red, 4 blue, and 6 black balls. Find the probability of drawing a red ball.</p></li>
+<li><p>For the same bag, find the probability of drawing a ball that is not black.</p></li>
+<li><p>A card is drawn from a standard deck of 52 cards. Find the probability that it is a spade or a king.</p></li>
+<li><p>A card is drawn from a standard deck of 52 cards. Find the probability that it is a king given that it is a face card.</p></li>
+<li><p>In a seed-testing laboratory, 120 treated seeds and 80 untreated seeds are taken. Among the treated seeds, 96 germinate, while 40 untreated seeds germinate. If a selected seed is treated, find the probability that it germinated.</p></li>
+<li><p>Two cards are drawn successively from a standard deck without replacement. Find the probability that both are aces.</p></li>
+<li><p>A die is tossed twice. Find the probability of obtaining a number greater than 4 on both throws.</p></li>
+<li><p>Calculate <span class="math inline">\(^3C_2\)</span>.</p></li>
+<li><p>A bag contains 3 red, 6 white, and 7 blue balls. Find the probability that two balls drawn are one white and one blue.</p></li>
+<li><p>A bag contains 5 red and 4 black balls. Find the probability that both balls drawn are red.</p></li>
+<li><p>Six cards are drawn at random from a pack of 52 cards. Find the probability that 3 are red and 3 are black.</p></li>
+<li><p>A bag contains 4 white and 6 black balls, while another bag contains 4 white and 3 black balls. One bag is selected at random and a black ball is drawn. Find the probability that it was drawn from the first bag.</p></li>
+<li><p>A man speaks the truth 2 out of 3 times. He throws a die and reports that the number obtained is 4. Find the probability that the number obtained was actually 4.</p></li>
+<li><p>A coin is tossed 100 times and heads occur 99 times. What is the probability of obtaining heads on the next toss?</p></li>
+<li><p>Explain why the previous outcomes of independent trials do not change the probability of the next trial.</p></li>
+</ol>
+</section>
+<section id="important-formulae" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
+<p>Probability of an event under equally likely outcomes:</p>
+<p><span class="math display">\[
+P(A)=\frac{\text{Number of favourable outcomes}}{\text{Total number of possible outcomes}}
+\]</span></p>
+<p>Classical probability:</p>
+<p><span class="math display">\[
+P(E)=\frac{m}{n}
+\]</span></p>
+<p>where <span class="math inline">\(m\)</span> is the number of favourable outcomes and <span class="math inline">\(n\)</span> is the total number of exhaustive, mutually exclusive, and equally likely outcomes.</p>
+<p>Statistical probability:</p>
+<p><span class="math display">\[
+P(E)=\lim_{n\rightarrow\infty}\frac{m}{n}
+\]</span></p>
+<p>Probability range:</p>
+<p><span class="math display">\[
+0\leq P(E)\leq1
+\]</span></p>
+<p>Probability of sample space:</p>
+<p><span class="math display">\[
+P(S)=1
+\]</span></p>
+<p>Complement rule:</p>
+<p><span class="math display">\[
+P(A^c)=1-P(A)
+\]</span></p>
+<p>Probability of an event and its complement:</p>
+<p><span class="math display">\[
+P(A)+P(A^c)=1
+\]</span></p>
+<p>Additive law of probability:</p>
+<p><span class="math display">\[
+P(A\cup B)=P(A)+P(B)-P(A\cap B)
+\]</span></p>
+<p>Additive law for mutually exclusive events:</p>
+<p><span class="math display">\[
+P(A\cup B)=P(A)+P(B)
+\]</span></p>
+<p>Conditional probability:</p>
+<p><span class="math display">\[
+P(A\mid B)=\frac{P(A\cap B)}{P(B)},\quad P(B)&gt;0
+\]</span></p>
+<p>Multiplication law:</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A)P(B\mid A)
+\]</span></p>
+<p>Multiplication law for independent events:</p>
+<p><span class="math display">\[
+P(A\cap B)=P(A)P(B)
+\]</span></p>
+<p>Combination:</p>
+<p><span class="math display">\[
+{}^nC_r=\frac{n!}{r!(n-r)!}
+\]</span></p>
+<p>Bayes’ theorem for two events:</p>
+<p><span class="math display">\[
+P(A\mid B)=\frac{P(B\mid A)P(A)}{P(B)},\quad P(B)\neq0
+\]</span></p>
+<p>Bayes’ theorem for a partition of the sample space:</p>
+<p><span class="math display">\[
+P(E_i\mid A)=
+\frac{P(E_i)P(A\mid E_i)}
+{\sum_{k=1}^{n}P(E_k)P(A\mid E_k)}
+\]</span></p>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li>Random experiment → experiment whose outcome cannot be predicted with certainty.</li>
+<li>Sample space → set of all possible outcomes.</li>
+<li>Sample point → one possible outcome.</li>
+<li>Random variable → numerical value assigned to outcomes.</li>
+<li>Discrete random variable → takes countable values.</li>
+<li>Continuous random variable → takes values within a range.</li>
+<li>Probability → measure of the likelihood of an event.</li>
+<li>Probability always lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</li>
+<li>Impossible event → probability <span class="math inline">\(0\)</span>.</li>
+<li>Certain event → probability <span class="math inline">\(1\)</span>.</li>
+<li>Event → one or more outcomes of a random experiment.</li>
+<li>Independent events → occurrence of one does not influence the other.</li>
+<li>Dependent events → occurrence of one influences the other.</li>
+<li>Mutually exclusive events → cannot occur together.</li>
+<li>Exhaustive events → together cover the entire sample space.</li>
+<li>Equally likely events → have equal probability.</li>
+<li>Classical probability → based on exhaustive, mutually exclusive, and equally likely outcomes.</li>
+<li>Statistical probability → based on repeated observations.</li>
+<li>Axiomatic probability → based on the three axioms of probability.</li>
+<li>A.N. Kolmogorov → associated with the axiomatic approach.</li>
+<li>Complement → event not occurring.</li>
+<li><span class="math inline">\(A\cup B\)</span> → <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> or both.</li>
+<li><span class="math inline">\(A\cap B\)</span> → both <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>.</li>
+<li><span class="math inline">\(A^c\)</span> → complement of <span class="math inline">\(A\)</span>.</li>
+<li>Conditional probability → probability of an event given that another event has occurred.</li>
+<li>Multiplication law → used for probability of joint occurrence.</li>
+<li>With replacement → probabilities remain unchanged and events are independent.</li>
+<li>Without replacement → probabilities change and events are dependent.</li>
+<li>Combination → selection without considering order.</li>
+<li>Bayes’ theorem → obtains the probability of a cause or hypothesis given observed evidence.</li>
+<li>Prior probability → probability before considering the evidence.</li>
+<li>Posterior probability → updated probability after considering the evidence.</li>
+<li>Gambler’s fallacy → belief that previous independent outcomes influence future outcomes.</li>
+<li>In independent trials, past outcomes do not change the probability of the next outcome.</li>
+</ul>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<ol type="1">
+<li>Random experiment</li>
+<li>Sample space</li>
+<li>Sample point</li>
+<li>Random variable</li>
+<li>Discrete</li>
+<li>Continuous</li>
+<li>0; 1</li>
+<li>Impossible</li>
+<li>Certain</li>
+<li>Event</li>
+<li>Mutually exclusive</li>
+<li>Exhaustive</li>
+<li>Equally</li>
+<li>Independent</li>
+<li>Dependent</li>
+<li>Dependent</li>
+<li>Independent</li>
+<li>Mathematical</li>
+<li>Empirical</li>
+<li>A.N. Kolmogorov</li>
+<li>0; 1</li>
+<li>1</li>
+<li><span class="math inline">\(A^c\)</span></li>
+<li><span class="math inline">\(A\cup B\)</span></li>
+<li><span class="math inline">\(A\cap B\)</span></li>
+<li>1</li>
+<li>Occurred</li>
+<li><span class="math inline">\(P(A\mid B)\)</span></li>
+<li>Both</li>
+<li><span class="math inline">\(P(A)P(B)\)</span></li>
+<li>Combination</li>
+<li><span class="math inline">\({}^nC_r\)</span></li>
+<li>Cause</li>
+<li>Prior</li>
+<li>Posterior</li>
+<li>Hypotheses</li>
+</ol>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>Using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a> with <span class="math inline">\(S=\{1,2,3,4,5,6\}\)</span> and the even-number event <span class="math inline">\(A=\{2,4,6\}\)</span>, <span class="math inline">\(P(A)=\frac{3}{6}=\frac{1}{2}\)</span>.</p></li>
+<li><p>Using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>, numbers greater than 4 are 5 and 6, so <span class="math inline">\(P(X&gt;4)=\frac{2}{6}=\frac{1}{3}\)</span>.</p></li>
+<li><p>A standard die has no face numbered 7, so <span class="math inline">\(P(X=7)=\frac{0}{6}=0\)</span>; obtaining 7 is an impossible event.</p></li>
+<li><p>Using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a> with <span class="math inline">\(S=\{HH,HT,TH,TT\}\)</span>, only <span class="math inline">\(HH\)</span> gives two heads, so <span class="math inline">\(P(\text{two heads})=\frac{1}{4}\)</span>.</p></li>
+<li><p>Exactly one head occurs in <span class="math inline">\(HT\)</span> and <span class="math inline">\(TH\)</span>, so <span class="math inline">\(P(\text{exactly one head})=\frac{2}{4}=\frac{1}{2}\)</span>.</p></li>
+<li><p>With two dice there are <span class="math inline">\(6\times6=36\)</span> outcomes; the outcomes with sum 9 are <span class="math inline">\((3,6),(4,5),(5,4),(6,3)\)</span>, so <span class="math inline">\(P(\text{sum}=9)=\frac{4}{36}=\frac{1}{9}\)</span>.</p></li>
+<li><p>Using <a href="#eq-additivelaw2" class="quarto-xref">Equation&nbsp;<span>10.6</span></a> for the mutually exclusive events sum <span class="math inline">\(=9\)</span> and sum <span class="math inline">\(=11\)</span>, <span class="math inline">\(P(A)=\frac{4}{36}\)</span> and <span class="math inline">\(P(B)=\frac{2}{36}\)</span>, so <span class="math inline">\(P(A\cup B)=\frac{4}{36}+\frac{2}{36}=\frac{6}{36}=\frac{1}{6}\)</span>.</p></li>
+<li><p>Using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a> with <span class="math inline">\(10+4+6=20\)</span> total balls, <span class="math inline">\(P(\text{red})=\frac{10}{20}=\frac{1}{2}\)</span>.</p></li>
+<li><p>The number of balls that are not black is <span class="math inline">\(10+4=14\)</span>, so <span class="math inline">\(P(\text{not black})=\frac{14}{20}=\frac{7}{10}\)</span>.</p></li>
+<li><p>Using <a href="#eq-additivelaw" class="quarto-xref">Equation&nbsp;<span>10.5</span></a> with <span class="math inline">\(P(A)=\frac{13}{52}\)</span> (spade), <span class="math inline">\(P(B)=\frac{4}{52}\)</span> (king), and <span class="math inline">\(P(A\cap B)=\frac{1}{52}\)</span> (king of spades), <span class="math inline">\(P(A\cup B)=\frac{13}{52}+\frac{4}{52}-\frac{1}{52}=\frac{16}{52}=\frac{4}{13}\)</span>.</p></li>
+<li><p>Using <a href="#eq-conditionalprob" class="quarto-xref">Equation&nbsp;<span>10.7</span></a> with <span class="math inline">\(P(B)=\frac{12}{52}\)</span> (face cards) and <span class="math inline">\(P(A\cap B)=\frac{4}{52}\)</span> (kings), <span class="math inline">\(P(A\mid B)=\frac{4/52}{12/52}=\frac{1}{3}\)</span>.</p></li>
+<li><p>Using <a href="#eq-conditionalprob" class="quarto-xref">Equation&nbsp;<span>10.7</span></a>, of the 120 treated seeds, 96 germinated, so <span class="math inline">\(P(A\mid B)=\frac{96}{120}=\frac{4}{5}\)</span>.</p></li>
+<li><p>Using <a href="#eq-multilaw" class="quarto-xref">Equation&nbsp;<span>10.8</span></a> with <span class="math inline">\(P(A)=\frac{4}{52}\)</span> and <span class="math inline">\(P(B\mid A)=\frac{3}{51}\)</span> (3 aces remain among 51 cards), <span class="math inline">\(P(A\cap B)=\frac{4}{52}\times\frac{3}{51}=\frac{1}{221}\)</span>.</p></li>
+<li><p>Using <a href="#eq-multilaw2" class="quarto-xref">Equation&nbsp;<span>10.9</span></a> with <span class="math inline">\(P(A)=P(B)=\frac{2}{6}=\frac{1}{3}\)</span> for each independent throw, <span class="math inline">\(P(A\cap B)=\frac{1}{3}\times\frac{1}{3}=\frac{1}{9}\)</span>.</p></li>
+<li><p>Using <a href="#eq-combn" class="quarto-xref">Equation&nbsp;<span>10.10</span></a>, <span class="math inline">\({}^3C_2=\frac{3!}{2!(3-2)!}=\frac{3\times2\times1}{2\times1}=3\)</span>.</p></li>
+<li><p>Using <a href="#eq-combn" class="quarto-xref">Equation&nbsp;<span>10.10</span></a> with 16 balls total, <span class="math inline">\({}^{16}C_2=120\)</span> ways to draw 2, and <span class="math inline">\({}^6C_1\times{}^7C_1=42\)</span> favourable ways, so <span class="math inline">\(P(\text{one white and one blue})=\frac{42}{120}=\frac{7}{20}\)</span>.</p></li>
+<li><p>Using <a href="#eq-combn" class="quarto-xref">Equation&nbsp;<span>10.10</span></a> with 9 balls total, <span class="math inline">\({}^9C_2=36\)</span> ways to draw 2, and <span class="math inline">\({}^5C_2=10\)</span> ways to draw 2 red, so <span class="math inline">\(P(\text{both red})=\frac{10}{36}=\frac{5}{18}\)</span>.</p></li>
+<li><p>Using <a href="#eq-combn" class="quarto-xref">Equation&nbsp;<span>10.10</span></a>, the total ways to select 6 cards is <span class="math inline">\({}^{52}C_6\)</span>, and the favourable ways (3 red and 3 black) are <span class="math inline">\({}^{26}C_3\times{}^{26}C_3\)</span>, so <span class="math inline">\(P(\text{3 red and 3 black})=\frac{{}^{26}C_3\,{}^{26}C_3}{{}^{52}C_6}\)</span>.</p></li>
+<li><p>Using <a href="#eq-bayestheorem" class="quarto-xref">Equation&nbsp;<span>10.11</span></a> with <span class="math inline">\(P(E_1)=P(E_2)=\frac{1}{2}\)</span>, <span class="math inline">\(P(A\mid E_1)=\frac{3}{5}\)</span> (bag I) and <span class="math inline">\(P(A\mid E_2)=\frac{3}{7}\)</span> (bag II), <span class="math inline">\(P(E_1\mid A)=\frac{\frac{1}{2}\times\frac{3}{5}}{\frac{1}{2}\times\frac{3}{5}+\frac{1}{2}\times\frac{3}{7}}=\frac{7}{12}\)</span>.</p></li>
+<li><p>Using <a href="#eq-bayestheorem" class="quarto-xref">Equation&nbsp;<span>10.11</span></a> with <span class="math inline">\(P(E_1)=\frac{1}{6}\)</span>, <span class="math inline">\(P(E_2)=\frac{5}{6}\)</span>, <span class="math inline">\(P(A\mid E_1)=\frac{2}{3}\)</span> and <span class="math inline">\(P(A\mid E_2)=\frac{1}{3}\)</span>, <span class="math inline">\(P(E_1\mid A)=\frac{\frac{1}{6}\times\frac{2}{3}}{\frac{1}{6}\times\frac{2}{3}+\frac{5}{6}\times\frac{1}{3}}=\frac{2}{7}\)</span>.</p></li>
+<li><p>For an unbiased coin, each toss is independent of previous tosses, so even after 99 heads in a row, <span class="math inline">\(P(H)=\frac{1}{2}\)</span> on the next toss.</p></li>
+<li><p>In independent events, the occurrence of one does not influence another, so previous outcomes do not change the probability of the next trial; for an unbiased coin, <span class="math inline">\(P(H)=\frac{1}{2}\)</span> on every toss regardless of past results.</p></li>
+</ol>
 
 
 
 </section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
       }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
       return false;
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1298,161 +1543,185 @@ Hence, the probability of drawing a King given that the card drawn is a face car
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./regression.html" class="pagination-link" aria-label="Regression analysis">

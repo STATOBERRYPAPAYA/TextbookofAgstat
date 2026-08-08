@@ -222,7 +222,7 @@ $$r = \frac{n\left( \sum_{i = 1}^{n}{x_{i}y_{i}} \right) - \sum_{i = 1}^{n}{x_{i
 ::: {.callout-important title="Note"}
 **Spurious correlation**
 
-When we calculate the correlation between two variables, we often get a numerical value that quantifies the strength and direction of the relationship between them. However, if there is no actual meaningful relationship between these variables, the correlation value obtained may be misleading. For example, even if there's no practical or causal link, we might find a correlation between variables like "fertilizer price" and "Kohli's batting average." Despite the absence of any real-world connection between these two variables, we can still compute a correlation value. This type of correlation is known as a spurious correlation, which means it exists purely due to random chance or statistical artifacts rather than any practical or causal relationship.
+When we calculate the correlation between two variables, we often get a numerical value that quantifies the strength and direction of the relationship between them. However, if there is no actual meaningful relationship between these variables, the correlation value obtained may be misleading. For example, even if there’s no practical or causal link, we might find a correlation between variables like “fertilizer price” and “Kohli’s batting average.” Despite the absence of any real-world connection between these two variables, we can still compute a correlation value. This type of correlation is known as a spurious correlation, which means it exists purely due to random chance or statistical artifacts rather than any practical or causal relationship.
 :::
 
 **Example 8.3**: Consider the @tbl-corrdata in Example 8.2; find correlation coefficient (*r*)
@@ -236,12 +236,12 @@ When we calculate the correlation between two variables, we often get a numerica
 | 4 | 15.2 | 332 | -3.48 | -70.42 | 244.70 | 12.08 | 4958.51 |
 | 5 | 18.5 | 406 | -0.18 | 3.58 | -0.63 | 0.031 | 12.84 |
 | 6 | 22.1 | 522 | 3.43 | 119.58 | 409.57 | 11.73 | 14300.17 |
-| 7 | 19.4 | 412 | 0.73 | 9.58 | 6.9479 | 0.53 | 91.84 |
+| 7 | 19.4 | 412 | 0.73 | 9.58 | 6.95 | 0.53 | 91.84 |
 | 8 | 25.1 | 614 | 6.43 | 211.58 | 1359.42 | 41.28 | 44767.51 |
 | 9 | 23.4 | 544 | 4.73 | 141.58 | 668.98 | 22.33 | 20045.84 |
 | 10 | 18.1 | 421 | -0.58 | 18.58 | -10.69 | 0.33 | 345.34 |
 | 11 | 22.6 | 445 | 3.93 | 42.58 | 167.14 | 15.41 | 1813.34 |
-| 12 | 17.2 | 408 | -1.48 | 5.58 | -8.24 | 2.16 | 31.17 |
+| 12 | 17.2 | 408 | -1.48 | 5.58 | -8.24 | 2.18 | 31.17 |
 | **Total** | **224.1** | **4829** | 0 | 0 | **5325.03** | **176.98** | **174754.9** |
 
 : Calculation of Pearson's correlation coefficient for @tbl-corrdata {#tbl-corrcalc .bordered}
@@ -264,7 +264,7 @@ Using @eq-correlation, $r = \frac{443.75}{3.84\  \times 120.68} = 0.96$, which i
 
 ### Spearman's rank order correlation coefficient {#sec-spearman}
 
-The Spearman's correlation coefficient evaluates the strength and direction of a monotonic relationship between two variables, whether they are continuous or ordinal. Spearman's correlation is denoted by a Greek letter $\rho$ pronounced as "*rho*". The range of Spearman's rank correlation also lies between −1 and +1 always, *i*.*e*. −1 ≤ *ρ* ≤+1
+The Spearman's correlation coefficient evaluates the strength and direction of a monotonic relationship between two variables, whether they are continuous or ordinal. Spearman's correlation is denoted by a Greek letter $\rho$ pronounced as “*rho*”. The range of Spearman's rank correlation also lies between −1 and +1 always, *i*.*e*. −1 ≤ *ρ* ≤+1
 
 Unlike Pearson's correlation, which measures linear relationships, Spearman's correlation is based on the ranked values of the variables rather than their raw data. This makes it particularly useful in situations where:
 
@@ -284,7 +284,7 @@ There are two cases in calculating $\rho$ :
 
 [**No tied rank case**]{.underline}
 
-When two or more distinct observations have the same value, thus being given the same rank, they are said to be tied. The formula for the Spearman rank correlation coefficient when there are *no tied ranks* is:
+When all the observations in both series are distinct, that is, no value is repeated, the ranks assigned to them are also all distinct, and this is called the *no tied rank case*. The formula for the Spearman rank correlation coefficient when there are *no tied ranks* is:
 
 $$\rho = 1 - \frac{6\sum_{i = 1}^{n}d_{i}^{2}}{n\left( n^{2} - 1 \right)}$$ {#eq-spearman1}
 
@@ -328,11 +328,11 @@ Compute the student's ranks in the two subjects and compute the Spearman rank co
 |       6       |     9     |         4         |     9     |
 |      28       |     4     |        31         |     4     |
 
-: Non tied rank case calculation table1 {#tbl-nontiedcalc1 .bordered}
+: Ranks assigned for the non-tied rank case {#tbl-nontiedcalc1 .bordered}
 
 **Step 2**: Add a column *d*, to your data. The *d* is the difference between ranks.
 
-*d* = Rank~*x*~ *--* Rank~*y*~
+*d* = Rank~*x*~ *-* Rank~*y*~
 
 For example, the first student's physics rank is 3 and math rank is 5, so the difference is -2. In the next column, square your *d* values.
 
@@ -349,7 +349,7 @@ For example, the first student's physics rank is 3 and math rank is 5, so the di
 |      28       |     4     |        31         |     4     |  0  |   0    |
 |   **Total**   |           |                   |           |     |   12   |
 
-: Non tied rank case calculation table2 {#tbl-nontiedcalc2 .bordered}
+: Rank differences and squared differences for the non-tied rank case {#tbl-nontiedcalc2 .bordered}
 
 **Step 3**: Sum (add up) all of your *d*^2^ values. $\sum_{i = 1}^{n}d_{i}^{2} =$ 4 + 4 + 1 + 0 + 1 + 1 + 1 + 0 + 0 = 12.
 
@@ -398,7 +398,7 @@ Calculation of Spearman's rank correlation when there is tied rank is explained 
 |       6       |  9   |
 |      28       |  4   |
 
-: Tied rank case calculation table-1 {#tbl-tiedcalc1 .bordered}
+: Initial ranks assigned to physics scores, before averaging tied ranks {#tbl-tiedcalc1 .bordered}
 
 Then the average of two ranks 5 and 6 is assigned to both the values; $\left( \frac{5 + 6}{2}\right)$ = 5.5
 
@@ -414,7 +414,7 @@ Then the average of two ranks 5 and 6 is assigned to both the values; $\left( \f
 |       6       |  9   |
 |      28       |  4   |
 
-: Tied rank case calculation table-2 {#tbl-tiedcalc2 .bordered}
+: Physics ranks after averaging the tied rank {#tbl-tiedcalc2 .bordered}
 
 Similarly for marks in mathematics you can see 33 is repeated thrice.
 
@@ -430,7 +430,7 @@ Similarly for marks in mathematics you can see 33 is repeated thrice.
 |        33         |  4   |
 |        33         |  5   |
 
-: Tied rank case calculation table-3 {#tbl-tiedcalc3 .bordered}
+: Initial ranks assigned to mathematics scores, before averaging tied ranks {#tbl-tiedcalc3 .bordered}
 
 You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 and 5 is given $\left( \frac{3 + 4 + 5}{3} \right)$ = 4
 
@@ -446,7 +446,7 @@ You can see the value 33 is repeated thrice, so the average of three ranks 3, 4 
 |        33         |  4   |
 |        33         |  4   |
 
-: Tied rank case calculation table-4 {#tbl-tiedcalc4 .bordered}
+: Mathematics ranks after averaging the tied ranks {#tbl-tiedcalc4 .bordered}
 
 **Step 2**: Calculate $T_{x}$ and $T_{y}$
 
@@ -469,7 +469,7 @@ In our example marks in Mathematics (*y*) there are three 33 values tied therefo
 |      28       |  4   |        33         |  4   |  0   |  0   |
 |   **Total**   |      |                   |      |  0   | 44.5 |
 
-: Tied rank case calculation table-5 {#tbl-tiedcalc5 .bordered}
+: Rank differences and squared differences for the tied rank case {#tbl-tiedcalc5 .bordered}
 
 using @eq-spearman2, $\rho = 1 - \frac{6 \times \left( 44.5 + 0.5 + 2 \right)}{9\left( 9^{2} - 1 \right)} = \ 1 - \frac{282}{720}$ = 0.61
 
@@ -600,12 +600,13 @@ A correlogram is a graphical representation of a correlation matrix. It is used 
 ::: {.callout-caution title="Historical Insights"}
 **Correlation and Sir Francis Galton**
 
-The concept of correlation dates back to Sir Francis Galton, who introduced the idea of *"co-relation"* in the 19^th^ century while studying the relationship between physical traits, such as the height of parents and their children. Galton's cousin, Karl Pearson, further developed this idea by formalizing the calculation of correlation and introducing the formula we use today in terms of Pearson's correlation coefficient. Pearson's work in the late 1800s provided a mathematical framework for understanding the strength and direction of relationships between two variables, a concept that has since become fundamental in statistics, especially in the fields of genetics, psychology, and social sciences.
+The concept of correlation dates back to Sir Francis Galton, who introduced the idea of *“co-relation”* in the 19^th^ century while studying the relationship between physical traits, such as the height of parents and their children. Galton's cousin, Karl Pearson, further developed this idea by formalizing the calculation of correlation and introducing the formula we use today in terms of Pearson's correlation coefficient. Pearson's work in the late 1800s provided a mathematical framework for understanding the strength and direction of relationships between two variables, a concept that has since become fundamental in statistics, especially in the fields of genetics, psychology, and social sciences.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands".- Herman Chernoff**
-:::  
+**“Statistics is like a high-caliber weapon: helpful when used correctly and potentially disastrous in the wrong hands.”**\
+**- Herman Chernoff**
+:::
 
 ## Chapter Summary
 

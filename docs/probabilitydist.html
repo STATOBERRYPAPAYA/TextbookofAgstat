@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -33,21 +33,17 @@ ul.task-list li input[type="checkbox"] {
 <link href="./sampleSurvey.html" rel="next">
 <link href="./probability.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d7b9fa155d0e0df12a8475c66a3f5bbe.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -94,7 +90,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+      if (mathElements[i].tagName == "SPAN") {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -124,169 +120,7 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
-    const toggleBodyColorMode = (bsSheetEl) => {
-      const mode = bsSheetEl.getAttribute("data-mode");
-      const bodyEl = window.document.querySelector("body");
-      if (mode === "dark") {
-        bodyEl.classList.add("quarto-dark");
-        bodyEl.classList.remove("quarto-light");
-      } else {
-        bodyEl.classList.add("quarto-light");
-        bodyEl.classList.remove("quarto-dark");
-      }
-    }
-    const toggleBodyColorPrimary = () => {
-      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
-      if (bsSheetEl) {
-        toggleBodyColorMode(bsSheetEl);
-      }
-    }
-    const setColorSchemeToggle = (alternate) => {
-      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-      for (let i=0; i < toggles.length; i++) {
-        const toggle = toggles[i];
-        if (toggle) {
-          if (alternate) {
-            toggle.classList.add("alternate");
-          } else {
-            toggle.classList.remove("alternate");
-          }
-        }
-      }
-    };
-    const toggleColorMode = (alternate) => {
-      // Switch the stylesheets
-      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
-      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-      manageTransitions('#quarto-margin-sidebar .nav-link', false);
-      if (alternate) {
-        // note: dark is layered on light, we don't disable primary!
-        enableStylesheet(alternateStylesheets);
-        for (const sheetNode of alternateStylesheets) {
-          if (sheetNode.id === "quarto-bootstrap") {
-            toggleBodyColorMode(sheetNode);
-          }
-        }
-      } else {
-        disableStylesheet(alternateStylesheets);
-        enableStylesheet(primaryStylesheets)
-        toggleBodyColorPrimary();
-      }
-      manageTransitions('#quarto-margin-sidebar .nav-link', true);
-      // Switch the toggles
-      setColorSchemeToggle(alternate)
-      // Hack to workaround the fact that safari doesn't
-      // properly recolor the scrollbar when toggling (#1455)
-      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-        manageTransitions("body", false);
-        window.scrollTo(0, 1);
-        setTimeout(() => {
-          window.scrollTo(0, 0);
-          manageTransitions("body", true);
-        }, 40);
-      }
-    }
-    const disableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        stylesheet.rel = 'disabled-stylesheet';
-      }
-    }
-    const enableStylesheet = (stylesheets) => {
-      for (let i=0; i < stylesheets.length; i++) {
-        const stylesheet = stylesheets[i];
-        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
-          stylesheet.rel = 'stylesheet';
-        }
-      }
-    }
-    const manageTransitions = (selector, allowTransitions) => {
-      const els = window.document.querySelectorAll(selector);
-      for (let i=0; i < els.length; i++) {
-        const el = els[i];
-        if (allowTransitions) {
-          el.classList.remove('notransition');
-        } else {
-          el.classList.add('notransition');
-        }
-      }
-    }
-    const isFileUrl = () => {
-      return window.location.protocol === 'file:';
-    }
-    const hasAlternateSentinel = () => {
-      let styleSentinel = getColorSchemeSentinel();
-      if (styleSentinel !== null) {
-        return styleSentinel === "alternate";
-      } else {
-        return false;
-      }
-    }
-    const setStyleSentinel = (alternate) => {
-      const value = alternate ? "alternate" : "default";
-      if (!isFileUrl()) {
-        window.localStorage.setItem("quarto-color-scheme", value);
-      } else {
-        localAlternateSentinel = value;
-      }
-    }
-    const getColorSchemeSentinel = () => {
-      if (!isFileUrl()) {
-        const storageValue = window.localStorage.getItem("quarto-color-scheme");
-        return storageValue != null ? storageValue : localAlternateSentinel;
-      } else {
-        return localAlternateSentinel;
-      }
-    }
-    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-      let newTheme = '';
-      if(authorPrefersDark) {
-        newTheme = isAlternate ? baseTheme : alternateTheme;
-      } else {
-        newTheme = isAlternate ? alternateTheme : baseTheme;
-      }
-      const changeGiscusTheme = () => {
-        // From: https://github.com/giscus/giscus/issues/336
-        const sendMessage = (message) => {
-          const iframe = document.querySelector('iframe.giscus-frame');
-          if (!iframe) return;
-          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-        }
-        sendMessage({
-          setConfig: {
-            theme: newTheme
-          }
-        });
-      }
-      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-      if (isGiscussLoaded) {
-        changeGiscusTheme();
-      }
-    };
-    const authorPrefersDark = false;
-    const darkModeDefault = authorPrefersDark;
-      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
-    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-    // Dark / light mode switch
-    window.quartoToggleColorScheme = () => {
-      // Read the current dark / light value
-      let toAlternate = !hasAlternateSentinel();
-      toggleColorMode(toAlternate);
-      setStyleSentinel(toAlternate);
-      toggleGiscusIfUsed(toAlternate, darkModeDefault);
-      window.dispatchEvent(new Event('resize'));
-    };
-    // Switch to dark mode if need be
-    if (hasAlternateSentinel()) {
-      toggleColorMode(true);
-    } else {
-      toggleColorMode(false);
-    }
-  </script>
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -310,8 +144,7 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -545,15 +378,24 @@ window.Quarto = {
   <li><a href="#continuous-probability-distributions" id="toc-continuous-probability-distributions" class="nav-link" data-scroll-target="#continuous-probability-distributions"><span class="header-section-number">11.4</span> Continuous probability distributions</a>
   <ul class="collapse">
   <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution"><span class="header-section-number">11.4.1</span> Normal distribution</a></li>
-  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard Normal distribution</a></li>
-  <li><a href="#z-score-table" id="toc-z-score-table" class="nav-link" data-scroll-target="#z-score-table"><span class="header-section-number">11.4.3</span> Z-Score Table</a></li>
+  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard normal distribution</a></li>
+  <li><a href="#z-score-table" id="toc-z-score-table" class="nav-link" data-scroll-target="#z-score-table"><span class="header-section-number">11.4.3</span> Z-score table</a></li>
+  </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">11.5</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#important-formulae" id="toc-important-formulae" class="nav-link" data-scroll-target="#important-formulae">Important formulae</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
-
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -683,7 +525,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <p>here the random variable <span class="math inline">\(X\)</span> lies between <span class="math inline">\({-\infty}\)</span> and <span class="math inline">\({+\infty}\)</span></p>
 <div id="exm-expval1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.1</strong></span> Find the expected value of <span class="math inline">\(X\)</span> of tossing a single unfair die.</p>
-<table class="lightable-classic table caption-top">
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">x</td>
@@ -705,8 +547,10 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tr>
 </tbody>
 </table>
+
+
 <p><strong>Solution</strong></p>
-<table class="lightable-classic table caption-top">
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">xp(x)</td>
@@ -719,11 +563,13 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tr>
 </tbody>
 </table>
+
+
 <p>Using equation <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, <span class="math inline">\(E(X)\)</span> = <span class="math inline">\(\sum_{x} x\, p(x)\)</span> = 0.1+0.2+0.3+0.4+0.5+3 = 4.5</p>
 </div>
 <div id="exr-expval1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 11.1</strong></span> Find <span class="math inline">\(E(X)\)</span> in the following case.</p>
-<table class="lightable-classic table caption-top">
+<table class="lightable-classic table caption-top" data-quarto-postprocess="true">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">x</td>
@@ -745,6 +591,8 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tr>
 </tbody>
 </table>
+
+
 </div>
 </section>
 <section id="discrete-probability-distributions" class="level2" data-number="11.3">
@@ -778,7 +626,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -793,7 +641,13 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <p><span class="math inline">\(P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6\)</span></p>
 <p><span class="math inline">\(P(X = 1) = (0.4)^1 (1-0.4)^0 =0.4\)</span></p>
 <p>the distribution can be shown as below:</p>
-<table class="caption-top table">
+<div id="tbl-bernoulli1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-bernoulli1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math inline">\(p=0.4\)</span>
+</figcaption>
+<div aria-describedby="tbl-bernoulli1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th><span class="math inline">\(x\)</span></th>
@@ -812,13 +666,16 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tbody>
 </table>
 </div>
+</figure>
+</div>
+</div>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -848,7 +705,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -860,7 +717,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <p><strong>Solution</strong></p>
 <p>here, <span class="math inline">\(n = 10; x = 6; p = \frac{1}{2}; q = 1-p = \frac{1}{2}\)</span></p>
 <p>We have to find <span class="math inline">\(P(X=6)\)</span>; using the <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a></p>
-<p><span class="math inline">\(P(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2050\)</span></p>
+<p><span class="math inline">\(P(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2051\)</span></p>
 </div>
 </section>
 <section id="fitting-of-binomial-distribution" class="level3" data-number="11.3.3">
@@ -875,7 +732,13 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </ul>
 <div id="exm-binomfit1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.4</strong></span> In a study on the survival of mango seedlings after transplanting, 100 groups of 5 seedlings each were transplanted. The number of seedlings surviving in each group was recorded as given below. Fit a binomial distribution to the data.</p>
-<table class="caption-top table">
+<div id="tbl-mangosurvival" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mangosurvival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.4: Number of mango seedlings surviving out of 5, in 100 groups
+</figcaption>
+<div aria-describedby="tbl-mangosurvival-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Number surviving (<span class="math inline">\(x\)</span>)</th>
@@ -899,61 +762,64 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p><strong>Solution</strong></p>
 <p>Here the number of trials is <span class="math inline">\(n = 5\)</span> and the total frequency is <span class="math inline">\(N = 100\)</span>.</p>
 <p>Mean number of surviving seedlings,</p>
 <p><span class="math display">\[\overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 3) + (1 \times 16) + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)}{100} = \frac{252}{100} = 2.52\]</span></p>
 <p>The probability of success is estimated as <span class="math inline">\(p = \dfrac{\overline{x}}{n} = \dfrac{2.52}{5} = 0.504\)</span>, so <span class="math inline">\(q = 1 - 0.504 = 0.496\)</span>.</p>
-<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \binom{5}{x} p^x q^{5-x}\)</span>, as shown in <a href="#tbl-binomfit1" class="quarto-xref">Table&nbsp;<span>11.3</span></a>.</p>
+<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \binom{5}{x} p^x q^{5-x}\)</span>, as shown in <a href="#tbl-binomfit1" class="quarto-xref">Table&nbsp;<span>11.5</span></a>.</p>
 <div id="tbl-binomfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-binomfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
+Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 </figcaption>
 <div aria-describedby="tbl-binomfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;"><span class="math inline">\(x\)</span></th>
-<th style="text-align: left;">Observed frequency</th>
-<th style="text-align: left;">Expected frequency</th>
+<th style="text-align: center;"><span class="math inline">\(x\)</span></th>
+<th style="text-align: center;">Observed frequency</th>
+<th style="text-align: center;">Expected frequency</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">0</td>
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">3.0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">3.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
-<td style="text-align: left;">16</td>
-<td style="text-align: left;">15.3</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">16</td>
+<td style="text-align: center;">15.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">2</td>
-<td style="text-align: left;">32</td>
-<td style="text-align: left;">31.0</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">31.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">3</td>
-<td style="text-align: left;">28</td>
-<td style="text-align: left;">31.5</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">31.5</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">17</td>
-<td style="text-align: left;">16.0</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">16.0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">5</td>
-<td style="text-align: left;">4</td>
-<td style="text-align: left;">3.3</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3.3</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">Total</td>
-<td style="text-align: left;">100</td>
-<td style="text-align: left;">100.0</td>
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100.0</td>
 </tr>
 </tbody>
 </table>
@@ -965,7 +831,7 @@ Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
 </section>
 <section id="poisson-distribution" class="level3" data-number="11.3.4">
 <h3 data-number="11.3.4" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">11.3.4</span> Poisson distribution</h3>
-<p>The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781–1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its earliest applications was in studying the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.</p>
+<p>The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781-1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its most famous applications came nearly 60 years later, when the statistician Ladislaus Bortkiewicz used the Poisson distribution in 1898 to study the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.</p>
 <p>Other applications and examples where Poisson distribution is used</p>
 <ul>
 <li><p>Pest incidence</p></li>
@@ -989,7 +855,7 @@ Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1023,7 +889,13 @@ Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
 </ul>
 <div id="exm-poissonfit1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.6</strong></span> In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were examined and the number of larvae per plant was recorded as given below. Fit a Poisson distribution to the data.</p>
-<table class="caption-top table">
+<div id="tbl-larvaecount" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaecount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;11.6: Number of diamondback moth larvae per cabbage plant, in 100 plants
+</figcaption>
+<div aria-describedby="tbl-larvaecount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Number of larvae (<span class="math inline">\(x\)</span>)</th>
@@ -1045,14 +917,17 @@ Table&nbsp;11.3: Fitting of binomial distribution to seedling survival data
 </tr>
 </tbody>
 </table>
+</div>
+</figure>
+</div>
 <p><strong>Solution</strong></p>
 <p>The total frequency is <span class="math inline">\(N = 100\)</span>. The mean number of larvae per plant is</p>
 <p><span class="math display">\[\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 37) + (2 \times 18) + (3 \times 6) + (4 \times 2)}{100} = \frac{99}{100} = 0.99\]</span></p>
-<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \dfrac{e^{-\lambda} \lambda^x}{x!}\)</span>, as shown in <a href="#tbl-poissonfit1" class="quarto-xref">Table&nbsp;<span>11.4</span></a>. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, <span class="math inline">\(N\)</span>.</p>
+<p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \dfrac{e^{-\lambda} \lambda^x}{x!}\)</span>, as shown in <a href="#tbl-poissonfit1" class="quarto-xref">Table&nbsp;<span>11.7</span></a>. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, <span class="math inline">\(N\)</span>.</p>
 <div id="tbl-poissonfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-poissonfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.4: Fitting of Poisson distribution to larval count data
+Table&nbsp;11.7: Fitting of Poisson distribution to larval count data
 </figcaption>
 <div aria-describedby="tbl-poissonfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1146,7 +1021,7 @@ Figure&nbsp;11.2: Shape changes in normal distribution based on different standa
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Important</span>Note
+Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1195,7 +1070,7 @@ Figure&nbsp;11.5: Normal distribution is a symmetric distribution
 </div>
 <ol start="4" type="1">
 <li>Area Property<br>
-The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See <a href="#tbl-areaproperty" class="quarto-xref">Table&nbsp;<span>11.5</span></a> for detailed information on the area property of the normal distribution.</li>
+The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See <a href="#tbl-areaproperty" class="quarto-xref">Table&nbsp;<span>11.8</span></a> for detailed information on the area property of the normal distribution.</li>
 </ol>
 <div id="fig-areaproperty" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1210,40 +1085,40 @@ Figure&nbsp;11.6: Area property of normal distribution
 <div id="tbl-areaproperty" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.5: Area property of normal distribution
+Table&nbsp;11.8: Area property of normal distribution
 </figcaption>
 <div aria-describedby="tbl-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Area</th>
-<th style="text-align: left;"><span class="math inline">\(\%\)</span> of value contained</th>
+<th style="text-align: center;">Area</th>
+<th style="text-align: center;"><span class="math inline">\(\%\)</span> of value contained</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm 0.745\sigma\)</span></td>
-<td style="text-align: left;">50</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 0.745\sigma\)</span></td>
+<td style="text-align: center;">50</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm \sigma\)</span></td>
-<td style="text-align: left;">68.26</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm \sigma\)</span></td>
+<td style="text-align: center;">68.26</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm 1.96\sigma\)</span></td>
-<td style="text-align: left;">95</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 1.96\sigma\)</span></td>
+<td style="text-align: center;">95</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm 2\sigma\)</span></td>
-<td style="text-align: left;">95.44</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 2\sigma\)</span></td>
+<td style="text-align: center;">95.44</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm 2.58\sigma\)</span></td>
-<td style="text-align: left;">99</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 2.58\sigma\)</span></td>
+<td style="text-align: center;">99</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;"><span class="math inline">\(\mu \pm 3\sigma\)</span></td>
-<td style="text-align: left;">99.73</td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 3\sigma\)</span></td>
+<td style="text-align: center;">99.73</td>
 </tr>
 </tbody>
 </table>
@@ -1263,7 +1138,7 @@ Table&nbsp;11.5: Area property of normal distribution
 </ol>
 </section>
 <section id="standard-normal-distribution" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard Normal distribution</h3>
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard normal distribution</h3>
 <p>The <strong>standard normal distribution</strong> is a special case of the normal distribution where the mean is 0 and the standard deviation is 1. This distribution is also known as the <strong>Z-distribution</strong>. In the standard normal distribution, a value is referred to as a <strong>standard score</strong> or <strong>Z-score</strong>. The Z-score indicates how many standard deviations a data point is from the mean.</p>
 <p>A normal distribution can be converted to a standard normal distribution, which provides several advantages:</p>
 <ol type="1">
@@ -1298,115 +1173,115 @@ Figure&nbsp;11.7: Standardization of normal distribution
 <div id="tbl-zscorecalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-zscorecalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.6: Z-score calculation
+Table&nbsp;11.9: Z-score calculation
 </figcaption>
 <div aria-describedby="tbl-zscorecalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;"><span class="math inline">\(X\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(X\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(X-\mu\)</span></th>
 <th style="text-align: center;"><span class="math display">\[z = \frac{X - \mu}{\sigma}\]</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">26</td>
+<td style="text-align: center;">26</td>
 <td style="text-align: center;">-12.8</td>
 <td style="text-align: center;">-1.12</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">33</td>
+<td style="text-align: center;">33</td>
 <td style="text-align: center;">-5.8</td>
 <td style="text-align: center;">-0.51</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">65</td>
+<td style="text-align: center;">65</td>
 <td style="text-align: center;">26.2</td>
 <td style="text-align: center;">2.30</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">28</td>
+<td style="text-align: center;">28</td>
 <td style="text-align: center;">-10.8</td>
 <td style="text-align: center;">-0.95</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">34</td>
+<td style="text-align: center;">34</td>
 <td style="text-align: center;">-4.8</td>
 <td style="text-align: center;">-0.42</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">55</td>
+<td style="text-align: center;">55</td>
 <td style="text-align: center;">16.2</td>
 <td style="text-align: center;">1.42</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">25</td>
+<td style="text-align: center;">25</td>
 <td style="text-align: center;">-13.8</td>
 <td style="text-align: center;">-1.21</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">44</td>
+<td style="text-align: center;">44</td>
 <td style="text-align: center;">5.2</td>
 <td style="text-align: center;">0.46</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">50</td>
+<td style="text-align: center;">50</td>
 <td style="text-align: center;">11.2</td>
 <td style="text-align: center;">0.98</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">36</td>
+<td style="text-align: center;">36</td>
 <td style="text-align: center;">-2.8</td>
 <td style="text-align: center;">-0.25</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">26</td>
+<td style="text-align: center;">26</td>
 <td style="text-align: center;">-12.8</td>
 <td style="text-align: center;">-1.12</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">37</td>
+<td style="text-align: center;">37</td>
 <td style="text-align: center;">-1.8</td>
 <td style="text-align: center;">-0.16</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">43</td>
+<td style="text-align: center;">43</td>
 <td style="text-align: center;">4.2</td>
 <td style="text-align: center;">0.37</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">62</td>
+<td style="text-align: center;">62</td>
 <td style="text-align: center;">23.2</td>
 <td style="text-align: center;">2.04</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">35</td>
+<td style="text-align: center;">35</td>
 <td style="text-align: center;">-3.8</td>
 <td style="text-align: center;">-0.33</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">38</td>
+<td style="text-align: center;">38</td>
 <td style="text-align: center;">-0.8</td>
 <td style="text-align: center;">-0.07</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">45</td>
+<td style="text-align: center;">45</td>
 <td style="text-align: center;">6.2</td>
 <td style="text-align: center;">0.54</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">32</td>
+<td style="text-align: center;">32</td>
 <td style="text-align: center;">-6.8</td>
 <td style="text-align: center;">-0.60</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">28</td>
+<td style="text-align: center;">28</td>
 <td style="text-align: center;">-10.8</td>
 <td style="text-align: center;">-0.95</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">34</td>
+<td style="text-align: center;">34</td>
 <td style="text-align: center;">-4.8</td>
 <td style="text-align: center;">-0.42</td>
 </tr>
@@ -1433,7 +1308,7 @@ Figure&nbsp;11.8: Z score values of X for <a href="#exm-zscore1" class="quarto-x
 </div>
 </section>
 <section id="z-score-table" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="z-score-table"><span class="header-section-number">11.4.3</span> Z-Score Table</h3>
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="z-score-table"><span class="header-section-number">11.4.3</span> Z-score table</h3>
 <p>A <strong>Z-score table</strong> (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table is given <a href="#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span>11.9</span></a>.</p>
 <div id="fig-zscoretable" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center; height:80%;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1466,7 +1341,7 @@ If you’re looking for the probability that a value falls between two Z-scores,
 <div id="exm-zscore4" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.10</strong></span> The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7. Determine the probability that the height of a randomly chosen tree will be less than 12 metres.</p>
 <p><strong>Solution</strong></p>
-<p>Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We need to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9442)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9442)=P(z &gt; 0.9442)\)</span>. <span class="math inline">\(P(z &gt; 0.9442)= 1-P(z \leq 0.9442)\)</span>. From the table <span class="math inline">\(P(z \leq 0.95) =0.8289\)</span> so the probability is 1-0.8289=0.171.</p>
+<p>Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We need to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9449)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9449)=P(z &gt; 0.9449)\)</span>. <span class="math inline">\(P(z &gt; 0.9449)= 1-P(z \leq 0.9449)\)</span>. From the table <span class="math inline">\(P(z \leq 0.94) =0.8264\)</span> so the probability is 1-0.8264=0.1736.</p>
 </div>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
@@ -1474,12 +1349,12 @@ If you’re looking for the probability that a value falls between two Z-scores,
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Caution</span>Historical Insights
+Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>De Moivre’s Final Prediction</strong></p>
-<p>Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the <strong>normal distribution</strong>, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true—he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.</p>
+<p>Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the <strong>normal distribution</strong>, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true, and he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1488,13 +1363,387 @@ If you’re looking for the probability that a value falls between two Z-scores,
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Quotes to Inspire
+Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“To understand God’s thoughts, we must study statistics, for these are the measure of his purpose.” - Florence Nightingale</strong></p>
+<p><strong>“To understand God’s thoughts, we must study statistics, for these are the measure of His purpose.”</strong><br>
+<strong>- Florence Nightingale</strong></p>
 </div>
 </div>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">11.5</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A probability distribution gives the possible outcomes of a __________ variable along with their corresponding probabilities.</p></li>
+<li><p>A probability distribution in which the random variable takes countable values is called a __________ probability distribution.</p></li>
+<li><p>A probability distribution in which the random variable takes continuous values is called a __________ probability distribution.</p></li>
+<li><p>The probability assigned to a particular value of a discrete random variable is called the __________.</p></li>
+<li><p>The expected value of a random variable represents its __________ average value over repeated trials.</p></li>
+<li><p>The expected value of a discrete random variable <span class="math inline">\(X\)</span> is denoted by __________.</p></li>
+<li><p>The expected value of a continuous random variable is obtained using __________.</p></li>
+<li><p>The probability mass function is commonly abbreviated as __________.</p></li>
+<li><p>For a discrete random variable, <span class="math inline">\(p(x)\)</span> represents __________.</p></li>
+<li><p>The sum of all probabilities in a probability mass function is equal to __________.</p></li>
+<li><p>A Bernoulli distribution has exactly __________ possible outcomes.</p></li>
+<li><p>In a Bernoulli distribution, the probability of success is denoted by __________.</p></li>
+<li><p>The probability of failure in a Bernoulli distribution is __________.</p></li>
+<li><p>The parameter of a Bernoulli distribution is __________.</p></li>
+<li><p>The mean of a Bernoulli distribution is __________.</p></li>
+<li><p>The variance of a Bernoulli distribution is __________.</p></li>
+<li><p>A binomial distribution is obtained when a Bernoulli trial is repeated __________ times.</p></li>
+<li><p>In a binomial distribution, the number of trials <span class="math inline">\(n\)</span> is __________.</p></li>
+<li><p>In a binomial distribution, the trials are __________.</p></li>
+<li><p>In a binomial distribution, the probability of success remains __________ from trial to trial.</p></li>
+<li><p>The two parameters of a binomial distribution are __________ and __________.</p></li>
+<li><p>The probability of failure in a binomial distribution is denoted by __________.</p></li>
+<li><p>The mean of a binomial distribution is __________.</p></li>
+<li><p>The variance of a binomial distribution is __________.</p></li>
+<li><p>A Poisson distribution is mainly used to model __________ events.</p></li>
+<li><p>The parameter of a Poisson distribution is denoted by __________.</p></li>
+<li><p>In a Poisson distribution, the mean and variance are both equal to __________.</p></li>
+<li><p>The constant <span class="math inline">\(e\)</span> in the Poisson distribution is approximately __________.</p></li>
+<li><p>In fitting a binomial distribution, the probability of success is estimated as __________.</p></li>
+<li><p>In fitting a Poisson distribution, the parameter <span class="math inline">\(\lambda\)</span> is estimated as the observed __________.</p></li>
+<li><p>The expected frequency is obtained by multiplying the probability by the total __________.</p></li>
+<li><p>A continuous probability distribution is described by a probability __________ function.</p></li>
+<li><p>The probability density function is commonly abbreviated as __________.</p></li>
+<li><p>The probability of a continuous random variable falling within an interval is represented by the __________ under the density curve over that interval.</p></li>
+<li><p>The continuous probability distribution discussed in this chapter is the __________ distribution.</p></li>
+<li><p>The normal distribution is characterized by a __________-shaped curve.</p></li>
+<li><p>In a normal distribution, the mean, median, and mode are __________.</p></li>
+<li><p>A normal distribution is __________ about its mean.</p></li>
+<li><p>A normal distribution is defined by the two parameters __________ and __________.</p></li>
+<li><p>The total area under the normal distribution curve is equal to __________.</p></li>
+<li><p>The standard normal distribution has mean __________ and standard deviation __________.</p></li>
+<li><p>The standard normal distribution is also called the __________ distribution.</p></li>
+<li><p>A standardized value in a normal distribution is called a __________ score.</p></li>
+<li><p>The formula used to convert a normal variable into a standard normal variable is called __________.</p></li>
+<li><p>Approximately __________% of observations in a normal distribution lie within <span class="math inline">\(\mu\pm\sigma\)</span>.</p></li>
+<li><p>Approximately __________% of observations lie within <span class="math inline">\(\mu\pm2\sigma\)</span>.</p></li>
+<li><p>Approximately __________% of observations lie within <span class="math inline">\(\mu\pm3\sigma\)</span>.</p></li>
+<li><p>The skewness of a normal distribution is __________.</p></li>
+<li><p>The kurtosis of a normal distribution is __________.</p></li>
+<li><p>The quartile deviation of a normal distribution is __________.</p></li>
+<li><p>The mean deviation of a normal distribution is __________.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Define a probability distribution.</p></li>
+<li><p>Explain the difference between discrete and continuous probability distributions.</p></li>
+<li><p>Define the expected value of a random variable.</p></li>
+<li><p>Explain the expected value of a discrete random variable.</p></li>
+<li><p>Explain the expected value of a continuous random variable.</p></li>
+<li><p>What is a probability mass function?</p></li>
+<li><p>State the properties of a probability mass function.</p></li>
+<li><p>Define the Bernoulli distribution and give an example.</p></li>
+<li><p>State the probability mass function of the Bernoulli distribution.</p></li>
+<li><p>What are the mean and variance of a Bernoulli distribution?</p></li>
+<li><p>What is a Bernoulli trial?</p></li>
+<li><p>Define the binomial distribution.</p></li>
+<li><p>State the conditions required for a binomial distribution.</p></li>
+<li><p>Explain the parameters of a binomial distribution.</p></li>
+<li><p>State the probability mass function of the binomial distribution.</p></li>
+<li><p>What are the mean and variance of a binomial distribution?</p></li>
+<li><p>Explain how a binomial distribution is fitted to observed data.</p></li>
+<li><p>What is the Poisson distribution?</p></li>
+<li><p>State the applications of the Poisson distribution.</p></li>
+<li><p>State the probability mass function of the Poisson distribution.</p></li>
+<li><p>What is the parameter of the Poisson distribution?</p></li>
+<li><p>State the mean and variance of the Poisson distribution.</p></li>
+<li><p>Explain how a Poisson distribution is fitted to observed data.</p></li>
+<li><p>Distinguish between probability mass function and probability density function.</p></li>
+<li><p>Define the normal distribution.</p></li>
+<li><p>State the parameters of a normal distribution.</p></li>
+<li><p>Explain the main properties of the normal distribution.</p></li>
+<li><p>Explain the area property of the normal distribution.</p></li>
+<li><p>What is the standard normal distribution?</p></li>
+<li><p>What is a Z-score?</p></li>
+<li><p>Explain the procedure for standardizing a normal variable.</p></li>
+<li><p>What information is provided by a Z-score table?</p></li>
+<li><p>Explain how to use a Z-score table to find the probability above a given Z-score.</p></li>
+<li><p>Explain how to find the probability between two Z-scores.</p></li>
+<li><p>State the relationship between the normal distribution and the Central Limit Theorem.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A coin is tossed three times and <span class="math inline">\(X\)</span> denotes the number of heads. Construct the probability distribution of <span class="math inline">\(X\)</span>.</p></li>
+<li><p>Find the expected value of a random variable having the given discrete probability distribution.</p></li>
+<li><p>Find the expected value of <span class="math inline">\(X\)</span> for an unfair die using the probabilities given in the chapter.</p></li>
+<li><p>A biased coin has probability of success <span class="math inline">\(p=0.4\)</span>. Obtain the Bernoulli probability distribution.</p></li>
+<li><p>A coin is tossed 10 times. Find the probability of obtaining exactly 6 heads.</p></li>
+<li><p>For a binomial distribution with <span class="math inline">\(n=10\)</span> and <span class="math inline">\(p=0.4\)</span>, find the probability of obtaining exactly 4 successes.</p></li>
+<li><p>Explain whether the following experiment satisfies the conditions of a binomial distribution: a coin is tossed 10 times and the number of heads is recorded.</p></li>
+<li><p>In a binomial distribution, <span class="math inline">\(n=20\)</span> and <span class="math inline">\(p=0.3\)</span>. Find the mean and variance.</p></li>
+<li><p>In a study involving 100 groups of 5 mango seedlings, the observed numbers of surviving seedlings are <span class="math inline">\(3,16,32,28,17,4\)</span> for <span class="math inline">\(x=0,1,2,3,4,5\)</span>, respectively. Fit a binomial distribution.</p></li>
+<li><p>A Poisson random variable has mean <span class="math inline">\(3.4\)</span>. Find <span class="math inline">\(P(X=6)\)</span>.</p></li>
+<li><p>The average number of homes sold by a company is 2 per day. Assuming a Poisson distribution, find the probability that exactly 3 homes are sold tomorrow.</p></li>
+<li><p>The number of industrial injuries per week follows a Poisson distribution with mean <span class="math inline">\(0.5\)</span>. Find the probability of less than 2 accidents.</p></li>
+<li><p>For the same Poisson distribution with mean <span class="math inline">\(0.5\)</span>, find the probability of more than 2 accidents.</p></li>
+<li><p>A company knows that 3% of its bulbs are defective. Assuming a Poisson distribution, find the probability of obtaining no defective bulbs in a sample of 100 bulbs.</p></li>
+<li><p>For the same problem, find the probability of obtaining exactly 1 defective bulb.</p></li>
+<li><p>In a survey of 100 cabbage plants, the number of diamondback moth larvae per plant was recorded. Fit a Poisson distribution to the observed data given in the chapter.</p></li>
+<li><p>State whether the following is a discrete or continuous probability distribution: number of defective plants in a field.</p></li>
+<li><p>State whether the following is a discrete or continuous probability distribution: height of a plant.</p></li>
+<li><p>A random variable follows <span class="math inline">\(N(70,12^2)\)</span>. Find the Z-score corresponding to <span class="math inline">\(X=85\)</span>.</p></li>
+<li><p>A random variable has mean 24 and standard deviation 2. Find the Z-score corresponding to <span class="math inline">\(X=27\)</span>.</p></li>
+<li><p>A mango orchard has mean yield 70 kg and standard deviation 12 kg. Find the probability that a tree produces more than 85 kg.</p></li>
+<li><p>Heights of coconut trees are normally distributed with mean 14.5 m and variance 7. Find the probability that a randomly selected tree has height less than 12 m.</p></li>
+<li><p>A normal distribution has mean 50 and standard deviation 10. Find the proportion of observations between 40 and 60.</p></li>
+<li><p>A normal distribution has mean 100 and standard deviation 15. Find the Z-score for an observation of 130.</p></li>
+<li><p>Explain the meaning of a Z-score of <span class="math inline">\(-1.5\)</span>.</p></li>
+</ol>
+</section>
+<section id="important-formulae" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
+<p>Probability distribution:</p>
+<p><span class="math display">\[
+P(X=x)=\frac{\text{Number of times }X\text{ takes value }x}{\text{Total number of possible outcomes}}
+\]</span></p>
+<p>Expected value of a discrete random variable:</p>
+<p><span class="math display">\[
+E(X)=\sum_x xp(x)
+\]</span></p>
+<p>Expected value of a continuous random variable:</p>
+<p><span class="math display">\[
+E(X)=\int_{-\infty}^{\infty}xp(x)\,dx
+\]</span></p>
+<p>Probability mass function:</p>
+<p><span class="math display">\[
+p(x)=P(X=x)
+\]</span></p>
+<p>Bernoulli probability mass function:</p>
+<p><span class="math display">\[
+p(x)=p^x(1-p)^{1-x},\quad x=0,1
+\]</span></p>
+<p>Bernoulli mean:</p>
+<p><span class="math display">\[
+E(X)=p
+\]</span></p>
+<p>Bernoulli variance:</p>
+<p><span class="math display">\[
+Var(X)=p(1-p)
+\]</span></p>
+<p>Binomial probability mass function:</p>
+<p><span class="math display">\[
+p(x)=\binom{n}{x}p^xq^{n-x},\quad x=0,1,2,\ldots,n
+\]</span></p>
+<p>Combination form of binomial probability:</p>
+<p><span class="math display">\[
+p(x)=\frac{n!}{x!(n-x)!}p^xq^{n-x}
+\]</span></p>
+<p>Probability of failure in binomial distribution:</p>
+<p><span class="math display">\[
+q=1-p
+\]</span></p>
+<p>Binomial mean:</p>
+<p><span class="math display">\[
+E(X)=np
+\]</span></p>
+<p>Binomial variance:</p>
+<p><span class="math display">\[
+Var(X)=npq
+\]</span></p>
+<p>Estimation of binomial probability of success:</p>
+<p><span class="math display">\[
+p=\frac{\bar{x}}{n}
+\]</span></p>
+<p>Expected frequency in fitting a binomial distribution:</p>
+<p><span class="math display">\[
+\text{Expected frequency}=N\times p(x)
+\]</span></p>
+<p>Poisson probability mass function:</p>
+<p><span class="math display">\[
+p(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\ldots,\infty
+\]</span></p>
+<p>Poisson mean:</p>
+<p><span class="math display">\[
+E(X)=\lambda
+\]</span></p>
+<p>Poisson variance:</p>
+<p><span class="math display">\[
+Var(X)=\lambda
+\]</span></p>
+<p>Estimation of Poisson parameter:</p>
+<p><span class="math display">\[
+\lambda=\bar{x}
+\]</span></p>
+<p>Expected frequency in fitting a Poisson distribution:</p>
+<p><span class="math display">\[
+\text{Expected frequency}=N\times p(x)
+\]</span></p>
+<p>Normal probability density function:</p>
+<p><span class="math display">\[
+f(x)=\frac{1}{\sigma\sqrt{2\pi}}e^{-\frac{(x-\mu)^2}{2\sigma^2}},\quad -\infty&lt;x&lt;+\infty
+\]</span></p>
+<p>Standard normal transformation:</p>
+<p><span class="math display">\[
+z=\frac{X-\mu}{\sigma}
+\]</span></p>
+<p>Normal distribution notation:</p>
+<p><span class="math display">\[
+X\sim N(\mu,\sigma^2)
+\]</span></p>
+<p>Standard normal distribution notation:</p>
+<p><span class="math display">\[
+X\sim N(0,1)
+\]</span></p>
+<p>Quartile deviation for a normal distribution:</p>
+<p><span class="math display">\[
+Q.D.=\frac{2}{3}\sigma
+\]</span></p>
+<p>Mean deviation for a normal distribution:</p>
+<p><span class="math display">\[
+M.D.=\frac{4}{5}\sigma
+\]</span></p>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li>Probability distribution → gives possible values of a random variable and their probabilities.</li>
+<li>Discrete probability distribution → random variable takes countable values.</li>
+<li>Continuous probability distribution → random variable takes continuous values.</li>
+<li>Expected value → long-run average value of a random variable.</li>
+<li>Probability mass function → used for discrete random variables.</li>
+<li>Probability density function → used for continuous random variables.</li>
+<li>For a p.m.f., <span class="math inline">\(p(x)\geq0\)</span>.</li>
+<li>For a p.m.f., <span class="math inline">\(\sum p(x)=1\)</span>.</li>
+<li>Bernoulli distribution → exactly two possible outcomes, success and failure.</li>
+<li>Bernoulli parameter → <span class="math inline">\(p\)</span>, the probability of success.</li>
+<li>Bernoulli mean → <span class="math inline">\(p\)</span>.</li>
+<li>Bernoulli variance → <span class="math inline">\(p(1-p)\)</span>.</li>
+<li>Binomial distribution → repeated Bernoulli trials.</li>
+<li>Binomial requirements → fixed number of trials, independent trials, and constant probability of success.</li>
+<li>Binomial parameters → <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span>.</li>
+<li>Binomial failure probability → <span class="math inline">\(q=1-p\)</span>.</li>
+<li>Binomial mean → <span class="math inline">\(np\)</span>.</li>
+<li>Binomial variance → <span class="math inline">\(npq\)</span>.</li>
+<li>In fitting a binomial distribution, <span class="math inline">\(p=\frac{\bar{x}}{n}\)</span>.</li>
+<li>Expected frequency → <span class="math inline">\(N\times p(x)\)</span>.</li>
+<li>Poisson distribution → used mainly for rare events.</li>
+<li>Poisson parameter → <span class="math inline">\(\lambda\)</span>.</li>
+<li>Poisson mean → <span class="math inline">\(\lambda\)</span>.</li>
+<li>Poisson variance → <span class="math inline">\(\lambda\)</span>.</li>
+<li>In fitting a Poisson distribution, <span class="math inline">\(\lambda=\bar{x}\)</span>.</li>
+<li>Normal distribution → continuous, bell-shaped and symmetric.</li>
+<li>Normal distribution parameters → <span class="math inline">\(\mu\)</span> and <span class="math inline">\(\sigma\)</span>.</li>
+<li>Mean = median = mode in a normal distribution.</li>
+<li>Normal distribution is symmetric about its mean.</li>
+<li>Total area under the normal curve → 1.</li>
+<li>Standard normal distribution → mean 0 and standard deviation 1.</li>
+<li>Z-score → number of standard deviations an observation is from the mean.</li>
+<li>Standardization → subtract the mean and divide by the standard deviation.</li>
+<li>About 68.26% of observations lie within <span class="math inline">\(\mu\pm\sigma\)</span>.</li>
+<li>About 95% of observations lie within <span class="math inline">\(\mu\pm1.96\sigma\)</span>.</li>
+<li>About 95.44% of observations lie within <span class="math inline">\(\mu\pm2\sigma\)</span>.</li>
+<li>About 99% of observations lie within <span class="math inline">\(\mu\pm2.58\sigma\)</span>.</li>
+<li>About 99.73% of observations lie within <span class="math inline">\(\mu\pm3\sigma\)</span>.</li>
+<li>Normal distribution has skewness 0.</li>
+<li>Normal distribution has kurtosis 3.</li>
+<li>All odd-order moments are zero for the normal distribution.</li>
+<li>The total area under the normal curve represents total probability.</li>
+<li>The tails of the normal distribution are asymptotic to the horizontal axis.</li>
+<li>A linear combination of independent normal variables is also normally distributed.</li>
+<li>The Central Limit Theorem is closely associated with the normal distribution.</li>
+<li>Z-table gives cumulative probability to the left of a specified Z-score.</li>
+<li>Probability above a Z-score is obtained by subtracting the cumulative probability from 1.</li>
+<li>Probability between two Z-scores is obtained by subtracting the smaller cumulative probability from the larger one.</li>
+</ul>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<ol type="1">
+<li>Random</li>
+<li>Discrete</li>
+<li>Continuous</li>
+<li>Probability mass function</li>
+<li>Long-run</li>
+<li><span class="math inline">\(E(X)\)</span></li>
+<li>Integration</li>
+<li>p.m.f.</li>
+<li><span class="math inline">\(P(X=x)\)</span></li>
+<li>1</li>
+<li>Two</li>
+<li><span class="math inline">\(p\)</span></li>
+<li><span class="math inline">\(1-p\)</span></li>
+<li><span class="math inline">\(p\)</span></li>
+<li><span class="math inline">\(p\)</span></li>
+<li><span class="math inline">\(p(1-p)\)</span></li>
+<li><span class="math inline">\(n\)</span></li>
+<li>Fixed</li>
+<li>Independent</li>
+<li>Constant</li>
+<li><span class="math inline">\(n\)</span>; <span class="math inline">\(p\)</span></li>
+<li><span class="math inline">\(q\)</span></li>
+<li><span class="math inline">\(np\)</span></li>
+<li><span class="math inline">\(npq\)</span></li>
+<li>Rare</li>
+<li><span class="math inline">\(\lambda\)</span></li>
+<li><span class="math inline">\(\lambda\)</span></li>
+<li>2.71828</li>
+<li><span class="math inline">\(\frac{\bar{x}}{n}\)</span></li>
+<li>Mean</li>
+<li>Frequency</li>
+<li>Density</li>
+<li>p.d.f.</li>
+<li>Area</li>
+<li>Normal</li>
+<li>Bell</li>
+<li>Equal</li>
+<li>Symmetric</li>
+<li><span class="math inline">\(\mu\)</span>; <span class="math inline">\(\sigma\)</span></li>
+<li>1</li>
+<li>0; 1</li>
+<li>Z</li>
+<li>Z</li>
+<li>Standardization</li>
+<li>68.26</li>
+<li>95.44</li>
+<li>99.73</li>
+<li>0</li>
+<li>3</li>
+<li><span class="math inline">\(\frac{2}{3}\sigma\)</span></li>
+<li><span class="math inline">\(\frac{4}{5}\sigma\)</span></li>
+</ol>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>For 3 tosses of an unbiased coin, <span class="math inline">\(X\in\{0,1,2,3\}\)</span> with <span class="math inline">\(P(X=0)=\frac{1}{8}\)</span>, <span class="math inline">\(P(X=1)=\frac{3}{8}\)</span>, <span class="math inline">\(P(X=2)=\frac{3}{8}\)</span>, <span class="math inline">\(P(X=3)=\frac{1}{8}\)</span>.</p></li>
+<li><p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, multiply each value of <span class="math inline">\(X\)</span> by its probability and sum the products to obtain <span class="math inline">\(E(X)\)</span>.</p></li>
+<li><p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a> for the unfair die example in the chapter, <span class="math inline">\(E(X)=0.1+0.2+0.3+0.4+0.5+3=4.5\)</span>.</p></li>
+<li><p>Using <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a> with <span class="math inline">\(p=0.4\)</span>, <span class="math inline">\(q=0.6\)</span>: <span class="math inline">\(P(X=0)=(0.4)^0(0.6)^1=0.6\)</span> and <span class="math inline">\(P(X=1)=(0.4)^1(0.6)^0=0.4\)</span>.</p></li>
+<li><p>Using <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a> with <span class="math inline">\(n=10\)</span>, <span class="math inline">\(x=6\)</span>, <span class="math inline">\(p=q=\frac{1}{2}\)</span>, <span class="math inline">\(P(X=6)=\binom{10}{6}\left(\frac{1}{2}\right)^{10}=0.2051\)</span>.</p></li>
+<li><p>Using <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a> with <span class="math inline">\(n=10\)</span>, <span class="math inline">\(p=0.4\)</span>, <span class="math inline">\(q=0.6\)</span>, <span class="math inline">\(x=4\)</span>, <span class="math inline">\(P(X=4)=\binom{10}{4}(0.4)^4(0.6)^6\approx0.2508\)</span>.</p></li>
+<li><p>Yes; the number of trials is fixed at 10, each trial is independent, each trial has two outcomes, and the probability of success remains constant, so the number of heads follows a binomial distribution.</p></li>
+<li><p>Using the binomial mean and variance with <span class="math inline">\(n=20\)</span>, <span class="math inline">\(p=0.3\)</span>, <span class="math inline">\(q=0.7\)</span>: <span class="math inline">\(E(X)=np=6\)</span> and <span class="math inline">\(Var(X)=npq=4.2\)</span>.</p></li>
+<li><p>The observed mean is <span class="math inline">\(\bar{x}=\frac{252}{100}=2.52\)</span>, so <span class="math inline">\(p=\frac{\bar{x}}{n}=\frac{2.52}{5}=0.504\)</span> and <span class="math inline">\(q=0.496\)</span>. Using <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a>, the expected frequencies <span class="math inline">\(N\binom{5}{x}p^xq^{5-x}\)</span> are 3.0, 15.3, 31.0, 31.5, 16.0, 3.3, closely matching the observed frequencies.</p></li>
+<li><p>Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a> with <span class="math inline">\(\lambda=3.4\)</span>, <span class="math inline">\(x=6\)</span>, <span class="math inline">\(P(X=6)=\frac{e^{-3.4}(3.4)^6}{6!}\approx0.0716\)</span>.</p></li>
+<li><p>Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a> with <span class="math inline">\(\lambda=2\)</span>, <span class="math inline">\(x=3\)</span>, <span class="math inline">\(P(X=3)=\frac{e^{-2}(2)^3}{3!}\approx0.180\)</span>.</p></li>
+<li><p>Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a> with <span class="math inline">\(\lambda=0.5\)</span>, <span class="math inline">\(P(X&lt;2)=P(X=0)+P(X=1)=e^{-0.5}(1+0.5)\approx0.9098\)</span>.</p></li>
+<li><p>From question 12, <span class="math inline">\(P(X\leq2)=e^{-0.5}\left(1+0.5+\frac{0.5^2}{2!}\right)\approx0.9856\)</span>, so <span class="math inline">\(P(X&gt;2)=1-0.9856=0.0144\)</span>.</p></li>
+<li><p>With <span class="math inline">\(\lambda=np=100(0.03)=3\)</span>, using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>, <span class="math inline">\(P(X=0)=e^{-3}\approx0.0498\)</span>.</p></li>
+<li><p>Using <span class="math inline">\(\lambda=3\)</span> from question 14, <span class="math inline">\(P(X=1)=3e^{-3}\approx0.1494\)</span>.</p></li>
+<li><p>The observed mean is <span class="math inline">\(\lambda=\bar{x}=\frac{99}{100}=0.99\)</span>. Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>, the expected frequencies <span class="math inline">\(N\frac{e^{-\lambda}\lambda^x}{x!}\)</span> are 37.2, 36.8, 18.2, 6.0, 1.8, closely matching the observed frequencies.</p></li>
+<li><p>The number of defective plants is countable, so it is a discrete probability distribution.</p></li>
+<li><p>Plant height can take any value within a range, so it is a continuous probability distribution.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{85-70}{12}=1.25\)</span>.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{27-24}{2}=1.5\)</span>.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{85-70}{12}=1.25\)</span>; from the Z-table <span class="math inline">\(P(z\leq1.25)=0.8944\)</span>, so <span class="math inline">\(P(z&gt;1.25)=1-0.8944=0.1056\)</span>, or 10.56%.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{12-14.5}{\sqrt{7}}=-0.9449\)</span>; by symmetry <span class="math inline">\(P(z&lt;-0.9449)=P(z&gt;0.9449)\)</span>, and from the Z-table <span class="math inline">\(P(z\leq0.94)=0.8264\)</span>, so the probability is <span class="math inline">\(1-0.8264=0.1736\)</span>.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{40-50}{10}=-1\)</span> and <span class="math inline">\(z=\frac{60-50}{10}=1\)</span>; approximately 68.26% of observations lie within one standard deviation of the mean, so <span class="math inline">\(P(40&lt;X&lt;60)\approx0.6826\)</span>.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{130-100}{15}=2\)</span>.</p></li>
+<li><p>A Z-score of <span class="math inline">\(-1.5\)</span> means the observation lies 1.5 standard deviations below the mean.</p></li>
+</ol>
 
 
 
@@ -1503,256 +1752,380 @@ If you’re looking for the probability that a value falls between two Z-scores,
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-  window.document.addEventListener("DOMContentLoaded", function (event) {
-    // Ensure there is a toggle, if there isn't float one in the top right
-    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-      const a = window.document.createElement('a');
-      a.classList.add('top-right');
-      a.classList.add('quarto-color-scheme-toggle');
-      a.href = "";
-      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-      const i = window.document.createElement("i");
-      i.classList.add('bi');
-      a.appendChild(i);
-      window.document.body.appendChild(a);
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
     }
-    setColorSchemeToggle(hasAlternateSentinel())
-    const icon = "";
-    const anchorJS = new window.AnchorJS();
-    anchorJS.options = {
-      placement: 'right',
-      icon: icon
-    };
-    anchorJS.add('.anchored');
-    const isCodeAnnotation = (el) => {
-      for (const clz of el.classList) {
-        if (clz.startsWith('code-annotation-')) {                     
-          return true;
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
         }
       }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
       return false;
     }
-    const onCopySuccess = function(e) {
-      // button target
-      const button = e.trigger;
-      // don't keep focus
-      button.blur();
-      // flash "checked"
-      button.classList.add('code-copy-button-checked');
-      var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Copied!");
-      let tooltip;
-      if (window.bootstrap) {
-        button.setAttribute("data-bs-toggle", "tooltip");
-        button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Copied!");
-        tooltip = new bootstrap.Tooltip(button, 
-          { trigger: "manual", 
-            customClass: "code-copy-button-tooltip",
-            offset: [0, -8]});
-        tooltip.show();    
-      }
-      setTimeout(function() {
-        if (tooltip) {
-          tooltip.hide();
-          button.removeAttribute("data-bs-title");
-          button.removeAttribute("data-bs-toggle");
-          button.removeAttribute("data-bs-placement");
-        }
-        button.setAttribute("title", currentTitle);
-        button.classList.remove('code-copy-button-checked');
-      }, 1000);
-      // clear code selection
-      e.clearSelection();
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
     }
-    const getTextToCopy = function(trigger) {
-      const outerScaffold = trigger.parentElement.cloneNode(true);
-      const codeEl = outerScaffold.querySelector('code');
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-    }
-    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-      text: getTextToCopy
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
     });
-    clipboard.on('success', onCopySuccess);
-    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-        text: getTextToCopy,
-        container: window.document.getElementById('quarto-embedded-source-code-modal')
-      });
-      clipboardModal.on('success', onCopySuccess);
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
-      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-      var isInternal = (href) => {
-          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-      }
-      // Inspect non-navigation links and adorn them if external
-     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-      for (var i=0; i<links.length; i++) {
-        const link = links[i];
-        if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
-          if (link.dataset.originalHref !== undefined) {
-            link.href = link.dataset.originalHref;
-          }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
       }
-    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-      const config = {
-        allowHTML: true,
-        maxWidth: 500,
-        delay: 100,
-        arrow: false,
-        appendTo: function(el) {
-            return el.parentElement;
-        },
-        interactive: true,
-        interactiveBorder: 10,
-        theme: 'quarto',
-        placement: 'bottom-start',
-      };
-      if (contentFn) {
-        config.content = contentFn;
-      }
-      if (onTriggerFn) {
-        config.onTrigger = onTriggerFn;
-      }
-      if (onUntriggerFn) {
-        config.onUntrigger = onUntriggerFn;
-      }
-      window.tippy(el, config); 
     }
-    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-    for (var i=0; i<noterefs.length; i++) {
-      const ref = noterefs[i];
-      tippyHover(ref, function() {
-        // use id or data attribute instead here
-        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-        try { href = new URL(href).hash; } catch {}
-        const id = href.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note) {
-          return note.innerHTML;
-        } else {
-          return "";
-        }
-      });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
     }
-    const xrefs = window.document.querySelectorAll('a.quarto-xref');
-    const processXRef = (id, note) => {
-      // Strip column container classes
-      const stripColumnClz = (el) => {
-        el.classList.remove("page-full", "page-columns");
-        if (el.children) {
-          for (const child of el.children) {
-            stripColumnClz(child);
-          }
-        }
-      }
-      stripColumnClz(note)
-      if (id === null || id.startsWith('sec-')) {
-        // Special case sections, only their first couple elements
-        const container = document.createElement("div");
-        if (note.children && note.children.length > 2) {
-          container.appendChild(note.children[0].cloneNode(true));
-          for (let i = 1; i < note.children.length; i++) {
-            const child = note.children[i];
-            if (child.tagName === "P" && child.innerText === "") {
-              continue;
-            } else {
-              container.appendChild(child.cloneNode(true));
-              break;
-            }
-          }
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(container);
-          }
-          return container.innerHTML
-        } else {
-          if (window.Quarto?.typesetMath) {
-            window.Quarto.typesetMath(note);
-          }
-          return note.innerHTML;
-        }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
       } else {
-        // Remove any anchor links if they are present
-        const anchorLink = note.querySelector('a.anchorjs-link');
-        if (anchorLink) {
-          anchorLink.remove();
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
         }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        if (note.classList.contains("callout")) {
-          return note.outerHTML;
-        } else {
-          return note.innerHTML;
-        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
       }
     }
-    for (var i=0; i<xrefs.length; i++) {
-      const xref = xrefs[i];
-      tippyHover(xref, undefined, function(instance) {
-        instance.disable();
-        let url = xref.getAttribute('href');
-        let hash = undefined; 
-        if (url.startsWith('#')) {
-          hash = url;
-        } else {
-          try { hash = new URL(url).hash; } catch {}
-        }
-        if (hash) {
-          const id = hash.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note !== null) {
-            try {
-              const html = processXRef(id, note.cloneNode(true));
-              instance.setContent(html);
-            } finally {
-              instance.enable();
-              instance.show();
-            }
-          } else {
-            // See if we can fetch this
-            fetch(url.split('#')[0])
-            .then(res => res.text())
-            .then(html => {
-              const parser = new DOMParser();
-              const htmlDoc = parser.parseFromString(html, "text/html");
-              const note = htmlDoc.getElementById(id);
-              if (note !== null) {
-                const html = processXRef(id, note);
-                instance.setContent(html);
-              } 
-            }).finally(() => {
-              instance.enable();
-              instance.show();
-            });
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
           }
         } else {
-          // See if we can fetch a full url (with no hash to target)
-          // This is a special case and we should probably do some content thinning / targeting
-          fetch(url)
+          // See if we can fetch this
+          fetch(url.split('#')[0])
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.querySelector('main.content');
+            const note = htmlDoc.getElementById(id);
             if (note !== null) {
-              // This should only happen for chapter cross references
-              // (since there is no id in the URL)
-              // remove the first header
-              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-                note.children[0].remove();
-              }
-              const html = processXRef(null, note);
+              const html = processXRef(id, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1760,161 +2133,185 @@ If you’re looking for the probability that a value falls between two Z-scores,
             instance.show();
           });
         }
-      }, function(instance) {
-      });
-    }
-        let selectedAnnoteEl;
-        const selectorForAnnotation = ( cell, annotation) => {
-          let cellAttr = 'data-code-cell="' + cell + '"';
-          let lineAttr = 'data-code-annotation="' +  annotation + '"';
-          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-          return selector;
-        }
-        const selectCodeLines = (annoteEl) => {
-          const doc = window.document;
-          const targetCell = annoteEl.getAttribute("data-target-cell");
-          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-          const lineIds = lines.map((line) => {
-            return targetCell + "-" + line;
-          })
-          let top = null;
-          let height = null;
-          let parent = null;
-          if (lineIds.length > 0) {
-              //compute the position of the single el (top and bottom and make a div)
-              const el = window.document.getElementById(lineIds[0]);
-              top = el.offsetTop;
-              height = el.offsetHeight;
-              parent = el.parentElement.parentElement;
-            if (lineIds.length > 1) {
-              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-              height = bottom - top;
-            }
-            if (top !== null && height !== null && parent !== null) {
-              // cook up a div (if necessary) and position it 
-              let div = window.document.getElementById("code-annotation-line-highlight");
-              if (div === null) {
-                div = window.document.createElement("div");
-                div.setAttribute("id", "code-annotation-line-highlight");
-                div.style.position = 'absolute';
-                parent.appendChild(div);
-              }
-              div.style.top = top - 2 + "px";
-              div.style.height = height + 4 + "px";
-              div.style.left = 0;
-              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-              if (gutterDiv === null) {
-                gutterDiv = window.document.createElement("div");
-                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                gutterDiv.style.position = 'absolute';
-                const codeCell = window.document.getElementById(targetCell);
-                const gutter = codeCell.querySelector('.code-annotation-gutter');
-                gutter.appendChild(gutterDiv);
-              }
-              gutterDiv.style.top = top - 2 + "px";
-              gutterDiv.style.height = height + 4 + "px";
-            }
-            selectedAnnoteEl = annoteEl;
-          }
-        };
-        const unselectCodeLines = () => {
-          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-          elementsIds.forEach((elId) => {
-            const div = window.document.getElementById(elId);
-            if (div) {
-              div.remove();
-            }
-          });
-          selectedAnnoteEl = undefined;
-        };
-          // Handle positioning of the toggle
-      window.addEventListener(
-        "resize",
-        throttle(() => {
-          elRect = undefined;
-          if (selectedAnnoteEl) {
-            selectCodeLines(selectedAnnoteEl);
-          }
-        }, 10)
-      );
-      function throttle(fn, ms) {
-      let throttle = false;
-      let timer;
-        return (...args) => {
-          if(!throttle) { // first call gets through
-              fn.apply(this, args);
-              throttle = true;
-          } else { // all the others get throttled
-              if(timer) clearTimeout(timer); // cancel #2
-              timer = setTimeout(() => {
-                fn.apply(this, args);
-                timer = throttle = false;
-              }, ms);
-          }
-        };
-      }
-        // Attach click handler to the DT
-        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-        for (const annoteDlNode of annoteDls) {
-          annoteDlNode.addEventListener('click', (event) => {
-            const clickedEl = event.target;
-            if (clickedEl !== selectedAnnoteEl) {
-              unselectCodeLines();
-              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-              if (activeEl) {
-                activeEl.classList.remove('code-annotation-active');
-              }
-              selectCodeLines(clickedEl);
-              clickedEl.classList.add('code-annotation-active');
-            } else {
-              // Unselect the line
-              unselectCodeLines();
-              clickedEl.classList.remove('code-annotation-active');
-            }
-          });
-        }
-    const findCites = (el) => {
-      const parentEl = el.parentElement;
-      if (parentEl) {
-        const cites = parentEl.dataset.cites;
-        if (cites) {
-          return {
-            el,
-            cites: cites.split(' ')
-          };
-        } else {
-          return findCites(el.parentElement)
-        }
       } else {
-        return undefined;
-      }
-    };
-    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-    for (var i=0; i<bibliorefs.length; i++) {
-      const ref = bibliorefs[i];
-      const citeInfo = findCites(ref);
-      if (citeInfo) {
-        tippyHover(citeInfo.el, function() {
-          var popup = window.document.createElement('div');
-          citeInfo.cites.forEach(function(cite) {
-            var citeDiv = window.document.createElement('div');
-            citeDiv.classList.add('hanging-indent');
-            citeDiv.classList.add('csl-entry');
-            var biblioDiv = window.document.getElementById('ref-' + cite);
-            if (biblioDiv) {
-              citeDiv.innerHTML = biblioDiv.innerHTML;
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
             }
-            popup.appendChild(citeDiv);
-          });
-          return popup.innerHTML;
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
         });
       }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
     }
-  });
-  </script>
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./probability.html" class="pagination-link" aria-label="Probability">

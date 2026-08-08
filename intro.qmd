@@ -18,7 +18,7 @@ In 1791, Sir John Sinclair introduced the term `statistics` into the English lan
 
 [^intro-1]: actuary: A person who compiles and analyses statistics and uses them to calculate insurance risks and premiums.
 
-![Statistical Account of Scotland by Sir John Sinclair (1791)](images/history1.png){#fig-stataccount fig-alt="Statistical Account of Scotland by Sir John Sinclair (1791)" fig-align="center" style="text-align:center;" width="30%"}  
+![Statistical Account of Scotland by Sir John Sinclair (1791)](images/intro/history1.png){#fig-stataccount fig-alt="Statistical Account of Scotland by Sir John Sinclair (1791)" fig-align="center" style="text-align:center;" width="30%"}  
 
 ## Foundations of modern statistics
 
@@ -163,7 +163,7 @@ In summary, the key distinctions between these measurement scales are:
 -   **Interval**: Ordered data with meaningful differences, but no true zero.
 -   **Ratio**: Ordered data with meaningful differences and a true zero point, allowing for meaningful ratios.
 
-![Classification of variables](images/image2.png){#fig-classvariable out-width="100%" fig-alt="Classification of variables" fig-align="center" style="text-align:center;"}
+![Classification of variables](images/intro/variables.svg){#fig-classvariable out-width="100%" fig-alt="Classification of variables" fig-align="center" style="text-align:center;"}
 
 ## Collection of data
 
@@ -230,7 +230,7 @@ The data presented below shows the number of fruits per branch in a mango tree s
 
 It can be seen that, the minimum and the maximum numbers of fruits per branch are 0 and 5, respectively. Apart from these numbers, it is impossible, without further careful study, to extract any exact information from the data. But by breaking down the data into the form below
 
-![Frequency distribution table](images/fig1.4.png){fig-alt="Frequency distribution table" fig-align="center" out-width="100%" style="text-align:center;"}
+![Frequency distribution table](images/intro/fig1.4.svg){fig-alt="Frequency distribution table" fig-align="center" out-width="100%" style="text-align:center;"}
 
 Now certain features of the data become apparent. For instance, it can easily be seen that, most of the branches selected have four fruits because number of branches having 4 fruits is 7. This information cannot easily be obtained from the raw data. The above table is called a **frequency table** or a **frequency distribution**. It is so called because it gives the frequency or number of times each observation occurs. Thus, by finding the frequency of each observation, a more intelligible picture is obtained.
 
@@ -260,7 +260,7 @@ If we choose the classes\
 140 -- 149\
 we obtain the frequency distribution given below:
 
-![Grouped Frequency distribution table](images/fig1.6.png){fig-alt="Grouped Frequency distribution table" fig-align="center" out-width="100%" style="text-align:center;"}
+![Grouped Frequency distribution table](images/intro/fig1.6.svg){fig-alt="Grouped Frequency distribution table" fig-align="center" out-width="100%" style="text-align:center;"}
 
 Above table gives the frequency of each group or class; it is therefore called a grouped frequency table or a grouped frequency distribution. Using this grouped frequency distribution, it is easier to obtain information about the data than using the raw data. For instance, it can be seen that 14 of the 20 paddy varieties have plant height between 110 cm and 139 cm (both inclusive). This information cannot easily be obtained from the raw data.\
 It should be noted that, even though above table is concise, some information is lost. For example, the grouped frequency distribution does not give us the exact plant height of the paddy varieties. Thus the individual plant height of the paddy varieties are lost in our effort to obtain an overall picture.
@@ -284,7 +284,7 @@ If the class intervals are 10 - 19, 20 - 29, 30 - 39, and so on, there is a gap 
 **Class boundaries**\
 The raw data in the above example were recorded to the nearest centimeters. Thus, a plant height of 109.5cm would have been recorded as 110cm, a plant height of 119.4 cm would have been recorded as 119cm, while a plant height of 119.5 cm would have been recorded as 120 cm. It can therefore be seen that, the class interval 110 -- 119, consists of measurements greater than or equal to 109.5 cm and less than 119.5 cm. The numbers 109.5 and 119.5 are called the lower and upper boundaries of the class interval 110 -- 120. The class boundaries of the other class intervals are given below:
 
-![Class boundary and class limits](images/fig1.7.png){fig-alt="Class boundary and class limits" fig-align="center" out-width="100%" style="text-align:center;"}
+![Class boundary and class limits](images/intro/fig1.7.svg){fig-alt="Class boundary and class limits" fig-align="center" out-width="100%" style="text-align:center;"}
 
 [Note:]{.underline}\
 Notice that the lower class boundary of the i^th^ class interval is the mean of the lower class limit of the class interval and the upper class limit of the (i-1)^th^ class interval (i = 2, 3, 4, ...). For example, in the table above the lower class boundaries of the second and the fourth class intervals are (110 + 109) /2 = 109.5 and (130 + 129)/2 = 129.5 respectively.\
@@ -338,25 +338,24 @@ $$L = min - \frac{C^{'} \times k^{'} - (max - min)}{2}$$
 
 where, *C'* and *k'* here are final approximated class width and number of classes respectively in our example, $L = 1 - \frac{(3 \times 7) - (18 - 1)}{2}$ = 1-2 = -1; since there is no negative values in data, $L = 0$. Final frequency table will be as shown in @tbl-freq
 
-```{r}
-#| label: tbl-freq
+```{r tbl-freq,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Frequency distribution table"
-#| echo: false
-#| warning: false
-#| results: 'asis' 
+#| fig-cap: "Frequency distribution table" 
+#| filters: 
+#| - parse-latex   
 
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/c1e1.csv")
 dt %>%
-  kbl(booktabs = TRUE, align = "c",) %>%
+  kbl(booktabs = TRUE, align = "c") %>%
    kable_classic(full_width = F, html_font = "Georgia") %>%
 kable_styling(
     # latex_options = "HOLD_position", 
     full_width = FALSE,
     position = "center", 
     bootstrap_options = "bordered"
-  ) %>% 
+  )%>% 
   column_spec(1, width = "7em") %>%  
   column_spec(2, width = "7em")
 ```
@@ -375,12 +374,11 @@ The specified value for LCF in the case of grouped frequency distribution will b
 
 It is sometimes useful to know the proportion, rather than the number, of values falling within a particular class interval. We obtain this information by dividing the frequency of the particular class interval by the total number of observations. **Relative frequency** of a class is the frequency of class divided by total observations. Relative frequencies all add up to 1. See relative frequency calculated in @tbl-cf .
 
-```{r}
-#| label: tbl-cf
+```{r tbl-cf,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "LCF, GCF and Relative frequency"
-#| echo: false
-#| warning: false
-#| results: 'asis'
+#| fig-cap: "LCF, GCF and Relative frequency"  
+#| filters: 
+#| - parse-latex  
 
 library(kableExtra)
 library(knitr) 
@@ -390,7 +388,7 @@ dt <- read.csv("csv/c1e2.csv")
 dt %>%
   kbl(booktabs = FALSE, align = "c",escape = FALSE) %>%
   kable_classic(full_width = FALSE, html_font = "Georgia") %>%
-  kable_styling(
+kable_styling(
     # latex_options = "HOLD_position", 
     full_width = FALSE,
     position = "center", 
