@@ -23,7 +23,7 @@ For a symmetric distribution skewness = 0; mean = median = mode. @fig-symmdist s
 
 ![Symmetric distribution](images/skewness/symm.svg){#fig-symmdist fig-align="center" width="80%" style="text-align:center;"}
 
-@fig-histodata shows a model data set with skewness = 0 (symmetric distribution) 
+@fig-histodata shows a model data set with skewness = 0 (symmetric distribution) 
 
 ![Data set with skewness = 0](images/skewness/symfreq.svg){#fig-histodata fig-align="center" width="80%" style="text-align:center;"}
 
@@ -75,7 +75,8 @@ In @eq-karlsq since mode is used, there is a problem that if mode is not defined
 
 $$S_{k} = \frac{3(mean - median)}{\text{standard deviation}}$$ {#eq-karlsq2}
 
-**Example 7.1**: Compute the Karl Pearson’s coefficient of skewness from the following data:
+::: {#exm-ct33}
+Compute the Karl Pearson’s coefficient of skewness from the following data:
 
 | Height (*x*) | frequency (*f*) |
 |:------------:|:---------------:|
@@ -90,7 +91,7 @@ $$S_{k} = \frac{3(mean - median)}{\text{standard deviation}}$$ {#eq-karlsq2}
 
 : Model dataset for skewness calculation {#tbl-skewnessmodel .bordered}
 
-**Solution 7.1**
+**Solution**
 
 ```{r tbl-karlskew, echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Karl Pearson's coefficient of skewness"
@@ -143,6 +144,7 @@ using @eq-karlsq2
 $$S_{k} = \frac{3(61.40 - 61)}{1.77} = \frac{1.2}{1.77} = 0.68$$
 
 Hence, the Karl Pearson’s coefficient of skewness $S_{k}$ = $0.68$, Thus the distribution is positively skewed.
+:::
 
 ### Bowley’s measure of skewness (*S*~Q~)
 
@@ -162,7 +164,7 @@ $$S_{Q} = \frac{Q_{3} - 2Q_{2} + Q_{1}}{Q_{3} - Q_{1}}$$ {#eq-bowleyssk2}
 
 -   $S_{Q}$\< 0 means the curve is negatively skewed.
 
-Let's find Bowley’s measure of skewness for @tbl-skewnessmodel in Example 7.1. From the cumulative frequency in @tbl-karlcf, the quartiles can be calculated. Calculation of ${Q}_{1}$, $Q_{2}$, $Q_{3}$ is given in @sec-quartile.
+Let's find Bowley’s measure of skewness for @tbl-skewnessmodel in @exm-ct33. From the cumulative frequency in @tbl-karlcf, the quartiles can be calculated. Calculation of ${Q}_{1}$, $Q_{2}$, $Q_{3}$ is given in @sec-quartile.
 
 $${Q}_{1} = 60$$
 
@@ -180,8 +182,7 @@ Bowley’s measure of skewness is based on the middle 50% of the observations; i
 
 $${Kelly’s\ Measure\ of\ Skewness,\ S}_{p} = \frac{\left( P_{90} - P_{50} \right) - \left( P_{50} - P_{10} \right)}{\left( P_{90} - P_{50} \right) + \left( P_{50} - P_{10} \right)}$$ {#eq-kellyskew}
 
-::: {.callout-note appearance="simple"}
-**Try yourself**\
+::: {#exr-ct3}
 Try to find Kelly’s measure of skewness for @tbl-skewnessmodel
 :::
 
@@ -209,7 +210,7 @@ If *r* = 2, $\mu_{2} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \
 It should be remembered that first moment about mean is 0 and second moment about mean is **variance**.
 :::
 
-For @tbl-skewnessmodel in Example 7.1 given above, calculate third central moment, $\mu_{3}$
+For @tbl-skewnessmodel in @exm-ct33 given above, calculate third central moment, $\mu_{3}$
 
 ```{r tbl-moment3, echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Third central moment calculation"  
@@ -266,7 +267,7 @@ If $\mu_{3}$ is positive $\gamma_{1}$ is positive, If $\mu_{3}$ is negative $\ga
 
 -   $\gamma_{1}$\< 0 means the curve is negatively skewed.
 
-For @tbl-skewnessmodel in Example 7.1, $\beta_{1}$ and $\gamma_{1}$ can be calculated as follows
+For @tbl-skewnessmodel in @exm-ct33, $\beta_{1}$ and $\gamma_{1}$ can be calculated as follows
 
 $\mu_{3}$ = 0.266
 
@@ -308,7 +309,7 @@ $$\gamma_{2} = \beta_{2} - 3$$ {#eq-gamma2}
 
 -   $\gamma_{2}$\< 0 means the curve is platykurtic.
 
-For @tbl-skewnessmodel in Example 7.1, kurtosis can be examined as follows
+For @tbl-skewnessmodel in @exm-ct33, kurtosis can be examined as follows
 ```{r tbl-kutocalc, echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Measures of kurtosis"
 #| fig-cap: "Measures of kurtosis"  
@@ -340,13 +341,13 @@ $\beta_{2} = \frac{\mu_{4}}{\mu_{2}^{2}} = \frac{23.063}{\left( 3.123 \right)^{2
 
 $\beta_{2}$ is 2.365, which is close to 3, distribution can be considered slightly platykurtic close to symmetric.
 
-You can verify the frequency curve of Example 7.1 @fig-freqcurvex, it can be seen that it is slightly right tailed (positively skewed).
+You can verify the frequency curve of @exm-ct33 @fig-freqcurvex, it can be seen that it is slightly right tailed (positively skewed).
 
-![Frequency curve of Example 7.1](images/image11_5.jpeg){#fig-freqcurvex fig-align="center" style="text-align:center;" width="40%"}
+![Frequency curve of @exm-ct33](images/image11_5.jpeg){#fig-freqcurvex fig-align="center" style="text-align:center;" width="40%"}
 
- \
- \
- 
+ \
+ \
+ 
 
 ::: {.callout-caution title="Historical Insights"}
 **“Crabs and kurtosis”**

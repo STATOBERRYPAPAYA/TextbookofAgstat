@@ -63,26 +63,38 @@ here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
 ::: {#exm-expval1}
 Find the expected value of $X$ of tossing a single unfair die.
 
-```{r, echo=FALSE,warning=FALSE,results='asis'}
+```{r, echo=FALSE,warning=FALSE,results='asis'}  
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr1.csv")
+colnames(dt) <- NULL
 dt %>%
-  kbl(col.names=NULL, booktabs = FALSE, align = "c") %>%
-   kable_classic(full_width = F, html_font = "Cambria")%>%
-kable_styling(latex_options = "HOLD_position")
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+   kable_classic(full_width = F, html_font = "Georgia") %>%
+kable_styling(
+    # latex_options = "HOLD_position", 
+    full_width = FALSE,
+    position = "center", 
+    bootstrap_options = "bordered"
+  ) 
 ```
 
 **Solution**
 
-```{r, echo=FALSE,warning=FALSE,results='asis'}
+```{r, echo=FALSE,warning=FALSE,results='asis'}  
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr2.csv")
+colnames(dt) <- NULL
 dt %>%
-  kbl(col.names=NULL, booktabs = FALSE, align = "c") %>%
-   kable_classic(full_width = F, html_font = "Cambria")%>%
-kable_styling(latex_options = "HOLD_position")
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+   kable_classic(full_width = F, html_font = "Georgia") %>%
+kable_styling(
+    # latex_options = "HOLD_position", 
+    full_width = FALSE,
+    position = "center", 
+    bootstrap_options = "bordered"
+  ) 
 ```
 
 Using equation @eq-expdiscrete, $E(X)$ = $\sum_{x} x\, p(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
@@ -95,10 +107,16 @@ Find $E(X)$ in the following case.
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/pr1.csv")
+colnames(dt) <- NULL
 dt %>%
-  kbl(col.names=NULL, booktabs = FALSE, align = "c") %>%
-   kable_classic(full_width = F, html_font = "Cambria")%>%
-kable_styling(latex_options = "HOLD_position")
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+   kable_classic(full_width = F, html_font = "Georgia") %>%
+kable_styling(
+    # latex_options = "HOLD_position", 
+    full_width = FALSE,
+    position = "center", 
+    bootstrap_options = "bordered"
+  ) 
 ```
 :::
 
@@ -230,9 +248,16 @@ To fit a binomial distribution to an observed frequency distribution, we follow 
 ::: {#exm-binomfit1}
 In a study on the survival of mango seedlings after transplanting, 100 groups of 5 seedlings each were transplanted. The number of seedlings surviving in each group was recorded as given below. Fit a binomial distribution to the data.
 
-| Number surviving ($x$) | 0   | 1   | 2   | 3   | 4   | 5   |
-|:-----------------------|:----|:----|:----|:----|:----|:----|
-| Number of groups       | 3   | 16  | 32  | 28  | 17  | 4   |
+|                         |                   |
+|:-----------------------:|:-----------------:|
+| Number surviving ($x$)  | Number of groups  |
+|            0            |         3         |
+|            1            |         16        |
+|            2            |         32        |
+|            3            |         28        |
+|            4            |         17        |
+|            5            |         4         |
+: Number of survivors out of 5 in 100 groups {#tbl-survivorscount .bordered}
 
 : Number of mango seedlings surviving out of 5, in 100 groups {#tbl-mangosurvival .bordered}
 
@@ -338,10 +363,14 @@ To fit a Poisson distribution to an observed frequency distribution, we follow t
 ::: {#exm-poissonfit1}
 In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were examined and the number of larvae per plant was recorded as given below. Fit a Poisson distribution to the data.
 
-| Number of larvae ($x$) | 0   | 1   | 2   | 3   | 4 or more |
-|:-----------------------|:----|:----|:----|:----|:----------|
-| Number of plants       | 37  | 37  | 18  | 6   | 2         |
-
+|                        |                   |
+|:----------------------:|:-----------------:|
+| Number of Larvae ($x$) | Number of Plants  |
+|           0            |        37         |
+|           1            |        37         |
+|           2            |        18         |
+|           3            |         6         |
+|       4 or more        |         2         |
 : Number of diamondback moth larvae per cabbage plant, in 100 plants {#tbl-larvaecount .bordered}
 
 **Solution**
@@ -353,7 +382,7 @@ $$\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 
 The expected frequency for each value of $x$ is obtained from $N \times \dfrac{e^{-\lambda} \lambda^x}{x!}$, as shown in @tbl-poissonfit1. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, $N$.
 
 | $x$       | Observed frequency | Expected frequency |
-|:----------|:-------------------|:-------------------|
+|:----------:|:-------------------:|:-------------------:|
 | 0         | 37                 | 37.2               |
 | 1         | 37                 | 36.8               |
 | 2         | 18                 | 18.2               |
@@ -390,13 +419,13 @@ where $\mu$ is the population mean and $\sigma^2$ is the variance, $e = 2.718$
 
 As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean ($\mu$) and standard deviation ($\sigma$). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.
 
-![Shape changes in normal distribution based on different means](images/normal6.png){#fig-normalchange fig-align="center" style="text-align:center;" width="80%"}
+![Shape changes in normal distribution based on different means](images/probdist/normdistmean.svg){#fig-normalchange fig-align="center" style="text-align:center;" width="80%"}
 
 **Standard deviation:**
 
 The standard deviation is a measure of variability. It defines the width of the normal distribution. It determines how far away from the mean the values tend to fall. It represents the typical distance between the observations and the average.
 
-![Shape changes in normal distribution based on different standard deviation](images/normal7.png){#fig-normalchange2 fig-align="center" style="text-align:center;" width="80%"}
+![Shape changes in normal distribution based on different standard deviation](images/probdist/normsamesd.svg){#fig-normalchange2 fig-align="center" style="text-align:center;" width="80%"}
 
 When you have normally distributed data, the standard deviation can be used to determine the proportion of the values that fall within a specified number of standard deviations from the mean. For example, in a normal distribution, 68% of the observation falls within $\mu\pm  \sigma$. This property is called as **Area Property**.
 
@@ -408,20 +437,20 @@ The parameters of normal distribution are $\mu$ and $\sigma$. If a random variab
 
 1.  The normal distribution is the most frequently used among all probability laws. The normal distribution can be found in many practical problems. If you plot density $f(x)$ against $x$ the graph will be **bell shaped** always.
 
-![Normal distribution curve](images/normal1.png){#fig-normalcurve fig-align="center" style="text-align:center;" width="80%"}
+![Normal distribution curve](images/probdist/normal_mean.svg){#fig-normalcurve fig-align="center" style="text-align:center;" width="80%"}
 
 2.  The Normal Distribution has mean = median = mode. Mean, median and mode are located at the center of the curve.
 
-![Mean=Median=Mode in normal distribution](images/normal2.png){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="80%"}
+![Mean=Median=Mode in normal distribution](images/probdist/normal_mmm.svg){#fig-normalcurve2 fig-align="center" style="text-align:center;" width="80%"}
 
 3.  Normal distribution is symmetric about the center, 50% of values less than the mean and 50% greater than the mean
 
-![Normal distribution is a symmetric distribution](images/normal3.png){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="80%"}
+![Normal distribution is a symmetric distribution](images/probdist/normal_symmetry.svg){#fig-normalsymmetry fig-align="center" style="text-align:center;" width="80%"}
 
 4.  Area Property\
     The area property of the normal distribution shows how data is spread around the mean. As we move further from the mean, more values are included within the range. For example, about 68% of the data falls within one standard deviation of the mean. The area increases as we expand the range to two or three standard deviations, covering 95% and 99.7% of the data, respectively. See @tbl-areaproperty for detailed information on the area property of the normal distribution.
 
-![Area property of normal distribution](images/normal8.png){#fig-areaproperty fig-align="center" style="text-align:center;" width="80%"}
+![Area property of normal distribution](images/probdist/area_curve.svg){#fig-areaproperty fig-align="center" style="text-align:center;" width="80%"}
 
 | Area                  | $\%$ of value contained |
 |:----------------------:|:------------------------:|
@@ -477,7 +506,7 @@ $$z = \frac{X - \mu}{\sigma}$$ {#eq-standard}
 
 Here, $X$ is a normal variate with mean $\mu$ and variance $\sigma^2$, and $z$ is the corresponding standard normal variate. This transformation converts $X$ into a standard normal distribution $z \sim N(0, 1)$, where the mean is 0 and the standard deviation is 1.
 
-![Standardization of normal distribution](images/normal4.png){#fig-normalstandardize fig-align="center" style="text-align:center;" width="80%"}
+![Standardization of normal distribution](images/probdist/normal4.png){#fig-normalstandardize fig-align="center" style="text-align:center;" width="80%"}
 
 ::: {#exm-zscore1}
 A survey of daily travel time ($X$) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it into standard scores (Z-score).
@@ -511,7 +540,7 @@ The Mean ($\mu$) is 38.8 minutes, and the Standard Deviation ($\sigma$) is 11.4.
 
 : Z-score calculation {#tbl-zscorecalc .bordered}
 
-![Z score values of X for @exm-zscore1](images/normal5.png){#fig-zscoreandx fig-align="center" style="text-align:center;" width="80%"}
+![Z score values of X for @exm-zscore1](images/probdist/normal5.png){#fig-zscoreandx fig-align="center" style="text-align:center;" width="80%"}
 :::
 
 ::: {#exm-zscore2}
@@ -524,9 +553,7 @@ To find the z-score we need to divide the difference between the value, 27, and 
 
 ### Z-score table
 
-A **Z-score table** (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table is given @fig-zscoretable.
-
-![Z-score table](images/ztable.png){#fig-zscoretable fig-align="center" style="text-align:center; height:80%;" width="60%"}
+A **Z-score table** (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table or standard normal table is given in @tbl-ztable in appendix 3.  
 
 Procedure to use a Z-Score Table is given below:
 
