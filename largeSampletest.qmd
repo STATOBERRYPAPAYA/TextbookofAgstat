@@ -56,10 +56,22 @@ The critical values of $Z$ for specified levels of significance are given in @tb
 |        0.01         |   2.326   |
 |        0.005        |   2.576   |
 
-: Critical values of the standard normal distribution {#tbl-zcrit .bordered}
+: Critical values of the standard normal distribution for a one-tailed test {#tbl-zcrit .bordered}
+
+For a two-tailed test, the significance level $\alpha$ is split equally between the two tails, so the critical value corresponds to the one-tail value at $\alpha/2$. @tbl-zcrit2 gives the critical values directly in terms of the overall two-tailed $\alpha$.
+
+| $\alpha$ (two tail) | $Z$ value |
+|:-------------------:|:---------:|
+|        0.20         |   1.282   |
+|        0.10         |   1.645   |
+|        0.05         |   1.960   |
+|        0.02         |   2.326   |
+|        0.01         |   2.576   |
+
+: Critical values of the standard normal distribution for a two-tailed test {#tbl-zcrit2 .bordered}
 
 ::: {.callout-note title="Note"}
-For a two-tailed test at $\alpha$ = 0.05, we split the significance level equally between the two tails and use the value at $\alpha/2$ = 0.025, which is $Z_{0.025}$ = 1.960. Similarly, for a two-tailed test at $\alpha$ = 0.01 we use $Z_{0.005}$ = 2.576.
+For a two-tailed test at $\alpha$ = 0.05, we split the significance level equally between the two tails and use the value at $\alpha/2$ = 0.025, which is $Z_{0.025}$ = 1.960. Similarly, for a two-tailed test at $\alpha$ = 0.01 we use $Z_{0.005}$ = 2.576. These are the same critical values shown directly against the overall two-tailed $\alpha$ in @tbl-zcrit2.
 :::
 
 ## Test for a single population proportion
@@ -115,7 +127,9 @@ The level of significance is 5%, so $\alpha$ = 0.05.
 
 Now we calculate $Z$ using @eq-zprop1:
 
-$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} = \frac{0.12 - 0.1}{\sqrt{0.1 \times 0.9 / 500}} = \frac{0.02}{0.01342} = 1.49$$
+$$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} = \frac{0.12 - 0.1}{\sqrt{0.1 \times 0.9 / 500}}$$
+
+$$= \frac{0.02}{0.01342} = 1.49$$
 
 Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). The calculated value (1.49) is less than the table value (1.960), so we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the proportion of bad apples differs from 0.1.
 :::
@@ -181,7 +195,9 @@ $$\widehat{Q} = 1 - 0.3879 = 0.6121$$
 
 **Step 3**: Calculate $Z$ using @eq-zprop2.
 
-$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} = \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121 \left( \dfrac{1}{80} + \dfrac{1}{250} \right)}}$$
+$$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}}$$
+
+$$= \frac{0.625 - 0.312}{\sqrt{0.3879 \times 0.6121 \left( \dfrac{1}{80} + \dfrac{1}{250} \right)}}$$
 
 $$= \frac{0.313}{\sqrt{0.2374 \times 0.0165}} = \frac{0.313}{0.06258} = 5.00$$
 
@@ -239,7 +255,9 @@ Level of significance, $\alpha$ = 0.05
 
 Since $\sigma$ is known, we use @eq-zmean-known:
 
-$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} = \frac{49.2 - 50}{\dfrac{3.2}{\sqrt{64}}} = \frac{-0.8}{0.4} = -2.0$$
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} = \frac{49.2 - 50}{\dfrac{3.2}{\sqrt{64}}}$$
+
+$$= \frac{-0.8}{0.4} = -2.0$$
 
 Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (2.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the packing process is not working at the intended mean weight of 50 kg.
 :::
@@ -273,7 +291,9 @@ Level of significance, $\alpha$ = 0.05
 
 Since $\sigma$ is unknown, we use $s$ in place of $\sigma$, applying @eq-zmean-unknown:
 
-$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{3.4 - 3.25}{\dfrac{2.61}{\sqrt{900}}} = \frac{0.15}{0.087} = 1.724$$
+$$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{3.4 - 3.25}{\dfrac{2.61}{\sqrt{900}}}$$
+
+$$= \frac{0.15}{0.087} = 1.724$$
 
 Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (1.724) is less than the table value (1.960), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 3.25 cm.
 :::
@@ -339,7 +359,11 @@ Level of significance, $\alpha$ = 0.05
 
 Since the two samples are assumed to come from the same population, the standard deviations are equal. We calculate $Z$ using @eq-zmean2-equal:
 
-$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} = \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}} = \frac{0.5}{0.0968} = 5.16$$
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$
+
+$$= \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}}$$
+
+$$= \frac{0.5}{0.0968} = 5.16$$
 
 Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.
 :::
@@ -377,7 +401,11 @@ Level of significance, $\alpha$ = 0.05
 
 Since the two population standard deviations are unequal, we use @eq-zmean2-unequal:
 
-$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} = \frac{52 - 49}{\sqrt{\dfrac{8^2}{100} + \dfrac{6^2}{100}}} = \frac{3}{\sqrt{0.64 + 0.36}} = \frac{3}{1} = 3.0$$
+$$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$$
+
+$$= \frac{52 - 49}{\sqrt{\dfrac{8^2}{100} + \dfrac{6^2}{100}}}$$
+
+$$= \frac{3}{\sqrt{0.64 + 0.36}} = \frac{3}{1} = 3.0$$
 
 Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (3.0) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the two paddy varieties differ significantly in mean yield.
 :::
@@ -399,5 +427,396 @@ So the next time you check whether your sample size crosses 30, remember that yo
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"It is a capital mistake to theorize before one has data." - Sir Arthur Conan Doyle**
-:::
+**“It is a capital mistake to theorize before one has data.”**\
+**- Sir Arthur Conan Doyle**
+:::  
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. A sample with a size of __________ or more is generally referred to as a large sample.
+
+2. Large-sample tests are based mainly on the __________ Limit Theorem.
+
+3. According to the Central Limit Theorem, the sampling distribution of the sample mean approaches a __________ distribution as the sample size increases.
+
+4. The standard normal distribution has mean __________ and variance __________.
+
+5. The test based on the standard normal distribution is called the __________ test.
+
+6. The test statistic used in a large-sample Z-test follows the __________ normal distribution when $H_0$ is true.
+
+7. The four large-sample tests discussed in the chapter are tests for a single proportion, equality of two proportions, a single mean, and equality of two __________.
+
+8. In a test for a single population proportion, the null hypothesis is $H_0:P=$ __________.
+
+9. In the single-proportion test, $Q_0=$ __________.
+
+10. The standard error for testing a single population proportion is calculated using the __________ value of the proportion.
+
+11. In the test for equality of two proportions, the pooled proportion is denoted by __________.
+
+12. In the test for equality of two proportions, the pooled probability of failure is $\widehat{Q}=$ __________.
+
+13. In a test for a single population mean, the null hypothesis is $H_0:\mu=$ __________.
+
+14. When the population standard deviation is known, the test statistic for a single mean uses __________.
+
+15. When the population standard deviation is unknown, the population standard deviation is replaced by the __________ standard deviation.
+
+16. In the test for equality of two means, the null hypothesis is $H_0:\mu_1=$ __________.
+
+17. When two population standard deviations are equal, the common standard deviation is denoted by __________.
+
+18. When two population standard deviations are unequal, the standard error contains __________ separate variance terms.
+
+19. For a two-tailed Z-test at $\alpha=0.05$, the critical value is __________.
+
+20. For a two-tailed Z-test at $\alpha=0.01$, the critical value is __________.
+
+21. For a right-tailed Z-test at $\alpha=0.05$, the critical value is __________.
+
+22. For a left-tailed Z-test at $\alpha=0.05$, the critical value is __________.
+
+23. For a two-tailed test, the significance level $\alpha$ is divided equally between the __________ tails.
+
+24. For a two-tailed test, $H_0$ is rejected when $|Z|$ is __________ than the critical value.
+
+25. For a right-tailed test, $H_0$ is rejected when $Z$ is __________ than the critical value.
+
+26. For a left-tailed test, $H_0$ is rejected when $Z$ is __________ than the negative critical value.
+
+27. The sample proportion is denoted by __________.
+
+28. The sample mean is denoted by __________.
+
+29. The population proportion is denoted by __________.
+
+30. The population mean is denoted by __________.
+
+31. The population standard deviation is denoted by __________.
+
+32. The sample standard deviation is denoted by __________.
+
+33. The difference between the sample mean and the hypothesized population mean is standardized by the __________ of the sample mean.
+
+34. The pooled proportion is calculated by combining the numbers of successes from the __________ samples.
+
+35. The Central Limit Theorem applies when observations are independent and the population has a finite __________.
+
+### Short-answer questions {.unnumbered}
+
+1. Define a large sample.
+
+2. What is a large-sample test?
+
+3. State the Central Limit Theorem.
+
+4. Explain the importance of the Central Limit Theorem in large-sample testing.
+
+5. What are the assumptions of the Central Limit Theorem stated in this chapter?
+
+6. Define the Z-test.
+
+7. State the four large-sample tests discussed in the chapter.
+
+8. Explain the general decision rule for a Z-test.
+
+9. What is the difference between a one-tailed and a two-tailed Z-test?
+
+10. Explain the test for a single population proportion.
+
+11. State the null and alternative hypotheses for a single population proportion.
+
+12. Explain why $P_0$ is used in the standard error of the single-proportion test.
+
+13. What is the test for equality of two population proportions?
+
+14. Explain the pooled proportion used in the test for equality of two proportions.
+
+15. State the null and alternative hypotheses for equality of two proportions.
+
+16. Explain the test for a single population mean.
+
+17. Distinguish between the cases where the population standard deviation is known and unknown.
+
+18. State the test statistic for a single population mean when $\sigma$ is known.
+
+19. State the test statistic for a single population mean when $\sigma$ is unknown.
+
+20. Explain the test for equality of two population means.
+
+21. Distinguish between the equal and unequal population standard deviation cases in the test for two means.
+
+22. State the test statistic when the two population standard deviations are equal.
+
+23. State the test statistic when the two population standard deviations are unequal.
+
+24. What is the pooled estimate of the common standard deviation when the population standard deviations are equal but unknown?
+
+25. Explain how the critical value is selected for a two-tailed test.
+
+26. Explain how the critical value is selected for a right-tailed test.
+
+27. Explain how the critical value is selected for a left-tailed test.
+
+28. Why is the absolute value of $Z$ used in a two-tailed test?
+
+29. Explain the meaning of $Z\sim N(0,1)$ in large-sample testing.
+
+30. Why can a Z-test be used even when the population distribution is unknown for a sufficiently large sample?
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. A sample of 500 apples contains 60 bad apples. Test whether the population proportion of bad apples is 0.1 at the 5% level of significance.
+
+2. A random sample of 500 plants contains 65 plants affected by yellowing disease. Test whether the population proportion of affected plants differs from 0.1 at $\alpha=0.05$.
+
+3. In a survey, 50 out of 80 large-holding farmers and 78 out of 250 small-holding farmers adopted a new paddy variety. Test whether the adoption proportions differ significantly at $\alpha=0.01$.
+
+4. Explain why a pooled proportion is used when testing equality of two population proportions.
+
+5. A population has a hypothesized proportion of 0.20. A sample of 400 observations gives a sample proportion of 0.23. State the hypotheses for testing whether the population proportion differs from 0.20.
+
+6. A fertilizer packing unit is designed to fill bags with a mean weight of 50 kg. The population standard deviation is known to be 3.2 kg. A sample of 64 bags has a mean weight of 49.2 kg. Test the hypothesis at $\alpha=0.05$.
+
+7. A sample of 900 items has mean 3.4 cm and standard deviation 2.61 cm. Test whether the population mean is 3.25 cm at $\alpha=0.05$.
+
+8. From a paddy field, a random sample of 36 plants has mean panicle length 18.7 cm and standard deviation 1.25 cm. Test whether the population mean panicle length is 19 cm at $\alpha=0.05$.
+
+9. A population has known standard deviation 5. A sample of 100 observations has mean 48. Test whether the population mean is 50 at $\alpha=0.05$.
+
+10. A large sample has mean 102, while the hypothesized population mean is 100. The population standard deviation is 10 and the sample size is 400. Calculate the Z statistic and test the hypothesis at $\alpha=0.05$.
+
+11. Two large samples have sizes 1000 and 2000, with means 67.5 and 68 inches respectively. The common population standard deviation is 2.5 inches. Test whether the two samples can be regarded as drawn from the same population at the 5% level.
+
+12. Two paddy varieties have sample sizes 100 each. Variety A has mean yield 52 quintals per hectare and population standard deviation 8 quintals per hectare, while variety B has mean yield 49 quintals per hectare and population standard deviation 6 quintals per hectare. Test whether the two varieties differ significantly in mean yield at $\alpha=0.05$.
+
+13. Two random samples have $n_1=400$, $n_2=400$, $\bar{x}_1=250$, $\bar{x}_2=220$, $s_1=40$, and $s_2=55$. Test whether the population means are equal at $\alpha=0.05$.
+
+14. A two-tailed test is conducted at $\alpha=0.05$. State the critical value.
+
+15. A right-tailed test is conducted at $\alpha=0.01$. State the critical value.
+
+16. A left-tailed test is conducted at $\alpha=0.05$. State the critical value.
+
+17. A calculated $Z$ value is 2.30 in a two-tailed test at $\alpha=0.05$. State the decision.
+
+18. A calculated $Z$ value is 1.50 in a two-tailed test at $\alpha=0.05$. State the decision.
+
+19. A calculated $Z$ value is 2.00 in a right-tailed test at $\alpha=0.05$. State the decision.
+
+20. A calculated $Z$ value is $-2.00$ in a left-tailed test at $\alpha=0.05$. State the decision.
+
+### Important formulae {.unnumbered}
+
+Central Limit Theorem:
+
+$$
+\frac{\bar{X}-\mu}{\sigma/\sqrt{n}}\xrightarrow{d}N(0,1)
+$$
+
+Single population proportion:
+
+$$
+Z=\frac{p-P_0}{\sqrt{P_0Q_0/n}}
+$$
+
+Complementary proportion:
+
+$$
+Q_0=1-P_0
+$$
+
+Pooled proportion for two proportions:
+
+$$
+\widehat{P}=\frac{n_1p_1+n_2p_2}{n_1+n_2}
+$$
+
+Pooled complementary proportion:
+
+$$
+\widehat{Q}=1-\widehat{P}
+$$
+
+Equality of two proportions:
+
+$$
+Z=\frac{p_1-p_2}{\sqrt{\widehat{P}\widehat{Q}\left(\frac{1}{n_1}+\frac{1}{n_2}\right)}}
+$$
+
+Single population mean when $\sigma$ is known:
+
+$$
+Z=\frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}
+$$
+
+Single population mean when $\sigma$ is unknown:
+
+$$
+Z=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}
+$$
+
+Equality of two means when population standard deviations are equal:
+
+$$
+Z=\frac{\bar{x}_1-\bar{x}_2}{\sigma\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
+$$
+
+Pooled estimate of common standard deviation:
+
+$$
+\sigma=\sqrt{\frac{n_1s_1^2+n_2s_2^2}{n_1+n_2}}
+$$
+
+Equality of two means when population standard deviations are unequal:
+
+$$
+Z=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}
+$$
+
+### Critical values of the standard normal distribution {.unnumbered}
+
+**One-tailed test**
+
+| $\alpha$ (one tail) | $Z$ value |
+|:-------------------:|:---------:|
+| 0.10 | 1.282 |
+| 0.05 | 1.645 |
+| 0.025 | 1.960 |
+| 0.01 | 2.326 |
+| 0.005 | 2.576 |
+
+**Two-tailed test**
+
+| $\alpha$ (two tail) | $Z$ value |
+|:-------------------:|:---------:|
+| 0.20 | 1.282 |
+| 0.10 | 1.645 |
+| 0.05 | 1.960 |
+| 0.02 | 2.326 |
+| 0.01 | 2.576 |
+
+### Quick revision {.unnumbered}
+
+- Large sample → generally $n\geq30$.
+- Large-sample tests are based on the Central Limit Theorem.
+- Central Limit Theorem → sampling distribution of $\bar{X}$ approaches a normal distribution as $n$ increases.
+- The observations should be independent.
+- The population should have finite variance.
+- Large-sample Z-test → based on $N(0,1)$.
+- Four tests in this chapter → single proportion, equality of two proportions, single mean, and equality of two means.
+- Single proportion → compare $P$ with a specified value $P_0$.
+- For a single proportion, $H_0:P=P_0$.
+- For a single proportion, the alternative may be $P<P_0$, $P>P_0$, or $P\neq P_0$.
+- Single-proportion standard error uses $P_0$ and $Q_0$ under the null hypothesis.
+- Two proportions → compare $P_1$ and $P_2$.
+- For two proportions, $H_0:P_1=P_2$.
+- The two-proportion test uses the pooled proportion $\widehat{P}$.
+- Single mean → compare $\mu$ with $\mu_0$.
+- When $\sigma$ is known, use $\sigma/\sqrt{n}$.
+- When $\sigma$ is unknown, use $s/\sqrt{n}$.
+- Equality of two means → compare $\mu_1$ and $\mu_2$.
+- Equal population standard deviations → use the common $\sigma$.
+- Equal but unknown standard deviations → use the pooled estimate.
+- Unequal population standard deviations → use separate variance terms.
+- Two-tailed test → reject if $|Z|>Z_{\alpha/2}$.
+- Right-tailed test → reject if $Z>Z_\alpha$.
+- Left-tailed test → reject if $Z<-Z_\alpha$.
+- At $\alpha=0.05$, two-tailed critical value → $1.960$.
+- At $\alpha=0.01$, two-tailed critical value → $2.576$.
+- At $\alpha=0.05$, right-tailed critical value → $1.645$.
+- At $\alpha=0.05$, left-tailed critical value → $-1.645$.
+- The null hypothesis is always stated in terms of the population parameter.
+- The test statistic is calculated from sample statistics.
+- If the calculated statistic falls in the critical region, reject $H_0$.
+- Otherwise, do not reject $H_0$.
+- For a two-tailed test, $\alpha$ is divided equally between the two tails.
+- The sign of $Z$ is important in one-tailed tests; $|Z|$ is used for the two-tailed decision.
+- A large absolute value of $Z$ indicates greater departure from the null hypothesis.
+
+### Answers to fill in the blanks {.unnumbered}
+
+1. 30
+2. Central
+3. Normal
+4. 0; 1
+5. Z
+6. Standard
+7. Means
+8. $P_0$
+9. $1-P_0$
+10. Null
+11. $\widehat{P}$
+12. $1-\widehat{P}$
+13. $\mu_0$
+14. $\sigma$
+15. Sample
+16. $\mu_2$
+17. $\sigma$
+18. Two
+19. 1.960
+20. 2.576
+21. 1.645
+22. $-1.645$
+23. Two
+24. Greater
+25. Greater
+26. Less
+27. $p$
+28. $\bar{x}$
+29. $P$
+30. $\mu$
+31. $\sigma$
+32. $s$
+33. Standard error
+34. Two
+35. Variance
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  Given $n=500$, $p=\frac{60}{500}=0.12$, $P_0=0.1$, $Q_0=0.9$. Using @eq-zprop1, $Z=\frac{0.12-0.10}{\sqrt{0.1(0.9)/500}}=1.49$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|1.49|<1.960$, we do not reject $H_0$. There is insufficient evidence that the proportion of bad apples differs from 0.1.
+
+2.  Given $n=500$, $p=\frac{65}{500}=0.13$, $P_0=0.1$, $Q_0=0.9$. Using @eq-zprop1, $Z=\frac{0.13-0.10}{\sqrt{0.1(0.9)/500}}=2.24$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|2.24|>1.960$, we reject $H_0$. There is significant evidence that the proportion of affected plants differs from 0.1.
+
+3.  Given $n_1=80$, $n_2=250$, $p_1=\frac{50}{80}=0.625$, $p_2=\frac{78}{250}=0.312$. The pooled proportion is $\widehat{P}=\frac{80(0.625)+250(0.312)}{330}=0.3879$ and $\widehat{Q}=0.6121$. Using @eq-zprop2, $Z=\frac{0.625-0.312}{\sqrt{0.3879(0.6121)\left(\frac{1}{80}+\frac{1}{250}\right)}}=5.00$. At $\alpha=0.01$, $Z_{0.005}=2.576$; since $|5.00|>2.576$, we reject $H_0$. There is a significant difference between the adoption proportions of the two groups.
+
+4.  Under $H_0:P_1=P_2$, the two samples are assumed to come from populations having the same proportion. The pooled proportion $\widehat{P}=\frac{n_1p_1+n_2p_2}{n_1+n_2}$ provides a common estimate of this population proportion under $H_0$.
+
+5.  The hypothesized population proportion is 0.20, so $H_0:P=0.20$. Since the question asks whether the proportion differs from 0.20, $H_1:P\neq0.20$. This is a two-tailed test.
+
+6.  Given $\bar{x}=49.2$, $\mu_0=50$, $\sigma=3.2$, $n=64$. Using @eq-zmean-known, $Z=\frac{49.2-50}{3.2/\sqrt{64}}=\frac{-0.8}{0.4}=-2.00$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|-2.00|>1.960$, we reject $H_0$. The packing process is not working at the intended mean weight of 50 kg.
+
+7.  Given $n=900$, $\bar{x}=3.4$, $s=2.61$, $\mu_0=3.25$. Since $\sigma$ is unknown, using @eq-zmean-unknown, $Z=\frac{3.4-3.25}{2.61/\sqrt{900}}=1.724$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|1.724|<1.960$, we do not reject $H_0$. There is insufficient evidence that the population mean differs from 3.25 cm.
+
+8.  Given $n=36$, $\bar{x}=18.7$, $s=1.25$, $\mu_0=19$. Using @eq-zmean-unknown, $Z=\frac{18.7-19}{1.25/\sqrt{36}}=\frac{-0.3}{0.2083}=-1.44$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|-1.44|<1.960$, we do not reject $H_0$. There is insufficient evidence that the mean panicle length differs from 19 cm.
+
+9.  Given $\mu_0=50$, $\sigma=5$, $n=100$, $\bar{x}=48$. Using @eq-zmean-known, $Z=\frac{48-50}{5/\sqrt{100}}=\frac{-2}{0.5}=-4$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|-4|>1.960$, we reject $H_0$. There is significant evidence that the population mean differs from 50.
+
+10. Given $\bar{x}=102$, $\mu_0=100$, $\sigma=10$, $n=400$. Using @eq-zmean-known, $Z=\frac{102-100}{10/\sqrt{400}}=\frac{2}{0.5}=4$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|4|>1.960$, we reject $H_0$. There is significant evidence that the population mean differs from 100.
+
+11. Given $n_1=2000$, $n_2=1000$, $\bar{x}_1=68$, $\bar{x}_2=67.5$, $\sigma=2.5$. Using @eq-zmean2-equal, $Z=\frac{68-67.5}{2.5\sqrt{\frac{1}{2000}+\frac{1}{1000}}}=5.16$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|5.16|>1.960$, we reject $H_0$. The two samples cannot be regarded as drawn from populations having the same mean.
+
+12. Given $n_1=n_2=100$, $\bar{x}_1=52$, $\bar{x}_2=49$, $\sigma_1=8$, $\sigma_2=6$. Since the population standard deviations are unequal, using @eq-zmean2-unequal, $Z=\frac{52-49}{\sqrt{\frac{8^2}{100}+\frac{6^2}{100}}}=\frac{3}{1}=3.00$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|3.00|>1.960$, we reject $H_0$. The two paddy varieties differ significantly in mean yield.
+
+13. Given $n_1=n_2=400$, $\bar{x}_1=250$, $\bar{x}_2=220$, $s_1=40$, $s_2=55$. Since the population standard deviations are not given as known, use the pooled estimate $\sigma=\sqrt{\frac{n_1s_1^2+n_2s_2^2}{n_1+n_2}}=\sqrt{\frac{400(40^2)+400(55^2)}{800}}=\sqrt{2312.5}\approx48.09$. Using @eq-zmean2-equal, $Z=\frac{250-220}{48.09\sqrt{\frac{1}{400}+\frac{1}{400}}}\approx8.82$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|8.82|>1.960$, we reject $H_0$. There is significant evidence that the two population means are different.
+
+14. For a two-tailed test at $\alpha=0.05$, $\frac{\alpha}{2}=0.025$, so $Z_{0.025}=1.960$. The critical values are $-1.960$ and $1.960$.
+
+15. For a right-tailed test at $\alpha=0.01$, $Z_{0.01}=2.326$; reject $H_0$ if $Z>2.326$.
+
+16. For a left-tailed test at $\alpha=0.05$, $Z_{0.05}=1.645$, so the critical value is $-1.645$; reject $H_0$ if $Z<-1.645$.
+
+17. For a two-tailed test at $\alpha=0.05$, $Z_{0.025}=1.960$. Given $Z=2.30$, since $|2.30|>1.960$, we reject $H_0$.
+
+18. Given $Z=1.50$. Since $|1.50|<1.960$, we do not reject $H_0$.
+
+19. For a right-tailed test at $\alpha=0.05$, $Z_{0.05}=1.645$. Given $Z=2.00$, since $2.00>1.645$, we reject $H_0$.
+
+20. For a left-tailed test at $\alpha=0.05$, $-Z_{0.05}=-1.645$. Given $Z=-2.00$, since $-2.00<-1.645$, we reject $H_0$.

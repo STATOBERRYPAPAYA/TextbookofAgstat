@@ -15,18 +15,28 @@ table tbody tr:nth-child(even) {
 </style>
 ```
 
-```{r setup-mathfix, include=FALSE}
-# Helper: convert math delimiters so MathJax reliably renders math inside
-# kable table cells (works even when the math is followed by text such as
-# "=90", and when a cell holds more than one math span). Display math
-# $$...$$ becomes \[...\] and inline math $...$ becomes \(...\). Empty CSV
-# cells (read by R as NA) are shown as blanks rather than "NA". The CSV
-# data on disk is left completely untouched.
-fix_math <- function(x) {
+```{r setup-cleantable, include=FALSE}
+# Helper: convert every column to character before it reaches kable, and
+# blank out NA cells. This avoids three side effects of leaving columns as
+# numeric: (1) kable auto-pads a numeric column's decimals to match its
+# most precise value, e.g. showing 87 as "87.000" because another cell in
+# the same column is 0.133; (2) blank CSV cells become NA and print as the
+# literal text "NA"; (3) R's default number-to-string conversion switches
+# to scientific notation for small decimals, e.g. 0.0009 becomes "9e-04".
+# Each value is formatted on its own (not as a whole vector), because
+# format() applied to a full numeric vector re-introduces the same
+# column-wide decimal alignment problem this helper is meant to avoid.
+# This does not touch math delimiters -- that is handled separately by
+# the parse-latex filter in each table chunk.
+clean_table <- function(x) {
+  if (is.numeric(x)) {
+    x <- vapply(x, function(v) {
+      if (is.na(v)) return(NA_character_)
+      format(v, scientific = FALSE, trim = TRUE)
+    }, character(1))
+  }
   x <- as.character(x)
-  x[is.na(x)] <- ""                                                # blank out NA
-  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)  # display math
-  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)       # inline math
+  x[is.na(x) | x == "NA"] <- ""
   x
 }
 ```
@@ -100,24 +110,39 @@ Level of significance, $\alpha$ = 0.05
 
 The calculation of the sample mean and sample standard deviation is shown in @tbl-tmean1.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-tmean1
+```{r tbl-tmean1,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Calculation of sample mean and standard deviation"
+#| fig-cap: "Calculation of sample mean and standard deviation"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book14.csv")
 colnames(dt) <- c("Sl No.", "Yield", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)$$", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)^{\\mathbf{2}}$$")
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
+
+From @tbl-tmean1, the sum of squared deviations is $\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2 = 10.601$.
+
+$$s^2 = \frac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n-1} = \frac{10.601}{9} = 1.1779$$
+
+$$s = \sqrt{1.1779} = 1.0853$$
 
 The test statistic is:
 
-$$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfrac{1.0853}{\sqrt{10}}} = \frac{0.63}{0.3432} = 1.835$$
+$$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfrac{1.0853}{\sqrt{10}}}$$
+
+$$= \frac{0.63}{0.3432} = 1.835$$
 
 The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the $t$ table at the end of this chapter, @fig-ttable).
 
@@ -227,9 +252,11 @@ Under the null hypothesis, $t$ follows a $t$ distribution with $n - 1$ degrees o
 ::: {#exm-paired1}
 In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.
 
-| Soil Treatment A | 49  | 53  | 51  | 52  | 47  | 50  | 52  | 53  |
-|:-----------------|:----|:----|:----|:----|:----|:----|:----|:----|
-| Soil Treatment B | 52  | 55  | 52  | 53  | 50  | 54  | 54  | 53  |
+|     |     |     |     |     |     |     |     |     |
+|:----|:----|:----|:----|:----|:----|:----|:----|:----|
+|Treatment **A** | 49  | 53  | 51  | 52  | 47  | 50  | 52  | 53  |
+|Treatment **B** | 52  | 55  | 52  | 53  | 50  | 54  | 54  | 53  |  
+
 
 **Solution**
 
@@ -241,24 +268,39 @@ Level of significance, $\alpha$ = 0.05
 
 The calculation of the differences is shown in @tbl-paired1.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-paired1
+```{r tbl-paired1,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Calculation of paired differences"
+#| fig-cap: "Calculation of paired differences"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book13.csv")
 colnames(dt) <- c("Sl No.", "$$\\mathbf{A}$$", "$$\\mathbf{B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{= A - B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}}$$", "$$\\left( \\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}} \\right)^{\\mathbf{2}}$$")
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
-Here $\overline{d} = -2$ and $s$ = 1.309.
+From @tbl-paired1, $\sum_{i=1}^{8} d_i = -16$ and $\sum_{i=1}^{8}\left( d_i - \overline{d} \right)^2 = 12$.
 
-$$t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}} = \frac{-2}{\dfrac{1.309}{\sqrt{8}}} = \frac{-2}{0.4629} = -4.321$$
+$$\overline{d} = \frac{\sum_{i=1}^{8} d_i}{n} = \frac{-16}{8} = -2$$
+
+$$s^2 = \frac{\sum_{i=1}^{8}\left( d_i - \overline{d} \right)^2}{n-1} = \frac{12}{7} = 1.7143$$
+
+$$s = \sqrt{1.7143} = 1.309$$
+
+$$t = \frac{\overline{d}}{\dfrac{s}{\sqrt{n}}} = \frac{-2}{\dfrac{1.309}{\sqrt{8}}}$$
+
+$$= \frac{-2}{0.4629} = -4.321$$
 
 The table value of $t$ for 7 degrees of freedom at the 5% level of significance is 2.365.
 
@@ -356,9 +398,10 @@ Let $\chi^2_{\text{cal}}$ be the calculated value, degrees of freedom = $n - 1$,
 ::: {#exm-gof1}
 In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. In a cross between parents of genetic constitution AAbb and aaBB, the phenotypes in the sample are classified as follows:
 
+|     |     |     |     |     |
+|:----:|:----:|:----:|:----:|:----:|
 | AB  | Ab  | aB  | ab  | Total |
-|:----|:----|:----|:----|:------|
-| 87  | 29  | 32  | 12  | 160   |
+| 87  | 29  | 32  | 12  | 160   |  
 
 They are expected to occur in a 9:3:3:1 ratio. Do the data agree with the theoretical ratio?
 
@@ -366,18 +409,25 @@ They are expected to occur in a 9:3:3:1 ratio. Do the data agree with the theore
 
 The calculation of the chi-square statistic is shown in @tbl-gof1.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-gof1
+```{r tbl-gof1,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Calculation of chi-square for goodness of fit"
+#| fig-cap: "Calculation of chi-square for goodness of fit"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book15.csv", check.names = FALSE)
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
 $$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667$$
@@ -389,7 +439,7 @@ $\chi^2_{\text{cal}}$ = 0.667. The table value of chi-square for $4 - 1 = 3$ deg
 The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? ($\alpha$ = 0.05)
 
 | Yeast per cell | Observed Frequency | Expected Frequency |
-|:---------------|:-------------------|:-------------------|
+|:---------------:|:-------------------:|:-------------------:|
 | 0              | 103                | 106                |
 | 1              | 143                | 141                |
 | 2              | 98                 | 93                 |
@@ -409,19 +459,25 @@ A contingency table is a tabular representation of categorical data, consisting 
 ::: {#exm-conting1}
 In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. ($X$ = germination, $Y$ = chemical treatment). Attribute $X$ has two classes, $X_1$ = germinated and $X_2$ = not germinated. Attribute $Y$ has two classes, $Y_1$ = treated and $Y_2$ = untreated.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-conting1
+```{r tbl-conting1,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Contingency table for germination of cotton seeds"
+#| fig-cap: "Contingency table for germination of cotton seeds"
+#| filters: 
+#| - parse-latex 
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book16.csv")
-colnames(dt) <- c("", "X = Germination", "", "", "")
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+colnames(dt) <- c("", "X = Germination", "", "")
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
 The solution is worked out in @sec-yates using the shortcut formula for a 2×2 table.
@@ -429,18 +485,25 @@ The solution is worked out in @sec-yates using the shortcut formula for a 2×2 t
 
 Let us consider two attributes $A$ and $B$, where $A$ is divided into $r$ classes $A_1, A_2, \ldots, A_r$ and $B$ into $s$ classes $B_1, B_2, \ldots, B_s$. The cell frequencies can be expressed in the form of an $r \times s$ contingency table as shown below.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-rscontingency
+```{r tbl-rscontingency,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "General form of an r x s contingency table"
+#| fig-cap: "General form of an r x s contingency table"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book17.csv", check.names = FALSE)
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
 $(A_i B_j)$ = the number of items possessing both attributes $A_i$ ($i = 1, 2, \ldots, r$) and $B_j$ ($j = 1, 2, \ldots, s$)
@@ -485,7 +548,7 @@ Under the null hypothesis, the test statistic follows a chi-square distribution 
 In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.
 
 |                  | **Owned** | **Rented** | **Mixed** | Total |
-|:-----------------|:----------|:-----------|:----------|:------|
+|:----------------:|:----------:|:-----------:|:----------:|:------:|
 | High             | 40        | 12         | 10        | 62    |
 | Moderate         | 22        | 10         | 14        | 46    |
 | Low              | 22        | 26         | 42        | 90    |
@@ -497,33 +560,47 @@ In a survey, a random sample of 198 farms was classified into three classes acco
 
 The expected value $E_{ij}$ for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in @tbl-conting2exp, and the calculation of the chi-square statistic is shown in @tbl-conting2calc.
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-conting2exp
+```{r tbl-conting2exp,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Expected frequencies for the tenure and fertility data"
+#| fig-cap: "Expected frequencies for the tenure and fertility data"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book18.csv", check.names = FALSE)
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
-```{r echo=FALSE, warning=FALSE, results='asis'}
-#| label: tbl-conting2calc
+```{r tbl-conting2calc,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Calculation of chi-square for independence of attributes"
+#| fig-cap: "Calculation of chi-square for independence of attributes"
+#| filters: 
+#| - parse-latex 
+
+
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book19.csv")
 colnames(dt) <- c("$$O_{ij}$$", "$$E_{ij}$$", "$$O_{ij} - E_{ij}$$", "$$\\left( O_{ij} - E_{ij} \\right)^{2}$$", "$$\\frac{\\left( O_{ij} - E_{ij} \\right)^{2}}{E_{ij}}$$")
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- fix_math(colnames(dt))
+dt[] <- lapply(dt, clean_table)
 dt %>%
-  kbl(escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria", lightable_options = "basic") %>%
-  kable_styling(latex_options = "HOLD_position")
+  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  )
 ```
 
 $\chi^2_{\text{cal}}$ = 26.3. The table value of chi-square for $(3 - 1)(3 - 1) = 4$ degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.
@@ -534,7 +611,7 @@ $\chi^2_{\text{cal}}$ = 26.3. The table value of chi-square for $(3 - 1)(3 - 1) 
 When the number of rows and columns are both equal to 2, the table is called a 2×2 contingency table. Consider two attributes $A$ and $B$ with classes $A_1, A_2$ and $B_1, B_2$ respectively, where $a$, $b$, $c$, $d$ are the frequencies in each cell.
 
 |              | $A_1$          | $A_2$          | Row Total        |
-|:-------------|:---------------|:---------------|:-----------------|
+|:-------------:|:---------------:|:---------------:|:-----------------:|
 | $B_1$        | $a$            | $b$            | $R_1 = a + b$    |
 | $B_2$        | $c$            | $d$            | $R_2 = c + d$    |
 | Column Total | $C_1 = a + c$  | $C_2 = b + d$  | $n = a+b+c+d$    |
@@ -566,7 +643,9 @@ $H_1$: The chemical treatment affects the germination rate of cotton seeds.
 
 Applying Yates' correction with $a = 118$, $b = 22$, $c = 120$, $d = 40$, $n = 300$:
 
-$$\chi^2 = \frac{300\left( \left| 118 \times 40 - 22 \times 120 \right| - \dfrac{300}{2} \right)^2}{238 \times 62 \times 140 \times 160} = 3.38$$
+$$\chi^2 = \frac{300\left( \left| 118 \times 40 - 22 \times 120 \right| - \dfrac{300}{2} \right)^2}{238 \times 62 \times 140 \times 160}$$
+
+$$= 3.38$$
 
 $\chi^2_{\text{cal}}$ = 3.38. The table value of chi-square for $(2 - 1)(2 - 1) = 1$ degree of freedom at the 5% level of significance is 3.841. Since the calculated value is less than the table value, we do not have enough evidence to reject the null hypothesis. The chemical treatment does not improve the germination rate of cotton seeds significantly.
 :::
@@ -575,7 +654,7 @@ $\chi^2_{\text{cal}}$ = 3.38. The table value of chi-square for $(2 - 1)(2 - 1) 
 In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.
 
 |         | Fruit set | Fruit not set |
-|:--------|:----------|:--------------|
+|:--------:|:----------:|:--------------:|
 | Treated | 16        | 9             |
 | Control | 4         | 21            |
 :::
@@ -643,5 +722,526 @@ Guinness, however, treated its research as a trade secret and did not allow empl
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"Like dreams, statistics are a form of wish fulfillment." - Jean Baudrillard**
-:::
+**“Like dreams, statistics are a form of wish fulfillment.”**\
+**- Jean Baudrillard**
+:::  
+
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. A sample with size less than __________ is generally called a small sample.
+
+2. The study of sampling distributions for small samples is called __________ sample theory.
+
+3. The three important sampling distributions used in small-sample tests are the __________, __________, and __________ distributions.
+
+4. Student's $t$-test is mainly used when the population standard deviation is __________.
+
+5. One of the important assumptions of the $t$-test is that the parent population is __________.
+
+6. The sample used in a $t$-test should be a __________ sample.
+
+7. For a one-sample $t$-test, the degrees of freedom are __________.
+
+8. The null hypothesis for testing a single population mean is $H_0:\mu=$ __________.
+
+9. The test statistic for a single population mean is based on the sample mean and sample __________.
+
+10. When comparing two means with equal population variances, the __________ variance is used.
+
+11. When two population variances are unequal, the appropriate test for comparing two means is the __________ $t$-test.
+
+12. The degrees of freedom for the equal-variance two-sample $t$-test are __________.
+
+13. The degrees of freedom for the Welch $t$-test are calculated using the __________ formula.
+
+14. The paired $t$-test is used when the two observations being compared are __________.
+
+15. In a paired $t$-test, $d_i$ represents the __________ between the two paired observations.
+
+16. The degrees of freedom for a paired $t$-test are __________.
+
+17. To test whether a population correlation coefficient is zero, the test statistic follows a __________ distribution.
+
+18. The null hypothesis for testing the significance of a correlation coefficient is $H_0:\rho=$ __________.
+
+19. The degrees of freedom for testing the significance of a correlation coefficient are __________.
+
+20. The chi-square test is based on the __________ distribution.
+
+21. Chi-square tests are generally classified as __________-parametric tests.
+
+22. The chi-square test for goodness of fit compares observed frequencies with __________ frequencies.
+
+23. The chi-square goodness-of-fit test was developed by __________.
+
+24. The chi-square goodness-of-fit statistic is calculated using the differences between __________ and __________ frequencies.
+
+25. In the goodness-of-fit test, if no parameter is estimated from the data, the degrees of freedom are __________.
+
+26. The chi-square goodness-of-fit test is a __________-tailed test.
+
+27. The chi-square test of independence is used to determine whether two __________ are independent.
+
+28. Data for a chi-square test of independence are usually arranged in a __________ table.
+
+29. The expected frequency in a contingency table is obtained by multiplying the corresponding __________ total and __________ total and dividing by the grand total.
+
+30. The degrees of freedom for an $r\times s$ contingency table are __________.
+
+31. In a 2×2 contingency table, the degrees of freedom are __________.
+
+32. Yates' correction is used for a __________ contingency table when a cell frequency is less than 5.
+
+33. In the chi-square test for a population variance, the null hypothesis is $H_0:\sigma^2=$ __________.
+
+34. The test statistic for testing a population variance follows a chi-square distribution with __________ degrees of freedom.
+
+35. The $F$-test is used to test the equality of two population __________.
+
+36. In the $F$-test, the __________ sample variance is placed in the numerator.
+
+37. Placing the larger sample variance in the numerator ensures that $F$ is __________ than or equal to 1.
+
+38. The degrees of freedom of the $F$ distribution are __________ and __________.
+
+39. The $t$ distribution was developed by William Sealy __________.
+
+40. Gosset published his work under the pen name __________.
+
+### Short-answer questions {.unnumbered}
+
+1. Define a small sample.
+
+2. What is small sample theory?
+
+3. State the assumptions of the $t$-test.
+
+4. Explain why the $t$ distribution is used when the population standard deviation is unknown.
+
+5. State the null and alternative hypotheses for testing a single population mean.
+
+6. Derive or explain the test statistic for a single population mean.
+
+7. What are the degrees of freedom in a one-sample $t$-test?
+
+8. State the decision rules for one-tailed and two-tailed $t$-tests.
+
+9. Explain the test for equality of two means when the population variances are equal.
+
+10. What is pooled variance?
+
+11. Why is pooled variance used when population variances are assumed equal?
+
+12. Explain the Welch $t$-test.
+
+13. When should the Welch $t$-test be used?
+
+14. Distinguish between the equal-variance $t$-test and Welch $t$-test.
+
+15. What is a paired $t$-test?
+
+16. Give an agricultural example where a paired $t$-test can be used.
+
+17. Explain how paired observations are converted into differences.
+
+18. State the test statistic for the paired $t$-test.
+
+19. What are the degrees of freedom for a paired $t$-test?
+
+20. Explain the test for the significance of a correlation coefficient.
+
+21. State the null and alternative hypotheses for testing a correlation coefficient.
+
+22. What are the degrees of freedom for testing the significance of a correlation coefficient?
+
+23. Define the chi-square distribution.
+
+24. State the assumptions of the chi-square test.
+
+25. Why are chi-square tests called non-parametric or distribution-free tests?
+
+26. What is meant by degrees of freedom in a chi-square test?
+
+27. List the three important chi-square tests discussed in the chapter.
+
+28. Explain the chi-square goodness-of-fit test.
+
+29. State the null and alternative hypotheses for the goodness-of-fit test.
+
+30. Explain the difference between observed and expected frequencies.
+
+31. State the degrees of freedom for the chi-square goodness-of-fit test.
+
+32. Explain the chi-square test of independence.
+
+33. What is a contingency table?
+
+34. Explain how expected frequencies are calculated in a contingency table.
+
+35. State the degrees of freedom for an $r\times s$ contingency table.
+
+36. Explain the chi-square test for a 2×2 contingency table.
+
+37. State the shortcut formula for a 2×2 contingency table.
+
+38. What is Yates' correction for continuity?
+
+39. When is Yates' correction applied?
+
+40. Explain the chi-square test for a population variance.
+
+41. State the assumptions required for testing a population variance using chi-square.
+
+42. What is an $F$-test?
+
+43. Explain the procedure for testing equality of two population variances.
+
+44. Why is the larger sample variance placed in the numerator in an $F$-test?
+
+45. State the degrees of freedom of the $F$ distribution used in the test.
+
+46. Distinguish between $t$, $\chi^2$, and $F$ distributions.
+
+47. Explain the historical contribution of William Sealy Gosset to small-sample statistics.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. A new variety of green gram is expected to produce 12 quintals per hectare. A random sample of 10 farmers' fields gives yields of 14.3, 12.6, 13.7, 10.9, 13.7, 12, 11.4, 12, 12.6, and 13.1 quintals per hectare. Test whether the results confirm the expectation at $\alpha=0.05$.
+
+2. The mean weekly sales of soap bars before an advertising campaign was 146.3 bars per store. After the campaign, the mean weekly sales in 22 stores was 153.7 with standard deviation 17.2. Test whether the advertising campaign was successful at $\alpha=0.05$.
+
+3. Two sources of nitrogen, ammonium chloride and urea, were compared for paddy grain yield. Test whether the two sources differ in effectiveness at $\alpha=0.05$ using the data given in the chapter.
+
+4. Explain why an $F$-test is performed before choosing between the equal-variance and unequal-variance two-sample $t$-tests.
+
+5. Two related treatments are applied to the same experimental units. Explain why an ordinary two-sample $t$-test is not appropriate and why a paired $t$-test should be used.
+
+6. Soil treatments A and B gave paired yields of 49, 53, 51, 52, 47, 50, 52, 53 and 52, 55, 52, 53, 50, 54, 54, 53 kg/plot, respectively. Test whether the treatments differ significantly at $\alpha=0.05$.
+
+7. A stimulus administered to each of 12 patients produced changes in blood pressure of 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, and 6. Test whether the stimulus is associated with an increase in blood pressure at $\alpha=0.05$.
+
+8. A correlation coefficient of 0.2 is obtained from 625 pairs of observations. Test whether the population correlation coefficient is significant.
+
+9. A genetic cross produces observed frequencies 87, 29, 32, and 12 for four phenotypic classes. Test whether the observations agree with the theoretical 9:3:3:1 ratio at $\alpha=0.05$.
+
+10. Observed frequencies of yeast cells are 103, 143, 98, 42, 8, and 6, while the corresponding expected frequencies are 106, 141, 93, 41, 14, and 5. Test the goodness of fit at $\alpha=0.05$.
+
+11. A survey classifies farms according to tenure status and soil fertility. Test whether tenure status and soil fertility are independent using the contingency table given in the chapter.
+
+12. For a 2×2 contingency table with frequencies $a$, $b$, $c$, and $d$, derive the shortcut formula for the chi-square statistic.
+
+13. In a 2×2 contingency table, one of the cell frequencies is less than 5. Explain why Yates' correction is required.
+
+14. Test the null hypothesis $\sigma^2=0.16$ against the alternative $\sigma^2>0.16$ when $s^2=0.01719$ and $n=11$ at $\alpha=0.05$.
+
+15. Two samples from normal populations have $n_1=11$, $s_1^2=21.87$, $n_2=8$, and $s_2^2=15.36$. Test the equality of population variances at $\alpha=0.05$.
+
+16. A sample of 15 observations has sample variance 12.5. Test whether the population variance is 10 at the 5% level using the appropriate chi-square test.
+
+17. Two independent samples have sample variances 25 and 16. Explain which variance should be placed in the numerator of the $F$ statistic and why.
+
+18. A sample correlation coefficient is $r=0.35$ based on 20 pairs of observations. Test whether the population correlation coefficient is significantly different from zero at $\alpha=0.05$.
+
+19. A sample of 12 observations has mean 25 and standard deviation 4. Test whether the population mean is 22 at $\alpha=0.05$.
+
+20. Two independent small samples have equal population variances. Explain which $t$-test should be used and state its degrees of freedom.
+
+### Important formulae {.unnumbered}
+
+Sample variance:
+
+$$
+s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}
+$$
+
+One-sample $t$ statistic:
+
+$$
+t=\frac{\bar{x}-\mu_0}{s/\sqrt{n}}
+$$
+
+Degrees of freedom for one-sample $t$-test:
+
+$$
+df=n-1
+$$
+
+Pooled variance:
+
+$$
+s^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}
+$$
+
+Two-sample $t$ statistic for equal variances:
+
+$$
+t=\frac{\bar{x}_1-\bar{x}_2}{s\sqrt{\frac{1}{n_1}+\frac{1}{n_2}}}
+$$
+
+Degrees of freedom for equal-variance two-sample $t$-test:
+
+$$
+df=n_1+n_2-2
+$$
+
+Welch $t$ statistic:
+
+$$
+t=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}}}
+$$
+
+Welch degrees of freedom:
+
+$$
+df=\frac{\left(\frac{s_1^2}{n_1}+\frac{s_2^2}{n_2}\right)^2}{\frac{s_1^4}{n_1^2(n_1-1)}+\frac{s_2^4}{n_2^2(n_2-1)}}
+$$
+
+Paired difference:
+
+$$
+d_i=x_i-y_i
+$$
+
+Mean paired difference:
+
+$$
+\bar{d}=\frac{\sum_{i=1}^{n}d_i}{n}
+$$
+
+Variance of paired differences:
+
+$$
+s^2=\frac{\sum_{i=1}^{n}(d_i-\bar{d})^2}{n-1}
+$$
+
+Paired $t$ statistic:
+
+$$
+t=\frac{\bar{d}}{s/\sqrt{n}}
+$$
+
+Degrees of freedom for paired $t$-test:
+
+$$
+df=n-1
+$$
+
+Test statistic for significance of correlation coefficient:
+
+$$
+t=\frac{r\sqrt{n-2}}{\sqrt{1-r^2}}
+$$
+
+Degrees of freedom for correlation test:
+
+$$
+df=n-2
+$$
+
+Chi-square goodness-of-fit statistic:
+
+$$
+\chi^2=\sum_{i=1}^{n}\frac{(O_i-E_i)^2}{E_i}
+$$
+
+Degrees of freedom for goodness-of-fit test:
+
+$$
+df=n-1
+$$
+
+Expected frequency in an $r\times s$ contingency table:
+
+$$
+E_{ij}=\frac{(A_i)(B_j)}{N}
+$$
+
+Chi-square test of independence:
+
+$$
+\chi^2=\sum_{i=1}^{r}\sum_{j=1}^{s}\frac{(O_{ij}-E_{ij})^2}{E_{ij}}
+$$
+
+Degrees of freedom for an $r\times s$ contingency table:
+
+$$
+df=(r-1)(s-1)
+$$
+
+Chi-square statistic for a 2×2 contingency table:
+
+$$
+\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}
+$$
+
+Yates' corrected chi-square statistic:
+
+$$
+\chi^2=\frac{n\left(|ad-bc|-\frac{n}{2}\right)^2}{C_1C_2R_1R_2}
+$$
+
+Chi-square test statistic for population variance:
+
+$$
+\chi^2=\frac{(n-1)s^2}{\sigma_0^2}
+$$
+
+Degrees of freedom for chi-square variance test:
+
+$$
+df=n-1
+$$
+
+$F$ statistic:
+
+$$
+F=\frac{s_1^2}{s_2^2},\quad s_1^2>s_2^2
+$$
+
+Degrees of freedom for $F$ test:
+
+$$
+df_1=n_1-1,\qquad df_2=n_2-1
+$$
+
+### Quick revision {.unnumbered}
+
+- Small sample → generally $n<30$.
+- Small sample theory → study of sampling distributions for small samples.
+- Important small-sample distributions → $t$, $\chi^2$, and $F$.
+- Student's $t$-test → used mainly for small samples when $\sigma$ is unknown.
+- Basic $t$-test assumptions → normal parent population, random sample, and unknown population standard deviation.
+- One-sample $t$-test → tests a population mean against a specified value.
+- One-sample $t$ degrees of freedom → $n-1$.
+- Two-sample $t$-test → compares two population means.
+- Equal variances → use pooled variance.
+- Equal-variance two-sample $t$ degrees of freedom → $n_1+n_2-2$.
+- Unequal variances → use Welch's $t$-test.
+- Welch's $t$-test uses separate sample variance terms.
+- Welch's degrees of freedom are generally not an integer and are calculated using the Welch-Satterthwaite formula.
+- Paired $t$-test → compares two related observations.
+- Examples of paired data → before and after measurements on the same experimental unit.
+- Paired $t$-test is performed on the differences within pairs.
+- Paired $t$ degrees of freedom → $n-1$.
+- Correlation test → tests whether the population correlation coefficient is zero.
+- For the correlation test, $H_0:\rho=0$.
+- Correlation test degrees of freedom → $n-2$.
+- Chi-square tests → based on the chi-square distribution.
+- Chi-square tests in this chapter are non-parametric or distribution-free tests.
+- Important chi-square tests → goodness of fit, independence of attributes, and population variance.
+- Goodness-of-fit test → compares observed and expected frequencies.
+- Goodness-of-fit null hypothesis → no significant difference between theory and observation.
+- Goodness-of-fit test is right-tailed.
+- Goodness-of-fit degrees of freedom → $n-1$ when no parameter is estimated.
+- Independence test → determines whether two attributes are independent.
+- Contingency table → arrangement of frequencies for combinations of categorical attributes.
+- Expected frequency → row total × column total ÷ grand total.
+- $r\times s$ contingency table degrees of freedom → $(r-1)(s-1)$.
+- 2×2 contingency table degrees of freedom → 1.
+- Yates' correction → used for a 2×2 table when a cell frequency is less than 5, as specified in this chapter.
+- Population variance test → tests a specified value of $\sigma^2$.
+- Chi-square variance statistic → $\frac{(n-1)s^2}{\sigma_0^2}$.
+- $F$-test → tests equality of two population variances.
+- Larger sample variance → always placed in the numerator of $F$.
+- Therefore, $F\geq1$.
+- $F$ degrees of freedom → $n_1-1$ and $n_2-1$.
+- In hypothesis testing, compare the calculated statistic with the appropriate table value.
+- For a two-tailed $t$-test → reject $H_0$ when $|t|$ exceeds the critical value.
+- For a right-tailed $t$-test → reject $H_0$ when $t$ exceeds the critical value.
+- For a left-tailed $t$-test → reject $H_0$ when $t$ is less than the negative critical value.
+- For chi-square tests → reject $H_0$ when calculated $\chi^2$ exceeds the table value.
+- For the $F$-test → reject $H_0$ when calculated $F$ exceeds the table value.
+- William Sealy Gosset developed the $t$ distribution and published under the name "Student".
+- Student's $t$ distribution has heavier tails than the normal distribution.
+
+### Answers to fill in the blanks {.unnumbered}
+
+1. 30
+2. Small
+3. $\chi^2$; $F$; $t$
+4. Unknown
+5. Normal
+6. Random
+7. $n-1$
+8. $\mu_0$
+9. Standard deviation
+10. Pooled
+11. Welch
+12. $n_1+n_2-2$
+13. Welch-Satterthwaite
+14. Related
+15. Difference
+16. $n-1$
+17. $t$
+18. 0
+19. $n-2$
+20. Chi-square
+21. Non
+22. Expected
+23. Karl Pearson
+24. Observed; expected
+25. $n-1$
+26. Right
+27. Attributes
+28. Contingency
+29. Row; column
+30. $(r-1)(s-1)$
+31. 1
+32. 2×2
+33. $\sigma_0^2$
+34. $n-1$
+35. Variances
+36. Larger
+37. Greater
+38. $n_1-1$; $n_2-1$
+39. Gosset
+40. Student
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  Given $n=10$, $\bar{x}=12.63$, $s=1.0853$, $\mu_0=12$. Using @eq-t-single, $t=\frac{12.63-12}{1.0853/\sqrt{10}}=1.835$, with $df=9$. At $\alpha=0.05$ (two-tailed), the table value is 2.262; since $|1.835|<2.262$, we do not reject $H_0$. There is insufficient evidence that the mean yield differs from 12 quintals per hectare.
+
+2.  Given $n=22$, $\bar{x}=153.7$, $s=17.2$, $\mu_0=146.3$. To test whether the campaign was successful, $H_0:\mu=146.3$ and $H_1:\mu>146.3$ (right-tailed). Using @eq-t-single, $t=\frac{153.7-146.3}{17.2/\sqrt{22}}\approx2.02$, with $df=21$. At $\alpha=0.05$, the one-tailed critical value is approximately 1.721; since $2.02>1.721$, we reject $H_0$. There is significant evidence that the advertising campaign increased weekly sales.
+
+3.  The two treatments are applied to independent groups, so an independent two-sample $t$-test is appropriate. First test the equality of the population variances using the $F$-test. If the variances are homogeneous, use @eq-t-two-equal with the pooled variance; if unequal, use Welch's test, @eq-t-welch. The decision is made by comparing the calculated $t$ with the appropriate critical value.
+
+4.  The equal-variance two-sample $t$-test assumes $\sigma_1^2=\sigma_2^2$, so the equality of population variances should first be assessed. The $F$-test is used for this purpose: if the variances can be regarded as equal, the pooled-variance $t$-test is used; if unequal, Welch's $t$-test is used.
+
+5.  When two observations are obtained from the same experimental unit, the observations are related and are not independent, so the analysis should focus on the within-unit differences rather than treating the two sets as independent samples. The paired $t$-test is appropriate because it tests whether the mean paired difference is significantly different from zero.
+
+6.  For each plot, $d_i=A_i-B_i$, giving $\bar{d}=-2$ and $s=1.309$. Using @eq-t-paired, $t=\frac{-2}{1.309/\sqrt{8}}=-4.321$, with $df=7$. At $\alpha=0.05$, the two-tailed critical value is 2.365; since $|-4.321|>2.365$, we reject $H_0$. There is a significant difference between treatments A and B; since $\bar{d}$ is negative, treatment B produced the higher mean yield.
+
+7.  Let $d$ denote the change in blood pressure, so $H_0:\mu_d=0$ and $H_1:\mu_d>0$. The observed differences are $5,2,8,-1,3,0,-2,1,5,0,4,6$, with mean $\bar{d}=\frac{31}{12}=2.583$ and sample standard deviation $s=3.088$. Using @eq-t-paired, $t=\frac{2.583}{3.088/\sqrt{12}}\approx2.90$, with $df=11$. At $\alpha=0.05$ for a one-tailed test, the critical value is approximately 1.796; since $2.90>1.796$, we reject $H_0$. There is significant evidence that the stimulus is associated with an increase in blood pressure.
+
+8.  Given $r=0.2$, $n=625$, so $H_0:\rho=0$ and $H_1:\rho\neq0$. Using @eq-t-corr, $t=\frac{0.2\sqrt{623}}{\sqrt{1-0.2^2}}=5.095$, with $df=623$. At the 5% level, the critical value is approximately 1.96; since $5.095>1.96$, we reject $H_0$. There is a significant correlation in the population.
+
+9.  The observed frequencies are $87,29,32,12$ with expected ratio $9:3:3:1$ and $N=160$, giving expected frequencies $90,30,30,10$. Using @eq-chi-gof, $\chi^2=\sum\frac{(O-E)^2}{E}=0.667$, with $df=3$. At $\alpha=0.05$, $\chi^2_{0.05,3}=7.815$; since $0.667<7.815$, we do not reject $H_0$. The observed data agree with the theoretical 9:3:3:1 ratio.
+
+10. Using @eq-chi-gof with the given observed and expected frequencies, $\chi^2=\frac{(103-106)^2}{106}+\frac{(143-141)^2}{141}+\frac{(98-93)^2}{93}+\frac{(42-41)^2}{41}+\frac{(8-14)^2}{14}+\frac{(6-5)^2}{5}\approx3.18$, with $df=5$. At $\alpha=0.05$, the critical value is approximately 11.070; since $3.18<11.070$, we do not reject $H_0$. The observed frequencies do not differ significantly from the expected frequencies.
+
+11. $H_0$: the two attributes are independent; $H_1$: the two attributes are not independent. Using @eq-expected for each cell, the calculated chi-square value given in the chapter is $\chi^2_{\text{cal}}=26.3$. The table value at 4 degrees of freedom and $\alpha=0.05$ is $\chi^2_{\text{tab}}=9.488$; since $26.3>9.488$, we reject $H_0$. Tenure status and soil fertility are not independent.
+
+12. For a 2×2 table with cell frequencies $a$, $b$, $c$, $d$ and total $n$, @eq-chi-2x2 gives $\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}$, where $R_1,R_2$ are the row totals and $C_1,C_2$ are the column totals. The degrees of freedom are $df=(2-1)(2-1)=1$.
+
+13. For a 2×2 table, the degrees of freedom are only 1. If a cell frequency is less than 5, the usual pooling procedure would eliminate the only degree of freedom, so Yates' correction for continuity is used instead, giving the corrected statistic in @eq-yates.
+
+14. Given $\sigma_0^2=0.16$, $s^2=0.01719$, $n=11$, so $H_0:\sigma^2=0.16$ and $H_1:\sigma^2>0.16$. Using @eq-chi-var, $\chi^2=\frac{10(0.01719)}{0.16}=1.0744$, with $df=10$. Since the calculated value is much smaller than the right-tailed critical value at $\alpha=0.05$, we do not reject $H_0$. There is insufficient evidence that the population variance is greater than 0.16.
+
+15. Given $n_1=11$, $s_1^2=21.87$, $n_2=8$, $s_2^2=15.36$, so $H_0:\sigma_1^2=\sigma_2^2$ and $H_1:\sigma_1^2>\sigma_2^2$. Since $21.87>15.36$, using @eq-f, $F=\frac{21.87}{15.36}=1.424$, with $df_1=10$ and $df_2=7$. The calculated value is less than the corresponding critical value at $\alpha=0.05$, so we do not reject $H_0$. There is insufficient evidence that the two population variances differ.
+
+16. Given $n=15$, $s^2=12.5$, $\sigma_0^2=10$, so $H_0:\sigma^2=10$ and $H_1:\sigma^2\neq10$. Using @eq-chi-var, $\chi^2=\frac{14(12.5)}{10}=17.5$, with $df=14$. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at $\alpha/2=0.025$; the decision is made by determining whether 17.5 lies in the rejection region.
+
+17. The larger sample variance should be placed in the numerator. Since $25>16$, using @eq-f, $F=\frac{25}{16}=1.5625$; this ensures $F\geq1$ and simplifies the comparison with the upper-tail $F$ critical value.
+
+18. Given $r=0.35$, $n=20$, so $H_0:\rho=0$ and $H_1:\rho\neq0$. Using @eq-t-corr, $t=\frac{0.35\sqrt{18}}{\sqrt{1-0.35^2}}\approx1.585$, with $df=18$. At $\alpha=0.05$, the two-tailed critical value is approximately 2.101; since $1.585<2.101$, we do not reject $H_0$. There is insufficient evidence that the population correlation coefficient differs significantly from zero.
+
+19. Given $n=12$, $\bar{x}=25$, $s=4$, $\mu_0=22$, so $H_0:\mu=22$ and $H_1:\mu\neq22$. Using @eq-t-single, $t=\frac{25-22}{4/\sqrt{12}}\approx2.598$, with $df=11$. At $\alpha=0.05$, the two-tailed critical value is approximately 2.201; since $2.598>2.201$, we reject $H_0$. There is significant evidence that the population mean differs from 22.
+
+20. When two independent small samples come from populations with equal variances, use the pooled two-sample $t$-test, @eq-t-two-equal, with pooled variance $s^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}$ and degrees of freedom $df=n_1+n_2-2$.

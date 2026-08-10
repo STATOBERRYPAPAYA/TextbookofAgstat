@@ -130,11 +130,12 @@ $H_1$: $p$ $\mathbf{\neq}$ 0.5 (coin is biased)
 
 You toss the coin 10 times and note the outcomes, as shown in @tbl-cointoss.
 
+|     |     |     |     |     |     |     |     |     |     |     |
+|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
 | **Toss No.** | 1   | 2   | 3   | 4   | 5   | 6   | 7   | 8   | 9   | 10  |
-|:-------------|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
 | **Result**   | H   | H   | H   | H   | T   | H   | T   | H   | H   | H   |
+: Results of tossing a coin 10 times {#tbl-cointoss .bordered}  
 
-: Results of 10 coin tosses {#tbl-cointoss .bordered}
 
 In hypothesis testing, acceptance or rejection of the null hypothesis is based on a **decision rule**, and this rule is driven by a quantity called the **test statistic**.
 
@@ -232,7 +233,7 @@ Sampling distribution of a test statistic: The probability distribution of all p
 You will reject the null hypothesis if the test statistic falls in a particular region of the sampling distribution. This region is called the **region of rejection** (also known as the **critical region**). The complementary region, where the test statistic leads to non-rejection of $H_0$, is called the **region of acceptance**.
 
 ```{r region1, echo=FALSE, fig.cap='Acceptance and rejection region in the sampling distribution of the test statistic', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/region.png"))
+knitr::include_graphics(rep("images/hypotest/region.png"))
 ```
 
 -   Size of the region of rejection, which is also the probability of type I error = level of significance = $\alpha$
@@ -241,7 +242,7 @@ knitr::include_graphics(rep("images/region.png"))
 The *value of the test statistic* that separates the region of acceptance from the region of rejection is called the **critical value**. Decision on null hypothesis is made based on @sec-decrule.
 
 ```{r region2, echo=FALSE, fig.cap='Critical value of the test statistic', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/region2.png"))
+knitr::include_graphics(rep("images/hypotest/region2.png"))
 ```
 
 ## One-tailed and two-tailed tests
@@ -265,13 +266,13 @@ We would reject $H_0$ if the test statistic falls towards the **right** side. Th
 **Left-tailed test**: Critical region is on the left side of the sampling distribution.
 
 ```{r tailed, echo=FALSE, fig.cap='Left-tailed test: Critical region towards left side (shown is the Student t distribution for 20 degrees of freedom)', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/left.png"))
+knitr::include_graphics(rep("images/hypotest/left.png"))
 ```
 
 **Right-tailed test**: Critical region is on the right side of the sampling distribution.
 
 ```{r tailed2, echo=FALSE, fig.cap='Right-tailed test: Critical region towards right side (shown is the Student t distribution for 20 degrees of freedom)', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/right.png"))
+knitr::include_graphics(rep("images/hypotest/right.png"))
 ```
 
 ### Two-tailed test {.unnumbered}
@@ -287,7 +288,7 @@ $H_1$: $\mu$ $\mathbf{\neq}$ 8
 In both cases, the critical region lies on **both sides** of the sampling distribution. Each tail has an area of $\alpha/2$, giving a total critical area of $\alpha$.
 
 ```{r tailed3, echo=FALSE, fig.cap='Two-tailed test: Critical region on both sides', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/twotailed.png"))
+knitr::include_graphics(rep("images/hypotest/twotailed.png"))
 ```
 
 ## Decision Rule {#sec-decrule}
@@ -336,7 +337,7 @@ The probability distribution of $X$ (Sampling distribution) under $H_0$ is given
 : Probability distribution of X (number of heads) under $H_0$ {#tbl-bindist .bordered}
 
 ```{r hypo, echo=FALSE, fig.cap='Sampling distribution of test statistic X', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/hypoplot.png"))
+knitr::include_graphics(rep("images/hypotest/hypoplot.png"))
 ```
 
 For a two-tailed test at $\alpha$ = 0.05, each tail should have an area of $\alpha/2$ = 0.025. From @tbl-bindist:
@@ -347,7 +348,7 @@ For a two-tailed test at $\alpha$ = 0.05, each tail should have an area of $\alp
 The left critical value is approximately $X$ = 2, and by symmetry the right critical value is $X$ = 8. This means: if the number of heads is **less than 2 or more than 8**, reject $H_0$ at $\alpha$ = 0.05.
 
 ```{r hypo2, echo=FALSE, fig.cap='Probability distribution of X with critical region', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/hypoplot2.png"))
+knitr::include_graphics(rep("images/hypotest/hypoplot2.png"))
 ```
 
 In our experiment, we obtained 8 heads. Since 8 equals - but does not exceed - the critical value, we **fail to reject** $H_0$ at $\alpha$ = 0.05. We do not have sufficient evidence to conclude the coin is biased.
@@ -373,8 +374,8 @@ The decision rule based on the p-value is simple:
 
 Thus, the p-value helps us decide whether the sample provides sufficient evidence to reject the null hypothesis at the chosen level of significance.
 
-```{r pval, echo=FALSE, fig.cap='p-value in a right-tailed test. The shaded region represents the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true.', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/pvalue.png"))
+```{r pval, echo=FALSE, fig.cap='p-value in a right-tailed test. The shaded region represents the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true.', out.width="80%", fig.align='center'}
+knitr::include_graphics(rep("images/hypotest/pvalue.svg"))
 ```
 
 ## Steps in hypothesis testing
