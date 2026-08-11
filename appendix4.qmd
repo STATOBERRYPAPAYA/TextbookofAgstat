@@ -1,0 +1,113 @@
+# Appendix 4 {#sec-appendix-4}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-ttable
+#| tbl-cap: "t Table: critical values of the t distribution for a given degrees of freedom (df) and cumulative probability."
+
+library(knitr)
+library(kableExtra)
+
+dt <- read.csv(
+  "csv/ttable.csv",
+  check.names = FALSE,
+  colClasses = "character"
+)
+
+dt <- rbind(dt,
+            c("Confidence Level", "0%", "50%", "60%", "70%", "80%",
+              "90%", "95%", "98%", "99%"))
+
+colnames(dt) <- c("two-tails", "1.00", "0.50", "0.40", "0.30", "0.20",
+                   "0.10", "0.05", "0.02", "0.01")
+
+dt <- rbind(c("df", "", "", "", "", "", "", "", "", ""), dt)
+
+n <- nrow(dt)
+
+# Wrap header labels in an 8px span so the stacked header rows
+# added via add_header_above() match the body font size.
+span8 <- function(x) {
+  paste0('<span style="font-size: 8px;">', x, '</span>')
+}
+
+cum_prob_labels <- c("cum. prob.", "0.50", "0.75", "0.80", "0.85",
+                      "0.90", "0.95", "0.975", "0.99", "0.995")
+one_tail_labels <- c("one-tail", "0.50", "0.25", "0.20", "0.15",
+                      "0.10", "0.05", "0.025", "0.01", "0.005")
+
+cum_prob <- setNames(rep(1, length(cum_prob_labels)), span8(cum_prob_labels))
+one_tail <- setNames(rep(1, length(one_tail_labels)), span8(one_tail_labels))
+
+out <- kbl(
+  dt,
+  escape = FALSE,
+  booktabs = FALSE,
+  align = "c"
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Arial"
+  ) %>%
+  kable_styling(
+    latex_options = c(
+      "HOLD_position",
+      "repeat_header",
+      "scale_down"
+    ),
+    bootstrap_options = c(
+      "bordered",
+      "striped",
+      "condensed"
+    )
+  ) %>%
+  add_header_above(one_tail, bold = TRUE, escape = FALSE) %>%
+  add_header_above(cum_prob, bold = TRUE, escape = FALSE) %>%
+  row_spec(
+    0,
+    bold = TRUE,
+    extra_css = paste(
+      "font-family: Arial, sans-serif;",
+      "font-size: 8px !important;"
+    )
+  ) %>%
+  row_spec(
+    n - 1,
+    bold = TRUE,
+    background = "#DCE6F1"
+  ) %>%
+  row_spec(
+    n,
+    bold = TRUE
+  ) %>%
+  column_spec(
+    1:ncol(dt),
+    extra_css = paste(
+      "font-family: Arial, sans-serif;",
+      "font-size: 8px !important;"
+    )
+  ) %>%
+  column_spec(
+    1,
+    bold = TRUE
+  )
+
+# PDF / LaTeX
+if (knitr::is_latex_output()) {
+  out <- out %>%
+    kable_styling(font_size = 6) %>%
+    landscape()
+}
+
+# HTML
+if (knitr::is_html_output()) {
+  out <- out %>%
+    scroll_box(width = "100%")
+}
+
+out
+```
+
+::: {.callout-important}
+## Note
+Row **z** in @tbl-ttable gives the critical values of the standard normal distribution, which the t distribution approaches as degrees of freedom (df) increase. For df > 1000, the t distribution is practically indistinguishable from the standard normal.
+:::

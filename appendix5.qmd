@@ -1,0 +1,94 @@
+# Appendix 5 {#sec-appendix-5}
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+#| label: tbl-ftable
+#| tbl-cap: "F Table: critical values of the F distribution at alpha = 0.05."
+
+library(knitr)
+library(kableExtra)
+
+dt <- read.csv(
+  "csv/ftable_05.csv",
+  check.names = FALSE,
+  colClasses = "character"
+)
+
+colnames(dt)[1] <- "df2"
+
+n <- nrow(dt)
+
+out <- kbl(
+  dt,
+  escape = FALSE,
+  booktabs = FALSE,
+  align = "c"
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Arial"
+  ) %>%
+  kable_styling(
+    latex_options = c(
+      "HOLD_position",
+      "repeat_header",
+      "scale_down"
+    ),
+    bootstrap_options = c(
+      "bordered",
+      "striped",
+      "condensed"
+    )
+  ) %>%
+  add_header_above(
+    c(
+      " " = 1,
+      '<span style="font-size: 8px;">df1</span>' = ncol(dt) - 1
+    ),
+    bold = TRUE,
+    escape = FALSE
+  ) %>%
+  row_spec(
+    0,
+    bold = TRUE,
+    extra_css = paste(
+      "font-family: Arial, sans-serif;",
+      "font-size: 8px !important;"
+    )
+  ) %>%
+  row_spec(
+    n,
+    bold = TRUE,
+    background = "#DCE6F1"
+  ) %>%
+  column_spec(
+    1:ncol(dt),
+    extra_css = paste(
+      "font-family: Arial, sans-serif;",
+      "font-size: 8px !important;"
+    )
+  ) %>%
+  column_spec(
+    1,
+    bold = TRUE
+  )
+
+# PDF / LaTeX
+if (knitr::is_latex_output()) {
+  out <- out %>%
+    kable_styling(font_size = 6) %>%
+    landscape()
+}
+
+# HTML
+if (knitr::is_html_output()) {
+  out <- out %>%
+    scroll_box(width = "100%")
+}
+
+out
+```
+
+::: {.callout-important}
+## Note
+Row and column headers give the denominator (df2) and numerator (df1) degrees of freedom. If the calculated F exceeds the tabulated value in @tbl-ftable, the null hypothesis is rejected at the 5% level.
+:::

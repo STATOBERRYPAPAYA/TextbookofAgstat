@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./uniformityTrials.html" rel="next">
 <link href="./smallsampleTest.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,7 +110,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -136,7 +140,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -160,7 +326,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -313,6 +480,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Factorial experiments</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -325,13 +498,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./missingPlot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -339,7 +512,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -348,19 +521,37 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -368,7 +559,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
     </ul>
@@ -385,7 +576,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#treatments" id="toc-treatments" class="nav-link" data-scroll-target="#treatments"><span class="header-section-number">16.1.1</span> Treatments</a></li>
   <li><a href="#control" id="toc-control" class="nav-link" data-scroll-target="#control"><span class="header-section-number">16.1.2</span> Control</a></li>
-  <li><a href="#experimental-units" id="toc-experimental-units" class="nav-link" data-scroll-target="#experimental-units"><span class="header-section-number">16.1.3</span> Experimental Units</a></li>
+  <li><a href="#experimental-units" id="toc-experimental-units" class="nav-link" data-scroll-target="#experimental-units"><span class="header-section-number">16.1.3</span> Experimental units</a></li>
   <li><a href="#response" id="toc-response" class="nav-link" data-scroll-target="#response"><span class="header-section-number">16.1.4</span> Response</a></li>
   <li><a href="#factors" id="toc-factors" class="nav-link" data-scroll-target="#factors"><span class="header-section-number">16.1.5</span> Factors</a></li>
   <li><a href="#factor-levels" id="toc-factor-levels" class="nav-link" data-scroll-target="#factor-levels"><span class="header-section-number">16.1.6</span> Factor levels</a></li>
@@ -408,11 +599,23 @@ window.Quarto = {
   <li><a href="#proper-plot-technique" id="toc-proper-plot-technique" class="nav-link" data-scroll-target="#proper-plot-technique"><span class="header-section-number">16.8.2</span> Proper plot technique</a></li>
   <li><a href="#appropriate-statistical-analysis" id="toc-appropriate-statistical-analysis" class="nav-link" data-scroll-target="#appropriate-statistical-analysis"><span class="header-section-number">16.8.3</span> Appropriate statistical analysis</a></li>
   </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">16.9</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#important-concepts" id="toc-important-concepts" class="nav-link" data-scroll-target="#important-concepts">Important concepts</a></li>
+  <li><a href="#important-historical-points" id="toc-important-historical-points" class="nav-link" data-scroll-target="#important-historical-points">Important historical points</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -434,10 +637,10 @@ window.Quarto = {
 
 
 <p>Design of experiments is an integral component of agricultural research. A scientifically designed experiment is a valuable tool in gaining new knowledge and developing technology. “It is the effective use of the tools of statistical design of experiments that paved the way for the green revolution”, these words of the father of the green revolution in India, Dr.&nbsp;M.S. Swaminathan, show how important the design and analysis of experiments, as well as statistical science, is for agricultural experiments.</p>
-<p>A carefully designed experiment is able to answer all the queries of a researcher with accuracy and reliability, while making efficient use of the available resources. Thus, for successful experimentation, it is highly desirable that scientists and researchers of scientific disciplines, including the agricultural sciences, understand the basic principles of designing an experiment and of analysing the resultant data from the completed experiment. It may be emphasised that a researcher should always consult a statistician before, during, and after experimentation, if he is not convinced enough about using a design for his experiment or an analysis technique for his data.</p>
+<p>A carefully designed experiment is able to answer all the queries of a researcher with accuracy and reliability, while making efficient use of the available resources. Thus, for successful experimentation, it is highly desirable that scientists and researchers of scientific disciplines, including the agricultural sciences, understand the basic principles of designing an experiment and of analyzing the resultant data from the completed experiment. It may be emphasized that a researcher should always consult a statistician before, during, and after experimentation, if he is not convinced enough about using a design for his experiment or an analysis technique for his data.</p>
 <p>Any scientific investigation involves the formulation of certain assertions (or hypotheses) whose validity is examined through the data generated from an experiment conducted for the purpose.</p>
 <p>The term <strong>experiment</strong> is defined as the systematic procedure carried out under controlled conditions in order to discover an unknown effect, to test or establish a hypothesis, or to illustrate a known effect.</p>
-<p>In agricultural research, Design of Experiments (DoE) is the statistical methodology for planning agricultural experiments so that treatment effects can be estimated accurately, efficiently, and without bias. It involves the systematic allocation of treatments to experimental units while controlling experimental variability through the principles of randomization, replication, and local control. The principles - <strong>randomization</strong>, <strong>replication</strong> and <strong>local control</strong> is termed as <strong>Basic Principles of Design</strong>, explained in <a href="#sec-basicP" class="quarto-xref"><span>Section 16.7</span></a>. The ultimate goal is to draw valid scientific conclusions about the performance of agricultural treatments under field or laboratory conditions.</p>
+<p>In agricultural research, Design of Experiments (DoE) is the statistical methodology for planning agricultural experiments so that treatment effects can be estimated accurately, efficiently, and without bias. It involves the systematic allocation of treatments to experimental units while controlling experimental variability through the principles of randomization, replication, and local control. These three principles, <strong>randomization</strong>, <strong>replication</strong>, and <strong>local control</strong>, are together termed the <strong>Basic Principles of Design</strong>, explained in <a href="#sec-basicP" class="quarto-xref"><span>Section 16.7</span></a>. The ultimate goal is to draw valid scientific conclusions about the performance of agricultural treatments under field or laboratory conditions.</p>
 <p>DoE is a structured approach for conducting experiments. The primary objectives of designing agricultural experiments are to ensure:</p>
 <ul>
 <li><p>Validity: The experiment accurately measures the true effect of the treatments by minimizing bias and controlling extraneous sources of variation.</p></li>
@@ -472,7 +675,7 @@ window.Quarto = {
 <p>Including a control treatment helps the researcher determine whether the observed changes are due to the treatments under investigation or would have occurred even without them.</p>
 </section>
 <section id="experimental-units" class="level3" data-number="16.1.3">
-<h3 data-number="16.1.3" class="anchored" data-anchor-id="experimental-units"><span class="header-section-number">16.1.3</span> Experimental Units</h3>
+<h3 data-number="16.1.3" class="anchored" data-anchor-id="experimental-units"><span class="header-section-number">16.1.3</span> Experimental units</h3>
 <p>An <strong>experimental unit</strong> is the smallest unit of the experiment to which a treatment is independently applied. It is the unit on which observations are made and from which data are collected. The choice of the experimental unit depends on the nature of the experiment and the objective of the study.</p>
 <p>In agricultural field experiments, an experimental unit is usually a plot of land. In pot culture experiments, each pot is an experimental unit. In animal experiments, an individual animal or a group of animals may serve as the experimental unit, depending on how the treatments are applied. Similarly, in laboratory experiments, an experimental unit may be a Petri dish, a test tube, a culture flask, or any other unit that receives a treatment independently.</p>
 <p><strong>Examples of experimental units</strong></p>
@@ -492,15 +695,15 @@ window.Quarto = {
 </section>
 <section id="factors" class="level3" data-number="16.1.5">
 <h3 data-number="16.1.5" class="anchored" data-anchor-id="factors"><span class="header-section-number">16.1.5</span> Factors</h3>
-<p>Factors are the variables whose influence on a response variable is being studied in the experiment. If only one factor is being studied in an experiment, then such an experiment is called a single-factor experiment. If more than one factor is being studied simultaneously in an experiment, then such an experiment is called a multi-factor or factorial experiment. The term factor is commonly used in the case of factorial experiments. For example, temperature and concentration of chemicals in a chemical experiment are two factors; nitrogen, phosphorus, and potassium fertilisers are three factors in an agronomic experiment. Dose and time of application of a chemical formulation are two factors in a laboratory experiment.</p>
+<p>Factors are the variables whose influence on a response variable is being studied in the experiment. If only one factor is being studied in an experiment, then such an experiment is called a single-factor experiment. If more than one factor is being studied simultaneously in an experiment, then such an experiment is called a multi-factor or factorial experiment. The term factor is commonly used in the case of factorial experiments. For example, temperature and concentration of chemicals in a chemical experiment are two factors; nitrogen, phosphorus, and potassium fertilizers are three factors in an agronomic experiment. Dose and time of application of a chemical formulation are two factors in a laboratory experiment.</p>
 </section>
 <section id="factor-levels" class="level3" data-number="16.1.6">
 <h3 data-number="16.1.6" class="anchored" data-anchor-id="factor-levels"><span class="header-section-number">16.1.6</span> Factor levels</h3>
-<p>The term factor levels, or simply levels, is used to denote the values or settings that a factor takes in a factorial experiment. For example, doses of a nitrogenous fertiliser as 0 kg/ha, 30 kg/ha, and 80 kg/ha are three levels of the factor <em>fertiliser</em>. Concentrations of 10%, 20%, 30%, and 40% of a solute in a solution are four levels of the factor <em>solute</em> in a laboratory experiment. Presence of a polythene sheet on the surface of the soil, or its absence, could be two levels of the factor <em>management practice</em> in a water management study.</p>
+<p>The term factor levels, or simply levels, is used to denote the values or settings that a factor takes in a factorial experiment. For example, doses of a nitrogenous fertilizer as 0 kg/ha, 30 kg/ha, and 80 kg/ha are three levels of the factor <em>fertilizer</em>. Concentrations of 10%, 20%, 30%, and 40% of a solute in a solution are four levels of the factor <em>solute</em> in a laboratory experiment. Presence of a polythene sheet on the surface of the soil, or its absence, could be two levels of the factor <em>management practice</em> in a water management study.</p>
 </section>
 <section id="observational-unit" class="level3" data-number="16.1.7">
 <h3 data-number="16.1.7" class="anchored" data-anchor-id="observational-unit"><span class="header-section-number">16.1.7</span> Observational unit</h3>
-<p>An observational unit is a unit on which the response variables are measured. Observational units are often the same as experimental units, but this may not always be true. The mistake of confusing the observational unit with the experimental unit leads to pseudo-replication, as discussed in a paper by <span class="citation" data-cites="hurlbert">(<a href="references.html#ref-hurlbert" role="doc-biblioref">Hurlbert 1984</a>)</span>. Consider an experiment to investigate the effects of ultraviolet (UV) levels on the growth of smolt. The experiment is conducted in two tanks, where one tank receives high levels of UV light and the other receives no UV light. Fish are placed in each tank, and at the end of the experiment the growth of the individual fish is measured. In this experiment, the tanks are the experimental units but the observational units are the smolts. The treatments, presence and absence of UV light, are applied to the tanks and not to individual fish, but a whole group of fish is simultaneously exposed to the UV radiation. Here any tank effect is completely confounded with the treatment effect and cannot be separated. Another example is where inorganic fertilisers are applied to plots in a field containing some plants. At the time of harvest, not all the plants in the plot are harvested; only a sample of plants is harvested. In this case, once again, the plot is the experimental unit to which fertilisers are applied, but the observational units are the plants sampled.</p>
+<p>An observational unit is a unit on which the response variables are measured. Observational units are often the same as experimental units, but this may not always be true. The mistake of confusing the observational unit with the experimental unit leads to pseudo-replication, as discussed in a paper by <span class="citation" data-cites="hurlbert">(<a href="references.html#ref-hurlbert" role="doc-biblioref">Hurlbert 1984</a>)</span>. Consider an experiment to investigate the effects of ultraviolet (UV) levels on the growth of smolt. The experiment is conducted in two tanks, where one tank receives high levels of UV light and the other receives no UV light. Fish are placed in each tank, and at the end of the experiment the growth of the individual fish is measured. In this experiment, the tanks are the experimental units but the observational units are the smolts. The treatments, presence and absence of UV light, are applied to the tanks and not to individual fish, but a whole group of fish is simultaneously exposed to the UV radiation. Here any tank effect is completely confounded with the treatment effect and cannot be separated. Another example is where inorganic fertilizers are applied to plots in a field containing some plants. At the time of harvest, not all the plants in the plot are harvested; only a sample of plants is harvested. In this case, once again, the plot is the experimental unit to which fertilizers are applied, but the observational units are the plants sampled.</p>
 </section>
 </section>
 <section id="experimental-error" class="level2" data-number="16.2">
@@ -517,14 +720,14 @@ window.Quarto = {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Definition
+<span class="screen-reader-only">Important</span>Definition
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>The variations in response caused by extraneous factors are known as <strong>experimental error</strong>.</p>
 </div>
 </div>
-<p>Our aim in designing an experiment will be to minimise the experimental error.</p>
+<p>Our aim in designing an experiment will be to minimize the experimental error.</p>
 </section>
 <section id="a-simple-example" class="level2" data-number="16.3">
 <h2 data-number="16.3" class="anchored" data-anchor-id="a-simple-example"><span class="header-section-number">16.3</span> A simple example</h2>
@@ -534,7 +737,7 @@ Definition
 <div id="fig-orgmanure" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-orgmanure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/organicmanure.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+<img src="images/design/organicmanure.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-orgmanure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.1: Poultry manure, cow dung, and coir-pith compost
@@ -549,7 +752,7 @@ Figure&nbsp;16.1: Poultry manure, cow dung, and coir-pith compost
 <div id="fig-orgtopot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-orgtopot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/orgtopot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+<img src="images/design/orgtopot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-orgtopot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.2: Treatments given to the potted plants
@@ -564,7 +767,7 @@ Figure&nbsp;16.2: Treatments given to the potted plants
 <div id="fig-yield" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-yield-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/yield.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
+<img src="images/design/yield.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-yield-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.3: Yield observed from the plants
@@ -573,7 +776,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 </div>
 </div>
 </div>
-<p>Can you immediately conclude that poultry manure is the best organic manure?. The answer is No.&nbsp;Before drawing such a conclusion, think about the following questions:</p>
+<p>Can you immediately conclude that poultry manure is the best organic manure? The answer is No.&nbsp;Before drawing such a conclusion, think about the following questions:</p>
 <ul>
 <li>What if another person repeats the same experiment and gets different results?</li>
 <li>Could the differences in plant growth be due to natural variation among the plants rather than the manure?</li>
@@ -615,7 +818,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 <h2 data-number="16.6" class="anchored" data-anchor-id="brief-history"><span class="header-section-number">16.6</span> Brief history</h2>
 <p>The statistical principles underlying the design of experiments were pioneered by R. A. Fisher in the 1920s and 1930s at Rothamsted Experimental Station, an agricultural research station around forty kilometres north of London. Fisher showed the way to draw valid conclusions from field experiments where nuisance variables such as temperature, soil conditions, and rainfall are present. He introduced the concept of analysis of variance (ANOVA) for partitioning the variation present in data into that (a) due to attributable factors and (b) due to chance factors. The methodologies he and his colleague Frank Yates developed are now widely used and have had a profound impact on agricultural research. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span></p>
 <p>Though experimental design was initially introduced in an agricultural context, the method has been applied successfully in industry since the 1940s. George Box and his co-workers developed experimental design procedures for optimising chemical processes, particularly response surface designs for the chemical and process industries. <span class="citation" data-cites="Montgomery2017">(<a href="references.html#ref-Montgomery2017" role="doc-biblioref">Montgomery 2017</a>)</span></p>
-<p>More recently, experimental designs are also being used in clinical trials. This evolved in the 1960s, when medical advances had previously been based on unreliable data. For example, doctors used to examine a few patients and publish papers based on such data. The biases resulting from these kinds of studies became known. This led to a move toward making the randomised double-blind clinical trial the standard for approval of any new product, medical device, or procedure. The scientific application of valid designing and analysis following proper statistical methods became very important in clinical trials.</p>
+<p>More recently, experimental designs are also being used in clinical trials. This evolved in the 1960s, when medical advances had previously been based on unreliable data. For example, doctors used to examine a few patients and publish papers based on such data. The biases resulting from these kinds of studies became known. This led to a move toward making the randomized double-blind clinical trial the standard for approval of any new product, medical device, or procedure. The scientific application of valid designing and analysis following proper statistical methods became very important in clinical trials.</p>
 <p>Even more recently, experimental design techniques have started gaining popularity in the area of computer-aided design and engineering using computer and simulation models, including applications in manufacturing industries.</p>
 </section>
 <section id="sec-basicP" class="level2" data-number="16.7">
@@ -626,7 +829,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -647,7 +850,7 @@ Note
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -659,7 +862,7 @@ Note
 <div id="fig-random" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-random-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/random.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
+<img src="images/design/random.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-random-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.4: Taking a lot from a bowl is also a process of randomization
@@ -689,7 +892,7 @@ Figure&nbsp;16.4: Taking a lot from a bowl is also a process of randomization
 <div id="fig-field" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/field.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+<img src="images/design/field.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-field-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.5: A field with a fertility gradient from left to right
@@ -707,7 +910,7 @@ Figure&nbsp;16.5: A field with a fertility gradient from left to right
 <div id="fig-field2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-field2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/field2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+<img src="images/design/field2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-field2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.6: Plots are grouped into blocks
@@ -739,14 +942,13 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>The lady who could taste the difference</strong></p>
-<p>One summer afternoon in the late 1920s at the Rothamsted Experimental Station in England, a group of scientists paused for tea. A lady among them, the algologist Dr.&nbsp;Muriel Bristol, declared that she could tell whether the milk had been poured into the cup before the tea or the tea before the milk. The idea seemed absurd to most of those present, since surely the finished cup is the same either way. But one young statistician at the table, <strong>Ronald A. Fisher</strong>, did not dismiss her. Instead he asked a far more interesting question: how could one <em>design an experiment</em> to find out whether her claim was true?</p>
-<p>Fisher reasoned that offering her a single cup would prove nothing, because she could guess correctly by pure chance half the time. Nor would it help to line up a few cups of one kind and then a few of the other, because she might detect the pattern or the order rather than the taste. His solution contained, in miniature, the whole logic of experimental design. He prepared eight cups, four made one way and four the other, and presented them to her <em>in a completely random order</em>, telling her only that there were four of each. The randomization ensured that no hidden cue, and no lucky ordering, could be mistaken for genuine ability. He could then count how many she classified correctly and calculate exactly how likely such a result would be if she were merely guessing.</p>
-<p>This small teatime puzzle became the opening chapter of Fisher’s landmark 1935 book <em>The Design of Experiments</em>, and from it grew the ideas of randomization, the null hypothesis, and the careful accounting of chance that underpin every field trial in this book. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span> The principles you are about to study, randomization, replication, and local control, were not born in a rice field or a laboratory, but at a tea table, from a willingness to take a seemingly foolish claim seriously and ask how it could be tested. (And by several accounts, the lady identified all eight cups correctly.)</p>
+<p><strong>Darwin’s paired plants, decades before “local control” had a name</strong></p>
+<p>In 1876, Charles Darwin published a book describing eleven years of patient experiments comparing cross-fertilised and self-fertilised plants. He suspected that cross-fertilised seedlings grew taller and stronger, but he faced a familiar problem: pots differ from one another in soil, light, and moisture, so any two plants grown in different pots are not really comparable. Darwin’s solution was simple and elegant. In each pot, he planted one cross-fertilised seed and one self-fertilised seed side by side, so that both experienced exactly the same conditions. Only the difference in height between the two members of each pair was used to judge which type of seedling grew better.</p>
+<p>Darwin never used the term “local control,” and the formal theory of experimental design was still half a century away. But by pairing his plants within the same pot, he was already doing what every blocked design does: grouping similar units together so that the treatment comparison is not clouded by differences between pots. Decades later, in his own book <em>The Design of Experiments</em>, Ronald Fisher returned to Darwin’s original data on paired maize seedlings and used it to illustrate the paired <em>t</em>-test, a fitting tribute to an experiment that anticipated one of the basic principles of design long before it had a name.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -755,13 +957,218 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“Randomization is too important to be left to chance.” - J. D. Petruccelli</strong></p>
+<p><strong>“Randomization is too important to be left to chance.”</strong><br>
+<strong>- J. D. Petruccelli</strong></p>
 </div>
 </div>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="16.9">
+<h2 data-number="16.9" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">16.9</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>Design of Experiments is a statistical methodology for planning experiments so that treatment effects can be estimated accurately, efficiently, and without __________.</p></li>
+<li><p>A systematic procedure carried out under controlled conditions to discover an unknown effect or test a hypothesis is called an __________.</p></li>
+<li><p>The three basic principles of experimental design are __________, __________, and __________.</p></li>
+<li><p>The object of comparison in an experiment is called a __________.</p></li>
+<li><p>A treatment used as a standard for comparison is called a __________ treatment.</p></li>
+<li><p>The smallest unit to which a treatment is independently applied is called the __________ unit.</p></li>
+<li><p>The measurable outcome observed after applying a treatment is called the __________.</p></li>
+<li><p>A variable whose influence on a response is being studied is called a __________.</p></li>
+<li><p>The values or settings taken by a factor are called factor __________.</p></li>
+<li><p>A unit on which the response variable is measured is called the __________ unit.</p></li>
+<li><p>The variation among experimental units receiving the same treatment is called __________ error.</p></li>
+<li><p>The main objective of experimental design is to __________ experimental error.</p></li>
+<li><p>The process of assigning treatments to experimental units purely by chance is called __________.</p></li>
+<li><p>When every experimental unit has an equal chance of receiving any treatment, it is called __________ randomization.</p></li>
+<li><p>The process of applying the same treatment to more than one experimental unit is called __________.</p></li>
+<li><p>Replication helps in estimating the __________ error variance.</p></li>
+<li><p>Grouping similar experimental units into blocks before assigning treatments is called __________ control.</p></li>
+<li><p>Local control is also known as __________.</p></li>
+<li><p>In a block, experimental units should be as __________ as possible.</p></li>
+<li><p>A design in which every block contains all the treatments is called a __________ Block Design.</p></li>
+<li><p>Plants located along the border of a plot may be affected by neighbouring plots; this is called the __________ effect.</p></li>
+<li><p>The inner portion of a plot from which observations are recorded is called the __________ plot.</p></li>
+<li><p>All management practices other than the treatments under study should be kept as __________ as possible.</p></li>
+<li><p>ANCOVA can improve precision by adjusting the response variable using one or more __________ variables.</p></li>
+<li><p>The statistical principles underlying the design of experiments were pioneered by __________.</p></li>
+<li><p>R. A. Fisher developed the principles of experimental design at __________ Experimental Station.</p></li>
+<li><p>Fisher introduced __________ of Variance for partitioning variation in experimental data.</p></li>
+<li><p>The three basic principles of design are collectively called the __________ Principles of Design.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Define an experiment.</p></li>
+<li><p>Define Design of Experiments.</p></li>
+<li><p>State the main objectives of Design of Experiments.</p></li>
+<li><p>Explain the importance of Design of Experiments in agricultural research.</p></li>
+<li><p>What is meant by validity of an experiment?</p></li>
+<li><p>What is meant by reliability of an experiment?</p></li>
+<li><p>What is meant by replicability of an experiment?</p></li>
+<li><p>What is meant by optimality in experimental design?</p></li>
+<li><p>Define treatment and give suitable agricultural examples.</p></li>
+<li><p>What is a control treatment? Give an example.</p></li>
+<li><p>Define an experimental unit with examples.</p></li>
+<li><p>Distinguish between an experimental unit and an observational unit.</p></li>
+<li><p>Define response and give examples of responses in agricultural experiments.</p></li>
+<li><p>What is a factor? Give examples.</p></li>
+<li><p>What are factor levels? Give an example.</p></li>
+<li><p>Define observational unit.</p></li>
+<li><p>Explain experimental error.</p></li>
+<li><p>Why is experimental error important in an experiment?</p></li>
+<li><p>What are extraneous factors? Give examples.</p></li>
+<li><p>Explain the importance of estimating experimental error.</p></li>
+<li><p>State the characteristics of a good experimental design.</p></li>
+<li><p>Explain randomization and its importance.</p></li>
+<li><p>What is complete randomization?</p></li>
+<li><p>Explain replication and its importance.</p></li>
+<li><p>Why is replication necessary for statistical analysis?</p></li>
+<li><p>Explain local control or blocking.</p></li>
+<li><p>Why is blocking particularly useful in agricultural field experiments?</p></li>
+<li><p>What are the three basic principles of experimental design?</p></li>
+<li><p>Explain how randomization helps to reduce bias.</p></li>
+<li><p>Explain how replication improves precision.</p></li>
+<li><p>Explain how local control reduces experimental error.</p></li>
+<li><p>What is a Randomized Block Design?</p></li>
+<li><p>Why should all treatments be included in every block in an RBD?</p></li>
+<li><p>Explain the border effect.</p></li>
+<li><p>What is a net plot?</p></li>
+<li><p>Explain the importance of proper plot technique.</p></li>
+<li><p>What is meant by appropriate statistical analysis?</p></li>
+<li><p>Explain how ANCOVA can improve experimental precision.</p></li>
+<li><p>Describe the contribution of R. A. Fisher to experimental design.</p></li>
+<li><p>Explain the significance of Fisher’s work at Rothamsted Experimental Station.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>Three organic manures are applied to three different plants and the yields are 5, 4, and 3 kg. Explain why it is not scientifically valid to conclude immediately that the manure giving 5 kg is the best.</p></li>
+<li><p>Explain how natural variation among plants can affect the comparison of treatments.</p></li>
+<li><p>A researcher deliberately assigns the healthiest plants to a new fertilizer and weaker plants to the control. What principle of experimental design has been violated? Explain.</p></li>
+<li><p>Three fertilizers A, B, and C are to be tested on 15 experimental units. Explain how randomization can be used to assign the treatments.</p></li>
+<li><p>Explain why randomization should be used along with replication.</p></li>
+<li><p>An experiment compares four treatments using only one experimental unit for each treatment. Explain the major statistical limitation of this experiment.</p></li>
+<li><p>A field has a fertility gradient from one side to the other. Explain how blocking can be used to improve the experiment.</p></li>
+<li><p>A field experiment has four treatments and five blocks. Explain how the treatments should be allocated within the blocks.</p></li>
+<li><p>In an experiment, a treatment is applied to an entire plot but measurements are taken from several plants within the plot. Identify the experimental unit and observational unit.</p></li>
+<li><p>In an experiment, UV treatment is applied to two tanks and individual fish within the tanks are measured. Identify the experimental unit and observational unit and explain the problem of pseudoreplication.</p></li>
+<li><p>Explain why differences among experimental plots treated alike are used to estimate experimental error.</p></li>
+<li><p>Explain why a difference between two treatment means should be compared with the experimental error before concluding that the treatments differ.</p></li>
+<li><p>A fertilizer experiment is conducted in a field with differences in soil fertility. Explain what may happen if the fertility variation is ignored.</p></li>
+<li><p>Explain how a Randomized Block Design can separate variation due to soil fertility from experimental error.</p></li>
+<li><p>In a field experiment, plants at the edges of plots are affected by neighbouring treatments. Explain how the border effect can be controlled.</p></li>
+<li><p>Explain why observations are generally taken from the net plot rather than the border plants.</p></li>
+<li><p>An animal feeding experiment compares feeds, but the animals have different initial body weights. Explain how ANCOVA can improve the precision of the comparison.</p></li>
+<li><p>Explain why a poorly designed experiment cannot be rescued simply by using an advanced statistical analysis.</p></li>
+<li><p>Explain how proper plot management improves the precision of an agricultural experiment.</p></li>
+<li><p>A researcher wants to compare three treatments but has no replication and no method for estimating experimental error. Explain why reliable statistical conclusions cannot be made.</p></li>
+<li><p>Explain the relationship among randomization, replication, local control, and experimental error.</p></li>
+<li><p>Explain why the treatments should be randomly assigned within each block in a Randomized Block Design.</p></li>
+<li><p>Explain how a good experimental design helps in obtaining unbiased estimates of treatment effects.</p></li>
+<li><p>Explain how Design of Experiments helps in obtaining maximum information with minimum use of resources.</p></li>
+<li><p>Explain the role of Design of Experiments in making agricultural research scientifically valid and reliable.</p></li>
+</ol>
+</section>
+<section id="important-concepts" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-concepts">Important concepts</h3>
+<ul>
+<li><p>Experiment → systematic procedure conducted under controlled conditions to discover an effect, test a hypothesis, or illustrate a known effect.</p></li>
+<li><p>Design of Experiments → statistical methodology for planning experiments so that treatment effects can be estimated accurately, efficiently, and without bias.</p></li>
+<li><p>Main objectives of DoE → validity, reliability, replicability, and optimality.</p></li>
+<li><p>Treatment → any object of comparison in an experiment.</p></li>
+<li><p>Control → standard treatment used for comparison.</p></li>
+<li><p>Experimental unit → smallest unit to which a treatment is independently applied.</p></li>
+<li><p>Observation unit → unit on which the response is measured.</p></li>
+<li><p>Response → measurable outcome observed after treatment application.</p></li>
+<li><p>Factor → variable whose influence on a response is being studied.</p></li>
+<li><p>Factor level → value or setting taken by a factor.</p></li>
+<li><p>Experimental error → variation in response caused by extraneous factors among experimental units receiving the same treatment.</p></li>
+<li><p>Extraneous factors → factors other than the treatments that cause variation in the response.</p></li>
+<li><p>Randomization → assignment of treatments to experimental units purely by chance.</p></li>
+<li><p>Complete randomization → every experimental unit has an equal chance of receiving any treatment.</p></li>
+<li><p>Replication → application of the same treatment to more than one experimental unit.</p></li>
+<li><p>Local control → grouping similar experimental units into blocks before assigning treatments.</p></li>
+<li><p>Blocking → another term for local control.</p></li>
+<li><p>Basic principles of design → randomization, replication, and local control.</p></li>
+<li><p>Randomization → reduces bias and distributes unknown sources of variation among treatments.</p></li>
+<li><p>Replication → improves reliability and precision and permits estimation of experimental error.</p></li>
+<li><p>Local control → reduces experimental error by accounting for known sources of variation.</p></li>
+<li><p>Randomized Block Design → design in which similar experimental units are grouped into blocks and all treatments are randomly assigned within each block.</p></li>
+<li><p>Border effect → influence of neighbouring plots on plants located near plot borders.</p></li>
+<li><p>Net plot → inner portion of a plot from which observations are recorded after excluding border plants.</p></li>
+<li><p>Proper plot technique → keeping all management practices other than the treatments as uniform as possible.</p></li>
+<li><p>ANCOVA → statistical method that adjusts the response using one or more covariates to improve precision.</p></li>
+<li><p>Good experimental design → unbiased, precise, interpretable, efficient, simple, and capable of providing conclusions with wide validity.</p></li>
+</ul>
+</section>
+<section id="important-historical-points" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-historical-points">Important historical points</h3>
+<ul>
+<li><p>R. A. Fisher pioneered the statistical principles of Design of Experiments in the 1920s and 1930s.</p></li>
+<li><p>Fisher developed these principles at Rothamsted Experimental Station.</p></li>
+<li><p>Fisher introduced Analysis of Variance (ANOVA) for partitioning variation into components attributable to factors and chance.</p></li>
+<li><p>Fisher and Frank Yates developed important experimental design and statistical methodologies used extensively in agricultural research.</p></li>
+<li><p>Experimental design later became widely used in industrial processes, clinical trials, and computer-aided design and engineering.</p></li>
+<li><p>Fisher’s famous tea-tasting experiment illustrates the importance of randomization and statistical evaluation of chance.</p></li>
+</ul>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li><p>A well-designed experiment separates the effect of the treatments from other sources of variation, so that observed differences can be attributed to the treatments with confidence.</p></li>
+<li><p>Experimental error is the variation among experimental units that receive the same treatment; every design must provide a way of estimating it.</p></li>
+<li><p>The three basic principles of design, randomization, replication, and local control, work together: randomization removes bias, replication permits estimation of experimental error and improves precision, and local control reduces experimental error by accounting for known sources of variation.</p></li>
+<li><p>An experimental unit is the smallest unit to which a treatment is independently applied; an observational unit is the unit on which the response is actually measured. Confusing the two leads to pseudo-replication.</p></li>
+<li><p>In a Randomized Block Design, similar experimental units are grouped into blocks, and all treatments are randomly assigned within each block, so that treatments are compared under similar conditions.</p></li>
+<li><p>Precision can be further improved through good plot technique (keeping everything except the treatment uniform), excluding border plants from data collection (using only the net plot), and appropriate statistical analysis such as ANCOVA, which adjusts for covariates.</p></li>
+<li><p>R. A. Fisher developed the statistical foundations of experimental design at Rothamsted Experimental Station in the 1920s and 1930s, introducing ANOVA and, together with Frank Yates, the methodologies that remain central to agricultural research today.</p></li>
+</ul>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<ol type="1">
+<li>Bias · 2. Experiment · 3. Randomization; replication; local control · 4. Treatment · 5. Control · 6. Experimental · 7. Response · 8. Factor · 9. Levels · 10. Observational · 11. Experimental · 12. Minimise · 13. Randomization · 14. Complete · 15. Replication · 16. Experimental · 17. Local · 18. Blocking · 19. Similar · 20. Randomized · 21. Border · 22. Net · 23. Uniform · 24. Covariate · 25. R. A. Fisher · 26. Rothamsted · 27. Analysis · 28. Basic</li>
+</ol>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>The result is based on only one plant per manure, with no replication. The difference could be due to natural variation among the plants (genetic makeup, initial health, soil conditions) rather than the manure itself, and with no replication there is no way to estimate the experimental error and judge whether the observed difference is real.</p></li>
+<li><p>Even under the same treatment, experimental units differ in genetic makeup, age, initial health, and microenvironment, so their responses vary naturally. If this variation is mistaken for a treatment effect, the comparison of treatments becomes unreliable.</p></li>
+<li><p>The principle of randomization has been violated. Treatments must be assigned to experimental units purely by chance; assigning healthier plants to one treatment biases the comparison in its favor regardless of the treatment’s true effect.</p></li>
+<li><p>Each of the 15 units is labeled, and the three treatments are allocated using a chance mechanism such as random numbers or drawing lots, giving every unit an equal chance of receiving any treatment, typically 5 units per treatment.</p></li>
+<li><p>Randomization alone removes bias in how treatments are assigned but does not, by itself, allow experimental error to be estimated. Replication is needed to obtain that estimate, so the two principles are used together to ensure the comparison is both unbiased and testable.</p></li>
+<li><p>With only one unit per treatment, there is no replication, so experimental error cannot be estimated. Without an estimate of error, it is not possible to judge statistically whether the observed differences among treatments are real or due to chance.</p></li>
+<li><p>The field can be divided into blocks running perpendicular to the fertility gradient, so that units within each block are relatively homogeneous. All treatments are applied once within each block, separating the fertility-related variation from the experimental error.</p></li>
+<li><p>Each of the 5 blocks should contain all 4 treatments, with one plot per treatment in every block. Within each block, the treatments should be assigned to the plots randomly and independently of the other blocks.</p></li>
+<li><p>The experimental unit is the plot, since the treatment is applied to the whole plot. The observational units are the sampled plants, since the response is measured on them individually.</p></li>
+<li><p>The experimental unit is the tank, since the UV treatment is applied to the whole tank. The observational units are the individual fish. Treating the fish as independent replicates of the treatment is pseudoreplication, because the tank effect is completely confounded with the treatment effect and the two cannot be separated.</p></li>
+<li><p>Since these plots all receive the identical treatment, any difference among them cannot be due to the treatment; it must come from other extraneous sources of variation. This difference therefore provides a direct measure of the experimental error.</p></li>
+<li><p>A difference between treatment means can arise purely from natural variation among experimental units, even when the treatments have no real effect. Comparing the observed difference with the experimental error shows whether it is larger than what chance alone could produce, which is necessary before concluding the treatments genuinely differ.</p></li>
+<li><p>If the fertility variation is ignored, it becomes part of the experimental error, inflating it and making real treatment differences harder to detect. It could also bias the comparison if fertility happens to coincide with how the treatments were allocated.</p></li>
+<li><p>By grouping plots of similar fertility into blocks and applying all treatments within each block, the variation between blocks (due to fertility) is estimated and removed separately, leaving a smaller and more accurate experimental error for comparing the treatments.</p></li>
+<li><p>The border effect can be controlled by excluding the outer border plants from data collection and recording observations only from the inner net plot, since border plants may be influenced by treatments in the neighbouring plots.</p></li>
+<li><p>Border plants may be affected by treatments applied to neighbouring plots through seepage, competition, or runoff, so they do not purely reflect the treatment applied to their own plot. Restricting observations to the net plot ensures the recorded response reflects only the treatment under study.</p></li>
+<li><p>Since final weight is influenced by initial weight, initial body weight can be used as a covariate. ANCOVA statistically adjusts the final weights to account for these initial differences, removing this source of variation and giving a more precise comparison of the feeds.</p></li>
+<li><p>Statistical analysis can only work with the information present in the data. If the experiment lacked randomization or replication, the data simply does not contain the information needed to separate treatment effects from other sources of variation, no matter how advanced the analysis method is.</p></li>
+<li><p>Keeping all management practices other than the treatment (planting method, irrigation, weed control, and so on) as uniform as possible across all plots minimizes variation that is not due to the treatments, thereby reducing experimental error and improving the precision of treatment comparisons.</p></li>
+<li><p>Without replication, experimental error cannot be estimated, and without an estimate of error there is no basis for judging whether an observed difference among treatment means exceeds what chance alone could produce. No statistically valid conclusion can therefore be drawn.</p></li>
+<li><p>Randomization ensures unbiased estimates of the treatment effects and of the experimental error. Replication allows the experimental error to actually be estimated and improves precision. Local control reduces the size of the experimental error by accounting for known sources of variation. Together, the three principles ensure the experimental error is minimized, correctly estimated, and free of bias.</p></li>
+<li><p>Randomizing the treatments within each block ensures that any remaining variation among the units within a block does not systematically favor a particular treatment, keeping the comparison among treatments unbiased even after blocking.</p></li>
+<li><p>A good design uses randomization so that no treatment is systematically favored by known or unknown factors, ensuring that observed differences reflect only the true treatment effects and not other extraneous influences.</p></li>
+<li><p>By using local control and an efficient allocation of treatments and replications, a well-designed experiment increases the precision of comparisons for a given number of experimental units, allowing reliable conclusions without wasting resources on unnecessarily large experiments.</p></li>
+<li><p>Design of Experiments provides a structured framework, randomization, replication, and local control, that ensures treatment comparisons are unbiased, experimental error can be estimated, and conclusions are precise and reproducible, making the results of agricultural research scientifically credible and dependable.</p></li>
+</ol>
 
 
 
@@ -787,380 +1194,256 @@ Montgomery, Douglas C. 2017. <em>Design and Analysis of Experiments</em>. 9th ed
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1168,185 +1451,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./smallsampleTest.html" class="pagination-link" aria-label="Small sample tests">

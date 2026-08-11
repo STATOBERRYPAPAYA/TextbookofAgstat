@@ -38,7 +38,7 @@ Consider an experiment involving four treatments A, B, C, D in CRD. Each treatme
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-crdnumbered
 #| fig-cap: "Numbered experimental units"
-knitr::include_graphics("images/crdnumbered.png")
+knitr::include_graphics("images/singlefactor/crdnumbered.svg")
 ```
 
 #### Randomization by drawing lots {#sec-random}
@@ -49,13 +49,19 @@ knitr::include_graphics("images/crdnumbered.png")
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-sequence
+#| fig-cap: "Sequence in which labelled lots are drawn"
 #| tbl-cap: "Sequence in which labelled lots are drawn"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/crd_sequence.csv", header = FALSE, check.names = FALSE)
-kbl(dt, col.names = NULL, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position", font_size = 12) %>%
+kbl(dt, col.names = NULL, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered",
+    font_size = 12
+  ) %>%
   column_spec(1, bold = TRUE, width = "2.8cm") %>%
   row_spec(c(1, 3), bold = TRUE)
 ```
@@ -67,12 +73,12 @@ After allotting the treatment according to the randomization procedure explained
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-layout
 #| fig-cap: "Layout of Completely Randomized Design"
-knitr::include_graphics("images/layoutcrd.png")
+knitr::include_graphics("images/singlefactor/layoutcrd.svg")
 ```  
 
 ### Statistical model for CRD  
 
-Consider a CRD with *v* treatments with *r* replications. Statistical model for CRD is same as that of one-way ANOVA (@sec-oneway).  
+Consider a CRD with *v* treatments with *r* replications. Statistical model for CRD is same as that of one-way ANOVA (@sec-onewaymodel).  
 $$Y_{\text{ij}} = \mu + \tau_{i} + e_{\text{ij}}$$  
 Where *i* = 1,2, ..., *v* and *j* =1,2, ..., *r*~i~. $Y_{\text{ij}}$ is the observed value of $i^{\text{th}}$
 treatment from $j^{\text{th}}$ replication, $\tau_{i}$ is the effect of $i^{\text{th}}$ treatment. $\mu$ is the general
@@ -81,7 +87,7 @@ effects.$e_{ij}$ $\sim iid\ N(0,\sigma^{2})$
 
 ### Analysis of CRD  
 
-Analysis of CRD is same as that explained in section @sec-oneway of one-way ANOVA.  
+Analysis of CRD is same as that explained in section @sec-onewaycalc of one-way ANOVA.   
 
 ::: {.callout-note title="Note"}
 Unequal replication (*i*.*e*. each treatment can have a different number of replications) is possible in CRD. So while calculating the treatment sum of squares, each treatment total is squared and divided by its corresponding replication, and then the sum is taken. If the replication is the same for all treatments, the treatment sum of squares is obtained by taking the sum of the squares of the treatment totals and dividing by the common replication number.
@@ -89,35 +95,71 @@ Unequal replication (*i*.*e*. each treatment can have a different number of repl
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-crdanova
+#| fig-cap: ""
 #| tbl-cap: "ANOVA table of CRD"
+#| filters: 
+#| - parse-latex
+
 library(knitr)
 library(kableExtra)
-fix_math <- function(x) {
-  x <- as.character(x); x[is.na(x)] <- ""
-  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
-  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
-  x
-}
+
 dt <- data.frame(
   Source = c("Treatments", "Error", "Total"),
-  df = c("$v-1$", "$n-v$", "$n-1$"),
-  SS = c("$\\text{SST} = \\sum_{i=1}^{v}\\dfrac{T_i^2}{r_i} - \\text{C.F.}$",
-         "$\\text{Total SS} - \\text{SST}$",
-         "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} y_{ij}^2 - \\text{C.F.}$"),
-  MSS = c("$\\text{MST}=\\dfrac{\\text{SST}}{v-1}$",
-          "$\\text{MSE}=\\dfrac{\\text{SSE}}{v(r-1)}$", ""),
-  F = c("$F = \\dfrac{\\text{MST}}{\\text{MSE}}$", "", "")
+  
+  df = c(
+    "$v-1$",
+    "$n-v$",
+    "$n-1$"
+  ),
+  
+  SS = c(
+    "$\\text{SST} = \\sum_{i=1}^{v}\\dfrac{T_i^2}{r_i} - \\text{C.F.}$",
+    "$\\text{Total SS} - \\text{SST}$",
+    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} y_{ij}^2 - \\text{C.F.}$"
+  ),
+  
+  MSS = c(
+    "$\\text{MST}=\\dfrac{\\text{SST}}{v-1}$",
+    "$\\text{MSE}=\\dfrac{\\text{SSE}}{v(r-1)}$",
+    ""
+  ),
+  
+  F = c(
+    "$F = \\dfrac{\\text{MST}}{\\text{MSE}}$",
+    "",
+    ""
+  )
 )
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- c("Source", "D.F.", "S.S", "M.S.S", "F")
-kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
-  row_spec(0, bold = TRUE) %>%
-  column_spec(3, width = "5.5cm", extra_css = "padding-right: 22px;") %>%
-  column_spec(4, width = "4cm", extra_css = "padding-left: 22px;")
-```
 
+colnames(dt) <- c("Source", "D.F.", "S.S", "M.S.S", "F")
+
+kbl(
+  dt,
+  booktabs = TRUE,
+  align = "c",
+  escape = FALSE
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(
+    3,
+    width = "5.5cm",
+    extra_css = "padding-right: 22px;"
+  ) %>%
+  column_spec(
+    4,
+    width = "4cm",
+    extra_css = "padding-left: 22px;"
+  )
+```  
 
 #### Post hoc test (LSD) {#sec-postcrd}  
 If the null hypothesis is rejected in ANOVA; we proceed to post-hoc test explained in section @sec-lsd. Fisher's Least significant difference (LSD) test explained in section @sec-lsd is the commonly employed test in agricultural experiments.  
@@ -162,116 +204,126 @@ symbols or letters, such that treatment means without any common letters or symb
 An experimenter is free to choose any number of replications in the experiment. The precision in estimating experimental error variance increases as the number of replications increases. But the design should be such that the number of replications should be optimum, since increasing the replications will increase the experiment cost. So, there
 is a rule of thumb that says, error degrees of freedom should be at least 12 to keep type II error in check. One can easily find the number of replications required in a design by using the formula for error degrees of freedom of that design.
 
-#### Example {-}
-
+::: {#exm-ct42}
 You have 5 treatments; you are planning to conduct the experiment in CRD. Find the minimum number of replications required.
 
-Formula for error degrees of freedom (*edf*) in CRD is $n - t$; where $n$ is the total number of experimental units and $t$ is the number of treatments. $n = rt$, $r$ is the number of replications.  
+**Solution**
+
+Formula for error degrees of freedom (*edf*) in CRD is $n - t$; where $n$ is the total number of experimental units and $t$ is the number of treatments. $n = rt$, $r$ is the number of replications.
 
 *edf* should be $\geq$ 12
 
-*edf* $= n - t = rt - t = t\left( r - 1 \right) \geq 12$  
+*edf* $= n - t = rt - t = t\left( r - 1 \right) \geq 12$
 
 Since t = 5, *edf* $= 5\left( r - 1 \right) \geq 12$
 
-$= r \geq 3.4$, Since $r$ cannot be a fraction $r =$ 4
+$r \geq 3.4$, since $r$ cannot be a fraction, $r =$ 4
 
-The number of replications required is 4
+The number of replications required is 4.
+:::
 
 ::: {.callout-note title="Why is the minimum error degrees of freedom for a design taken as 12?"}
 The error degrees of freedom have a major role in deciding the critical value of F. As the error degrees of freedom (the degrees of freedom in the denominator) decrease, F tends to take larger critical values. This inflates the Type II error, *i*.*e*. we will be able to reject the null hypothesis only if there is a considerable difference between the treatments (a higher treatment sum of squares). Beyond about 12 denominator degrees of freedom, the F critical values stabilise and change very little with further increases, so 12 is taken as a practical minimum.
 :::
 
-### Example  
-In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.  
+::: {#exm-ct43}
+In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-crdex
+#| fig-cap: "Yield data of five varieties of sesame under CRD"
 #| tbl-cap: "Yield data of five varieties of sesame under CRD"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/crd_data.csv", check.names = FALSE)
-kbl(dt, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
+kbl(dt, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
   add_header_above(c(" " = 1, "Variety" = 5), bold = TRUE) %>%
   row_spec(0, bold = TRUE) %>%
   row_spec(5:6, bold = TRUE) %>%
   column_spec(1, bold = TRUE)
 ```
-#### Solution  
 
-**Correction Factor**:  
+**Solution**
 
-$= \frac{G^{2}}{n} = \frac{\left( 397 \right)^{2}}{20}$=7880.45  
+**Correction Factor**:
 
+$= \frac{G^{2}}{n} = \frac{\left( 397 \right)^{2}}{20}$=7880.45
 
-**Total Sum of squares**:  
+**Total Sum of squares**:
 
-$= \left( 25^{2} + 21^{2} + .... + 11^{2} \right) - CF$  
+$= \left( 25^{2} + 21^{2} + .... + 11^{2} \right) - CF$
 
 $= 8307 - CF = 426.55$
 
-**Treatment Sum of Squares**:  
+**Treatment Sum of Squares**:
 
-$\frac{1}{4}(85^{2} + 102^{2} + ... + 53^{2}) - CF$  
+$\frac{1}{4}(85^{2} + 102^{2} + ... + 53^{2}) - CF$
 $= 8211.75 - CF = 331.30$
 
-**Error Sum of Square**:  
+**Error Sum of Square**:
 $426.55 - 331.30 = 95.25$
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-crdanovaex
+#| fig-cap: "ANOVA table for the sesame variety trial"
 #| tbl-cap: "ANOVA table for the sesame variety trial"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/crd_anova.csv", check.names = FALSE)
-kbl(dt, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
+kbl(dt, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(1, bold = TRUE)
 ```
-Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find, which treatments are significantly different, we perform Fisher's LSD test.  
+
+Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find which treatments are significantly different, we perform Fisher's LSD test.
 
 $$\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{2 \times \text{MSE}}{r}} = 2.131\sqrt{\frac{2(6.350)}{4}} = 2.131 \times 1.7819 = 3.7972$$
 
-$t_{0.025\text{ at }15 \text{ edf}} = 2.131$ (Just look for the critical value of
-*t* for a two tailed test at α= 0.05 in the statistical table. (see
-section @sec-ftable. It is shown as $t_{\frac{\alpha}{2}}$ , since
-it is a two tailed test in the one side of the t-distribution curve the
-probability will be $\frac{\alpha}{2}$, so that combined probability is
-α.)
+$t_{0.025\text{ at }15 \text{ edf}} = 2.131$ (Just look for the critical value of *t* for a two tailed test at α = 0.05 in the statistical table, see @tbl-ttable in Appendix 4.
 
-Treatment means arranged in descending order. Those treatment pairs
-whose difference in means is greater than C.D. is labelled with a
-different letters.
+It is shown as $t_{\frac{\alpha}{2}}$, since it is a two tailed test in the one side of the t-distribution curve the probability will be $\frac{\alpha}{2}$, so that combined probability is α.)
 
-  Treatments   means   Grouping using alphabets
-  ------------ ------- --------------------------
-  $V_{2}$           25.5    a
-  $V_{1}$           21.25   b
-  $V_{3}$           21.25   b
-  $V_{4}$           18      b
-  $V_{5}$           13.25   c
+Treatment means arranged in descending order. Those treatment pairs whose difference in means is greater than C.D. is labelled with a different letters.
+
+| Treatments | means | Grouping using alphabets |
+|:----------:|:-----:|:-------------------------:|
+| $V_{2}$ | 25.5 | a |
+| $V_{1}$ | 21.25 | b |
+| $V_{3}$ | 21.25 | b |
+| $V_{4}$ | 18 | b |
+| $V_{5}$ | 13.25 | c |
+
+: Grouping of treatment means using letters {#tbl-crdgroupletters .bordered}
 
 In the above table we can see that the difference between the means of $V_{2}$ and $V_{1}$ is 4.25, which is greater than the C.D. value. So $V_{2}$ and $V_{1}$ are significantly different, and different letters are assigned to each of them. Instead of letters one can also use symbols as shown below. Those treatments with the same letters/symbols are not significantly different.
 
-  Treatments   means   Grouping using symbols
-  ------------ ------- ------------------------
-  $V_{2}$           25.5    @
-  $V_{1}$           21.25   \*
-  $V_{3}$           21.25   \*
-  $V_{4}$           18      \*
-  $V_{5}$           13.25   &
+| Treatments | means | Grouping using symbols |
+|:----------:|:-----:|:-----------------------:|
+| $V_{2}$ | 25.5 | @ |
+| $V_{1}$ | 21.25 | \* |
+| $V_{3}$ | 21.25 | \* |
+| $V_{4}$ | 18 | \* |
+| $V_{5}$ | 13.25 | & |
 
-So, in our example we can conclude that $V_{2}$ is the best variety because,
-it is having the highest mean and is significantly different from
-others.  
+: Grouping of treatment means using symbols {#tbl-crdgroupsymbols .bordered}
 
+So, in our example we can conclude that $V_{2}$ is the best variety because it is having the highest mean and is significantly different from others.
 
->Note: in some cases, more than one alphabets can appear against a
-treatment mean, see the hypothetical example below.  
+::: {.callout-important title="Note"}
+In some cases, more than one alphabet can appear against a treatment mean, see the hypothetical example below.
+:::
 
 | Treatments | Grouping |
 |:----------:|:--------:|
@@ -281,27 +333,27 @@ treatment mean, see the hypothetical example below.
 | $V_4$ | c |
 | $V_5$ | d |
 
-: A hypothetical example of treatment grouping {#tbl-groupingcrd}
+: A hypothetical example of treatment grouping {#tbl-groupingcrd .bordered}
 
 Here $V_1$ carries two letters (ab), meaning it is not significantly different from $V_2$ (they share **a**) and also not significantly different from $V_3$ (they share **b**), while $V_2$ and $V_3$ do not share a letter and so are significantly different from each other.
 
->If a lettering like this appears meaning is that those treatments having common alphabets are not significantly different. In the above table $V_{2}$
-and $V_{1}$ is not significantly different as both of them are having common
-letter *a*. At the same time you can see $V_{5}$ and $V_{4}$ is significantly
-different as they don't have any common letters.  
+::: {.callout-important title="Note"}
+When a lettering like this appears, treatments having common alphabets are not significantly different. In the above table $V_{2}$ and $V_{1}$ are not significantly different, as both of them have the common letter *a*. At the same time you can see $V_{5}$ and $V_{4}$ are significantly different, as they don't have any common letters.
+:::
+:::
 
 ## Randomized Complete Block Designs (RCBD)
 
 In field experiments, the plots on which treatments are applied may not be uniform and there may be difference in plot-to-plot fertility. In such cases CRD cannot be
-recommended. If there is only one source constitutes the difference between the plots then we can recommend randomized block design.
+recommended. If there is only one source constituting the difference between the plots then we can recommend randomized block design.
 
 The randomized complete block (RCB) design is one of the most widely used experimental designs in agricultural research. The design is especially suited for field experiments where the number of treatments is not large and the experimental area has a predictable fertility gradient.
 
-When the experimental material is heterogeneous, the experimental material is grouped into homogeneous sub-groups called **blocks**. As each block consists of the entire set of treatments a block is equivalent to a replication. For example, in a field with known fertility gradient in one direction, plots perpendicular to this gradient will be considered as a block. In RCBD (Randomized Complete
-Block Design) blocks are of equal size and contains all the treatments. Since the block contains all the treatments, the term 'complete block design' is used. See figure @fig-field and @fig-field2 to see how blocks are formed in a field.
+When the experimental material is heterogeneous, the experimental material is grouped into homogeneous sub-groups called **blocks**. As each block consists of the entire set of treatments a block is equivalent to a replication. For example, in a field with known fertility gradient in one direction, plots perpendicular to this gradient will be considered as a block. In RCBD (Randomized Complete Block Design) blocks are of equal size and contains all the treatments. Since the block contains all the treatments, the term 'complete block design' is used. See @fig-rcbd1 to see how blocks are formed in a field.
 
->In RCBD number of replications, $r$ = number of blocks  
->Number of plots within a block = number of treatments, $v$
+::: {.callout-important title="Note"}
+In RCBD, number of replications, $r$ = number of blocks. Number of plots within a block = number of treatments, $v$.
+:::
 
 ### Blocking technique
 
@@ -311,7 +363,7 @@ Two important factors to be considered for blocking
 
 -   The selection of the source of variability to be used as the basis for blocking, in field experiments usually fertility gradient or productivity gradient is used as the identified source of variability.
 
--   Proper selection of the block shape and orientation. For example, When the gradient is unidirectional use long and narrow blocks. Use square blocks for strong fertility gradient in both directions. An experimenter should use his common sense to identify the shape and orientation of the block after examining the field conditions, suc that plots in a block are homogeneous.
+-   Proper selection of the block shape and orientation. For example, when the gradient is unidirectional, use long and narrow blocks. Use square blocks for strong fertility gradient in both directions. An experimenter should use his common sense to identify the shape and orientation of the block after examining the field conditions, such that plots in a block are homogeneous.
 
 ### Randomization in RCBD {#sec-rcbdrandom}
 
@@ -327,9 +379,11 @@ knitr::include_graphics("images/rcbd1.png")
 
 STEP 2. Subdivide each block into $v$ experimental plots, where $v$ is the number of treatments. Number the $v$ plots consecutively from 1 to $v$, and assign $v$ treatments at random to the $v$ plots following the randomization scheme for the CRD described in Section @sec-random. In our example each of the 5 blocks are divided into 4 plots. Plots are numbered 1 to 4 in each block. Now for each block, paper lots of 1 to 4 is prepared. Treatment names are written in order and plot number from each lot is recorded in order as shown below.
 
-  Treatments             A   B   C   D
-  ---------------------- --- --- --- ---
-  Plot number from lot   2   1   4   3
+| Treatments | A | B | C | D |
+|:----------:|:-:|:-:|:-:|:-:|
+| Plot number from lot | 2 | 1 | 4 | 3 |
+
+: Plot numbers drawn for each treatment in a single block {#tbl-crdlotdraw .bordered}
 
 STEP 3. All the treatments are allotted to the randomly selected plots. Step 2 is repeated in all blocks.  
 
@@ -343,9 +397,9 @@ knitr::include_graphics("images/rcbd2.png")
 
 In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in section @sec-rcbdrandom. The final layout will look like in the figure @fig-rcbd3.  
 
->Note:  
-In RBD every treatment will have the same number of replications. (All treatments are equally replicated say, $r$ times). So we need a total of $v$ $\times$ $r$ plots for conducting that experiment. Each of $r$ blocks will be containing $v$ plots. So in this design, the number of blocks = number of replication of the treatments = $r$ 
-and number of plots within  a block = number of treatments = $v$
+::: {.callout-important title="Note"}
+In RCBD every treatment will have the same number of replications (all treatments are equally replicated, say, $r$ times). So we need a total of $v \times r$ plots for conducting that experiment. Each of $r$ blocks will contain $v$ plots. So in this design, the number of blocks = number of replications of the treatments = $r$, and number of plots within a block = number of treatments = $v$.
+:::
 
 
 
@@ -357,7 +411,7 @@ knitr::include_graphics("images/rcbd3.png")
 
 ### Statistical Model for RCBD
 
-Consider a RCBD with $v$ treatments with $r$ replications (Blocks). Statistical model for RCBD is same as that of two-way ANOVA described in section @sec-twoway.  
+Consider a RCBD with $v$ treatments with $r$ replications (Blocks). Statistical model for RCBD is same as that of two-way ANOVA described in section @sec-twowaymodel.  
 
 $$Y_{\text{ij}} = \mu + \tau_{i} +  \gamma_{j}+ e_{\text{ij}}$$  
 where, *i* = 1,2, ..., *v* and *j* =1,2, ..., *r*. $Y_{\text{ij}}$ is the observed value of response under $i^{\text{th}}$ treatment and $j^{\text{th}}$ block, $\tau_{i}$ is the effect of $i^{\text{th}}$ factor,$\gamma_{j}$ is the effect of $j^{\text{th}}$ block . $\mu$ is the general
@@ -365,7 +419,7 @@ effect which is common for all treatments. $e_{\text{ij}}$ is the error
 effects.$e_{ij}$ $\sim iid\ N(0,\sigma^{2})$  
 
 ### Analysis of RCBD  
-Analysis of RCBD is same as that explained in section @sec-twoway of two-way ANOVA.
+Analysis of RCBD is same as that explained in section @sec-twowaycalc of two-way ANOVA.
 
 Observation from $v$ treatments in $r$ blocks is arranged as shown below.  
 
@@ -380,11 +434,12 @@ Observation from $v$ treatments in $r$ blocks is arranged as shown below.
 
 : Two-way arrangement of observations in RCBD {#tbl-rcbd4}
 
-The ANOVA table, following the calculations as in section @sec-twoway, is
+The ANOVA table, following the calculations as in section @sec-twowaycalc, is
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-rcbd5
-#| tbl-cap: "ANOVA table of RCBD"
+#| tbl-cap: "ANOVA table of RCBD"  
+
 library(knitr)
 library(kableExtra)
 fix_math <- function(x) {
@@ -408,9 +463,13 @@ dt <- data.frame(
 )
 dt[] <- lapply(dt, fix_math)
 colnames(dt) <- c("Source", "d.f", "S.S", "M.S.S", "F")
-kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
+kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(3, width = "5cm") %>%
   column_spec(4, width = "3.2cm")
@@ -418,30 +477,33 @@ kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
 
 where $\text{C.F} = \dfrac{G^2}{rv}$.
 
-$F_{1} \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_{2} \sim F_{(r-1),\ (v-1)(r-1)}$ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value, as explained in section @sec-ftable.
+$F_{1} \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_{2} \sim F_{(r-1),\ (v-1)(r-1)}$ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value given in @tbl-ftable of Appendix 5.
 
-> What if $F_{2}$ is not significant?  
-> If $F_{2}$ is not significant, it indicates that there is no significant difference between blocks, means blocking is not effective. Blocking is considered effective in reducing the experimental error if $F_{2}$ is significant.  
+::: {.callout-important title="Note"}
+What if $F_{2}$ is not significant? If $F_{2}$ is not significant, it indicates that there is no significant difference between blocks, meaning blocking is not effective. Blocking is considered effective in reducing the experimental error only if $F_{2}$ is significant.
+:::
 
 ### Number of replications in RCBD  
 
-As explained in section @sec-replical number of replications is RCBD is found out using the formula of error degrees of freedom (*edf*).  
+As explained in section @sec-replical number of replications in RCBD is found out using the formula of error degrees of freedom (*edf*).  
 
-#### Example {-}
-
+::: {#exm-ct44}
 You have 4 treatments; you are planning to conduct the experiment in RCBD. Find the minimum number of replications required.
 
-Formula for error degrees of freedom (*edf*) in RCBD is $(v - 1) (r-1)$; where $v$ is the number of treatments and $r$ is the number of blocks.  
+**Solution**
+
+Formula for error degrees of freedom (*edf*) in RCBD is $(v - 1) (r-1)$; where $v$ is the number of treatments and $r$ is the number of blocks.
 
 *edf* should be $\geq$ 12
 
-*edf* $=(v - 1) (r-1) \geq 12$  
+*edf* $=(v - 1) (r-1) \geq 12$
 
 Since $v$ = 4, *edf* $= 3\left( r - 1 \right) \geq 12$
 
 $\implies r \geq 5$, minimum replication required is 5
 
-The number of replications required is 5.  
+The number of replications required is 5.
+:::
 
 ### Post-hoc test in RCBD  
 
@@ -490,7 +552,7 @@ represent two external factors. The entire experimental area can be divided into
 plots arranged in the form of a square. The number of plots in each row and each 
 column are equal, both equal to the number of treatments to be compared.
 
-### Layout and Randaomization
+### Layout and Randomization
 
 A Latin square of $v$ treatments (usually called as side $v$) is an arrangement of 
 $v$ treatments into $v$ rows  and $v$ columns such that every treatment is replicated in each 
@@ -556,6 +618,7 @@ To calculate the sum of squares, arrange the data according to the rows, columns
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-lsdanova
+#| fig-cap: "ANOVA of Latin Square Design"
 #| tbl-cap: "ANOVA of Latin Square Design"
 library(knitr)
 library(kableExtra)
@@ -580,9 +643,13 @@ dt <- data.frame(
 )
 dt[] <- lapply(dt, fix_math)
 colnames(dt) <- c("Source of Variation", "d.f", "Sum of Squares", "M.S.S", "F value")
-kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
+kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(1, width = "3.2cm") %>%
   column_spec(3, width = "3cm")
@@ -605,13 +672,14 @@ Similarly when $v>10$ the total number of plots required is $v^2$ > 100. So ther
 will be difficulty in getting large number of homogeneous plots.  So LSD is 
 commonly used for 5 to 10 treatments only.
 
-### Example
+::: {#exm-ct45}
 Consider a 5x5 LSD experimental setup as follows
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-LSDE1
 knitr::include_graphics("images/LSDE1.png")
-``` 
+```
+
 **Solution**
 
 The three null hypotheses (one each for treatments, rows, and columns) are
@@ -631,28 +699,30 @@ $H_{13}$: at least two of the column means are different
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-LSDE2
 knitr::include_graphics("images/LSDE2.png")
-``` 
+```
 
 **Grand Total (G)**= 829
 
 **Correction Factor(C.F)**
-$= \frac{G^{2}}{n} = \frac{\left( 829 \right)^{2}}{25}$= 27489.64  
+$= \frac{G^{2}}{n} = \frac{\left( 829 \right)^{2}}{25}$= 27489.64
 
-**Total Sum of Squares(TSS)**= $(28^2+36^2+18^2+...+31^2)-27489.64$  
-                             $=29243-27489.64 = 1753.36$  
-                             
-**Row Sum of Squares(RSS)**=$\frac{1}{5}(159^{2} + 163^{2} + 197^{2}+157^{2}+153^{2}) - CF$   
-                           $=27743.4-27489.64 = 253.76$  
-                           
-**Column Sum of Squares(CSS)**=$\frac{1}{5}(177^{2} + 165^{2} + 138^{2}+162^{2}+187^{2}) - CF$ 
-                             $= 27762.2-27489.64 = 272.56$  
-                             
-**Treatment Sum of Squares(SSt)**=$\frac{1}{5}(188^{2} + 171^{2} + 142^{2}+210^{2}+118^{2}) - CF$ 
-                             $= 28554.6 - 27489.64 = 1064.96$   
+**Total Sum of Squares(TSS)**= $(28^2+36^2+18^2+...+31^2)-27489.64$
+$=29243-27489.64 = 1753.36$
+
+**Row Sum of Squares(RSS)**=$\frac{1}{5}(159^{2} + 163^{2} + 197^{2}+157^{2}+153^{2}) - CF$
+$=27743.4-27489.64 = 253.76$
+
+**Column Sum of Squares(CSS)**=$\frac{1}{5}(177^{2} + 165^{2} + 138^{2}+162^{2}+187^{2}) - CF$
+$= 27762.2-27489.64 = 272.56$
+
+**Treatment Sum of Squares(SSt)**=$\frac{1}{5}(188^{2} + 171^{2} + 142^{2}+210^{2}+118^{2}) - CF$
+$= 28554.6 - 27489.64 = 1064.96$
+
 **Error Sum of Squares** $= 1753.36 - 253.76- 272.56-1064.96 = 162.08$
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-lsdanovaex
+#| fig-cap: "ANOVA table for the Latin Square example"
 #| tbl-cap: "ANOVA table for the Latin Square example"
 library(knitr)
 library(kableExtra)
@@ -666,27 +736,332 @@ dt <- data.frame(
 )
 colnames(dt) <- c("Source of variation", "df", "Sum of squares",
                   "Mean Sum of squares", "F Cal", "F tab")
-kbl(dt, escape = FALSE, booktabs = FALSE, align = "c") %>%
-  kable_classic(full_width = F, html_font = "Cambria") %>%
-  kable_styling(latex_options = "HOLD_position") %>%
+kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
+  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
   row_spec(0, bold = TRUE) %>%
   column_spec(1, bold = TRUE)
 ```
 
-Since the F cal is greater than the F table value, All the null hypotheses are rejected.
+Since the F cal is greater than the F table value, all the null hypotheses are rejected.
 
-$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} = 2.18\sqrt{\frac{2 \times 13.51}{5}} = 5.06$$
+$$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} = 2.18\sqrt{\frac{2 \times 13.51}{5}} = 5.07$$
 
-Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.  
+Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.
+:::
 
 ::: {.callout-caution title="Historical Insights"}
 **From a soldiers' puzzle to the experimental field**
 
-The Latin square has a history far older than the science of experimental design. The great mathematician **Leonhard Euler** studied such squares in the eighteenth century, most famously through his "problem of the 36 officers": can six regiments, each with six officers of six different ranks, be arranged in a 6 x 6 square so that every row and every column contains one officer of each rank and one from each regiment? Euler conjectured that no such arrangement exists for a 6 x 6 square, and he was eventually proved right. He called the arrangements *Latin squares* because he used Latin letters to fill them.
+The Latin square has a history far older than the science of experimental design. The great mathematician **Leonhard Euler** studied such squares in the eighteenth century, most famously through his “problem of the 36 officers”: can six regiments, each with six officers of six different ranks, be arranged in a 6 x 6 square so that every row and every column contains one officer of each rank and one from each regiment? Euler conjectured that no such arrangement exists for a 6 x 6 square, and he was eventually proved right. He called the arrangements *Latin squares* because he used Latin letters to fill them.
 
 For more than a century the Latin square remained a mathematical curiosity. Its transformation into a tool of science came in the 1920s at the **Rothamsted Experimental Station**, where **Ronald A. Fisher** recognised that the same combinatorial structure could solve a very practical agricultural problem: how to remove soil fertility variation running in *two* perpendicular directions at once. By assigning treatments so that each appears exactly once in every row and every column, the row and column effects (the two fertility gradients) can be separated out and removed from the experimental error. Fisher introduced the Latin square design in his 1925 book *Statistical Methods for Research Workers* and developed it further in *The Design of Experiments* (1935). What began as a puzzle about arranging officers thus became one of the most elegant designs in agricultural research, and a fine example of how pure mathematics can find unexpected use in the service of science. [@Fisher1925]
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}
-**"The object of statistical methods is the reduction of data." - R. A. Fisher**
+**“The object of statistical methods is the reduction of data.”**\
+**- R. A. Fisher**
 :::
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1.  Experiments in which only a single factor varies while all others are kept constant are called __________ experiments.
+
+2.  In CRD, treatments are assigned to experimental units __________.
+
+3.  CRD requires only the two basic principles of __________ and replication.
+
+4.  __________ is not required in CRD since all experimental units are homogeneous.
+
+5.  CRD is suitable for experiments with __________ experimental units, such as laboratory or greenhouse experiments.
+
+6.  In CRD, treatments can have __________ replications.
+
+7.  The total number of experimental units in CRD is given by $n =$ __________.
+
+8.  The error degrees of freedom in CRD is given by __________.
+
+9.  A common rule of thumb is that the error degrees of freedom of a design should be at least __________.
+
+10. The statistical model for CRD is the same as that of __________ ANOVA.
+
+11. In the CRD model $Y_{ij}=\mu+\tau_i+e_{ij}$, $\tau_i$ represents the effect of the $i^{th}$ __________.
+
+12. The post-hoc test commonly used after a significant ANOVA in agricultural experiments is Fisher's __________ test.
+
+13. Treatment pairs whose difference in means is greater than the critical difference are said to be significantly __________.
+
+14. Treatments that are not significantly different from each other are said to be __________.
+
+15. RCBD is recommended when the experimental material has a fertility gradient in __________ direction.
+
+16. Compared to CRD, RCBD additionally uses the principle of __________.
+
+17. Homogeneous sub-groups into which experimental material is grouped in RCBD are called __________.
+
+18. In RCBD, the number of replications equals the number of __________.
+
+19. In RCBD, the number of plots within a block equals the number of __________.
+
+20. The statistical model of RCBD is the same as that of __________ ANOVA.
+
+21. In the RCBD model $Y_{ij}=\mu+\tau_i+\gamma_j+e_{ij}$, $\gamma_j$ represents the effect of the $j^{th}$ __________.
+
+22. If the F value for blocks in an RCBD ANOVA is not significant, it indicates that __________ has not been effective.
+
+23. The error degrees of freedom formula for RCBD is __________.
+
+24. Latin Square Design controls variation in __________ perpendicular directions simultaneously.
+
+25. In a Latin square of side $v$, every treatment is replicated in each row and each column exactly __________.
+
+26. Data from an LSD experiment are classified according to __________ factors, making it a three-way classified design.
+
+27. In an LSD, the number of rows, columns, and treatments are all equal to __________.
+
+28. The error degrees of freedom in an LSD is given by __________.
+
+29. LSD is commonly recommended for __________ to __________ treatments.
+
+30. The mathematician who studied Latin squares in the eighteenth century, long before their use in experimental design, was __________.
+
+31. Fisher introduced the Latin square design in his book __________.
+
+32. In LSD, the total sum of squares is split into __________ components.
+
+33. In LSD, the correction factor is calculated as __________.
+
+34. Among CRD, RCBD, and LSD, for a fixed number of treatments and replications, __________ yields the maximum error degrees of freedom.
+
+35. In a treatment-grouping table, treatments sharing a common letter are __________ significantly different.
+
+36. Fisher's LSD formula for CRD with equal replication uses __________ in the denominator under the square root, along with $2\times\text{MSE}$.
+
+37. In CRD with unequal replication, the C.D. formula uses $\dfrac{1}{r_i}+\dfrac{1}{r_j}$ in place of __________.
+
+38. The blocks in a Latin Square Design are called __________ and __________.
+
+### Short-answer questions {.unnumbered}
+
+1.  Define a single factor experiment.
+
+2.  What is a Completely Randomized Design?
+
+3.  Explain why CRD is rarely used for field experiments.
+
+4.  Which basic principles of design are followed in CRD, and which is not required?
+
+5.  Explain the randomization procedure used in CRD.
+
+6.  Write the statistical model for CRD and explain each term.
+
+7.  Explain how the treatment sum of squares is calculated in CRD when replications are unequal.
+
+8.  Explain Fisher's Least Significant Difference (LSD) test.
+
+9.  Distinguish between "significantly different" and "at par" treatments.
+
+10. Explain how letters or symbols are used to group treatment means.
+
+11. State the advantages of CRD.
+
+12. State the disadvantages of CRD.
+
+13. Explain why the error degrees of freedom of a design is generally kept at 12 or more.
+
+14. Explain how the minimum number of replications required for a CRD is determined.
+
+15. Explain the concept of blocking in RCBD.
+
+16. What two factors should be considered while forming blocks in a field experiment?
+
+17. Describe the randomization procedure followed in RCBD.
+
+18. Explain the layout of an RCBD.
+
+19. Write the statistical model for RCBD and explain each term.
+
+20. Explain how the number of replications required for an RCBD is determined.
+
+21. Explain what it means when the F value for blocks is not significant in an RCBD ANOVA.
+
+22. State the advantages of RCBD over CRD.
+
+23. State the disadvantages of RCBD.
+
+24. Explain why a Latin Square Design is used instead of RCBD in certain situations.
+
+25. Explain the layout of a Latin Square Design.
+
+26. Describe the randomization procedure followed in LSD.
+
+27. Write the statistical model for LSD and explain each term.
+
+28. Explain why the error degrees of freedom in an LSD is $(v-1)(v-2)$.
+
+29. Explain why LSD is not commonly used for a very small or very large number of treatments.
+
+30. State the advantages and disadvantages of LSD.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1.  An experimenter has 6 treatments and plans to conduct the experiment in CRD. Find the minimum number of replications required.
+
+2.  An experimenter has 5 treatments and plans to conduct the experiment in RCBD. Find the minimum number of blocks required.
+
+3.  A CRD has 4 treatments with 6 replications each. Write down the degrees of freedom for treatments, error, and total.
+
+4.  An RCBD has 5 treatments and 4 blocks. Write down the degrees of freedom for treatments, blocks, error, and total.
+
+5.  A Latin Square Design has $v=6$ treatments. Write down the degrees of freedom for rows, columns, treatments, error, and total.
+
+6.  In a CRD, the treatment sum of squares is 210.40 and the total sum of squares is 285.60, with 4 treatments and 4 replications each. Find the error sum of squares and the degrees of freedom for treatments and error.
+
+7.  In an RCBD with $v=5$ treatments and $r=4$ blocks, the total SS is 500, treatment SS is 300, and block SS is 120. Find the error SS and the error degrees of freedom.
+
+8.  In a Latin square with $v=5$, the row SS is 253.76, column SS is 272.56, treatment SS is 1064.96, and total SS is 1753.36. Find the error SS.
+
+9.  Why is CRD generally preferred over RCBD when experimental units are known to be homogeneous?
+
+10. Two treatments in a CRD have means 40 and 35, and the calculated critical difference is 4. Are the two treatments significantly different? Explain.
+
+11. Two treatments in an RCBD have means 28 and 30, and the calculated critical difference is 3. Are the two treatments significantly different? Explain.
+
+12. Explain, with reasons, whether CRD, RCBD, or LSD would be most appropriate for a greenhouse pot experiment with homogeneous potting mixture.
+
+13. Explain, with reasons, whether CRD, RCBD, or LSD would be most appropriate for a field experiment with a fertility gradient running in one direction only.
+
+14. Explain, with reasons, whether CRD, RCBD, or LSD would be most appropriate for a field experiment with fertility gradients running in two perpendicular directions.
+
+15. In a treatment-grouping table, treatment P is labelled "a", treatment Q is labelled "ab", and treatment R is labelled "b". Explain the relationships among P, Q, and R.
+
+### Important formulae {.unnumbered}
+
+Total number of experimental units in CRD:
+
+$$
+n=rt
+$$
+
+Error degrees of freedom in CRD:
+
+$$
+edf=n-t=t(r-1)
+$$
+
+Error degrees of freedom in RCBD:
+
+$$
+edf=(v-1)(r-1)
+$$
+
+Error degrees of freedom in LSD:
+
+$$
+edf=(v-1)(v-2)
+$$
+
+Critical difference for CRD with equal replication:
+
+$$
+C.D.=t_{\left(\frac{\alpha}{2},\,error\,df\right)}\sqrt{\frac{2\,MSE}{r}}
+$$
+
+Critical difference for CRD with unequal replication:
+
+$$
+C.D.=t_{\left(\frac{\alpha}{2},\,error\,df\right)}\sqrt{MSE\left(\frac{1}{r_i}+\frac{1}{r_j}\right)}
+$$
+
+Critical difference for RCBD:
+
+$$
+CD=t_{\frac{\alpha}{2},edf}\sqrt{\frac{2\,MSE}{r}}
+$$
+
+Critical difference for LSD:
+
+$$
+C.D.=t_{\left(\frac{\alpha}{2},\,error\,df\right)}\sqrt{\frac{2\,MSE}{v}}
+$$
+
+Correction factor for LSD:
+
+$$
+C.F.=\frac{\left(\sum y_{ijk}\right)^2}{v^2}
+$$
+
+### Quick revision {.unnumbered}
+
+* A single factor experiment varies only one factor, the treatments, while all other conditions are kept uniform.
+
+* CRD uses only randomization and replication; local control is not needed since experimental units are already homogeneous.
+
+* CRD is best suited to laboratory and greenhouse experiments; it is rarely used for field experiments because field plots are usually not homogeneous.
+
+* RCBD adds local control (blocking) to randomization and replication, grouping heterogeneous experimental material into homogeneous blocks along a single known source of variation, most often a fertility gradient.
+
+* In RCBD, number of blocks = number of replications, and number of plots per block = number of treatments.
+
+* LSD controls variation in two perpendicular directions at once, using rows and columns as two separate blocking factors, so the number of rows, columns, and treatments are all equal.
+
+* The statistical model of CRD matches one-way ANOVA; the model of RCBD matches two-way ANOVA; LSD requires a three-way classification (rows, columns, treatments).
+
+* Error degrees of freedom should generally be at least 12, since F critical values change very little beyond this point; this rule is used to decide the minimum number of replications needed in a design.
+
+* When the overall F test for treatments is significant, Fisher's Least Significant Difference (LSD) test is used to compare treatment pairs.
+
+* Treatment means that share a common letter or symbol in a grouping table are not significantly different from each other.
+
+* Among CRD, RCBD, and LSD (for the same number of treatments and replications), CRD gives the largest error degrees of freedom, since none of the variation is set aside for blocking.
+
+* LSD is typically restricted to 5 to 10 treatments: too few treatments leave almost no error degrees of freedom, and too many require an impractically large number of homogeneous plots.  
+
+
+### Answers to fill in the blanks {.unnumbered}  
+
+::: {.answer-key}
+**1.** Single factor **2.** Completely at random **3.** Randomization **4.** Local control **5.** Homogeneous **6.** Unequal **7.** $rt$ **8.** $n-t$ or $t(r-1)$ **9.** 12 **10.** One-way **11.** Treatment **12.** Least Significant Difference (LSD) **13.** Different **14.** At par **15.** One **16.** Local control **17.** Blocks **18.** Blocks **19.** Treatments **20.** Two-way **21.** Block **22.** Blocking **23.** $(v-1)(r-1)$ **24.** Two **25.** Once **26.** Three **27.** $v$ **28.** $(v-1)(v-2)$ **29.** Five; ten **30.** Leonhard Euler **31.** *Statistical Methods for Research Workers* **32.** Four **33.** $\dfrac{(\sum y_{ijk})^2}{v^2}$ **34.** CRD **35.** Not **36.** $r$ (the common number of replications) **37.** $\dfrac{2}{r}$ **38.** Rows; columns
+:::  
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  For CRD, $edf=t(r-1)\geq12$. With $t=6$, $6(r-1)\geq12 \Rightarrow r-1\geq2 \Rightarrow r\geq3$. The minimum number of replications required is 3.
+
+2.  For RCBD, $edf=(v-1)(r-1)\geq12$. With $v=5$, $4(r-1)\geq12 \Rightarrow r-1\geq3 \Rightarrow r\geq4$. The minimum number of blocks required is 4.
+
+3.  With $t=4$ treatments and $r=6$ replications, $n=24$. Treatment df $=t-1=3$; Error df $=n-t=20$; Total df $=n-1=23$.
+
+4.  With $v=5$ treatments and $r=4$ blocks, $n=20$. Treatment df $=v-1=4$; Block df $=r-1=3$; Error df $=(v-1)(r-1)=12$; Total df $=n-1=19$.
+
+5.  With $v=6$, Row df $=v-1=5$; Column df $=v-1=5$; Treatment df $=v-1=5$; Error df $=(v-1)(v-2)=20$; Total df $=v^2-1=35$.
+
+6.  Error SS $=285.60-210.40=75.20$. Treatment df $=4-1=3$; Error df $=n-t=16-4=12$.
+
+7.  Error SS $=500-300-120=80$. Error df $=(v-1)(r-1)=(5-1)(4-1)=12$.
+
+8.  Error SS $=1753.36-253.76-272.56-1064.96=162.08$.
+
+9.  CRD makes full use of the experimental material without setting aside any degrees of freedom for blocking, so when units are genuinely homogeneous, CRD gives the maximum possible error degrees of freedom and the simplest analysis, without the loss of information that blocking causes when it is not actually needed.
+
+10. The difference between the means is $40-35=5$, which is greater than the critical difference of 4, so the two treatments are significantly different.
+
+11. The difference between the means is $30-28=2$, which is less than the critical difference of 3, so the two treatments are not significantly different; they are said to be at par.
+
+12. CRD would be most appropriate, since the potting mixture is homogeneous and environmental conditions in a greenhouse are relatively easy to control; local control is unnecessary, and CRD gives the simplest analysis with the maximum error degrees of freedom.
+
+13. RCBD would be most appropriate, since the fertility gradient runs in a single direction and can be controlled by forming blocks perpendicular to that gradient, leaving randomization and replication within each block to handle the remaining variation.
+
+14. LSD would be most appropriate, since it controls variation in two perpendicular directions simultaneously using rows and columns, which a single blocking factor in RCBD cannot do.
+
+15. P (labelled "a") and Q (labelled "ab") share the letter "a", so they are not significantly different. Q (labelled "ab") and R (labelled "b") share the letter "b", so they are also not significantly different. However, P (labelled "a") and R (labelled "b") share no common letter, so they are significantly different from each other.

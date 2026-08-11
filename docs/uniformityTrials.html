@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./anova.html" rel="next">
 <link href="./designofexperiments.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-84d67a869316b323f81d9f2a2c5555cd.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +144,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -164,7 +330,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -317,6 +484,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Factorial experiments</span></span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -329,13 +502,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./ancova.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./missingPlot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
   </div>
 </li>
       </ul>
@@ -343,7 +516,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendix</span></a>
+ <span class="menu-text">Appendices</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -352,19 +525,37 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
   </div>
 </li>
       </ul>
@@ -372,7 +563,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">References</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">References</span></span></a>
   </div>
 </li>
     </ul>
@@ -402,11 +593,22 @@ window.Quarto = {
   <li><a href="#smiths-index-of-soil-heterogeneity" id="toc-smiths-index-of-soil-heterogeneity" class="nav-link" data-scroll-target="#smiths-index-of-soil-heterogeneity"><span class="header-section-number">17.7.4</span> Smith’s index of soil heterogeneity</a></li>
   <li><a href="#maximum-curvature-method" id="toc-maximum-curvature-method" class="nav-link" data-scroll-target="#maximum-curvature-method"><span class="header-section-number">17.7.5</span> Maximum curvature method</a></li>
   </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">17.8</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#important-formulae" id="toc-important-formulae" class="nav-link" data-scroll-target="#important-formulae">Important formulae</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -485,7 +687,7 @@ window.Quarto = {
 Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values and the computed b value.
 </figcaption>
 <div aria-describedby="tbl-adjb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Computed b</td>
@@ -554,8 +756,6 @@ Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values 
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </figure>
 </div>
@@ -565,7 +765,7 @@ Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values 
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -601,7 +801,7 @@ Figure&nbsp;17.1: Yield observed from the plots of 1 × 1 m size
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -752,7 +952,7 @@ Figure&nbsp;17.9: Mean square between strips from uniformity trial data
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -771,84 +971,82 @@ Note
 Table&nbsp;17.2: Nine different plot sizes created from the uniformity trial data
 </figcaption>
 <div aria-describedby="tbl-plotsizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Sl..No.</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Size.of.plot..x.</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Width</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Length</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">No..of.plots...w..</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Sl..No.</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Size.of.plot..x.</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Width</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Length</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">No..of.plots...w..</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">150</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">150</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">75</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">75</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">50</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">50</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">4</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">30</td>
+<td style="text-align: center; width: 3cm;">4</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">30</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">30</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">30</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">6</td>
-<td style="text-align: right; width: 3cm;">6</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">25</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">25</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">7</td>
-<td style="text-align: right; width: 3cm;">10</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">15</td>
+<td style="text-align: center; width: 3cm;">7</td>
+<td style="text-align: center; width: 3cm;">10</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">15</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">8</td>
-<td style="text-align: right; width: 3cm;">15</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">10</td>
+<td style="text-align: center; width: 3cm;">8</td>
+<td style="text-align: center; width: 3cm;">15</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">10</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">9</td>
-<td style="text-align: right; width: 3cm;">25</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">9</td>
+<td style="text-align: center; width: 3cm;">25</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">6</td>
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </figure>
 </div>
@@ -892,220 +1090,225 @@ Figure&nbsp;17.11: Totals of each of the six plots
 Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 </figcaption>
 <div aria-describedby="tbl-vxcv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Sl..No.</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Size.of.plot..x.</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Width</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">Length</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">No..of.plots..w..</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Vx</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">C.V</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Sl..No.</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Size.of.plot..x.</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Width</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Length</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">No..of.plots..w..</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Vx</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">C.V</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">150</td>
-<td style="text-align: left; width: 3cm;">5 577.88</td>
-<td style="text-align: right; width: 3cm;">9.1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">150</td>
+<td style="text-align: center; width: 3cm;">5 577.88</td>
+<td style="text-align: center; width: 3cm;">9.1</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">75</td>
-<td style="text-align: left; width: 3cm;">4 427.18</td>
-<td style="text-align: right; width: 3cm;">8.1</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">75</td>
+<td style="text-align: center; width: 3cm;">4 427.18</td>
+<td style="text-align: center; width: 3cm;">8.1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">50</td>
-<td style="text-align: left; width: 3cm;">3 733.36</td>
-<td style="text-align: right; width: 3cm;">7.5</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">50</td>
+<td style="text-align: center; width: 3cm;">3 733.36</td>
+<td style="text-align: center; width: 3cm;">7.5</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">4</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">30</td>
-<td style="text-align: left; width: 3cm;">2 213.82</td>
-<td style="text-align: right; width: 3cm;">5.7</td>
+<td style="text-align: center; width: 3cm;">4</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">30</td>
+<td style="text-align: center; width: 3cm;">2 213.82</td>
+<td style="text-align: center; width: 3cm;">5.7</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">1</td>
-<td style="text-align: right; width: 3cm;">30</td>
-<td style="text-align: left; width: 3cm;">3 066.42</td>
-<td style="text-align: right; width: 3cm;">6.8</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">30</td>
+<td style="text-align: center; width: 3cm;">3 066.42</td>
+<td style="text-align: center; width: 3cm;">6.8</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">6</td>
-<td style="text-align: right; width: 3cm;">6</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">25</td>
-<td style="text-align: left; width: 3cm;">3 316.61</td>
-<td style="text-align: right; width: 3cm;">7.0</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">25</td>
+<td style="text-align: center; width: 3cm;">3 316.61</td>
+<td style="text-align: center; width: 3cm;">7.0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">7</td>
-<td style="text-align: right; width: 3cm;">10</td>
-<td style="text-align: right; width: 3cm;">2</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">15</td>
-<td style="text-align: left; width: 3cm;">2 003.03</td>
-<td style="text-align: right; width: 3cm;">5.5</td>
+<td style="text-align: center; width: 3cm;">7</td>
+<td style="text-align: center; width: 3cm;">10</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">15</td>
+<td style="text-align: center; width: 3cm;">2 003.03</td>
+<td style="text-align: center; width: 3cm;">5.5</td>
 </tr>
 <tr class="even">
-<td style="text-align: right; width: 3cm;">8</td>
-<td style="text-align: right; width: 3cm;">15</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">3</td>
-<td style="text-align: right; width: 3cm;">10</td>
-<td style="text-align: left; width: 3cm;">2 268.41</td>
-<td style="text-align: right; width: 3cm;">5.8</td>
+<td style="text-align: center; width: 3cm;">8</td>
+<td style="text-align: center; width: 3cm;">15</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">10</td>
+<td style="text-align: center; width: 3cm;">2 268.41</td>
+<td style="text-align: center; width: 3cm;">5.8</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right; width: 3cm;">9</td>
-<td style="text-align: right; width: 3cm;">25</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">5</td>
-<td style="text-align: right; width: 3cm;">6</td>
-<td style="text-align: left; width: 3cm;">1 468.24</td>
-<td style="text-align: right; width: 3cm;">4.7</td>
+<td style="text-align: center; width: 3cm;">9</td>
+<td style="text-align: center; width: 3cm;">25</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">1 468.24</td>
+<td style="text-align: center; width: 3cm;">4.7</td>
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </figure>
 </div>
 <p>For each plot size having more than one shape (here plot size 5 has more than one shape), test the homogeneity of the between-plot variances <span class="math inline">\(V_{(x)}\)</span> to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. For each plot size whose plot-shape effect is non-significant, compute the average of the <span class="math inline">\(V_{x}\)</span> values over all plot shapes and proceed with the estimation of Smith’s index of soil heterogeneity.</p>
 <p><span class="math inline">\(V_{(x)}\)</span> calculated for both plot shapes:</p>
-<table class="caption-top table">
+<div id="tbl-plotshapevar" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plotshapevar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;17.4: Between-plot variance for the two shapes of the size-5 plot
+</figcaption>
+<div aria-describedby="tbl-plotshapevar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
 <thead>
 <tr class="header">
-<th style="text-align: left;">Plot shape</th>
-<th style="text-align: left;"><span class="math inline">\(V_{(x)}\)</span></th>
+<th style="text-align: center;">Plot shape</th>
+<th style="text-align: center;"><span class="math inline">\(V_{(x)}\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1 × 5</td>
-<td style="text-align: left;">456895.9</td>
+<td style="text-align: center;">1 × 5</td>
+<td style="text-align: center;">456895.9</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">5 × 1</td>
-<td style="text-align: left;">329859.5</td>
+<td style="text-align: center;">5 × 1</td>
+<td style="text-align: center;">329859.5</td>
 </tr>
 </tbody>
 </table>
-<p>The degrees of freedom for the F test are <span class="math inline">\((w_{1} - 1,\ w_{2} - 1)\)</span>, where <span class="math inline">\(w_{1}\)</span> and <span class="math inline">\(w_{2}\)</span> are the number of plots of each particular shape. Here, the degrees of freedom <span class="math inline">\(= (30 - 1,\ 30 - 1) = (29, 29)\)</span>. F is calculated as the ratio of the <span class="math inline">\(V_{(x)}\)</span> of the two plot shapes, <span class="math inline">\(F_{\text{cal}} = \dfrac{456895.9}{329859.5} = 1.38\)</span>. The calculated value of F is compared with the table value of F. The table value of F at <span class="math inline">\((29, 29)\)</span> degrees of freedom is <span class="math inline">\(F_{\text{table}} = 1.860\)</span>. Since <span class="math inline">\(F_{\text{cal}} &lt; F_{\text{table}}\)</span>, the calculated F is non-significant, so we take the average of the <span class="math inline">\(V_{x}\)</span> of both plot shapes and proceed. In our example, we proceeded without taking the average. This F test example is included for a better understanding of the theory.</p>
+</div>
+</figure>
+</div>
+<p>The degrees of freedom for the F test are <span class="math inline">\((w_{1} - 1,\ w_{2} - 1)\)</span>, where <span class="math inline">\(w_{1}\)</span> and <span class="math inline">\(w_{2}\)</span> are the number of plots of each particular shape. Here, the degrees of freedom <span class="math inline">\(= (30 - 1,\ 30 - 1) = (29, 29)\)</span>. F is calculated as the ratio of the <span class="math inline">\(V_{(x)}\)</span> of the two plot shapes, <span class="math inline">\(F_{\text{cal}} = \dfrac{456895.9}{329859.5} = 1.39\)</span>. The calculated value of F is compared with the table value of F. The table value of F at <span class="math inline">\((29, 29)\)</span> degrees of freedom is <span class="math inline">\(F_{\text{table}} = 1.860\)</span>. Since <span class="math inline">\(F_{\text{cal}} &lt; F_{\text{table}}\)</span>, the calculated F is non-significant, so we take the average of the <span class="math inline">\(V_{x}\)</span> of both plot shapes and proceed. In our example, we proceeded without taking the average. This F test example is included for a better understanding of the theory.</p>
 <p>Now Smith’s index of soil heterogeneity is estimated as follows.</p>
 <div id="tbl-smithindex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-smithindex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.4: Estimation of Smith’s index of soil heterogeneity
+Table&nbsp;17.5: Estimation of Smith’s index of soil heterogeneity
 </figcaption>
 <div aria-describedby="tbl-smithindex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="lightable-classic table cell caption-top table-sm table-striped small" data-quarto-postprocess="true">
+<table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
 <thead>
 <tr class="header">
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">Size of plot x</th>
-<th data-quarto-table-cell-role="th" style="text-align: left; font-weight: bold;">$V_x$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$\log V_x$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$Y=\log V_x-\log V_1$</th>
-<th data-quarto-table-cell-role="th" style="text-align: right; font-weight: bold;">$X=\log x$</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">Size of plot x</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">$V_x$</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">$\log V_x$</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">$Y=\log V_x-\log V_1$</th>
+<th data-quarto-table-cell-role="th" style="text-align: center; font-weight: bold;">$X=\log x$</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">1</td>
-<td style="text-align: left; width: 3cm;">5577.88</td>
-<td style="text-align: right; width: 3cm;">8.62656</td>
-<td style="text-align: right; width: 3cm;">0.000000</td>
-<td style="text-align: right; width: 3cm;">0.0000000</td>
+<td style="text-align: center; width: 3cm;">1</td>
+<td style="text-align: center; width: 3cm;">5577.88</td>
+<td style="text-align: center; width: 3cm;">8.62656</td>
+<td style="text-align: center; width: 3cm;">0.000000</td>
+<td style="text-align: center; width: 3cm;">0.0000000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">2</td>
-<td style="text-align: left; width: 3cm;">4427.18</td>
-<td style="text-align: right; width: 3cm;">8.39552</td>
-<td style="text-align: right; width: 3cm;">-0.231045</td>
-<td style="text-align: right; width: 3cm;">0.6931472</td>
+<td style="text-align: center; width: 3cm;">2</td>
+<td style="text-align: center; width: 3cm;">4427.18</td>
+<td style="text-align: center; width: 3cm;">8.39552</td>
+<td style="text-align: center; width: 3cm;">-0.231045</td>
+<td style="text-align: center; width: 3cm;">0.6931472</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">3</td>
-<td style="text-align: left; width: 3cm;">3733.36</td>
-<td style="text-align: right; width: 3cm;">8.22506</td>
-<td style="text-align: right; width: 3cm;">-0.401499</td>
-<td style="text-align: right; width: 3cm;">1.0986123</td>
+<td style="text-align: center; width: 3cm;">3</td>
+<td style="text-align: center; width: 3cm;">3733.36</td>
+<td style="text-align: center; width: 3cm;">8.22506</td>
+<td style="text-align: center; width: 3cm;">-0.401499</td>
+<td style="text-align: center; width: 3cm;">1.0986123</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">5</td>
-<td style="text-align: left; width: 3cm;">2213.82</td>
-<td style="text-align: right; width: 3cm;">7.70248</td>
-<td style="text-align: right; width: 3cm;">-0.924087</td>
-<td style="text-align: right; width: 3cm;">1.6094379</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">2213.82</td>
+<td style="text-align: center; width: 3cm;">7.70248</td>
+<td style="text-align: center; width: 3cm;">-0.924087</td>
+<td style="text-align: center; width: 3cm;">1.6094379</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">5</td>
-<td style="text-align: left; width: 3cm;">3066.42</td>
-<td style="text-align: right; width: 3cm;">8.02826</td>
-<td style="text-align: right; width: 3cm;">-0.598299</td>
-<td style="text-align: right; width: 3cm;">1.6094379</td>
+<td style="text-align: center; width: 3cm;">5</td>
+<td style="text-align: center; width: 3cm;">3066.42</td>
+<td style="text-align: center; width: 3cm;">8.02826</td>
+<td style="text-align: center; width: 3cm;">-0.598299</td>
+<td style="text-align: center; width: 3cm;">1.6094379</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">6</td>
-<td style="text-align: left; width: 3cm;">3316.61</td>
-<td style="text-align: right; width: 3cm;">8.10670</td>
-<td style="text-align: right; width: 3cm;">-0.519865</td>
-<td style="text-align: right; width: 3cm;">1.7917595</td>
+<td style="text-align: center; width: 3cm;">6</td>
+<td style="text-align: center; width: 3cm;">3316.61</td>
+<td style="text-align: center; width: 3cm;">8.10670</td>
+<td style="text-align: center; width: 3cm;">-0.519865</td>
+<td style="text-align: center; width: 3cm;">1.7917595</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">10</td>
-<td style="text-align: left; width: 3cm;">2003.03</td>
-<td style="text-align: right; width: 3cm;">7.60242</td>
-<td style="text-align: right; width: 3cm;">-1.024146</td>
-<td style="text-align: right; width: 3cm;">2.3025851</td>
+<td style="text-align: center; width: 3cm;">10</td>
+<td style="text-align: center; width: 3cm;">2003.03</td>
+<td style="text-align: center; width: 3cm;">7.60242</td>
+<td style="text-align: center; width: 3cm;">-1.024146</td>
+<td style="text-align: center; width: 3cm;">2.3025851</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">15</td>
-<td style="text-align: left; width: 3cm;">2268.41</td>
-<td style="text-align: right; width: 3cm;">7.72683</td>
-<td style="text-align: right; width: 3cm;">-0.899731</td>
-<td style="text-align: right; width: 3cm;">2.7080502</td>
+<td style="text-align: center; width: 3cm;">15</td>
+<td style="text-align: center; width: 3cm;">2268.41</td>
+<td style="text-align: center; width: 3cm;">7.72683</td>
+<td style="text-align: center; width: 3cm;">-0.899731</td>
+<td style="text-align: center; width: 3cm;">2.7080502</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left; width: 3cm;">25</td>
-<td style="text-align: left; width: 3cm;">1468.24</td>
-<td style="text-align: right; width: 3cm;">7.29182</td>
-<td style="text-align: right; width: 3cm;">-1.334744</td>
-<td style="text-align: right; width: 3cm;">3.2188758</td>
+<td style="text-align: center; width: 3cm;">25</td>
+<td style="text-align: center; width: 3cm;">1468.24</td>
+<td style="text-align: center; width: 3cm;">7.29182</td>
+<td style="text-align: center; width: 3cm;">-1.334744</td>
+<td style="text-align: center; width: 3cm;">3.2188758</td>
 </tr>
 <tr class="even">
-<td style="text-align: left; width: 3cm;">V1 = 5577.88</td>
-<td style="text-align: left; width: 3cm;">log(V1) = 8.62656</td>
-<td style="text-align: right; width: 3cm;">NA</td>
-<td style="text-align: right; width: 3cm;">NA</td>
-<td style="text-align: right; width: 3cm;">NA</td>
+<td style="text-align: center; width: 3cm;">V1 = 5577.88</td>
+<td style="text-align: center; width: 3cm;">log(V1) = 8.62656</td>
+<td style="text-align: center; width: 3cm;">NA</td>
+<td style="text-align: center; width: 3cm;">NA</td>
+<td style="text-align: center; width: 3cm;">NA</td>
 </tr>
 </tbody>
 </table>
-
-
 </div>
 </figure>
 </div>
@@ -1155,7 +1358,7 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1170,13 +1373,302 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>“The business of the statistician is to catalyze the scientific learning process.” - George Box</strong></p>
+<p><strong>“The business of the statistician is to catalyze the scientific learning process.”</strong><br>
+<strong>- George Box</strong></p>
 </div>
 </div>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="17.8">
+<h2 data-number="17.8" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">17.8</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A trial conducted to study the nature and extent of fertility variation in a field is called a __________ trial.</p></li>
+<li><p>In a uniformity trial, the entire experimental field is planted with a single __________ of crop.</p></li>
+<li><p>In a uniformity trial, the crop is managed __________ throughout the growing season.</p></li>
+<li><p>Fertilizer is generally __________ in a uniformity trial.</p></li>
+<li><p>The small plots into which the effective field is divided are called __________ units.</p></li>
+<li><p>The smaller the basic unit, the more accurately the study of field __________ can be made.</p></li>
+<li><p>The yield differences between basic units are used as a measure of soil __________.</p></li>
+<li><p>A fertility contour map is constructed using __________ averages of yields.</p></li>
+<li><p>Moving averages help to reduce the large random variation expected on __________ plots.</p></li>
+<li><p>Serial correlation can be calculated in both the __________ and __________ directions.</p></li>
+<li><p>A low serial correlation indicates that fertile areas occur in __________.</p></li>
+<li><p>A high serial correlation indicates the presence of a fertility __________.</p></li>
+<li><p>The relative size of horizontal and vertical serial correlations gives an indication of the __________ of fertility pattern.</p></li>
+<li><p>The mean square between strips method has the same objective as the __________ correlation method.</p></li>
+<li><p>In the mean square between strips method, basic units are combined into __________ and __________ strips.</p></li>
+<li><p>The variability between strips is measured using the __________ square between strips.</p></li>
+<li><p>Smith’s variance law describes the relationship between plot size and the __________ of the mean per plot.</p></li>
+<li><p>Fairfield Smith’s variance law is represented by <span class="math inline">\(V_x=\)</span> __________.</p></li>
+<li><p>The parameter <span class="math inline">\(b\)</span> in Smith’s variance law is called Smith’s index of soil __________.</p></li>
+<li><p>A lower value of Smith’s index generally indicates a higher degree of __________ among adjacent plots.</p></li>
+<li><p>The value of Smith’s index <span class="math inline">\(b\)</span> lies between __________ and __________.</p></li>
+<li><p>In constructing simulated plots, the product of the number of plots and the number of basic units per plot must equal the __________ number of basic units.</p></li>
+<li><p>The total yield of the basic units forming a simulated plot is denoted by __________.</p></li>
+<li><p>The variance between simulated plots is denoted by __________.</p></li>
+<li><p>Variance per unit area is obtained by dividing the between-plot variance by __________.</p></li>
+<li><p>When a plot size has more than one possible shape, the homogeneity of the variances can be tested using the __________ test or the __________ test.</p></li>
+<li><p>If the variances for different plot shapes are homogeneous, their __________ is used for further calculation.</p></li>
+<li><p>Smith’s index is estimated by fitting a __________ between <span class="math inline">\(\log V_x-\log V_1\)</span> and <span class="math inline">\(\log x\)</span>.</p></li>
+<li><p>In the regression equation <span class="math inline">\(Y=cX\)</span>, the relationship between <span class="math inline">\(c\)</span> and Smith’s index is __________.</p></li>
+<li><p>The adjusted value of Smith’s index is obtained by __________ when the calculated value lies between two tabulated values.</p></li>
+<li><p>The maximum curvature method is used to determine the __________ plot size.</p></li>
+<li><p>In the maximum curvature method, plot size is plotted on the __________ axis.</p></li>
+<li><p>In the maximum curvature method, coefficient of variation is plotted on the __________ axis.</p></li>
+<li><p>As plot size increases, the coefficient of variation generally __________.</p></li>
+<li><p>The plot size corresponding to the point of maximum curvature is considered the __________ plot size.</p></li>
+<li><p>The first true uniformity trial was conducted at __________ Experimental Station.</p></li>
+<li><p>The first true uniformity trial was conducted by W. B. Mercer and __________.</p></li>
+<li><p>The historical uniformity trial was conducted using a field of __________.</p></li>
+<li><p>The study showed that neighbouring plots tended to __________ one another.</p></li>
+<li><p>The historical uniformity trial demonstrated that combining small plots into larger plots reduces the variability per __________ area.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Define a uniformity trial.</p></li>
+<li><p>State the objectives of a uniformity trial.</p></li>
+<li><p>Explain how a uniformity trial is conducted.</p></li>
+<li><p>What are basic units?</p></li>
+<li><p>Why should the basic units be as small as possible?</p></li>
+<li><p>How can a uniformity trial help in planning a field experiment?</p></li>
+<li><p>What information about a field can be obtained from a uniformity trial?</p></li>
+<li><p>Explain the construction of a fertility contour map.</p></li>
+<li><p>What is the purpose of using moving averages in a fertility contour map?</p></li>
+<li><p>What is serial correlation?</p></li>
+<li><p>Why are horizontal and vertical serial correlations calculated separately?</p></li>
+<li><p>Interpret a low serial correlation in a uniformity trial.</p></li>
+<li><p>Interpret a high serial correlation in a uniformity trial.</p></li>
+<li><p>What is the limitation of interpreting the relative magnitude of horizontal and vertical serial correlations?</p></li>
+<li><p>Explain the mean square between strips method.</p></li>
+<li><p>Distinguish between horizontal and vertical strips.</p></li>
+<li><p>How is the direction of the fertility gradient identified using mean squares between strips?</p></li>
+<li><p>What is Fairfield Smith’s variance law?</p></li>
+<li><p>Explain the meaning of <span class="math inline">\(V_x\)</span>, <span class="math inline">\(V_1\)</span>, <span class="math inline">\(x\)</span>, and <span class="math inline">\(b\)</span> in Smith’s variance law.</p></li>
+<li><p>What is Smith’s index of soil heterogeneity?</p></li>
+<li><p>Explain the interpretation of a low value of Smith’s index.</p></li>
+<li><p>Explain the steps involved in estimating Smith’s index of soil heterogeneity.</p></li>
+<li><p>Why should all possible simulated plot sizes and shapes fit exactly within the field?</p></li>
+<li><p>Explain the calculation of between-plot variance.</p></li>
+<li><p>Explain how variance per unit area is calculated.</p></li>
+<li><p>Why is the homogeneity of variance tested when a plot size has more than one shape?</p></li>
+<li><p>Explain how the F test is used to compare variances of different plot shapes.</p></li>
+<li><p>Explain the regression procedure used to estimate Smith’s index.</p></li>
+<li><p>Why is the calculated Smith’s index adjusted?</p></li>
+<li><p>Explain the interpolation method used to obtain adjusted <span class="math inline">\(b\)</span>.</p></li>
+<li><p>What is the maximum curvature method?</p></li>
+<li><p>Explain how the optimum plot size is obtained by the maximum curvature method.</p></li>
+<li><p>Why does coefficient of variation generally decrease with increase in plot size?</p></li>
+<li><p>Compare Smith’s method and the maximum curvature method for determining plot size.</p></li>
+<li><p>Explain how the results of a uniformity trial can help in deciding block size.</p></li>
+<li><p>Explain the importance of plot size and shape in agricultural experiments.</p></li>
+<li><p>Explain the historical importance of the uniformity trial conducted at Rothamsted Experimental Station.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>A field of 12 m × 17 m is used for a uniformity trial. A border of 1 m is removed from all sides. Find the effective area.</p></li>
+<li><p>If the effective field in Question 1 is divided into 1 m × 1 m basic units, find the total number of basic units.</p></li>
+<li><p>In a uniformity trial, explain why fertilizer is not applied to the crop.</p></li>
+<li><p>A uniformity trial gives low horizontal and vertical serial correlation coefficients. What does this indicate about the distribution of fertility?</p></li>
+<li><p>The horizontal serial correlation is 0.54 and the vertical serial correlation is 0.44. Explain the interpretation based on the chapter.</p></li>
+<li><p>Calculate the vertical and horizontal mean squares between strips when the required strip totals and grand total are given.</p></li>
+<li><p>The vertical mean square is 7107.94 and the horizontal mean square is 24370.41. Which direction shows greater fertility variation?</p></li>
+<li><p>Explain why the relative magnitude of the two serial correlation coefficients should not be used to quantify the relative degree of fertility gradients.</p></li>
+<li><p>A uniformity trial contains <span class="math inline">\(r\)</span> rows and <span class="math inline">\(c\)</span> columns of basic units. Find the total number of basic units.</p></li>
+<li><p>A plot size contains <span class="math inline">\(x\)</span> basic units and the field contains <span class="math inline">\(rc\)</span> basic units. Find the number of simulated plots.</p></li>
+<li><p>Calculate the between-plot variance when the simulated plot totals, total number of basic units, and grand total are given.</p></li>
+<li><p>Explain why the variance per unit area is calculated after obtaining the between-plot variance.</p></li>
+<li><p>For a plot size having two orientations, the calculated variances are 456895.9 and 329859.5. Calculate the F statistic.</p></li>
+<li><p>If the calculated F value is 1.39 and the table value is 1.860, state the conclusion regarding plot orientation.</p></li>
+<li><p>Given <span class="math inline">\(b_{\text{cal}}=0.3952\)</span>, <span class="math inline">\(L_1=0.40\)</span>, <span class="math inline">\(L_2=0.50\)</span>, <span class="math inline">\(y_1=0.443\)</span>, and <span class="math inline">\(y_2=0.528\)</span>, calculate the adjusted Smith’s index.</p></li>
+<li><p>Explain the interpretation of an adjusted Smith’s index of 0.43892.</p></li>
+<li><p>A uniformity trial gives CV values for several plot sizes. Explain how the optimum plot size can be identified using the maximum curvature method.</p></li>
+<li><p>If the CV decreases sharply up to a particular plot size and then changes only slightly, explain which plot size would be considered appropriate.</p></li>
+<li><p>Explain why the optimum plot size obtained from the maximum curvature method may depend on the crop and field conditions.</p></li>
+<li><p>A field has strong fertility variation in the horizontal direction. Explain how this information can be used while planning blocks.</p></li>
+</ol>
+</section>
+<section id="important-formulae" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
+<p>Serial correlation:</p>
+<p><span class="math display">\[
+r_s=\frac{\sum_{i=1}^{n}X_iX_{i+1}-\frac{\left(\sum_{i=1}^{n}X_i\right)^2}{n}}{\sum_{i=1}^{n}X_i^2-\frac{\left(\sum_{i=1}^{n}X_i\right)^2}{n}}
+\]</span></p>
+<p>Total number of basic units:</p>
+<p><span class="math display">\[
+n=r\times c
+\]</span></p>
+<p>Vertical sum of squares:</p>
+<p><span class="math display">\[
+SS_V=\frac{\sum_{i=1}^{c}V_i^2}{r}-\frac{G^2}{n}
+\]</span></p>
+<p>Horizontal sum of squares:</p>
+<p><span class="math display">\[
+SS_H=\frac{\sum_{i=1}^{r}H_i^2}{c}-\frac{G^2}{n}
+\]</span></p>
+<p>Vertical mean square:</p>
+<p><span class="math display">\[
+MS_V=\frac{SS_V}{c-1}
+\]</span></p>
+<p>Horizontal mean square:</p>
+<p><span class="math display">\[
+MS_H=\frac{SS_H}{r-1}
+\]</span></p>
+<p>Fairfield Smith’s variance law:</p>
+<p><span class="math display">\[
+V_x=\frac{V_1}{x^b}
+\]</span></p>
+<p>Logarithmic form of Smith’s variance law:</p>
+<p><span class="math display">\[
+\log V_x=\log V_1-b\log x
+\]</span></p>
+<p>Difference form:</p>
+<p><span class="math display">\[
+\log V_x-\log V_1=-b\log x
+\]</span></p>
+<p>Regression form:</p>
+<p><span class="math display">\[
+Y=cX
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+Y=\log V_x-\log V_1
+\]</span></p>
+<p>and</p>
+<p><span class="math display">\[
+X=\log x
+\]</span></p>
+<p>Relationship between regression coefficient and Smith’s index:</p>
+<p><span class="math display">\[
+c=-b
+\]</span></p>
+<p>Number of simulated plots:</p>
+<p><span class="math display">\[
+w=\frac{rc}{x}
+\]</span></p>
+<p>Between-plot variance:</p>
+<p><span class="math display">\[
+V_{(x)}=\sum_{i=1}^{w}\frac{T_i^2}{x}-\frac{G^2}{rc}
+\]</span></p>
+<p>Variance per unit area:</p>
+<p><span class="math display">\[
+V_x=\frac{V_{(x)}}{rc-1}
+\]</span></p>
+<p>Coefficient of variation:</p>
+<p><span class="math display">\[
+CV=\frac{\text{Standard deviation}}{\text{Mean}}\times100
+\]</span></p>
+<p>Standard deviation from variance:</p>
+<p><span class="math display">\[
+SD=\sqrt{V_x}
+\]</span></p>
+<p>Adjusted Smith’s index:</p>
+<p><span class="math display">\[
+\text{Adjusted }b=y_1+(b_{\text{cal}}-L_1)\frac{y_2-y_1}{L_2-L_1}
+\]</span></p>
+<p>F statistic for comparing variances of two plot shapes:</p>
+<p><span class="math display">\[
+F=\frac{\text{Larger variance}}{\text{Smaller variance}}
+\]</span></p>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li><p>Uniformity trial → used to study the nature and extent of fertility variation in a field.</p></li>
+<li><p>A single crop variety is grown over the entire field.</p></li>
+<li><p>The crop is managed uniformly and fertilizer is not applied.</p></li>
+<li><p>A substantial border is removed before dividing the field into basic units.</p></li>
+<li><p>Basic unit → smallest unit from which yield is separately recorded.</p></li>
+<li><p>Yield differences among basic units → measure of soil heterogeneity.</p></li>
+<li><p>Smaller basic units → more accurate study of field heterogeneity.</p></li>
+<li><p>Uniformity trials can help determine → fertility variation, plot size, plot shape, and block size.</p></li>
+<li><p>Fertility contour map → graphical representation of soil heterogeneity.</p></li>
+<li><p>Moving averages → used to reduce random variation and identify areas of similar fertility.</p></li>
+<li><p>Similar fertility areas → grouped together in the contour map.</p></li>
+<li><p>Serial correlation → measures the relationship between neighbouring observations.</p></li>
+<li><p>Horizontal and vertical serial correlations → used to identify the direction of fertility variation.</p></li>
+<li><p>Low serial correlation → fertile areas occur in spots.</p></li>
+<li><p>High serial correlation → fertility gradient is present.</p></li>
+<li><p>Mean square between strips → simpler method having the same objective as serial correlation.</p></li>
+<li><p>Vertical strips → used to study fertility variation in the vertical direction.</p></li>
+<li><p>Horizontal strips → used to study fertility variation in the horizontal direction.</p></li>
+<li><p>Larger strip mean square → indicates greater variation in that direction.</p></li>
+<li><p>Fairfield Smith’s variance law → relates plot size to variance per plot.</p></li>
+<li><p>Smith’s law → <span class="math inline">\(V_x=V_1/x^b\)</span>.</p></li>
+<li><p>Smith’s index of soil heterogeneity → <span class="math inline">\(b\)</span>.</p></li>
+<li><p><span class="math inline">\(b\)</span> → quantitative measure of soil heterogeneity.</p></li>
+<li><p>Lower <span class="math inline">\(b\)</span> → higher correlation among adjacent plots and more gradual change in fertility.</p></li>
+<li><p>Higher <span class="math inline">\(b\)</span> → greater tendency for fertility variation to occur in patches.</p></li>
+<li><p>Smith’s index lies between 0 and 1.</p></li>
+<li><p>Simulated plots → formed by combining basic units into different sizes and shapes.</p></li>
+<li><p>Only plot arrangements that fit exactly within the whole field are used.</p></li>
+<li><p>Between-plot variance → calculated for each simulated plot size and shape.</p></li>
+<li><p>Variance per unit area → obtained by dividing between-plot variance by <span class="math inline">\(rc-1\)</span>.</p></li>
+<li><p>When a plot size has more than one shape → test homogeneity of variances using F test or chi-square test.</p></li>
+<li><p>Non-significant plot-shape effect → average the variance values for the different shapes.</p></li>
+<li><p>Smith’s index → estimated by regression of <span class="math inline">\(Y=\log V_x-\log V_1\)</span> on <span class="math inline">\(X=\log x\)</span>.</p></li>
+<li><p>In <span class="math inline">\(Y=cX\)</span>, <span class="math inline">\(c=-b\)</span>.</p></li>
+<li><p>Adjusted <span class="math inline">\(b\)</span> → obtained using interpolation from the adjusted <span class="math inline">\(b\)</span> table.</p></li>
+<li><p>Maximum curvature method → used to determine optimum plot size.</p></li>
+<li><p>In maximum curvature method → plot size is plotted on the X-axis and CV on the Y-axis.</p></li>
+<li><p>As plot size increases → CV generally decreases.</p></li>
+<li><p>Point of maximum curvature → gives the optimum plot size.</p></li>
+<li><p>In the rice example → the field was 12 m × 17 m.</p></li>
+<li><p>After removing a 1 m border from all sides → effective area was 10 m × 15 m.</p></li>
+<li><p>With 1 m × 1 m basic units → there were 150 basic units.</p></li>
+<li><p>In the example, vertical serial correlation → 0.438627.</p></li>
+<li><p>In the example, horizontal serial correlation → 0.54317.</p></li>
+<li><p>Both serial correlations were low, indicating fertile areas occurring in spots.</p></li>
+<li><p>The horizontal value was somewhat higher, suggesting some fertility gradient in the horizontal direction.</p></li>
+<li><p>In the example, horizontal-strip mean square was much larger than vertical-strip mean square, indicating a stronger fertility trend along the length of the field.</p></li>
+<li><p>For plot size 25 m² in the example → <span class="math inline">\(V_{25}=1468.24\)</span>.</p></li>
+<li><p>The calculated Smith’s index in the example was <span class="math inline">\(b=0.3952\)</span> before adjustment.</p></li>
+<li><p>The adjusted Smith’s index in the example was approximately <span class="math inline">\(0.43892\)</span>.</p></li>
+<li><p>The adjusted value indicated moderate heterogeneity, with no clear fertility gradient but a slight indication of patches.</p></li>
+<li><p>Uniformity trials are important because field variability exists even when all management practices are kept uniform.</p></li>
+</ul>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<div class="answer-key">
+<p><strong>1.</strong> Uniformity <strong>2.</strong> Variety <strong>3.</strong> Uniformly <strong>4.</strong> Not applied <strong>5.</strong> Basic <strong>6.</strong> Heterogeneity <strong>7.</strong> Heterogeneity <strong>8.</strong> Moving <strong>9.</strong> Small <strong>10.</strong> Horizontal; vertical <strong>11.</strong> Spots <strong>12.</strong> Gradient <strong>13.</strong> Direction <strong>14.</strong> Serial <strong>15.</strong> Horizontal; vertical <strong>16.</strong> Mean <strong>17.</strong> Variance <strong>18.</strong> <span class="math inline">\(V_1/x^b\)</span> <strong>19.</strong> Heterogeneity <strong>20.</strong> Correlation <strong>21.</strong> 0; 1 <strong>22.</strong> Total <strong>23.</strong> <span class="math inline">\(T\)</span> <strong>24.</strong> <span class="math inline">\(V_{(x)}\)</span> <strong>25.</strong> <span class="math inline">\(rc-1\)</span> <strong>26.</strong> F; chi-square <strong>27.</strong> Average <strong>28.</strong> Regression <strong>29.</strong> <span class="math inline">\(c=-b\)</span> <strong>30.</strong> Interpolation <strong>31.</strong> Optimum <strong>32.</strong> X <strong>33.</strong> Y <strong>34.</strong> Decreases <strong>35.</strong> Optimum <strong>36.</strong> Rothamsted <strong>37.</strong> A. D. Hall <strong>38.</strong> Wheat <strong>39.</strong> Resemble <strong>40.</strong> Unit</p>
+</div>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>Removing a 1 m border from all sides of a 12 m × 17 m field leaves an effective area of <span class="math inline">\((12-2)\times(17-2)=10\times15=150\text{ m}^2\)</span>.</p></li>
+<li><p>With 1 m × 1 m basic units, the number of basic units is <span class="math inline">\(10\times15=150\)</span>.</p></li>
+<li><p>Fertilizer is not applied so that any yield differences among basic units reflect only the natural heterogeneity of the soil, rather than being confounded with a differential response to fertilizer.</p></li>
+<li><p>Low horizontal and vertical serial correlations indicate that fertile areas are scattered as spots or patches across the field rather than following a systematic gradient in either direction.</p></li>
+<li><p>Since the horizontal correlation (0.54) is somewhat higher than the vertical correlation (0.44), there may be a slight fertility gradient along the horizontal direction, but because both values are relatively low, the dominant pattern is still one of fertile areas occurring in patches rather than a strong directional gradient.</p></li>
+<li><p>Using <a href="#eq-ssvertical" class="quarto-xref">Equation&nbsp;<span>17.2</span></a> and <a href="#eq-sshorizontal" class="quarto-xref">Equation&nbsp;<span>17.3</span></a>, compute <span class="math inline">\(SS_V=\dfrac{\sum V_i^2}{r}-\dfrac{G^2}{n}\)</span> and <span class="math inline">\(SS_H=\dfrac{\sum H_i^2}{c}-\dfrac{G^2}{n}\)</span> from the given vertical strip totals <span class="math inline">\(V_i\)</span>, horizontal strip totals <span class="math inline">\(H_i\)</span>, and grand total <span class="math inline">\(G\)</span>; then divide each by its degrees of freedom, <span class="math inline">\((c-1)\)</span> for vertical and <span class="math inline">\((r-1)\)</span> for horizontal, using <a href="#eq-msvertical" class="quarto-xref">Equation&nbsp;<span>17.4</span></a> and <a href="#eq-mshorizontal" class="quarto-xref">Equation&nbsp;<span>17.5</span></a>.</p></li>
+<li><p>Since the horizontal mean square (24370.41) is much larger than the vertical mean square (7107.94), the horizontal direction shows greater fertility variation.</p></li>
+<li><p>Serial correlation reflects the pattern of association between neighbouring units, but its numerical value is not a calibrated measure of the steepness of a gradient. Two correlation values can therefore indicate which direction shows a stronger tendency toward a gradient, but their relative magnitude should not be read as a precise quantitative comparison of the two gradients’ strengths.</p></li>
+<li><p>The total number of basic units is <span class="math inline">\(n=r\times c\)</span>.</p></li>
+<li><p>The number of simulated plots of size <span class="math inline">\(x\)</span> basic units is <span class="math inline">\(w=\dfrac{rc}{x}\)</span>.</p></li>
+<li><p>Using <a href="#eq-betweenplotvar" class="quarto-xref">Equation&nbsp;<span>17.8</span></a>, compute <span class="math inline">\(V_{(x)}=\displaystyle\sum_{i=1}^{w}\dfrac{T_i^2}{x}-\dfrac{G^2}{rc}\)</span> from the given simulated plot totals <span class="math inline">\(T_i\)</span>, the total number of basic units <span class="math inline">\(rc\)</span>, and the grand total <span class="math inline">\(G\)</span>.</p></li>
+<li><p>Between-plot variance alone is not directly comparable across different plot sizes, since it is computed from totals over different numbers of basic units. Dividing by <span class="math inline">\(rc-1\)</span> converts it to a variance per unit area, placing all plot sizes on a common, comparable scale.</p></li>
+<li><p><span class="math inline">\(F_{\text{cal}}=\dfrac{456895.9}{329859.5}=1.39\)</span>.</p></li>
+<li><p>Since <span class="math inline">\(F_{\text{cal}}=1.39\)</span> is less than <span class="math inline">\(F_{\text{table}}=1.860\)</span>, the difference between the two plot orientations is non-significant, meaning the plot-shape effect does not significantly affect the variance for that plot size, so the values for the two shapes can be averaged.</p></li>
+<li><p>Adjusted <span class="math inline">\(b=0.443+(0.3952-0.40)\dfrac{(0.528-0.443)}{(0.50-0.40)}=0.43892\)</span>.</p></li>
+<li><p>An adjusted Smith’s index of 0.43892 is a moderate value, neither close to 0 nor close to 1. It shows no strong indication of a fertility gradient, but only a slight indication that fertile areas occur in patches.</p></li>
+<li><p>The plot size (in basic units) is plotted on the X-axis and the corresponding CV values on the Y-axis. As plot size increases, CV generally decreases; the point at which the curve bends most sharply, the point of maximum curvature, is located by inspection, and the plot size corresponding to that point is taken as the optimum.</p></li>
+<li><p>The plot size near where the CV curve levels off, that is, near the point of maximum curvature, would be considered appropriate, since increasing the plot size beyond this point gives only a small further reduction in CV for a proportionally larger increase in plot size.</p></li>
+<li><p>Different crops and fields have different patterns and magnitudes of inherent soil heterogeneity, so the plot size at which the CV curve stabilises will naturally differ from one crop or field to another.</p></li>
+<li><p>Since the variation is strongest in the horizontal direction, blocks should be formed as long, narrow strips running perpendicular to the horizontal gradient (that is, oriented vertically), so that the units within each block are as homogeneous as possible.</p></li>
+</ol>
 
 
 
@@ -1193,380 +1685,256 @@ Smith, H. Fairfield. 1938. <span>“An Empirical Law Describing Heterogeneity in
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1574,185 +1942,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./designofexperiments.html" class="pagination-link" aria-label="Design of experiments">

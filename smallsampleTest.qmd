@@ -87,7 +87,7 @@ Let $t$ be the calculated value, degrees of freedom = $n - 1$, and $\alpha$ be t
 
 -   $t < -t_{\alpha}$ ; for a left-tailed test
 
-Here $t_{\alpha}$ or $t_{\alpha/2}$ is obtained from the table of Student's $t$ distribution for the given degrees of freedom $n - 1$ and level of significance $\alpha$. If the calculated value of the test statistic is greater than the critical value from the table, we reject the null hypothesis. Otherwise, we do not have enough evidence to reject it.
+Here $t_{\alpha}$ or $t_{\alpha/2}$ is obtained from the table of Student's $t$ distribution for the given degrees of freedom $n - 1$ and level of significance $\alpha$. If the calculated value of the test statistic is greater than the critical value from the table, we reject the null hypothesis. Otherwise, we do not have enough evidence to reject it.You can see the t-table in @tbl-ttable of Appendix 4
 
 ::: {#exm-tmean1}
 Based on field experiments, a new variety of green gram is expected to give a yield of 12 quintals per hectare. The variety was tested on 10 randomly selected farmers' fields. The yields (quintals per hectare) were recorded as 14.3, 12.6, 13.7, 10.9, 13.7, 12, 11.4, 12, 12.6, and 13.1. Do the results confirm the expectation?
@@ -144,9 +144,9 @@ $$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfra
 
 $$= \frac{0.63}{0.3432} = 1.835$$
 
-The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the $t$ table at the end of this chapter, @fig-ttable).
+The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the @tbl-ttable in Appendix 4).
 
-Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare.
+Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare. That is null hypothesis is not rejected and the results confirm the expectation.
 :::
 
 ::: {#exr-tmean1}
@@ -253,7 +253,7 @@ Under the null hypothesis, $t$ follows a $t$ distribution with $n - 1$ degrees o
 In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.
 
 |     |     |     |     |     |     |     |     |     |
-|:----|:----|:----|:----|:----|:----|:----|:----|:----|
+|:---------------:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |Treatment **A** | 49  | 53  | 51  | 52  | 47  | 50  | 52  | 53  |
 |Treatment **B** | 52  | 55  | 52  | 53  | 50  | 54  | 54  | 53  |  
 
@@ -465,10 +465,10 @@ In order to determine the possible effect of a chemical treatment on the germina
 #| filters: 
 #| - parse-latex 
 
+
 library(knitr)
 library(kableExtra)
-dt <- read.csv("csv/Book16.csv")
-colnames(dt) <- c("", "X = Germination", "", "")
+dt <- read.csv("csv/Book16.csv", check.names = FALSE)
 dt[] <- lapply(dt, clean_table)
 dt %>%
   kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
@@ -547,14 +547,14 @@ Under the null hypothesis, the test statistic follows a chi-square distribution 
 ::: {#exm-conting2}
 In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.
 
-|                  | **Owned** | **Rented** | **Mixed** | Total |
-|:----------------:|:----------:|:-----------:|:----------:|:------:|
-| High             | 40        | 12         | 10        | 62    |
-| Moderate         | 22        | 10         | 14        | 46    |
-| Low              | 22        | 26         | 42        | 90    |
-| Total            | 84        | 48         | 66        | 198   |
-
-: Classification of farms by tenure status and soil fertility {#tbl-conting2 .bordered}
+|     |     |     |     |     |
+|:---:|:---:|:---:|:---:|:---:|
+|                  | Owned | Rented | Mixed | Total |
+| High             |  40   |   12   |  10   |  62   |
+| Moderate         |  22   |   10   |  14   |  46   |
+| Low              |  22   |   26   |  42   |  90   |
+| Total            |  84   |   48   |  66   |  198  |
+: Classification of farms by tenure status and soil fertility {#tbl-conting2 .bordered}  
 
 **Solution**
 
@@ -695,7 +695,7 @@ Under the null hypothesis, the test statistic follows an $F$ distribution with $
 
 ### Decision rule for the F-test {.unnumbered}
 
-If the calculated value is greater than the table value of $F$ at the specified level of significance and the two degrees of freedom (that is, $n_1 - 1$ and $n_2 - 1$), we reject the null hypothesis.
+If the calculated value is greater than the table value of $F$ at the specified level of significance and the two degrees of freedom (that is, $n_1 - 1$ and $n_2 - 1$), we reject the null hypothesis. You can see the F-table for 5% level of significance @sec-appendix-5.
 
 ::: {.callout-note title="Note"}
 The larger sample variance is always placed in the numerator so that $F \geq 1$. If $s_2^2 > s_1^2$, then the test statistic is $F = \dfrac{s_2^2}{s_1^2}$, which follows an $F$ distribution with $n_2 - 1$ and $n_1 - 1$ degrees of freedom.
@@ -703,13 +703,7 @@ The larger sample variance is always placed in the numerator so that $F \geq 1$.
 
 ::: {#exr-fvar1}
 For a random sample from one normal population, $n_1$ = 11 and $s_1^2$ = 21.87. For another random sample from a second normal population, $n_2$ = 8 and $s_2^2$ = 15.36. Test the equality of variances. ($\alpha$ = 0.05)
-:::
-
-```{r echo=FALSE, out.width="85%", fig.align='center'}
-#| label: fig-ttable
-#| fig-cap: "Student t distribution table"
-knitr::include_graphics("images/ttable.png")
-```
+:::  
 
 ::: {.callout-caution title="Historical Insights"}
 **A brewer, a secret, and the birth of the t distribution**
@@ -1163,46 +1157,7 @@ $$
 
 ### Answers to fill in the blanks {.unnumbered}
 
-1. 30
-2. Small
-3. $\chi^2$; $F$; $t$
-4. Unknown
-5. Normal
-6. Random
-7. $n-1$
-8. $\mu_0$
-9. Standard deviation
-10. Pooled
-11. Welch
-12. $n_1+n_2-2$
-13. Welch-Satterthwaite
-14. Related
-15. Difference
-16. $n-1$
-17. $t$
-18. 0
-19. $n-2$
-20. Chi-square
-21. Non
-22. Expected
-23. Karl Pearson
-24. Observed; expected
-25. $n-1$
-26. Right
-27. Attributes
-28. Contingency
-29. Row; column
-30. $(r-1)(s-1)$
-31. 1
-32. 2×2
-33. $\sigma_0^2$
-34. $n-1$
-35. Variances
-36. Larger
-37. Greater
-38. $n_1-1$; $n_2-1$
-39. Gosset
-40. Student
+1. 30 · 2. Small · 3. $\chi^2$; $F$; $t$ · 4. Unknown · 5. Normal · 6. Random · 7. $n-1$ · 8. $\mu_0$ · 9. Standard deviation · 10. Pooled · 11. Welch · 12. $n_1+n_2-2$ · 13. Welch-Satterthwaite · 14. Related · 15. Difference · 16. $n-1$ · 17. $t$ · 18. 0 · 19. $n-2$ · 20. Chi-square · 21. Non · 22. Expected · 23. Karl Pearson · 24. Observed; expected · 25. $n-1$ · 26. Right · 27. Attributes · 28. Contingency · 29. Row; column · 30. $(r-1)(s-1)$ · 31. 1 · 32. 2×2 · 33. $\sigma_0^2$ · 34. $n-1$ · 35. Variances · 36. Larger · 37. Greater · 38. $n_1-1$; $n_2-1$ · 39. Gosset · 40. Student  
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
