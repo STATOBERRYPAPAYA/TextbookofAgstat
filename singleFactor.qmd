@@ -47,7 +47,7 @@ knitr::include_graphics("images/singlefactor/crdnumbered.svg")
 
 2.  Draw one piece of paper at a time, without replacement and with constant shaking of the container after each draw to mix its content. For our example, the label and the corresponding sequence in which each piece of paper is drawn. The sequence number can be considered as the experimental unit number to which the treatment is to be assigned.  
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| label: tbl-sequence
 #| fig-cap: "Sequence in which labelled lots are drawn"
 #| tbl-cap: "Sequence in which labelled lots are drawn"
@@ -93,9 +93,8 @@ Analysis of CRD is same as that explained in section @sec-onewaycalc of one-way 
 Unequal replication (*i*.*e*. each treatment can have a different number of replications) is possible in CRD. So while calculating the treatment sum of squares, each treatment total is squared and divided by its corresponding replication, and then the sum is taken. If the replication is the same for all treatments, the treatment sum of squares is obtained by taking the sum of the squares of the treatment totals and dividing by the common replication number.
 :::
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-#| label: tbl-crdanova
-#| fig-cap: ""
+```{r tbl-crdanova, echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+#| fig-cap: "ANOVA table of CRD"
 #| tbl-cap: "ANOVA table of CRD"
 #| filters: 
 #| - parse-latex
@@ -229,7 +228,7 @@ The error degrees of freedom have a major role in deciding the critical value of
 ::: {#exm-ct43}
 In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| label: tbl-crdex
 #| fig-cap: "Yield data of five varieties of sesame under CRD"
 #| tbl-cap: "Yield data of five varieties of sesame under CRD"
@@ -269,14 +268,16 @@ $= 8211.75 - CF = 331.30$
 **Error Sum of Square**:
 $426.55 - 331.30 = 95.25$
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| label: tbl-crdanovaex
 #| fig-cap: "ANOVA table for the sesame variety trial"
 #| tbl-cap: "ANOVA table for the sesame variety trial"
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/crd_anova.csv", check.names = FALSE)
-kbl(dt, booktabs = TRUE, align = "c") %>%
+dt[is.na(dt)] <- ""
+
+kbl(dt, booktabs = TRUE, align = "c", escape = FALSE) %>%
   kable_classic(full_width = FALSE, html_font = "Georgia") %>%
   kable_styling(
     full_width = FALSE,
@@ -374,7 +375,7 @@ STEP 1. Divide the experimental area into $r$ equal blocks, where $r$ is the num
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-rcbd1
 #| fig-cap: "Division of an experimental field into five blocks, each consisting of four plots, for a RCBD with four treatments and five replications. Blocking is done such that blocks are rectangular and perpendicular to the direction of the unidirectional fertility gradient"
-knitr::include_graphics("images/rcbd1.png")
+knitr::include_graphics("images/singlefactor/rcbd1.png")
 ``` 
 
 STEP 2. Subdivide each block into $v$ experimental plots, where $v$ is the number of treatments. Number the $v$ plots consecutively from 1 to $v$, and assign $v$ treatments at random to the $v$ plots following the randomization scheme for the CRD described in Section @sec-random. In our example each of the 5 blocks are divided into 4 plots. Plots are numbered 1 to 4 in each block. Now for each block, paper lots of 1 to 4 is prepared. Treatment names are written in order and plot number from each lot is recorded in order as shown below.
@@ -390,7 +391,7 @@ STEP 3. All the treatments are allotted to the randomly selected plots. Step 2 i
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-rcbd2
 #| fig-cap: "Allotment of treatments in all blocks. In RCBD each block will have all the treatments and each treatment appear in a block exactly once. "
-knitr::include_graphics("images/rcbd2.png")
+knitr::include_graphics("images/singlefactor/rcbd2.png")
 ``` 
 
 ### Layout of RCBD
@@ -406,7 +407,7 @@ In RCBD every treatment will have the same number of replications (all treatment
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-rcbd3
 #| fig-cap: "Layout of RCBD with four treatments and five replications"
-knitr::include_graphics("images/rcbd3.png")
+knitr::include_graphics("images/singlefactor/rcbd3.png")
 ``` 
 
 ### Statistical Model for RCBD
@@ -436,35 +437,59 @@ Observation from $v$ treatments in $r$ blocks is arranged as shown below.
 
 The ANOVA table, following the calculations as in section @sec-twowaycalc, is
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-#| label: tbl-rcbd5
-#| tbl-cap: "ANOVA table of RCBD"  
+```{r tbl-rcbd5,echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+#| tbl-cap: "ANOVA table of RCBD"
+#| fig-cap: "ANOVA table of RCBD"
+#| filters:
+#| - parse-latex
 
 library(knitr)
 library(kableExtra)
-fix_math <- function(x) {
-  x <- as.character(x); x[is.na(x)] <- ""
-  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
-  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
-  x
-}
+
 dt <- data.frame(
   Source = c("Treatments", "Blocks", "Error", "Total"),
-  df = c("$v-1$", "$r-1$", "$(v-1)(r-1)$", "$vr-1$"),
-  SS = c("$\\text{SST} = \\dfrac{\\sum_{i=1}^{v} T_i^2}{r} - \\text{C.F}$",
-         "$\\text{SSB} = \\dfrac{\\sum_{j=1}^{r} B_j^2}{v} - \\text{C.F}$",
-         "$\\text{ESS} = \\text{Total SS} - \\text{SST} - \\text{SSB}$",
-         "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} Y_{ij}^2 - \\text{C.F}$"),
-  MSS = c("$\\dfrac{\\text{SST}}{v-1} = \\text{MST}$",
-          "$\\dfrac{\\text{SSB}}{r-1} = \\text{MSR}$",
-          "$\\dfrac{\\text{ESS}}{(v-1)(r-1)} = \\text{MSE}$", ""),
-  F = c("$F_1 = \\dfrac{\\text{MST}}{\\text{MSE}}$",
-        "$F_2 = \\dfrac{\\text{MSR}}{\\text{MSE}}$", "", "")
+  
+  df = c(
+    "$v-1$",
+    "$r-1$",
+    "$(v-1)(r-1)$",
+    "$vr-1$"
+  ),
+  
+  SS = c(
+    "$\\text{SST} = \\dfrac{\\sum_{i=1}^{v} T_i^2}{r} - \\text{C.F.}$",
+    "$\\text{SSB} = \\dfrac{\\sum_{j=1}^{r} B_j^2}{v} - \\text{C.F.}$",
+    "$\\text{ESS} = \\text{Total SS} - \\text{SST} - \\text{SSB}$",
+    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} Y_{ij}^2 - \\text{C.F.}$"
+  ),
+  
+  MSS = c(
+    "$\\dfrac{\\text{SST}}{v-1} = \\text{MST}$",
+    "$\\dfrac{\\text{SSB}}{r-1} = \\text{MSR}$",
+    "$\\dfrac{\\text{ESS}}{(v-1)(r-1)} = \\text{MSE}$",
+    ""
+  ),
+  
+  F = c(
+    "$F_1 = \\dfrac{\\text{MST}}{\\text{MSE}}$",
+    "$F_2 = \\dfrac{\\text{MSR}}{\\text{MSE}}$",
+    "",
+    ""
+  )
 )
-dt[] <- lapply(dt, fix_math)
+
 colnames(dt) <- c("Source", "d.f", "S.S", "M.S.S", "F")
-kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
-  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+
+kbl(
+  dt,
+  escape = FALSE,
+  booktabs = TRUE,
+  align = "c"
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
@@ -571,7 +596,7 @@ for the remaining rows can be written as
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-lsdlayout
 #| fig-cap: "Layout of LSD with six treatments and six replications"
-knitr::include_graphics("images/lsdlayout.png")
+knitr::include_graphics("images/singlefactor/lsdlayout.svg")
 ``` 
 
 This square represents a Latin square for $v$ = 6 treatments in 6 replications. 
@@ -590,14 +615,14 @@ So the above square can be randomised in many ways like
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-lsdlayout1
 #| fig-cap: "Randomization of LSD with six treatments and six replications"
-knitr::include_graphics("images/lsdlayout1.png")
+knitr::include_graphics("images/singlefactor/lsdlayout1.svg")
 ``` 
 After the randomisation of the rows the columns are randomised to get another randomized square.
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-lsdlayout2
 #| fig-cap: "Randomization of LSD"
-knitr::include_graphics("images/lsdlayout2.png")
+knitr::include_graphics("images/singlefactor/lsd_layout2.svg")
 ``` 
 Lastly , the $v$ treatments can  be assigned randomly to these $v$ letters (A, B, ...). 
 
@@ -616,35 +641,75 @@ subtracting the correction factor  $C.F.  = \frac{(\sum{y_{ijk}})^2} {v^2}$). Th
  
 To calculate the sum of squares, arrange the data according to the rows, columns and treatments and obtain the respective totals. Let the treatment totals be $T_{1}$, $T_{2}$, ...., $T_{v}$; row totals be $R_{1}$, $R_{2}$, $R_{3}$, ..., $R_{v}$ and column totals be $C_{1}$, $C_{2}$, $C_{3}$, ..., $C_{v}$.
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
-#| label: tbl-lsdanova
+```{r tbl-lsdanova,echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| fig-cap: "ANOVA of Latin Square Design"
 #| tbl-cap: "ANOVA of Latin Square Design"
+#| filters:
+#| - parse-latex
+
 library(knitr)
 library(kableExtra)
-fix_math <- function(x) {
-  x <- as.character(x); x[is.na(x)] <- ""
-  x <- gsub("\\$\\$(.+?)\\$\\$", "\\\\[\\1\\\\]", x, perl = TRUE)
-  x <- gsub("\\$([^$]+)\\$", "\\\\(\\1\\\\)", x, perl = TRUE)
-  x
-}
+
 dt <- data.frame(
-  Source = c("Between treatments", "Between rows", "Between columns", "Error", "Total"),
-  df = c("$v-1$", "$v-1$", "$v-1$", "$(v-1)(v-2)$", "$v^2-1$"),
-  SS = c("$\\dfrac{\\sum T_i^2}{v} - CF$",
-         "$\\dfrac{\\sum R_j^2}{v} - CF$",
-         "$\\dfrac{\\sum C_k^2}{v} - CF$",
-         "By subtraction",
-         "$\\sum Y_{ijk}^2 - CF$"),
-  MSS = c("MST", "MSR", "MSC", "MSE", ""),
-  F = c("$\\dfrac{\\text{MST}}{\\text{MSE}}$",
-        "$\\dfrac{\\text{MSR}}{\\text{MSE}}$",
-        "$\\dfrac{\\text{MSC}}{\\text{MSE}}$", "", "")
+  Source = c(
+    "Between treatments",
+    "Between rows",
+    "Between columns",
+    "Error",
+    "Total"
+  ),
+  
+  df = c(
+    "$v-1$",
+    "$v-1$",
+    "$v-1$",
+    "$(v-1)(v-2)$",
+    "$v^2-1$"
+  ),
+  
+  SS = c(
+    "$\\dfrac{\\sum T_i^2}{v} - CF$",
+    "$\\dfrac{\\sum R_j^2}{v} - CF$",
+    "$\\dfrac{\\sum C_k^2}{v} - CF$",
+    "By subtraction",
+    "$\\sum Y_{ijk}^2 - CF$"
+  ),
+  
+  MSS = c(
+    "$MST$",
+    "$MSR$",
+    "$MSC$",
+    "$MSE$",
+    ""
+  ),
+  
+  F = c(
+    "$\\dfrac{\\text{MST}}{\\text{MSE}}$",
+    "$\\dfrac{\\text{MSR}}{\\text{MSE}}$",
+    "$\\dfrac{\\text{MSC}}{\\text{MSE}}$",
+    "",
+    ""
+  )
 )
-dt[] <- lapply(dt, fix_math)
-colnames(dt) <- c("Source of Variation", "d.f", "Sum of Squares", "M.S.S", "F value")
-kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
-  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
+
+colnames(dt) <- c(
+  "Source of Variation",
+  "d.f",
+  "Sum of Squares",
+  "M.S.S",
+  "F value"
+)
+
+kbl(
+  dt,
+  escape = FALSE,
+  booktabs = TRUE,
+  align = "c"
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
@@ -720,7 +785,7 @@ $= 28554.6 - 27489.64 = 1064.96$
 
 **Error Sum of Squares** $= 1753.36 - 253.76- 272.56-1064.96 = 162.08$
 
-```{r echo=FALSE, warning=FALSE, message=FALSE}
+```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| label: tbl-lsdanovaex
 #| fig-cap: "ANOVA table for the Latin Square example"
 #| tbl-cap: "ANOVA table for the Latin Square example"
@@ -1031,7 +1096,7 @@ $$
 ### Answers to fill in the blanks {.unnumbered}  
 
 ::: {.answer-key}
-**1.** Single factor **2.** Completely at random **3.** Randomization **4.** Local control **5.** Homogeneous **6.** Unequal **7.** $rt$ **8.** $n-t$ or $t(r-1)$ **9.** 12 **10.** One-way **11.** Treatment **12.** Least Significant Difference (LSD) **13.** Different **14.** At par **15.** One **16.** Local control **17.** Blocks **18.** Blocks **19.** Treatments **20.** Two-way **21.** Block **22.** Blocking **23.** $(v-1)(r-1)$ **24.** Two **25.** Once **26.** Three **27.** $v$ **28.** $(v-1)(v-2)$ **29.** Five; ten **30.** Leonhard Euler **31.** *Statistical Methods for Research Workers* **32.** Four **33.** $\dfrac{(\sum y_{ijk})^2}{v^2}$ **34.** CRD **35.** Not **36.** $r$ (the common number of replications) **37.** $\dfrac{2}{r}$ **38.** Rows; columns
+`1.` Single factor `2.` Completely at random `3.` Randomization `4.` Local control `5.` Homogeneous `6.` Unequal `7.` $rt$ `8.` $n-t$ or $t(r-1)$ `9.` 12 `10.` One-way `11.` Treatment `12.` Least Significant Difference (LSD) `13.` Different `14.` At par `15.` One `16.` Local control `17.` Blocks `18.` Blocks `19.` Treatments `20.` Two-way `21.` Block `22.` Blocking `23.` $(v-1)(r-1)$ `24.` Two `25.` Once `26.` Three `27.` $v$ `28.` $(v-1)(v-2)$ `29.` Five; ten `30.` Leonhard Euler `31.` *Statistical Methods for Research Workers* `32.` Four `33.` $\dfrac{(\sum y_{ijk})^2}{v^2}$ `34.` CRD `35.` Not `36.` $r$ (the common number of replications) `37.` $\dfrac{2}{r}$ `38.` Rows; columns
 :::  
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
