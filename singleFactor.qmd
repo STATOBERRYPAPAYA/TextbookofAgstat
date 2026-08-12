@@ -222,7 +222,9 @@ The number of replications required is 4.
 :::
 
 ::: {.callout-note title="Why is the minimum error degrees of freedom for a design taken as 12?"}
-The error degrees of freedom have a major role in deciding the critical value of F. As the error degrees of freedom (the degrees of freedom in the denominator) decrease, F tends to take larger critical values. This inflates the Type II error, *i*.*e*. we will be able to reject the null hypothesis only if there is a considerable difference between the treatments (a higher treatment sum of squares). Beyond about 12 denominator degrees of freedom, the F critical values stabilise and change very little with further increases, so 12 is taken as a practical minimum.
+The error degrees of freedom play an important role in determining the critical value of F. As the error degrees of freedom (the denominator degrees of freedom) decrease, the critical value of F increases, making it more difficult to reject the null hypothesis. Consequently, the risk of a Type II error (β) increases, as a true treatment difference may go undetected unless the observed treatment effect is sufficiently large. As the denominator degrees of freedom increase, the critical value of F decreases and becomes relatively stable beyond about 10–12 degrees of freedom. Therefore, 12 error degrees of freedom is commonly taken as a practical minimum when determining the number of replications, providing a reasonable balance between statistical precision and experimental resources.  
+
+![Critical value of F against error degrees of freedom, showing stabilization beyond about 12 degrees of freedom.](images/singlefactor/fcritical.svg){#fig-fcritical fig-align="center" width="80%" style="text-align:center;"}
 :::
 
 ::: {#exm-ct43}
@@ -586,10 +588,11 @@ row and each column exactly once.
 Latin squares of various sides are available in Statistical tables. If there are $v$ 
 treatments to be compared, chose a Latin square of side $v$ from the statistical tables. In 
 the Fisher and Yates (1948) tables for Statisticians and Biometricians these squares 
-are presented for a given standard order of alphabets in the first row. Choose one of 
-these squares for a given $v$ and carryout the randomization in the following way.
+are presented for a given standard order of alphabets in the first row, illustrated in @fig-stdlattice. Choose one of 
+these squares for a given $v$ and carryout the randomization as explained below.  
+![](images/singlefactor/stdlatin.svg){#fig-stdlattice width="250px" height="500px"}
 
-Let $v$ = 6. Then a Latin Square of 6 treatments denoted by *A*, *B*, *C*, *D*, *E* and *F* 
+Let $v$ = 6. Then a Latin Square of 6 treatments, where treatments are denoted by *A*, *B*, *C*, *D*, *E* and *F* 
 can be denoted by keeping alphabetical order for first row and an order of symmetry 
 for the remaining rows can be written as
 
