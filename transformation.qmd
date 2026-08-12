@@ -1,0 +1,735 @@
+# Data transformation
+
+Data often requires transformation when it fails to satisfy the assumptions necessary for valid statistical analysis. Applying an appropriate transformation before analysis is essential to avoid a significant loss of precision and accuracy in the results.
+
+The interpretation of data based on analysis of variance is valid only when the following assumptions are satisfied: (i) treatment and block effects are additive, (ii) experimental errors are independent, (iii) there is homogeneity of variance, *i*.*e*. observations have a common variance, and (iv) the character under study follows a normal distribution. Deviations from these assumptions make the interpretation based on ANOVA, and other tests such as *t*, F, and Z that rely on the same assumptions, invalid. It is therefore necessary to detect such deviations and apply an appropriate remedial measure, most often a suitable transformation of the data.
+
+::: {.callout-important title="Note"}
+The effects of two factors, say treatment and replication, are said to be **additive** if the effect of one factor remains constant across all the levels of the other factor. When this is not the case, the effects are said to be **non-additive**. Two factors are said to have a **multiplicative** effect if their effects become additive only when expressed as percentages of a common base; a logarithmic transformation converts such multiplicative effects into additive ones, which is one of the main reasons the logarithmic transformation is used.
+:::
+
+The analysis of variance (ANOVA) on transformed data typically yields conclusions comparable to those from raw data. However, the transformed analysis is more valid when it ensures that the assumptions of ANOVA are met. It is crucial to avoid transforming data merely to achieve desired outcomes. Instead, transformations should be applied objectively to improve the validity of the analysis.
+
+Statistical tests of significance and mean separations must be performed on the transformed data rather than the raw data. Once the analysis is completed, the means of the transformed data should be computed and re-transformed back into the original units for meaningful interpretation. Additionally, after applying a transformation, it is advisable to test the data for normality to confirm that the assumptions of ANOVA are satisfied. If the data meets the assumptions post-transformation, the analysis can proceed confidently, leading to more reliable and robust conclusions.
+
+The following are the most commonly used transformations
+
+$(i)$ Logarithmic transformation\
+
+$(ii)$ Square root transformation\
+
+$(iii)$ Arc sine transformation (Angular transformation)\
+
+## Logarithmic transformation
+
+When the standard deviation of the samples are highly proportional to the mean, the most effective transformation is the logarithmic transformation. In this case the coefficient of variation will be a constant. Another criterion for deciding on this transformation is the evidence of multiplicative rather than additive effects. Then this transformation brings about both additivity of the effects and equality of variance.
+
+If zero values or negative observations are present add a positive quantity to remove this. Usually log(x+1) or log (x + k) ; k \>0 is taken. If data values are less than one then multiply by a constant and then take the logarithms. Usually we use common logarithms.
+
+::: {#exm-ct47}
+The following data in weed counts are recorded from a weedicide trial with 5 treatments and absolute control laid out in RBD. Analyze the data with suitable transformation.
+
+| Treatments | R~1~ | R~2~ | R~3~ | R~4~ |
+|:----------:|:----:|:----:|:----:|:----:|
+|    T~1~    | 169  | 132  | 180  | 105  |
+|    T~2~    | 210  | 172  | 158  | 125  |
+|    T~3~    | 160  |  94  | 103  |  65  |
+|    T~4~    | 100  | 120  |  98  |  74  |
+|    T~5~    |  42  |  40  |  84  |  28  |
+|    T~6~    | 368  | 300  | 610  | 200  |
+
+: Weed count data from a weedicide trial with 5 treatments and an absolute control {#tbl-weedcount .bordered}
+
+**Solution**
+
+The transformation used is $X=logY$
+
+| Treatments | R~1~  | R~2~  | R~3~  | R~4~  | $Total$ |
+|:----------:|:-----:|:-----:|:-----:|:-----:|:-------:|
+|    T~1~    | 2.227 | 2.120 | 2.255 | 2.021 |  8.63   |
+|    T~2~    | 2.322 | 2.235 | 2.198 | 2.096 |  8.86   |
+|    T~3~    | 2.204 | 1.973 | 2.012 | 1.812 |  7.99   |
+|    T~4~    |   2   | 2.079 | 1.991 | 1.869 |  7.94   |
+|    T~5~    | 1.623 | 1.602 | 1.924 | 1.447 |  6.59   |
+|    T~6~    | 2.565 | 2.477 | 2.785 | 2.301 |  10.14  |
+|  $Total$   | 12.94 | 12.49 | 13.17 | 11.55 |         |
+
+: Log-transformed weed count data with treatment and block totals {#tbl-weedlog .bordered}
+
+Here, n = 24, $\sum X=\sum logY=50.15$
+
+$\sum X^2=\sum (logY)^2=106.93$, $CF=104.79$
+
+The remaining procedure for estimation of sum of squares is same as that of RBD analysis.
+
+|  Source   | df  |  SS  |  MSS   | F~cal~ |      F~tab~      |
+|:---------:|:---:|:----:|:------:|:------:|:----------------:|
+| Treatment |  5  | 1.74 | 0.348  | 37.42  | F~(5,15)~ = 2.9  |
+|   Block   |  3  | 0.26 | 0.0867 |  9.32  | F~(3,15)~ = 3.29 |
+|   Error   | 15  | 0.14 | 0.0093 |        |                  |
+|   Total   | 23  | 2.14 |        |        |                  |
+
+: ANOVA table for the log-transformed weed count data {#tbl-weedanova .bordered}
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.131\times\sqrt{\frac{2\times0.0093}{4}}=0.145$
+
+Here, the mean of T~6~ is maximum, T~2~ and T~1~ is on par. Also T~3~ is on par with T~4~. Mean of T~5~ is minimum.
+
+Retransformed mean values: $Y=antilogX$
+
+| Treatments | Mean  | Retransformed means |
+|:----------:|:-----:|:-------------------:|
+|    T~1~    | 2.157 |       143.71        |
+|    T~2~    | 2.215 |       164.06        |
+|    T~3~    | 1.997 |        99.61        |
+|    T~4~    | 1.985 |        96.61        |
+|    T~5~    | 1.647 |        44.41        |
+|    T~6~    | 2.535 |       342.77        |
+
+: Retransformed treatment means for the weedicide trial {#tbl-weedretrans .bordered}
+:::
+
+## Square root transformation
+
+When data following Poisson distributions are available first take the square root of the observations, then apply the analysis of variance. Counts of rare events (very little probability) such as number of defectives, insect counts, percentage of seeds affected by a disease etc. tend to follow the Poisson fashion. For the Poisson distribution the counts appear such that the variance of x is proportional to the mean *i.e.* $σ_x^2=k.\bar x$. For a Poisson distribution of errors k =1 but usually the value of k\>1.
+
+The data of these types are transformed to square roots. If some counts are very small then transformations like $\sqrt {x+1}$ or $\sqrt x+\sqrt {x+1}$ (for x \<10) or $\sqrt {x+k}$ stabilizes the variance more effectively.
+
+The means of the square root scale are reconverted to the original scale by squaring. These values are slightly lower than the original mean because the mean of a set of square roots is less than the square root of the original mean. A rough correction is applied by adding the MSE in square root analysis to each of the converted mean. In general, we can say that the data requiring square root transformation do not violate assumptions of the ANOVA as drastically as data requiring logarithmic transformations.
+
+::: {#exm-ct48}
+The number of living larvae recorded from the plots under seven treatments from a RBD experiments on rice is given below. Analyze the data and draw the inference.
+
+| Treatments |      | Replications |      |      |
+|:----------:|:----:|:------------:|:----:|:----:|
+|            | R~1~ |     R~2~     | R~3~ | R~4~ |
+|    T~1~    |  9   |      12      |  0   |  1   |
+|    T~2~    |  4   |      8       |  5   |  1   |
+|    T~3~    |  6   |      15      |  6   |  2   |
+|    T~4~    |  9   |      6       |  4   |  5   |
+|    T~5~    |  27  |      17      |  10  |  10  |
+|    T~6~    |  35  |      28      |  2   |  15  |
+|    T~7~    |  1   |      0       |  0   |  0   |
+
+: Living larvae count data from an RBD experiment on rice {#tbl-larvaraw .bordered}
+
+**Solution**
+
+The given data is that of RBD, relating to certain larva count observed from various plots. This type of count data follows Poisson distribution and attain normality of error, the square root transformation is used before conducting ANOVA. When the data contains observations '0', transformation is obtained by taking $\sqrt {X+1}$.
+
+| Treatments |  R~1~  | R~2~  | R~3~  |  R~4~  | Total  | Mean  |
+|:----------:|:------:|:-----:|:-----:|:------:|:------:|:-----:|
+|    T~1~    | 3.162  | 3.606 |   1   | 1.414  | 9.182  | 2.296 |
+|    T~2~    | 2.236  |   3   | 2.449 | 1.414  | 9.099  | 2.275 |
+|    T~3~    | 2.646  |   4   | 2.646 | 1.732  | 11.024 | 2.756 |
+|    T~4~    | 3.162  | 2.646 | 2.236 | 2.449  | 10.493 | 2.623 |
+|    T~5~    | 5.292  | 4.243 | 3.317 | 3.317  | 16.169 | 4.042 |
+|    T~6~    |   6    | 5.385 | 1.732 |   4    | 17.117 | 4.279 |
+|    T~7~    | 1.414  |   1   |   1   |   1    | 4.414  | 1.104 |
+|  $Total$   | 23.912 | 23.88 | 14.38 | 15.326 | 77.498 |       |
+
+: Square-root transformed larvae count data with treatment and block totals {#tbl-larvasqrt .bordered}
+
+Here, $r=4$, $v=7$, $n=28$, $CF=214.498$
+
+|  Source   | df  |   SS   |  MSS  | F~cal~ | F~tab~ |
+|:---------:|:---:|:------:|:-----:|:------:|:------:|
+| Treatment |  6  | 28.663 | 4.777 | 7.743  |  4.01  |
+|   Block   |  3  | 11.746 | 3.915 | 6.346  |  5.09  |
+|   Error   | 18  | 11.101 | 0.617 |        |        |
+|   Total   | 27  | 51.510 |       |        |        |
+
+: ANOVA table for the square-root transformed larvae count data {#tbl-larvaanova .bordered}
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.101\times\sqrt{\frac{2\times0.617}{4}}=1.17$
+
+Here, the mean of T~6~ is maximum, T~3~ is found to be on par with mean of T~4~, T~1~ and T~2~. Mean of T~7~ is minimum.
+
+Retransformed mean values: $X=Y^2-1$
+
+| Treatments | Mean  | Retransformed means |
+|:----------:|:-----:|:-------------------:|
+|    T~1~    | 2.296 |        4.272        |
+|    T~2~    | 2.275 |        4.176        |
+|    T~3~    | 2.756 |        6.596        |
+|    T~4~    | 2.623 |        5.880        |
+|    T~5~    | 4.042 |       15.338        |
+|    T~6~    | 4.279 |       17.310        |
+|    T~7~    | 1.104 |        0.219        |
+
+: Retransformed treatment means for the larval count trial {#tbl-larvaretrans .bordered}
+:::
+
+## Angular transformation
+
+This transformation is appropriate for percentage data that derived from counts which follows Binomial distribution. However, the data like percentage of carbohydrates, percentage of protein, etc need not to be transformed before applying analysis of variance.
+
+If $a_{ij}$ success out of n trials are obtained in the j^th^ replicate of the i^th^ treatment the estimate of proportion $p _{ij}=a_{ij}/n$ has variance $p_{ij}(1- p_{ij})/ n$. Usually these proportions are expressed in percentages. In binomial data variance tends to be small at the two ends of the range of values but larger towards the middle. This tendency also can be used to identify the transformation.
+
+The following rules are useful in choosing the proper transformation scale for percentage data derived from counts:
+
+1.  If all the proportions in the data lie within the range of 30% to 70%, no transformation is needed.
+
+2.  If all the proportions lie either within 0% to 30%, or within 70% to 100%, but not spread across both ends, the square root transformation should be used.
+
+3.  If the proportions are spread across the whole range, from 0% to 100%, the angular (arc sine) transformation should be used.
+
+::: {.callout-important title="Note"}
+If even a single proportion in the data lies outside the 30% to 70% range, all the observations, not just the extreme ones, must be transformed together using the appropriate transformation identified from the three rules above.
+:::
+
+The transformation is obtained by taking the angle whose sine is the square root of the proportion. (percentage / 100) *i.e* $arcSin \sqrt p_{ij}$ or $Sin^{-1} \sqrt p_{ij}$. For $p_{ij}$ = 0 or 1 (*i.e.* 0% or 100%) the angular transformation is improved by replacing 0 by 1/4n and 1 by 1-1/4n where, n is the total number of units under observation.
+
+::: {#exm-ct49}
+The following are results on percentage mortality of insects recorded from a laboratory experiment using 6 levels of ekalux - 0, 1, 2, 3, 4 and 5%. Hundred insects were treated and mortality percentages are recorded below. Analyze the data.
+
+| Treatments |  I  | II  | III | IV  |
+|:----------:|:---:|:---:|:---:|:---:|
+|    T~1~    |  0  |  0  |  3  |  2  |
+|    T~2~    | 12  | 15  | 18  | 17  |
+|    T~3~    | 33  | 30  | 35  | 34  |
+|    T~4~    | 52  | 54  | 58  | 55  |
+|    T~5~    | 86  | 78  | 80  | 79  |
+|    T~6~    | 88  | 79  | 100 | 100 |
+
+: Percentage mortality data from an insecticide trial {#tbl-mortalityraw .bordered}
+
+**Solution**
+
+When percentage values are given the transformation used is angular transformation.
+
+$X=sin^{-1}\sqrt p$, where $p=Y/100$, the proportion of percentages. Here, 0% is replaced by 1/4n
+
+$p=\frac {1/4n}{100}=0.0025$, where n = 100, number of insects.
+
+$X=sin^{-1}(\sqrt {\frac{0.0025}{100}})=0.286$
+
+and 100% is replaced by 100-1/4n *i.e.*
+
+$p=\frac {100-1/4n}{100}=0.999$
+
+and $X=sin^{-1}\sqrt {0.999}=89.714$
+
+| Treatments |   I   |  II   |  III   |   IV   |  Total  |  Means  |
+|:----------:|:-----:|:-----:|:------:|:------:|:-------:|:-------:|
+|    T~1~    | 0.286 | 0.286 |  9.97  |  8.13  | 18.672  |  4.668  |
+|    T~2~    | 20.26 | 22.79 | 25.10  | 24.35  |  92.5   | 23.125  |
+|    T~3~    | 35.06 | 33.21 | 36.27  | 35.67  | 140.21  | 35.0525 |
+|    T~4~    | 46.15 | 47.29 | 49.60  | 47.87  | 190.91  | 47.7275 |
+|    T~5~    | 68.03 | 62.03 | 63.43  | 62.73  | 256.22  | 64.055  |
+|    T~6~    | 69.73 | 62.73 | 89.714 | 89.714 | 311.888 | 77.972  |
+
+: Angular-transformed mortality percentage data with treatment totals and means {#tbl-mortalityangular .bordered}
+
+The sum of squares are estimated as the same procedure of CRD
+
+| Source    | df  | SS       | MSS      | F~cal~ | F~tab~ |
+|:---------:|:---:|:--------:|:--------:|:------:|:------:|
+| Treatment | 5   | 14445.45 | 2889.091 | 74.107 | 2.77   |
+| Error     | 18  | 701.732  | 38.985   |        |        |
+| Total     | 23  | 15147.19 |          |        |        |
+
+: ANOVA table for the angular-transformed mortality data {#tbl-mortalityanova .bordered}
+
+Since the $F_{cal}>F_{tab}$ treatment pairs are the are significantly different from each other.
+
+$CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=1.734\times\sqrt{\frac{2\times38.985}{4}}=7.655$
+
+Here, the mean of T~6~ is maximum and mean of T~1~ is minimum. Every treatments pairs are significantly different from each other.
+
+Retransformed mean values: $Y=100\times sin^2X$
+
+| Treatments |  Mean  | Retransformed means |
+|:----------:|:------:|:-------------------:|
+|    T~1~    | 4.668  |        0.662        |
+|    T~2~    | 23.125 |       15.424        |
+|    T~3~    | 35.052 |       32.985        |
+|    T~4~    | 47.727 |       54.753        |
+|    T~5~    | 64.055 |       80.858        |
+|    T~6~    | 77.972 |       95.657        |
+
+: Retransformed treatment means for the mortality trial {#tbl-mortalityretrans .bordered}
+:::
+
+::: {.callout-important title="Note"}
+The following table gives an idea about the appropriate transformation which is used for different types of data.
+
+| Distribution | Relation between mean & variance | Appropriate transformation |
+|:------------:|:--------------------------------:|:--------------------------:|
+|   Poisson    |         $\sigma ^2=\mu$          |         $\sqrt x$          |
+|  Empirical   |        $\sigma ^2=c^2\mu$        |         $\sqrt x$          |
+|   Binomial   |   $\sigma ^2=\frac{p(1-p)}{n}$   |     $sin^{-1} \sqrt p$     |
+|  Empirical   |      $\sigma ^2=c^2\mu ^2$       |          $log(x)$          |
+
+: Choosing the appropriate transformation based on the distribution and the mean-variance relationship {#tbl-transformguide .bordered}
+:::
+
+## Box-Cox transformation
+
+The logarithmic, square root, and angular transformations discussed above are all specific cases of a wider family known as **power transformations**, that is, transformations that raise the data to some exponent, or power. For instance, the square root transformation can be written as $Y^{1/2}$, and a reciprocal transformation as $Y^{-1}$. The **Box-Cox transformation** generalizes this idea into a single transformation with one parameter, $\lambda$, and includes the common transformations above as special cases.
+
+The Box-Cox transformation of a variable $Y$ takes the form
+
+$$
+X = \begin{cases} \dfrac{Y^{\lambda}-1}{\lambda}, & \lambda \neq 0 \\ \log Y, & \lambda = 0 \end{cases}
+$$ {#eq-boxcox}
+
+where $Y$ is the untransformed variable, $X$ is the transformed variable, and $\lambda$ is the Box-Cox parameter. The value of $\lambda$ is estimated as the value that minimizes the error sum of squares from the analysis of variance, so that the resulting transformation gives the best fit for that particular dataset rather than being chosen only from general rules about the distribution.
+
+@tbl-boxcoxlambda shows how familiar transformations correspond to specific values of $\lambda$.
+
+| $\lambda$ | Corresponding transformation |
+|:---------:|:-----------------------------:|
+| 1.00 | No transformation needed; results are identical to the original data |
+| 0.50 | Square root transformation |
+| 0.33 | Cube root transformation |
+| 0.25 | Fourth root transformation |
+| 0.00 | Natural logarithmic transformation |
+| -0.50 | Reciprocal square root transformation |
+| -1.00 | Reciprocal transformation |
+
+: Common values of the Box-Cox parameter $\lambda$ and their corresponding transformations {#tbl-boxcoxlambda .bordered}
+
+In practice, the analysis of variance is carried out for a range of trial values of $\lambda$ (for example, from 0 to 1 in steps of 0.05), and the value of $\lambda$ giving the minimum error sum of squares is chosen as the most appropriate transformation for that particular dataset. Since the Box-Cox transformation searches directly for the value that minimizes the error sum of squares, it can identify a suitable transformation even in situations that do not fit neatly into the Poisson, binomial, or empirical mean-variance relationships covered by the earlier transformations, making it a more general, data-driven alternative to selecting a transformation from fixed rules.
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+1. Data transformation is used when data fail to satisfy the __________ necessary for valid statistical analysis.
+
+2. Transformation should be applied to improve the __________ of statistical analysis and not merely to obtain a desired result.
+
+3. Statistical tests of significance and mean separation should be performed on the __________ data.
+
+4. After analysis, transformed means should be __________ to the original scale for interpretation.
+
+5. The three common transformations discussed in the chapter are logarithmic, square root, and __________ transformation.
+
+6. Logarithmic transformation is appropriate when the standard deviation is highly __________ to the mean.
+
+7. Logarithmic transformation is also useful when the effects are __________ rather than additive.
+
+8. When zero or negative values occur, a positive constant is added before taking the __________.
+
+9. A commonly used transformation for data containing zero values is __________.
+
+10. Counts of rare events generally follow the __________ distribution.
+
+11. For a Poisson distribution, the variance is approximately __________ to the mean.
+
+12. The usual transformation for Poisson-type count data is the __________ root transformation.
+
+13. When very small counts including zero occur, the transformation commonly used is __________.
+
+14. After square root transformation, the transformed means are reconverted to the original scale by __________ them.
+
+15. Data expressed as percentages derived from counts generally follow the __________ distribution.
+
+16. The appropriate transformation for binomial percentage data is the __________ transformation.
+
+17. The angular transformation is given by $sin^{-1}\sqrt p$, where $p$ is the __________.
+
+18. If all proportions lie between __________% and __________%, angular transformation is generally not required.
+
+19. If at least one proportion lies outside the 30-70% range, __________ observations should be transformed.
+
+20. A percentage of 0 is replaced by __________ before angular transformation.
+
+21. A percentage of 100 is replaced by __________ before angular transformation.
+
+22. The logarithmic transformation used in the chapter is $X=$ __________.
+
+23. The square root transformation used when zero observations are present is $X=$ __________.
+
+24. The angular transformation used for percentage data is $X=$ __________.
+
+25. After angular transformation, the original percentage is obtained using $Y=$ __________.
+
+26. For Poisson data, the variance is proportional to the __________.
+
+27. For empirical data with $\sigma^2=c^2\mu^2$, the appropriate transformation is __________.
+
+28. For binomial data, the variance is $\frac{p(1-p)}{n}$ and the appropriate transformation is __________.
+
+29. For empirical data with $\sigma^2=c^2\mu$, the appropriate transformation is __________.
+
+30. After transformation, normality should be checked to confirm that the assumptions of __________ are satisfied.
+
+### Short-answer questions {.unnumbered}
+
+1. What is data transformation?
+
+2. Why is data transformation required before statistical analysis?
+
+3. Why should transformation not be used merely to obtain a desired statistical result?
+
+4. What are the three transformations discussed in the chapter?
+
+5. Explain when logarithmic transformation is appropriate.
+
+6. What is the relationship between mean and standard deviation that suggests logarithmic transformation?
+
+7. Explain how logarithmic transformation helps to achieve equality of variance.
+
+8. What transformation is used when zero or negative observations are present?
+
+9. What should be done when all observations are less than one before logarithmic transformation?
+
+10. Explain the analysis procedure after logarithmic transformation.
+
+11. Why should transformed means be retransformed after analysis?
+
+12. What is the appropriate transformation for Poisson-type count data?
+
+13. Why is square root transformation suitable for Poisson data?
+
+14. Give examples of data that may follow a Poisson distribution.
+
+15. Explain the transformation used when zero counts are present.
+
+16. Why are retransformed square root means slightly different from the original means?
+
+17. What rough correction can be applied to retransformed square root means?
+
+18. Explain when angular transformation is appropriate.
+
+19. Why is angular transformation used for percentage data derived from counts?
+
+20. State the variance of a binomial proportion.
+
+21. Explain why the variance of binomial data is not constant over the range of proportions.
+
+22. State the rule for deciding whether angular transformation is required.
+
+23. How are 0% and 100% observations treated before angular transformation?
+
+24. Explain the complete procedure for analyzing percentage data using angular transformation.
+
+25. How are angular-transformed means retransformed to the original percentage scale?
+
+26. Explain the relationship between distribution, variance, and appropriate transformation.
+
+27. Why should the transformed data be tested for normality?
+
+28. Explain why ANOVA on transformed data is more appropriate when the assumptions of ANOVA are satisfied after transformation.
+
+29. Distinguish between logarithmic, square root, and angular transformations.
+
+30. Explain the importance of choosing an appropriate transformation rather than applying the same transformation to all data.
+
+### Numerical and conceptual questions {.unnumbered}
+
+1. A weed count dataset contains large differences in variability among treatments, with the standard deviation increasing approximately in proportion to the mean. Which transformation should be used? Give the reason.
+
+2. Explain how you would transform a dataset containing zero and positive weed counts using logarithmic transformation.
+
+3. A count dataset contains the observations 0, 1, 4, 9, and 16. State the appropriate square root transformation when zero values are present.
+
+4. A researcher obtains insect counts from different plots. The counts are small and are expected to follow a Poisson distribution. Which transformation should be used and why?
+
+5. Given the observations 9, 16, 25, 36, and 49, calculate their square root transformed values.
+
+6. Explain why square root transformation is more appropriate than logarithmic transformation for Poisson-type count data.
+
+7. A dataset contains percentages 20, 35, 45, 60, and 80. Determine whether angular transformation is required according to the rule given in the chapter.
+
+8. A percentage dataset contains values 35, 42, 58, and 65. State whether transformation is required.
+
+9. A percentage dataset contains values 25, 42, 56, and 68. State whether transformation is required.
+
+10. A percentage dataset contains 0%, 15%, 48%, 76%, and 100%. Explain how the 0% and 100% values should be treated before angular transformation.
+
+11. For $p=0.25$, calculate the angular transformation $sin^{-1}\sqrt p$.
+
+12. For $p=0.64$, calculate the angular transformation $sin^{-1}\sqrt p$.
+
+13. A treatment has an angular-transformed mean of $45^\circ$. Calculate the retransformed percentage using $Y=100\times sin^2X$.
+
+14. A treatment has a square root transformed mean of 4.2. Calculate the approximate retransformed value using $X=Y^2-1$.
+
+15. A weedicide experiment is conducted in RBD and the weed counts are highly variable. Explain the complete procedure for analyzing the experiment after logarithmic transformation.
+
+16. In a transformed RBD analysis, the treatment effect is significant. Explain how treatment means should be compared.
+
+17. Explain why the conclusions from transformed data should be interpreted using retransformed means rather than the transformed means alone.
+
+18. In a percentage mortality experiment, one treatment has 100% mortality in one replication. Explain how this observation should be handled before angular transformation.
+
+19. A dataset follows the relationship $\sigma^2=\mu$. Identify the likely distribution and appropriate transformation.
+
+20. A dataset follows the relationship $\sigma^2=c^2\mu^2$. Identify the appropriate transformation.
+
+21. A dataset follows the relationship $\sigma^2=c^2\mu$. Identify the appropriate transformation.
+
+22. A dataset follows the relationship $\sigma^2=\frac{p(1-p)}{n}$. Identify the distribution and appropriate transformation.
+
+23. Explain why applying a transformation to only selected observations is generally inappropriate when the whole dataset requires transformation.
+
+24. Explain why normality should be checked after transformation before proceeding with ANOVA.
+
+25. Compare the interpretation of the retransformed means in the three examples given in the chapter.
+
+### Important formulae {.unnumbered}
+
+Logarithmic transformation:
+
+$$
+X=\log Y
+$$
+
+Logarithmic transformation with a constant:
+
+$$
+X=\log(Y+k),\quad k>0
+$$
+
+Square root transformation:
+
+$$
+X=\sqrt{Y}
+$$
+
+Square root transformation when zero values occur:
+
+$$
+X=\sqrt{Y+1}
+$$
+
+Alternative transformation for very small counts:
+
+$$
+X=\sqrt{Y}+\sqrt{Y+1}
+$$
+
+Angular transformation:
+
+$$
+X=sin^{-1}\sqrt p
+$$
+
+where
+
+$$
+p=\frac{Y}{100}
+$$
+
+Replacement for 0%:
+
+$$
+p=\frac{1}{4n}
+$$
+
+Replacement for 100%:
+
+$$
+p=1-\frac{1}{4n}
+$$
+
+Retransformation after logarithmic transformation:
+
+$$
+Y=antilogX
+$$
+
+Retransformation after square root transformation:
+
+$$
+Y=X^2-1
+$$
+
+Retransformation after angular transformation:
+
+$$
+Y=100\times sin^2X
+$$
+
+Binomial variance:
+
+$$
+\sigma^2=\frac{p(1-p)}{n}
+$$
+
+Poisson variance:
+
+$$
+\sigma^2=\mu
+$$
+
+Empirical variance relationship for square root transformation:
+
+$$
+\sigma^2=c^2\mu
+$$
+
+Empirical variance relationship for logarithmic transformation:
+
+$$
+\sigma^2=c^2\mu^2
+$$
+
+Coefficient of variation:
+
+$$
+CV=\frac{SD}{Mean}\times100
+$$
+
+Critical difference for transformed means in an RBD:
+
+$$
+CD=t_\alpha\sqrt{\frac{2MSE}{r}}
+$$
+
+### Quick revision {.unnumbered}
+
+* Data transformation → used when the assumptions required for valid statistical analysis are not satisfied.
+
+* Main purpose → improve validity, precision, and accuracy of statistical analysis.
+
+* Transformation should not be chosen merely to obtain a desired conclusion.
+
+* ANOVA and mean separation → performed on the transformed data.
+
+* Final means → retransformed to the original scale for interpretation.
+
+* Normality → should be checked after transformation.
+
+* Three transformations in the chapter → logarithmic, square root, and angular.
+
+* Logarithmic transformation → suitable when standard deviation is proportional to the mean.
+
+* Log transformation → also useful for multiplicative rather than additive effects.
+
+* Zero or negative values → require addition of a positive constant before logarithmic transformation.
+
+* Common transformation for zero values → $\log(Y+1)$.
+
+* If observations are less than one → multiply by a constant before taking logarithms.
+
+* Square root transformation → appropriate for Poisson-type count data.
+
+* Examples → insect counts, number of defectives, and counts of seeds affected by disease.
+
+* Poisson distribution → $\sigma^2=\mu$.
+
+* Empirical square root case → $\sigma^2=c^2\mu$.
+
+* Zero counts → use $\sqrt{Y+1}$.
+
+* Retransformation of square root mean → square the value and subtract 1.
+
+* Retransformed square root mean → may be slightly lower than the original mean.
+
+* A rough correction → add MSE from the square root analysis to the converted mean.
+
+* Angular transformation → appropriate for percentage data derived from binomial counts.
+
+* Binomial variance → $\sigma^2=p(1-p)/n$.
+
+* Percentage data between 30% and 70% → generally no transformation is required.
+
+* If at least one proportion lies outside 30-70% → transform all observations.
+
+* Angular transformation → $sin^{-1}\sqrt p$.
+
+* For 0% → replace with $1/(4n)$.
+
+* For 100% → replace with $1-1/(4n)$.
+
+* Retransformation of angular mean → $100\times sin^2X$.
+
+* Percentage of protein, carbohydrate, etc. → need not necessarily be transformed because such percentages are not necessarily binomial proportions.
+
+* Distribution and transformation:
+
+  * Poisson → $\sqrt{x}$.
+  * Empirical $\sigma^2=c^2\mu$ → $\sqrt{x}$.
+  * Binomial → $sin^{-1}\sqrt p$.
+  * Empirical $\sigma^2=c^2\mu^2$ → $\log(x)$.
+
+* Logarithmic example → weed counts were transformed using $X=\log Y$.
+
+* Square root example → larval counts containing zero values were transformed using $X=\sqrt{Y+1}$.
+
+* Angular example → insect mortality percentages were transformed using $X=sin^{-1}\sqrt p$.
+
+* In all three examples → ANOVA was performed on transformed values.
+
+* Treatment means → compared using the appropriate critical difference after significant treatment F test.
+
+* Final interpretation → based on retransformed means expressed in the original units.
+
+### Answers to fill in the blanks {.unnumbered}
+
+::: {.answer-key}
+
+`1.` Assumptions `2.` Validity `3.` Transformed `4.` Retransformed `5.` Angular `6.` Proportional `7.` Multiplicative `8.` Logarithm `9.` $\log(Y+1)$ `10.` Poisson `11.` Proportional `12.` Square `13.` $\sqrt{Y+1}$ `14.` Squaring `15.` Binomial `16.` Angular `17.` Proportion `18.` 30; 70 `19.` All `20.` $1/(4n)$ `21.` $1-1/(4n)$ `22.` $\log Y$ `23.` $\sqrt{Y+1}$ `24.` $sin^{-1}\sqrt p$ `25.` $100\times sin^2X$ `26.` Mean `27.` $\log(x)$ `28.` $sin^{-1}\sqrt p$ `29.` $\sqrt x$ `30.` ANOVA  
+:::
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1.  Since the standard deviation increases approximately in proportion to the mean, the coefficient of variation is roughly constant across treatments, indicating a multiplicative rather than additive effect. The logarithmic transformation should be used, as it converts multiplicative effects into additive ones and stabilizes the variance in this situation.
+
+2.  Since the dataset contains zero values, $\log(Y+1)$ should be used rather than $\log Y$, applying it to every observation, including the positive ones, so that all values remain on the same transformed scale.
+
+3.  Using $X=\sqrt{Y+1}$: for $Y=0,1,4,9,16$, $X=1.000,\ 1.414,\ 2.236,\ 3.162,\ 4.123$ respectively.
+
+4.  The square root transformation should be used, since small insect counts of rare events typically follow a Poisson distribution, for which the variance is proportional to the mean, matching the variance-stabilizing property of the square root transformation.
+
+5.  For $Y=9,16,25,36,49$, $\sqrt{Y}=3,4,5,6,7$ respectively.
+
+6.  For Poisson-type data the variance is proportional to the mean itself ($\sigma^2=\mu$), which is exactly the relationship the square root transformation stabilizes. The logarithmic transformation instead stabilizes variance proportional to the square of the mean ($\sigma^2=c^2\mu^2$), which does not match the Poisson case.
+
+7.  Since the percentages (20, 35, 45, 60, 80) include values both below 30% (20) and above 70% (80), spreading across the whole 0-100% range, the angular (arc sine) transformation should be used.
+
+8.  All the percentages (35, 42, 58, 65) lie within the 30% to 70% range, so no transformation is required.
+
+9.  One value, 25, lies below 30%, so transformation is required; since the values are confined to only the lower extreme (0-30%) and do not extend above 70%, the square root transformation, not the angular transformation, should be used.
+
+10. The 0% observation is replaced by $\dfrac{1}{4n}$ and the 100% observation is replaced by $1-\dfrac{1}{4n}$ (expressed as a proportion), where $n$ is the total number of units on which the percentage was based; the remaining observations (15%, 48%, 76%) are converted directly to proportions and transformed along with the adjusted extreme values, since at least one value lies outside 30-70%.
+
+11. $\sin^{-1}\sqrt{0.25}=\sin^{-1}(0.5)=30^\circ$.
+
+12. $\sin^{-1}\sqrt{0.64}=\sin^{-1}(0.8)\approx53.13^\circ$.
+
+13. $Y=100\times\sin^2(45^\circ)=100\times0.5=50\%$.
+
+14. $X^2-1=4.2^2-1=16.64$.
+
+15. First take $X=\log Y$ (or $\log(Y+1)$ if any weed count is zero) for every observation. Carry out the usual RBD analysis of variance on the transformed values $X$ to obtain the ANOVA table and test the treatment and block F values. If the treatment effect is significant, calculate the critical difference on the transformed scale and group the transformed treatment means. Finally, retransform the treatment means back to the original scale using $Y=\text{antilog}\,X$ for interpretation.
+
+16. The treatment means should first be compared on the transformed scale itself, using the critical difference calculated from the transformed-scale MSE, since the additivity and homogeneity of variance assumptions hold on that scale; only after this comparison should the means be retransformed to the original scale for reporting.
+
+17. The transformed scale is chosen purely to satisfy the statistical assumptions of ANOVA and does not correspond to a scale that is meaningful to interpret directly (for example, log counts or angles are not intuitive units); retransforming the means restores them to the original, practically meaningful units (counts, percentages, etc.) in which the results can be properly understood.
+
+18. Since 100% mortality occurred in that replication, it should be replaced by $1-\dfrac{1}{4n}$ (as a proportion) before applying the angular transformation, where $n$ is the number of insects on which that percentage was based.
+
+19. The relationship $\sigma^2=\mu$ corresponds to a Poisson distribution, for which the square root transformation is appropriate.
+
+20. The relationship $\sigma^2=c^2\mu^2$ is the empirical case matching the logarithmic transformation.
+
+21. The relationship $\sigma^2=c^2\mu$ is the empirical case matching the square root transformation.
+
+22. The relationship $\sigma^2=\dfrac{p(1-p)}{n}$ corresponds to a binomial distribution, for which the angular (arc sine) transformation is appropriate.
+
+23. ANOVA on transformed data assumes that all the observations have been placed on the same scale; if only some observations are transformed while others are left in the original scale, the resulting values are no longer comparable, and the assumptions of additivity and homogeneity of variance that the transformation was meant to restore would not hold across the whole dataset.
+
+24. The choice of a transformation (logarithmic, square root, or angular) is based on a general theoretical relationship between the mean and variance for a class of data, but this relationship may not hold exactly for every dataset. Checking normality after transformation confirms whether the chosen transformation has actually corrected the departure from ANOVA's assumptions for that particular dataset, rather than assuming it automatically has.
+
+25. In the logarithmic example, weed counts spanning a wide range were transformed and retransformed using antilog; in the square root example, small larval counts including zeros were transformed using $\sqrt{Y+1}$ and retransformed by squaring and subtracting 1; and in the angular example, mortality percentages spanning nearly the whole 0-100% range were transformed using $\sin^{-1}\sqrt p$ and retransformed using $100\times\sin^2X$. In all three cases, the treatment showing the extreme response in the raw data (highest weed count, highest larval count, highest mortality) also emerged as significantly different from the others after retransformation, confirming that the appropriate transformation preserved the substantive conclusions while satisfying the assumptions of ANOVA.
+
+::: {.callout-caution title="Historical Insights"}
+**Two statisticians whose names sounded so alike, they had to write a paper together**
+
+In the early 1960s, the British statistician **Sir David Cox** visited the University of Wisconsin, where **George E. P. Box** was on the faculty. As the story is often told, the two decided they simply had to collaborate on a paper together, largely because of the near-rhyme of their surnames, and because both were British statisticians working an ocean away from home. The result, published in 1964 in the *Journal of the Royal Statistical Society*, was "An Analysis of Transformations," the paper that introduced what the world now calls the **Box-Cox transformation**.
+
+There is a further connection running through this story: George Box was married to Joan Fisher, the daughter of Sir Ronald A. Fisher, whose work on randomization, ANOVA, and experimental design runs through so much of this book. What began as a light-hearted collaboration between two statisticians with similar names produced one of the most widely used tools for choosing a transformation, a single equation, indexed by one parameter $\lambda$, that quietly contains the logarithmic, square root, and reciprocal transformations as special cases, sixty years on, still finding the "right" scale for data one dataset at a time.
+:::
+
+::: {.callout-tip title="Quotes to Inspire"}
+**“It’s easy to lie with statistics. It’s hard to tell the truth without statistics.”** – **Andrejs Dunkels**
+:::

@@ -1,0 +1,2307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.6.39">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./appendix1.html" rel="next">
+<link href="./missingPlot.html" rel="prev">
+<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-9fe799a8b491b95f8638fac26051bc8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<meta property="og:title" content="24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:description" content="">
+<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:title" content="24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:description" content="">
+<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image-height" content="541">
+<meta name="twitter:image-width" content="956">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html">Additional Topics</a></li><li class="breadcrumb-item"><a href="./transformation.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Data transformation</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
+        <div class="sidebar-tools-main">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+  <a href="" class="quarto-reader-toggle quarto-navigation-tool px-1" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Welcome</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Basics of statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./agstatindia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Official agricultural statistics</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./3graph.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Graphical representation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Central tendency I</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./central2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Central tendency II</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./dispersion.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Measures of dispersion</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./skewness.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./association.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Measures of association</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./regression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Regression analysis</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probability.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Probability</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./probabilitydist.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Probability distributions</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sampleSurvey.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Sample survey</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./hypothesisTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Hypothesis testing</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./largeSampletest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Large sample test</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./smallsampleTest.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Small sample tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./designofexperiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Design of experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./uniformityTrials.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Uniformity trials</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./anova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./multipleComparison.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Multiple comparison tests</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./singleFactor.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Single factor experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./factorial.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Factorial experiments</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Additional Topics</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./ancova.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Analysis of covariance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./missingPlot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./transformation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Data transformation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#logarithmic-transformation" id="toc-logarithmic-transformation" class="nav-link active" data-scroll-target="#logarithmic-transformation"><span class="header-section-number">24.1</span> Logarithmic transformation</a></li>
+  <li><a href="#square-root-transformation" id="toc-square-root-transformation" class="nav-link" data-scroll-target="#square-root-transformation"><span class="header-section-number">24.2</span> Square root transformation</a></li>
+  <li><a href="#angular-transformation" id="toc-angular-transformation" class="nav-link" data-scroll-target="#angular-transformation"><span class="header-section-number">24.3</span> Angular transformation</a></li>
+  <li><a href="#box-cox-transformation" id="toc-box-cox-transformation" class="nav-link" data-scroll-target="#box-cox-transformation"><span class="header-section-number">24.4</span> Box-Cox transformation</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">24.5</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#important-formulae" id="toc-important-formulae" class="nav-link" data-scroll-target="#important-formulae">Important formulae</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ancova.html">Additional Topics</a></li><li class="breadcrumb-item"><a href="./transformation.html"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Data transformation</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Data transformation</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Data often requires transformation when it fails to satisfy the assumptions necessary for valid statistical analysis. Applying an appropriate transformation before analysis is essential to avoid a significant loss of precision and accuracy in the results.</p>
+<p>The interpretation of data based on analysis of variance is valid only when the following assumptions are satisfied: (i) treatment and block effects are additive, (ii) experimental errors are independent, (iii) there is homogeneity of variance, <em>i</em>.<em>e</em>. observations have a common variance, and (iv) the character under study follows a normal distribution. Deviations from these assumptions make the interpretation based on ANOVA, and other tests such as <em>t</em>, F, and Z that rely on the same assumptions, invalid. It is therefore necessary to detect such deviations and apply an appropriate remedial measure, most often a suitable transformation of the data.</p>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The effects of two factors, say treatment and replication, are said to be <strong>additive</strong> if the effect of one factor remains constant across all the levels of the other factor. When this is not the case, the effects are said to be <strong>non-additive</strong>. Two factors are said to have a <strong>multiplicative</strong> effect if their effects become additive only when expressed as percentages of a common base; a logarithmic transformation converts such multiplicative effects into additive ones, which is one of the main reasons the logarithmic transformation is used.</p>
+</div>
+</div>
+<p>The analysis of variance (ANOVA) on transformed data typically yields conclusions comparable to those from raw data. However, the transformed analysis is more valid when it ensures that the assumptions of ANOVA are met. It is crucial to avoid transforming data merely to achieve desired outcomes. Instead, transformations should be applied objectively to improve the validity of the analysis.</p>
+<p>Statistical tests of significance and mean separations must be performed on the transformed data rather than the raw data. Once the analysis is completed, the means of the transformed data should be computed and re-transformed back into the original units for meaningful interpretation. Additionally, after applying a transformation, it is advisable to test the data for normality to confirm that the assumptions of ANOVA are satisfied. If the data meets the assumptions post-transformation, the analysis can proceed confidently, leading to more reliable and robust conclusions.</p>
+<p>The following are the most commonly used transformations</p>
+<p><span class="math inline">\((i)\)</span> Logarithmic transformation<br>
+</p>
+<p><span class="math inline">\((ii)\)</span> Square root transformation<br>
+</p>
+<p><span class="math inline">\((iii)\)</span> Arc sine transformation (Angular transformation)<br>
+</p>
+<section id="logarithmic-transformation" class="level2" data-number="24.1">
+<h2 data-number="24.1" class="anchored" data-anchor-id="logarithmic-transformation"><span class="header-section-number">24.1</span> Logarithmic transformation</h2>
+<p>When the standard deviation of the samples are highly proportional to the mean, the most effective transformation is the logarithmic transformation. In this case the coefficient of variation will be a constant. Another criterion for deciding on this transformation is the evidence of multiplicative rather than additive effects. Then this transformation brings about both additivity of the effects and equality of variance.</p>
+<p>If zero values or negative observations are present add a positive quantity to remove this. Usually log(x+1) or log (x + k) ; k &gt;0 is taken. If data values are less than one then multiply by a constant and then take the logarithms. Usually we use common logarithms.</p>
+<div id="exm-ct47" class="theorem example">
+<p><span class="theorem-title"><strong>Example 24.1</strong></span> The following data in weed counts are recorded from a weedicide trial with 5 treatments and absolute control laid out in RBD. Analyze the data with suitable transformation.</p>
+<div id="tbl-weedcount" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedcount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.1: Weed count data from a weedicide trial with 5 treatments and an absolute control
+</figcaption>
+<div aria-describedby="tbl-weedcount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">R<sub>1</sub></th>
+<th style="text-align: center;">R<sub>2</sub></th>
+<th style="text-align: center;">R<sub>3</sub></th>
+<th style="text-align: center;">R<sub>4</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">169</td>
+<td style="text-align: center;">132</td>
+<td style="text-align: center;">180</td>
+<td style="text-align: center;">105</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">210</td>
+<td style="text-align: center;">172</td>
+<td style="text-align: center;">158</td>
+<td style="text-align: center;">125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">160</td>
+<td style="text-align: center;">94</td>
+<td style="text-align: center;">103</td>
+<td style="text-align: center;">65</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">98</td>
+<td style="text-align: center;">74</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">42</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">84</td>
+<td style="text-align: center;">28</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">368</td>
+<td style="text-align: center;">300</td>
+<td style="text-align: center;">610</td>
+<td style="text-align: center;">200</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution</strong></p>
+<p>The transformation used is <span class="math inline">\(X=logY\)</span></p>
+<div id="tbl-weedlog" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.2: Log-transformed weed count data with treatment and block totals
+</figcaption>
+<div aria-describedby="tbl-weedlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">R<sub>1</sub></th>
+<th style="text-align: center;">R<sub>2</sub></th>
+<th style="text-align: center;">R<sub>3</sub></th>
+<th style="text-align: center;">R<sub>4</sub></th>
+<th style="text-align: center;"><span class="math inline">\(Total\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">2.227</td>
+<td style="text-align: center;">2.120</td>
+<td style="text-align: center;">2.255</td>
+<td style="text-align: center;">2.021</td>
+<td style="text-align: center;">8.63</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">2.322</td>
+<td style="text-align: center;">2.235</td>
+<td style="text-align: center;">2.198</td>
+<td style="text-align: center;">2.096</td>
+<td style="text-align: center;">8.86</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">2.204</td>
+<td style="text-align: center;">1.973</td>
+<td style="text-align: center;">2.012</td>
+<td style="text-align: center;">1.812</td>
+<td style="text-align: center;">7.99</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.079</td>
+<td style="text-align: center;">1.991</td>
+<td style="text-align: center;">1.869</td>
+<td style="text-align: center;">7.94</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">1.623</td>
+<td style="text-align: center;">1.602</td>
+<td style="text-align: center;">1.924</td>
+<td style="text-align: center;">1.447</td>
+<td style="text-align: center;">6.59</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">2.565</td>
+<td style="text-align: center;">2.477</td>
+<td style="text-align: center;">2.785</td>
+<td style="text-align: center;">2.301</td>
+<td style="text-align: center;">10.14</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(Total\)</span></td>
+<td style="text-align: center;">12.94</td>
+<td style="text-align: center;">12.49</td>
+<td style="text-align: center;">13.17</td>
+<td style="text-align: center;">11.55</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here, n = 24, <span class="math inline">\(\sum X=\sum logY=50.15\)</span></p>
+<p><span class="math inline">\(\sum X^2=\sum (logY)^2=106.93\)</span>, <span class="math inline">\(CF=104.79\)</span></p>
+<p>The remaining procedure for estimation of sum of squares is same as that of RBD analysis.</p>
+<div id="tbl-weedanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.3: ANOVA table for the log-transformed weed count data
+</figcaption>
+<div aria-describedby="tbl-weedanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MSS</th>
+<th style="text-align: center;">F<sub>cal</sub></th>
+<th style="text-align: center;">F<sub>tab</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1.74</td>
+<td style="text-align: center;">0.348</td>
+<td style="text-align: center;">37.42</td>
+<td style="text-align: center;">F<sub>(5,15)</sub> = 2.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Block</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">0.26</td>
+<td style="text-align: center;">0.0867</td>
+<td style="text-align: center;">9.32</td>
+<td style="text-align: center;">F<sub>(3,15)</sub> = 3.29</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">0.14</td>
+<td style="text-align: center;">0.0093</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">2.14</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
+<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.131\times\sqrt{\frac{2\times0.0093}{4}}=0.145\)</span></p>
+<p>Here, the mean of T<sub>6</sub> is maximum, T<sub>2</sub> and T<sub>1</sub> is on par. Also T<sub>3</sub> is on par with T<sub>4</sub>. Mean of T<sub>5</sub> is minimum.</p>
+<p>Retransformed mean values: <span class="math inline">\(Y=antilogX\)</span></p>
+<div id="tbl-weedretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.4: Retransformed treatment means for the weedicide trial
+</figcaption>
+<div aria-describedby="tbl-weedretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Retransformed means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">2.157</td>
+<td style="text-align: center;">143.71</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">2.215</td>
+<td style="text-align: center;">164.06</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">1.997</td>
+<td style="text-align: center;">99.61</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">1.985</td>
+<td style="text-align: center;">96.61</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">1.647</td>
+<td style="text-align: center;">44.41</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">2.535</td>
+<td style="text-align: center;">342.77</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="square-root-transformation" class="level2" data-number="24.2">
+<h2 data-number="24.2" class="anchored" data-anchor-id="square-root-transformation"><span class="header-section-number">24.2</span> Square root transformation</h2>
+<p>When data following Poisson distributions are available first take the square root of the observations, then apply the analysis of variance. Counts of rare events (very little probability) such as number of defectives, insect counts, percentage of seeds affected by a disease etc. tend to follow the Poisson fashion. For the Poisson distribution the counts appear such that the variance of x is proportional to the mean <em>i.e.</em> <span class="math inline">\(σ_x^2=k.\bar x\)</span>. For a Poisson distribution of errors k =1 but usually the value of k&gt;1.</p>
+<p>The data of these types are transformed to square roots. If some counts are very small then transformations like <span class="math inline">\(\sqrt {x+1}\)</span> or <span class="math inline">\(\sqrt x+\sqrt {x+1}\)</span> (for x &lt;10) or <span class="math inline">\(\sqrt {x+k}\)</span> stabilizes the variance more effectively.</p>
+<p>The means of the square root scale are reconverted to the original scale by squaring. These values are slightly lower than the original mean because the mean of a set of square roots is less than the square root of the original mean. A rough correction is applied by adding the MSE in square root analysis to each of the converted mean. In general, we can say that the data requiring square root transformation do not violate assumptions of the ANOVA as drastically as data requiring logarithmic transformations.</p>
+<div id="exm-ct48" class="theorem example">
+<p><span class="theorem-title"><strong>Example 24.2</strong></span> The number of living larvae recorded from the plots under seven treatments from a RBD experiments on rice is given below. Analyze the data and draw the inference.</p>
+<div id="tbl-larvaraw" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.5: Living larvae count data from an RBD experiment on rice
+</figcaption>
+<div aria-describedby="tbl-larvaraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Replications</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">R<sub>1</sub></td>
+<td style="text-align: center;">R<sub>2</sub></td>
+<td style="text-align: center;">R<sub>3</sub></td>
+<td style="text-align: center;">R<sub>4</sub></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">8</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">9</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">17</td>
+<td style="text-align: center;">10</td>
+<td style="text-align: center;">10</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">28</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">15</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>7</sub></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution</strong></p>
+<p>The given data is that of RBD, relating to certain larva count observed from various plots. This type of count data follows Poisson distribution and attain normality of error, the square root transformation is used before conducting ANOVA. When the data contains observations ‘0’, transformation is obtained by taking <span class="math inline">\(\sqrt {X+1}\)</span>.</p>
+<div id="tbl-larvasqrt" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvasqrt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.6: Square-root transformed larvae count data with treatment and block totals
+</figcaption>
+<div aria-describedby="tbl-larvasqrt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">R<sub>1</sub></th>
+<th style="text-align: center;">R<sub>2</sub></th>
+<th style="text-align: center;">R<sub>3</sub></th>
+<th style="text-align: center;">R<sub>4</sub></th>
+<th style="text-align: center;">Total</th>
+<th style="text-align: center;">Mean</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">3.162</td>
+<td style="text-align: center;">3.606</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.414</td>
+<td style="text-align: center;">9.182</td>
+<td style="text-align: center;">2.296</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">2.236</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2.449</td>
+<td style="text-align: center;">1.414</td>
+<td style="text-align: center;">9.099</td>
+<td style="text-align: center;">2.275</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">2.646</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">2.646</td>
+<td style="text-align: center;">1.732</td>
+<td style="text-align: center;">11.024</td>
+<td style="text-align: center;">2.756</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">3.162</td>
+<td style="text-align: center;">2.646</td>
+<td style="text-align: center;">2.236</td>
+<td style="text-align: center;">2.449</td>
+<td style="text-align: center;">10.493</td>
+<td style="text-align: center;">2.623</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">5.292</td>
+<td style="text-align: center;">4.243</td>
+<td style="text-align: center;">3.317</td>
+<td style="text-align: center;">3.317</td>
+<td style="text-align: center;">16.169</td>
+<td style="text-align: center;">4.042</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">5.385</td>
+<td style="text-align: center;">1.732</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">17.117</td>
+<td style="text-align: center;">4.279</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>7</sub></td>
+<td style="text-align: center;">1.414</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">4.414</td>
+<td style="text-align: center;">1.104</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(Total\)</span></td>
+<td style="text-align: center;">23.912</td>
+<td style="text-align: center;">23.88</td>
+<td style="text-align: center;">14.38</td>
+<td style="text-align: center;">15.326</td>
+<td style="text-align: center;">77.498</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=7\)</span>, <span class="math inline">\(n=28\)</span>, <span class="math inline">\(CF=214.498\)</span></p>
+<div id="tbl-larvaanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.7: ANOVA table for the square-root transformed larvae count data
+</figcaption>
+<div aria-describedby="tbl-larvaanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MSS</th>
+<th style="text-align: center;">F<sub>cal</sub></th>
+<th style="text-align: center;">F<sub>tab</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;">6</td>
+<td style="text-align: center;">28.663</td>
+<td style="text-align: center;">4.777</td>
+<td style="text-align: center;">7.743</td>
+<td style="text-align: center;">4.01</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Block</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">11.746</td>
+<td style="text-align: center;">3.915</td>
+<td style="text-align: center;">6.346</td>
+<td style="text-align: center;">5.09</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">11.101</td>
+<td style="text-align: center;">0.617</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">27</td>
+<td style="text-align: center;">51.510</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
+<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.101\times\sqrt{\frac{2\times0.617}{4}}=1.17\)</span></p>
+<p>Here, the mean of T<sub>6</sub> is maximum, T<sub>3</sub> is found to be on par with mean of T<sub>4</sub>, T<sub>1</sub> and T<sub>2</sub>. Mean of T<sub>7</sub> is minimum.</p>
+<p>Retransformed mean values: <span class="math inline">\(X=Y^2-1\)</span></p>
+<div id="tbl-larvaretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.8: Retransformed treatment means for the larval count trial
+</figcaption>
+<div aria-describedby="tbl-larvaretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Retransformed means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">2.296</td>
+<td style="text-align: center;">4.272</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">2.275</td>
+<td style="text-align: center;">4.176</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">2.756</td>
+<td style="text-align: center;">6.596</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">2.623</td>
+<td style="text-align: center;">5.880</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">4.042</td>
+<td style="text-align: center;">15.338</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">4.279</td>
+<td style="text-align: center;">17.310</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>7</sub></td>
+<td style="text-align: center;">1.104</td>
+<td style="text-align: center;">0.219</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<section id="angular-transformation" class="level2" data-number="24.3">
+<h2 data-number="24.3" class="anchored" data-anchor-id="angular-transformation"><span class="header-section-number">24.3</span> Angular transformation</h2>
+<p>This transformation is appropriate for percentage data that derived from counts which follows Binomial distribution. However, the data like percentage of carbohydrates, percentage of protein, etc need not to be transformed before applying analysis of variance.</p>
+<p>If <span class="math inline">\(a_{ij}\)</span> success out of n trials are obtained in the j<sup>th</sup> replicate of the i<sup>th</sup> treatment the estimate of proportion <span class="math inline">\(p _{ij}=a_{ij}/n\)</span> has variance <span class="math inline">\(p_{ij}(1- p_{ij})/ n\)</span>. Usually these proportions are expressed in percentages. In binomial data variance tends to be small at the two ends of the range of values but larger towards the middle. This tendency also can be used to identify the transformation.</p>
+<p>The following rules are useful in choosing the proper transformation scale for percentage data derived from counts:</p>
+<ol type="1">
+<li><p>If all the proportions in the data lie within the range of 30% to 70%, no transformation is needed.</p></li>
+<li><p>If all the proportions lie either within 0% to 30%, or within 70% to 100%, but not spread across both ends, the square root transformation should be used.</p></li>
+<li><p>If the proportions are spread across the whole range, from 0% to 100%, the angular (arc sine) transformation should be used.</p></li>
+</ol>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If even a single proportion in the data lies outside the 30% to 70% range, all the observations, not just the extreme ones, must be transformed together using the appropriate transformation identified from the three rules above.</p>
+</div>
+</div>
+<p>The transformation is obtained by taking the angle whose sine is the square root of the proportion. (percentage / 100) <em>i.e</em> <span class="math inline">\(arcSin \sqrt p_{ij}\)</span> or <span class="math inline">\(Sin^{-1} \sqrt p_{ij}\)</span>. For <span class="math inline">\(p_{ij}\)</span> = 0 or 1 (<em>i.e.</em> 0% or 100%) the angular transformation is improved by replacing 0 by 1/4n and 1 by 1-1/4n where, n is the total number of units under observation.</p>
+<div id="exm-ct49" class="theorem example">
+<p><span class="theorem-title"><strong>Example 24.3</strong></span> The following are results on percentage mortality of insects recorded from a laboratory experiment using 6 levels of ekalux - 0, 1, 2, 3, 4 and 5%. Hundred insects were treated and mortality percentages are recorded below. Analyze the data.</p>
+<div id="tbl-mortalityraw" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.9: Percentage mortality data from an insecticide trial
+</figcaption>
+<div aria-describedby="tbl-mortalityraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">I</th>
+<th style="text-align: center;">II</th>
+<th style="text-align: center;">III</th>
+<th style="text-align: center;">IV</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">0</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">2</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">15</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">33</td>
+<td style="text-align: center;">30</td>
+<td style="text-align: center;">35</td>
+<td style="text-align: center;">34</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">52</td>
+<td style="text-align: center;">54</td>
+<td style="text-align: center;">58</td>
+<td style="text-align: center;">55</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">86</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">80</td>
+<td style="text-align: center;">79</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">88</td>
+<td style="text-align: center;">79</td>
+<td style="text-align: center;">100</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution</strong></p>
+<p>When percentage values are given the transformation used is angular transformation.</p>
+<p><span class="math inline">\(X=sin^{-1}\sqrt p\)</span>, where <span class="math inline">\(p=Y/100\)</span>, the proportion of percentages. Here, 0% is replaced by 1/4n</p>
+<p><span class="math inline">\(p=\frac {1/4n}{100}=0.0025\)</span>, where n = 100, number of insects.</p>
+<p><span class="math inline">\(X=sin^{-1}(\sqrt {\frac{0.0025}{100}})=0.286\)</span></p>
+<p>and 100% is replaced by 100-1/4n <em>i.e.</em></p>
+<p><span class="math inline">\(p=\frac {100-1/4n}{100}=0.999\)</span></p>
+<p>and <span class="math inline">\(X=sin^{-1}\sqrt {0.999}=89.714\)</span></p>
+<div id="tbl-mortalityangular" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityangular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.10: Angular-transformed mortality percentage data with treatment totals and means
+</figcaption>
+<div aria-describedby="tbl-mortalityangular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">I</th>
+<th style="text-align: center;">II</th>
+<th style="text-align: center;">III</th>
+<th style="text-align: center;">IV</th>
+<th style="text-align: center;">Total</th>
+<th style="text-align: center;">Means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">0.286</td>
+<td style="text-align: center;">0.286</td>
+<td style="text-align: center;">9.97</td>
+<td style="text-align: center;">8.13</td>
+<td style="text-align: center;">18.672</td>
+<td style="text-align: center;">4.668</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">20.26</td>
+<td style="text-align: center;">22.79</td>
+<td style="text-align: center;">25.10</td>
+<td style="text-align: center;">24.35</td>
+<td style="text-align: center;">92.5</td>
+<td style="text-align: center;">23.125</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">35.06</td>
+<td style="text-align: center;">33.21</td>
+<td style="text-align: center;">36.27</td>
+<td style="text-align: center;">35.67</td>
+<td style="text-align: center;">140.21</td>
+<td style="text-align: center;">35.0525</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">46.15</td>
+<td style="text-align: center;">47.29</td>
+<td style="text-align: center;">49.60</td>
+<td style="text-align: center;">47.87</td>
+<td style="text-align: center;">190.91</td>
+<td style="text-align: center;">47.7275</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">68.03</td>
+<td style="text-align: center;">62.03</td>
+<td style="text-align: center;">63.43</td>
+<td style="text-align: center;">62.73</td>
+<td style="text-align: center;">256.22</td>
+<td style="text-align: center;">64.055</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">69.73</td>
+<td style="text-align: center;">62.73</td>
+<td style="text-align: center;">89.714</td>
+<td style="text-align: center;">89.714</td>
+<td style="text-align: center;">311.888</td>
+<td style="text-align: center;">77.972</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>The sum of squares are estimated as the same procedure of CRD</p>
+<div id="tbl-mortalityanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.11: ANOVA table for the angular-transformed mortality data
+</figcaption>
+<div aria-describedby="tbl-mortalityanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Source</th>
+<th style="text-align: center;">df</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MSS</th>
+<th style="text-align: center;">F<sub>cal</sub></th>
+<th style="text-align: center;">F<sub>tab</sub></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treatment</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;">14445.45</td>
+<td style="text-align: center;">2889.091</td>
+<td style="text-align: center;">74.107</td>
+<td style="text-align: center;">2.77</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Error</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">701.732</td>
+<td style="text-align: center;">38.985</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">23</td>
+<td style="text-align: center;">15147.19</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
+<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=1.734\times\sqrt{\frac{2\times38.985}{4}}=7.655\)</span></p>
+<p>Here, the mean of T<sub>6</sub> is maximum and mean of T<sub>1</sub> is minimum. Every treatments pairs are significantly different from each other.</p>
+<p>Retransformed mean values: <span class="math inline">\(Y=100\times sin^2X\)</span></p>
+<div id="tbl-mortalityretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.12: Retransformed treatment means for the mortality trial
+</figcaption>
+<div aria-describedby="tbl-mortalityretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">Mean</th>
+<th style="text-align: center;">Retransformed means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">T<sub>1</sub></td>
+<td style="text-align: center;">4.668</td>
+<td style="text-align: center;">0.662</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>2</sub></td>
+<td style="text-align: center;">23.125</td>
+<td style="text-align: center;">15.424</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>3</sub></td>
+<td style="text-align: center;">35.052</td>
+<td style="text-align: center;">32.985</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>4</sub></td>
+<td style="text-align: center;">47.727</td>
+<td style="text-align: center;">54.753</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">T<sub>5</sub></td>
+<td style="text-align: center;">64.055</td>
+<td style="text-align: center;">80.858</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">T<sub>6</sub></td>
+<td style="text-align: center;">77.972</td>
+<td style="text-align: center;">95.657</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled" title="Note">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The following table gives an idea about the appropriate transformation which is used for different types of data.</p>
+<div id="tbl-transformguide" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-transformguide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.13: Choosing the appropriate transformation based on the distribution and the mean-variance relationship
+</figcaption>
+<div aria-describedby="tbl-transformguide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 44%">
+<col style="width: 36%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">Distribution</th>
+<th style="text-align: center;">Relation between mean &amp; variance</th>
+<th style="text-align: center;">Appropriate transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Poisson</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma ^2=\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt x\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Empirical</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma ^2=c^2\mu\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\sqrt x\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Binomial</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma ^2=\frac{p(1-p)}{n}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(sin^{-1} \sqrt p\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Empirical</td>
+<td style="text-align: center;"><span class="math inline">\(\sigma ^2=c^2\mu ^2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(log(x)\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="box-cox-transformation" class="level2" data-number="24.4">
+<h2 data-number="24.4" class="anchored" data-anchor-id="box-cox-transformation"><span class="header-section-number">24.4</span> Box-Cox transformation</h2>
+<p>The logarithmic, square root, and angular transformations discussed above are all specific cases of a wider family known as <strong>power transformations</strong>, that is, transformations that raise the data to some exponent, or power. For instance, the square root transformation can be written as <span class="math inline">\(Y^{1/2}\)</span>, and a reciprocal transformation as <span class="math inline">\(Y^{-1}\)</span>. The <strong>Box-Cox transformation</strong> generalizes this idea into a single transformation with one parameter, <span class="math inline">\(\lambda\)</span>, and includes the common transformations above as special cases.</p>
+<p>The Box-Cox transformation of a variable <span class="math inline">\(Y\)</span> takes the form</p>
+<p><span id="eq-boxcox"><span class="math display">\[
+X = \begin{cases} \dfrac{Y^{\lambda}-1}{\lambda}, &amp; \lambda \neq 0 \\ \log Y, &amp; \lambda = 0 \end{cases}
+\tag{24.1}\]</span></span></p>
+<p>where <span class="math inline">\(Y\)</span> is the untransformed variable, <span class="math inline">\(X\)</span> is the transformed variable, and <span class="math inline">\(\lambda\)</span> is the Box-Cox parameter. The value of <span class="math inline">\(\lambda\)</span> is estimated as the value that minimizes the error sum of squares from the analysis of variance, so that the resulting transformation gives the best fit for that particular dataset rather than being chosen only from general rules about the distribution.</p>
+<p><a href="#tbl-boxcoxlambda" class="quarto-xref">Table&nbsp;<span>24.14</span></a> shows how familiar transformations correspond to specific values of <span class="math inline">\(\lambda\)</span>.</p>
+<div id="tbl-boxcoxlambda" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-boxcoxlambda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inline">\(\lambda\)</span> and their corresponding transformations
+</figcaption>
+<div aria-describedby="tbl-boxcoxlambda-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 73%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><span class="math inline">\(\lambda\)</span></th>
+<th style="text-align: center;">Corresponding transformation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1.00</td>
+<td style="text-align: center;">No transformation needed; results are identical to the original data</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.50</td>
+<td style="text-align: center;">Square root transformation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.33</td>
+<td style="text-align: center;">Cube root transformation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">0.25</td>
+<td style="text-align: center;">Fourth root transformation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">0.00</td>
+<td style="text-align: center;">Natural logarithmic transformation</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">-0.50</td>
+<td style="text-align: center;">Reciprocal square root transformation</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">-1.00</td>
+<td style="text-align: center;">Reciprocal transformation</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>In practice, the analysis of variance is carried out for a range of trial values of <span class="math inline">\(\lambda\)</span> (for example, from 0 to 1 in steps of 0.05), and the value of <span class="math inline">\(\lambda\)</span> giving the minimum error sum of squares is chosen as the most appropriate transformation for that particular dataset. Since the Box-Cox transformation searches directly for the value that minimizes the error sum of squares, it can identify a suitable transformation even in situations that do not fit neatly into the Poisson, binomial, or empirical mean-variance relationships covered by the earlier transformations, making it a more general, data-driven alternative to selecting a transformation from fixed rules.</p>
+</section>
+<section id="chapter-summary" class="level2" data-number="24.5">
+<h2 data-number="24.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">24.5</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<ol type="1">
+<li><p>Data transformation is used when data fail to satisfy the __________ necessary for valid statistical analysis.</p></li>
+<li><p>Transformation should be applied to improve the __________ of statistical analysis and not merely to obtain a desired result.</p></li>
+<li><p>Statistical tests of significance and mean separation should be performed on the __________ data.</p></li>
+<li><p>After analysis, transformed means should be __________ to the original scale for interpretation.</p></li>
+<li><p>The three common transformations discussed in the chapter are logarithmic, square root, and __________ transformation.</p></li>
+<li><p>Logarithmic transformation is appropriate when the standard deviation is highly __________ to the mean.</p></li>
+<li><p>Logarithmic transformation is also useful when the effects are __________ rather than additive.</p></li>
+<li><p>When zero or negative values occur, a positive constant is added before taking the __________.</p></li>
+<li><p>A commonly used transformation for data containing zero values is __________.</p></li>
+<li><p>Counts of rare events generally follow the __________ distribution.</p></li>
+<li><p>For a Poisson distribution, the variance is approximately __________ to the mean.</p></li>
+<li><p>The usual transformation for Poisson-type count data is the __________ root transformation.</p></li>
+<li><p>When very small counts including zero occur, the transformation commonly used is __________.</p></li>
+<li><p>After square root transformation, the transformed means are reconverted to the original scale by __________ them.</p></li>
+<li><p>Data expressed as percentages derived from counts generally follow the __________ distribution.</p></li>
+<li><p>The appropriate transformation for binomial percentage data is the __________ transformation.</p></li>
+<li><p>The angular transformation is given by <span class="math inline">\(sin^{-1}\sqrt p\)</span>, where <span class="math inline">\(p\)</span> is the __________.</p></li>
+<li><p>If all proportions lie between __________% and __________%, angular transformation is generally not required.</p></li>
+<li><p>If at least one proportion lies outside the 30-70% range, __________ observations should be transformed.</p></li>
+<li><p>A percentage of 0 is replaced by __________ before angular transformation.</p></li>
+<li><p>A percentage of 100 is replaced by __________ before angular transformation.</p></li>
+<li><p>The logarithmic transformation used in the chapter is <span class="math inline">\(X=\)</span> __________.</p></li>
+<li><p>The square root transformation used when zero observations are present is <span class="math inline">\(X=\)</span> __________.</p></li>
+<li><p>The angular transformation used for percentage data is <span class="math inline">\(X=\)</span> __________.</p></li>
+<li><p>After angular transformation, the original percentage is obtained using <span class="math inline">\(Y=\)</span> __________.</p></li>
+<li><p>For Poisson data, the variance is proportional to the __________.</p></li>
+<li><p>For empirical data with <span class="math inline">\(\sigma^2=c^2\mu^2\)</span>, the appropriate transformation is __________.</p></li>
+<li><p>For binomial data, the variance is <span class="math inline">\(\frac{p(1-p)}{n}\)</span> and the appropriate transformation is __________.</p></li>
+<li><p>For empirical data with <span class="math inline">\(\sigma^2=c^2\mu\)</span>, the appropriate transformation is __________.</p></li>
+<li><p>After transformation, normality should be checked to confirm that the assumptions of __________ are satisfied.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>What is data transformation?</p></li>
+<li><p>Why is data transformation required before statistical analysis?</p></li>
+<li><p>Why should transformation not be used merely to obtain a desired statistical result?</p></li>
+<li><p>What are the three transformations discussed in the chapter?</p></li>
+<li><p>Explain when logarithmic transformation is appropriate.</p></li>
+<li><p>What is the relationship between mean and standard deviation that suggests logarithmic transformation?</p></li>
+<li><p>Explain how logarithmic transformation helps to achieve equality of variance.</p></li>
+<li><p>What transformation is used when zero or negative observations are present?</p></li>
+<li><p>What should be done when all observations are less than one before logarithmic transformation?</p></li>
+<li><p>Explain the analysis procedure after logarithmic transformation.</p></li>
+<li><p>Why should transformed means be retransformed after analysis?</p></li>
+<li><p>What is the appropriate transformation for Poisson-type count data?</p></li>
+<li><p>Why is square root transformation suitable for Poisson data?</p></li>
+<li><p>Give examples of data that may follow a Poisson distribution.</p></li>
+<li><p>Explain the transformation used when zero counts are present.</p></li>
+<li><p>Why are retransformed square root means slightly different from the original means?</p></li>
+<li><p>What rough correction can be applied to retransformed square root means?</p></li>
+<li><p>Explain when angular transformation is appropriate.</p></li>
+<li><p>Why is angular transformation used for percentage data derived from counts?</p></li>
+<li><p>State the variance of a binomial proportion.</p></li>
+<li><p>Explain why the variance of binomial data is not constant over the range of proportions.</p></li>
+<li><p>State the rule for deciding whether angular transformation is required.</p></li>
+<li><p>How are 0% and 100% observations treated before angular transformation?</p></li>
+<li><p>Explain the complete procedure for analyzing percentage data using angular transformation.</p></li>
+<li><p>How are angular-transformed means retransformed to the original percentage scale?</p></li>
+<li><p>Explain the relationship between distribution, variance, and appropriate transformation.</p></li>
+<li><p>Why should the transformed data be tested for normality?</p></li>
+<li><p>Explain why ANOVA on transformed data is more appropriate when the assumptions of ANOVA are satisfied after transformation.</p></li>
+<li><p>Distinguish between logarithmic, square root, and angular transformations.</p></li>
+<li><p>Explain the importance of choosing an appropriate transformation rather than applying the same transformation to all data.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>A weed count dataset contains large differences in variability among treatments, with the standard deviation increasing approximately in proportion to the mean. Which transformation should be used? Give the reason.</p></li>
+<li><p>Explain how you would transform a dataset containing zero and positive weed counts using logarithmic transformation.</p></li>
+<li><p>A count dataset contains the observations 0, 1, 4, 9, and 16. State the appropriate square root transformation when zero values are present.</p></li>
+<li><p>A researcher obtains insect counts from different plots. The counts are small and are expected to follow a Poisson distribution. Which transformation should be used and why?</p></li>
+<li><p>Given the observations 9, 16, 25, 36, and 49, calculate their square root transformed values.</p></li>
+<li><p>Explain why square root transformation is more appropriate than logarithmic transformation for Poisson-type count data.</p></li>
+<li><p>A dataset contains percentages 20, 35, 45, 60, and 80. Determine whether angular transformation is required according to the rule given in the chapter.</p></li>
+<li><p>A percentage dataset contains values 35, 42, 58, and 65. State whether transformation is required.</p></li>
+<li><p>A percentage dataset contains values 25, 42, 56, and 68. State whether transformation is required.</p></li>
+<li><p>A percentage dataset contains 0%, 15%, 48%, 76%, and 100%. Explain how the 0% and 100% values should be treated before angular transformation.</p></li>
+<li><p>For <span class="math inline">\(p=0.25\)</span>, calculate the angular transformation <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
+<li><p>For <span class="math inline">\(p=0.64\)</span>, calculate the angular transformation <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
+<li><p>A treatment has an angular-transformed mean of <span class="math inline">\(45^\circ\)</span>. Calculate the retransformed percentage using <span class="math inline">\(Y=100\times sin^2X\)</span>.</p></li>
+<li><p>A treatment has a square root transformed mean of 4.2. Calculate the approximate retransformed value using <span class="math inline">\(X=Y^2-1\)</span>.</p></li>
+<li><p>A weedicide experiment is conducted in RBD and the weed counts are highly variable. Explain the complete procedure for analyzing the experiment after logarithmic transformation.</p></li>
+<li><p>In a transformed RBD analysis, the treatment effect is significant. Explain how treatment means should be compared.</p></li>
+<li><p>Explain why the conclusions from transformed data should be interpreted using retransformed means rather than the transformed means alone.</p></li>
+<li><p>In a percentage mortality experiment, one treatment has 100% mortality in one replication. Explain how this observation should be handled before angular transformation.</p></li>
+<li><p>A dataset follows the relationship <span class="math inline">\(\sigma^2=\mu\)</span>. Identify the likely distribution and appropriate transformation.</p></li>
+<li><p>A dataset follows the relationship <span class="math inline">\(\sigma^2=c^2\mu^2\)</span>. Identify the appropriate transformation.</p></li>
+<li><p>A dataset follows the relationship <span class="math inline">\(\sigma^2=c^2\mu\)</span>. Identify the appropriate transformation.</p></li>
+<li><p>A dataset follows the relationship <span class="math inline">\(\sigma^2=\frac{p(1-p)}{n}\)</span>. Identify the distribution and appropriate transformation.</p></li>
+<li><p>Explain why applying a transformation to only selected observations is generally inappropriate when the whole dataset requires transformation.</p></li>
+<li><p>Explain why normality should be checked after transformation before proceeding with ANOVA.</p></li>
+<li><p>Compare the interpretation of the retransformed means in the three examples given in the chapter.</p></li>
+</ol>
+</section>
+<section id="important-formulae" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
+<p>Logarithmic transformation:</p>
+<p><span class="math display">\[
+X=\log Y
+\]</span></p>
+<p>Logarithmic transformation with a constant:</p>
+<p><span class="math display">\[
+X=\log(Y+k),\quad k&gt;0
+\]</span></p>
+<p>Square root transformation:</p>
+<p><span class="math display">\[
+X=\sqrt{Y}
+\]</span></p>
+<p>Square root transformation when zero values occur:</p>
+<p><span class="math display">\[
+X=\sqrt{Y+1}
+\]</span></p>
+<p>Alternative transformation for very small counts:</p>
+<p><span class="math display">\[
+X=\sqrt{Y}+\sqrt{Y+1}
+\]</span></p>
+<p>Angular transformation:</p>
+<p><span class="math display">\[
+X=sin^{-1}\sqrt p
+\]</span></p>
+<p>where</p>
+<p><span class="math display">\[
+p=\frac{Y}{100}
+\]</span></p>
+<p>Replacement for 0%:</p>
+<p><span class="math display">\[
+p=\frac{1}{4n}
+\]</span></p>
+<p>Replacement for 100%:</p>
+<p><span class="math display">\[
+p=1-\frac{1}{4n}
+\]</span></p>
+<p>Retransformation after logarithmic transformation:</p>
+<p><span class="math display">\[
+Y=antilogX
+\]</span></p>
+<p>Retransformation after square root transformation:</p>
+<p><span class="math display">\[
+Y=X^2-1
+\]</span></p>
+<p>Retransformation after angular transformation:</p>
+<p><span class="math display">\[
+Y=100\times sin^2X
+\]</span></p>
+<p>Binomial variance:</p>
+<p><span class="math display">\[
+\sigma^2=\frac{p(1-p)}{n}
+\]</span></p>
+<p>Poisson variance:</p>
+<p><span class="math display">\[
+\sigma^2=\mu
+\]</span></p>
+<p>Empirical variance relationship for square root transformation:</p>
+<p><span class="math display">\[
+\sigma^2=c^2\mu
+\]</span></p>
+<p>Empirical variance relationship for logarithmic transformation:</p>
+<p><span class="math display">\[
+\sigma^2=c^2\mu^2
+\]</span></p>
+<p>Coefficient of variation:</p>
+<p><span class="math display">\[
+CV=\frac{SD}{Mean}\times100
+\]</span></p>
+<p>Critical difference for transformed means in an RBD:</p>
+<p><span class="math display">\[
+CD=t_\alpha\sqrt{\frac{2MSE}{r}}
+\]</span></p>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li><p>Data transformation → used when the assumptions required for valid statistical analysis are not satisfied.</p></li>
+<li><p>Main purpose → improve validity, precision, and accuracy of statistical analysis.</p></li>
+<li><p>Transformation should not be chosen merely to obtain a desired conclusion.</p></li>
+<li><p>ANOVA and mean separation → performed on the transformed data.</p></li>
+<li><p>Final means → retransformed to the original scale for interpretation.</p></li>
+<li><p>Normality → should be checked after transformation.</p></li>
+<li><p>Three transformations in the chapter → logarithmic, square root, and angular.</p></li>
+<li><p>Logarithmic transformation → suitable when standard deviation is proportional to the mean.</p></li>
+<li><p>Log transformation → also useful for multiplicative rather than additive effects.</p></li>
+<li><p>Zero or negative values → require addition of a positive constant before logarithmic transformation.</p></li>
+<li><p>Common transformation for zero values → <span class="math inline">\(\log(Y+1)\)</span>.</p></li>
+<li><p>If observations are less than one → multiply by a constant before taking logarithms.</p></li>
+<li><p>Square root transformation → appropriate for Poisson-type count data.</p></li>
+<li><p>Examples → insect counts, number of defectives, and counts of seeds affected by disease.</p></li>
+<li><p>Poisson distribution → <span class="math inline">\(\sigma^2=\mu\)</span>.</p></li>
+<li><p>Empirical square root case → <span class="math inline">\(\sigma^2=c^2\mu\)</span>.</p></li>
+<li><p>Zero counts → use <span class="math inline">\(\sqrt{Y+1}\)</span>.</p></li>
+<li><p>Retransformation of square root mean → square the value and subtract 1.</p></li>
+<li><p>Retransformed square root mean → may be slightly lower than the original mean.</p></li>
+<li><p>A rough correction → add MSE from the square root analysis to the converted mean.</p></li>
+<li><p>Angular transformation → appropriate for percentage data derived from binomial counts.</p></li>
+<li><p>Binomial variance → <span class="math inline">\(\sigma^2=p(1-p)/n\)</span>.</p></li>
+<li><p>Percentage data between 30% and 70% → generally no transformation is required.</p></li>
+<li><p>If at least one proportion lies outside 30-70% → transform all observations.</p></li>
+<li><p>Angular transformation → <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
+<li><p>For 0% → replace with <span class="math inline">\(1/(4n)\)</span>.</p></li>
+<li><p>For 100% → replace with <span class="math inline">\(1-1/(4n)\)</span>.</p></li>
+<li><p>Retransformation of angular mean → <span class="math inline">\(100\times sin^2X\)</span>.</p></li>
+<li><p>Percentage of protein, carbohydrate, etc. → need not necessarily be transformed because such percentages are not necessarily binomial proportions.</p></li>
+<li><p>Distribution and transformation:</p>
+<ul>
+<li>Poisson → <span class="math inline">\(\sqrt{x}\)</span>.</li>
+<li>Empirical <span class="math inline">\(\sigma^2=c^2\mu\)</span> → <span class="math inline">\(\sqrt{x}\)</span>.</li>
+<li>Binomial → <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</li>
+<li>Empirical <span class="math inline">\(\sigma^2=c^2\mu^2\)</span> → <span class="math inline">\(\log(x)\)</span>.</li>
+</ul></li>
+<li><p>Logarithmic example → weed counts were transformed using <span class="math inline">\(X=\log Y\)</span>.</p></li>
+<li><p>Square root example → larval counts containing zero values were transformed using <span class="math inline">\(X=\sqrt{Y+1}\)</span>.</p></li>
+<li><p>Angular example → insect mortality percentages were transformed using <span class="math inline">\(X=sin^{-1}\sqrt p\)</span>.</p></li>
+<li><p>In all three examples → ANOVA was performed on transformed values.</p></li>
+<li><p>Treatment means → compared using the appropriate critical difference after significant treatment F test.</p></li>
+<li><p>Final interpretation → based on retransformed means expressed in the original units.</p></li>
+</ul>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<div class="answer-key">
+<p><code>1.</code> Assumptions <code>2.</code> Validity <code>3.</code> Transformed <code>4.</code> Retransformed <code>5.</code> Angular <code>6.</code> Proportional <code>7.</code> Multiplicative <code>8.</code> Logarithm <code>9.</code> <span class="math inline">\(\log(Y+1)\)</span> <code>10.</code> Poisson <code>11.</code> Proportional <code>12.</code> Square <code>13.</code> <span class="math inline">\(\sqrt{Y+1}\)</span> <code>14.</code> Squaring <code>15.</code> Binomial <code>16.</code> Angular <code>17.</code> Proportion <code>18.</code> 30; 70 <code>19.</code> All <code>20.</code> <span class="math inline">\(1/(4n)\)</span> <code>21.</code> <span class="math inline">\(1-1/(4n)\)</span> <code>22.</code> <span class="math inline">\(\log Y\)</span> <code>23.</code> <span class="math inline">\(\sqrt{Y+1}\)</span> <code>24.</code> <span class="math inline">\(sin^{-1}\sqrt p\)</span> <code>25.</code> <span class="math inline">\(100\times sin^2X\)</span> <code>26.</code> Mean <code>27.</code> <span class="math inline">\(\log(x)\)</span> <code>28.</code> <span class="math inline">\(sin^{-1}\sqrt p\)</span> <code>29.</code> <span class="math inline">\(\sqrt x\)</span> <code>30.</code> ANOVA</p>
+</div>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>Since the standard deviation increases approximately in proportion to the mean, the coefficient of variation is roughly constant across treatments, indicating a multiplicative rather than additive effect. The logarithmic transformation should be used, as it converts multiplicative effects into additive ones and stabilizes the variance in this situation.</p></li>
+<li><p>Since the dataset contains zero values, <span class="math inline">\(\log(Y+1)\)</span> should be used rather than <span class="math inline">\(\log Y\)</span>, applying it to every observation, including the positive ones, so that all values remain on the same transformed scale.</p></li>
+<li><p>Using <span class="math inline">\(X=\sqrt{Y+1}\)</span>: for <span class="math inline">\(Y=0,1,4,9,16\)</span>, <span class="math inline">\(X=1.000,\ 1.414,\ 2.236,\ 3.162,\ 4.123\)</span> respectively.</p></li>
+<li><p>The square root transformation should be used, since small insect counts of rare events typically follow a Poisson distribution, for which the variance is proportional to the mean, matching the variance-stabilizing property of the square root transformation.</p></li>
+<li><p>For <span class="math inline">\(Y=9,16,25,36,49\)</span>, <span class="math inline">\(\sqrt{Y}=3,4,5,6,7\)</span> respectively.</p></li>
+<li><p>For Poisson-type data the variance is proportional to the mean itself (<span class="math inline">\(\sigma^2=\mu\)</span>), which is exactly the relationship the square root transformation stabilizes. The logarithmic transformation instead stabilizes variance proportional to the square of the mean (<span class="math inline">\(\sigma^2=c^2\mu^2\)</span>), which does not match the Poisson case.</p></li>
+<li><p>Since the percentages (20, 35, 45, 60, 80) include values both below 30% (20) and above 70% (80), spreading across the whole 0-100% range, the angular (arc sine) transformation should be used.</p></li>
+<li><p>All the percentages (35, 42, 58, 65) lie within the 30% to 70% range, so no transformation is required.</p></li>
+<li><p>One value, 25, lies below 30%, so transformation is required; since the values are confined to only the lower extreme (0-30%) and do not extend above 70%, the square root transformation, not the angular transformation, should be used.</p></li>
+<li><p>The 0% observation is replaced by <span class="math inline">\(\dfrac{1}{4n}\)</span> and the 100% observation is replaced by <span class="math inline">\(1-\dfrac{1}{4n}\)</span> (expressed as a proportion), where <span class="math inline">\(n\)</span> is the total number of units on which the percentage was based; the remaining observations (15%, 48%, 76%) are converted directly to proportions and transformed along with the adjusted extreme values, since at least one value lies outside 30-70%.</p></li>
+<li><p><span class="math inline">\(\sin^{-1}\sqrt{0.25}=\sin^{-1}(0.5)=30^\circ\)</span>.</p></li>
+<li><p><span class="math inline">\(\sin^{-1}\sqrt{0.64}=\sin^{-1}(0.8)\approx53.13^\circ\)</span>.</p></li>
+<li><p><span class="math inline">\(Y=100\times\sin^2(45^\circ)=100\times0.5=50\%\)</span>.</p></li>
+<li><p><span class="math inline">\(X^2-1=4.2^2-1=16.64\)</span>.</p></li>
+<li><p>First take <span class="math inline">\(X=\log Y\)</span> (or <span class="math inline">\(\log(Y+1)\)</span> if any weed count is zero) for every observation. Carry out the usual RBD analysis of variance on the transformed values <span class="math inline">\(X\)</span> to obtain the ANOVA table and test the treatment and block F values. If the treatment effect is significant, calculate the critical difference on the transformed scale and group the transformed treatment means. Finally, retransform the treatment means back to the original scale using <span class="math inline">\(Y=\text{antilog}\,X\)</span> for interpretation.</p></li>
+<li><p>The treatment means should first be compared on the transformed scale itself, using the critical difference calculated from the transformed-scale MSE, since the additivity and homogeneity of variance assumptions hold on that scale; only after this comparison should the means be retransformed to the original scale for reporting.</p></li>
+<li><p>The transformed scale is chosen purely to satisfy the statistical assumptions of ANOVA and does not correspond to a scale that is meaningful to interpret directly (for example, log counts or angles are not intuitive units); retransforming the means restores them to the original, practically meaningful units (counts, percentages, etc.) in which the results can be properly understood.</p></li>
+<li><p>Since 100% mortality occurred in that replication, it should be replaced by <span class="math inline">\(1-\dfrac{1}{4n}\)</span> (as a proportion) before applying the angular transformation, where <span class="math inline">\(n\)</span> is the number of insects on which that percentage was based.</p></li>
+<li><p>The relationship <span class="math inline">\(\sigma^2=\mu\)</span> corresponds to a Poisson distribution, for which the square root transformation is appropriate.</p></li>
+<li><p>The relationship <span class="math inline">\(\sigma^2=c^2\mu^2\)</span> is the empirical case matching the logarithmic transformation.</p></li>
+<li><p>The relationship <span class="math inline">\(\sigma^2=c^2\mu\)</span> is the empirical case matching the square root transformation.</p></li>
+<li><p>The relationship <span class="math inline">\(\sigma^2=\dfrac{p(1-p)}{n}\)</span> corresponds to a binomial distribution, for which the angular (arc sine) transformation is appropriate.</p></li>
+<li><p>ANOVA on transformed data assumes that all the observations have been placed on the same scale; if only some observations are transformed while others are left in the original scale, the resulting values are no longer comparable, and the assumptions of additivity and homogeneity of variance that the transformation was meant to restore would not hold across the whole dataset.</p></li>
+<li><p>The choice of a transformation (logarithmic, square root, or angular) is based on a general theoretical relationship between the mean and variance for a class of data, but this relationship may not hold exactly for every dataset. Checking normality after transformation confirms whether the chosen transformation has actually corrected the departure from ANOVA’s assumptions for that particular dataset, rather than assuming it automatically has.</p></li>
+<li><p>In the logarithmic example, weed counts spanning a wide range were transformed and retransformed using antilog; in the square root example, small larval counts including zeros were transformed using <span class="math inline">\(\sqrt{Y+1}\)</span> and retransformed by squaring and subtracting 1; and in the angular example, mortality percentages spanning nearly the whole 0-100% range were transformed using <span class="math inline">\(\sin^{-1}\sqrt p\)</span> and retransformed using <span class="math inline">\(100\times\sin^2X\)</span>. In all three cases, the treatment showing the extreme response in the raw data (highest weed count, highest larval count, highest mortality) also emerged as significantly different from the others after retransformation, confirming that the appropriate transformation preserved the substantive conclusions while satisfying the assumptions of ANOVA.</p></li>
+</ol>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Two statisticians whose names sounded so alike, they had to write a paper together</strong></p>
+<p>In the early 1960s, the British statistician <strong>Sir David Cox</strong> visited the University of Wisconsin, where <strong>George E. P. Box</strong> was on the faculty. As the story is often told, the two decided they simply had to collaborate on a paper together, largely because of the near-rhyme of their surnames, and because both were British statisticians working an ocean away from home. The result, published in 1964 in the <em>Journal of the Royal Statistical Society</em>, was “An Analysis of Transformations,” the paper that introduced what the world now calls the <strong>Box-Cox transformation</strong>.</p>
+<p>There is a further connection running through this story: George Box was married to Joan Fisher, the daughter of Sir Ronald A. Fisher, whose work on randomization, ANOVA, and experimental design runs through so much of this book. What began as a light-hearted collaboration between two statisticians with similar names produced one of the most widely used tools for choosing a transformation, a single equation, indexed by one parameter <span class="math inline">\(\lambda\)</span>, that quietly contains the logarithmic, square root, and reciprocal transformations as special cases, sixty years on, still finding the “right” scale for data one dataset at a time.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Quotes to Inspire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>“It’s easy to lie with statistics. It’s hard to tell the truth without statistics.”</strong> – <strong>Andrejs Dunkels</strong></p>
+</div>
+</div>
+
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./missingPlot.html" class="pagination-link" aria-label="Missing plot analysis">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Missing plot analysis</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
+        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>   
+    <div class="nav-footer-center">
+<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+</div>
+    <div class="nav-footer-right">
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+</div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
