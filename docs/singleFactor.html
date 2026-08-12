@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./factorial.html" rel="next">
 <link href="./multipleComparison.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9fe799a8b491b95f8638fac26051bc8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +144,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -164,7 +330,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -415,9 +582,9 @@ window.Quarto = {
   <li><a href="#layout-of-crd" id="toc-layout-of-crd" class="nav-link" data-scroll-target="#layout-of-crd"><span class="header-section-number">20.1.2</span> Layout of CRD</a></li>
   <li><a href="#statistical-model-for-crd" id="toc-statistical-model-for-crd" class="nav-link" data-scroll-target="#statistical-model-for-crd"><span class="header-section-number">20.1.3</span> Statistical model for CRD</a></li>
   <li><a href="#analysis-of-crd" id="toc-analysis-of-crd" class="nav-link" data-scroll-target="#analysis-of-crd"><span class="header-section-number">20.1.4</span> Analysis of CRD</a></li>
-  <li><a href="#advantages-of-a-crd" id="toc-advantages-of-a-crd" class="nav-link" data-scroll-target="#advantages-of-a-crd"><span class="header-section-number">20.1.5</span> Advantages of a CRD</a></li>
-  <li><a href="#disadvantages-of-a-crd" id="toc-disadvantages-of-a-crd" class="nav-link" data-scroll-target="#disadvantages-of-a-crd"><span class="header-section-number">20.1.6</span> Disadvantages of a CRD</a></li>
-  <li><a href="#sec-replical" id="toc-sec-replical" class="nav-link" data-scroll-target="#sec-replical"><span class="header-section-number">20.1.7</span> Number of replications in CRD</a></li>
+  <li><a href="#sec-replical" id="toc-sec-replical" class="nav-link" data-scroll-target="#sec-replical"><span class="header-section-number">20.1.5</span> Replications in CRD</a></li>
+  <li><a href="#advantages-of-a-crd" id="toc-advantages-of-a-crd" class="nav-link" data-scroll-target="#advantages-of-a-crd"><span class="header-section-number">20.1.6</span> Advantages of a CRD</a></li>
+  <li><a href="#disadvantages-of-a-crd" id="toc-disadvantages-of-a-crd" class="nav-link" data-scroll-target="#disadvantages-of-a-crd"><span class="header-section-number">20.1.7</span> Disadvantages of a CRD</a></li>
   </ul></li>
   <li><a href="#randomized-complete-block-designs-rcbd" id="toc-randomized-complete-block-designs-rcbd" class="nav-link" data-scroll-target="#randomized-complete-block-designs-rcbd"><span class="header-section-number">20.2</span> Randomized Complete Block Designs (RCBD)</a>
   <ul class="collapse">
@@ -426,15 +593,21 @@ window.Quarto = {
   <li><a href="#layout-of-rcbd" id="toc-layout-of-rcbd" class="nav-link" data-scroll-target="#layout-of-rcbd"><span class="header-section-number">20.2.3</span> Layout of RCBD</a></li>
   <li><a href="#statistical-model-for-rcbd" id="toc-statistical-model-for-rcbd" class="nav-link" data-scroll-target="#statistical-model-for-rcbd"><span class="header-section-number">20.2.4</span> Statistical Model for RCBD</a></li>
   <li><a href="#analysis-of-rcbd" id="toc-analysis-of-rcbd" class="nav-link" data-scroll-target="#analysis-of-rcbd"><span class="header-section-number">20.2.5</span> Analysis of RCBD</a></li>
-  <li><a href="#number-of-replications-in-rcbd" id="toc-number-of-replications-in-rcbd" class="nav-link" data-scroll-target="#number-of-replications-in-rcbd"><span class="header-section-number">20.2.6</span> Number of replications in RCBD</a></li>
-  <li><a href="#post-hoc-test-in-rcbd" id="toc-post-hoc-test-in-rcbd" class="nav-link" data-scroll-target="#post-hoc-test-in-rcbd"><span class="header-section-number">20.2.7</span> Post-hoc test in RCBD</a></li>
+  <li><a href="#post-hoc-test-in-rcbd" id="toc-post-hoc-test-in-rcbd" class="nav-link" data-scroll-target="#post-hoc-test-in-rcbd"><span class="header-section-number">20.2.6</span> Post-hoc test in RCBD</a></li>
+  <li><a href="#replications-in-rcbd" id="toc-replications-in-rcbd" class="nav-link" data-scroll-target="#replications-in-rcbd"><span class="header-section-number">20.2.7</span> Replications in RCBD</a></li>
   <li><a href="#advantages-of-rcbd" id="toc-advantages-of-rcbd" class="nav-link" data-scroll-target="#advantages-of-rcbd"><span class="header-section-number">20.2.8</span> Advantages of RCBD</a></li>
   <li><a href="#disadvantages-of-rcbd" id="toc-disadvantages-of-rcbd" class="nav-link" data-scroll-target="#disadvantages-of-rcbd"><span class="header-section-number">20.2.9</span> Disadvantages of RCBD</a></li>
   </ul></li>
   <li><a href="#latin-square-design-lsd" id="toc-latin-square-design-lsd" class="nav-link" data-scroll-target="#latin-square-design-lsd"><span class="header-section-number">20.3</span> Latin Square Design (LSD)</a>
   <ul class="collapse">
-  <li><a href="#layout-and-randomization" id="toc-layout-and-randomization" class="nav-link" data-scroll-target="#layout-and-randomization"><span class="header-section-number">20.3.1</span> Layout and Randomization</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">20.3.2</span> Analysis</a></li>
+  <li><a href="#sec-lsdrandom" id="toc-sec-lsdrandom" class="nav-link" data-scroll-target="#sec-lsdrandom"><span class="header-section-number">20.3.1</span> Randomization</a></li>
+  <li><a href="#layout" id="toc-layout" class="nav-link" data-scroll-target="#layout"><span class="header-section-number">20.3.2</span> Layout</a></li>
+  <li><a href="#statistical-model-for-lsd" id="toc-statistical-model-for-lsd" class="nav-link" data-scroll-target="#statistical-model-for-lsd"><span class="header-section-number">20.3.3</span> Statistical model for LSD</a></li>
+  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis"><span class="header-section-number">20.3.4</span> Analysis</a></li>
+  <li><a href="#post-hoc-test-lsd" id="toc-post-hoc-test-lsd" class="nav-link" data-scroll-target="#post-hoc-test-lsd"><span class="header-section-number">20.3.5</span> Post hoc test (LSD)</a></li>
+  <li><a href="#replications-in-lsd" id="toc-replications-in-lsd" class="nav-link" data-scroll-target="#replications-in-lsd"><span class="header-section-number">20.3.6</span> Replications in LSD</a></li>
+  <li><a href="#advantages-of-lsd" id="toc-advantages-of-lsd" class="nav-link" data-scroll-target="#advantages-of-lsd"><span class="header-section-number">20.3.7</span> Advantages of LSD</a></li>
+  <li><a href="#disadvantages-of-lsd" id="toc-disadvantages-of-lsd" class="nav-link" data-scroll-target="#disadvantages-of-lsd"><span class="header-section-number">20.3.8</span> Disadvantages of LSD</a></li>
   </ul></li>
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">20.4</span> Chapter Summary</a>
   <ul class="collapse">
@@ -451,6 +624,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
+
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -485,7 +659,7 @@ window.Quarto = {
 <h3 data-number="20.1.1" class="anchored" data-anchor-id="sec-random1"><span class="header-section-number">20.1.1</span> Randomization procedure</h3>
 <p>Consider an experiment involving four treatments A, B, C, D in CRD. Each treatment is replicated 5 times. Randomization procedure is as explained below.</p>
 <ol type="1">
-<li><p>Determine the total number of experimental units (<span class="math inline">\(n\)</span>) as the product of the number of treatments (<span class="math inline">\(t\)</span>) and the number of replications (<span class="math inline">\(r\)</span>); that is, <span class="math inline">\(n = r\  \times t\)</span>. For our example, <span class="math inline">\(n = 5 \times 4 = 20\)</span></p></li>
+<li><p>Determine the total number of experimental units (<span class="math inline">\(n\)</span>) as the product of the number of treatments (<span class="math inline">\(v\)</span>) and the number of replications (<span class="math inline">\(r\)</span>); that is, <span class="math inline">\(n = r\ \times v\)</span>. For our example, <span class="math inline">\(n = 5 \times 4 = 20\)</span></p></li>
 <li><p>Assign a unit number to each experimental units in any convenient manner; for example, consecutively from 1 to n.&nbsp;For our example, the unit numbers 1, 2,... , 20 are assigned to the 20 experimental units as shown in Figure <a href="#fig-crdnumbered" class="quarto-xref">Figure&nbsp;<span>20.1</span></a></p></li>
 <li><p>Assign the treatments to the experimental plots by using any randomization schemes. Here we explain a simple randomization scheme in section <a href="#sec-random" class="quarto-xref"><span>Section 20.1.1.1</span></a>.</p></li>
 </ol>
@@ -506,10 +680,10 @@ Figure&nbsp;20.1: Numbered experimental units
 <section id="sec-random" class="level4">
 <h4 class="anchored" data-anchor-id="sec-random">Randomization by drawing lots</h4>
 <ol type="1">
-<li><p>Prepare <span class="math inline">\(n\)</span> identical pieces of paper and divide them into <span class="math inline">\(t\)</span> groups, each group with <span class="math inline">\(r\)</span> pieces of paper. Label each piece of paper of the same group with the same letter (or number) corresponding to a treatment. Uniformly fold each of the <span class="math inline">\(n\)</span> labeled pieces of paper, mix them thoroughly, and place them in a container. For our example, there should be 20 pieces of paper, five each with treatments A, B, C, and D appearing on them.</p></li>
+<li><p>Prepare <span class="math inline">\(n\)</span> identical pieces of paper and divide them into <span class="math inline">\(v\)</span> groups, each group with <span class="math inline">\(r\)</span> pieces of paper. Label each piece of paper of the same group with the same letter (or number) corresponding to a treatment. Uniformly fold each of the <span class="math inline">\(n\)</span> labeled pieces of paper, mix them thoroughly, and place them in a container. For our example, there should be 20 pieces of paper, five each with treatments A, B, C, and D appearing on them.</p></li>
 <li><p>Draw one piece of paper at a time, without replacement and with constant shaking of the container after each draw to mix its content. For our example, the label and the corresponding sequence in which each piece of paper is drawn. The sequence number can be considered as the experimental unit number to which the treatment is to be assigned.</p></li>
 </ol>
-<div id="tbl-sequence" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Sequence in which labelled lots are drawn">
+<div id="tbl-sequence" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Sequence in which labelled lots are drawn" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sequence-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.1: Sequence in which labelled lots are drawn
@@ -697,7 +871,7 @@ Where <em>i</em> = 1,2, …, <em>v</em> and <em>j</em> =1,2, …, <em>r</em><sub
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -792,39 +966,21 @@ Arrange the treatment means in descending order. Critical difference (CD) is cal
 <p>(for CRD with unequal replication)</p>
 <p><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{r}}\]</span></p>
 <p>(for CRD with equal replication)</p>
-<p>Here <span class="math inline">\(t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\)</span> denotes the critical value of Student’s t for a two tailed test at α level of significance and error degrees of freedom. <span class="math inline">\(r_{i}\)</span> and <span class="math inline">\(r_{j}\)</span> are replications of <span class="math inline">\(T_{i},\ T_{j}\)</span> respectively. If the difference of any two treatment means is greater than the critical difference, they are significantly different. If the difference of any two treatment means is less than <span class="math inline">\(\text{C.D}\)</span>. they are said to be on par. (<em>i</em>.<em>e</em>., there is no any statistically significant difference). Those treatments which are at par is given same symbols or letters, such that treatment means without any common letters or symbols are significantly different at corresponding level of significance (α).</p>
+<p>Here <span class="math inline">\(t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}\)</span> denotes the critical value of Student’s t for a two tailed test at α level of significance and error degrees of freedom. <span class="math inline">\(r_{i}\)</span> and <span class="math inline">\(r_{j}\)</span> are replications of <span class="math inline">\(T_{i},\ T_{j}\)</span> respectively. If the difference of any two treatment means is greater than the critical difference, they are significantly different. If the difference of any two treatment means is less than <span class="math inline">\(\text{C.D}\)</span>. they are said to be on par. (<em>i</em>.<em>e</em>., there is no any statistically significant difference). Those treatments which are at par is given same symbols or letters, such that treatment means without any common letters or symbols are significantly different at corresponding level of significance (<span class="math inline">\(\alpha\)</span>).</p>
 </section>
 </section>
-<section id="advantages-of-a-crd" class="level3" data-number="20.1.5">
-<h3 data-number="20.1.5" class="anchored" data-anchor-id="advantages-of-a-crd"><span class="header-section-number">20.1.5</span> Advantages of a CRD</h3>
-<ol type="1">
-<li><p>Its layout is very easy.</p></li>
-<li><p>There is complete flexibility in this design <em>i</em>.<em>e</em>. any number of treatments and replications for each treatment can be tried.</p></li>
-<li><p>Whole experimental material can be utilized in this design.</p></li>
-<li><p>This design yields maximum degrees of freedom for experimental error.</p></li>
-<li><p>The analysis of data is simplest as compared to any other design.</p></li>
-<li><p>Even if some values are missing the analysis can be done.</p></li>
-</ol>
-</section>
-<section id="disadvantages-of-a-crd" class="level3" data-number="20.1.6">
-<h3 data-number="20.1.6" class="anchored" data-anchor-id="disadvantages-of-a-crd"><span class="header-section-number">20.1.6</span> Disadvantages of a CRD</h3>
-<ol type="1">
-<li><p>Not suitable for field experiments.</p></li>
-<li><p>Relatively low accuracy due to lack of local control. Completely homogeneous experimental units are practically difficult in many situations.</p></li>
-</ol>
-</section>
-<section id="sec-replical" class="level3" data-number="20.1.7">
-<h3 data-number="20.1.7" class="anchored" data-anchor-id="sec-replical"><span class="header-section-number">20.1.7</span> Number of replications in CRD</h3>
-<p>An experimenter is free to choose any number of replications in the experiment. The precision in estimating experimental error variance increases as the number of replications increases. But the design should be such that the number of replications should be optimum, since increasing the replications will increase the experiment cost. So, there is a rule of thumb that says, error degrees of freedom should be at least 12 to keep type II error in check. One can easily find the number of replications required in a design by using the formula for error degrees of freedom of that design.</p>
+<section id="sec-replical" class="level3" data-number="20.1.5">
+<h3 data-number="20.1.5" class="anchored" data-anchor-id="sec-replical"><span class="header-section-number">20.1.5</span> Replications in CRD</h3>
+<p>An experimenter is free to choose any number of replications in the experiment. The precision in estimating experimental error variance increases as the number of replications increases. But the design should be such that the number of replications should be optimum, since increasing the replications will increase the experiment cost. So, there is a rule of thumb that says, error degrees of freedom should be at least 12 to keep type II error in check. One can easily find the number of replications required in a design by using the equation for error degrees of freedom of that design.</p>
+<p>It is assumed that <em>edf</em> <span class="math inline">\(\geq 12\)</span>. For CRD it is given by</p>
+<p><span id="eq-crdrep"><span class="math display">\[n - v = rv - v = v\left( r - 1 \right) \geq 12 \tag{20.1}\]</span></span></p>
+<p>where <span class="math inline">\(v\)</span> is the number of treatments, <span class="math inline">\(r\)</span> is the replication and <span class="math inline">\(n\)</span> is the total number of experimental units, <span class="math inline">\(n = vr\)</span>.</p>
 <div id="exm-ct42" class="theorem example">
 <p><span class="theorem-title"><strong>Example 20.1</strong></span> You have 5 treatments; you are planning to conduct the experiment in CRD. Find the minimum number of replications required.</p>
 <p><strong>Solution</strong></p>
-<p>Formula for error degrees of freedom (<em>edf</em>) in CRD is <span class="math inline">\(n - t\)</span>; where <span class="math inline">\(n\)</span> is the total number of experimental units and <span class="math inline">\(t\)</span> is the number of treatments. <span class="math inline">\(n = rt\)</span>, <span class="math inline">\(r\)</span> is the number of replications.</p>
-<p><em>edf</em> should be <span class="math inline">\(\geq\)</span> 12</p>
-<p><em>edf</em> <span class="math inline">\(= n - t = rt - t = t\left( r - 1 \right) \geq 12\)</span></p>
-<p>Since t = 5, <em>edf</em> <span class="math inline">\(= 5\left( r - 1 \right) \geq 12\)</span></p>
+<p>from <a href="#eq-crdrep" class="quarto-xref">Equation&nbsp;<span>20.1</span></a>, since v = 5, <em>edf</em> <span class="math inline">\(= 5\left( r - 1 \right) \geq 12\)</span></p>
 <p><span class="math inline">\(r \geq 3.4\)</span>, since <span class="math inline">\(r\)</span> cannot be a fraction, <span class="math inline">\(r =\)</span> 4</p>
-<p>The number of replications required is 4.</p>
+<p>The minimum number of replications required is 4.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Why is the minimum error degrees of freedom for a design taken as 12?">
 <div class="callout-header d-flex align-content-center">
@@ -832,16 +988,26 @@ Arrange the treatment means in descending order. Critical difference (CD) is cal
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Why is the minimum error degrees of freedom for a design taken as 12?
+<span class="screen-reader-only">Note</span>Why is the minimum error degrees of freedom for a design taken as 12?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The error degrees of freedom have a major role in deciding the critical value of F. As the error degrees of freedom (the degrees of freedom in the denominator) decrease, F tends to take larger critical values. This inflates the Type II error, <em>i</em>.<em>e</em>. we will be able to reject the null hypothesis only if there is a considerable difference between the treatments (a higher treatment sum of squares). Beyond about 12 denominator degrees of freedom, the F critical values stabilise and change very little with further increases, so 12 is taken as a practical minimum.</p>
+<p>The error degrees of freedom play an important role in determining the critical value of F. As the error degrees of freedom (the denominator degrees of freedom) decrease, the critical value of F increases, making it more difficult to reject the null hypothesis. Consequently, the risk of a Type II error (β) increases, as a true treatment difference may go undetected unless the observed treatment effect is sufficiently large. As the denominator degrees of freedom increase, the critical value of F decreases and becomes relatively stable beyond about 10–12 degrees of freedom. Therefore, 12 error degrees of freedom is commonly taken as a practical minimum when determining the number of replications, providing a reasonable balance between statistical precision and experimental resources.</p>
+<div id="fig-fcritical" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-fcritical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/singlefactor/fcritical.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-fcritical-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.3: Critical value of F against error degrees of freedom, showing stabilization beyond about 12 degrees of freedom.
+</figcaption>
+</figure>
+</div>
 </div>
 </div>
 <div id="exm-ct43" class="theorem example">
 <p><span class="theorem-title"><strong>Example 20.2</strong></span> In order to find the yielding abilities of five varieties of sesame an experiment was conducted in the green house using a CRD with four pots per variety. The results are given in the following table below.</p>
-<div id="tbl-crdex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Yield data of five varieties of sesame under CRD">
+<div id="tbl-crdex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Yield data of five varieties of sesame under CRD" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-crdex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.3: Yield data of five varieties of sesame under CRD
@@ -1014,7 +1180,7 @@ Mean
 <p><strong>Treatment Sum of Squares</strong>:</p>
 <p><span class="math inline">\(\frac{1}{4}(85^{2} + 102^{2} + ... + 53^{2}) - CF\)</span> <span class="math inline">\(= 8211.75 - CF = 331.30\)</span></p>
 <p><strong>Error Sum of Square</strong>: <span class="math inline">\(426.55 - 331.30 = 95.25\)</span></p>
-<div id="tbl-crdanovaex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA table for the sesame variety trial">
+<div id="tbl-crdanovaex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA table for the sesame variety trial" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-crdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;20.4: ANOVA table for the sesame variety trial
@@ -1106,7 +1272,7 @@ Total
 </div>
 <p>Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find which treatments are significantly different, we perform Fisher’s LSD test.</p>
 <p><span class="math display">\[\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{2 \times \text{MSE}}{r}} = 2.131\sqrt{\frac{2(6.350)}{4}} = 2.131 \times 1.7819 = 3.7972\]</span></p>
-<p><span class="math inline">\(t_{0.025\text{ at }15 \text{ edf}} = 2.131\)</span> (Just look for the critical value of <em>t</em> for a two tailed test at α = 0.05 in the statistical table, see <span class="quarto-unresolved-ref">?tbl-ttable</span> in Appendix 4.</p>
+<p><span class="math inline">\(t_{0.025\text{ at }15 \text{ edf}} = 2.131\)</span> (Just look for the critical value of <em>t</em> for a two tailed test at α = 0.05 in the statistical table, see <a href="appendix4.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>27.1</span></a> in Appendix 4.</p>
 <p>It is shown as <span class="math inline">\(t_{\frac{\alpha}{2}}\)</span>, since it is a two tailed test in the one side of the t-distribution curve the probability will be <span class="math inline">\(\frac{\alpha}{2}\)</span>, so that combined probability is α.)</p>
 <p>Treatment means arranged in descending order. Those treatment pairs whose difference in means is greater than C.D. is labelled with a different letters.</p>
 <div id="tbl-crdgroupletters" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
@@ -1207,7 +1373,7 @@ Table&nbsp;20.6: Grouping of treatment means using symbols
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1260,7 +1426,7 @@ Table&nbsp;20.7: A hypothetical example of treatment grouping
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1269,19 +1435,37 @@ Note
 </div>
 </div>
 </section>
+<section id="advantages-of-a-crd" class="level3" data-number="20.1.6">
+<h3 data-number="20.1.6" class="anchored" data-anchor-id="advantages-of-a-crd"><span class="header-section-number">20.1.6</span> Advantages of a CRD</h3>
+<ol type="1">
+<li><p>Its layout is very easy.</p></li>
+<li><p>There is complete flexibility in this design <em>i</em>.<em>e</em>. any number of treatments and replications for each treatment can be tried.</p></li>
+<li><p>Whole experimental material can be utilized in this design.</p></li>
+<li><p>This design yields maximum degrees of freedom for experimental error.</p></li>
+<li><p>The analysis of data is simplest as compared to any other design.</p></li>
+<li><p>Even if some values are missing the analysis can be done.</p></li>
+</ol>
+</section>
+<section id="disadvantages-of-a-crd" class="level3" data-number="20.1.7">
+<h3 data-number="20.1.7" class="anchored" data-anchor-id="disadvantages-of-a-crd"><span class="header-section-number">20.1.7</span> Disadvantages of a CRD</h3>
+<ol type="1">
+<li><p>Not suitable for field experiments.</p></li>
+<li><p>Relatively low accuracy due to lack of local control. Completely homogeneous experimental units are practically difficult in many situations.</p></li>
+</ol>
+</section>
 </section>
 <section id="randomized-complete-block-designs-rcbd" class="level2" data-number="20.2">
 <h2 data-number="20.2" class="anchored" data-anchor-id="randomized-complete-block-designs-rcbd"><span class="header-section-number">20.2</span> Randomized Complete Block Designs (RCBD)</h2>
 <p>In field experiments, the plots on which treatments are applied may not be uniform and there may be difference in plot-to-plot fertility. In such cases CRD cannot be recommended. If there is only one source constituting the difference between the plots then we can recommend randomized block design.</p>
-<p>The randomized complete block (RCB) design is one of the most widely used experimental designs in agricultural research. The design is especially suited for field experiments where the number of treatments is not large and the experimental area has a predictable fertility gradient.</p>
-<p>When the experimental material is heterogeneous, the experimental material is grouped into homogeneous sub-groups called <strong>blocks</strong>. As each block consists of the entire set of treatments a block is equivalent to a replication. For example, in a field with known fertility gradient in one direction, plots perpendicular to this gradient will be considered as a block. In RCBD (Randomized Complete Block Design) blocks are of equal size and contains all the treatments. Since the block contains all the treatments, the term ‘complete block design’ is used. See <a href="#fig-rcbd1" class="quarto-xref">Figure&nbsp;<span>20.3</span></a> to see how blocks are formed in a field.</p>
+<p>The randomized complete block design (RCBD) is one of the most widely used experimental designs in agricultural research. The design is especially suited for field experiments where the number of treatments is not large and the experimental area has a predictable fertility gradient. It is also termed as RBD (Randomized Block Design) in some textbooks.</p>
+<p>When the experimental material is heterogeneous, the experimental material is grouped into homogeneous sub-groups called <strong>blocks</strong>. As each block consists of the entire set of treatments a block is equivalent to a replication. For example, in a field with known fertility gradient in one direction, plots perpendicular to this gradient will be considered as a block. In RCBD blocks are of equal size and contains all the treatments. Since the block contains all the treatments, the term ‘complete block design’ is used. See <a href="#fig-rcbd1" class="quarto-xref">Figure&nbsp;<span>20.4</span></a> to see how blocks are formed in a field.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1309,7 +1493,7 @@ Note
 <img src="images/singlefactor/rcbd1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.3: Division of an experimental field into five blocks, each consisting of four plots, for a RCBD with four treatments and five replications. Blocking is done such that blocks are rectangular and perpendicular to the direction of the unidirectional fertility gradient
+Figure&nbsp;20.4: Division of an experimental field into five blocks, each consisting of four plots, for a RCBD with four treatments and five replications. Blocking is done such that blocks are rectangular and perpendicular to the direction of the unidirectional fertility gradient
 </figcaption>
 </figure>
 </div>
@@ -1354,7 +1538,7 @@ Table&nbsp;20.8: Plot numbers drawn for each treatment in a single block
 <img src="images/singlefactor/rcbd2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.4: Allotment of treatments in all blocks. In RCBD each block will have all the treatments and each treatment appear in a block exactly once.
+Figure&nbsp;20.5: Allotment of treatments in all blocks. In RCBD each block will have all the treatments and each treatment appear in a block exactly once.
 </figcaption>
 </figure>
 </div>
@@ -1363,14 +1547,14 @@ Figure&nbsp;20.4: Allotment of treatments in all blocks. In RCBD each block will
 </section>
 <section id="layout-of-rcbd" class="level3" data-number="20.2.3">
 <h3 data-number="20.2.3" class="anchored" data-anchor-id="layout-of-rcbd"><span class="header-section-number">20.2.3</span> Layout of RCBD</h3>
-<p>In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in section <a href="#sec-rcbdrandom" class="quarto-xref"><span>Section 20.2.2</span></a>. The final layout will look like in the figure <a href="#fig-rcbd3" class="quarto-xref">Figure&nbsp;<span>20.5</span></a>.</p>
+<p>In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in section <a href="#sec-rcbdrandom" class="quarto-xref"><span>Section 20.2.2</span></a>. The final layout will look like in the figure <a href="#fig-rcbd3" class="quarto-xref">Figure&nbsp;<span>20.6</span></a>.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1385,7 +1569,7 @@ Note
 <img src="images/singlefactor/rcbd3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-rcbd3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.5: Layout of RCBD with four treatments and five replications
+Figure&nbsp;20.6: Layout of RCBD with four treatments and five replications
 </figcaption>
 </figure>
 </div>
@@ -1588,14 +1772,14 @@ Total
 </figure>
 </div>
 <p>where <span class="math inline">\(\text{C.F} = \dfrac{G^2}{rv}\)</span>.</p>
-<p><span class="math inline">\(F_{1} \sim F_{(v-1),\ (v-1)(r-1)}\)</span> and <span class="math inline">\(F_{2} \sim F_{(r-1),\ (v-1)(r-1)}\)</span> are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value given in <span class="quarto-unresolved-ref">?tbl-ftable</span> of Appendix 5.</p>
+<p><span class="math inline">\(F_{1} \sim F_{(v-1),\ (v-1)(r-1)}\)</span> and <span class="math inline">\(F_{2} \sim F_{(r-1),\ (v-1)(r-1)}\)</span> are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value given in <a href="appendix5.html#tbl-ftable" class="quarto-xref">Table&nbsp;<span>28.1</span></a> of Appendix 5.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1603,25 +1787,344 @@ Note
 </div>
 </div>
 </section>
-<section id="number-of-replications-in-rcbd" class="level3" data-number="20.2.6">
-<h3 data-number="20.2.6" class="anchored" data-anchor-id="number-of-replications-in-rcbd"><span class="header-section-number">20.2.6</span> Number of replications in RCBD</h3>
-<p>As explained in section <a href="#sec-replical" class="quarto-xref"><span>Section 20.1.7</span></a> number of replications in RCBD is found out using the formula of error degrees of freedom (<em>edf</em>).</p>
+<section id="post-hoc-test-in-rcbd" class="level3" data-number="20.2.6">
+<h3 data-number="20.2.6" class="anchored" data-anchor-id="post-hoc-test-in-rcbd"><span class="header-section-number">20.2.6</span> Post-hoc test in RCBD</h3>
+<p>If the null hypothesis for treatments is rejected in ANOVA; we proceed to post-hoc test explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a>. Arrange the treatment means in descending order. Critical difference (CD) or LSD (Least Significant Difference) is calculated for each treatment pair <span class="math inline">\(T_{i},\ T_{j}\)</span> using the following formula.</p>
+<p><span class="math display">\[CD = \ t_{\frac{\alpha}{2},edf}.\sqrt{\frac{2\ MSE}{r}}\]</span> where, <span class="math inline">\(\text{MSE}\)</span> is the Mean Square Error from ANOVA. <span class="math inline">\(t_{\frac{\alpha}{2},edf}\)</span> is the critical value of two tailed student’s t distribution at <span class="math inline">\(\alpha\)</span> level of significance and error degrees of freedom. <span class="math inline">\(r\)</span> is the number of blocks/replication.<br>
+Procedure for grouping using symbols is same as that of CRD explained in section <a href="#sec-postcrd" class="quarto-xref"><span>Section 20.1.4.1</span></a>.</p>
+</section>
+<section id="replications-in-rcbd" class="level3" data-number="20.2.7">
+<h3 data-number="20.2.7" class="anchored" data-anchor-id="replications-in-rcbd"><span class="header-section-number">20.2.7</span> Replications in RCBD</h3>
+<p>As explained in section <a href="#sec-replical" class="quarto-xref"><span>Section 20.1.5</span></a> number of replications in RCBD is found out using the equation of error degrees of freedom (<em>edf</em>). It is assumed that <em>edf</em> <span class="math inline">\(\geq 12\)</span>. For RCBD</p>
+<p><span id="eq-rcbdrep"><span class="math display">\[(v - 1) (r-1) \geq 12 \tag{20.2}\]</span></span></p>
+<p>where <span class="math inline">\(v\)</span> is the number of treatments and <span class="math inline">\(r\)</span> is the replication.</p>
 <div id="exm-ct44" class="theorem example">
 <p><span class="theorem-title"><strong>Example 20.3</strong></span> You have 4 treatments; you are planning to conduct the experiment in RCBD. Find the minimum number of replications required.</p>
 <p><strong>Solution</strong></p>
-<p>Formula for error degrees of freedom (<em>edf</em>) in RCBD is <span class="math inline">\((v - 1) (r-1)\)</span>; where <span class="math inline">\(v\)</span> is the number of treatments and <span class="math inline">\(r\)</span> is the number of blocks.</p>
-<p><em>edf</em> should be <span class="math inline">\(\geq\)</span> 12</p>
-<p><em>edf</em> <span class="math inline">\(=(v - 1) (r-1) \geq 12\)</span></p>
+<p>from <a href="#eq-rcbdrep" class="quarto-xref">Equation&nbsp;<span>20.2</span></a></p>
 <p>Since <span class="math inline">\(v\)</span> = 4, <em>edf</em> <span class="math inline">\(= 3\left( r - 1 \right) \geq 12\)</span></p>
 <p><span class="math inline">\(\implies r \geq 5\)</span>, minimum replication required is 5</p>
 <p>The number of replications required is 5.</p>
 </div>
-</section>
-<section id="post-hoc-test-in-rcbd" class="level3" data-number="20.2.7">
-<h3 data-number="20.2.7" class="anchored" data-anchor-id="post-hoc-test-in-rcbd"><span class="header-section-number">20.2.7</span> Post-hoc test in RCBD</h3>
-<p>If the null hypothesis for treatments is rejected in ANOVA; we proceed to post-hoc test explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a>. Arrange the treatment means in descending order. Critical difference (CD) or LSD (Least Significant Difference) is calculated for each treatment pair <span class="math inline">\(T_{i},\ T_{j}\)</span> using the following formula.</p>
-<p><span class="math display">\[CD = \ t_{\frac{\alpha}{2},edf}.\sqrt{\frac{2\ MSE}{r}}\]</span> where, <span class="math inline">\(\text{MSE}\)</span> is the Mean Square Error from ANOVA. <span class="math inline">\(t_{\frac{\alpha}{2},edf}\)</span> is the critical value of two tailed student’s t distribution at <span class="math inline">\(\alpha\)</span> level of significance and error degrees of freedom. <span class="math inline">\(r\)</span> is the number of blocks/replication.<br>
-Procedure for grouping using symbols is same as that of CRD explained in section <a href="#sec-postcrd" class="quarto-xref"><span>Section 20.1.4.1</span></a>.</p>
+<div id="exm-ct46" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.4</strong></span> The yield of paddy (kg per plot) under four fertilizer treatments A, B, C, and D was studied using an RCBD with 5 blocks. The results are given below.</p>
+<div id="tbl-rcbdex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Yield data (kg per plot) of four fertilizer treatments under RCBD" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rcbdex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.11: Yield data (kg per plot) of four fertilizer treatments under RCBD
+</figcaption>
+<div aria-describedby="tbl-rcbdex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;">
+Block
+</th>
+<th style="text-align:center;font-weight: bold;">
+A
+</th>
+<th style="text-align:center;font-weight: bold;">
+B
+</th>
+<th style="text-align:center;font-weight: bold;">
+C
+</th>
+<th style="text-align:center;font-weight: bold;">
+D
+</th>
+<th style="text-align:center;font-weight: bold;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Block 1
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+52
+</td>
+<td style="text-align:center;">
+43
+</td>
+<td style="text-align:center;">
+180
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Block 2
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+51
+</td>
+<td style="text-align:center;">
+51
+</td>
+<td style="text-align:center;">
+48
+</td>
+<td style="text-align:center;">
+192
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Block 3
+</td>
+<td style="text-align:center;">
+40
+</td>
+<td style="text-align:center;">
+43
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+40
+</td>
+<td style="text-align:center;">
+172
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Block 4
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+51
+</td>
+<td style="text-align:center;">
+53
+</td>
+<td style="text-align:center;">
+50
+</td>
+<td style="text-align:center;">
+196
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Block 5
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+47
+</td>
+<td style="text-align:center;">
+51
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+184
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;font-weight: bold;">
+<strong>Total</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>206</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>236</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>256</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>226</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>924</strong>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><strong>Solution</strong></p>
+<p><strong>Grand Total (G)</strong> = 924</p>
+<p><strong>Correction Factor</strong> <span class="math inline">\(= \dfrac{G^{2}}{n} = \dfrac{(924)^{2}}{20}\)</span> = 42688.80</p>
+<p><strong>Total Sum of Squares (TSS)</strong> <span class="math inline">\(= (41^2+44^2+52^2+...+45^2) - CF\)</span> <span class="math inline">\(= 43080 - 42688.80 = 391.20\)</span></p>
+<p><strong>Treatment Sum of Squares (SST)</strong> <span class="math inline">\(= \dfrac{1}{5}(206^{2} + 236^{2} + 256^{2} + 226^{2}) - CF\)</span> <span class="math inline">\(= 42948.80 - 42688.80 = 260.00\)</span></p>
+<p><strong>Block Sum of Squares (SSB)</strong> <span class="math inline">\(= \dfrac{1}{4}(180^{2} + 192^{2} + 172^{2} + 196^{2} + 184^{2}) - CF\)</span> <span class="math inline">\(= 42780.00 - 42688.80 = 91.20\)</span></p>
+<p><strong>Error Sum of Squares</strong> <span class="math inline">\(= 391.20 - 260.00 - 91.20 = 40.00\)</span></p>
+<div id="tbl-rcbdanovaex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA table for the fertilizer trial" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rcbdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.12: ANOVA table for the fertilizer trial
+</figcaption>
+<div aria-describedby="tbl-rcbdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;">
+Source of variation
+</th>
+<th style="text-align:center;font-weight: bold;">
+df
+</th>
+<th style="text-align:center;font-weight: bold;">
+Sum of squares
+</th>
+<th style="text-align:center;font-weight: bold;">
+Mean Sum of squares
+</th>
+<th style="text-align:center;font-weight: bold;">
+F Cal
+</th>
+<th style="text-align:center;font-weight: bold;">
+F tab
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Treatments
+</td>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+260.00
+</td>
+<td style="text-align:center;">
+86.67
+</td>
+<td style="text-align:center;">
+26.00
+</td>
+<td style="text-align:center;">
+3.49
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Blocks
+</td>
+<td style="text-align:center;">
+4
+</td>
+<td style="text-align:center;">
+91.20
+</td>
+<td style="text-align:center;">
+22.80
+</td>
+<td style="text-align:center;">
+6.84
+</td>
+<td style="text-align:center;">
+3.26
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Error
+</td>
+<td style="text-align:center;">
+12
+</td>
+<td style="text-align:center;">
+40.00
+</td>
+<td style="text-align:center;">
+3.33
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+Total
+</td>
+<td style="text-align:center;">
+19
+</td>
+<td style="text-align:center;">
+391.20
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+<td style="text-align:center;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Since <span class="math inline">\(F_1\)</span> (treatments) and <span class="math inline">\(F_2\)</span> (blocks) both exceed their table values, treatments differ significantly, and blocking has been effective in reducing the experimental error.</p>
+<p><span class="math display">\[CD = t_{\frac{\alpha}{2},edf}\sqrt{\frac{2\,MSE}{r}} = 2.179\sqrt{\frac{2 \times 3.33}{5}} = 2.516\]</span></p>
+<p>Treatment means, in descending order, are C = 51.2, B = 47.2, D = 45.2, A = 41.2.</p>
+<div id="tbl-rcbdgrouping" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rcbdgrouping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.13: Grouping of treatment means for the fertilizer trial
+</figcaption>
+<div aria-describedby="tbl-rcbdgrouping-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">Means</th>
+<th style="text-align: center;">Grouping</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">C</td>
+<td style="text-align: center;">51.2</td>
+<td style="text-align: center;">a</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">B</td>
+<td style="text-align: center;">47.2</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">D</td>
+<td style="text-align: center;">45.2</td>
+<td style="text-align: center;">b</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">A</td>
+<td style="text-align: center;">41.2</td>
+<td style="text-align: center;">c</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Since <span class="math inline">\(C-B = 4.0\)</span> and <span class="math inline">\(D-A = 4.0\)</span>, both exceed the CD of 2.516, so C is significantly superior to all other treatments, and A gives the significantly lowest yield. B and D do not differ significantly from each other (<span class="math inline">\(B-D = 2.0 &lt; CD\)</span>), so treatment C is recommended as the best-performing fertilizer.</p>
+</div>
 </section>
 <section id="advantages-of-rcbd" class="level3" data-number="20.2.8">
 <h3 data-number="20.2.8" class="anchored" data-anchor-id="advantages-of-rcbd"><span class="header-section-number">20.2.8</span> Advantages of RCBD</h3>
@@ -1644,11 +2147,23 @@ Procedure for grouping using symbols is same as that of CRD explained in section
 <section id="latin-square-design-lsd" class="level2" data-number="20.3">
 <h2 data-number="20.3" class="anchored" data-anchor-id="latin-square-design-lsd"><span class="header-section-number">20.3</span> Latin Square Design (LSD)</h2>
 <p>In this design, variations in the field in two different directions (or variations due to two different factors) are controlled simultaneously from affecting the treatment comparisons. A layout in RBD controls only one source of external variation affecting the treatment comparisons by the construction of homogeneous blocks. Sometimes when blocks were laid out in a field the environmental conditions within each block need not be the same. For example, soil variability in a North South direction and an environmental gradient in an East West Direction then the conditions within each block will vary. In such situations the variability can be controlled by a Latin Square design (LSD). The blocks in a LSD are called rows and columns; they represent two external factors. The entire experimental area can be divided into small plots arranged in the form of a square. The number of plots in each row and each column are equal, both equal to the number of treatments to be compared.</p>
-<section id="layout-and-randomization" class="level3" data-number="20.3.1">
-<h3 data-number="20.3.1" class="anchored" data-anchor-id="layout-and-randomization"><span class="header-section-number">20.3.1</span> Layout and Randomization</h3>
-<p>A Latin square of <span class="math inline">\(v\)</span> treatments (usually called as side <span class="math inline">\(v\)</span>) is an arrangement of <span class="math inline">\(v\)</span> treatments into <span class="math inline">\(v\)</span> rows and <span class="math inline">\(v\)</span> columns such that every treatment is replicated in each row and each column exactly once.</p>
-<p>Latin squares of various sides are available in Statistical tables. If there are <span class="math inline">\(v\)</span> treatments to be compared, chose a Latin square of side <span class="math inline">\(v\)</span> from the statistical tables. In the Fisher and Yates (1948) tables for Statisticians and Biometricians these squares are presented for a given standard order of alphabets in the first row. Choose one of these squares for a given <span class="math inline">\(v\)</span> and carryout the randomization in the following way.</p>
-<p>Let <span class="math inline">\(v\)</span> = 6. Then a Latin Square of 6 treatments denoted by <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>, <em>E</em> and <em>F</em> can be denoted by keeping alphabetical order for first row and an order of symmetry for the remaining rows can be written as</p>
+<section id="sec-lsdrandom" class="level3" data-number="20.3.1">
+<h3 data-number="20.3.1" class="anchored" data-anchor-id="sec-lsdrandom"><span class="header-section-number">20.3.1</span> Randomization</h3>
+<p>A Latin square of <span class="math inline">\(v\)</span> treatments (usually called side <span class="math inline">\(v\)</span>) is an arrangement of <span class="math inline">\(v\)</span> treatments into <span class="math inline">\(v\)</span> rows and <span class="math inline">\(v\)</span> columns such that every treatment is replicated in each row and each column exactly once.</p>
+<p>Latin squares of different orders are provided in standard statistical tables for use in experimental design. When <span class="math inline">\(v\)</span> treatments are to be compared, a Latin square of order <span class="math inline">\(v\)</span>, that is, a <span class="math inline">\(v\times v\)</span> square, is required. The order of the square is therefore determined directly by the number of treatments in the experiment. For example, an experiment involving four treatments requires a <span class="math inline">\(4\times4\)</span> Latin square, whereas an experiment involving five treatments requires a <span class="math inline">\(5\times5\)</span> Latin square.</p>
+<p>Standard Latin squares suitable for experimental use are given in the tables of <span class="citation" data-cites="fisher1935statistical">(<a href="references.html#ref-fisher1935statistical" role="doc-biblioref">Fisher and Yates 1935</a>)</span>. In these tables, the Latin squares are presented in a standard form, with the treatment symbols arranged in a specified order, usually alphabetically, in the first row. Several standard squares may be available for a particular order, as illustrated in <a href="#fig-strdlattice" class="quarto-xref">Figure&nbsp;<span>20.7</span></a>. These standard arrangements serve only as the starting point for constructing the experimental layout; they should not be used directly without randomization.</p>
+<p>For a given number of treatments (<span class="math inline">\(v\)</span>), select an appropriate standard Latin square of order (<span class="math inline">\(v\)</span>) from the statistical tables. The selected square is then randomized so that the treatment allocation is not influenced by the initial systematic arrangement of the standard square. Randomization is carried out by independently permuting the rows, columns, and treatment symbols according to the prescribed procedure. The resulting randomized Latin square provides the treatment allocation to the experimental units, with each treatment occurring exactly once in every row and once in every column. The randomization procedure is described in the following steps.</p>
+<div id="fig-strdlattice" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-strdlattice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/singlefactor/stdlatin.svg" width="500" height="600" class="figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-strdlattice-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;20.7: Standard Latin squares of orders 4 and 5 from the Fisher and Yates (1935) statistical tables.
+</figcaption>
+</figure>
+</div>
+<p>Let <span class="math inline">\(v = 6\)</span>. A Latin square for 6 treatments, denoted by <em>A</em>, <em>B</em>, <em>C</em>, <em>D</em>, <em>E</em> and <em>F</em>, can be constructed by placing the symbols in alphabetical order in the first row and generating each subsequent row by a symmetric cyclic shift of the one above it.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-lsdlayout" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1657,16 +2172,23 @@ Procedure for grouping using symbols is same as that of CRD explained in section
 <img src="images/singlefactor/lsdlayout.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.6: Layout of LSD with six treatments and six replications
+Figure&nbsp;20.8: Standard (unrandomized) Latin square with six treatments
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>This square represents a Latin square for <span class="math inline">\(v\)</span> = 6 treatments in 6 replications. Blocks are represented in two directions as rows and columns and their number is also = <span class="math inline">\(v\)</span></p>
-<p><strong>Randomization</strong><br>
-If there are <span class="math inline">\(v\)</span> treatments take a square of order <span class="math inline">\(v\)</span> at random from the statistical tables.</p>
-<p>Number the rows of the square from 1 to <span class="math inline">\(v\)</span>. Keeping the first row fixed, the remaining rows are arranged randomly by using random numbers to develop another square. So the above square can be randomised in many ways like</p>
+<p><a href="#fig-lsdlayout" class="quarto-xref">Figure&nbsp;<span>20.8</span></a> shows this standard, systematically-arranged Latin square for <span class="math inline">\(v = 6\)</span> treatments before randomization. The blocking is applied in two directions, as rows and as columns, and the number of rows and columns each equals the number of treatments, <span class="math inline">\(v\)</span>. A standard Latin square of 6 treatments can also be directly obtained from the tables.</p>
+<p>Randomization of a Latin square design involves three steps:</p>
+<ol type="1">
+<li>Row randomization<br>
+</li>
+<li>Column randomization<br>
+</li>
+<li>Treatment randomization</li>
+</ol>
+<p>For <span class="math inline">\(v\)</span> treatments, select a Latin square of order <span class="math inline">\(v\)</span> at random from the statistical tables, and then randomize it through the following steps.</p>
+<p><em>Row randomization</em>: Number the rows of the selected square from 1 to <span class="math inline">\(v\)</span>. Keeping the first row fixed, rearrange the remaining rows in a random order using random numbers. This produces a new square, as shown in <a href="#fig-lsdlayout1" class="quarto-xref">Figure&nbsp;<span>20.9</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-lsdlayout1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1675,13 +2197,13 @@ If there are <span class="math inline">\(v\)</span> treatments take a square of 
 <img src="images/singlefactor/lsdlayout1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.7: Randomization of LSD with six treatments and six replications
+Figure&nbsp;20.9: Randomization of the rows of the Latin square
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>After the randomisation of the rows the columns are randomised to get another randomized square.</p>
+<p><em>Column randomization</em>: Once the rows have been randomized, rearrange the columns in a random order in the same manner to obtain a further randomized square, as shown in <a href="#fig-lsdlayout2" class="quarto-xref">Figure&nbsp;<span>20.10</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-lsdlayout2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1690,23 +2212,33 @@ Figure&nbsp;20.7: Randomization of LSD with six treatments and six replications
 <img src="images/singlefactor/lsd_layout2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lsdlayout2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.8: Randomization of LSD
+Figure&nbsp;20.10: Randomization of the columns of the Latin square
 </figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>Lastly , the <span class="math inline">\(v\)</span> treatments can be assigned randomly to these <span class="math inline">\(v\)</span> letters (A, B, …).</p>
+<p><em>Treatment randomization</em>: Finally, assign the <span class="math inline">\(v\)</span> treatments at random to the <span class="math inline">\(v\)</span> letters (<em>A</em>, <em>B</em>, …, <em>F</em>). The resulting square gives the field layout of the design.</p>
 </section>
-<section id="analysis" class="level3" data-number="20.3.2">
-<h3 data-number="20.3.2" class="anchored" data-anchor-id="analysis"><span class="header-section-number">20.3.2</span> Analysis</h3>
-<p>The data collected from experiments in LSD are classified according to the levels of three factors. So it is called three way classified design. The two types of blockings (Rows and columns) and treatments will make up the three factors. The linear model for analysis as : <span class="math display">\[Y_{\text{ijk}} = \mu + \tau_{i} + R_{j}+ C_{k}+e_{\text{ijk}}\]</span> where i,j, k = 1,2,3,… <span class="math inline">\(v\)</span></p>
-<p><em>i.e.,</em> The response ( yield (<span class="math inline">\(Y_{ijk}\)</span>)) of each plot = A general mean effect (μ) + Effect due to the <span class="math inline">\(i^{th}\)</span> treatment (<span class="math inline">\(\tau_{i}\)</span>) + Effect of the <span class="math inline">\(j^{th}\)</span> Row ( <span class="math inline">\(R_{j}\)</span> ) + Effect due to the <span class="math inline">\(k^{th}\)</span> Column ( <span class="math inline">\(C_{k}\)</span>) + Random error terms associated with each plot ( <span class="math inline">\(e_{ijk}\)</span> ). The effect of the general mean is subtracted from each sum of squares ( by subtracting the correction factor <span class="math inline">\(C.F.  = \frac{(\sum{y_{ijk}})^2} {v^2}\)</span>). The total sum of squares is split into four components (i) variation between the treatments as treatment Sum of squares (ii) variation between the rows (iii) variation between the columns and (iv) Variation within the factors: <em>i.e.,</em> Error Sum of squares.</p>
+<section id="layout" class="level3" data-number="20.3.2">
+<h3 data-number="20.3.2" class="anchored" data-anchor-id="layout"><span class="header-section-number">20.3.2</span> Layout</h3>
+<p>The fully randomized square obtained at the end of the randomization procedure, shown in <a href="#fig-lsdlayout2" class="quarto-xref">Figure&nbsp;<span>20.10</span></a>, gives the field layout of the design. Each row and each column of the square corresponds to a physical row and column of plots in the field, and each cell gives the treatment to be applied to that plot. Since every treatment appears exactly once in each row and exactly once in each column, variation in both the row and column directions is controlled simultaneously.</p>
+</section>
+<section id="statistical-model-for-lsd" class="level3" data-number="20.3.3">
+<h3 data-number="20.3.3" class="anchored" data-anchor-id="statistical-model-for-lsd"><span class="header-section-number">20.3.3</span> Statistical model for LSD</h3>
+<p>The data collected from experiments in LSD are classified according to the levels of three factors. So it is called a three-way classified design. The two types of blocking (rows and columns) and treatments make up the three factors. The linear model for analysis is:</p>
+<p><span id="eq-lsdmodel"><span class="math display">\[Y_{\text{ijk}} = \mu + \tau_{i} + R_{j}+ C_{k}+e_{\text{ijk}} \tag{20.3}\]</span></span></p>
+<p>where <span class="math inline">\(i,j,k = 1,2,3,...\ v\)</span></p>
+<p><em>i.e.,</em> the response (yield <span class="math inline">\(Y_{ijk}\)</span>) of each plot = a general mean effect (<span class="math inline">\(\mu\)</span>) + effect due to the <span class="math inline">\(i^{th}\)</span> treatment (<span class="math inline">\(\tau_{i}\)</span>) + effect of the <span class="math inline">\(j^{th}\)</span> row (<span class="math inline">\(R_{j}\)</span>) + effect due to the <span class="math inline">\(k^{th}\)</span> column (<span class="math inline">\(C_{k}\)</span>) + random error term associated with each plot (<span class="math inline">\(e_{ijk}\)</span>).</p>
+</section>
+<section id="analysis" class="level3" data-number="20.3.4">
+<h3 data-number="20.3.4" class="anchored" data-anchor-id="analysis"><span class="header-section-number">20.3.4</span> Analysis</h3>
+<p>The effect of the general mean is subtracted from each sum of squares (by subtracting the correction factor <span class="math inline">\(C.F. = \dfrac{(\sum{y_{ijk}})^2} {v^2}\)</span>). The total sum of squares is split into four components: (i) variation between the treatments as treatment sum of squares, (ii) variation between the rows, (iii) variation between the columns, and (iv) variation within the factors, <em>i.e.,</em> error sum of squares.</p>
 <p>To calculate the sum of squares, arrange the data according to the rows, columns and treatments and obtain the respective totals. Let the treatment totals be <span class="math inline">\(T_{1}\)</span>, <span class="math inline">\(T_{2}\)</span>, …., <span class="math inline">\(T_{v}\)</span>; row totals be <span class="math inline">\(R_{1}\)</span>, <span class="math inline">\(R_{2}\)</span>, <span class="math inline">\(R_{3}\)</span>, …, <span class="math inline">\(R_{v}\)</span> and column totals be <span class="math inline">\(C_{1}\)</span>, <span class="math inline">\(C_{2}\)</span>, <span class="math inline">\(C_{3}\)</span>, …, <span class="math inline">\(C_{v}\)</span>.</p>
 <div id="tbl-lsdanova" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA of Latin Square Design" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lsdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;20.11: ANOVA of Latin Square Design
+Table&nbsp;20.14: ANOVA of Latin Square Design
 </figcaption>
 <div aria-describedby="tbl-lsdanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -1817,28 +2349,162 @@ Total
 </div>
 </figure>
 </div>
-<p>All these computed F values are compared with the F table values for <span class="math inline">\((v-1)\)</span> and <span class="math inline">\((v-1)(v-2)\)</span> degrees of freedom. If the treatments turn out to be significant, then the means are compared pairwise by using</p>
-<p><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}}\]</span></p>
-<p><strong>Advantages</strong><br>
-LSD is efficient when there are trends in fertility in two perpendicular directions or when there are two factors contributing to experimental error.</p>
-<p><strong>Disadvantages</strong><br>
-In RBD there is no restriction like number of replications = Number of treatments. The error degrees of freedom in this design is <span class="math inline">\((v-1)(v-2)\)</span>. For number of treatments like <span class="math inline">\(v\)</span> = 2 , 3 and 4 this value is 0 , 2 and 6. ( <em>ie.,</em> very small- hence we cannot carryout the experiment as such for these values of <span class="math inline">\(v\)</span>).</p>
-<p>Similarly when <span class="math inline">\(v&gt;10\)</span> the total number of plots required is <span class="math inline">\(v^2\)</span> &gt; 100. So there will be difficulty in getting large number of homogeneous plots. So LSD is commonly used for 5 to 10 treatments only.</p>
+<p>All these computed F values are compared with the F table values for <span class="math inline">\((v-1)\)</span> and <span class="math inline">\((v-1)(v-2)\)</span> degrees of freedom.</p>
+</section>
+<section id="post-hoc-test-lsd" class="level3" data-number="20.3.5">
+<h3 data-number="20.3.5" class="anchored" data-anchor-id="post-hoc-test-lsd"><span class="header-section-number">20.3.5</span> Post hoc test (LSD)</h3>
+<p>If the treatments turn out to be significant, then the means are compared pairwise using Fisher’s Least Significant Difference (LSD) test, as explained in section <a href="multipleComparison.html#sec-lsd" class="quarto-xref"><span>Section 19.2</span></a>.</p>
+<p><span id="eq-lsdcd"><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} \tag{20.4}\]</span></span></p>
+<p>Here <span class="math inline">\(t_{\left( \frac{\alpha}{2},\ error\ df \right)}\)</span> denotes the critical value of Student’s <em>t</em> for a two tailed test at <span class="math inline">\(\alpha\)</span> level of significance and error degrees of freedom. If the difference between any two treatment means is greater than the critical difference, they are significantly different; otherwise they are said to be on par. Procedure for grouping using letters or symbols is the same as that of CRD, explained in section <a href="#sec-postcrd" class="quarto-xref"><span>Section 20.1.4.1</span></a>.</p>
+</section>
+<section id="replications-in-lsd" class="level3" data-number="20.3.6">
+<h3 data-number="20.3.6" class="anchored" data-anchor-id="replications-in-lsd"><span class="header-section-number">20.3.6</span> Replications in LSD</h3>
+<p>Unlike CRD and RCBD, the number of replications in LSD is not a free choice, since the design requires the number of rows, columns, and treatments to all equal <span class="math inline">\(v\)</span>; each treatment is automatically replicated <span class="math inline">\(v\)</span> times, once in each row and once in each column. So instead of solving for the number of replications, the minimum number of treatments <span class="math inline">\(v\)</span> required is found using the equation for error degrees of freedom (<em>edf</em>). It is assumed that <em>edf</em> <span class="math inline">\(\geq 12\)</span>. For LSD</p>
+<p><span id="eq-lsdrep"><span class="math display">\[(v-1)(v-2) \geq 12 \tag{20.5}\]</span></span></p>
+<div id="exm-lsdrep" class="theorem example">
+<p><span class="theorem-title"><strong>Example 20.5</strong></span> Find the minimum number of treatments <span class="math inline">\(v\)</span> (and hence replications) required for an experiment conducted in LSD.</p>
+<p><strong>Solution</strong></p>
+<p>from <a href="#eq-lsdrep" class="quarto-xref">Equation&nbsp;<span>20.5</span></a>, <span class="math inline">\((v-1)(v-2) \geq 12\)</span></p>
+<p>Trying <span class="math inline">\(v = 4\)</span>: <span class="math inline">\((3)(2) = 6 &lt; 12\)</span>, not sufficient.</p>
+<p>Trying <span class="math inline">\(v = 5\)</span>: <span class="math inline">\((4)(3) = 12 \geq 12\)</span>, sufficient.</p>
+<p>The minimum number of treatments (and replications) required is 5.</p>
+</div>
 <div id="exm-ct45" class="theorem example">
-<p><span class="theorem-title"><strong>Example 20.4</strong></span> Consider a 5x5 LSD experimental setup as follows</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-LSDE1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/LSDE1.png" id="fig-LSDE1" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.9
+<p><span class="theorem-title"><strong>Example 20.6</strong></span> Consider a 5x5 LSD experimental setup as follows</p>
+<div id="tbl-LSDE1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="A 5x5 Latin square experimental layout, showing the treatment (A-E) and the response recorded on each plot" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.15: A 5x5 Latin square experimental layout, showing the treatment (A-E) and the response recorded on each plot
 </figcaption>
+<div aria-describedby="tbl-LSDE1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;">
+Row
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>1</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>2</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>3</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>4</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>5</sub>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>1</sub>
+</td>
+<td style="text-align:center;">
+C 28
+</td>
+<td style="text-align:center;">
+B 36
+</td>
+<td style="text-align:center;">
+E 18
+</td>
+<td style="text-align:center;">
+D 42
+</td>
+<td style="text-align:center;">
+A 35
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>2</sub>
+</td>
+<td style="text-align:center;">
+E 27
+</td>
+<td style="text-align:center;">
+D 43
+</td>
+<td style="text-align:center;">
+B 27
+</td>
+<td style="text-align:center;">
+A 34
+</td>
+<td style="text-align:center;">
+C 32
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>3</sub>
+</td>
+<td style="text-align:center;">
+B 40
+</td>
+<td style="text-align:center;">
+A 44
+</td>
+<td style="text-align:center;">
+D 39
+</td>
+<td style="text-align:center;">
+C 36
+</td>
+<td style="text-align:center;">
+E 38
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>4</sub>
+</td>
+<td style="text-align:center;">
+D 41
+</td>
+<td style="text-align:center;">
+C 26
+</td>
+<td style="text-align:center;">
+A 34
+</td>
+<td style="text-align:center;">
+E 19
+</td>
+<td style="text-align:center;">
+B 37
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>5</sub>
+</td>
+<td style="text-align:center;">
+A 41
+</td>
+<td style="text-align:center;">
+E 16
+</td>
+<td style="text-align:center;">
+C 20
+</td>
+<td style="text-align:center;">
+B 31
+</td>
+<td style="text-align:center;">
+D 45
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p><strong>Solution</strong></p>
 <p>The three null hypotheses (one each for treatments, rows, and columns) are</p>
@@ -1848,19 +2514,225 @@ Figure&nbsp;20.9
 <p><span class="math inline">\(H_{12}\)</span>: at least two of the row means are different</p>
 <p><span class="math inline">\(H_{03}\)</span>: <span class="math inline">\(\mu_{31} = \mu_{32} = \mu_{33} = \mu_{34} = \mu_{35}\)</span> (column means are equal)</p>
 <p><span class="math inline">\(H_{13}\)</span>: at least two of the column means are different</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-LSDE2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" width="90%">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/LSDE2.png" id="fig-LSDE2" class="img-fluid quarto-figure quarto-figure-center anchored figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;20.10
+<div id="tbl-LSDE2" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="The 5x5 Latin square layout with row, column, and grand totals and means" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;20.16: The 5x5 Latin square layout with row, column, and grand totals and means
 </figcaption>
+<div aria-describedby="tbl-LSDE2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:center;font-weight: bold;">
+Row
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>1</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>2</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>3</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>4</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+C<sub>5</sub>
+</th>
+<th style="text-align:center;font-weight: bold;">
+Total
+</th>
+<th style="text-align:center;font-weight: bold;">
+Mean
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>1</sub>
+</td>
+<td style="text-align:center;">
+C 28
+</td>
+<td style="text-align:center;">
+B 36
+</td>
+<td style="text-align:center;">
+E 18
+</td>
+<td style="text-align:center;">
+D 42
+</td>
+<td style="text-align:center;">
+A 35
+</td>
+<td style="text-align:center;">
+159
+</td>
+<td style="text-align:center;">
+31.8
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>2</sub>
+</td>
+<td style="text-align:center;">
+E 27
+</td>
+<td style="text-align:center;">
+D 43
+</td>
+<td style="text-align:center;">
+B 27
+</td>
+<td style="text-align:center;">
+A 34
+</td>
+<td style="text-align:center;">
+C 32
+</td>
+<td style="text-align:center;">
+163
+</td>
+<td style="text-align:center;">
+32.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>3</sub>
+</td>
+<td style="text-align:center;">
+B 40
+</td>
+<td style="text-align:center;">
+A 44
+</td>
+<td style="text-align:center;">
+D 39
+</td>
+<td style="text-align:center;">
+C 36
+</td>
+<td style="text-align:center;">
+E 38
+</td>
+<td style="text-align:center;">
+197
+</td>
+<td style="text-align:center;">
+39.4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>4</sub>
+</td>
+<td style="text-align:center;">
+D 41
+</td>
+<td style="text-align:center;">
+C 26
+</td>
+<td style="text-align:center;">
+A 34
+</td>
+<td style="text-align:center;">
+E 19
+</td>
+<td style="text-align:center;">
+B 37
+</td>
+<td style="text-align:center;">
+157
+</td>
+<td style="text-align:center;">
+31.4
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;">
+R<sub>5</sub>
+</td>
+<td style="text-align:center;">
+A 41
+</td>
+<td style="text-align:center;">
+E 16
+</td>
+<td style="text-align:center;">
+C 20
+</td>
+<td style="text-align:center;">
+B 31
+</td>
+<td style="text-align:center;">
+D 45
+</td>
+<td style="text-align:center;">
+153
+</td>
+<td style="text-align:center;">
+30.6
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;font-weight: bold;">
+<strong>Total</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>177</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>165</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>138</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>162</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>187</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>829</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+</td>
+</tr>
+<tr>
+<td style="text-align:center;font-weight: bold;font-weight: bold;">
+<strong>Mean</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>35.4</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>33</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>27.6</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>32.4</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+<strong>37.4</strong>
+</td>
+<td style="text-align:center;font-weight: bold;">
+</td>
+<td style="text-align:center;font-weight: bold;">
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p><strong>Grand Total (G)</strong>= 829</p>
 <p><strong>Correction Factor(C.F)</strong> <span class="math inline">\(= \frac{G^{2}}{n} = \frac{\left( 829 \right)^{2}}{25}\)</span>= 27489.64</p>
@@ -1869,10 +2741,10 @@ Figure&nbsp;20.10
 <p><strong>Column Sum of Squares(CSS)</strong>=<span class="math inline">\(\frac{1}{5}(177^{2} + 165^{2} + 138^{2}+162^{2}+187^{2}) - CF\)</span> <span class="math inline">\(= 27762.2-27489.64 = 272.56\)</span></p>
 <p><strong>Treatment Sum of Squares(SSt)</strong>=<span class="math inline">\(\frac{1}{5}(188^{2} + 171^{2} + 142^{2}+210^{2}+118^{2}) - CF\)</span> <span class="math inline">\(= 28554.6 - 27489.64 = 1064.96\)</span></p>
 <p><strong>Error Sum of Squares</strong> <span class="math inline">\(= 1753.36 - 253.76- 272.56-1064.96 = 162.08\)</span></p>
-<div id="tbl-lsdanovaex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA table for the Latin Square example">
+<div id="tbl-lsdanovaex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA table for the Latin Square example" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-lsdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;20.12: ANOVA table for the Latin Square example
+Table&nbsp;20.17: ANOVA table for the Latin Square example
 </figcaption>
 <div aria-describedby="tbl-lsdanovaex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
@@ -2003,13 +2875,22 @@ Total
 <p><span class="math display">\[C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} = 2.18\sqrt{\frac{2 \times 13.51}{5}} = 5.07\]</span></p>
 <p>Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.</p>
 </div>
+</section>
+<section id="advantages-of-lsd" class="level3" data-number="20.3.7">
+<h3 data-number="20.3.7" class="anchored" data-anchor-id="advantages-of-lsd"><span class="header-section-number">20.3.7</span> Advantages of LSD</h3>
+<p>LSD is efficient when there are trends in fertility in two perpendicular directions or when there are two factors contributing to experimental error.</p>
+</section>
+<section id="disadvantages-of-lsd" class="level3" data-number="20.3.8">
+<h3 data-number="20.3.8" class="anchored" data-anchor-id="disadvantages-of-lsd"><span class="header-section-number">20.3.8</span> Disadvantages of LSD</h3>
+<p>In LSD there is no restriction like number of replications = number of treatments, as required in RCBD; the number of replications is instead fixed to be equal to the number of treatments <span class="math inline">\(v\)</span>. The error degrees of freedom in this design is <span class="math inline">\((v-1)(v-2)\)</span>. For a number of treatments like <span class="math inline">\(v\)</span> = 2, 3 and 4, this value is 0, 2 and 6 respectively (<em>i.e.,</em> very small, hence we cannot carry out the experiment as such for these values of <span class="math inline">\(v\)</span>).</p>
+<p>Similarly when <span class="math inline">\(v&gt;10\)</span> the total number of plots required is <span class="math inline">\(v^2 &gt; 100\)</span>. So there will be difficulty in getting a large number of homogeneous plots. So LSD is commonly used for 5 to 10 treatments only.</p>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2024,7 +2905,7 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2224,386 +3105,265 @@ C.F.=\frac{\left(\sum y_{ijk}\right)^2}{v^2}
 <div id="ref-Fisher1925" class="csl-entry" role="listitem">
 Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver; Boyd.
 </div>
+<div id="ref-fisher1935statistical" class="csl-entry" role="listitem">
+Fisher, Ronald A., and Frank Yates. 1935. <em>Statistical Tables for Biological, Agricultural and Medical Research</em>. Edinburgh: Oliver; Boyd.
+</div>
 </div>
 </section>
 </section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2611,185 +3371,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./multipleComparison.html" class="pagination-link" aria-label="Multiple comparison tests">

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.39">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./association.html" rel="next">
 <link href="./dispersion.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-d166b450ba5a8e9f7a0ab969bf6592c1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9fe799a8b491b95f8638fac26051bc8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +144,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -164,7 +330,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -441,6 +608,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Skewness and kurtosis</span></h1>
@@ -469,8 +637,8 @@ window.Quarto = {
 <p>In this chapter, we will have a detailed discussion on these two important measures of shape, understanding how they are calculated and interpreted. By the end, you’ll be able to evaluate whether a distribution is symmetric, positively or negatively skewed, and whether it has light or heavy tails.</p>
 <section id="skewness" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="skewness"><span class="header-section-number">7.1</span> Skewness</h2>
-<p>Skewness is a measure of symmetry, or more precisely, the lack of symmetry. Then you may ask, what does a symmetric distribution look like. A histogram of a symmetric distribution is shown in <a href="#fig-histosymm" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-histosymm</span></a>.</p>
-<div id="fig-histosymm" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p>Skewness is a measure of symmetry, or more precisely, the lack of symmetry. Then you may ask, what does a symmetric distribution look like. A histogram of a symmetric distribution is shown in <a href="#fig-histosymm" class="quarto-xref">Figure&nbsp;<span>7.1</span></a>.</p>
+<div id="fig-histosymm" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histosymm-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/histogram.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -487,14 +655,14 @@ Figure&nbsp;7.1: Histogram of a symmetric distribution
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a symmetric distribution skewness = 0; mean = median = mode. <a href="#fig-symmdist" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-symmdist</span></a> shows what a symmetric distribution looks like.</p>
+<p>For a symmetric distribution skewness = 0; mean = median = mode. <a href="#fig-symmdist" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows what a symmetric distribution looks like.</p>
 </div>
 </div>
-<div id="fig-symmdist" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<div id="fig-symmdist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-symmdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/symm.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -504,8 +672,8 @@ Figure&nbsp;7.2: Symmetric distribution
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-histodata" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-histodata</span></a> shows a model data set with skewness = 0 (symmetric distribution)</p>
-<div id="fig-histodata" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p><a href="#fig-histodata" class="quarto-xref">Figure&nbsp;<span>7.3</span></a> shows a model data set with skewness = 0 (symmetric distribution)</p>
+<div id="fig-histodata" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histodata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/symfreq.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -517,11 +685,11 @@ Figure&nbsp;7.3: Data set with skewness = 0
 </div>
 <section id="negatively-skewed" class="level3" data-number="7.1.1">
 <h3 data-number="7.1.1" class="anchored" data-anchor-id="negatively-skewed"><span class="header-section-number">7.1.1</span> Negatively skewed</h3>
-<p>A negatively skewed distribution, also known as a left-skewed distribution, is characterized by a longer tail on the left side of the distribution. The bulk of the data values, or the “mass” of the distribution, is concentrated on the right, as shown in <a href="#fig-leftskew" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-leftskew</span></a>.</p>
+<p>A negatively skewed distribution, also known as a left-skewed distribution, is characterized by a longer tail on the left side of the distribution. The bulk of the data values, or the “mass” of the distribution, is concentrated on the right, as shown in <a href="#fig-leftskew" class="quarto-xref">Figure&nbsp;<span>7.4</span></a>.</p>
 <p>This type of distribution is referred to as left-skewed, left-tailed, or skewed to the left because of the extended left tail. In such cases, the numerical relationship between the mean, median, and mode typically follows this pattern:</p>
 <p>Mean &lt; Median &lt; Mode</p>
 <p>This occurs because the mean is pulled towards the longer tail, while the median and mode remain closer to the center of the data’s bulk.</p>
-<div id="fig-leftskew" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<div id="fig-leftskew" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-leftskew-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/skew_mmm.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -531,8 +699,8 @@ Figure&nbsp;7.4: Left skewed or negatively skewed distribution
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-negskewed" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-negskewed</span></a> shows a model dataset with negative skewness.</p>
-<div id="fig-negskewed" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p><a href="#fig-negskewed" class="quarto-xref">Figure&nbsp;<span>7.5</span></a> shows a model dataset with negative skewness.</p>
+<div id="fig-negskewed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-negskewed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/negskewfreq.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -545,11 +713,11 @@ Figure&nbsp;7.5: Negatively skewed data set
 </section>
 <section id="positively-skewed" class="level3" data-number="7.1.2">
 <h3 data-number="7.1.2" class="anchored" data-anchor-id="positively-skewed"><span class="header-section-number">7.1.2</span> Positively skewed</h3>
-<p>A positively skewed distribution, also known as a right-skewed distribution, is characterized by a longer tail on the right side. The bulk of the data values, or the “mass” of the distribution, is concentrated on the left, as illustrated in <a href="#fig-posskewed" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-posskewed</span></a>.</p>
+<p>A positively skewed distribution, also known as a right-skewed distribution, is characterized by a longer tail on the right side. The bulk of the data values, or the “mass” of the distribution, is concentrated on the left, as illustrated in <a href="#fig-posskewed" class="quarto-xref">Figure&nbsp;<span>7.6</span></a>.</p>
 <p>This type of distribution is referred to as right-skewed, right-tailed, or skewed to the right, due to the extended tail on the right. In such cases, the relationship between the mean, median, and mode typically follows this pattern:</p>
 <p>Mean &gt; Median &gt; Mode</p>
 <p>This occurs because the mean is influenced by the extreme values in the longer right tail, while the median and mode remain closer to the center of the data’s bulk.</p>
-<div id="fig-posskewed" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<div id="fig-posskewed" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-posskewed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/skewpos.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -559,8 +727,8 @@ Figure&nbsp;7.6: Right skewed or positively skewed distribution
 </figcaption>
 </figure>
 </div>
-<p><a href="#fig-rightskeweddat" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-rightskeweddat</span></a> shows a model dataset with positive skewness.</p>
-<div id="fig-rightskeweddat" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p><a href="#fig-rightskeweddat" class="quarto-xref">Figure&nbsp;<span>7.7</span></a> shows a model dataset with positive skewness.</p>
+<div id="fig-rightskeweddat" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-rightskeweddat-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/poskewfreq.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -580,7 +748,7 @@ Figure&nbsp;7.7: Data set with positive skewness or right skewed
 <p>You have noticed that the mean, median and mode are not equal in a skewed distribution. The Karl Pearson’s measure of skewness is based upon the divergence of mean from mode in a skewed distribution.</p>
 <p><span id="eq-karlsq"><span class="math display">\[S_{k} = \frac{mean - mode}{\text{standard deviation}} \tag{7.1}\]</span></span></p>
 <p>The sign of <span class="math inline">\(S_{k}\)</span> gives the direction of skewness and its magnitude gives the extent of skewness. If <span class="math inline">\(S_{k}\)</span> &gt; 0, the distribution is positively skewed, and if <span class="math inline">\(S_{k}\)</span> &lt; 0 it is negatively skewed.</p>
-<p>In <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq</span></a> since mode is used, there is a problem that if mode is not defined for a distribution we cannot find <span class="math inline">\(S_{k}\)</span>. But empirical relation between mean, median and mode states that, for a moderately symmetrical distribution <span class="math inline">\(\ mean - mode \approx 3(mean - median)\)</span>. So <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq</span></a> can be written as</p>
+<p>In <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> since mode is used, there is a problem that if mode is not defined for a distribution we cannot find <span class="math inline">\(S_{k}\)</span>. But empirical relation between mean, median and mode states that, for a moderately symmetrical distribution <span class="math inline">\(\ mean - mode \approx 3(mean - median)\)</span>. So <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> can be written as</p>
 <p><span id="eq-karlsq2"><span class="math display">\[S_{k} = \frac{3(mean - median)}{\text{standard deviation}} \tag{7.2}\]</span></span></p>
 <div id="exm-ct33" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1</strong></span> Compute the Karl Pearson’s coefficient of skewness from the following data:</p>
@@ -792,11 +960,11 @@ Sum
 </figure>
 </div>
 <p>Mean, <span class="math inline">\(\overline{x} = \frac{\sum_{i = 1}^{n}{f_{i}x_{i}}}{\sum_{i = 1}^{n}f_{i}}\)</span> = <span class="math inline">\(\frac{11482}{187} = 61.40\)</span></p>
-<p><span class="math inline">\({Sample\ variance,\ s}^{2}\)</span> using <a href="#eq-sdfreq" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-sdfreq</span></a> = <span class="math inline">\(\frac{705588 - \frac{\left( 11482 \right)^{2}}{187}}{186} = 3.123\)</span></p>
+<p><span class="math inline">\({Sample\ variance,\ s}^{2}\)</span> using <a href="dispersion.html#eq-sdfreq" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> = <span class="math inline">\(\frac{705588 - \frac{\left( 11482 \right)^{2}}{187}}{186} = 3.123\)</span></p>
 <p><span class="math inline">\(Standard\ deviation,\ s = \sqrt{3.123} = 1.77\)</span></p>
-<p>To calculate the median, refer to the <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-karlcf</span></a>. Locate the cumulative frequency just greater than <span class="math inline">\(\frac{n + 1}{2}\)</span>, and the corresponding value of <span class="math inline">\(x\)</span> will be the median (<span class="math inline">\(Q_2\)</span>).</p>
+<p>To calculate the median, refer to the <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span>7.3</span></a>. Locate the cumulative frequency just greater than <span class="math inline">\(\frac{n + 1}{2}\)</span>, and the corresponding value of <span class="math inline">\(x\)</span> will be the median (<span class="math inline">\(Q_2\)</span>).</p>
 <p>Here, <span class="math inline">\(\frac{n + 1}{2} = \frac{187 + 1}{2} = \frac{188}{2} = 94\)</span>.<br>
-From the <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-karlcf</span></a>, it is evident that the median is 61.</p>
+From the <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span>7.3</span></a>, it is evident that the median is 61.</p>
 <div id="tbl-karlcf" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-karlcf-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -857,7 +1025,7 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 </div>
 </figure>
 </div>
-<p>using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq2</span></a></p>
+<p>using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a></p>
 <p><span class="math display">\[S_{k} = \frac{3(61.40 - 61)}{1.77} = \frac{1.2}{1.77} = 0.68\]</span></p>
 <p>Hence, the Karl Pearson’s coefficient of skewness <span class="math inline">\(S_{k}\)</span> = <span class="math inline">\(0.68\)</span>, Thus the distribution is positively skewed.</p>
 </div>
@@ -874,7 +1042,7 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 <li><p><span class="math inline">\(S_{Q}\)</span> &gt; 0 means the curve is positively skewed.</p></li>
 <li><p><span class="math inline">\(S_{Q}\)</span>&lt; 0 means the curve is negatively skewed.</p></li>
 </ul>
-<p>Let’s find Bowley’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-skewnessmodel</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a>. From the cumulative frequency in <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-karlcf</span></a>, the quartiles can be calculated. Calculation of <span class="math inline">\({Q}_{1}\)</span>, <span class="math inline">\(Q_{2}\)</span>, <span class="math inline">\(Q_{3}\)</span> is given in <a href="#sec-quartile" class="quarto-xref"><span class="quarto-unresolved-ref">sec-quartile</span></a>.</p>
+<p>Let’s find Bowley’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>. From the cumulative frequency in <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span>7.3</span></a>, the quartiles can be calculated. Calculation of <span class="math inline">\({Q}_{1}\)</span>, <span class="math inline">\(Q_{2}\)</span>, <span class="math inline">\(Q_{3}\)</span> is given in <a href="central2.html#sec-quartile" class="quarto-xref"><span>Section 5.5.1</span></a>.</p>
 <p><span class="math display">\[{Q}_{1} = 60\]</span></p>
 <p><span class="math display">\[Q_{2} = 61\]</span></p>
 <p><span class="math display">\[Q_{3} = 63\]</span></p>
@@ -886,7 +1054,7 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 <p>Bowley’s measure of skewness is based on the middle 50% of the observations; it leaves 25% of the observations on each extreme of the distribution. As an improvement over Bowley’s measure, Kelly has suggested a measure based on Percentiles, including <em>P</em><sub>10</sub> and <em>P</em><sub>90</sub> so that only 10% of the observations on each extreme are ignored.</p>
 <p><span id="eq-kellyskew"><span class="math display">\[{Kelly’s\ Measure\ of\ Skewness,\ S}_{p} = \frac{\left( P_{90} - P_{50} \right) - \left( P_{50} - P_{10} \right)}{\left( P_{90} - P_{50} \right) + \left( P_{50} - P_{10} \right)} \tag{7.5}\]</span></span></p>
 <div id="exr-ct3" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> Try to find Kelly’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-skewnessmodel</span></a></p>
+<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> Try to find Kelly’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a></p>
 </div>
 </section>
 <section id="measure-based-on-moments" class="level3" data-number="7.2.4">
@@ -906,14 +1074,14 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Important</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p>It should be remembered that first moment about mean is 0 and second moment about mean is <strong>variance</strong>.</p>
 </div>
 </div>
-<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-skewnessmodel</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a> given above, calculate third central moment, <span class="math inline">\(\mu_{3}\)</span></p>
+<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a> given above, calculate third central moment, <span class="math inline">\(\mu_{3}\)</span></p>
 <div id="tbl-moment3" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Third central moment calculation" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-moment3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1116,7 +1284,7 @@ Table&nbsp;7.5: Moments about mean
 <li><p><span class="math inline">\(\gamma_{1}\)</span> &gt; 0 means the curve is positively skewed.</p></li>
 <li><p><span class="math inline">\(\gamma_{1}\)</span>&lt; 0 means the curve is negatively skewed.</p></li>
 </ul>
-<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-skewnessmodel</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a>, <span class="math inline">\(\beta_{1}\)</span> and <span class="math inline">\(\gamma_{1}\)</span> can be calculated as follows</p>
+<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>, <span class="math inline">\(\beta_{1}\)</span> and <span class="math inline">\(\gamma_{1}\)</span> can be calculated as follows</p>
 <p><span class="math inline">\(\mu_{3}\)</span> = 0.266</p>
 <p><span class="math inline">\(\mu_{2}\)</span> = 3.123</p>
 <p><span class="math inline">\(\beta_{1} = \frac{\mu_{3}^{2}}{\mu_{2}^{3}}\)</span> = <span class="math inline">\(\frac{\left( 0.266 \right)^{2}}{\left( 3.123 \right)^{3}} = \ \frac{0.071}{30.46} = 0.0023\)</span></p>
@@ -1127,8 +1295,8 @@ Table&nbsp;7.5: Moments about mean
 </section>
 <section id="kurtosis" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="kurtosis"><span class="header-section-number">7.3</span> Kurtosis</h2>
-<p>Kurtosis is a statistical measure that describes the shape of a distribution’s frequency curve, focusing on its relative peakedness. While skewness measures the asymmetry or lack of symmetry in a distribution, kurtosis evaluates how sharp or flat the peak of the curve is. There are three categories of frequency curves depending upon the shape of their peak as shown in <a href="#fig-kurtopeak" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-kurtopeak</span></a>.</p>
-<div id="fig-kurtopeak" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p>Kurtosis is a statistical measure that describes the shape of a distribution’s frequency curve, focusing on its relative peakedness. While skewness measures the asymmetry or lack of symmetry in a distribution, kurtosis evaluates how sharp or flat the peak of the curve is. There are three categories of frequency curves depending upon the shape of their peak as shown in <a href="#fig-kurtopeak" class="quarto-xref">Figure&nbsp;<span>7.8</span></a>.</p>
+<div id="fig-kurtopeak" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-kurtopeak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/skewness/kurtosis.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
@@ -1155,7 +1323,7 @@ Figure&nbsp;7.8: Three categories of frequency curves
 <li><p><span class="math inline">\(\gamma_{2}\)</span> &gt; 0 means the curve is leptokurtic.</p></li>
 <li><p><span class="math inline">\(\gamma_{2}\)</span>&lt; 0 means the curve is platykurtic.</p></li>
 </ul>
-<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-skewnessmodel</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a>, kurtosis can be examined as follows</p>
+<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>, kurtosis can be examined as follows</p>
 <div id="tbl-kutocalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Measures of kurtosis" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-kutocalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1316,14 +1484,14 @@ Sum
 <p><span class="math inline">\(\mu_{4} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{4}}}{N} = \frac{4312.747}{187} = 23.063\)</span></p>
 <p><span class="math inline">\(\beta_{2} = \frac{\mu_{4}}{\mu_{2}^{2}} = \frac{23.063}{\left( 3.123 \right)^{2}} = 2.365\)</span></p>
 <p><span class="math inline">\(\beta_{2}\)</span> is 2.365, which is close to 3, distribution can be considered slightly platykurtic close to symmetric.</p>
-<p>You can verify the frequency curve of <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a> <a href="#fig-freqcurvex" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-freqcurvex</span></a>, it can be seen that it is slightly right tailed (positively skewed).</p>
-<div id="fig-freqcurvex" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
+<p>You can verify the frequency curve of <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a> <a href="#fig-freqcurvex" class="quarto-xref">Figure&nbsp;<span>7.9</span></a>, it can be seen that it is slightly right tailed (positively skewed).</p>
+<div id="fig-freqcurvex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-freqcurvex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/image11_5.jpeg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:40.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-freqcurvex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span class="quarto-unresolved-ref">exm-ct33</span></a>
+Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>
 </figcaption>
 </figure>
 </div>
@@ -1336,13 +1504,13 @@ Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Exam
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>“Crabs and kurtosis”</strong></p>
 <p>The story of <strong>kurtosis</strong> and <strong>skewness</strong> begins with a fascinating scientific journey involving <strong>crabs</strong>! In the late 1800s, Karl Pearson, a pioneering statistician, worked with biologist Walter Weldon to study variations in the size of crustaceans, like crabs. They noticed that the data didn’t follow the usual normal pattern, so Pearson developed new tools to better understand the shapes of these unusual data distributions.</p>
-<p>He created the concept of <strong>skewness</strong> to measure whether the data was symmetrical or had long tails on one side. Then, he developed <strong>kurtosis</strong>, a measure of how “peaked” or “flat” the data distribution was compared to the normal curve. These ideas helped statisticians better analyze data that didn’t fit the typical patterns, paving the way for modern statistical tools we still use today! <span class="citation" data-cites="fiori2009kurtosis">(<a href="#ref-fiori2009kurtosis" role="doc-biblioref">Fiori and Zenga 2009</a>)</span></p>
+<p>He created the concept of <strong>skewness</strong> to measure whether the data was symmetrical or had long tails on one side. Then, he developed <strong>kurtosis</strong>, a measure of how “peaked” or “flat” the data distribution was compared to the normal curve. These ideas helped statisticians better analyze data that didn’t fit the typical patterns, paving the way for modern statistical tools we still use today! <span class="citation" data-cites="fiori2009kurtosis">(<a href="references.html#ref-fiori2009kurtosis" role="doc-biblioref">Fiori and Zenga 2009</a>)</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1351,7 +1519,7 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1565,31 +1733,31 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
-<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq2</span></a>, <span class="math inline">\(S_k=\frac{3(61.40-61)}{1.77}=0.68\)</span>; since <span class="math inline">\(S_k&gt;0\)</span>, the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq2</span></a>, <span class="math inline">\(S_k=\frac{3(50-48)}{10}=0.6\)</span>; since <span class="math inline">\(S_k&gt;0\)</span>, the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-karlsq2</span></a>, <span class="math inline">\(S_k=\frac{3(40-42)}{8}=-0.75\)</span>; since <span class="math inline">\(S_k&lt;0\)</span>, the distribution is negatively skewed.</p></li>
-<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bowleyssk2</span></a>, <span class="math inline">\(S_Q=\frac{63-2(61)+60}{63-60}=0.33\)</span>; since <span class="math inline">\(S_Q&gt;0\)</span>, the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bowleyssk2</span></a>, <span class="math inline">\(S_Q=\frac{35-2(25)+20}{35-20}=0.33\)</span>; the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-bowleyssk2</span></a>, <span class="math inline">\(S_Q=\frac{40-2(35)+25}{40-25}=-0.33\)</span>; since <span class="math inline">\(S_Q&lt;0\)</span>, the distribution is negatively skewed.</p></li>
-<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-kellyskew</span></a>, <span class="math inline">\(S_P=\frac{(50-30)-(30-20)}{(50-30)+(30-20)}=0.33\)</span>; the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-kellyskew</span></a>, <span class="math inline">\(S_P=\frac{(35-25)-(25-15)}{(35-25)+(25-15)}=0\)</span>; the distribution is symmetric.</p></li>
-<li><p>Using <a href="#eq-moments" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-moments</span></a> with <span class="math inline">\(r=3\)</span>: find the mean <span class="math inline">\(\bar{x}\)</span>, cube each deviation <span class="math inline">\((x_i-\bar{x})\)</span>, multiply by the frequency <span class="math inline">\(f_i\)</span>, sum, and divide by <span class="math inline">\(N\)</span>.</p></li>
-<li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-betaone</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gammaone</span></a>, <span class="math inline">\(\beta_1=\frac{2^2}{4^3}=0.0625\)</span> and <span class="math inline">\(\gamma_1=\frac{2}{4^{3/2}}=0.25\)</span>; since <span class="math inline">\(\gamma_1&gt;0\)</span>, the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-betaone</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gammaone</span></a>, <span class="math inline">\(\beta_1=\frac{(-2)^2}{5^3}=0.032\)</span> and <span class="math inline">\(\gamma_1=\frac{-2}{5^{3/2}}=-0.179\)</span>; since <span class="math inline">\(\gamma_1&lt;0\)</span>, the distribution is negatively skewed.</p></li>
+<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>, <span class="math inline">\(S_k=\frac{3(61.40-61)}{1.77}=0.68\)</span>; since <span class="math inline">\(S_k&gt;0\)</span>, the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>, <span class="math inline">\(S_k=\frac{3(50-48)}{10}=0.6\)</span>; since <span class="math inline">\(S_k&gt;0\)</span>, the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>, <span class="math inline">\(S_k=\frac{3(40-42)}{8}=-0.75\)</span>; since <span class="math inline">\(S_k&lt;0\)</span>, the distribution is negatively skewed.</p></li>
+<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span>7.4</span></a>, <span class="math inline">\(S_Q=\frac{63-2(61)+60}{63-60}=0.33\)</span>; since <span class="math inline">\(S_Q&gt;0\)</span>, the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span>7.4</span></a>, <span class="math inline">\(S_Q=\frac{35-2(25)+20}{35-20}=0.33\)</span>; the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span>7.4</span></a>, <span class="math inline">\(S_Q=\frac{40-2(35)+25}{40-25}=-0.33\)</span>; since <span class="math inline">\(S_Q&lt;0\)</span>, the distribution is negatively skewed.</p></li>
+<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>, <span class="math inline">\(S_P=\frac{(50-30)-(30-20)}{(50-30)+(30-20)}=0.33\)</span>; the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>, <span class="math inline">\(S_P=\frac{(35-25)-(25-15)}{(35-25)+(25-15)}=0\)</span>; the distribution is symmetric.</p></li>
+<li><p>Using <a href="#eq-moments" class="quarto-xref">Equation&nbsp;<span>7.6</span></a> with <span class="math inline">\(r=3\)</span>: find the mean <span class="math inline">\(\bar{x}\)</span>, cube each deviation <span class="math inline">\((x_i-\bar{x})\)</span>, multiply by the frequency <span class="math inline">\(f_i\)</span>, sum, and divide by <span class="math inline">\(N\)</span>.</p></li>
+<li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span>7.7</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span>7.8</span></a>, <span class="math inline">\(\beta_1=\frac{2^2}{4^3}=0.0625\)</span> and <span class="math inline">\(\gamma_1=\frac{2}{4^{3/2}}=0.25\)</span>; since <span class="math inline">\(\gamma_1&gt;0\)</span>, the distribution is positively skewed.</p></li>
+<li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span>7.7</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span>7.8</span></a>, <span class="math inline">\(\beta_1=\frac{(-2)^2}{5^3}=0.032\)</span> and <span class="math inline">\(\gamma_1=\frac{-2}{5^{3/2}}=-0.179\)</span>; since <span class="math inline">\(\gamma_1&lt;0\)</span>, the distribution is negatively skewed.</p></li>
 <li><p>If <span class="math inline">\(\beta_1=0\)</span>, the distribution is symmetric.</p></li>
 <li><p>Since <span class="math inline">\(\gamma_1=0.5&gt;0\)</span>, the distribution is positively skewed.</p></li>
 <li><p>Since <span class="math inline">\(\gamma_1=-0.5&lt;0\)</span>, the distribution is negatively skewed.</p></li>
-<li><p>Using <a href="#eq-beta2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-beta2</span></a>, <span class="math inline">\(\beta_2=\frac{48}{4^2}=3\)</span>; since <span class="math inline">\(\beta_2=3\)</span>, the distribution is mesokurtic.</p></li>
+<li><p>Using <a href="#eq-beta2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a>, <span class="math inline">\(\beta_2=\frac{48}{4^2}=3\)</span>; since <span class="math inline">\(\beta_2=3\)</span>, the distribution is mesokurtic.</p></li>
 <li><p>Since <span class="math inline">\(\beta_2=3.5&gt;3\)</span>, the distribution is leptokurtic.</p></li>
 <li><p>Since <span class="math inline">\(\beta_2=2.5&lt;3\)</span>, the distribution is platykurtic.</p></li>
 <li><p>Since <span class="math inline">\(\beta_2=3\)</span>, the distribution is mesokurtic.</p></li>
-<li><p>Using <a href="#eq-gamma2" class="quarto-xref">Equation&nbsp;<span class="quarto-unresolved-ref">eq-gamma2</span></a>, since <span class="math inline">\(\gamma_2=0.8&gt;0\)</span>, the distribution is leptokurtic.</p></li>
+<li><p>Using <a href="#eq-gamma2" class="quarto-xref">Equation&nbsp;<span>7.10</span></a>, since <span class="math inline">\(\gamma_2=0.8&gt;0\)</span>, the distribution is leptokurtic.</p></li>
 <li><p>Since <span class="math inline">\(\gamma_2=-0.6&lt;0\)</span>, the distribution is platykurtic.</p></li>
 </ol>
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-fiori2009kurtosis" class="csl-entry" role="listitem">
 Fiori, Anna M., and Michele Zenga. 2009. <span>“Karl Pearson and the Origin of Kurtosis.”</span> <em>International Statistical Review</em> 77 (1): 40–50. <a href="https://doi.org/10.1111/j.1751-5823.2009.00076.x">https://doi.org/10.1111/j.1751-5823.2009.00076.x</a>.
 </div>
@@ -1599,380 +1767,256 @@ Fiori, Anna M., and Michele Zenga. 2009. <span>“Karl Pearson and the Origin of
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -1980,185 +2024,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./dispersion.html" class="pagination-link" aria-label="Measures of dispersion">
