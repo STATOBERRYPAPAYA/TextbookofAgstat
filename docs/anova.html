@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
+<title>18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,10 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -126,12 +130,12 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta property="og:title" content="18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
 <meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
-<meta name="twitter:title" content="18&nbsp; Analysis of Variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
+<meta name="twitter:title" content="18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
 <meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
@@ -311,7 +315,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./anova.html"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of variance</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -465,7 +469,7 @@ window.Quarto = {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./anova.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of variance</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -551,7 +555,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
   </div>
 </li>
       </ul>
@@ -597,7 +601,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of Variance</span></h1>
+<h1 class="title"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Analysis of variance</span></h1>
 </div>
 
 
@@ -701,20 +705,84 @@ Figure&nbsp;18.1: The F distribution under different degrees of freedom
 </section>
 <section id="one-way-classification" class="level4">
 <h4 class="anchored" data-anchor-id="one-way-classification">One-way classification</h4>
-<p>Consider an experiment with <span class="math inline">\(v\)</span> treatments with <span class="math inline">\(r\)</span> replications each. The observations are recorded as shown in <a href="#fig-oneway" class="quarto-xref">Figure&nbsp;<span>18.2</span></a>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-oneway" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-oneway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/oneway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-oneway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.2: One-way classification of data
+<p>Consider an experiment with <span class="math inline">\(v\)</span> treatments with <span class="math inline">\(r\)</span> replications each. The observations are recorded as shown in <a href="#tbl-oneway" class="quarto-xref">Table&nbsp;<span>18.1</span></a>.</p>
+<div id="tbl-oneway" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-oneway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.1: One-way classification of data
 </figcaption>
+<div aria-describedby="tbl-oneway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Treatments</th>
+<th style="text-align: center;">Observations</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{13}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{1r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_1\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{21}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{22}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{23}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{2r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_2\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{31}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{32}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{33}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{3r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_3\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{vr}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_v\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(G\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 </section>
 <section id="total-sum-of-squares-partitioning" class="level4">
@@ -789,19 +857,55 @@ Figure&nbsp;18.2: One-way classification of data
 \text{Error d.f.} &amp;= vr - 1 - (v - 1) \\
 &amp;= vr - 1 - v + 1 = vr - v = v(r - 1)
 \end{aligned} \tag{18.5}\]</span></span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-onewayanova" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-onewayanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/onewayanova.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.3: One-way ANOVA table
+<div id="tbl-onewayanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-onewayanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.2: One-way ANOVA table
 </figcaption>
+<div aria-describedby="tbl-onewayanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 25%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">d.f</th>
+<th style="text-align: left;">S.S</th>
+<th style="text-align: left;">M.S.S</th>
+<th style="text-align: left;">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Between treatments</td>
+<td style="text-align: center;"><span class="math inline">\(v-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \text{C.F.} = \text{SST}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\text{SST}}{v-1} = \text{MST}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F = \dfrac{\text{MST}}{\text{MSE}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Within treatments (Error)</td>
+<td style="text-align: center;"><span class="math inline">\(v(r-1)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{TSS} - \text{SST} = \text{SSE}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\text{SSE}}{v(r-1)} = \text{MSE}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(vr-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^2 - \dfrac{G^2}{n} = \text{TSS}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Here <span class="math inline">\(F \sim F_{(v-1),\ v(r-1)}\)</span>.</p>
 <p>MSE is an estimate of the error variance <span class="math inline">\(\sigma^2\)</span>, and <span class="math inline">\(\sqrt{\dfrac{\text{MSE}}{r}}\)</span> is the standard error of a treatment mean.</p>
@@ -824,36 +928,383 @@ Figure&nbsp;18.3: One-way ANOVA table
 <div id="exm-oneway" class="theorem example">
 <p><span class="theorem-title"><strong>Example 18.1</strong></span> The data on tiller count after transplanting were recorded from 4 hill sampling units for a fertilizer trial involving 6 treatments. Test for a significant difference between the treatments. The treatments are labeled as <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, <span class="math inline">\(T_5\)</span>, and <span class="math inline">\(T_6\)</span>.</p>
 <p><strong>Solution</strong></p>
-<p>The data are arranged as shown in <a href="#fig-onewayex" class="quarto-xref">Figure&nbsp;<span>18.4</span></a>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-onewayex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-onewayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/onewayex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.4: One-way classified data on tiller count
+<p>The data are arranged as shown in <a href="#tbl-onewayex" class="quarto-xref">Table&nbsp;<span>18.3</span></a>.</p>
+<div id="tbl-onewayex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="One-way classified data on tiller count" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-onewayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.3: One-way classified data on tiller count
 </figcaption>
+<div aria-describedby="tbl-onewayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+4 observations from each treatment
+</div>
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Treatments
+</th>
+<th style="text-align:center;">
+1
+</th>
+<th style="text-align:center;">
+2
+</th>
+<th style="text-align:center;">
+3
+</th>
+<th style="text-align:center;">
+4
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_1\)</span>
+</td>
+<td style="text-align:center;">
+26
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+28
+</td>
+<td style="text-align:center;">
+104
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_2\)</span>
+</td>
+<td style="text-align:center;">
+63
+</td>
+<td style="text-align:center;">
+71
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+73
+</td>
+<td style="text-align:center;">
+277
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_3\)</span>
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+39
+</td>
+<td style="text-align:center;">
+71
+</td>
+<td style="text-align:center;">
+198
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_4\)</span>
+</td>
+<td style="text-align:center;">
+61
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+98
+</td>
+<td style="text-align:center;">
+99
+</td>
+<td style="text-align:center;">
+328
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_5\)</span>
+</td>
+<td style="text-align:center;">
+63
+</td>
+<td style="text-align:center;">
+65
+</td>
+<td style="text-align:center;">
+65
+</td>
+<td style="text-align:center;">
+91
+</td>
+<td style="text-align:center;">
+284
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_6\)</span>
+</td>
+<td style="text-align:center;">
+69
+</td>
+<td style="text-align:center;">
+97
+</td>
+<td style="text-align:center;">
+85
+</td>
+<td style="text-align:center;">
+99
+</td>
+<td style="text-align:center;">
+350
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Here, an equal number of observations are taken from all treatments, so <span class="math inline">\(r_1 = r_2 = \ldots = r_6 = 4\)</span>, and the total number of observations is <span class="math inline">\(n = 24\)</span>. The grand total of all observations is <span class="math inline">\(G = 1541\)</span>.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-onewayex1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-onewayex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/onewayex1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:75.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.5: ANOVA calculations
+<div id="tbl-onewayex1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="ANOVA calculations for the tiller count data" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-onewayex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.4: ANOVA calculations for the tiller count data
 </figcaption>
+<div aria-describedby="tbl-onewayex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="4">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+4 observations from each treatment
+</div>
+</th>
+<th style="empty-cells: hide;" colspan="3">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Treatments
+</th>
+<th style="text-align:center;">
+1
+</th>
+<th style="text-align:center;">
+2
+</th>
+<th style="text-align:center;">
+3
+</th>
+<th style="text-align:center;">
+4
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(T_i\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(T_i^2\)</span>
+</th>
+<th style="text-align:center;">
+<span class="math inline">\(T_i^2/r_i\)</span>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_1\)</span>
+</td>
+<td style="text-align:center;">
+26
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+25
+</td>
+<td style="text-align:center;">
+28
+</td>
+<td style="text-align:center;">
+104
+</td>
+<td style="text-align:center;">
+10816
+</td>
+<td style="text-align:center;">
+2704.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_2\)</span>
+</td>
+<td style="text-align:center;">
+63
+</td>
+<td style="text-align:center;">
+71
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+73
+</td>
+<td style="text-align:center;">
+277
+</td>
+<td style="text-align:center;">
+76729
+</td>
+<td style="text-align:center;">
+19182.25
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_3\)</span>
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+39
+</td>
+<td style="text-align:center;">
+71
+</td>
+<td style="text-align:center;">
+198
+</td>
+<td style="text-align:center;">
+39204
+</td>
+<td style="text-align:center;">
+9801.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_4\)</span>
+</td>
+<td style="text-align:center;">
+61
+</td>
+<td style="text-align:center;">
+70
+</td>
+<td style="text-align:center;">
+98
+</td>
+<td style="text-align:center;">
+99
+</td>
+<td style="text-align:center;">
+328
+</td>
+<td style="text-align:center;">
+107584
+</td>
+<td style="text-align:center;">
+26896.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_5\)</span>
+</td>
+<td style="text-align:center;">
+63
+</td>
+<td style="text-align:center;">
+65
+</td>
+<td style="text-align:center;">
+65
+</td>
+<td style="text-align:center;">
+91
+</td>
+<td style="text-align:center;">
+284
+</td>
+<td style="text-align:center;">
+80656
+</td>
+<td style="text-align:center;">
+20164.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(T_6\)</span>
+</td>
+<td style="text-align:center;">
+69
+</td>
+<td style="text-align:center;">
+97
+</td>
+<td style="text-align:center;">
+85
+</td>
+<td style="text-align:center;">
+99
+</td>
+<td style="text-align:center;">
+350
+</td>
+<td style="text-align:center;">
+122500
+</td>
+<td style="text-align:center;">
+30625.00
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
 </div>
-</div>
-</div>
+<p>The sum of the last column gives <span class="math inline">\(\sum_{i=1}^{6} \dfrac{T_i^2}{r_i} = 109372.25\)</span>.</p>
 <p>Correction Factor, <span class="math inline">\(CF = \dfrac{G^{2}}{n} = \dfrac{(1541)^{2}}{24} = \dfrac{2374681}{24} = 98945.04\)</span></p>
 <p>Total Sum of Squares,</p>
 <p><span class="math display">\[\text{Total SS} = \sum_{i=1}^{6}\sum_{j=1}^{4} y_{ij}^{2} - CF = 112305 - 98945.04 = 13359.96\]</span></p>
@@ -861,19 +1312,60 @@ Figure&nbsp;18.5: ANOVA calculations
 <p><span class="math display">\[\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.3 - 98945.04 = 10427.21\]</span></p>
 <p>Error Sum of Squares,</p>
 <p><span class="math display">\[\text{ESS} = \text{Total SS} - \text{Treatment SS} = 13359.96 - 10427.21 = 2932.75\]</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-onewayresult" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-onewayresult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/anovaresult.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-onewayresult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.6: One-way ANOVA table for the tiller count data
+<div id="tbl-onewayresult" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-onewayresult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.5: One-way ANOVA table for the tiller count data
 </figcaption>
+<div aria-describedby="tbl-onewayresult-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 11%">
+<col style="width: 11%">
+<col style="width: 16%">
+<col style="width: 20%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">d.f</th>
+<th style="text-align: center;">S.S</th>
+<th style="text-align: left;">M.S.S</th>
+<th style="text-align: center;">F (Cal)</th>
+<th style="text-align: center;">F (tab)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Between treatments</td>
+<td style="text-align: center;"><span class="math inline">\(6-1=5\)</span></td>
+<td style="text-align: center;">10427.21</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{10427.21}{5}=2085.442\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\dfrac{2085.442}{162.93}=12.7996^{**}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(F_{(5,18)}=2.77\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Within treatments (Error)</td>
+<td style="text-align: center;"><span class="math inline">\(6(4-1)=18\)</span></td>
+<td style="text-align: center;">2932.74</td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{2932.74}{18}=162.93\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(24-1=23\)</span></td>
+<td style="text-align: center;">13359.95</td>
+<td style="text-align: left;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.</p>
 </div>
@@ -893,20 +1385,93 @@ Figure&nbsp;18.6: One-way ANOVA table for the tiller count data
 </section>
 <section id="two-way-classification" class="level4">
 <h4 class="anchored" data-anchor-id="two-way-classification">Two-way classification</h4>
-<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#fig-twoway" class="quarto-xref">Figure&nbsp;<span>18.7</span></a>. We have considered the situation of only one observation per cell.</p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-twoway" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/twoway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.7: Two-way classification of data
+<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#tbl-twoway" class="quarto-xref">Table&nbsp;<span>18.6</span></a>. We have considered the situation of only one observation per cell.</p>
+<div id="tbl-twoway" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.6: Two-way classification of data
 </figcaption>
+<div aria-describedby="tbl-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">Factor A</th>
+<th style="text-align: center;">Factor B</th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"></td>
+<td style="text-align: center;">1</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(r\)</span></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">1</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{11}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{12}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{13}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{1r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_1\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">2</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{21}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{22}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{23}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{2r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_2\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><span class="math inline">\(Y_{31}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{32}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{33}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{3r}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_3\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"><span class="math inline">\(\vdots\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(v\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v1}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v2}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{v3}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{vr}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(T_v\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(B_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_3\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\cdots\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(B_r\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(Y_{..}=G\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 </section>
 <section id="sec-twowaycalc" class="level4">
@@ -923,19 +1488,62 @@ Figure&nbsp;18.7: Two-way classification of data
 &amp;= vr - 1 - v + 1 - r + 1 \\
 &amp;= vr - v - r + 1 = (v - 1)(r - 1)
 \end{aligned} \tag{18.7}\]</span></span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-twowaytable" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-twowaytable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/twowaytable.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twowaytable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.8: Two-way ANOVA table
+<div id="tbl-twowaytable" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-twowaytable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.7: Two-way ANOVA table
 </figcaption>
+<div aria-describedby="tbl-twowaytable-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<colgroup>
+<col style="width: 27%">
+<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 24%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">D.F.</th>
+<th style="text-align: left;">S.S</th>
+<th style="text-align: left;">M.S.S</th>
+<th style="text-align: left;">F</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Factor A</td>
+<td style="text-align: center;"><span class="math inline">\(v-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \dfrac{G^2}{vr} = \text{SSA}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MSA} = \dfrac{\text{SSA}}{v-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_A = \dfrac{\text{MSA}}{\text{MSE}}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Factor B</td>
+<td style="text-align: center;"><span class="math inline">\(r-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\dfrac{\sum_{i=1}^{v} B_i^2}{v} - \dfrac{G^2}{vr} = \text{SSB}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MSB} = \dfrac{\text{SSB}}{r-1}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(F_B = \dfrac{\text{MSB}}{\text{MSE}}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;"><span class="math inline">\((v-1)(r-1)\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{ESS} = \text{Total SS} - \text{SSA} - \text{SSB}\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\text{MSE} = \dfrac{\text{SSE}}{(v-1)(r-1)}\)</span></td>
+<td style="text-align: left;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;"><span class="math inline">\(vr-1\)</span></td>
+<td style="text-align: left;"><span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} y_{ij}^2 - \dfrac{G^2}{vr} = \text{Total SS}\)</span></td>
+<td style="text-align: left;"></td>
+<td style="text-align: left;"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Here there are two F values, one for factor A and one for factor B. <span class="math inline">\(F_A \sim F_{(v-1),\ (v-1)(r-1)}\)</span> and <span class="math inline">\(F_B \sim F_{(r-1),\ (v-1)(r-1)}\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
@@ -963,19 +1571,169 @@ Figure&nbsp;18.8: Two-way ANOVA table
 <div id="exm-twoway" class="theorem example">
 <p><span class="theorem-title"><strong>Example 18.2</strong></span> Four chemicals <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, <span class="math inline">\(S_3\)</span>, and <span class="math inline">\(S_4\)</span> were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Consider that chemicals and breeds are independent.</p>
 <p><strong>Solution</strong></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-twowayex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-twowayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/twowayex.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-twowayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.9: Two-way classification of observations for chemicals and breeds
+<div id="tbl-twowayex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Two-way classification of observations for chemicals and breeds" data-filters="parse-latex">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-twowayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.8: Two-way classification of observations for chemicals and breeds
 </figcaption>
+<div aria-describedby="tbl-twowayex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+<th style="padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; font-weight: bold; " colspan="5">
+<div style="border-bottom: 1px solid #111111; margin-bottom: -1px; ">
+Breeds of cow
+</div>
+</th>
+<th style="empty-cells: hide;" colspan="1">
+</th>
+</tr>
+<tr>
+<th style="text-align:center;">
+Chemicals
+</th>
+<th style="text-align:center;">
+A
+</th>
+<th style="text-align:center;">
+B
+</th>
+<th style="text-align:center;">
+C
+</th>
+<th style="text-align:center;">
+D
+</th>
+<th style="text-align:center;">
+E
+</th>
+<th style="text-align:center;">
+Total
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(S_1\)</span>
+</td>
+<td style="text-align:center;">
+43
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+46
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+217
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(S_2\)</span>
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+46
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+216
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(S_3\)</span>
+</td>
+<td style="text-align:center;">
+49
+</td>
+<td style="text-align:center;">
+46
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+46
+</td>
+<td style="text-align:center;">
+44
+</td>
+<td style="text-align:center;">
+229
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+<span class="math inline">\(S_4\)</span>
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+42
+</td>
+<td style="text-align:center;">
+45
+</td>
+<td style="text-align:center;">
+41
+</td>
+<td style="text-align:center;">
+212
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+Total
+</td>
+<td style="text-align:center;">
+179
+</td>
+<td style="text-align:center;">
+170
+</td>
+<td style="text-align:center;">
+170
+</td>
+<td style="text-align:center;">
+183
+</td>
+<td style="text-align:center;">
+172
+</td>
+<td style="text-align:center;">
+874
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>Here <span class="math inline">\(n = 20\)</span>, <span class="math inline">\(v = 5\)</span>, and <span class="math inline">\(r = 4\)</span>; factor A = cow breeds, factor B = chemicals, and the grand total <span class="math inline">\(G = 874\)</span>.</p>
 <p>Correction Factor, <span class="math inline">\(CF = \dfrac{G^{2}}{n} = \dfrac{(874)^{2}}{20} = 38193.8\)</span></p>
@@ -987,19 +1745,60 @@ Figure&nbsp;18.9: Two-way classification of observations for chemicals and breed
 <p><span class="math display">\[\text{SSB} = \sum_{j=1}^{r}\frac{B_{j}^{2}}{v} - CF = \frac{1}{5}\left[ (217)^{2} + \ldots + (212)^{2} \right] - CF = 32.2\]</span></p>
 <p>Sum of Squares of Error,</p>
 <p><span class="math display">\[\text{SSE} = \text{Total SS} - (\text{SSA} + \text{SSB}) = 94.2 - (34.7 + 32.2) = 27.3\]</span></p>
-<div class="cell" data-layout-align="center">
-<div class="cell-output-display">
-<div id="fig-anovatabletwoway" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-anovatabletwoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/anovatabletwoway.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-anovatabletwoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;18.10: ANOVA table for chemicals and breeds
+<div id="tbl-anovatabletwoway" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-anovatabletwoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;18.9: ANOVA table for chemicals and breeds
 </figcaption>
+<div aria-describedby="tbl-anovatabletwoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Source</th>
+<th style="text-align: center;">DF</th>
+<th style="text-align: center;">SS</th>
+<th style="text-align: center;">MS</th>
+<th style="text-align: center;">F</th>
+<th style="text-align: center;">F table value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Factor A</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">34.7</td>
+<td style="text-align: center;">8.675</td>
+<td style="text-align: center;"><span class="math inline">\(3.813^{*}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(F_{(4,12)}=3.26\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Factor B</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">32.2</td>
+<td style="text-align: center;">10.73</td>
+<td style="text-align: center;"><span class="math inline">\(4.7^{*}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(F_{(3,12)}=3.49\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Error</td>
+<td style="text-align: center;">12</td>
+<td style="text-align: center;">27.3</td>
+<td style="text-align: center;">2.275</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Total</td>
+<td style="text-align: center;">19</td>
+<td style="text-align: center;">94.2</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+</div>
 </figure>
-</div>
-</div>
 </div>
 <p>For both chemicals and breeds there is a significant difference at the 5% level, because both calculated F values are greater than the table values.</p>
 </div>

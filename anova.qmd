@@ -1,4 +1,4 @@
-# Analysis of Variance  
+# Analysis of variance
 
 Consider an experiment in which three chemical fertilizers, **A**, **B**, and **C**, are evaluated using potted plants. The objective of the experiment is to determine which fertilizer produces the highest yield. Since all the potted plants are maintained under identical conditions, the experimental units are assumed to be homogeneous.
 
@@ -108,12 +108,28 @@ where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. $Y_{ij}$ is the observed 
 
 #### One-way classification
 
-Consider an experiment with $v$ treatments with $r$ replications each. The observations are recorded as shown in @fig-oneway.
+Consider an experiment with $v$ treatments with $r$ replications each. The observations are recorded as shown in @tbl-oneway.
 
-```{r echo=FALSE, out.width="60%", fig.align='center'}
-#| label: fig-oneway
+```{r tbl-oneway,echo=FALSE,warning=FALSE,results='asis'}
+#| tbl-cap: "One-way classification of data"
 #| fig-cap: "One-way classification of data"
-knitr::include_graphics("images/oneway.png")
+#| filters: 
+#| - parse-latex
+
+
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/oneway_classification.csv", check.names = FALSE)
+colnames(dt) <- c("Treatments", "", "", "", "", "", "Total")
+dt %>%
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+  kable_classic(full_width = F, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  add_header_above(c(" " = 1, "Observations" = 5, " " = 1), bold = TRUE)
 ```
 
 #### Total sum of squares partitioning
@@ -194,11 +210,13 @@ $$\begin{aligned}
 &= vr - 1 - v + 1 = vr - v = v(r - 1)
 \end{aligned}$$ {#eq-onewaydf}
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-onewayanova
-#| fig-cap: "One-way ANOVA table"
-knitr::include_graphics("images/onewayanova.png")
-```
+| Source | d.f | S.S | M.S.S | F |
+|:-------|:---:|:----|:------|:--|
+| Between treatments | $v-1$ | $\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \text{C.F.} = \text{SST}$ | $\dfrac{\text{SST}}{v-1} = \text{MST}$ | $F = \dfrac{\text{MST}}{\text{MSE}}$ |
+| Within treatments (Error) | $v(r-1)$ | $\text{TSS} - \text{SST} = \text{SSE}$ | $\dfrac{\text{SSE}}{v(r-1)} = \text{MSE}$ | |
+| Total | $vr-1$ | $\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^2 - \dfrac{G^2}{n} = \text{TSS}$ | | |
+
+: One-way ANOVA table {#tbl-onewayanova .bordered}
 
 Here $F \sim F_{(v-1),\ v(r-1)}$.
 
@@ -215,21 +233,53 @@ The data on tiller count after transplanting were recorded from 4 hill sampling 
 
 **Solution**
 
-The data are arranged as shown in @fig-onewayex.
+The data are arranged as shown in @tbl-onewayex.
 
-```{r echo=FALSE, out.width="75%", fig.align='center'}
-#| label: fig-onewayex
+```{r tbl-onewayex,echo=FALSE,warning=FALSE,results='asis'}
+#| tbl-cap: "One-way classified data on tiller count"
 #| fig-cap: "One-way classified data on tiller count"
-knitr::include_graphics("images/onewayex.png")
+#| filters: 
+#| - parse-latex
+
+
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/oneway_data.csv", check.names = FALSE)
+dt %>%
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+  kable_classic(full_width = F, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  add_header_above(c(" " = 1, "4 observations from each treatment" = 4, " " = 1), bold = TRUE)
 ```
 
 Here, an equal number of observations are taken from all treatments, so $r_1 = r_2 = \ldots = r_6 = 4$, and the total number of observations is $n = 24$. The grand total of all observations is $G = 1541$.  
 
-```{r echo=FALSE, out.width="75%", fig.align='center'}
-#| label: fig-onewayex1
-#| fig-cap: "ANOVA calculations"
-knitr::include_graphics("images/onewayex1.png")
+```{r tbl-onewayex1,echo=FALSE,warning=FALSE,results='asis'}
+#| tbl-cap: "ANOVA calculations for the tiller count data"
+#| fig-cap: "ANOVA calculations for the tiller count data"
+#| filters: 
+#| - parse-latex
+
+
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/oneway_calc.csv", check.names = FALSE)
+dt %>%
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+  kable_classic(full_width = F, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  add_header_above(c(" " = 1, "4 observations from each treatment" = 4, " " = 3), bold = TRUE)
 ```
+
+The sum of the last column gives $\sum_{i=1}^{6} \dfrac{T_i^2}{r_i} = 109372.25$.
 
 Correction Factor, $CF = \dfrac{G^{2}}{n} = \dfrac{(1541)^{2}}{24} = \dfrac{2374681}{24} = 98945.04$
 
@@ -245,11 +295,13 @@ Error Sum of Squares,
 
 $$\text{ESS} = \text{Total SS} - \text{Treatment SS} = 13359.96 - 10427.21 = 2932.75$$
 
-```{r echo=FALSE, out.width="95%", fig.align='center'}
-#| label: fig-onewayresult
-#| fig-cap: "One-way ANOVA table for the tiller count data"
-knitr::include_graphics("images/anovaresult.png")
-```
+| Source | d.f | S.S | M.S.S | F (Cal) | F (tab) |
+|:-------|:---:|:---:|:------|:-------:|:-------:|
+| Between treatments | $6-1=5$ | 10427.21 | $\dfrac{10427.21}{5}=2085.442$ | $\dfrac{2085.442}{162.93}=12.7996^{**}$ | $F_{(5,18)}=2.77$ |
+| Within treatments (Error) | $6(4-1)=18$ | 2932.74 | $\dfrac{2932.74}{18}=162.93$ | | |
+| Total | $24-1=23$ | 13359.95 | | | |
+
+: One-way ANOVA table for the tiller count data {#tbl-onewayresult .bordered}
 
 Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.
 :::
@@ -275,12 +327,28 @@ where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. $Y_{ij}$ is the observed 
 
 #### Two-way classification
 
-Consider an experiment with $v$ levels of factor 1 and $r$ levels of factor 2. The observations are recorded as shown in @fig-twoway. We have considered the situation of only one observation per cell.
+Consider an experiment with $v$ levels of factor 1 and $r$ levels of factor 2. The observations are recorded as shown in @tbl-twoway. We have considered the situation of only one observation per cell.
 
-```{r echo=FALSE, out.width="60%", fig.align='center'}
-#| label: fig-twoway
+```{r tbl-twoway,echo=FALSE,warning=FALSE,results='asis'}
+#| tbl-cap: "Two-way classification of data"
 #| fig-cap: "Two-way classification of data"
-knitr::include_graphics("images/twoway.png")
+#| filters: 
+#| - parse-latex
+
+
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/twoway_classification.csv", check.names = FALSE)
+colnames(dt) <- c("Factor A", "1", "2", "3", "$\\cdots$", "$r$", "Total")
+dt %>%
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+  kable_classic(full_width = F, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  add_header_above(c(" " = 1, "Factor B" = 5, " " = 1), bold = TRUE)
 ```
 
 #### Calculations for two-way ANOVA {#sec-twowaycalc}
@@ -301,11 +369,14 @@ $$\begin{aligned}
 &= vr - v - r + 1 = (v - 1)(r - 1)
 \end{aligned}$$ {#eq-twowaydf}
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-twowaytable
-#| fig-cap: "Two-way ANOVA table"
-knitr::include_graphics("images/twowaytable.png")
-```
+| Source | D.F. | S.S | M.S.S | F |
+|:-------|:----:|:----|:------|:--|
+| Factor A | $v-1$ | $\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \dfrac{G^2}{vr} = \text{SSA}$ | $\text{MSA} = \dfrac{\text{SSA}}{v-1}$ | $F_A = \dfrac{\text{MSA}}{\text{MSE}}$ |
+| Factor B | $r-1$ | $\dfrac{\sum_{i=1}^{v} B_i^2}{v} - \dfrac{G^2}{vr} = \text{SSB}$ | $\text{MSB} = \dfrac{\text{SSB}}{r-1}$ | $F_B = \dfrac{\text{MSB}}{\text{MSE}}$ |
+| Error | $(v-1)(r-1)$ | $\text{ESS} = \text{Total SS} - \text{SSA} - \text{SSB}$ | $\text{MSE} = \dfrac{\text{SSE}}{(v-1)(r-1)}$ | |
+| Total | $vr-1$ | $\sum_{i=1}^{v}\sum_{j=1}^{r} y_{ij}^2 - \dfrac{G^2}{vr} = \text{Total SS}$ | | |
+
+: Two-way ANOVA table {#tbl-twowaytable .bordered}
 
 Here there are two F values, one for factor A and one for factor B. $F_A \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_B \sim F_{(r-1),\ (v-1)(r-1)}$.
 
@@ -332,10 +403,25 @@ Four chemicals $S_1$, $S_2$, $S_3$, and $S_4$ were administered to 5 cow breeds 
 
 **Solution**
 
-```{r echo=FALSE, out.width="70%", fig.align='center'}
-#| label: fig-twowayex
+```{r tbl-twowayex,echo=FALSE,warning=FALSE,results='asis'}
+#| tbl-cap: "Two-way classification of observations for chemicals and breeds"
 #| fig-cap: "Two-way classification of observations for chemicals and breeds"
-knitr::include_graphics("images/twowayex.png")
+#| filters: 
+#| - parse-latex
+
+
+library(knitr)
+library(kableExtra)
+dt <- read.csv("csv/twoway_data.csv", check.names = FALSE)
+dt %>%
+  kbl(booktabs = TRUE, align = "c", escape = FALSE) %>%
+  kable_classic(full_width = F, html_font = "Georgia") %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  add_header_above(c(" " = 1, "Breeds of cow" = 5, " " = 1), bold = TRUE)
 ```
 
 Here $n = 20$, $v = 5$, and $r = 4$; factor A = cow breeds, factor B = chemicals, and the grand total $G = 874$.
@@ -358,11 +444,14 @@ Sum of Squares of Error,
 
 $$\text{SSE} = \text{Total SS} - (\text{SSA} + \text{SSB}) = 94.2 - (34.7 + 32.2) = 27.3$$
 
-```{r echo=FALSE, out.width="90%", fig.align='center'}
-#| label: fig-anovatabletwoway
-#| fig-cap: "ANOVA table for chemicals and breeds"
-knitr::include_graphics("images/anovatabletwoway.png")
-```
+| Source | DF | SS | MS | F | F table value |
+|:-------|:--:|:---:|:---:|:-----:|:-------------:|
+| Factor A | 4 | 34.7 | 8.675 | $3.813^{*}$ | $F_{(4,12)}=3.26$ |
+| Factor B | 3 | 32.2 | 10.73 | $4.7^{*}$ | $F_{(3,12)}=3.49$ |
+| Error | 12 | 27.3 | 2.275 | | |
+| Total | 19 | 94.2 | | | |
+
+: ANOVA table for chemicals and breeds {#tbl-anovatabletwoway .bordered}
 
 For both chemicals and breeds there is a significant difference at the 5% level, because both calculated F values are greater than the table values.
 :::
