@@ -425,21 +425,21 @@ $CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$
 
 ## Confounding
 
-When the number of factors or their levels increases, the treatment combinations grow rapidly. A $2^5$ factorial has 32 treatment combinations. To test these in a Randomised Complete Block Design (RCBD), every block would need 32 plots. Finding 32 plots uniform in soil fertility, moisture, and slope is very difficult, because the larger a block, the more variation it contains, and this variation inflates the experimental error and reduces precision.
+When the number of factors or their levels increases, the treatment combinations grow rapidly. A $2^5$ factorial has 32 treatment combinations. To test these in a Randomised Complete Block Design (RCBD), every block would need to hold all 32 treatment combinations as one complete replication. Finding 32 plots uniform in soil fertility, moisture, and slope is very difficult, because the larger a block, the more variation it is likely to contain, and this variation inflates the experimental error and reduces precision.
 
-The way out is to use smaller blocks. Instead of one big block of 32 plots, we split each replication into two smaller blocks of 16 plots each. Smaller blocks are more homogeneous, so the error goes down. But splitting comes at a price, and understanding that price is the whole idea of confounding.
+The way out is to use smaller blocks. Instead of one big block of 32 plots making up a complete replication, we split each replication into two smaller blocks of 16 plots each. Provided real heterogeneity exists within the original 32-plot block for this finer division to remove, smaller blocks tend to be more homogeneous, and the experimental error goes down accordingly; the gain is not automatic, since a split that does not align with the actual pattern of field variation may bring little benefit. But splitting comes at a price, and understanding that price is the whole idea of confounding.
 
 ### The core idea {.unnumbered}
 
-To split the treatments into two blocks, we need a rule that decides which treatment combination goes into which block. We use one of the interaction contrasts to make this split. When we do that, the difference between the two block totals becomes exactly the same as that interaction's contrast so that the two are algebraically identical and cannot be separated. We can no longer tell whether a difference between the blocks is due to the blocks (soil, field position) or due to that interaction.
+To split the treatments into two blocks, we need a rule that decides which treatment combination goes into which block. We use one of the interaction contrasts to make this split. When we do that, the difference between the two block totals becomes exactly the same, up to sign, as that interaction's contrast, so that the two are algebraically identical and cannot be separated. We can no longer tell whether a difference between the blocks is due to the blocks (soil, field position) or due to that interaction.
 
-That interaction is said to be confounded with blocks *i*.*e* it is mixed up with the block effect and can no longer be estimated. In exchange, every other main effect and interaction is now estimated within smaller, more homogeneous blocks, so they are estimated more precisely.
+That interaction is said to be **confounded** with blocks, *i*.*e*. its contrast is mixed up with the block contrast and the interaction can no longer be estimated separately from the blocks. In exchange, every other main effect and interaction is now estimated within smaller, more homogeneous blocks, so their precision improves relative to a single large block.
 
 This is the trade-off: we deliberately sacrifice information on one interaction (usually an unimportant one or higher order) to gain precision on everything else.
 
 ### A worked example: $2^3$ factorial {.unnumbered}
 
-Take three factors: A (Nitrogen), B (Phosphorus), C (Potassium) — each at two levels (low = absent, high = present). This gives $2^3 = 8$ treatment combinations, written in standard notation:
+Take three factors: A (Nitrogen), B (Phosphorus), C (Potassium), each at two levels (low = absent, high = present). This gives $2^3 = 8$ treatment combinations, written in standard notation:
 
 $$(1),\ a,\ b,\ ab,\ c,\ ac,\ bc,\ abc$$
 
@@ -456,9 +456,11 @@ The rule: a treatment goes into one block or the other depending on the sign it 
 |       ac       |       c       |
 |       bc       |      abc      |
 
-Now look at what happened. From @sec-interaction, the interaction effect ABC is given by
+Now look at what happened. From @sec-interaction, the interaction effect of $A\times B\times C$ is $\dfrac{1}{4r}$ times the ABC contrast, where the contrast itself is
 
 $$ABC = (a+\ b+\ c+\ abc)-((1)+\ ab+\ ac+\ bc)$$ {#eq-abccontrast}
+
+The interaction contrast is the raw, unnormalized difference between the sums shown above; dividing this contrast by $4r$ gives the interaction effect proper, which estimates the average change in response due to the interaction. It is the contrast, not the divided effect, that is directly comparable to a difference between block totals, since block totals are themselves raw sums of the data.
 
 The difference between the two block totals here is
 
@@ -466,15 +468,15 @@ $$\text{Block 1} - \text{Block 2} = ((1)+\ ab+\ ac+\ bc)-(a+\ b+\ c+\ abc)$$ {#e
 
 Comparing @eq-abccontrast and @eq-blockdiff, the block difference is exactly the negative of the ABC contrast, that is, $\text{Block 1} - \text{Block 2} = -ABC$. Since the two quantities are the same linear combination of the data up to sign, they are algebraically identical, and we cannot tell whether an observed difference between the two blocks is due to the blocks themselves or due to the ABC interaction.
 
-So if Block 1 sits on richer soil than Block 2, that soil difference is inseparable from the ABC interaction, we have lost ABC. But the main effects A, B, C and the two-factor interactions AB, AC, BC are all balanced across the two blocks (each appears equally in both), so they are estimated cleanly, and now within blocks of 4 uniform plots instead of 8 uneven ones.
+So if Block 1 sits on richer soil than Block 2, that soil difference is inseparable from the ABC contrast, and we have lost the ability to estimate ABC. But the main effects A, B, C and the two-factor interactions AB, AC, BC are all balanced across the two blocks (each appears equally in both), so their contrasts are orthogonal to the block effect and remain independently estimable, and now within blocks of 4 uniform plots instead of 8 uneven ones.
 
 ### Complete vs partial confounding {.unnumbered}
 
 With more than one replication, we get a choice.
 
-[**Complete confounding**]{.underline} — confound the *same* interaction (say ABC) in every replication. ABC is then lost entirely; no replication can recover it.
+[**Complete confounding**]{.underline}: confound the *same* interaction (say ABC) in every replication. ABC is then lost entirely; no replication can recover it.
 
-[**Partial confounding**]{.underline} — confound a *different* interaction in each replication. For example, confound ABC in replication I, AB in replication II, BC in replication III. Now ABC is confounded only in replication I, so it can still be estimated from replications II and III (where it is untouched). Every interaction is recovered from the replications where it is *not* confounded — at the cost of slightly reduced replication for each.
+[**Partial confounding**]{.underline}: confound a *different* interaction in each replication. For example, confound ABC in replication I, AB in replication II, BC in replication III. Each confounded interaction is then estimated only from the replications in which it was left unconfounded, for instance, ABC from replications II and III alone, rather than from all three. Since fewer replications contribute to each confounded interaction's estimate, its effective replication, and hence its precision, is reduced compared to an effect that is unconfounded throughout, but the interaction is at least recoverable, unlike in complete confounding.
 
 ### Advantages of confounding {.unnumbered}
 
@@ -485,7 +487,7 @@ With more than one replication, we get a choice.
 
 - Precision is gained by losing information on the confounded interaction(s), partly (partial) or entirely (complete).
 - Confounded contrasts are effectively replicated fewer times, so they are estimated with lower precision.
-- Careless confounding can throw away an effect that actually matters — only genuinely unimportant interactions should be confounded.
+- Careless confounding can throw away an effect that actually matters; only genuinely unimportant interactions should be confounded.
 - The analysis is more involved and becomes tricky if observations are missing.
 
 The one line to remember: **confounding trades away information on an unimportant (usually higher-order) interaction in order to shrink block size and sharpen the estimates of everything else.**
