@@ -7,14 +7,14 @@ After recording the yields, it is observed that the yield values are not identic
 * **Treatment variation**, which is due to the different effects of the fertilizers.
 * **Experimental error variation**, which results from uncontrolled or random factors affecting the plants.
 
-Thus, the total observed variation in the data can be expressed as:  
+Thus, the total observed variation in the data can be expressed as:
 
 $$\begin{aligned}
 \text{Total variation} = \ &\text{Variation due to treatments} \\
 &+ \text{Variation due to experimental error}
 \end{aligned}$$ {#eq-totalvar}
 
-In general, every experiment is conducted on a sample of experimental units, and conclusions are drawn about the corresponding population. In this example, the objective is to determine whether the mean yields produced by fertilizers **A**, **B**, and **C** differ significantly. However, any observed differences in sample means may simply be due to random experimental error rather than true treatment effects. Therefore, a statistical test is required to distinguish genuine treatment differences from chance variation.  
+In general, every experiment is conducted on a sample of experimental units, and conclusions are drawn about the corresponding population. In this example, the objective is to determine whether the mean yields produced by fertilizers **A**, **B**, and **C** differ significantly. However, any observed differences in sample means may simply be due to random experimental error rather than true treatment effects. Therefore, a statistical test is required to distinguish genuine treatment differences from chance variation.
 
 **Analysis of Variance (ANOVA)** is the statistical procedure used for this purpose. ANOVA partitions the total observed variation into components attributable to different sources of variation, primarily treatment and experimental error. The fundamental principle of ANOVA is that if the treatment effect is real, the variation among treatment means (between-treatment variation) should be substantially larger than the random variation within treatments (error variation).
 
@@ -62,7 +62,7 @@ The sum of squares is the sum of the squared differences of each observation fro
 
 Any function of sample values is known as a statistic. For example, the sample mean, sample variance, and the sum of all sample values are statistics, because these are all some functions of sample values. If a statistic is used to test a hypothesis, then it is known as a test statistic. Examples of test statistics are $t$, $F$, $\chi^2$, etc. The test statistic used in ANOVA is $F$.
 
-The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis $H_0$: $\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k$ is true, the ratio of the mean square treatment to the mean square error follows an F distribution.  
+The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis $H_0$: $\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k$ is true, the ratio of the mean square treatment to the mean square error follows an F distribution.
 
 The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in @fig-fdist, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.
 
@@ -113,7 +113,7 @@ Consider an experiment with $v$ treatments with $r$ replications each. The obser
 ```{r tbl-oneway,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "One-way classification of data"
 #| fig-cap: "One-way classification of data"
-#| filters: 
+#| filters:
 #| - parse-latex
 
 
@@ -129,7 +129,7 @@ dt %>%
     position = "center",
     bootstrap_options = "bordered"
   ) %>%
-  add_header_above(c(" " = 1, "Observations" = 5, " " = 1), bold = TRUE)
+  add_header_above(c(" " = 1, "Observations" = 5, " " = 1), bold = FALSE)
 ```
 
 #### Total sum of squares partitioning
@@ -210,13 +210,68 @@ $$\begin{aligned}
 &= vr - 1 - v + 1 = vr - v = v(r - 1)
 \end{aligned}$$ {#eq-onewaydf}
 
-| Source | d.f | S.S | M.S.S | F |
-|:-------|:---:|:----|:------|:--|
-| Between treatments | $v-1$ | $\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \text{C.F.} = \text{SST}$ | $\dfrac{\text{SST}}{v-1} = \text{MST}$ | $F = \dfrac{\text{MST}}{\text{MSE}}$ |
-| Within treatments (Error) | $v(r-1)$ | $\text{TSS} - \text{SST} = \text{SSE}$ | $\dfrac{\text{SSE}}{v(r-1)} = \text{MSE}$ | |
-| Total | $vr-1$ | $\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^2 - \dfrac{G^2}{n} = \text{TSS}$ | | |
+```{r tbl-onewayanova, echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+#| fig-cap: "One-way ANOVA table"
+#| tbl-cap: "One-way ANOVA table"
+#| filters:
+#| - parse-latex
+library(knitr)
+library(kableExtra)
+dt <- data.frame(
+  Source = c("Between treatments", "Within treatments (Error)", "Total"),
 
-: One-way ANOVA table {#tbl-onewayanova .bordered}
+  df = c(
+    "$v-1$",
+    "$v(r-1)$",
+    "$vr-1$"
+  ),
+
+  SS = c(
+    "$\\dfrac{\\sum_{i=1}^{v} T_i^2}{r} - \\text{C.F.} = \\text{SST}$",
+    "$\\text{TSS} - \\text{SST} = \\text{SSE}$",
+    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} Y_{ij}^2 - \\dfrac{G^2}{n} = \\text{TSS}$"
+  ),
+
+  MSS = c(
+    "$\\dfrac{\\text{SST}}{v-1} = \\text{MST}$",
+    "$\\dfrac{\\text{SSE}}{v(r-1)} = \\text{MSE}$",
+    ""
+  ),
+
+  F = c(
+    "$F = \\dfrac{\\text{MST}}{\\text{MSE}}$",
+    "",
+    ""
+  )
+)
+colnames(dt) <- c("Source", "d.f", "S.S", "M.S.S", "F")
+kbl(
+  dt,
+  booktabs = TRUE,
+  align = "c",
+  escape = FALSE
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(
+    3,
+    width = "5.5cm",
+    extra_css = "padding-right: 22px;"
+  ) %>%
+  column_spec(
+    4,
+    width = "4cm",
+    extra_css = "padding-left: 22px;"
+  )
+```
 
 Here $F \sim F_{(v-1),\ v(r-1)}$.
 
@@ -238,7 +293,7 @@ The data are arranged as shown in @tbl-onewayex.
 ```{r tbl-onewayex,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "One-way classified data on tiller count"
 #| fig-cap: "One-way classified data on tiller count"
-#| filters: 
+#| filters:
 #| - parse-latex
 
 
@@ -256,12 +311,12 @@ dt %>%
   add_header_above(c(" " = 1, "4 observations from each treatment" = 4, " " = 1), bold = TRUE)
 ```
 
-Here, an equal number of observations are taken from all treatments, so $r_1 = r_2 = \ldots = r_6 = 4$, and the total number of observations is $n = 24$. The grand total of all observations is $G = 1541$.  
+Here, an equal number of observations are taken from all treatments, so $r_1 = r_2 = \ldots = r_6 = 4$, and the total number of observations is $n = 24$. The grand total of all observations is $G = 1541$.
 
 ```{r tbl-onewayex1,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "ANOVA calculations for the tiller count data"
 #| fig-cap: "ANOVA calculations for the tiller count data"
-#| filters: 
+#| filters:
 #| - parse-latex
 
 
@@ -276,7 +331,7 @@ dt %>%
     position = "center",
     bootstrap_options = "bordered"
   ) %>%
-  add_header_above(c(" " = 1, "4 observations from each treatment" = 4, " " = 3), bold = TRUE)
+  add_header_above(c(" " = 1, "4 observations from each treatment" = 4, " " = 3), bold = FALSE)
 ```
 
 The sum of the last column gives $\sum_{i=1}^{6} \dfrac{T_i^2}{r_i} = 109372.25$.
@@ -294,19 +349,77 @@ $$\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.3 - 98
 Error Sum of Squares,
 
 $$\text{ESS} = \text{Total SS} - \text{Treatment SS} = 13359.96 - 10427.21 = 2932.75$$
+```{r tbl-onewayresult, echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
+#| fig-cap: "One-way ANOVA table for the tiller count data"
+#| tbl-cap: "One-way ANOVA table for the tiller count data"
+#| filters:
+#| - parse-latex
+library(knitr)
+library(kableExtra)
+dt <- data.frame(
+  Source = c("Between treatments", "Within treatments (Error)", "Total"),
 
-| Source | d.f | S.S | M.S.S | F (Cal) | F (tab) |
-|:-------|:---:|:---:|:------|:-------:|:-------:|
-| Between treatments | $6-1=5$ | 10427.21 | $\dfrac{10427.21}{5}=2085.442$ | $\dfrac{2085.442}{162.93}=12.7996^{**}$ | $F_{(5,18)}=2.77$ |
-| Within treatments (Error) | $6(4-1)=18$ | 2932.74 | $\dfrac{2932.74}{18}=162.93$ | | |
-| Total | $24-1=23$ | 13359.95 | | | |
+  df = c(
+    "$6-1=5$",
+    "$6(4-1)=18$",
+    "$24-1=23$"
+  ),
 
-: One-way ANOVA table for the tiller count data {#tbl-onewayresult .bordered}
+  SS = c(
+    "10427.21",
+    "2932.74",
+    "13359.95"
+  ),
+
+  MSS = c(
+    "$\\dfrac{10427.21}{5}=2085.442$",
+    "$\\dfrac{2932.74}{18}=162.93$",
+    ""
+  ),
+
+  FCal = c(
+    "$\\dfrac{2085.442}{162.93}=12.7996^{**}$",
+    "",
+    ""
+  ),
+
+  FTab = c(
+    "$F_{(5,18)}=2.77$",
+    "",
+    ""
+  )
+)
+colnames(dt) <- c("Source", "d.f", "S.S", "M.S.S", "F (Cal)", "F (tab)")
+kbl(
+  dt,
+  booktabs = TRUE,
+  align = "c",
+  escape = FALSE
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(
+    3,
+    width = "3cm"
+  ) %>%
+  column_spec(
+    4,
+    width = "4cm"
+  )
+```
 
 Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.
 :::
 
-### Two-way ANOVA  
+### Two-way ANOVA
 
 In one-way analysis of variance (one-way ANOVA), only one factor is considered to influence the response variable. However, in many practical situations, the response variable may be affected by two factors simultaneously. When the objective is to study the effects of two factors on a response variable, two-way analysis of variance (two-way ANOVA) is used. Compared with one-way ANOVA, two-way ANOVA provides more information by allowing the effects of both factors to be examined in a single analysis.
 
@@ -332,7 +445,7 @@ Consider an experiment with $v$ levels of factor 1 and $r$ levels of factor 2. T
 ```{r tbl-twoway,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Two-way classification of data"
 #| fig-cap: "Two-way classification of data"
-#| filters: 
+#| filters:
 #| - parse-latex
 
 
@@ -369,14 +482,75 @@ $$\begin{aligned}
 &= vr - v - r + 1 = (v - 1)(r - 1)
 \end{aligned}$$ {#eq-twowaydf}
 
-| Source | D.F. | S.S | M.S.S | F |
-|:-------|:----:|:----|:------|:--|
-| Factor A | $v-1$ | $\dfrac{\sum_{i=1}^{v} T_i^2}{r} - \dfrac{G^2}{vr} = \text{SSA}$ | $\text{MSA} = \dfrac{\text{SSA}}{v-1}$ | $F_A = \dfrac{\text{MSA}}{\text{MSE}}$ |
-| Factor B | $r-1$ | $\dfrac{\sum_{i=1}^{v} B_i^2}{v} - \dfrac{G^2}{vr} = \text{SSB}$ | $\text{MSB} = \dfrac{\text{SSB}}{r-1}$ | $F_B = \dfrac{\text{MSB}}{\text{MSE}}$ |
-| Error | $(v-1)(r-1)$ | $\text{ESS} = \text{Total SS} - \text{SSA} - \text{SSB}$ | $\text{MSE} = \dfrac{\text{SSE}}{(v-1)(r-1)}$ | |
-| Total | $vr-1$ | $\sum_{i=1}^{v}\sum_{j=1}^{r} y_{ij}^2 - \dfrac{G^2}{vr} = \text{Total SS}$ | | |
+```{r tbl-twowaytable,echo=FALSE,warning=FALSE,results='asis'}
+#| fig-cap: "Two-way ANOVA table"
+#| tbl-cap: "Two-way ANOVA table"
+#| filters:
+#| - parse-latex  
 
-: Two-way ANOVA table {#tbl-twowaytable .bordered}
+
+library(knitr)
+library(kableExtra)
+dt <- data.frame(
+  Source = c("Factor A", "Factor B", "Error", "Total"),
+
+  df = c(
+    "$v-1$",
+    "$r-1$",
+    "$(v-1)(r-1)$",
+    "$vr-1$"
+  ),
+
+  SS = c(
+    "$\\dfrac{\\sum_{i=1}^{v} T_i^2}{r} - \\dfrac{G^2}{vr} = \\text{SSA}$",
+    "$\\dfrac{\\sum_{i=1}^{v} B_i^2}{v} - \\dfrac{G^2}{vr} = \\text{SSB}$",
+    "$\\text{ESS} = \\text{Total SS} - \\text{SSA} - \\text{SSB}$",
+    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} y_{ij}^2 - \\dfrac{G^2}{vr} = \\text{Total SS}$"
+  ),
+
+  MSS = c(
+    "$\\text{MSA} = \\dfrac{\\text{SSA}}{v-1}$",
+    "$\\text{MSB} = \\dfrac{\\text{SSB}}{r-1}$",
+    "$\\text{MSE} = \\dfrac{\\text{SSE}}{(v-1)(r-1)}$",
+    ""
+  ),
+
+  F = c(
+    "$F_A = \\dfrac{\\text{MSA}}{\\text{MSE}}$",
+    "$F_B = \\dfrac{\\text{MSB}}{\\text{MSE}}$",
+    "",
+    ""
+  )
+)
+colnames(dt) <- c("Source", "D.F.", "S.S", "M.S.S", "F")
+kbl(
+  dt,
+  booktabs = TRUE,
+  align = "c",
+  escape = FALSE
+) %>%
+  kable_classic(
+    full_width = FALSE,
+    html_font = "Georgia"
+  ) %>%
+  kable_styling(
+    full_width = FALSE,
+    position = "center",
+    bootstrap_options = "bordered"
+  ) %>%
+  row_spec(0, bold = TRUE) %>%
+  column_spec(
+    3,
+    width = "5.5cm",
+    extra_css = "padding-right: 22px;"
+  ) %>%
+  column_spec(
+    4,
+    width = "4cm",
+    extra_css = "padding-left: 22px;"
+  )
+```
+
 
 Here there are two F values, one for factor A and one for factor B. $F_A \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_B \sim F_{(r-1),\ (v-1)(r-1)}$.
 
@@ -406,7 +580,7 @@ Four chemicals $S_1$, $S_2$, $S_3$, and $S_4$ were administered to 5 cow breeds 
 ```{r tbl-twowayex,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Two-way classification of observations for chemicals and breeds"
 #| fig-cap: "Two-way classification of observations for chemicals and breeds"
-#| filters: 
+#| filters:
 #| - parse-latex
 
 
@@ -421,7 +595,7 @@ dt %>%
     position = "center",
     bootstrap_options = "bordered"
   ) %>%
-  add_header_above(c(" " = 1, "Breeds of cow" = 5, " " = 1), bold = TRUE)
+  add_header_above(c(" " = 1, "Breeds of cow" = 5, " " = 1), bold = FALSE)
 ```
 
 Here $n = 20$, $v = 5$, and $r = 4$; factor A = cow breeds, factor B = chemicals, and the grand total $G = 874$.

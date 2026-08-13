@@ -143,7 +143,7 @@ Analysis is same as that of a Randomised block design except that the sum of squ
 If the interaction turns out to be significant a two way table (factor A versus factor B)of treatment means are prepared and comparison can be made.\
 In that case Critical difference can be obtained as = $t_\alpha \times \sqrt{\frac{2MSE}{r}}$
 
-### Analysis of 2^3^ factorial experiments
+### Analysis of 2^3^ factorial experiments {#sec-interaction}
 
 There will be three factors are A ,B and C each at two levels. Then the eight treatment combinations are represented as\
 $$a_0b_0c_0, a_0b_0c_1 , a_0b_1c_o , a_0b_1c_1 , a_1b_0c_o, a_1b_0c_1 , a_1b_1c_0 , a_1b_1c_1$$ If these eight combinations are allotted at random to a single block of a RBD and if there are r such blocks( replications); we get a 2^3^ factorial design in r blocks. Then there are three main effects A, B and C ; $(^3_2) = 3$, two factor interactions (A×B, A×C and B×C) and $(^3_3) = 1$, three factor interaction (A×B×C).\
@@ -421,31 +421,74 @@ CD for computing mean values of A levels = $t_{\alpha} \cdot \sqrt{\frac{2MSE}{r
 CD for computing mean values of B levels = $t_{\alpha} \cdot \sqrt{\frac{2MSE}{r\times 2}}$
 
 If the interaction(A×B) turns out to be significant the mean values are obtained from the above two way table and comparison can be made then 
-$CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$
+$CD=t_{\alpha} \cdot \sqrt{\frac{2MSE}{r}}$  
 
-## Confounding 
+## Confounding
 
-When the number of factors or their levels increase, the treatment combinations grow exponentially, making it challenging to fit all combinations into a single homogeneous block. For instance, a 2^5^ factorial design results in 32 treatment combinations, and creating blocks with 32 plots may compromise homogeneity. To address this, alternative experimental designs are required to handle a large number of treatments effectively. One approach involves dividing the treatments into smaller groups that match the number of blocks per replication. These smaller groups are then distributed across multiple blocks within each replication, allowing for better management of block size while maintaining experimental integrity.
+When the number of factors or their levels increases, the treatment combinations grow rapidly. A $2^5$ factorial has 32 treatment combinations. To test these in a Randomised Complete Block Design (RCBD), every block would need 32 plots. Finding 32 plots uniform in soil fertility, moisture, and slope is very difficult, because the larger a block, the more variation it contains, and this variation inflates the experimental error and reduces precision.
 
-There are various methods for grouping treatments into as many groups as there are blocks per replication. In factorial experiments where each factor has two levels, treatment combinations can be split into two groups to obtain interaction contrasts. These two groups, representing a specific interaction, can form contrasts of two blocks, each containing half the total treatments. In this arrangement, the interaction contrast and the contrast between the two block totals become identical and inseparable. This means the interaction has been confounded with the blocks, effectively making it unmeasurable. However, by reducing block size through this approach, the precision of estimating other interactions and main effects improves. This technique of reducing block size by aligning one or more interaction contrasts with block contrasts is known as **confounding**. Generally, higher-order interactions (those involving three or more factors) are chosen for confounding since their loss is considered less significant. Experimenters typically focus on estimating main effects and two-factor interactions, which should be preserved and not confounded whenever possible.
+The way out is to use smaller blocks. Instead of one big block of 32 plots, we split each replication into two smaller blocks of 16 plots each. Smaller blocks are more homogeneous, so the error goes down. But splitting comes at a price, and understanding that price is the whole idea of confounding.
 
-When two or more replications are involved, confounding can be classified as either **complete** or **partial**, depending on the interactions confounded across replications. In complete confounding, the same set of interactions is confounded in all replications, resulting in a total loss of information on those interactions. In contrast, partial confounding involves confounding different sets of interactions in different replications, allowing the recovery of information on the confounded interactions from the replications where they are not confounded.
+### The core idea {.unnumbered}
 
-**Advantages of Confounding**
+To split the treatments into two blocks, we need a rule that decides which treatment combination goes into which block. We use one of the interaction contrasts to make this split. When we do that, the difference between the two block totals becomes exactly the same as that interaction's contrast so that the two are algebraically identical and cannot be separated. We can no longer tell whether a difference between the blocks is due to the blocks (soil, field position) or due to that interaction.
 
-- Confounding significantly reduces experimental error by dividing the experimental material into homogeneous subsets or blocks.
+That interaction is said to be confounded with blocks *i*.*e* it is mixed up with the block effect and can no longer be estimated. In exchange, every other main effect and interaction is now estimated within smaller, more homogeneous blocks, so they are estimated more precisely.
 
-- By eliminating variation among incomplete blocks within replications, the error mean square is reduced compared to a randomized block design (RBD), thereby increasing the precision of comparisons for certain treatment effects.
+This is the trade-off: we deliberately sacrifice information on one interaction (usually an unimportant one or higher order) to gain precision on everything else.
 
-**Disadvantages of Confounding**
+### A worked example: $2^3$ factorial {.unnumbered}
 
-- The increased precision is achieved at the expense of losing partial or complete information on certain interactions, often those deemed less important.
+Take three factors: A (Nitrogen), B (Phosphorus), C (Potassium) — each at two levels (low = absent, high = present). This gives $2^3 = 8$ treatment combinations, written in standard notation:
 
-- Confounded contrasts are replicated fewer times than other contrasts, leading to lower precision in estimating them due to reduced replication.
+$$(1),\ a,\ b,\ ab,\ c,\ ac,\ bc,\ abc$$
 
-- Indiscriminate confounding can result in the loss of critical information, including contrasts or comparisons of significant importance. Experimenters must carefully confound only those interactions considered less relevant.
+where a letter present means "high level of that factor." Suppose our field only has uniform patches of 4 plots, not 8. We must split the 8 treatments into two blocks of 4. We decide to confound the highest-order interaction, $ABC$, because a three-factor interaction is usually of least practical interest.
 
-- The algebraic computations involved in confounding are more complex, and the statistical analysis becomes challenging, especially if some observations are missing.
+The rule: a treatment goes into one block or the other depending on the sign it carries in the ABC contrast. Treatments where the letters $a$, $b$, $c$ appear an even number of times together go in one block; an odd number in the other.
+
+: Splitting a $2^3$ factorial by confounding ABC {#tbl-confound .bordered}
+
+| Block 1 (even) | Block 2 (odd) |
+|:--------------:|:-------------:|
+|      (1)       |       a       |
+|       ab       |       b       |
+|       ac       |       c       |
+|       bc       |      abc      |
+
+Now look at what happened. From @sec-interaction, the interaction effect ABC is given by
+
+$$ABC = (a+\ b+\ c+\ abc)-((1)+\ ab+\ ac+\ bc)$$ {#eq-abccontrast}
+
+The difference between the two block totals here is
+
+$$\text{Block 1} - \text{Block 2} = ((1)+\ ab+\ ac+\ bc)-(a+\ b+\ c+\ abc)$$ {#eq-blockdiff}
+
+Comparing @eq-abccontrast and @eq-blockdiff, the block difference is exactly the negative of the ABC contrast, that is, $\text{Block 1} - \text{Block 2} = -ABC$. Since the two quantities are the same linear combination of the data up to sign, they are algebraically identical, and we cannot tell whether an observed difference between the two blocks is due to the blocks themselves or due to the ABC interaction.
+
+So if Block 1 sits on richer soil than Block 2, that soil difference is inseparable from the ABC interaction, we have lost ABC. But the main effects A, B, C and the two-factor interactions AB, AC, BC are all balanced across the two blocks (each appears equally in both), so they are estimated cleanly, and now within blocks of 4 uniform plots instead of 8 uneven ones.
+
+### Complete vs partial confounding {.unnumbered}
+
+With more than one replication, we get a choice.
+
+[**Complete confounding**]{.underline} — confound the *same* interaction (say ABC) in every replication. ABC is then lost entirely; no replication can recover it.
+
+[**Partial confounding**]{.underline} — confound a *different* interaction in each replication. For example, confound ABC in replication I, AB in replication II, BC in replication III. Now ABC is confounded only in replication I, so it can still be estimated from replications II and III (where it is untouched). Every interaction is recovered from the replications where it is *not* confounded — at the cost of slightly reduced replication for each.
+
+### Advantages of confounding {.unnumbered}
+
+- Reduces experimental error by breaking the material into small, homogeneous blocks.
+- Increases the precision of the main effects and important interactions we care about, compared with an ordinary RBD.
+
+### Disadvantages of confounding {.unnumbered}
+
+- Precision is gained by losing information on the confounded interaction(s), partly (partial) or entirely (complete).
+- Confounded contrasts are effectively replicated fewer times, so they are estimated with lower precision.
+- Careless confounding can throw away an effect that actually matters — only genuinely unimportant interactions should be confounded.
+- The analysis is more involved and becomes tricky if observations are missing.
+
+The one line to remember: **confounding trades away information on an unimportant (usually higher-order) interaction in order to shrink block size and sharpen the estimates of everything else.**
 
 
 ::: {.callout-caution title="Historical Insights"}
@@ -698,163 +741,163 @@ Number of treatment combinations in a factorial experiment:
 
 $$
 N=\prod_{i=1}^{n}s_i
-$$
+$$ {#eq-ntreat}
 
 Number of treatment combinations in a $2^n$ factorial experiment:
 
 $$
 N=2^n
-$$
+$$ {#eq-n2n}
 
 Number of treatment combinations in a $3^n$ factorial experiment:
 
 $$
 N=3^n
-$$
+$$ {#eq-n3n}
 
 Main effect of A in a $2^2$ factorial experiment:
 
 $$
 \text{Main effect of A}=\frac{(A)_{i=1}-(A)_{i=0}}{2r}
-$$
+$$ {#eq-maineffA22}
 
 Sum of squares due to A in a $2^2$ factorial experiment:
 
 $$
 SS_A=\frac{[(A)_{i=1}-(A)_{i=0}]^2}{4r}
-$$
+$$ {#eq-ssA22}
 
 Main effect of B in a $2^2$ factorial experiment:
 
 $$
 \text{Main effect of B}=\frac{(B)_{j=1}-(B)_{j=0}}{2r}
-$$
+$$ {#eq-maineffB22}
 
 Sum of squares due to B in a $2^2$ factorial experiment:
 
 $$
 SS_B=\frac{[(B)_{j=1}-(B)_{j=0}]^2}{4r}
-$$
+$$ {#eq-ssB22}
 
 Interaction effect of $A \times B$ in a $2^2$ factorial experiment:
 
 $$
 \text{Interaction effect of }A\times B=\frac{(AB)_{i+j=0}-(AB)_{i+j=1}}{2r}
-$$
+$$ {#eq-intAB22}
 
 Sum of squares due to $A \times B$:
 
 $$
 SS_{AB}=\frac{[(AB)_{i+j=0}-(AB)_{i+j=1}]^2}{4r}
-$$
+$$ {#eq-ssAB22}
 
 Critical difference for a significant interaction in a $2^2$ factorial experiment:
 
 $$
 CD=t_\alpha\sqrt{\frac{2MSE}{r}}
-$$
+$$ {#eq-cd22int}
 
 Main effect of A in a $2^3$ factorial experiment:
 
 $$
 \text{Main effect of A}=\frac{(A)_{i=1}-(A)_{i=0}}{4r}
-$$
+$$ {#eq-maineffA23}
 
 Sum of squares due to A in a $2^3$ factorial experiment:
 
 $$
 SS_A=\frac{[(A)_{i=1}-(A)_{i=0}]^2}{8r}
-$$
+$$ {#eq-ssA23}
 
 Interaction effect of $B\times C$ in a $2^3$ factorial experiment:
 
 $$
 \text{Interaction effect of }B\times C=\frac{(BC)_{j+k=0}-(BC)_{j+k=1}}{4r}
-$$
+$$ {#eq-intBC23}
 
 Sum of squares due to $B\times C$:
 
 $$
 SS_{BC}=\frac{[(BC)_{j+k=0}-(BC)_{j+k=1}]^2}{8r}
-$$
+$$ {#eq-ssBC23}
 
 Interaction effect of $A\times B\times C$:
 
 $$
 \text{Interaction effect of }A\times B\times C=\frac{(ABC)_{i+j+k=1}-(ABC)_{i+j+k=0}}{4r}
-$$
+$$ {#eq-intABC}
 
 Sum of squares due to $A\times B\times C$:
 
 $$
 SS_{ABC}=\frac{[(ABC)_{i+j+k=1}-(ABC)_{i+j+k=0}]^2}{8r}
-$$
+$$ {#eq-ssABC}
 
 Critical difference for comparing means of a two-factor interaction in a $2^3$ factorial:
 
 $$
 CD=t_\alpha\sqrt{\frac{MSE}{r}}
-$$
+$$ {#eq-cd23twofactor}
 
 Critical difference for comparing means when the three-factor interaction is significant:
 
 $$
 CD=t_\alpha\sqrt{\frac{2MSE}{r}}
-$$
+$$ {#eq-cd23threefactor}
 
 Linear comparison for a factor at three levels:
 
 $$
 A_L=(A)_{i=1}-(A)_{i=0}
-$$
+$$ {#eq-linearcomp}
 
 Quadratic comparison for a factor at three levels:
 
 $$
 A_Q=(A)_{i=2}+(A)_{i=0}-2(A)_{i=1}
-$$
+$$ {#eq-quadcomp}
 
 Sum of squares due to A in a $3^2$ factorial:
 
 $$
 SS_A=\frac{(A)_{i=0}^2+(A)_{i=1}^2+(A)_{i=2}^2}{3r}-CF
-$$
+$$ {#eq-ssA32}
 
 Sum of squares due to B in a $3^2$ factorial:
 
 $$
 SS_B=\frac{(B)_{j=0}^2+(B)_{j=1}^2+(B)_{j=2}^2}{3r}-CF
-$$
+$$ {#eq-ssB32}
 
 Sum of squares due to $A\times B$ in a $3^2$ factorial:
 
 $$
 SS_{AB}=SS_{\text{two-way table}}-(SS_A+SS_B)
-$$
+$$ {#eq-ssAB32}
 
 Critical difference for comparing levels of A in a $3^2$ factorial:
 
 $$
 CD=t_\alpha\sqrt{\frac{2MSE}{3r}}
-$$
+$$ {#eq-cdA32}
 
 Critical difference for comparing levels of A in a $2\times3$ factorial:
 
 $$
 CD_A=t_\alpha\sqrt{\frac{2MSE}{3r}}
-$$
+$$ {#eq-cdA23asym}
 
 Critical difference for comparing levels of B in a $2\times3$ factorial:
 
 $$
 CD_B=t_\alpha\sqrt{\frac{2MSE}{2r}}
-$$
+$$ {#eq-cdB23asym}
 
 Critical difference for comparing means when $A\times B$ is significant:
 
 $$
 CD=t_\alpha\sqrt{\frac{2MSE}{r}}
-$$
+$$ {#eq-cdAB23asym}
 
 ### Quick revision {.unnumbered}
 
