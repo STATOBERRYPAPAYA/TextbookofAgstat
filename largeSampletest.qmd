@@ -36,6 +36,8 @@ The test statistic $Z$ is calculated from a large sample using appropriate formu
 
 -   Test for the equality of two means
 
+-   Test for the difference of two standard deviations
+
 ### Decision rule for the Z test {#sec-decision}
 
 Let $Z$ be the calculated value and $\alpha$ be the level of significance. We reject the null hypothesis if:
@@ -414,6 +416,70 @@ Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alp
 Two random samples were drawn from two populations and the following data were obtained. Test whether the population means are equal. $n_1$ = 400, $n_2$ = 400, $\overline{x}_1$ = 250, $\overline{x}_2$ = 220, $s_1$ = 40, $s_2$ = 55. ($\alpha$ = 0.05)
 :::
 
+## Test for the difference of standard deviations
+
+Let there be two populations with standard deviations $\sigma_1$ and $\sigma_2$. Let samples of sizes $n_1$ and $n_2$ be drawn from these populations, with sample standard deviations $s_1$ and $s_2$. We want to test whether the two population standard deviations differ significantly, based on the sample standard deviations.
+
+The null hypothesis to be tested is:
+
+$H_0$: $\sigma_1$ = $\sigma_2$
+
+The alternative hypothesis may be either:
+
+$H_1$: $\sigma_1$ \< $\sigma_2$ (left-tailed alternative)
+
+$H_1$: $\sigma_1$ \> $\sigma_2$ (right-tailed alternative)
+
+$H_1$: $\sigma_1$ $\mathbf{\neq}$ $\sigma_2$ (two-tailed alternative)
+
+For large samples, the sample standard deviation is approximately normally distributed about the population standard deviation, with the standard error of the difference of two sample standard deviations given by
+
+$$\text{S.E.}(s_1 - s_2) = \sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}}$$ {#eq-sesd}
+
+Hence, under the null hypothesis, the test statistic is
+
+$$Z = \frac{s_1 - s_2}{\sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}}} \sim N(0,1)$$ {#eq-zsd-known}
+
+When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+
+The population standard deviations $\sigma_1$ and $\sigma_2$ are usually unknown, and for large samples they are replaced by the corresponding sample standard deviations. The test statistic then reduces to
+
+$$Z = \frac{s_1 - s_2}{\sqrt{\dfrac{s_1^2}{2n_1} + \dfrac{s_2^2}{2n_2}}} \sim N(0,1)$$ {#eq-zsd-unknown}
+
+::: {#exm-sd}
+Two large samples of plant height measurements were taken from two fields. The first sample of 1000 plants had a standard deviation of 6.0 cm, and the second sample of 1200 plants had a standard deviation of 5.5 cm. Test whether the two populations have equal standard deviations, at the 5% level of significance.
+
+**Solution**
+
+Null hypothesis, $H_0$: $\sigma_1$ = $\sigma_2$
+
+Alternative hypothesis, $H_1$: $\sigma_1$ $\mathbf{\neq}$ $\sigma_2$ (two-tailed test)
+
+Sample size ($n_1$) = 1000
+
+Sample size ($n_2$) = 1200
+
+Sample standard deviation of the first sample ($s_1$) = 6.0
+
+Sample standard deviation of the second sample ($s_2$) = 5.5
+
+Level of significance, $\alpha$ = 0.05
+
+Since the population standard deviations are unknown, we use @eq-zsd-unknown:
+
+$$Z = \frac{s_1 - s_2}{\sqrt{\dfrac{s_1^2}{2n_1} + \dfrac{s_2^2}{2n_2}}}$$
+
+$$= \frac{6.0 - 5.5}{\sqrt{\dfrac{(6.0)^2}{2(1000)} + \dfrac{(5.5)^2}{2(1200)}}}$$
+
+$$= \frac{0.5}{\sqrt{0.0180 + 0.0126}} = \frac{0.5}{0.1749} = 2.86$$
+
+Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (2.86) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the two populations differ significantly in their standard deviations.
+:::
+
+::: {#exr-sd}
+Two random samples gave the following data. Test whether the population standard deviations are equal. $n_1$ = 800, $n_2$ = 900, $s_1$ = 4.2, $s_2$ = 3.8. ($\alpha$ = 0.05)
+:::
+
 ## Chapter Summary
 
 ### Fill in the blanks {.unnumbered}
@@ -596,6 +662,8 @@ Answers are given at the end of the chapter.
 
 20. A calculated $Z$ value is $-2.00$ in a left-tailed test at $\alpha=0.05$. State the decision.
 
+21. Two large samples of sizes 1000 and 1200 have standard deviations 6.0 cm and 5.5 cm respectively. Test whether the two population standard deviations differ significantly at $\alpha=0.05$.
+
 ### Important formulae {.unnumbered}
 
 Central Limit Theorem:
@@ -662,6 +730,12 @@ Equality of two means when population standard deviations are unequal:
 
 $$
 Z=\frac{\bar{x}_1-\bar{x}_2}{\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}}
+$$
+
+Difference of two standard deviations (population standard deviations unknown):
+
+$$
+Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 $$
 
 ### Critical values of the standard normal distribution {.unnumbered}
@@ -772,6 +846,8 @@ $$
 19. For a right-tailed test at $\alpha=0.05$, $Z_{0.05}=1.645$. Given $Z=2.00$, since $2.00>1.645$, we reject $H_0$.
 
 20. For a left-tailed test at $\alpha=0.05$, $-Z_{0.05}=-1.645$. Given $Z=-2.00$, since $-2.00<-1.645$, we reject $H_0$.
+
+21. Given $n_1=1000$, $n_2=1200$, $s_1=6.0$, $s_2=5.5$. Since the population standard deviations are unknown, using @eq-zsd-unknown, $Z=\frac{6.0-5.5}{\sqrt{\frac{6.0^2}{2(1000)}+\frac{5.5^2}{2(1200)}}}=\frac{0.5}{0.1749}=2.86$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|2.86|>1.960$, we reject $H_0$. The two populations differ significantly in their standard deviations.
 
 ::: {.callout-caution title="Historical Insights"}
 **Why 30? The bell curve, the astronomer, and the birth of large-sample theory**
