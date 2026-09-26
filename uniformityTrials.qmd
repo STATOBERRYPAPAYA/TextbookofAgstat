@@ -228,7 +228,7 @@ The optimal plot size can be identified using this method. From the possible plo
 #| tbl-cap: "Nine different plot sizes created from the uniformity trial data"
 library(knitr)
 library(kableExtra)
-dt<-read.csv("csv/Book20.csv")
+dt<-read.csv("csv/Book20.csv", check.names = FALSE)
 kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
   kable_classic(full_width = FALSE, html_font = "Georgia") %>%
   kable_styling(
@@ -269,16 +269,17 @@ The coefficient of variation is calculated as $\dfrac{\text{standard deviation}}
 #| tbl-cap: "Variance per unit area and C.V for all plot sizes"
 library(knitr)
 library(kableExtra)
-dt<-read.csv("csv/Book21.csv")
+dt<-read.csv("csv/Book21.csv", check.names = FALSE)
 kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
   kable_classic(full_width = FALSE, html_font = "Georgia") %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
-    bootstrap_options = "bordered"
+    bootstrap_options = "bordered",
+    font_size = 9
   ) %>%
   row_spec(0, bold = TRUE, align = "c") %>%
-  column_spec(1:7, width = "3cm", extra_css = "text-align: center;")
+  column_spec(1:7, width = "2cm", extra_css = "text-align: center;")
 ```
 
 For each plot size having more than one shape (here plot size 5 has more than one shape), test the homogeneity of the between-plot variances $V_{(x)}$ to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. For each plot size whose plot-shape effect is non-significant, compute the average of the $V_{x}$ values over all plot shapes and proceed with the estimation of Smith's index of soil heterogeneity.

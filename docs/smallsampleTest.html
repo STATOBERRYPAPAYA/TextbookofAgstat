@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.6.42">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -53,17 +53,21 @@ div.csl-indent {
 <link href="./designofexperiments.html" rel="next">
 <link href="./largeSampletest.html" rel="prev">
 <link href="./images/cover.jpg" rel="icon" type="image/jpeg">
-<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-2f5df379a58b258e96c21c0638c20c03.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b53751a350365c71b6c909e95f209ed1.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-9fe799a8b491b95f8638fac26051bc8e.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-bad6a7b64396174f9e6ce9f1aaf6e4b8.min.css" rel="prefetch" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -110,7 +114,7 @@ const typesetMath = (el) => {
     var macros = [];
     for (var i = 0; i < mathElements.length; i++) {
       var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
         window.katex.render(texText.data, mathElements[i], {
           displayMode: mathElements[i].classList.contains('display'),
           throwOnError: false,
@@ -140,7 +144,169 @@ window.Quarto = {
 <meta name="twitter:image-width" content="956">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -164,7 +330,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -454,6 +621,7 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Small sample tests</span></h1>
@@ -485,9 +653,24 @@ table tbody tr:nth-child(even) {
   background-color: transparent !important;
 }
 </style>
-<p>If the sample size <span class="math inline">\(n\)</span> is less than 30 (<span class="math inline">\(n &lt; 30\)</span>), it is known as a <strong>small sample</strong>. For small samples, the sampling distributions commonly used are the <span class="math inline">\(\chi^2\)</span> (chi-square), <span class="math inline">\(F\)</span>, and <span class="math inline">\(t\)</span> distributions. The study of the sampling distribution of a statistic for small samples is known as <strong>small sample theory</strong>.</p>
+<p>In the previous chapter we have seen tests for samples having size larger than 30. If the sample size <span class="math inline">\(n\)</span> is less than 30 (<span class="math inline">\(n &lt; 30\)</span>), it is known as a <strong>small sample</strong>. For small samples, the sampling distributions commonly used are the <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span> and <span class="math inline">\(\chi^2\)</span> (chi-square) distributions. The study of the sampling distribution of a statistic for small samples is known as <strong>small sample theory</strong>.</p>
 <section id="tests-based-on-students-t-distribution-t-tests" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="tests-based-on-students-t-distribution-t-tests"><span class="header-section-number">15.1</span> Tests based on Student’s t distribution (t-tests)</h2>
+<p>The <span class="math inline">\(t\)</span>-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. distribution with different degrees of freedom is shown in <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>. As the degrees of freedom increase, the <span class="math inline">\(t\)</span> distribution converges to the standard normal distribution. <span class="math inline">\(t\)</span>-statistic can be calculated from the sample using formulas for different situations discussed below.</p>
+<div class="cell">
+<div class="cell-output-display">
+<div id="fig-tdist" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="smallsampleTest_files/figure-html/fig-tdist-1.png" class="img-fluid figure-img" width="672">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tdist-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;15.1: t distribution curves for varying degrees of freedom, compared with the standard normal
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
 <p><strong>Assumptions of the t-test</strong></p>
 <ul>
 <li><p>The parent population from which the sample is drawn is normal.</p></li>
@@ -544,10 +727,10 @@ Sl No.&nbsp;
 Yield
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)\]</span>
+<span class="math inline">\(\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)^{\mathbf{2}}\]</span>
+<span class="math inline">\(\left( \mathbf{x}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{x}} \right)^{\mathbf{2}}\)</span>
 </th>
 </tr>
 </thead>
@@ -716,8 +899,8 @@ Yield
 <p>Let there be two normally distributed populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Let the population standard deviations be equal and unknown. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations, with sample means <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> respectively. We want to test whether the two population means are significantly different, based on the sample means.</p>
 <p>There are two cases under this situation:</p>
 <ol type="1">
-<li><p>Population variances are equal.</p></li>
-<li><p>Population variances are unequal.</p></li>
+<li><p>Population variances are equal. (Homogeneous variances)</p></li>
+<li><p>Population variances are unequal. (Heterogeneous variances)</p></li>
 </ol>
 <p>Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see <a href="#sec-ftest" class="quarto-xref"><span>Section 15.6</span></a>).</p>
 <section id="when-the-population-variances-are-equal-homogeneous" class="level3 unnumbered">
@@ -815,19 +998,19 @@ Table&nbsp;15.2: Calculation of paired differences
 Sl No.&nbsp;
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\mathbf{A}\]</span>
+<span class="math inline">\(\mathbf{A}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\mathbf{B}\]</span>
+<span class="math inline">\(\mathbf{B}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\mathbf{d}_{\mathbf{i}} \mathbf{= A - B}\]</span>
+<span class="math inline">\(\mathbf{d}_{\mathbf{i}} \mathbf{= A - B}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}}\]</span>
+<span class="math inline">\(\mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\left( \mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}} \right)^{\mathbf{2}}\]</span>
+<span class="math inline">\(\left( \mathbf{d}_{\mathbf{i}} \mathbf{-} \overline{\mathbf{d}} \right)^{\mathbf{2}}\)</span>
 </th>
 </tr>
 </thead>
@@ -1019,16 +1202,22 @@ Sl No.&nbsp;
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (two-tailed alternative)</p>
 <p>The test statistic is:</p>
 <p><span id="eq-t-corr"><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} \tag{15.6}\]</span></span></p>
-<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of <span class="math inline">\(t\)</span> corresponding to <span class="math inline">\(n - 2\)</span> degrees of freedom and the level of significance <span class="math inline">\(\alpha\)</span>. In our case <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of <span class="math inline">\(t\)</span> corresponding to <span class="math inline">\(n - 2\)</span> degrees of freedom and the level of significance <span class="math inline">\(\alpha\)</span>. In our case <span class="math inline">\(\alpha\)</span> = 0.05. This t-test is used when the sample size is small (<span class="math inline">\(n &lt; 30\)</span>).</p>
+<p><strong>When the sample size is large (<span class="math inline">\(n \geq 30\)</span>)</strong>, the exact distribution of <span class="math inline">\(r\)</span> is no longer close to a <span class="math inline">\(t\)</span> distribution, and Fisher’s Z-transformation is preferred. The sample correlation coefficient <span class="math inline">\(r\)</span> is transformed as:</p>
+<p><span id="eq-fisherz"><span class="math display">\[Z = \frac{1}{2} \ln\left( \frac{1 + r}{1 - r} \right) \tag{15.7}\]</span></span></p>
+<p>Under the null hypothesis <span class="math inline">\(H_0: \rho = 0\)</span>, the statistic <span class="math inline">\(Z\sqrt{n - 3}\)</span> follows approximately a standard normal distribution. The test statistic is therefore:</p>
+<p><span id="eq-fisherz-test"><span class="math display">\[Z_{\text{cal}} = Z \sqrt{n - 3} \tag{15.8}\]</span></span></p>
+<p>We reject the null hypothesis if <span class="math inline">\(|Z_{\text{cal}}|\)</span> exceeds the table value of the standard normal distribution at the chosen level of significance (1.96 at the 5% level, two-tailed).</p>
 <div id="exm-corr1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.3</strong></span> A correlation coefficient of 0.2 was derived from a random sample of 625 pairs of observations. Test whether the population correlation coefficient is significant.</p>
+<p><span class="theorem-title"><strong>Example 15.3</strong></span> A plant breeder studied the relationship between plant height and grain yield in a sample of 18 rice genotypes and obtained a correlation coefficient of 0.6. Test whether the population correlation coefficient is significant.</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho\)</span> = 0 (population correlation coefficient is zero)</p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (population correlation coefficient is not zero)</p>
-<p>Sample correlation coefficient (<span class="math inline">\(r\)</span>) = 0.2</p>
-<p>Number of pairs (<span class="math inline">\(n\)</span>) = 625</p>
-<p><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.2 \sqrt{625 - 2}}{\sqrt{1 - 0.04}} = 5.095\]</span></p>
-<p>Since the sample size is large (<span class="math inline">\(n &gt; 30\)</span>), the <span class="math inline">\(t\)</span> distribution can be approximated by the standard normal distribution. The critical value for a two-tailed test at the 5% level of significance is 1.96. Since the calculated value (5.095) is greater than 1.96, we reject the null hypothesis and conclude that there is a significant correlation in the population.</p>
+<p>Sample correlation coefficient (<span class="math inline">\(r\)</span>) = 0.6</p>
+<p>Number of pairs (<span class="math inline">\(n\)</span>) = 18</p>
+<p>Since the sample size is small (<span class="math inline">\(n &lt; 30\)</span>), the <span class="math inline">\(t\)</span>-test is used:</p>
+<p><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.6 \sqrt{18 - 2}}{\sqrt{1 - 0.36}} = \frac{0.6 \times 4}{\sqrt{0.64}} = \frac{2.4}{0.8} = 3.00\]</span></p>
+<p><span class="math inline">\(t_{\text{cal}}\)</span> = 3.00. The table value of <span class="math inline">\(t\)</span> for <span class="math inline">\(n - 2 = 16\)</span> degrees of freedom at the 5% level of significance (two-tailed) is 2.120. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that there is a significant correlation between plant height and grain yield.</p>
 </div>
 </section>
 <section id="chi-square-test-chi2" class="level2" data-number="15.5">
@@ -1046,7 +1235,7 @@ Sl No.&nbsp;
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -1068,7 +1257,7 @@ Note
 <p>against the alternative hypothesis:</p>
 <p><span class="math inline">\(H_1\)</span>: There is a significant difference between theory and experiment.</p>
 <p>If <span class="math inline">\(O_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is a set of observed frequencies and <span class="math inline">\(E_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is the corresponding set of expected (theoretical) frequencies, then Karl Pearson’s chi-square test statistic is:</p>
-<p><span id="eq-chi-gof"><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} \tag{15.7}\]</span></span></p>
+<p><span id="eq-chi-gof"><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} \tag{15.9}\]</span></span></p>
 <p>Here <span class="math inline">\(O_i\)</span> represents the <span class="math inline">\(i^{\text{th}}\)</span> observed frequency and <span class="math inline">\(E_i\)</span> the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom (when no parameter is estimated from the data).</p>
 <section id="decision-rule-for-the-goodness-of-fit-test" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-goodness-of-fit-test">Decision rule for the goodness-of-fit test</h4>
@@ -1168,7 +1357,7 @@ Expected (Ei)
 </tr>
 <tr>
 <td style="text-align:center;">
-<span class="math display">\[\mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}}\]</span>
+<span class="math inline">\(\mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}}\)</span>
 </td>
 <td style="text-align:center;">
 -3
@@ -1187,7 +1376,7 @@ Expected (Ei)
 </tr>
 <tr>
 <td style="text-align:center;">
-<span class="math display">\[\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}\]</span>
+<span class="math inline">\(\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}\)</span>
 </td>
 <td style="text-align:center;">
 9
@@ -1206,7 +1395,7 @@ Expected (Ei)
 </tr>
 <tr>
 <td style="text-align:center;">
-<span class="math display">\[\frac{\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}}{\mathbf{E}_{\mathbf{i}}}\]</span>
+<span class="math inline">\(\frac{\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}}{\mathbf{E}_{\mathbf{i}}}\)</span>
 </td>
 <td style="text-align:center;">
 0.11
@@ -1233,7 +1422,7 @@ Expected (Ei)
 <p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 0.667. The table value of chi-square for <span class="math inline">\(4 - 1 = 3\)</span> degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.</p>
 </div>
 <div id="exr-gof1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.4</strong></span> The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 15.4</strong></span> The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? (<span class="math inline">\(\alpha = 0.05\)</span>)</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1273,6 +1462,11 @@ Expected (Ei)
 <td style="text-align: center;">6</td>
 <td style="text-align: center;">5</td>
 </tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">400</td>
+<td style="text-align: center;">400</td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1283,266 +1477,166 @@ Expected (Ei)
 <p>The chi-square test of independence checks whether two attributes are likely to be related. For example, chemical treatment and germination can be two attributes. If we want to know whether chemical treatment has any influence on germination, we can use the chi-square test. For this purpose, the data are arranged in the form of a contingency table.</p>
 <section id="contingency-table" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="contingency-table">Contingency table</h4>
-<p>A contingency table is a tabular representation of categorical data, consisting of a collection of cells containing counts. It usually shows frequencies for particular combinations of values of two discrete random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Each cell represents a mutually exclusive combination of <span class="math inline">\(X\)</span>-<span class="math inline">\(Y\)</span> values.</p>
-<div id="exm-conting1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.5</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
-<div id="tbl-conting1" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Contingency table for germination of cotton seeds" data-filters="parse-latex">
-<figure class="quarto-float quarto-float-tbl figure">
-<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.4: Contingency table for germination of cotton seeds
-</figcaption>
-<div aria-describedby="tbl-conting1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
-<thead>
-<tr>
-<th style="text-align:center;">
-X/Y
-</th>
-<th style="text-align:center;">
-Germinated(X<sub>1</sub>)
-</th>
-<th style="text-align:center;">
-Not Germinated(X<sub>2</sub>)
-</th>
-<th style="text-align:center;">
-Total
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center;">
-Treated(Y<sub>1</sub>)
-</td>
-<td style="text-align:center;">
-118
-</td>
-<td style="text-align:center;">
-22
-</td>
-<td style="text-align:center;">
-140
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Untreated(Y<sub>2</sub>)
-</td>
-<td style="text-align:center;">
-120
-</td>
-<td style="text-align:center;">
-40
-</td>
-<td style="text-align:center;">
-160
-</td>
-</tr>
-<tr>
-<td style="text-align:center;">
-Total
-</td>
-<td style="text-align:center;">
-238
-</td>
-<td style="text-align:center;">
-62
-</td>
-<td style="text-align:center;">
-300
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</figure>
-</div>
-<p>The solution is worked out in <a href="#sec-yates" class="quarto-xref"><span>Section 15.5.3.1</span></a> using the shortcut formula for a 2×2 table.</p>
-</div>
-<p>Let us consider two attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, where <span class="math inline">\(A\)</span> is divided into <span class="math inline">\(r\)</span> classes <span class="math inline">\(A_1, A_2, \ldots, A_r\)</span> and <span class="math inline">\(B\)</span> into <span class="math inline">\(s\)</span> classes <span class="math inline">\(B_1, B_2, \ldots, B_s\)</span>. The cell frequencies can be expressed in the form of an <span class="math inline">\(r \times s\)</span> contingency table as shown below.</p>
-<div id="tbl-rscontingency" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="General form of an r x s contingency table" data-filters="parse-latex">
+<p>A contingency table is a tabular representation of categorical data, consisting of a collection of cells containing counts. It usually shows frequencies for particular combinations of values of two discrete random variables <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>. Each cell represents a mutually exclusive combination of <span class="math inline">\(X\)</span>-<span class="math inline">\(Y\)</span> values. Let us consider two attributes <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span>, where <span class="math inline">\(A\)</span> is divided into <span class="math inline">\(r\)</span> classes <span class="math inline">\(A_1, A_2, \ldots, A_r\)</span> and <span class="math inline">\(B\)</span> into <span class="math inline">\(s\)</span> classes <span class="math inline">\(B_1, B_2, \ldots, B_s\)</span>. The cell frequencies can be expressed in the form of an <span class="math inline">\(r \times s\)</span> contingency table as shown in <a href="#tbl-rscontingency" class="quarto-xref">Table&nbsp;<span>15.4</span></a>.</p>
+<div id="tbl-rscontingency" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-rscontingency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.5: General form of an r x s contingency table
+Table&nbsp;15.4: General form of an r x s contingency table
 </figcaption>
 <div aria-describedby="tbl-rscontingency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table-bordered caption-top table">
 <thead>
-<tr>
-<th style="text-align:center;">
-A/B
-</th>
-<th style="text-align:center;">
-A1
-</th>
-<th style="text-align:center;">
-A2
-</th>
-<th style="text-align:center;">
-. . .
-</th>
-<th style="text-align:center;">
-Ar
-</th>
-<th style="text-align:center;">
-Total
-</th>
+<tr class="header">
+<th style="text-align: center;">A/B</th>
+<th style="text-align: center;"><span class="math inline">\(A_1\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(A_2\)</span></th>
+<th style="text-align: center;">. . .</th>
+<th style="text-align: center;"><span class="math inline">\(A_r\)</span></th>
+<th style="text-align: center;">Total</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-B1
-</td>
-<td style="text-align:center;">
-(A1 B1)
-</td>
-<td style="text-align:center;">
-(A2 B1)
-</td>
-<td style="text-align:center;">
-. . .
-</td>
-<td style="text-align:center;">
-(Ar B<sub>1</sub>)
-</td>
-<td style="text-align:center;">
-(B1)
-</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(B_1\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_1\,B_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_2\,B_1)\)</span></td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;"><span class="math inline">\((A_r\,B_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((B_1)\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center;">
-B2
-</td>
-<td style="text-align:center;">
-(A1 B2)
-</td>
-<td style="text-align:center;">
-(A2 B2)
-</td>
-<td style="text-align:center;">
-. . .
-</td>
-<td style="text-align:center;">
-(Ar B2)
-</td>
-<td style="text-align:center;">
-(B2)
-</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(B_2\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_1\,B_2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_2\,B_2)\)</span></td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;"><span class="math inline">\((A_r\,B_2)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((B_2)\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
+<tr class="odd">
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
+<tr class="even">
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
-<td style="text-align:center;">
-.
-</td>
+<tr class="odd">
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
+<td style="text-align: center;">.</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Bs
-</td>
-<td style="text-align:center;">
-(A1 Bs)
-</td>
-<td style="text-align:center;">
-(A2 Bs)
-</td>
-<td style="text-align:center;">
-. . .
-</td>
-<td style="text-align:center;">
-(Ar Bs)
-</td>
-<td style="text-align:center;">
-(Bs)
-</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(B_s\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_1\,B_s)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_2\,B_s)\)</span></td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;"><span class="math inline">\((A_r\,B_s)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((B_s)\)</span></td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Total
-</td>
-<td style="text-align:center;">
-(A1)
-</td>
-<td style="text-align:center;">
-(A2)
-</td>
-<td style="text-align:center;">
-. . .
-</td>
-<td style="text-align:center;">
-(Ar)
-</td>
-<td style="text-align:center;">
-</td>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;"><span class="math inline">\((A_1)\)</span></td>
+<td style="text-align: center;"><span class="math inline">\((A_2)\)</span></td>
+<td style="text-align: center;">. . .</td>
+<td style="text-align: center;"><span class="math inline">\((A_r)\)</span></td>
+<td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p><span class="math inline">\((A_i B_j)\)</span> = the number of items possessing both attributes <span class="math inline">\(A_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, r\)</span>) and <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
+<p>where, <span class="math inline">\((A_i B_j)\)</span> = the number of items possessing both attributes <span class="math inline">\(A_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, r\)</span>) and <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
 <p><span class="math inline">\((A_i)\)</span> = the number of items possessing attribute <span class="math inline">\(A_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, r\)</span>)</p>
 <p><span class="math inline">\((B_j)\)</span> = the number of items possessing attribute <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
 <p><span class="math inline">\(\sum (A_i) = \sum (B_j) = N\)</span> is the total frequency.</p>
+<div id="exm-conting1" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.5</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a 2 x 2 contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">X/Y</th>
+<th style="text-align: center;">Germinated(<span class="math inline">\(X_1\)</span>)</th>
+<th style="text-align: center;">Not Germinated(<span class="math inline">\(X_2\)</span>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treated(<span class="math inline">\(Y_1\)</span>)</td>
+<td style="text-align: center;">118</td>
+<td style="text-align: center;">22</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Untreated(<span class="math inline">\(Y_2\)</span>)</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">40</td>
+</tr>
+</tbody>
+</table>
+<p>The solution is worked out below.</p>
+<p><strong>Solution</strong></p>
+<p><span class="math inline">\(H_0\)</span>: Germination of cotton seeds is independent of chemical treatment (the attributes are independent).</p>
+<p><span class="math inline">\(H_1\)</span>: Germination of cotton seeds depends on chemical treatment.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 29%">
+<col style="width: 35%">
+<col style="width: 10%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: center;">X/Y</th>
+<th style="text-align: center;">Germinated(<span class="math inline">\(X_1\)</span>)</th>
+<th style="text-align: center;">Not Germinated(<span class="math inline">\(X_2\)</span>)</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treated(<span class="math inline">\(Y_1\)</span>)</td>
+<td style="text-align: center;">118</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">140</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Untreated(<span class="math inline">\(Y_2\)</span>)</td>
+<td style="text-align: center;">120</td>
+<td style="text-align: center;">40</td>
+<td style="text-align: center;">160</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">238</td>
+<td style="text-align: center;">62</td>
+<td style="text-align: center;"><strong>300</strong></td>
+</tr>
+</tbody>
+</table>
+<p>From the table, the row totals are <span class="math inline">\(R_1 = 140\)</span> (treated) and <span class="math inline">\(R_2 = 160\)</span> (untreated), and the column totals are <span class="math inline">\(C_1 = 238\)</span> (germinated) and <span class="math inline">\(C_2 = 62\)</span> (not germinated), with <span class="math inline">\(n = 300\)</span>. The expected frequency for each cell is <span class="math inline">\(E_{ij} = \dfrac{\text{(row total)} \times \text{(column total)}}{n}\)</span>:</p>
+<p><span class="math display">\[E_{11} = \frac{140 \times 238}{300} = 111.07, \qquad E_{12} = \frac{140 \times 62}{300} = 28.93\]</span></p>
+<p><span class="math display">\[E_{21} = \frac{160 \times 238}{300} = 126.93, \qquad E_{22} = \frac{160 \times 62}{300} = 33.07\]</span></p>
+<p><span class="math display">\[\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93} + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07} = 3.93\]</span></p>
+<p><span class="math inline">\(\chi^2_{\text{cal}} = 3.93\)</span>. The table value of chi-square for <span class="math inline">\((2-1)(2-1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the chemical treatment significantly affects the germination rate of cotton seeds.</p>
+<p>Note that none of the four cell frequencies here is below 5, so the ordinary chi-square test applies directly; no continuity correction is needed. <a href="#sec-yates" class="quarto-xref"><span>Section 15.5.3.1</span></a> takes up the case where a cell frequency is small.</p>
+</div>
 </section>
 <section id="expected-frequencies" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="expected-frequencies">Expected frequencies</h4>
 <p>The expected frequency corresponding to each observed frequency <span class="math inline">\((A_i B_j)\)</span> is calculated from the formula:</p>
-<p><span id="eq-expected"><span class="math display">\[E_{ij} = \frac{(A_i)(B_j)}{N} \tag{15.8}\]</span></span></p>
+<p><span id="eq-expected"><span class="math display">\[E_{ij} = \frac{(A_i)(B_j)}{N} \tag{15.10}\]</span></span></p>
+<p>where <span class="math inline">\((A_i)\)</span> is the total of the <span class="math inline">\(i\)</span>th row and <span class="math inline">\((B_j)\)</span> is the total of the <span class="math inline">\(j\)</span>th column of the contingency table, and <span class="math inline">\(N\)</span> is the grand total of all observations.</p>
 </section>
 <section id="degrees-of-freedom" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="degrees-of-freedom">Degrees of freedom</h4>
@@ -1555,7 +1649,7 @@ Total
 <p>The alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: The two attributes under consideration are not independent.</p>
 <p>The test statistic is:</p>
-<p><span id="eq-chi-indep"><span class="math display">\[\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}} \tag{15.9}\]</span></span></p>
+<p><span id="eq-chi-indep"><span class="math display">\[\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}} \tag{15.11}\]</span></span></p>
 <p>where <span class="math inline">\(O_{ij}\)</span> = observed frequencies, <span class="math inline">\(E_{ij}\)</span> = expected frequencies, <span class="math inline">\(r\)</span> = number of rows, and <span class="math inline">\(s\)</span> = number of columns.</p>
 <p>It can be verified that <span class="math inline">\(\sum_{i=1}^{r} \sum_{j=1}^{s} O_{ij} = \sum_{i=1}^{r} \sum_{j=1}^{s} E_{ij}\)</span>.</p>
 <p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\((r - 1)(s - 1)\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
@@ -1564,7 +1658,7 @@ Total
 <div id="tbl-conting2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.6: Classification of farms by tenure status and soil fertility
+Table&nbsp;15.5: Classification of farms by tenure status and soil fertility
 </figcaption>
 <div aria-describedby="tbl-conting2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1610,71 +1704,40 @@ Table&nbsp;15.6: Classification of farms by tenure status and soil fertility
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>The expected value <span class="math inline">\(E_{ij}\)</span> for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in <a href="#tbl-conting2exp" class="quarto-xref">Table&nbsp;<span>15.7</span></a>, and the calculation of the chi-square statistic is shown in <a href="#tbl-conting2calc" class="quarto-xref">Table&nbsp;<span>15.8</span></a>.</p>
-<div id="tbl-conting2exp" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Expected frequencies for the tenure and fertility data" data-filters="parse-latex">
+<p>The expected value <span class="math inline">\(E_{ij}\)</span> for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in <a href="#tbl-conting2exp" class="quarto-xref">Table&nbsp;<span>15.6</span></a>, and the calculation of the chi-square statistic is shown in <a href="#tbl-conting2calc" class="quarto-xref">Table&nbsp;<span>15.7</span></a>.</p>
+<div id="tbl-conting2exp" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.7: Expected frequencies for the tenure and fertility data
+Table&nbsp;15.6: Expected frequencies for the tenure and fertility data
 </figcaption>
 <div aria-describedby="tbl-conting2exp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
+<table class="table-bordered caption-top table">
 <thead>
-<tr>
-<th style="text-align:center;">
-</th>
-<th style="text-align:center;">
-Owned
-</th>
-<th style="text-align:center;">
-Rented
-</th>
-<th style="text-align:center;">
-Mixed
-</th>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Owned</th>
+<th style="text-align: center;">Rented</th>
+<th style="text-align: center;">Mixed</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center;">
-High
-</td>
-<td style="text-align:center;">
-26.3
-</td>
-<td style="text-align:center;">
-15
-</td>
-<td style="text-align:center;">
-20.7
-</td>
+<tr class="odd">
+<td style="text-align: center;">High</td>
+<td style="text-align: center;">26.3</td>
+<td style="text-align: center;">15.0</td>
+<td style="text-align: center;">20.7</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Moderate
-</td>
-<td style="text-align:center;">
-19.5
-</td>
-<td style="text-align:center;">
-11.2
-</td>
-<td style="text-align:center;">
-15.3
-</td>
+<tr class="even">
+<td style="text-align: center;">Moderate</td>
+<td style="text-align: center;">19.5</td>
+<td style="text-align: center;">11.2</td>
+<td style="text-align: center;">15.3</td>
 </tr>
-<tr>
-<td style="text-align:center;">
-Low
-</td>
-<td style="text-align:center;">
-38.2
-</td>
-<td style="text-align:center;">
-21.8
-</td>
-<td style="text-align:center;">
-30
-</td>
+<tr class="odd">
+<td style="text-align: center;">Low</td>
+<td style="text-align: center;">38.2</td>
+<td style="text-align: center;">21.8</td>
+<td style="text-align: center;">30.0</td>
 </tr>
 </tbody>
 </table>
@@ -1684,26 +1747,26 @@ Low
 <div id="tbl-conting2calc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Calculation of chi-square for independence of attributes" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2calc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.8: Calculation of chi-square for independence of attributes
+Table&nbsp;15.7: Calculation of chi-square for independence of attributes
 </figcaption>
 <div aria-describedby="tbl-conting2calc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class=" lightable-classic table table-bordered" style="font-family: Georgia; width: auto !important; margin-left: auto; margin-right: auto; width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
 <th style="text-align:center;">
-<span class="math display">\[O_{ij}\]</span>
+<span class="math inline">\(O_{ij}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[E_{ij}\]</span>
+<span class="math inline">\(E_{ij}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[O_{ij} - E_{ij}\]</span>
+<span class="math inline">\(O_{ij} - E_{ij}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\left( O_{ij} - E_{ij} \right)^{2}\]</span>
+<span class="math inline">\(\left( O_{ij} - E_{ij} \right)^{2}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math display">\[\frac{\left( O_{ij} - E_{ij} \right)^{2}}{E_{ij}}\]</span>
+<span class="math inline">\(\frac{\left( O_{ij} - E_{ij} \right)^{2}}{E_{ij}}\)</span>
 </th>
 </tr>
 </thead>
@@ -1869,7 +1932,7 @@ Table&nbsp;15.8: Calculation of chi-square for independence of attributes
 <td style="text-align:center;">
 </td>
 <td style="text-align:center;">
-<span class="math display">\[\chi_{\text{cal}}^{2} =\]</span>
+<span class="math inline">\(\chi_{\text{cal}}^{2} =\)</span>
 </td>
 <td style="text-align:center;">
 26.3
@@ -1880,7 +1943,7 @@ Table&nbsp;15.8: Calculation of chi-square for independence of attributes
 </div>
 </figure>
 </div>
-<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 26.3. The table value of chi-square for <span class="math inline">\((3 - 1)(3 - 1) = 4\)</span> degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.</p>
+<p>from <a href="#tbl-conting2calc" class="quarto-xref">Table&nbsp;<span>15.7</span></a> we obtain <span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 26.3. The table value of chi-square for <span class="math inline">\((3 - 1)(3 - 1) = 4\)</span> degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.</p>
 </div>
 </section>
 </section>
@@ -1890,7 +1953,7 @@ Table&nbsp;15.8: Calculation of chi-square for independence of attributes
 <div id="tbl-2x2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-2x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;15.9: General form of a 2×2 contingency table
+Table&nbsp;15.8: General form of a 2×2 contingency table
 </figcaption>
 <div aria-describedby="tbl-2x2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1935,20 +1998,59 @@ Table&nbsp;15.9: General form of a 2×2 contingency table
 <p>Here <span class="math inline">\(R_1, R_2\)</span> and <span class="math inline">\(C_1, C_2\)</span> are the row totals and column totals respectively, and <span class="math inline">\(n\)</span> is the total number of observations.</p>
 <p>The null hypothesis is <span class="math inline">\(H_0\)</span>: the two attributes are independent. The alternative hypothesis is <span class="math inline">\(H_1\)</span>: the two attributes are not independent.</p>
 <p>For a 2×2 contingency table, <span class="math inline">\(\chi^2\)</span> can be found directly using the shortcut formula:</p>
-<p><span id="eq-chi-2x2"><span class="math display">\[\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2} \tag{15.10}\]</span></span></p>
+<p><span id="eq-chi-2x2"><span class="math display">\[\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2} \tag{15.12}\]</span></span></p>
 <p>Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom.</p>
 <section id="sec-yates" class="level4">
 <h4 class="anchored" data-anchor-id="sec-yates">Yates’ correction for continuity</h4>
 <p>In a 2×2 contingency table, the number of degrees of freedom is <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span>. If any one of the cell frequencies is less than 5, then pooling would result in <span class="math inline">\(\chi^2\)</span> with 0 degrees of freedom, which is meaningless. In this case we apply a correction due to Yates, known as <strong>Yates’ correction for continuity</strong>. The correction is made by subtracting <span class="math inline">\(n/2\)</span> from the absolute value of <span class="math inline">\((ad - bc)\)</span>. The modified test statistic is:</p>
-<p><span id="eq-yates"><span class="math display">\[\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2} \tag{15.11}\]</span></span></p>
+<p><span id="eq-yates"><span class="math display">\[\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2} \tag{15.13}\]</span></span></p>
 <div id="exm-yates1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.7</strong></span> This is the solution to the germination experiment introduced in <a href="#exm-conting1" class="quarto-xref">Example&nbsp;<span>15.5</span></a>.</p>
-<p><span class="math inline">\(H_0\)</span>: The chemical treatment does not affect the germination rate of cotton seeds (the attributes are independent).</p>
-<p><span class="math inline">\(H_1\)</span>: The chemical treatment affects the germination rate of cotton seeds.</p>
-<p>Applying Yates’ correction with <span class="math inline">\(a = 118\)</span>, <span class="math inline">\(b = 22\)</span>, <span class="math inline">\(c = 120\)</span>, <span class="math inline">\(d = 40\)</span>, <span class="math inline">\(n = 300\)</span>:</p>
-<p><span class="math display">\[\chi^2 = \frac{300\left( \left| 118 \times 40 - 22 \times 120 \right| - \dfrac{300}{2} \right)^2}{238 \times 62 \times 140 \times 160}\]</span></p>
-<p><span class="math display">\[= 3.38\]</span></p>
-<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 3.38. The table value of chi-square for <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is less than the table value, we do not have enough evidence to reject the null hypothesis. The chemical treatment does not improve the germination rate of cotton seeds significantly.</p>
+<p><span class="theorem-title"><strong>Example 15.7</strong></span> In a field trial to study the effect of a bio-pesticide on aphid infestation in okra, 50 plants were treated with the bio-pesticide and 50 were left untreated as controls. The number of plants showing aphid infestation was recorded, as shown below.</p>
+<div id="tbl-yatesdata" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-yatesdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
+</figcaption>
+<div aria-describedby="tbl-yatesdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="table-bordered caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: center;"></th>
+<th style="text-align: center;">Infested</th>
+<th style="text-align: center;">Not infested</th>
+<th style="text-align: center;">Total</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">Treated</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">46</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">Untreated</td>
+<td style="text-align: center;">18</td>
+<td style="text-align: center;">32</td>
+<td style="text-align: center;">50</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">Total</td>
+<td style="text-align: center;">22</td>
+<td style="text-align: center;">78</td>
+<td style="text-align: center;">100</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p><span class="math inline">\(H_0\)</span>: The bio-pesticide has no effect on aphid infestation (the attributes are independent).</p>
+<p><span class="math inline">\(H_1\)</span>: The bio-pesticide affects aphid infestation.</p>
+<p>Here <span class="math inline">\(a = 4\)</span>, <span class="math inline">\(b = 46\)</span>, <span class="math inline">\(c = 18\)</span>, <span class="math inline">\(d = 32\)</span>, <span class="math inline">\(R_1 = 50\)</span>, <span class="math inline">\(R_2 = 50\)</span>, <span class="math inline">\(C_1 = 22\)</span>, <span class="math inline">\(C_2 = 78\)</span>, and <span class="math inline">\(n = 100\)</span>. Since one of the cell frequencies (<span class="math inline">\(a = 4\)</span>) is less than 5, Yates’ correction for continuity is applied.</p>
+<p><span class="math display">\[\chi^2 = \frac{100\left( \left| 4 \times 32 - 46 \times 18 \right| - \dfrac{100}{2} \right)^2}{22 \times 78 \times 50 \times 50}\]</span></p>
+<p><span class="math display">\[= \frac{100\left( \left| 128 - 828 \right| - 50 \right)^2}{4{,}290{,}000} = \frac{100 \times 650^2}{4{,}290{,}000} = 9.85\]</span></p>
+<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 9.85. The table value of chi-square for <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the bio-pesticide significantly reduces aphid infestation in okra.</p>
 </div>
 <div id="exr-yates1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.5</strong></span> In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.</p>
@@ -1982,7 +2084,7 @@ Table&nbsp;15.9: General form of a 2×2 contingency table
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2\)</span> = <span class="math inline">\(\sigma_0^2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma^2\)</span> &gt; <span class="math inline">\(\sigma_0^2\)</span></p>
 <p>The test statistic is:</p>
-<p><span id="eq-chi-var"><span class="math display">\[\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \tag{15.12}\]</span></span></p>
+<p><span id="eq-chi-var"><span class="math display">\[\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \tag{15.14}\]</span></span></p>
 <p>where <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}\)</span> is the sample variance.</p>
 <p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
 <div id="exr-chivar1" class="theorem exercise">
@@ -1996,7 +2098,7 @@ Table&nbsp;15.9: General form of a 2×2 contingency table
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma_1^2\)</span> = <span class="math inline">\(\sigma_2^2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1^2\)</span> &gt; <span class="math inline">\(\sigma_2^2\)</span></p>
 <p>The test statistic (taking the larger sample variance in the numerator) is:</p>
-<p><span id="eq-f"><span class="math display">\[F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 &gt; s_2^2 \tag{15.13}\]</span></span></p>
+<p><span id="eq-f"><span class="math display">\[F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 &gt; s_2^2 \tag{15.15}\]</span></span></p>
 <p>Under the null hypothesis, the test statistic follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span> degrees of freedom.</p>
 <section id="decision-rule-for-the-f-test" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-f-test">Decision rule for the F-test</h3>
@@ -2007,7 +2109,7 @@ Table&nbsp;15.9: General form of a 2×2 contingency table
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Note</span>Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2321,15 +2423,15 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <li><p>For each plot, <span class="math inline">\(d_i=A_i-B_i\)</span>, giving <span class="math inline">\(\bar{d}=-2\)</span> and <span class="math inline">\(s=1.309\)</span>. Using <a href="#eq-t-paired" class="quarto-xref">Equation&nbsp;<span>15.5</span></a>, <span class="math inline">\(t=\frac{-2}{1.309/\sqrt{8}}=-4.321\)</span>, with <span class="math inline">\(df=7\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is 2.365; since <span class="math inline">\(|-4.321|&gt;2.365\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is a significant difference between treatments A and B; since <span class="math inline">\(\bar{d}\)</span> is negative, treatment B produced the higher mean yield.</p></li>
 <li><p>Let <span class="math inline">\(d\)</span> denote the change in blood pressure, so <span class="math inline">\(H_0:\mu_d=0\)</span> and <span class="math inline">\(H_1:\mu_d&gt;0\)</span>. The observed differences are <span class="math inline">\(5,2,8,-1,3,0,-2,1,5,0,4,6\)</span>, with mean <span class="math inline">\(\bar{d}=\frac{31}{12}=2.583\)</span> and sample standard deviation <span class="math inline">\(s=3.088\)</span>. Using <a href="#eq-t-paired" class="quarto-xref">Equation&nbsp;<span>15.5</span></a>, <span class="math inline">\(t=\frac{2.583}{3.088/\sqrt{12}}\approx2.90\)</span>, with <span class="math inline">\(df=11\)</span>. At <span class="math inline">\(\alpha=0.05\)</span> for a one-tailed test, the critical value is approximately 1.796; since <span class="math inline">\(2.90&gt;1.796\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the stimulus is associated with an increase in blood pressure.</p></li>
 <li><p>Given <span class="math inline">\(r=0.2\)</span>, <span class="math inline">\(n=625\)</span>, so <span class="math inline">\(H_0:\rho=0\)</span> and <span class="math inline">\(H_1:\rho\neq0\)</span>. Using <a href="#eq-t-corr" class="quarto-xref">Equation&nbsp;<span>15.6</span></a>, <span class="math inline">\(t=\frac{0.2\sqrt{623}}{\sqrt{1-0.2^2}}=5.095\)</span>, with <span class="math inline">\(df=623\)</span>. At the 5% level, the critical value is approximately 1.96; since <span class="math inline">\(5.095&gt;1.96\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is a significant correlation in the population.</p></li>
-<li><p>The observed frequencies are <span class="math inline">\(87,29,32,12\)</span> with expected ratio <span class="math inline">\(9:3:3:1\)</span> and <span class="math inline">\(N=160\)</span>, giving expected frequencies <span class="math inline">\(90,30,30,10\)</span>. Using <a href="#eq-chi-gof" class="quarto-xref">Equation&nbsp;<span>15.7</span></a>, <span class="math inline">\(\chi^2=\sum\frac{(O-E)^2}{E}=0.667\)</span>, with <span class="math inline">\(df=3\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(\chi^2_{0.05,3}=7.815\)</span>; since <span class="math inline">\(0.667&lt;7.815\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. The observed data agree with the theoretical 9:3:3:1 ratio.</p></li>
-<li><p>Using <a href="#eq-chi-gof" class="quarto-xref">Equation&nbsp;<span>15.7</span></a> with the given observed and expected frequencies, <span class="math inline">\(\chi^2=\frac{(103-106)^2}{106}+\frac{(143-141)^2}{141}+\frac{(98-93)^2}{93}+\frac{(42-41)^2}{41}+\frac{(8-14)^2}{14}+\frac{(6-5)^2}{5}\approx3.18\)</span>, with <span class="math inline">\(df=5\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the critical value is approximately 11.070; since <span class="math inline">\(3.18&lt;11.070\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. The observed frequencies do not differ significantly from the expected frequencies.</p></li>
-<li><p><span class="math inline">\(H_0\)</span>: the two attributes are independent; <span class="math inline">\(H_1\)</span>: the two attributes are not independent. Using <a href="#eq-expected" class="quarto-xref">Equation&nbsp;<span>15.8</span></a> for each cell, the calculated chi-square value given in the chapter is <span class="math inline">\(\chi^2_{\text{cal}}=26.3\)</span>. The table value at 4 degrees of freedom and <span class="math inline">\(\alpha=0.05\)</span> is <span class="math inline">\(\chi^2_{\text{tab}}=9.488\)</span>; since <span class="math inline">\(26.3&gt;9.488\)</span>, we reject <span class="math inline">\(H_0\)</span>. Tenure status and soil fertility are not independent.</p></li>
-<li><p>For a 2×2 table with cell frequencies <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span> and total <span class="math inline">\(n\)</span>, <a href="#eq-chi-2x2" class="quarto-xref">Equation&nbsp;<span>15.10</span></a> gives <span class="math inline">\(\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}\)</span>, where <span class="math inline">\(R_1,R_2\)</span> are the row totals and <span class="math inline">\(C_1,C_2\)</span> are the column totals. The degrees of freedom are <span class="math inline">\(df=(2-1)(2-1)=1\)</span>.</p></li>
-<li><p>For a 2×2 table, the degrees of freedom are only 1. If a cell frequency is less than 5, the usual pooling procedure would eliminate the only degree of freedom, so Yates’ correction for continuity is used instead, giving the corrected statistic in <a href="#eq-yates" class="quarto-xref">Equation&nbsp;<span>15.11</span></a>.</p></li>
-<li><p>Given <span class="math inline">\(\sigma_0^2=0.16\)</span>, <span class="math inline">\(s^2=0.01719\)</span>, <span class="math inline">\(n=11\)</span>, so <span class="math inline">\(H_0:\sigma^2=0.16\)</span> and <span class="math inline">\(H_1:\sigma^2&gt;0.16\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.12</span></a>, <span class="math inline">\(\chi^2=\frac{10(0.01719)}{0.16}=1.0744\)</span>, with <span class="math inline">\(df=10\)</span>. Since the calculated value is much smaller than the right-tailed critical value at <span class="math inline">\(\alpha=0.05\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population variance is greater than 0.16.</p></li>
-<li><p>Given <span class="math inline">\(n_1=11\)</span>, <span class="math inline">\(s_1^2=21.87\)</span>, <span class="math inline">\(n_2=8\)</span>, <span class="math inline">\(s_2^2=15.36\)</span>, so <span class="math inline">\(H_0:\sigma_1^2=\sigma_2^2\)</span> and <span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\)</span>. Since <span class="math inline">\(21.87&gt;15.36\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.13</span></a>, <span class="math inline">\(F=\frac{21.87}{15.36}=1.424\)</span>, with <span class="math inline">\(df_1=10\)</span> and <span class="math inline">\(df_2=7\)</span>. The calculated value is less than the corresponding critical value at <span class="math inline">\(\alpha=0.05\)</span>, so we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the two population variances differ.</p></li>
-<li><p>Given <span class="math inline">\(n=15\)</span>, <span class="math inline">\(s^2=12.5\)</span>, <span class="math inline">\(\sigma_0^2=10\)</span>, so <span class="math inline">\(H_0:\sigma^2=10\)</span> and <span class="math inline">\(H_1:\sigma^2\neq10\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.12</span></a>, <span class="math inline">\(\chi^2=\frac{14(12.5)}{10}=17.5\)</span>, with <span class="math inline">\(df=14\)</span>. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at <span class="math inline">\(\alpha/2=0.025\)</span>; the decision is made by determining whether 17.5 lies in the rejection region.</p></li>
-<li><p>The larger sample variance should be placed in the numerator. Since <span class="math inline">\(25&gt;16\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.13</span></a>, <span class="math inline">\(F=\frac{25}{16}=1.5625\)</span>; this ensures <span class="math inline">\(F\geq1\)</span> and simplifies the comparison with the upper-tail <span class="math inline">\(F\)</span> critical value.</p></li>
+<li><p>The observed frequencies are <span class="math inline">\(87,29,32,12\)</span> with expected ratio <span class="math inline">\(9:3:3:1\)</span> and <span class="math inline">\(N=160\)</span>, giving expected frequencies <span class="math inline">\(90,30,30,10\)</span>. Using <a href="#eq-chi-gof" class="quarto-xref">Equation&nbsp;<span>15.9</span></a>, <span class="math inline">\(\chi^2=\sum\frac{(O-E)^2}{E}=0.667\)</span>, with <span class="math inline">\(df=3\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(\chi^2_{0.05,3}=7.815\)</span>; since <span class="math inline">\(0.667&lt;7.815\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. The observed data agree with the theoretical 9:3:3:1 ratio.</p></li>
+<li><p>Using <a href="#eq-chi-gof" class="quarto-xref">Equation&nbsp;<span>15.9</span></a> with the given observed and expected frequencies, <span class="math inline">\(\chi^2=\frac{(103-106)^2}{106}+\frac{(143-141)^2}{141}+\frac{(98-93)^2}{93}+\frac{(42-41)^2}{41}+\frac{(8-14)^2}{14}+\frac{(6-5)^2}{5}\approx3.18\)</span>, with <span class="math inline">\(df=5\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the critical value is approximately 11.070; since <span class="math inline">\(3.18&lt;11.070\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. The observed frequencies do not differ significantly from the expected frequencies.</p></li>
+<li><p><span class="math inline">\(H_0\)</span>: the two attributes are independent; <span class="math inline">\(H_1\)</span>: the two attributes are not independent. Using <a href="#eq-expected" class="quarto-xref">Equation&nbsp;<span>15.10</span></a> for each cell, the calculated chi-square value given in the chapter is <span class="math inline">\(\chi^2_{\text{cal}}=26.3\)</span>. The table value at 4 degrees of freedom and <span class="math inline">\(\alpha=0.05\)</span> is <span class="math inline">\(\chi^2_{\text{tab}}=9.488\)</span>; since <span class="math inline">\(26.3&gt;9.488\)</span>, we reject <span class="math inline">\(H_0\)</span>. Tenure status and soil fertility are not independent.</p></li>
+<li><p>For a 2×2 table with cell frequencies <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span> and total <span class="math inline">\(n\)</span>, <a href="#eq-chi-2x2" class="quarto-xref">Equation&nbsp;<span>15.12</span></a> gives <span class="math inline">\(\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}\)</span>, where <span class="math inline">\(R_1,R_2\)</span> are the row totals and <span class="math inline">\(C_1,C_2\)</span> are the column totals. The degrees of freedom are <span class="math inline">\(df=(2-1)(2-1)=1\)</span>.</p></li>
+<li><p>For a 2×2 table, the degrees of freedom are only 1. If a cell frequency is less than 5, the usual pooling procedure would eliminate the only degree of freedom, so Yates’ correction for continuity is used instead, giving the corrected statistic in <a href="#eq-yates" class="quarto-xref">Equation&nbsp;<span>15.13</span></a>.</p></li>
+<li><p>Given <span class="math inline">\(\sigma_0^2=0.16\)</span>, <span class="math inline">\(s^2=0.01719\)</span>, <span class="math inline">\(n=11\)</span>, so <span class="math inline">\(H_0:\sigma^2=0.16\)</span> and <span class="math inline">\(H_1:\sigma^2&gt;0.16\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.14</span></a>, <span class="math inline">\(\chi^2=\frac{10(0.01719)}{0.16}=1.0744\)</span>, with <span class="math inline">\(df=10\)</span>. Since the calculated value is much smaller than the right-tailed critical value at <span class="math inline">\(\alpha=0.05\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population variance is greater than 0.16.</p></li>
+<li><p>Given <span class="math inline">\(n_1=11\)</span>, <span class="math inline">\(s_1^2=21.87\)</span>, <span class="math inline">\(n_2=8\)</span>, <span class="math inline">\(s_2^2=15.36\)</span>, so <span class="math inline">\(H_0:\sigma_1^2=\sigma_2^2\)</span> and <span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\)</span>. Since <span class="math inline">\(21.87&gt;15.36\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=\frac{21.87}{15.36}=1.424\)</span>, with <span class="math inline">\(df_1=10\)</span> and <span class="math inline">\(df_2=7\)</span>. The calculated value is less than the corresponding critical value at <span class="math inline">\(\alpha=0.05\)</span>, so we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the two population variances differ.</p></li>
+<li><p>Given <span class="math inline">\(n=15\)</span>, <span class="math inline">\(s^2=12.5\)</span>, <span class="math inline">\(\sigma_0^2=10\)</span>, so <span class="math inline">\(H_0:\sigma^2=10\)</span> and <span class="math inline">\(H_1:\sigma^2\neq10\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.14</span></a>, <span class="math inline">\(\chi^2=\frac{14(12.5)}{10}=17.5\)</span>, with <span class="math inline">\(df=14\)</span>. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at <span class="math inline">\(\alpha/2=0.025\)</span>; the decision is made by determining whether 17.5 lies in the rejection region.</p></li>
+<li><p>The larger sample variance should be placed in the numerator. Since <span class="math inline">\(25&gt;16\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=\frac{25}{16}=1.5625\)</span>; this ensures <span class="math inline">\(F\geq1\)</span> and simplifies the comparison with the upper-tail <span class="math inline">\(F\)</span> critical value.</p></li>
 <li><p>Given <span class="math inline">\(r=0.35\)</span>, <span class="math inline">\(n=20\)</span>, so <span class="math inline">\(H_0:\rho=0\)</span> and <span class="math inline">\(H_1:\rho\neq0\)</span>. Using <a href="#eq-t-corr" class="quarto-xref">Equation&nbsp;<span>15.6</span></a>, <span class="math inline">\(t=\frac{0.35\sqrt{18}}{\sqrt{1-0.35^2}}\approx1.585\)</span>, with <span class="math inline">\(df=18\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is approximately 2.101; since <span class="math inline">\(1.585&lt;2.101\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population correlation coefficient differs significantly from zero.</p></li>
 <li><p>Given <span class="math inline">\(n=12\)</span>, <span class="math inline">\(\bar{x}=25\)</span>, <span class="math inline">\(s=4\)</span>, <span class="math inline">\(\mu_0=22\)</span>, so <span class="math inline">\(H_0:\mu=22\)</span> and <span class="math inline">\(H_1:\mu\neq22\)</span>. Using <a href="#eq-t-single" class="quarto-xref">Equation&nbsp;<span>15.1</span></a>, <span class="math inline">\(t=\frac{25-22}{4/\sqrt{12}}\approx2.598\)</span>, with <span class="math inline">\(df=11\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is approximately 2.201; since <span class="math inline">\(2.598&gt;2.201\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the population mean differs from 22.</p></li>
 <li><p>When two independent small samples come from populations with equal variances, use the pooled two-sample <span class="math inline">\(t\)</span>-test, <a href="#eq-t-two-equal" class="quarto-xref">Equation&nbsp;<span>15.2</span></a>, with pooled variance <span class="math inline">\(s^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span> and degrees of freedom <span class="math inline">\(df=n_1+n_2-2\)</span>.</p></li>
@@ -2340,7 +2442,7 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Historical Insights
+<span class="screen-reader-only">Caution</span>Historical Insights
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2356,7 +2458,7 @@ Historical Insights
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Quotes to Inspire
+<span class="screen-reader-only">Tip</span>Quotes to Inspire
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -2380,380 +2482,256 @@ Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
-      });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
-        } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
       return false;
     }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
     }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
       for (const childEl of codeEl.children) {
         if (isCodeAnnotation(childEl)) {
           childEl.remove();
         }
       }
       return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
     });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
     }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
           }
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
-        return container.innerHTML
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -2761,185 +2739,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./largeSampletest.html" class="pagination-link" aria-label="Large sample test">

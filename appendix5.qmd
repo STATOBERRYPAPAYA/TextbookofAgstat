@@ -1,5 +1,7 @@
 # Appendix 5 {#sec-appendix-5}
 
+The F distribution arises naturally in the analysis of variance and in any test that compares two variances. @tbl-ftable gives the critical values of the F distribution at the 5% level of significance, tabulated for various combinations of numerator degrees of freedom (df1, across the top) and denominator degrees of freedom (df2, down the side).
+
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-ftable
 #| tbl-cap: "F Table: critical values of the F distribution at alpha = 0.05."
@@ -17,11 +19,23 @@ colnames(dt)[1] <- "df2"
 
 n <- nrow(dt)
 
+# Use plain text for LaTeX (the table-wide font_size = 6 already covers
+# sizing there) and a styled <span> for HTML, where no such global
+# font-size mechanism applies. A raw HTML tag printed unescaped into a
+# LaTeX table shows up as literal text, so it can't be shared as-is
+# across both output formats.
+df1_label <- if (knitr::is_latex_output()) {
+  "df1"
+} else {
+  '<span style="font-size: 8px;">df1</span>'
+}
+
 out <- kbl(
   dt,
   escape = FALSE,
   booktabs = FALSE,
-  align = "c"
+  align = "c",
+  longtable = TRUE
 ) %>%
   kable_classic(
     full_width = FALSE,
@@ -30,8 +44,7 @@ out <- kbl(
   kable_styling(
     latex_options = c(
       "HOLD_position",
-      "repeat_header",
-      "scale_down"
+      "repeat_header"
     ),
     bootstrap_options = c(
       "bordered",
@@ -40,9 +53,9 @@ out <- kbl(
     )
   ) %>%
   add_header_above(
-    c(
-      " " = 1,
-      '<span style="font-size: 8px;">df1</span>' = ncol(dt) - 1
+    setNames(
+      c(1, ncol(dt) - 1),
+      c(" ", df1_label)
     ),
     bold = TRUE,
     escape = FALSE

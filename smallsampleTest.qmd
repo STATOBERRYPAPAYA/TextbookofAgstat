@@ -41,9 +41,31 @@ clean_table <- function(x) {
 }
 ```
 
-If the sample size $n$ is less than 30 ($n < 30$), it is known as a **small sample**. For small samples, the sampling distributions commonly used are the $\chi^2$ (chi-square), $F$, and $t$ distributions. The study of the sampling distribution of a statistic for small samples is known as **small sample theory**.
+In the previous chapter we have seen tests for samples having size larger than 30. If the sample size $n$ is less than 30 ($n < 30$), it is known as a **small sample**. For small samples, the sampling distributions commonly used are the $t$, $F$ and $\chi^2$ (chi-square) distributions. The study of the sampling distribution of a statistic for small samples is known as **small sample theory**.
 
-## Tests based on Student's t distribution (t-tests)
+## Tests based on Student's t distribution (t-tests)  
+
+The $t$-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. distribution with different degrees of freedom is shown in @fig-tdist. As the degrees of freedom increase, the $t$ distribution converges to the standard normal distribution. $t$-statistic can be calculated from the sample using formulas for different situations discussed below.  
+
+```{r fig-tdist, echo=FALSE, warning=FALSE, fig.cap="t distribution curves for varying degrees of freedom, compared with the standard normal"}
+library(ggplot2)
+
+x <- seq(-4, 4, length.out = 500)
+df_vals <- c(1, 5, 30)
+
+dat <- do.call(rbind, lapply(df_vals, function(d) {
+  data.frame(x = x, y = dt(x, df = d), df = paste("df =", d))
+}))
+
+normal_dat <- data.frame(x = x, y = dnorm(x), df = "Normal")
+
+ggplot() +
+  geom_line(data = dat, aes(x = x, y = y, color = df), linewidth = 0.8) +
+  geom_line(data = normal_dat, aes(x = x, y = y, color = df),
+            linewidth = 0.8, linetype = "dashed") +
+  labs(x = "t", y = "Density", color = "Distribution") +
+  theme_minimal(base_size = 12)
+```
 
 **Assumptions of the t-test**
 
@@ -120,7 +142,7 @@ The calculation of the sample mean and sample standard deviation is shown in @tb
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book14.csv")
-colnames(dt) <- c("Sl No.", "Yield", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)$$", "$$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)^{\\mathbf{2}}$$")
+colnames(dt) <- c("Sl No.", "Yield", "$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)$", "$\\left( \\mathbf{x}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{x}} \\right)^{\\mathbf{2}}$")
 dt[] <- lapply(dt, clean_table)
 dt %>%
   kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
@@ -128,7 +150,8 @@ dt %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
-    bootstrap_options = "bordered"
+    bootstrap_options = "bordered",
+    latex_options = "HOLD_position"
   )
 ```
 
@@ -159,9 +182,9 @@ Let there be two normally distributed populations with means $\mu_1$ and $\mu_2$
 
 There are two cases under this situation:
 
-1.  Population variances are equal.
+1.  Population variances are equal. (Homogeneous variances)
 
-2.  Population variances are unequal.
+2.  Population variances are unequal. (Heterogeneous variances)
 
 Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see @sec-ftest).
 
@@ -278,7 +301,7 @@ The calculation of the differences is shown in @tbl-paired1.
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book13.csv")
-colnames(dt) <- c("Sl No.", "$$\\mathbf{A}$$", "$$\\mathbf{B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{= A - B}$$", "$$\\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}}$$", "$$\\left( \\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}} \\right)^{\\mathbf{2}}$$")
+colnames(dt) <- c("Sl No.", "$\\mathbf{A}$", "$\\mathbf{B}$", "$\\mathbf{d}_{\\mathbf{i}} \\mathbf{= A - B}$", "$\\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}}$", "$\\left( \\mathbf{d}_{\\mathbf{i}} \\mathbf{-} \\overline{\\mathbf{d}} \\right)^{\\mathbf{2}}$")
 dt[] <- lapply(dt, clean_table)
 dt %>%
   kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
@@ -286,7 +309,8 @@ dt %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
-    bootstrap_options = "bordered"
+    bootstrap_options = "bordered",
+    latex_options = "HOLD_position"
   )
 ```
 
@@ -327,10 +351,20 @@ The test statistic is:
 
 $$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}$$ {#eq-t-corr}
 
-Under the null hypothesis, $t$ follows a $t$ distribution with $n - 2$ degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of $t$ corresponding to $n - 2$ degrees of freedom and the level of significance $\alpha$. In our case $\alpha$ = 0.05.
+Under the null hypothesis, $t$ follows a $t$ distribution with $n - 2$ degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of $t$ corresponding to $n - 2$ degrees of freedom and the level of significance $\alpha$. In our case $\alpha$ = 0.05. This t-test is used when the sample size is small ($n < 30$).
+
+**When the sample size is large ($n \geq 30$)**, the exact distribution of $r$ is no longer close to a $t$ distribution, and Fisher's Z-transformation is preferred. The sample correlation coefficient $r$ is transformed as:
+
+$$Z = \frac{1}{2} \ln\left( \frac{1 + r}{1 - r} \right)$$ {#eq-fisherz}
+
+Under the null hypothesis $H_0: \rho = 0$, the statistic $Z\sqrt{n - 3}$ follows approximately a standard normal distribution. The test statistic is therefore:
+
+$$Z_{\text{cal}} = Z \sqrt{n - 3}$$ {#eq-fisherz-test}
+
+We reject the null hypothesis if $|Z_{\text{cal}}|$ exceeds the table value of the standard normal distribution at the chosen level of significance (1.96 at the 5% level, two-tailed).
 
 ::: {#exm-corr1}
-A correlation coefficient of 0.2 was derived from a random sample of 625 pairs of observations. Test whether the population correlation coefficient is significant.
+A plant breeder studied the relationship between plant height and grain yield in a sample of 18 rice genotypes and obtained a correlation coefficient of 0.6. Test whether the population correlation coefficient is significant.
 
 **Solution**
 
@@ -338,13 +372,15 @@ Null hypothesis, $H_0$: $\rho$ = 0 (population correlation coefficient is zero)
 
 Alternative hypothesis, $H_1$: $\rho$ $\mathbf{\neq}$ 0 (population correlation coefficient is not zero)
 
-Sample correlation coefficient ($r$) = 0.2
+Sample correlation coefficient ($r$) = 0.6
 
-Number of pairs ($n$) = 625
+Number of pairs ($n$) = 18
 
-$$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.2 \sqrt{625 - 2}}{\sqrt{1 - 0.04}} = 5.095$$
+Since the sample size is small ($n < 30$), the $t$-test is used:
 
-Since the sample size is large ($n > 30$), the $t$ distribution can be approximated by the standard normal distribution. The critical value for a two-tailed test at the 5% level of significance is 1.96. Since the calculated value (5.095) is greater than 1.96, we reject the null hypothesis and conclude that there is a significant correlation in the population.
+$$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.6 \sqrt{18 - 2}}{\sqrt{1 - 0.36}} = \frac{0.6 \times 4}{\sqrt{0.64}} = \frac{2.4}{0.8} = 3.00$$
+
+$t_{\text{cal}}$ = 3.00. The table value of $t$ for $n - 2 = 16$ degrees of freedom at the 5% level of significance (two-tailed) is 2.120. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that there is a significant correlation between plant height and grain yield.
 :::
 
 ## Chi-square test ($\chi^2$)
@@ -426,99 +462,105 @@ dt %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
-    bootstrap_options = "bordered"
+    bootstrap_options = "bordered",
+    latex_options = "HOLD_position"
   )
 ```
 
 $$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667$$
 
 $\chi^2_{\text{cal}}$ = 0.667. The table value of chi-square for $4 - 1 = 3$ degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.
-:::
+:::  
+
 
 ::: {#exr-gof1}
-The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? ($\alpha$ = 0.05)
+
+The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? ($\alpha = 0.05$)
 
 | Yeast per cell | Observed Frequency | Expected Frequency |
-|:---------------:|:-------------------:|:-------------------:|
+|:--------------:|:-------------------:|:-------------------:|
 | 0              | 103                | 106                |
 | 1              | 143                | 141                |
 | 2              | 98                 | 93                 |
 | 3              | 42                 | 41                 |
 | 4              | 8                  | 14                 |
 | 5              | 6                  | 5                  |
-:::
+| Total          | 400                | 400                |
 
-### Chi-square test for independence of attributes
+:::  
+
+### Chi-square test for independence of attributes  
 
 The chi-square test of independence checks whether two attributes are likely to be related. For example, chemical treatment and germination can be two attributes. If we want to know whether chemical treatment has any influence on germination, we can use the chi-square test. For this purpose, the data are arranged in the form of a contingency table.
 
-#### Contingency table {.unnumbered}
+#### Contingency table {.unnumbered}  
 
-A contingency table is a tabular representation of categorical data, consisting of a collection of cells containing counts. It usually shows frequencies for particular combinations of values of two discrete random variables $X$ and $Y$. Each cell represents a mutually exclusive combination of $X$-$Y$ values.
-
-::: {#exm-conting1}
-In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a contingency table. ($X$ = germination, $Y$ = chemical treatment). Attribute $X$ has two classes, $X_1$ = germinated and $X_2$ = not germinated. Attribute $Y$ has two classes, $Y_1$ = treated and $Y_2$ = untreated.
-
-```{r tbl-conting1,echo=FALSE,warning=FALSE,results='asis'}
-#| tbl-cap: "Contingency table for germination of cotton seeds"
-#| fig-cap: "Contingency table for germination of cotton seeds"
-#| filters: 
-#| - parse-latex 
+A contingency table is a tabular representation of categorical data, consisting of a collection of cells containing counts. It usually shows frequencies for particular combinations of values of two discrete random variables $X$ and $Y$. Each cell represents a mutually exclusive combination of $X$-$Y$ values. Let us consider two attributes $A$ and $B$, where $A$ is divided into $r$ classes $A_1, A_2, \ldots, A_r$ and $B$ into $s$ classes $B_1, B_2, \ldots, B_s$. The cell frequencies can be expressed in the form of an $r \times s$ contingency table as shown in @tbl-rscontingency.  
 
 
-library(knitr)
-library(kableExtra)
-dt <- read.csv("csv/Book16.csv", check.names = FALSE)
-dt[] <- lapply(dt, clean_table)
-dt %>%
-  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
-  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
-  kable_styling(
-    full_width = FALSE,
-    position = "center",
-    bootstrap_options = "bordered"
-  )
-```
+| A/B   | $A_1$        | $A_2$        | . . . | $A_r$        | Total  |
+|:-----:|:------------:|:------------:|:-----:|:------------:|:------:|
+| $B_1$ | $(A_1\,B_1)$ | $(A_2\,B_1)$ | . . . | $(A_r\,B_1)$ | $(B_1)$ |
+| $B_2$ | $(A_1\,B_2)$ | $(A_2\,B_2)$ | . . . | $(A_r\,B_2)$ | $(B_2)$ |
+| .     | .            | .            | .     | .            | .      |
+| .     | .            | .            | .     | .            | .      |
+| .     | .            | .            | .     | .            | .      |
+| $B_s$ | $(A_1\,B_s)$ | $(A_2\,B_s)$ | . . . | $(A_r\,B_s)$ | $(B_s)$ |
+| Total | $(A_1)$      | $(A_2)$      | . . . | $(A_r)$      |        |
 
-The solution is worked out in @sec-yates using the shortcut formula for a 2×2 table.
-:::
+: General form of an r x s contingency table {#tbl-rscontingency .bordered}  
 
-Let us consider two attributes $A$ and $B$, where $A$ is divided into $r$ classes $A_1, A_2, \ldots, A_r$ and $B$ into $s$ classes $B_1, B_2, \ldots, B_s$. The cell frequencies can be expressed in the form of an $r \times s$ contingency table as shown below.
-
-```{r tbl-rscontingency,echo=FALSE,warning=FALSE,results='asis'}
-#| tbl-cap: "General form of an r x s contingency table"
-#| fig-cap: "General form of an r x s contingency table"
-#| filters: 
-#| - parse-latex 
-
-
-library(knitr)
-library(kableExtra)
-dt <- read.csv("csv/Book17.csv", check.names = FALSE)
-dt[] <- lapply(dt, clean_table)
-dt %>%
-  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
-  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
-  kable_styling(
-    full_width = FALSE,
-    position = "center",
-    bootstrap_options = "bordered"
-  )
-```
-
-$(A_i B_j)$ = the number of items possessing both attributes $A_i$ ($i = 1, 2, \ldots, r$) and $B_j$ ($j = 1, 2, \ldots, s$)
+where, $(A_i B_j)$ = the number of items possessing both attributes $A_i$ ($i = 1, 2, \ldots, r$) and $B_j$ ($j = 1, 2, \ldots, s$)
 
 $(A_i)$ = the number of items possessing attribute $A_i$ ($i = 1, 2, \ldots, r$)
 
 $(B_j)$ = the number of items possessing attribute $B_j$ ($j = 1, 2, \ldots, s$)
 
-$\sum (A_i) = \sum (B_j) = N$ is the total frequency.
+$\sum (A_i) = \sum (B_j) = N$ is the total frequency.  
+
+::: {#exm-conting1}  
+
+In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a 2 x 2 contingency table. ($X$ = germination, $Y$ = chemical treatment). Attribute $X$ has two classes, $X_1$ = germinated and $X_2$ = not germinated. Attribute $Y$ has two classes, $Y_1$ = treated and $Y_2$ = untreated.  
+
+| X/Y              | Germinated($X_1$) | Not Germinated($X_2$) |
+|:----------------:|:------------------:|:----------------------:|
+| Treated($Y_1$)   | 118                 | 22                       |
+| Untreated($Y_2$) | 120                 | 40                       |  
+
+The solution is worked out below.
+
+**Solution**   
+
+$H_0$: Germination of cotton seeds is independent of chemical treatment (the attributes are independent).
+
+$H_1$: Germination of cotton seeds depends on chemical treatment.
+
+| X/Y            | Germinated($X_1$) | Not Germinated($X_2$) | Total |
+|:--------------:|:------------------:|:----------------------:|:-----:|
+| Treated($Y_1$)   | 118                 | 22                       | 140   |
+| Untreated($Y_2$) | 120                 | 40                       | 160   |
+| Total            | 238                 | 62                       | **300**   |  
+
+From the table, the row totals are $R_1 = 140$ (treated) and $R_2 = 160$ (untreated), and the column totals are $C_1 = 238$ (germinated) and $C_2 = 62$ (not germinated), with $n = 300$. The expected frequency for each cell is $E_{ij} = \dfrac{\text{(row total)} \times \text{(column total)}}{n}$:
+
+$$E_{11} = \frac{140 \times 238}{300} = 111.07, \qquad E_{12} = \frac{140 \times 62}{300} = 28.93$$
+
+$$E_{21} = \frac{160 \times 238}{300} = 126.93, \qquad E_{22} = \frac{160 \times 62}{300} = 33.07$$
+
+$$\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93} + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07} = 3.93$$
+
+$\chi^2_{\text{cal}} = 3.93$. The table value of chi-square for $(2-1)(2-1) = 1$ degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the chemical treatment significantly affects the germination rate of cotton seeds.
+
+Note that none of the four cell frequencies here is below 5, so the ordinary chi-square test applies directly; no continuity correction is needed. @sec-yates takes up the case where a cell frequency is small.
+:::  
 
 #### Expected frequencies {.unnumbered}
 
 The expected frequency corresponding to each observed frequency $(A_i B_j)$ is calculated from the formula:
 
 $$E_{ij} = \frac{(A_i)(B_j)}{N}$$ {#eq-expected}
+
+where $(A_i)$ is the total of the $i$th row and $(B_j)$ is the total of the $j$th column of the contingency table, and $N$ is the grand total of all observations.
 
 #### Degrees of freedom {.unnumbered}
 
@@ -560,26 +602,13 @@ In a survey, a random sample of 198 farms was classified into three classes acco
 
 The expected value $E_{ij}$ for each cell is calculated by multiplying the corresponding row total and column total and dividing by the grand total. The expected frequencies are shown in @tbl-conting2exp, and the calculation of the chi-square statistic is shown in @tbl-conting2calc.
 
-```{r tbl-conting2exp,echo=FALSE,warning=FALSE,results='asis'}
-#| tbl-cap: "Expected frequencies for the tenure and fertility data"
-#| fig-cap: "Expected frequencies for the tenure and fertility data"
-#| filters: 
-#| - parse-latex 
+|          | Owned | Rented | Mixed |
+|:--------:|:-----:|:------:|:-----:|
+| High     | 26.3  | 15.0   | 20.7  |
+| Moderate | 19.5  | 11.2   | 15.3  |
+| Low      | 38.2  | 21.8   | 30.0  |
 
-
-library(knitr)
-library(kableExtra)
-dt <- read.csv("csv/Book18.csv", check.names = FALSE)
-dt[] <- lapply(dt, clean_table)
-dt %>%
-  kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
-  kable_classic(full_width = FALSE, html_font = "Georgia") %>%
-  kable_styling(
-    full_width = FALSE,
-    position = "center",
-    bootstrap_options = "bordered"
-  )
-```
+: Expected frequencies for the tenure and fertility data {#tbl-conting2exp .bordered}  
 
 ```{r tbl-conting2calc,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Calculation of chi-square for independence of attributes"
@@ -591,7 +620,7 @@ dt %>%
 library(knitr)
 library(kableExtra)
 dt <- read.csv("csv/Book19.csv")
-colnames(dt) <- c("$$O_{ij}$$", "$$E_{ij}$$", "$$O_{ij} - E_{ij}$$", "$$\\left( O_{ij} - E_{ij} \\right)^{2}$$", "$$\\frac{\\left( O_{ij} - E_{ij} \\right)^{2}}{E_{ij}}$$")
+colnames(dt) <- c("$O_{ij}$", "$E_{ij}$", "$O_{ij} - E_{ij}$", "$\\left( O_{ij} - E_{ij} \\right)^{2}$", "$\\frac{\\left( O_{ij} - E_{ij} \\right)^{2}}{E_{ij}}$")
 dt[] <- lapply(dt, clean_table)
 dt %>%
   kbl(escape = FALSE, booktabs = TRUE, align = "c") %>%
@@ -599,11 +628,12 @@ dt %>%
   kable_styling(
     full_width = FALSE,
     position = "center",
-    bootstrap_options = "bordered"
+    bootstrap_options = "bordered",
+    latex_options = "HOLD_position"
   )
 ```
 
-$\chi^2_{\text{cal}}$ = 26.3. The table value of chi-square for $(3 - 1)(3 - 1) = 4$ degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.
+from @tbl-conting2calc we obtain $\chi^2_{\text{cal}}$ = 26.3. The table value of chi-square for $(3 - 1)(3 - 1) = 4$ degrees of freedom at the 5% level of significance is 9.488. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the two attributes are not independent.
 :::
 
 ### Chi-square test for a 2×2 contingency table
@@ -635,28 +665,37 @@ In a 2×2 contingency table, the number of degrees of freedom is $(2 - 1)(2 - 1)
 $$\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2}$$ {#eq-yates}
 
 ::: {#exm-yates1}
-This is the solution to the germination experiment introduced in @exm-conting1.
+In a field trial to study the effect of a bio-pesticide on aphid infestation in okra, 50 plants were treated with the bio-pesticide and 50 were left untreated as controls. The number of plants showing aphid infestation was recorded, as shown below.
 
-$H_0$: The chemical treatment does not affect the germination rate of cotton seeds (the attributes are independent).
+|           | Infested | Not infested | Total |
+|:---------:|:--------:|:------------:|:-----:|
+| Treated   |    4     |      46      |  50   |
+| Untreated |    18    |      32      |  50   |
+| Total     |    22    |      78      |  100  |
 
-$H_1$: The chemical treatment affects the germination rate of cotton seeds.
+: Effect of a bio-pesticide on aphid infestation in okra {#tbl-yatesdata .bordered}
 
-Applying Yates' correction with $a = 118$, $b = 22$, $c = 120$, $d = 40$, $n = 300$:
+$H_0$: The bio-pesticide has no effect on aphid infestation (the attributes are independent).
 
-$$\chi^2 = \frac{300\left( \left| 118 \times 40 - 22 \times 120 \right| - \dfrac{300}{2} \right)^2}{238 \times 62 \times 140 \times 160}$$
+$H_1$: The bio-pesticide affects aphid infestation.
 
-$$= 3.38$$
+Here $a = 4$, $b = 46$, $c = 18$, $d = 32$, $R_1 = 50$, $R_2 = 50$, $C_1 = 22$, $C_2 = 78$, and $n = 100$. Since one of the cell frequencies ($a = 4$) is less than 5, Yates' correction for continuity is applied.
 
-$\chi^2_{\text{cal}}$ = 3.38. The table value of chi-square for $(2 - 1)(2 - 1) = 1$ degree of freedom at the 5% level of significance is 3.841. Since the calculated value is less than the table value, we do not have enough evidence to reject the null hypothesis. The chemical treatment does not improve the germination rate of cotton seeds significantly.
+$$\chi^2 = \frac{100\left( \left| 4 \times 32 - 46 \times 18 \right| - \dfrac{100}{2} \right)^2}{22 \times 78 \times 50 \times 50}$$
+
+$$= \frac{100\left( \left| 128 - 828 \right| - 50 \right)^2}{4{,}290{,}000} = \frac{100 \times 650^2}{4{,}290{,}000} = 9.85$$
+
+$\chi^2_{\text{cal}}$ = 9.85. The table value of chi-square for $(2 - 1)(2 - 1) = 1$ degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the bio-pesticide significantly reduces aphid infestation in okra.
 :::
 
 ::: {#exr-yates1}
 In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.
 
 |         | Fruit set | Fruit not set |
-|:--------:|:----------:|:--------------:|
-| Treated | 16        | 9             |
-| Control | 4         | 21            |
+|:-------:|:---------:|:-------------:|
+| Treated | 16        | 9              |
+| Control | 4         | 21             |  
+
 :::
 
 ### Chi-square test for a population variance

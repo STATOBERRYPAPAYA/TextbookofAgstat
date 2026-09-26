@@ -1,5 +1,7 @@
 # Appendix 2 {#sec-appendix-2}
 
+Duncan's multiple range test is one of the most widely used post-hoc procedures for comparing treatment means once an ANOVA has shown a significant difference among them. @tbl-duncan gives the critical values $r_p (p, df, \alpha = 0.05)$ needed to carry out the test, tabulated against the error degrees of freedom (rows) and the number of means being compared, $p$ (columns).
+
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-duncan
 #| tbl-cap: "Critical values $r_p (p, df, \\alpha = 0.05)$ for Duncan's multiple range tests."
@@ -33,7 +35,8 @@ out <- kbl(
   dt,
   escape = FALSE,
   booktabs = FALSE,
-  align = "c"
+  align = "c",
+  longtable = TRUE
 ) %>%
   kable_classic(
     full_width = FALSE,
@@ -42,8 +45,7 @@ out <- kbl(
   kable_styling(
     latex_options = c(
       "HOLD_position",
-      "repeat_header",
-      "scale_down"
+      "repeat_header"
     ),
     bootstrap_options = c(
       "bordered",

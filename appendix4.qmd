@@ -1,5 +1,7 @@
 # Appendix 4 {#sec-appendix-4}
 
+The t distribution is used whenever a test statistic is based on a small sample and the population standard deviation is unknown. @tbl-ttable gives the critical values of the t distribution for commonly used one- and two-tailed significance levels, along with the confidence levels to which they correspond.
+
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 #| label: tbl-ttable
 #| tbl-cap: "t Table: critical values of the t distribution for a given degrees of freedom (df) and cumulative probability."
@@ -13,9 +15,14 @@ dt <- read.csv(
   colClasses = "character"
 )
 
+# Use an escaped percent sign for LaTeX (a raw % starts a comment there
+# and, since this row is later bolded via row_spec(), would leave an
+# unclosed \textbf{...} that swallows the rest of the document) and a
+# plain percent sign for HTML, where no escaping is needed.
+pct <- if (knitr::is_latex_output()) "\\%" else "%"
+
 dt <- rbind(dt,
-            c("Confidence Level", "0%", "50%", "60%", "70%", "80%",
-              "90%", "95%", "98%", "99%"))
+            c("Confidence Level", paste0(c(0, 50, 60, 70, 80, 90, 95, 98, 99), pct)))
 
 colnames(dt) <- c("two-tails", "1.00", "0.50", "0.40", "0.30", "0.20",
                    "0.10", "0.05", "0.02", "0.01")
@@ -27,7 +34,11 @@ n <- nrow(dt)
 # Wrap header labels in an 8px span so the stacked header rows
 # added via add_header_above() match the body font size.
 span8 <- function(x) {
-  paste0('<span style="font-size: 8px;">', x, '</span>')
+  if (knitr::is_latex_output()) {
+    x
+  } else {
+    paste0('<span style="font-size: 8px;">', x, '</span>')
+  }
 }
 
 cum_prob_labels <- c("cum. prob.", "0.50", "0.75", "0.80", "0.85",
@@ -42,7 +53,8 @@ out <- kbl(
   dt,
   escape = FALSE,
   booktabs = FALSE,
-  align = "c"
+  align = "c",
+  longtable = TRUE
 ) %>%
   kable_classic(
     full_width = FALSE,
@@ -51,8 +63,7 @@ out <- kbl(
   kable_styling(
     latex_options = c(
       "HOLD_position",
-      "repeat_header",
-      "scale_down"
+      "repeat_header"
     ),
     bootstrap_options = c(
       "bordered",
