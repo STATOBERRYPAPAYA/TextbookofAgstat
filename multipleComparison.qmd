@@ -4,7 +4,7 @@ ANOVA is an omnibus test. An *omnibus test*, as the general name suggests, refer
 
 ANOVA does not tell us which treatment pairs are different. More clearly, on rejecting the null hypothesis in ANOVA, we conclude that at least a pair of treatment means are different, but it does not give any idea about which specific treatments are different. In order to identify which treatment means are significantly different, we need to employ **multiple comparison tests**, also known as **post-hoc tests**.
 
-A significant omnibus F test in the ANOVA procedure is a prerequisite before conducting post-hoc comparisons; otherwise, those comparisons are not required. There are several methods for performing post-hoc tests. In this chapter, we discuss the three that are most widely used in agricultural research:
+A significant omnibus F test is required for protected Fisher's LSD. Procedures such as Tukey's HSD control their specified family-wise error rate without requiring a preliminary significant F test. The comparisons and their error-control procedure should be chosen to match the research objectives. There are several methods for performing post-hoc tests. In this chapter, we discuss the three that are most widely used in agricultural research:
 
 -   Fisher's LSD test (Least Significant Difference test)
 
@@ -16,14 +16,14 @@ A significant omnibus F test in the ANOVA procedure is a prerequisite before con
 
 A **Type I error** occurs when the null hypothesis $H_0$ is statistically rejected even though it is actually true (a false positive), whereas a **Type II error** refers to failing to reject $H_0$ when it is actually false (a false negative). In a post-hoc test, we compare each of the treatment pairs individually. For example, consider a situation in which three treatments A, B, and C are compared. They may form the following three pairs: A versus B, A versus C, and B versus C. The set of pairwise comparisons for a given experiment is called a **family**. The Type I error rate for the whole set of comparisons taken together is called the **family-wise error rate** (FWER) [@Lee].
 
-For example, if one performs a pairwise test between two groups A and B at the 5% level of significance ($\alpha$) and observes that they are not significantly different, then the chance that a correct decision is made (not committing a Type I error) is 95%. If a second pairwise test between groups B and C is also carried out and gives a non-significant result, then the probability of making a correct decision on both the A–B and B–C comparisons is $0.95 \times 0.95 = 0.9025$, or 90.25%. Consequently, the actual Type I error rate for the family is $1 - 0.9025 = 0.0975$, not 0.05. If the comparison between groups A and C is also non-significant, the probability of correctly declaring non-significance for all three pairs is $0.95 \times 0.95 \times 0.95 = 0.857$, and the actual family-wise Type I error rate is $1 - 0.857 = 0.143$, which is more than 14%. So the chance of a Type I error increases sharply when several treatment pairs are tested together. Multiple comparison tests are devised in such a way that a correction is incorporated to control this inflation in $\alpha$, so that the actual level of significance remains at the prescribed rate (in our case 0.05).
+To illustrate the effect of multiple testing, suppose $N$ independent tests are performed, each at level $\alpha$, and all their null hypotheses are true. The probability of avoiding a Type I error in every test is $(1-\alpha)^N$. Therefore, the probability of at least one Type I error is $1-(1-\alpha)^N$. For three independent tests at the 5% level, this is $1-0.95^3=0.1426$, or about 14.3%. Pairwise comparisons sharing treatment groups are generally dependent, so this calculation illustrates the problem but is not their exact family-wise error rate. A non-significant observed result does not itself have a 95% probability of being correct.
 
 $$\text{Inflated } \alpha = 1 - \left( 1 - \alpha \right)^{N}$$ {#eq-inflated}
 
-where $N$ is the number of hypotheses (comparisons) tested. As @eq-inflated shows, the inflation of the probability of a Type I error increases with the number of comparisons.
+where $N$ is the number of independent hypotheses tested and all null hypotheses are true. As @eq-inflated shows, the inflation of the probability of a Type I error increases with the number of comparisons.
 
 ::: {.callout-note title="Note"}
-The number of possible pairwise comparisons among $v$ treatments is $\binom{v}{2} = \dfrac{v(v-1)}{2}$. For example, with 5 treatments there are $\dfrac{5 \times 4}{2} = 10$ pairwise comparisons, and without any correction the family-wise error rate would rise to $1 - (0.95)^{10} = 0.40$, or 40%.
+The number of possible pairwise comparisons among $v$ treatments is $\binom{v}{2} = \dfrac{v(v-1)}{2}$. For example, with 5 treatments there are $\dfrac{5 \times 4}{2} = 10$ pairwise comparisons. The independent-test illustration gives $1-(0.95)^{10}\approx0.40$, or 40%; the exact rate for these dependent pairwise comparisons is not given by this formula.
 :::
 
 ## Fisher's LSD test {#sec-lsd}
@@ -68,15 +68,15 @@ A t-test can be used to test this hypothesis:
 
 $$t = \frac{\overline{T_{i}} - \overline{T_{j}}}{SE(d)}$$ {#eq-lsdt}
 
-The $100(1 - \alpha)\%$ confidence interval for the mean difference $\overline{T_{i}} - \overline{T_{j}}$ is $\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm t_{\frac{\alpha}{2},\, edf}\, SE(d)$, which can be written as $\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm \text{LSD}$. So, if $\left| \overline{T_{i}} - \overline{T_{j}} \right| > \text{LSD}$, the confidence interval does not include 0, and we reject the null hypothesis and conclude that the two treatment means are different, with $100(1 - \alpha)\%$ confidence.
+The individual $100(1-\alpha)\%$ confidence interval for the population mean difference $\mu_i-\mu_j$, before any simultaneous-coverage adjustment, is $\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm t_{\frac{\alpha}{2},\, edf}\, SE(d)$, which can be written as $\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm \text{LSD}$. So, if $\left| \overline{T_{i}} - \overline{T_{j}} \right| > \text{LSD}$, the confidence interval does not include 0, and we reject the null hypothesis and conclude that the two treatment means are different, at the specified individual significance level. These individual intervals are not simultaneous confidence intervals for all pairs.
 
 ### Advantages and disadvantages of LSD  
 
 ::: {.callout-important title="Note"}
-The LSD test is also known as the **protected Fisher's LSD test**. "Protected" means that the pairwise calculations are performed only when the null hypothesis has already been rejected by the ANOVA. This first step helps to control the false positive rate (Type I error) for the entire family of comparisons [@Hayter].  
+The LSD test is also known as the **protected Fisher's LSD test**. "Protected" means that the pairwise calculations are performed only when the null hypothesis has already been rejected by the ANOVA. This first step controls the family-wise Type I error when all treatment means are equal, but does not generally provide strong control when some means differ [@Hayter].  
 :::  
 
-While the protected Fisher's LSD test was the first post-hoc test ever developed, it does not correct for $\alpha$ inflation as effectively as some other post-hoc tests. Fisher's LSD procedure is known to preserve the experiment-wise Type I error rate at the nominal level only when the number of treatments is exactly three [@Meier]. Nevertheless, the LSD is still the most commonly used post-hoc test in agricultural research. When the number of treatments is larger, it is advisable to also consider DMRT or Tukey's test.
+While the protected Fisher's LSD test was the first post-hoc test ever developed, it does not correct for $\alpha$ inflation as effectively as some other post-hoc tests. Fisher's LSD procedure is known to preserve the experiment-wise Type I error rate at the nominal level for two or three treatments under the usual model, but not generally for more than three [@Meier]. Nevertheless, the LSD is still the most commonly used post-hoc test in agricultural research. When strict family-wise error control is required for all pairwise comparisons, Tukey's test is preferable. DMRT is more liberal and does not provide the same family-wise protection.
 
 ## Duncan's Multiple Range Test (DMRT)
 
@@ -92,6 +92,8 @@ Unlike Fisher's LSD, which uses the same critical difference for every pair of m
 
 $$SE(\overline{Y}) = \sqrt{\frac{\text{MSE}}{r}}$$ {#eq-sedmrt}
 
+The formula above assumes equal replication and the appropriate common-error model. Do not use it unchanged for unequal replication, adjusted means or split-plot comparisons.
+
 3.  From the statistical tables of **Duncan's multiple ranges**, note the $r_{p}$ values for $p = 2, 3, \ldots, v$ treatments, corresponding to the error degrees of freedom.
 
 4.  Calculate the shortest significant ranges ($R_{p}$), where
@@ -103,7 +105,7 @@ $$R_{p} = r_{p} \cdot SE(\overline{Y})$$ {#eq-rp}
 6.  Present the results using a letter (or line) notation to indicate which treatments are on par and which are significantly different.
 
 ::: {.callout-note title="Note"}
-The critical value $R_{p}$ in DMRT gradually increases as the means being compared are ranked further apart. This means the "protection level" of the test relaxes as the number of means spanned increases, making DMRT more powerful (more likely to declare a difference) than a test based on a single critical value like the LSD. It is, however, more liberal than Tukey's test, so it may declare more pairs significant.
+The critical value $R_{p}$ in DMRT gradually increases as the means being compared are ranked further apart. This means the "protection level" of the test relaxes as the number of means spanned increases, making DMRT more liberal than Tukey's HSD. For the same pair and error variance, its critical range is generally at least as large as the LSD threshold, so increasing the range does not make it more liberal than LSD. It is, however, more liberal than Tukey's test, so it may declare more pairs significant.
 :::
 
 ## Tukey's test 
@@ -125,7 +127,7 @@ A field experiment was conducted to compare the yield (in kg per plot) of five f
 | :-----------: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | Mean yield | 21.0 | 24.0 | 25.5 | 22.5 | 31.0 |
 
-: {.bordered}  
+: Treatment means in the comparison example {.bordered}  
 
 
 **Solution**
@@ -148,7 +150,7 @@ For DMRT first, arrange the means in descending order:
 | :-----: | :-----: | :-----: | :-----: | :-----: | :-----: |
 | Treatment | $T_5$ | $T_3$ | $T_2$ | $T_4$ | $T_1$ |
 | Mean | 31.0 | 25.5 | 24.0 | 22.5 | 21.0 |  
-: {.bordered}  
+: Treatment means in descending order {.bordered}  
 
 The standard error of a mean, using @eq-sedmrt, is
 
@@ -161,7 +163,7 @@ The Duncan's range values $r_{p}$ at the 5% level for $edf = 15$, $r_{p}$ can be
 | $r_{p}$ | 3.014 | 3.160 | 3.250 | 3.312 |
 | $R_{p}$ | 1.10 | 1.15 | 1.19 | 1.21 |  
 
-: {.bordered}  
+: Duncan range values and shortest significant ranges {.bordered}  
 
 **(c) Tukey's HSD test.** The studentised range value at the 5% level for $v = 5$ treatments and $edf = 15$ is $q_{0.05,\,(5,15)} = 4.367$. Using @eq-hsd,
 
@@ -169,7 +171,7 @@ $$\text{HSD} = q_{0.05,\,(5,15)} \cdot \sqrt{\frac{\text{MSE}}{r}} = 4.367 \time
 
 Any two treatment means differing by more than 1.59 are significantly different.
 
-The pairwise comparisons under the three tests are summarised in @tbl-comparison. For each pair, S denotes a significant difference and NS a non-significant one. 
+The pairwise comparisons under the three tests are summarized in @tbl-comparison. For each pair, S denotes a significant difference and NS a non-significant one. 
 
 | Comparison    | Mean difference | Steps apart ($p$) | LSD (1.10) | DMRT ($R_p$) used | DMRT | HSD (1.59) |
 | :------------: | :-------------: | :---------------: | :--------: | :---------------: | :----: | :--------: |
@@ -216,7 +218,7 @@ For the LSD and DMRT, every pair of treatments is significantly different, so no
 | $T_2$ | 24.0 | c |
 | $T_4$ | 22.5 | d |
 | $T_1$ | 21.0 | e |  
-: {.bordered}  
+: Letter grouping under LSD and DMRT {.bordered}  
 
 For Tukey's HSD, the pairs $T_3 - T_2$, $T_2 - T_4$, and $T_4 - T_1$ are not significant, so those treatments share letters. Starting from the top: $T_5$ differs from all others and gets *a*. $T_3$ starts *b*; $T_2$ is not different from $T_3$, so it also gets *b*, but $T_2$ is also not different from $T_4$, so a new letter **c** begins at $T_2$, giving it *bc*. $T_4$ is not different from $T_2$ (*c*) and not different from $T_1$, so it takes *cd*. $T_1$ is not different from $T_4$, so it takes *d*.
 
@@ -228,18 +230,32 @@ For Tukey's HSD, the pairs $T_3 - T_2$, $T_2 - T_4$, and $T_4 - T_1$ are not sig
 | $T_4$ | 22.5 | cd |
 | $T_1$ | 21.0 | d |  
 
-: {.bordered}  
+: Letter grouping under Tukey’s HSD {.bordered}  
 
 Reading the Tukey grouping: $T_5$ (a) stands alone as the highest-yielding treatment, significantly better than all others. $T_3$ and $T_2$ share the letter b, so they are on par. $T_2$ and $T_4$ share c, and $T_4$ and $T_1$ share d, so those neighbouring pairs are also on par. But $T_3$ (b) and $T_4$ (cd) share no letter, so they are significantly different, and likewise $T_2$ (bc) and $T_1$ (d) are significantly different. This overlapping pattern is exactly what the letter notation is designed to convey.  
 
 
-An older but equivalent way of displaying the same information is the **line (or underscore) notation**. The treatment means are first arranged in order, and each group of adjacent means that are not significantly different from one another is joined by a common line. When groups overlap, the lines are drawn at different levels, some above and some below the row of means, so that they do not collide. Two treatments joined (directly or through a chain) by a common line are on par, while two treatments with no connecting line between them are significantly different. For the Tukey results in @exm-postdoc, one line would join $T_3$ and $T_2$, a second line (at a different level) would join $T_2$ and $T_4$, and a third would join $T_4$ and $T_1$, while $T_5$ has no line at all, since it differs significantly from every other treatment. This conveys exactly the same groupings as the letters a, b, bc, cd, and d. The letter notation is now more common in printed tables because it is easier to typeset, but the two notations carry identical meaning.  
+An older but equivalent way of displaying the same information is the **line (or underscore) notation**. The treatment means are first arranged in order, and each group of adjacent means that are not significantly different from one another is joined by a common line. When groups overlap, the lines are drawn at different levels, some above and some below the row of means, so that they do not collide. Two treatments covered by the same individual line are not significantly different, while two treatments with no connecting line between them are significantly different. For the Tukey results in @exm-postdoc, one line would join $T_3$ and $T_2$, a second line (at a different level) would join $T_2$ and $T_4$, and a third would join $T_4$ and $T_1$, while $T_5$ has no line at all, since it differs significantly from every other treatment. A chain of overlapping lines does not make its endpoints nonsignificant: $T_3$ and $T_1$ remain significantly different. This conveys exactly the same groupings as the letters a, b, bc, cd, and d. The letter notation is now more common in printed tables because it is easier to typeset, but the two notations carry identical meaning.  
 
 ![line (or underscore) notation illustration using @exm-postdoc](images/line_notation.png){#fig-tukey1 width="450px" height="300px"}
 
 ::: {.callout-important title="Note"}  
 The letter grouping method is more common in modern statistical software (such as R, SAS, SPSS, GenStat, JMP and cloud platforms like RAISINS), whereas the line or underscore notation was frequently used in older agricultural statistics texts and research publications. Both methods are equivalent in interpretation.
 :::  
+
+A shared letter means only that the specified procedure did not detect a difference at the chosen level. It does not establish equality or practical equivalence. Non-significance is not transitive: two pairs may be nonsignificant while a third pair connecting their endpoints is significant. Check every pair in the final letter display against the comparison results.
+
+## Unequal replication and planned comparisons
+
+For independent group means with unequal sample sizes under the common-variance model, the **Tukey–Kramer** critical difference for means $i$ and $j$ is
+
+$$q_{\alpha,(v,edf)}\sqrt{\frac{\text{MSE}}2\left(\frac1{r_i}+\frac1{r_j}\right)}.$$
+
+It reduces to the HSD formula when the replications are equal. For adjusted means or designs with more than one error stratum, use the covariance matrix and error term appropriate to the fitted model; a sample-size substitution alone may be incorrect.
+
+A **contrast** is a specified linear comparison $L=\sum_i c_i\mu_i$ with $\sum_i c_i=0$. For independent group means, estimate it by $\hat L=\sum_i c_i\overline{Y}_i$, with $SE(\hat L)=\sqrt{\text{MSE}\sum_i c_i^2/r_i}$. For a single pre-specified contrast, test $H_0:L=0$ using $t=\hat L/SE(\hat L)$ and the error degrees of freedom. A family of planned contrasts may still require multiple-testing control. Two contrasts with coefficients $c_i$ and $d_i$ are orthogonal under this model when $\sum_i c_id_i/r_i=0$. In a balanced experiment this reduces to $\sum_i c_id_i=0$.
+
+For example, comparing a control mean with the average of two new treatments uses coefficients $(-1,1/2,1/2)$. This directly answers a different question from testing all three pairs. Planned comparisons need not wait for a significant omnibus test when they are analysed under a pre-specified valid procedure.
 
 ## Other multiple comparison tests
 
@@ -252,85 +268,33 @@ Besides the three tests discussed above, several other multiple comparison proce
 
 Answers are given at the end of the chapter.
 
-1. ANOVA is an __________ test that determines whether there is an overall significant difference among treatment means.
+1. A test of the overall equality of several treatment means is called an __________ test.
 
-2. ANOVA does not identify which specific treatment __________ are significantly different.
+2. A significant treatment F-test indicates that not all treatment means are __________.
 
-3. Tests used to identify specific differences among treatment means after a significant ANOVA are called __________ comparison tests.
+3. The probability of at least one Type I error in a family of tests is called the __________ error rate.
 
-4. Multiple comparison tests are also called __________ tests.
+4. The number of pairwise comparisons among $v$ treatment means is __________.
 
-5. A significant omnibus __________ test is a prerequisite before conducting post-hoc comparisons.
+5. The full form of LSD in mean comparison is Least Significant __________.
 
-6. Rejecting the null hypothesis in ANOVA indicates that at least one pair of treatment means is __________.
+6. Fisher's LSD is also called the Critical __________ in agricultural experiments.
 
-7. Rejecting a true null hypothesis is called a Type __________ error.
+7. Fisher's LSD applied after a significant omnibus F-test is called __________ LSD.
 
-8. Failing to reject a false null hypothesis is called a Type __________ error.
+8. The error variance used in mean-comparison procedures is estimated by the error mean __________.
 
-9. The collection of all pairwise comparisons in an experiment is called a __________.
+9. The full form of DMRT is Duncan's Multiple __________ Test.
 
-10. The probability of making at least one Type I error among a family of comparisons is called the __________ error rate.
+10. Tukey's test uses the studentised __________ distribution.
 
-11. The number of possible pairwise comparisons among $v$ treatments is __________.
+11. Tukey's HSD controls the family-wise error rate for all __________ comparisons.
 
-12. Fisher's Least Significant Difference test is abbreviated as __________.
+12. The procedure designed for comparing several treatments with one control is __________ test.
 
-13. Fisher's LSD test was developed by __________.
+13. Scheffe's procedure can be used to test all linear __________ among means.
 
-14. In India, LSD is commonly referred to as the __________ Difference or CD.
-
-15. In Fisher's LSD procedure, pairwise comparisons are performed only after the ANOVA is found to be __________.
-
-16. Fisher's LSD is therefore also called __________ Fisher's LSD.
-
-17. The LSD is calculated using the error mean square obtained from the __________.
-
-18. The standard error of the difference between two treatment means depends on the __________ and the number of replications.
-
-19. If the difference between two treatment means is greater than the LSD, the means are considered significantly __________.
-
-20. Duncan's Multiple Range Test is abbreviated as __________.
-
-21. DMRT was developed by __________ in 1955.
-
-22. In DMRT, treatment means are first arranged in __________ order.
-
-23. In DMRT, $p$ represents the number of ordered treatment means __________ by the comparison.
-
-24. The critical values used in DMRT are denoted by __________.
-
-25. The shortest significant range in DMRT is denoted by __________.
-
-26. The shortest significant range is calculated as $R_p=$ __________.
-
-27. Unlike LSD, DMRT uses progressively __________ critical values as the number of means spanned increases.
-
-28. Tukey's test is also called the Honestly Significant __________ test.
-
-29. Tukey's HSD test was proposed by __________.
-
-30. Tukey's test is based on the __________ range statistic.
-
-31. For equal replications, Tukey's test uses a single critical value called the __________.
-
-32. Tukey's test controls the family-wise error rate for the __________ set of pairwise comparisons.
-
-33. Compared with LSD and DMRT, Tukey's test is more __________.
-
-34. A treatment grouping in which treatments that are not significantly different share a common letter is called __________ grouping.
-
-35. In letter notation, treatments that do not share any common letter are significantly __________.
-
-36. The older method of displaying groups of treatment means using connecting lines is called __________ notation.
-
-37. A treatment that belongs to two overlapping non-significant groups may receive __________ letters.
-
-38. The Bonferroni method, Dunnett method, Scheffé's test, and SNK test are examples of other __________ comparison procedures.
-
-39. Dunnett's test is particularly useful when each treatment is compared with a single __________.
-
-40. Scheffé's test is used for testing general __________ among means.
+14. In a compact letter display, means with no letter in common are significantly __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -422,11 +386,11 @@ Answers are given at the end of the chapter.
 
 2. For 5 treatments, calculate the total number of possible pairwise comparisons.
 
-3. If each of 10 pairwise comparisons is performed at $\alpha=0.05$ without correction, calculate the approximate family-wise Type I error rate using the formula given in the chapter.
+3. If 10 independent tests are performed at $\alpha=0.05$ and all null hypotheses are true, calculate the family-wise Type I error rate.
 
-4. An ANOVA gives a non-significant treatment effect. Should Fisher's LSD, DMRT, or Tukey's test be conducted? Give a reason.
+4. An ANOVA gives a non-significant treatment effect. Explain why protected Fisher's LSD should not proceed, and whether Tukey's HSD requires this preliminary test.
 
-5. An experiment has four treatments with equal replications. The MSE is 0.5333, $r=4$, and $edf=15$. Calculate the LSD at the 5% level using $t_{0.025,15}=2.131$.
+5. An experiment has five treatments with four replications each. The MSE is 0.5333 and $edf=15$. Calculate the LSD at the 5% level using $t_{0.025,15}=2.131$.
 
 6. Two treatment means are 25.5 and 24.0, and the LSD is 1.10. Determine whether the two treatments differ significantly.
 
@@ -534,7 +498,7 @@ $$
 
 - Multiple comparison tests → used to identify specific differences among treatment means.
 
-- Post-hoc tests → should generally be conducted after a significant ANOVA.
+- Protected Fisher's LSD requires a significant ANOVA; Tukey's HSD does not require this preliminary test.
 
 - Type I error → rejecting a true null hypothesis.
 
@@ -560,7 +524,7 @@ $$
 
 - LSD is relatively liberal compared with Tukey's test.
 
-- Fisher's LSD controls experiment-wise Type I error effectively only when the number of treatments is exactly three, as discussed in the chapter.
+- Fisher's LSD controls experiment-wise Type I error effectively for two or three treatments under the usual model, but not generally for more than three, as discussed in the chapter.
 
 - DMRT → Duncan's Multiple Range Test.
 
@@ -630,18 +594,18 @@ $$
 
 ::: {.answer-key}
 
-`1.` Omnibus `2.` Pairs `3.` Multiple `4.` Post-hoc `5.` F `6.` Different `7.` I `8.` II `9.` Family `10.` Family-wise `11.` $\dfrac{v(v-1)}{2}$ `12.` LSD `13.` Fisher `14.` Critical `15.` Significant `16.` Protected `17.` ANOVA `18.` MSE `19.` Different `20.` DMRT `21.` Duncan `22.` Descending `23.` Spanned `24.` $r_p$ `25.` $R_p$ `26.` $r_p \cdot SE(\overline{Y})$ `27.` Larger `28.` Difference `29.` John Tukey `30.` Studentised `31.` HSD `32.` Entire `33.` Conservative `34.` Compact letter `35.` Different `36.` Line `37.` Multiple `38.` Multiple `39.` Control `40.` Contrasts
+`1.` Omnibus `2.` Equal `3.` Family-wise `4.` $v(v-1)/2$ `5.` Difference `6.` Difference `7.` Protected `8.` Square `9.` Range `10.` Range `11.` Pairwise `12.` Dunnett's `13.` Contrasts `14.` Different
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
-1.  A significant ANOVA rejects the overall null hypothesis, showing that at least one pair of treatment means differs, but because it is an omnibus test it does not indicate which specific pair or pairs are responsible, so pairwise post-hoc tests are required.
+1. A significant ANOVA provides evidence against equality of all treatment means but does not identify the differing pairs. Planned contrasts or suitable multiple-comparison procedures can address the comparisons of scientific interest.
 
 2.  Using @eq-inflated context, the number of pairwise comparisons is $\dfrac{v(v-1)}{2} = \dfrac{5 \times 4}{2} = 10$.
 
-3.  Using @eq-inflated, inflated $\alpha = 1-(1-0.05)^{10} = 1-(0.95)^{10} = 0.40$, about 40%.
+3. Under the illustrative assumption of ten independent true-null tests, @eq-inflated gives $1-(1-0.05)^{10}\approx0.40$. Pairwise comparisons sharing treatment means are dependent, so this is not their exact family-wise error probability.
 
-4.  None of them should be conducted, since a non-significant ANOVA means there is no overall treatment effect, and post-hoc tests require a significant omnibus F test first.
+4.  Protected Fisher's LSD should not proceed because its first-stage F-test is non-significant. Tukey's HSD does not require a preliminary significant F-test and may be used for the specified family of pairwise comparisons. A non-significant omnibus test does not prove that all treatment effects are zero.
 
 5.  Using @eq-lsdequal, $\text{LSD} = 2.131 \times \sqrt{\dfrac{2 \times 0.5333}{4}} = 2.131 \times 0.5164 = 1.10$.
 
@@ -684,6 +648,12 @@ $$
 24. Under LSD every pair differs significantly, so each treatment gets its own letter: $T_5$: a, $T_3$: b, $T_2$: c, $T_4$: d, $T_1$: e.
 
 25. Under LSD and DMRT the critical values (1.10 to 1.21) are smaller than every pairwise difference (the smallest being 1.5), so all pairs are significant and no two treatments share a letter.
+
+::: {.callout-caution title="Historical Insights"}
+**One overall question and several comparisons**
+
+ANOVA asks whether all treatment population means are equal. Agricultural researchers often need a second answer: which comparisons show evidence of a difference? Fisher's protected LSD, Duncan's multiple range procedure and Tukey's HSD address this task with different error-control properties. Their choice should follow the purpose of the comparisons, not simply which method produces the most significant results. The distinction between an overall test and a family of comparisons remains important even when software carries out both calculations automatically.
+:::
 
 ::: {.callout-tip title="Quotes to Inspire"}
 **"The method of difference is the most potent of all methods in experimental inquiry." - John Stuart Mill**

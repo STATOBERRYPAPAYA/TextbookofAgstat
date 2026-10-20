@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>12&nbsp; Sample survey – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./hypothesisTest.html" rel="next">
 <link href="./probabilitydist.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="12&nbsp; Sample survey – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="12&nbsp; Sample survey – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -585,9 +618,16 @@ window.Quarto = {
   <li><a href="#methods-of-sampling" id="toc-methods-of-sampling" class="nav-link" data-scroll-target="#methods-of-sampling"><span class="header-section-number">12.4</span> Methods of sampling</a>
   <ul class="collapse">
   <li><a href="#probability-sampling" id="toc-probability-sampling" class="nav-link" data-scroll-target="#probability-sampling">Probability sampling</a></li>
+  <li><a href="#stratification-clustering-and-sampling-weights" id="toc-stratification-clustering-and-sampling-weights" class="nav-link" data-scroll-target="#stratification-clustering-and-sampling-weights">Stratification, clustering, and sampling weights</a></li>
+  <li><a href="#estimation-under-srswor" id="toc-estimation-under-srswor" class="nav-link" data-scroll-target="#estimation-under-srswor">Estimation under SRSWOR</a></li>
+  <li><a href="#estimating-totals-proportions-and-stratified-precision" id="toc-estimating-totals-proportions-and-stratified-precision" class="nav-link" data-scroll-target="#estimating-totals-proportions-and-stratified-precision">Estimating totals, proportions and stratified precision</a></li>
+  <li><a href="#sample-size-and-field-implementation" id="toc-sample-size-and-field-implementation" class="nav-link" data-scroll-target="#sample-size-and-field-implementation">Sample size and field implementation</a></li>
   <li><a href="#non-probability-sampling" id="toc-non-probability-sampling" class="nav-link" data-scroll-target="#non-probability-sampling">Non-probability sampling</a></li>
   </ul></li>
-  <li><a href="#limitations-of-sampling" id="toc-limitations-of-sampling" class="nav-link" data-scroll-target="#limitations-of-sampling">Limitations of sampling</a></li>
+  <li><a href="#limitations-of-sampling" id="toc-limitations-of-sampling" class="nav-link" data-scroll-target="#limitations-of-sampling">Limitations of sampling</a>
+  <ul class="collapse">
+  <li><a href="#reading-a-random-number-table" id="toc-reading-a-random-number-table" class="nav-link" data-scroll-target="#reading-a-random-number-table"><span class="header-section-number">12.4.1</span> Reading a random-number table</a></li>
+  </ul></li>
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">12.5</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
@@ -643,18 +683,17 @@ window.Quarto = {
 <p><strong>Population</strong> is the complete collection of individuals, objects, or units about which information is required. The population is defined according to the objective of the study. For example, all rice fields in a district, all households in a village, or all dairy cattle in a state may constitute a population. The total number of units in a population is called the <strong>population size</strong> and is denoted by (<span class="math inline">\(N\)</span>). A population may be <strong>finite</strong> (for example, all coconut trees in a plantation, which can in principle be counted) or <strong>infinite</strong> (for example, all possible bacterial colonies that could grow on a culture medium).</p>
 <p><strong>Sample</strong> is a subset of the population selected for the study. Information obtained from the sample is used to draw conclusions about the entire population. A good sample is one that is <strong>representative</strong>, meaning it reflects the important characteristics of the population from which it is drawn. For example, if we want to know the average milk yield of cows in a village, we study a sample of cows rather than every cow, and we use the sample result to make a statement about all the cows.</p>
 <p>A <strong>sampling unit</strong> is the basic unit selected from the population for inclusion in the sample and on which observations or measurements are made. The population is regarded as being made up of these sampling units, which must be clearly defined and must not overlap. The nature of the sampling unit depends on the objective of the study. For example, in a crop-cutting survey, a field or a small plot marked within a field may be the sampling unit; in a household survey, a household is the sampling unit; in a livestock survey, an individual animal may be the sampling unit; and in a farmer adoption study, an individual farmer may be the sampling unit.</p>
-<p><strong>Census</strong> is the complete enumeration of every unit in the population. In a census, data are collected from all population units rather than from a sample. For example, the counting of every single farmer in a village to record his land holding is a census, whereas recording the land holding of only 50 selected farmers is a sample survey. A census gives exact information but is costly and time-consuming, and is often impossible when the population is very large or when measurement destroys the unit.</p>
+<p><strong>Census</strong> is the complete enumeration of every unit in the population. In a census, data are collected from all population units rather than from a sample. For example, the counting of every single farmer in a village to record his land holding is a census, whereas recording the land holding of only 50 selected farmers is a sample survey. A census is free from sampling error, but may still be affected by non-sampling errors. It is costly and time-consuming, and is often impossible when the population is very large or when measurement destroys the unit.</p>
 <p><strong>Sample size</strong> is the total number of sampling units included in the sample. It is usually denoted by (<span class="math inline">\(n\)</span>). The ratio <span class="math inline">\(\dfrac{n}{N}\)</span> is called the <strong>sampling fraction</strong>. For example, if 50 farmers are selected from a village of 500 farmers, the sample size is <span class="math inline">\(n = 50\)</span> and the sampling fraction is <span class="math inline">\(\dfrac{50}{500} = 0.1\)</span>, or 10%.</p>
-<p><strong>Sampling design (Sampling method)</strong> is the procedure used to select units from the population. A good sampling design ensures that the selected sample is representative of the population, allowing reliable conclusions to be drawn. The choice of sampling design depends on the objective of the study, the nature of the population, and the resources available.</p>
+<p><strong>Sampling design (Sampling method)</strong> is the procedure used to select units from the population. A suitable probability design supports valid estimation of population quantities and their sampling uncertainty; no design guarantees that every realised sample exactly represents the population. The choice depends on the study objective, population structure, and available resources.</p>
 <p><strong>Sampling frame</strong> is the complete list or source that identifies all the sampling units in the population from which the sample is selected. It should include every unit in the target population, with no omissions or duplication. For example, if the population consists of all farmers in a village, the voters’ list, farmer registry, or village household register can serve as the sampling frame, provided it includes all farmers. An incomplete or outdated frame (for example, one that leaves out newly settled farmers) leads to a biased sample, because some units of the population never get a chance to be selected.</p>
 <p><strong>Parameter</strong> is a numerical constant that describes a characteristic of the entire population. Examples include the population mean (<span class="math inline">\(\mu\)</span>), population variance (<span class="math inline">\(\sigma^2\)</span>), and population proportion (<span class="math inline">\(P\)</span>). Population parameters are usually unknown, and the main purpose of a sample survey is to estimate them. For example, the true average yield of paddy in a district is a parameter.</p>
 <p><strong>Statistic</strong> is a numerical measure calculated from sample data. Examples include the sample mean (<span class="math inline">\(\bar{x}\)</span>), sample variance (<span class="math inline">\(s^2\)</span>), and sample proportion (<span class="math inline">\(\hat{p}\)</span>). Statistics are used to estimate the corresponding population parameters. Since a statistic changes from one sample to another, it is itself a random variable.</p>
 <p><strong>Estimator</strong> is a statistic used to estimate an unknown population parameter from sample data. It is a function of the sample observations and produces an <strong>estimate</strong> of the parameter. For example, the sample mean <span class="math inline">\(\bar{x}\)</span> is an estimator of the population mean <span class="math inline">\(\mu\)</span>; the particular value it takes for a given sample, say 38 kg, is an estimate.</p>
 <p><strong>Expectation (Expected Value)</strong> of an estimator is the long-run average of the values that the estimator would take if the same sampling procedure were repeated a very large number of times. It is denoted by <span class="math inline">\(E(\cdot)\)</span>.<br>
-Suppose the average yield of a crop in a population is 40 kg per plot. If many random samples of the same size are drawn and the sample mean is calculated for each sample, the sample means will vary from one sample to another. However, the average of all these sample means will be 40 kg per plot. Thus, <span class="math inline">\(E(\bar{X})=\mu=40\)</span>.</p>
-<p>An estimator is said to be an <strong>unbiased estimator</strong> of a population parameter if its expected value is equal to the true value of that parameter. Thus, if <span class="math inline">\(t\)</span> is an estimator of the parameter <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(t\)</span> is unbiased if <span class="math inline">\(E(t)=\theta\)</span>. Unbiasedness means that, although a single sample estimate may be higher or lower than the true value, on average the estimator neither overestimates nor underestimates the parameter. For example, the sample mean <span class="math inline">\(\bar{x}\)</span> is an unbiased estimator of the population mean <span class="math inline">\(\mu\)</span>.</p>
-<p><strong>Sampling Error</strong> is the difference between a sample estimate and the corresponding true population value that arises because only a sample, and not the entire population, is observed. Sampling error is a natural consequence of sampling and decreases as the sample becomes more representative of the population.<br>
-Sampling errors arise primarily due to: (i) faulty selection of samples (ii) substitution of sampling units already included in the study (iii) faulty demarcation of sampling units (iv) improper choice of statistical methods for estimating parameters. As long as sampling errors are sufficiently small, the sampling method can be reliably used for studying a population. Sampling errors are absent in a complete census. Increasing the sample size decreases the sampling error.</p>
+Suppose the average yield of a crop in a population is 40 kg per plot. Under simple random sampling, if many samples of the same size are drawn and the sample mean is calculated for each sample, the sample means will vary from one sample to another. However, the average of all these sample means will be 40 kg per plot. Thus, <span class="math inline">\(E(\bar{X})=\mu=40\)</span>.</p>
+<p>An estimator is said to be an <strong>unbiased estimator</strong> of a population parameter if its expected value is equal to the true value of that parameter. Thus, if <span class="math inline">\(t\)</span> is an estimator of the parameter <span class="math inline">\(\theta\)</span>, then <span class="math inline">\(t\)</span> is unbiased if <span class="math inline">\(E(t)=\theta\)</span>. Unbiasedness means that, although a single sample estimate may be higher or lower than the true value, on average the estimator neither overestimates nor underestimates the parameter. For example, under simple random sampling, the sample mean <span class="math inline">\(\bar{x}\)</span> is an unbiased estimator of the population mean <span class="math inline">\(\mu\)</span>.</p>
+<p><strong>Sampling Error</strong> is the difference between a sample estimate and the corresponding true population value that arises because only a sample, and not the entire population, is observed. Sampling error occurs even when a probability sample is selected and measured correctly. For a fixed design and population, increasing the sample size generally reduces the standard error, but does not guarantee a smaller error in every realised sample. Errors due to faulty implementation, unauthorised substitution of selected units, incorrect demarcation, or inappropriate estimation procedures are not ordinary random sampling fluctuations. Sampling error is absent in a complete census.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-samperror" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -669,7 +708,7 @@ Figure&nbsp;12.1: Relationship between sample size and sampling error. As the sa
 </div>
 </div>
 </div>
-<p><strong>Non-sampling error</strong> are the errors other than sampling errors - such as those arising through non-response, incompleteness, or inaccuracy in recording. Data obtained from a census are free from sampling errors but are still subject to non-sampling errors. Sample survey data are subject to both types of errors.</p>
+<p><strong>Non-sampling errors</strong> are errors other than sampling errors - such as those arising through non-response, incompleteness, or inaccuracy in recording. Data obtained from a census are free from sampling errors but are still subject to non-sampling errors. Sample survey data are subject to both types of errors.</p>
 <p>Non-sampling errors can occur due to: (i) faulty planning and definitions - inadequate data specifications, errors in locating units, lack of trained personnel; (ii) response errors - misunderstanding of questions, or bias on the part of the interviewer or respondent; (iii) non-response bias - where full information is not obtained; and (iv) errors in coverage, compilation, and publication.</p>
 </section>
 <section id="confidence-interval" class="level2" data-number="12.2">
@@ -733,7 +772,7 @@ Figure&nbsp;12.2: Classification of sampling methods
 </div>
 <section id="probability-sampling" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="probability-sampling">Probability sampling</h3>
-<p>Probability sampling is the scientific method of selecting samples according to the laws of probability, in which each unit in the population has a definite, pre-assigned probability of being selected. This may mean:</p>
+<p>Probability sampling is the scientific method of selecting samples according to the laws of probability, in which each unit in the population has a known, positive probability of inclusion. This may mean:</p>
 <ol type="1">
 <li>All units have an equal chance of being chosen.</li>
 <li>Units are sometimes selected with different probabilities.</li>
@@ -741,11 +780,11 @@ Figure&nbsp;12.2: Classification of sampling methods
 </ol>
 <section id="simple-random-sampling" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="simple-random-sampling">Simple random sampling</h4>
-<p>Simple Random Sampling (SRS) is the most basic and widely used probability sampling method. It is appropriate when the population is relatively homogeneous with respect to the characteristic being studied. In SRS, every unit in the population has an equal and independent chance of being selected, and every possible sample of a given size has an equal probability of selection.</p>
+<p>Simple Random Sampling (SRS) is the most basic and widely used probability sampling method. It is appropriate when the population is relatively homogeneous with respect to the characteristic being studied. In simple random sampling without replacement, every possible sample of a given size has an equal probability of selection, and each population unit has the same inclusion probability. The selections are not independent. In simple random sampling with replacement, successive draws are independent and every unit has the same probability of selection on each draw.</p>
 <p>There are two types of simple random sampling:</p>
 <p><strong>Simple Random Sampling With Replacement (SRSWR)</strong>: After a unit is selected, it is returned to the population before the next draw. Therefore, the same unit may be selected more than once.</p>
 <p><strong>Simple Random Sampling Without Replacement (SRSWOR):</strong> After a unit is selected, it is not returned to the population. Hence, each unit can be selected only once. This is the method most commonly used in practice.</p>
-<p>The main advantage of SRS is its simplicity and the fact that it gives every unit an equal chance, making the sample free from selection bias. Its main limitation is that it needs a complete list (frame) of all units, and if the population is spread over a wide area, visiting the randomly scattered units can be costly and time-consuming.</p>
+<p>The main advantage of SRS is its simplicity and the fact that it gives every unit an equal chance, supporting an unbiased sample-mean estimator when selection and response follow the stated design. A realised sample can still be unbalanced, and nonresponse or frame omissions can introduce bias. Its main limitation is that it needs a complete list (frame) of all units, and if the population is spread over a wide area, visiting the randomly scattered units can be costly and time-consuming.</p>
 <p>To select a simple random sample, all population units are assigned unique identification numbers from 1 to <em>N</em>. Then, <em>n</em> numbers are selected completely at random using methods such as the lottery method, random number tables, or computer-generated random numbers.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Example">
 <div class="callout-header d-flex align-content-center">
@@ -757,7 +796,7 @@ Figure&nbsp;12.2: Classification of sampling methods
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A mango orchard has 300 mango trees, and we wish to estimate the average number of fruits per tree by selecting a simple random sample of 30 trees. Each tree is assigned a unique number from 1 to 300. Using a random number generator (or a random number table), 30 distinct numbers between 1 and 300 are drawn. The trees corresponding to these numbers form the simple random sample without replacement (SRSWOR), and the number of fruits on each selected tree is counted. Because the selection is completely random, every tree, whether healthy or weak, tall or short, has the same chance of being chosen, so the sample fairly represents the whole orchard.</p>
+<p>A mango orchard has 300 mango trees, and we wish to estimate the average number of fruits per tree by selecting a simple random sample of 30 trees. Each tree is assigned a unique number from 1 to 300. Using a random number generator (or a random number table), 30 distinct numbers between 1 and 300 are drawn. The trees corresponding to these numbers form the simple random sample without replacement (SRSWOR), and the number of fruits on each selected tree is counted. Because the selection is completely random, every tree, whether healthy or weak, tall or short, has the same chance of being chosen, although an individual sample may still differ from the whole orchard by chance.</p>
 </div>
 </div>
 </section>
@@ -798,7 +837,7 @@ Figure&nbsp;12.3: Illustration of stratified random sampling. The population is 
 <p>In systematic sampling, the population units are first arranged in an ordered list. Instead of selecting every unit at random, only the first unit is selected randomly. The remaining units are then selected at regular intervals throughout the list. This method is simple to implement and ensures that the sample is spread evenly over the entire population.</p>
 <p>The interval between two successive selected units is called the sampling interval and is denoted by (<em>k</em>). It is calculated as</p>
 <p><span class="math display">\[k=\frac{N}{n}\]</span></p>
-<p>where <em>N</em> is the population size and <em>n</em> is the required sample size. After calculating <em>k</em>, a random starting number between 1 and <em>k</em> is chosen. Beginning with this unit, every <em>k</em> th unit is included in the sample until the required sample size is obtained.</p>
+<p>where <em>N</em> is the population size and <em>n</em> is the required sample size. When <span class="math inline">\(N/n\)</span> is an integer, a random starting number between 1 and <em>k</em> is chosen. If <span class="math inline">\(N/n\)</span> is not an integer, a suitable fractional-interval or circular procedure is needed; simply rounding <em>k</em> may change the sample size. Beginning with this unit, every <em>k</em> th unit is included in the sample until the required sample size is obtained.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Example">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -812,6 +851,7 @@ Figure&nbsp;12.3: Illustration of stratified random sampling. The population is 
 <p>A researcher wishes to select a sample of 20 trees from a row plantation of 300 rubber trees that are already numbered 1 to 300 along the rows. The sampling interval is <span class="math inline">\(k=\frac{300}{20}=15\)</span>. A random starting number between 1 and 15 is selected, say 8. The sample then consists of trees numbered 8, 23, 38, 53, 68, 83, and so on, continuing by adding 15 each time until 20 trees have been selected. This is easier to carry out in the field than drawing 20 separate random numbers, since the enumerator simply walks down the rows selecting every 15th tree.</p>
 </div>
 </div>
+<p>A repeating pattern in the list that coincides with the sampling interval can make a systematic sample poorly representative. The ordering of units should therefore be examined before this method is used.</p>
 </section>
 <section id="cluster-sampling" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="cluster-sampling">Cluster sampling</h4>
@@ -845,10 +885,50 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 </div>
 </div>
 </section>
+<section id="multistage-sampling" class="level4 unnumbered">
+<h4 class="unnumbered anchored" data-anchor-id="multistage-sampling">Multistage sampling</h4>
+<p>In multistage sampling, units are selected in stages. For example, villages may be selected first, farms within the selected villages next, and plots within the selected farms last. Villages are the first-stage sampling units, while farms and plots are units at subsequent stages. Unlike one-stage cluster sampling, multistage sampling does not require complete enumeration of each selected cluster. The probabilities used at every stage must be taken into account when estimating population quantities.</p>
+</section>
+</section>
+<section id="stratification-clustering-and-sampling-weights" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="stratification-clustering-and-sampling-weights">Stratification, clustering, and sampling weights</h3>
+<p>Stratified sampling selects a sample from every stratum; one-stage cluster sampling selects only some clusters and observes all units in those clusters. Stratification aims to improve precision by forming internally similar groups, while clustering often reduces field costs. Similarity among units in a cluster can reduce the information gained from a given number of observations.</p>
+<p>When strata differ in size, the population mean is estimated by weighting each stratum mean by its population share:</p>
+<p><span id="eq-stratified-mean"><span class="math display">\[\bar{x}_{st}=\sum_{h=1}^{H}W_h\bar{x}_h,\qquad W_h=\frac{N_h}{N}. \tag{12.1}\]</span></span></p>
+<p>Here <span class="math inline">\(H\)</span> is the number of strata, <span class="math inline">\(N_h\)</span> is the population size of stratum <span class="math inline">\(h\)</span>, and <span class="math inline">\(\bar{x}_h\)</span> is its sample mean. A simple average of the stratum means is generally inappropriate when stratum sizes differ. More generally, unequal-probability designs require weights that reflect the selection probabilities.</p>
+</section>
+<section id="estimation-under-srswor" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="estimation-under-srswor">Estimation under SRSWOR</h3>
+<p>For a simple random sample without replacement from a finite population, the sample mean estimates the population mean. Its estimated standard error is</p>
+<p><span id="eq-srswor-se"><span class="math display">\[\widehat{SE}(\bar{x})=\sqrt{\left(1-\frac{n}{N}\right)\frac{s^2}{n}},\qquad s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}. \tag{12.2}\]</span></span></p>
+<p>The factor <span class="math inline">\(\sqrt{1-n/N}\)</span> is the <strong>finite population correction</strong>. It accounts for the reduction in sampling uncertainty when a substantial part of a finite population is observed. The standard error measures the sampling variability of the estimator; it is different from the standard deviation describing variability among observations.</p>
+<div id="exm-survey-se" class="theorem example">
+<p><span class="theorem-title"><strong>Example 12.1</strong></span> A population contains 100 units. An SRSWOR of 25 units gives a sample mean of 40 kg and a sample standard deviation of 5 kg. Estimate the standard error of the sample mean.</p>
+<p><strong>Solution</strong></p>
+<p>Using <a href="#eq-srswor-se" class="quarto-xref">Equation&nbsp;<span>12.2</span></a>,</p>
+<p><span class="math display">\[\widehat{SE}(\bar{x})=\sqrt{(1-25/100)\frac{5^2}{25}}=\sqrt{0.75}=0.866\text{ kg}.\]</span></p>
+<p>Thus, the estimated population mean is 40 kg and its estimated standard error is 0.866 kg. Sampling uncertainty remains even though the survey has been carried out correctly.</p>
+</div>
+</section>
+<section id="estimating-totals-proportions-and-stratified-precision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="estimating-totals-proportions-and-stratified-precision">Estimating totals, proportions and stratified precision</h3>
+<p>Under SRSWOR, estimate a population total by <span class="math inline">\(\hat T=N\overline{x}\)</span>, with <span class="math inline">\(\widehat{SE}(\hat T)=N\widehat{SE}(\overline{x})\)</span>. For a yes-or-no characteristic coded 1 and 0, the sample mean is the sample proportion <span class="math inline">\(\hat p\)</span>. Its estimated variance is <span class="math inline">\((1-n/N)\hat p(1-\hat p)/(n-1)\)</span> for <span class="math inline">\(n&gt;1\)</span>.</p>
+<p>For independent SRSWOR samples in each stratum, the estimated variance of the stratified mean is</p>
+<p><span class="math display">\[\widehat{\operatorname{Var}}(\overline{x}_{st})=
+\sum_{h=1}^H W_h^2\left(1-\frac{n_h}{N_h}\right)\frac{s_h^2}{n_h}.\]</span></p>
+<p>Each non-census stratum needs enough observations to estimate its variance. Proportional allocation uses <span class="math inline">\(n_h=nN_h/N\)</span>. With equal per-unit costs and known planning standard deviations <span class="math inline">\(S_h\)</span>, Neyman allocation uses <span class="math inline">\(n_h=nN_hS_h/\sum_jN_jS_j\)</span> to minimize variance for a fixed total sample size, subject to feasible stratum sample sizes. Round allocations so that they sum to the required sample size. <span class="citation" data-cites="PSUSampling6">(<a href="references.html#ref-PSUSampling6" role="doc-biblioref">The Pennsylvania State University, n.d.-b</a>)</span></p>
+<p>For example, suppose the 200 small, 300 medium and 100 large farms have sample mean outputs of 20, 30 and 50 quintals per farm. The estimated mean output per farm is <span class="math inline">\((200/600)20+(300/600)30+(100/600)50=30\)</span> quintals. The simple average of the three means is 33.33 and is inappropriate here. Average output per farm is also different from district yield per hectare, which requires the corresponding production and area totals.</p>
+<p>For an unequal-probability design, the basic sampling weight is <span class="math inline">\(w_i=1/\pi_i\)</span>, where <span class="math inline">\(\pi_i\)</span> is the inclusion probability of unit <span class="math inline">\(i\)</span>. The Horvitz–Thompson total is <span class="math inline">\(\hat T=\sum_{i\in s}x_i/\pi_i\)</span>. Its variance requires the design’s joint inclusion probabilities or a suitable design-based variance method. Probability proportional to size (PPS) sampling uses a known size measure, such as village area, to give larger units greater selection probabilities. The estimator must reflect the actual design, not simply average the selected observations without considering weights.</p>
+</section>
+<section id="sample-size-and-field-implementation" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="sample-size-and-field-implementation">Sample size and field implementation</h3>
+<p>For preliminary planning of an SRS mean estimate, a normal-approximation calculation is <span class="math inline">\(n_0=z^2\sigma^2/d^2\)</span>, where <span class="math inline">\(d\)</span> is the desired absolute margin of error, <span class="math inline">\(z\)</span> is the two-sided normal critical value and <span class="math inline">\(\sigma^2\)</span> is a planning variance. With the descriptive finite-population variance <span class="math inline">\(\sigma^2=\sum(x_i-\mu)^2/N\)</span>, the finite-population adjustment is <span class="math inline">\(n=Nn_0/(N-1+n_0)\)</span>. Round the final value up. For a proportion, use <span class="math inline">\(P(1-P)\)</span> in place of <span class="math inline">\(\sigma^2\)</span>; 0.25 is the conservative planning value when no useful prior proportion is available. This is a planning approximation and does not guarantee precision for every sample.</p>
+<p>For example, with <span class="math inline">\(N=1000\)</span>, anticipated <span class="math inline">\(P=0.5\)</span>, <span class="math inline">\(d=0.05\)</span> and <span class="math inline">\(z=1.96\)</span>, <span class="math inline">\(n_0=384.16\)</span> and <span class="math inline">\(n=277.74\)</span>, so at least 278 completed observations are planned under these assumptions. Complex designs and nonresponse require further allowance. A design effect compares the design variance with the SRS variance at the same sample size; clustered observations may require a larger sample for the same precision.</p>
+<p>Train the investigators, pre-test questions, record nonresponse and avoid replacing unavailable selected units by convenient neighbours. Adjustments for nonresponse need defensible assumptions and do not automatically remove bias. A single systematic sample generally does not provide a direct unbiased variance estimate from within-sample replication; use a variance method justified by the design or stated additional assumptions. <span class="citation" data-cites="PSUSampling8">(<a href="references.html#ref-PSUSampling8" role="doc-biblioref">The Pennsylvania State University, n.d.-a</a>)</span></p>
 </section>
 <section id="non-probability-sampling" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="non-probability-sampling">Non-probability sampling</h3>
-<p>In non-probability sampling, the sample is selected on the basis of the researcher’s judgement, convenience, or some other non-random criterion, rather than by giving each unit a known chance of selection. Because the selection does not follow the laws of probability, some units of the population may have no chance at all of being included. As a result, the sampling error cannot be measured, and the results cannot be validly generalised to the whole population using probability theory. Non-probability sampling is nevertheless useful when a sampling frame is not available, when the study is exploratory or qualitative, when time and money are very limited, or when the population is difficult to reach. The main methods are described below.</p>
+<p>In non-probability sampling, the sample is selected on the basis of the researcher’s judgement, convenience, or some other non-random criterion, rather than by giving each unit a known chance of selection. Because the selection does not follow the laws of probability, some units of the population may have no chance at all of being included. The usual design-based sampling error cannot be estimated from the selection mechanism. Population inference then needs additional, explicit modelling assumptions; a large non-probability sample alone does not supply them. Non-probability sampling is nevertheless useful when a sampling frame is not available, when the study is exploratory or qualitative, when time and money are very limited, or when the population is difficult to reach. The main methods are described below.</p>
 <section id="convenience-sampling" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="convenience-sampling">Convenience sampling</h4>
 <p>In convenience sampling, the researcher selects those units that are easiest to reach or most readily available, simply because they are close at hand. It is the quickest and cheapest way to collect data, but the sample is often unrepresentative, because the units that are easy to reach may differ systematically from the rest of the population. It is mostly used for quick, preliminary studies or classroom exercises rather than for drawing firm conclusions.</p>
@@ -879,7 +959,7 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A veterinary officer records the health details of every sick animal brought to a village clinic each day, continuing day after day for two months. Each day’s cases are added to the sample one after another, allowing the officer to observe how disease incidence changes over the season, even though the animals were never randomly selected.</p>
+<p>A veterinary officer records the health details of every sick animal brought to a village clinic each day, continuing day after day for two months. Each day’s cases are added to the sample one after another, allowing the officer to observe how the pattern of illness among animals attending the clinic changes over the season, even though the animals were never randomly selected.</p>
 </div>
 </div>
 </section>
@@ -946,6 +1026,11 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 <p><br>
 <br>
 </p>
+<p>The sampling design determines how an estimate and its standard error should be calculated. The next chapter uses sampling distributions to explain how sample evidence can be assessed against a claim about a population parameter.</p>
+<section id="reading-a-random-number-table" class="level3" data-number="12.4.1">
+<h3 data-number="12.4.1" class="anchored" data-anchor-id="reading-a-random-number-table"><span class="header-section-number">12.4.1</span> Reading a random-number table</h3>
+<p>Number 50 units from 01 to 50 and suppose a sample of five is required without replacement. Choose a starting place and reading direction before reading pairs of random digits. If the successive pairs are 07, 83, 14, 14, 00, 32, 48, 61 and 05, accept 07, 14, 32, 48 and 05. Reject 00, numbers above 50 and repeated accepted numbers. Continue until five distinct valid numbers have been obtained. This illustrates the selection procedure; the pairs must actually come from a suitable random-number source.</p>
+</section>
 </section>
 <section id="chapter-summary" class="level2" data-number="12.5">
 <h2 data-number="12.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">12.5</span> Chapter Summary</h2>
@@ -953,58 +1038,18 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>The systematic collection of information from a sample is called a __________.</p></li>
-<li><p>The complete collection of individuals, objects, or units about which information is required is called the __________.</p></li>
-<li><p>The total number of units in a population is called the population __________.</p></li>
-<li><p>A population that can be counted in principle is called a __________ population.</p></li>
-<li><p>A subset of the population selected for study is called a __________.</p></li>
-<li><p>A sample that reflects the important characteristics of the population is called a __________ sample.</p></li>
-<li><p>The basic unit selected from the population for inclusion in the sample is called the __________ unit.</p></li>
-<li><p>Complete enumeration of every unit in the population is called a __________.</p></li>
-<li><p>The total number of sampling units included in the sample is called the __________ size.</p></li>
-<li><p>The ratio <span class="math inline">\(\frac{n}{N}\)</span> is called the __________ fraction.</p></li>
-<li><p>The procedure used to select units from a population is called the sampling __________.</p></li>
-<li><p>The complete list or source identifying all sampling units in the population is called the sampling __________.</p></li>
-<li><p>A numerical constant describing a characteristic of the population is called a __________.</p></li>
-<li><p>A numerical measure calculated from sample data is called a __________.</p></li>
-<li><p>A statistic used to estimate an unknown population parameter is called an __________.</p></li>
-<li><p>The particular value obtained from an estimator for a given sample is called an __________.</p></li>
-<li><p>The long-run average value of an estimator is called its __________.</p></li>
-<li><p>An estimator whose expected value is equal to the true population parameter is called an __________ estimator.</p></li>
-<li><p>The difference between a sample estimate and the corresponding population value due to observing only a sample is called __________ error.</p></li>
-<li><p>Errors arising from non-response, inaccurate recording, faulty planning, and incomplete coverage are called __________ errors.</p></li>
-<li><p>Sampling errors are absent when a complete __________ is conducted.</p></li>
-<li><p>Increasing the sample size generally __________ sampling error.</p></li>
-<li><p>A confidence interval is an __________ estimate of a population parameter.</p></li>
-<li><p>A confidence level is expressed as <span class="math inline">\(100(1-\alpha)\)</span> __________.</p></li>
-<li><p>If <span class="math inline">\(\alpha=0.05\)</span>, the confidence level is __________%.</p></li>
-<li><p>If <span class="math inline">\(\alpha=0.01\)</span>, the confidence level is __________%.</p></li>
-<li><p>A 95% confidence interval refers to the long-run performance of the __________ used to construct the interval.</p></li>
-<li><p>In probability sampling, every population unit has a __________ probability of selection.</p></li>
-<li><p>In simple random sampling, every unit has an __________ and __________ chance of selection.</p></li>
-<li><p>In SRSWR, a selected unit is __________ to the population before the next draw.</p></li>
-<li><p>In SRSWOR, a selected unit is __________ returned to the population.</p></li>
+<li><p>A numerical constant describing a population is termed a __________.</p></li>
+<li><p>A numerical measure calculated from sample observations is termed a __________.</p></li>
+<li><p>Complete enumeration of a population is called a __________.</p></li>
+<li><p>The list of sampling units used for sample selection is called the sampling __________.</p></li>
+<li><p>A statistic used to estimate a population parameter is called an __________.</p></li>
+<li><p>An estimator whose expected value equals the population parameter is said to be __________.</p></li>
+<li><p>The ratio of sample size to population size is called the sampling __________.</p></li>
 <li><p>In stratified random sampling, the population is divided into non-overlapping groups called __________.</p></li>
-<li><p>In stratified random sampling, a random sample is selected independently from each __________.</p></li>
-<li><p>In systematic sampling, the interval between successive selected units is called the sampling __________.</p></li>
-<li><p>The sampling interval in systematic sampling is given by <span class="math inline">\(k=\)</span> __________.</p></li>
-<li><p>In systematic sampling, the first unit is selected __________.</p></li>
-<li><p>In cluster sampling, the population is divided into naturally occurring groups called __________.</p></li>
-<li><p>In cluster sampling, a random sample of __________ is selected.</p></li>
-<li><p>In cluster sampling, all units within the selected clusters are __________.</p></li>
-<li><p>Probability sampling follows the laws of __________.</p></li>
-<li><p>In non-probability sampling, the probability of selection is generally __________ known.</p></li>
-<li><p>In convenience sampling, units are selected because they are easiest to __________.</p></li>
-<li><p>In consecutive sampling, accessible units are selected one after another until the desired number is __________.</p></li>
-<li><p>In quota sampling, a fixed number of units is decided for each __________.</p></li>
-<li><p>In quota sampling, units within each subgroup are selected by __________ rather than randomly.</p></li>
-<li><p>Purposive sampling is also called __________ sampling.</p></li>
-<li><p>In purposive sampling, units are deliberately selected based on the researcher’s __________.</p></li>
-<li><p>Snowball sampling is also called __________-referral sampling.</p></li>
-<li><p>Snowball sampling is useful when the target population is difficult to __________ or identify.</p></li>
-<li><p>The representative method of sample surveys was formally proposed by __________ in 1895.</p></li>
-<li><p>__________ later introduced random sampling and probability-based inference into survey work.</p></li>
-<li><p>Large-scale sample surveys in India were pioneered by __________.</p></li>
+<li><p>In one-stage cluster sampling, all units in each selected cluster are __________.</p></li>
+<li><p>Sampling with a random start followed by selection at regular intervals is called __________ sampling.</p></li>
+<li><p>Errors due to non-response are classified as __________ errors.</p></li>
+<li><p>The error absent in a complete census is __________ error.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1081,7 +1126,7 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 <li><p>Explain why a census does not have sampling error but can still have non-sampling error.</p></li>
 <li><p>Explain why increasing sample size generally reduces sampling error.</p></li>
 <li><p>A sample estimate of average crop yield is 38 kg, while the true population mean is 40 kg. Calculate the sampling error.</p></li>
-<li><p>A sample mean is used to estimate a population mean. Explain why the sample mean is considered an unbiased estimator of the population mean.</p></li>
+<li><p>Under simple random sampling, explain why the sample mean is an unbiased estimator of the population mean.</p></li>
 <li><p>Explain why an incomplete or outdated sampling frame can produce a biased sample.</p></li>
 <li><p>Compare SRS, stratified sampling, systematic sampling, and cluster sampling in terms of how the sample is selected.</p></li>
 <li><p>Compare probability sampling and non-probability sampling.</p></li>
@@ -1092,17 +1137,17 @@ Figure&nbsp;12.4: Illustration of cluster sampling. From a population consisting
 <section id="important-formulae" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
 <p>Sampling fraction:</p>
-<p><span id="eq-sampfrac"><span class="math display">\[f=\frac{n}{N} \tag{12.1}\]</span></span></p>
+<p><span id="eq-sampfrac"><span class="math display">\[f=\frac{n}{N} \tag{12.3}\]</span></span></p>
 <p>Systematic sampling interval:</p>
-<p><span id="eq-sampinterval"><span class="math display">\[k=\frac{N}{n} \tag{12.2}\]</span></span></p>
+<p><span id="eq-sampinterval"><span class="math display">\[k=\frac{N}{n} \tag{12.4}\]</span></span></p>
 <p>Confidence level:</p>
-<p><span id="eq-conflevel"><span class="math display">\[\text{Confidence level}=100(1-\alpha)\% \tag{12.3}\]</span></span></p>
+<p><span id="eq-conflevel"><span class="math display">\[\text{Confidence level}=100(1-\alpha)\% \tag{12.5}\]</span></span></p>
 <p>Expected value of an estimator:</p>
 <p><span class="math display">\[
 E(t)
 \]</span></p>
 <p>Unbiased estimator:</p>
-<p><span id="eq-unbiased"><span class="math display">\[E(t)=\theta \tag{12.4}\]</span></span></p>
+<p><span id="eq-unbiased"><span class="math display">\[E(t)=\theta \tag{12.6}\]</span></span></p>
 <p>Expected value of the sample mean:</p>
 <p><span class="math display">\[
 E(\bar{X})=\mu
@@ -1128,7 +1173,7 @@ E(\bar{X})=\mu
 <li>Unbiased estimator → estimator whose expected value equals the true parameter.</li>
 <li>Sampling error → difference caused by observing a sample rather than the entire population.</li>
 <li>Sampling error is absent in a census.</li>
-<li>Increasing sample size generally decreases sampling error.</li>
+<li>Increasing sample size generally decreases standard error for a fixed design and population.</li>
 <li>Non-sampling error → errors other than sampling error.</li>
 <li>Census data can still contain non-sampling errors.</li>
 <li>Confidence interval → interval estimate of a population parameter.</li>
@@ -1137,7 +1182,7 @@ E(\bar{X})=\mu
 <li><span class="math inline">\(\alpha=0.01\)</span> → 99% confidence level.</li>
 <li>A 95% confidence interval describes the long-run performance of the interval construction method.</li>
 <li>Probability sampling → selection based on probability laws.</li>
-<li>Simple random sampling → every unit has an equal and independent chance of selection.</li>
+<li>Simple random sampling → equal inclusion probabilities; successive draws are independent only with replacement.</li>
 <li>SRSWR → selected unit is returned before the next selection.</li>
 <li>SRSWOR → selected unit is not returned.</li>
 <li>SRS requires a complete sampling frame.</li>
@@ -1165,19 +1210,19 @@ E(\bar{X})=\mu
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Sample survey <code>2.</code> Population <code>3.</code> Size <code>4.</code> Finite <code>5.</code> Sample <code>6.</code> Representative <code>7.</code> Sampling <code>8.</code> Census <code>9.</code> Sample <code>10.</code> Sampling <code>11.</code> Design <code>12.</code> Frame <code>13.</code> Parameter <code>14.</code> Statistic <code>15.</code> Estimator <code>16.</code> Estimate <code>17.</code> Expectation <code>18.</code> Unbiased <code>19.</code> Sampling <code>20.</code> Non-sampling <code>21.</code> Census <code>22.</code> Decreases <code>23.</code> Interval <code>24.</code> Percent <code>25.</code> 95 <code>26.</code> 99 <code>27.</code> Method <code>28.</code> Definite <code>29.</code> Equal; independent <code>30.</code> Returned <code>31.</code> Not <code>32.</code> Strata <code>33.</code> Stratum <code>34.</code> Interval <code>35.</code> <span class="math inline">\(\frac{N}{n}\)</span> <code>36.</code> Randomly <code>37.</code> Clusters <code>38.</code> Clusters <code>39.</code> Enumerated <code>40.</code> Probability <code>41.</code> Not <code>42.</code> Reach <code>43.</code> Reached <code>44.</code> Subgroup <code>45.</code> Convenience <code>46.</code> Judgement <code>47.</code> Judgement <code>48.</code> Chain <code>49.</code> Find <code>50.</code> Anders Nicolai Kiaer <code>51.</code> Arthur Lyon Bowley <code>52.</code> Prasanta Chandra Mahalanobis</p>
+<p><code>1.</code> Parameter <code>2.</code> Statistic <code>3.</code> Census <code>4.</code> Frame <code>5.</code> Estimator <code>6.</code> Unbiased <code>7.</code> Fraction <code>8.</code> Strata <code>9.</code> Enumerated <code>10.</code> Systematic <code>11.</code> Non-sampling <code>12.</code> Sampling</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
-<li><p>Using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.1</span></a>, <span class="math inline">\(n=50\)</span> and <span class="math inline">\(f=\frac{50}{500}=0.10\)</span> (10%).</p></li>
-<li><p>Using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.1</span></a>, <span class="math inline">\(f=\frac{100}{1000}=0.10\)</span> (10%).</p></li>
+<li><p>Using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>, <span class="math inline">\(n=50\)</span> and <span class="math inline">\(f=\frac{50}{500}=0.10\)</span> (10%).</p></li>
+<li><p>Using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>, <span class="math inline">\(f=\frac{100}{1000}=0.10\)</span> (10%).</p></li>
 <li><p>Assign the numbers 1 to 300 to the mango trees and draw 30 distinct random numbers (by lottery, random number table, or computer); the corresponding trees form the SRSWOR.</p></li>
-<li><p>Using <a href="#eq-sampinterval" class="quarto-xref">Equation&nbsp;<span>12.2</span></a>, <span class="math inline">\(k=\frac{300}{20}=15\)</span>; every 15th tree is selected after a random start between 1 and 15.</p></li>
+<li><p>Using <a href="#eq-sampinterval" class="quarto-xref">Equation&nbsp;<span>12.4</span></a>, <span class="math inline">\(k=\frac{300}{20}=15\)</span>; every 15th tree is selected after a random start between 1 and 15.</p></li>
 <li><p>With <span class="math inline">\(k=15\)</span> and random start 8, the selected units are 8, 23, 38, 53, 68, 83, 98, 113, 128, 143, …, each obtained by adding 15.</p></li>
 <li><p>Here <span class="math inline">\(N=200+300+100=600\)</span> and <span class="math inline">\(f=\frac{60}{600}=0.10\)</span>, so under proportional allocation the sample is <span class="math inline">\(200(0.10)=20\)</span> small, <span class="math inline">\(300(0.10)=30\)</span> medium, and <span class="math inline">\(100(0.10)=10\)</span> large farms.</p></li>
-<li><p>With <span class="math inline">\(N=600\)</span> and <span class="math inline">\(f=0.10\)</span>, <span class="math inline">\(n=600(0.10)=60\)</span>; using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.1</span></a>, <span class="math inline">\(f=\frac{60}{600}=0.10\)</span> (10%).</p></li>
+<li><p>With <span class="math inline">\(N=600\)</span> and <span class="math inline">\(f=0.10\)</span>, <span class="math inline">\(n=600(0.10)=60\)</span>; using <a href="#eq-sampfrac" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>, <span class="math inline">\(f=\frac{60}{600}=0.10\)</span> (10%).</p></li>
 <li><p>Systematic sampling: the first household is chosen at random and thereafter every 10th household is selected at a fixed interval.</p></li>
 <li><p>Stratified random sampling: the population is divided into strata by farm size and random samples are selected independently from each stratum.</p></li>
 <li><p>Cluster sampling: villages are treated as clusters, a random sample of villages is drawn, and all farms in the selected villages are enumerated.</p></li>
@@ -1185,15 +1230,15 @@ E(\bar{X})=\mu
 <li><p>Quota sampling: fixed quotas are set for small and large farmers, but units within each group are chosen by convenience rather than at random.</p></li>
 <li><p>Purposive (judgement) sampling: the researcher deliberately selects the award-winning farmers considered most useful for the study.</p></li>
 <li><p>Snowball (chain-referral) sampling: an identified farmer refers other eligible farmers practising the rare method.</p></li>
-<li><p>Using <a href="#eq-conflevel" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>, <span class="math inline">\(100(1-\alpha)=95\)</span>, so <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
-<li><p>Using <a href="#eq-conflevel" class="quarto-xref">Equation&nbsp;<span>12.3</span></a>, confidence level <span class="math inline">\(=100(1-0.01)=99\%\)</span>.</p></li>
+<li><p>Using <a href="#eq-conflevel" class="quarto-xref">Equation&nbsp;<span>12.5</span></a>, <span class="math inline">\(100(1-\alpha)=95\)</span>, so <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
+<li><p>Using <a href="#eq-conflevel" class="quarto-xref">Equation&nbsp;<span>12.5</span></a>, confidence level <span class="math inline">\(=100(1-0.01)=99\%\)</span>.</p></li>
 <li><p>A census enumerates every unit, so there is no sampling error; but non-sampling errors (non-response, recording, coverage, processing) can still occur.</p></li>
-<li><p>As the sample size increases, the sample becomes more representative of the population, so the sampling error generally decreases.</p></li>
-<li><p>Sampling error is the difference between estimkate and true population value. It can be calculated as <span class="math inline">\(=38-40=-2\)</span>, so the estimate is 2 units below the population value.</p></li>
-<li><p>The sample mean is unbiased because <span class="math inline">\(E(\bar{X})=\mu\)</span>; over repeated samples the average of the sample means equals the population mean.</p></li>
+<li><p>For a fixed design and population, a larger sample generally has a smaller standard error. For example, under independent sampling the standard error of the mean is <span class="math inline">\(\sigma/\sqrt{n}\)</span>. The error in an individual realised sample need not decrease.</p></li>
+<li><p>Sampling error is the difference between estimate and true population value. It can be calculated as <span class="math inline">\(=38-40=-2\)</span>, so the estimate is 2 units below the population value.</p></li>
+<li><p>Under simple random sampling, the sample mean is unbiased because <span class="math inline">\(E(\bar{X})=\mu\)</span>; over repeated samples the average of the sample means equals the population mean.</p></li>
 <li><p>An incomplete or outdated frame gives some population units no chance of selection, producing selection bias and an unrepresentative sample.</p></li>
 <li><p>In SRS units are drawn individually at random; in stratified sampling random samples are drawn within strata; in systematic sampling every <span class="math inline">\(k\)</span>th unit is taken after a random start; in cluster sampling whole clusters are drawn and fully enumerated.</p></li>
-<li><p>Probability sampling uses random selection with known probabilities and permits sampling error to be estimated; non-probability sampling uses non-random selection, so some units may have no chance of selection and sampling error cannot be measured.</p></li>
+<li><p>Probability sampling uses random selection with known positive inclusion probabilities for population units and supports design-based estimation of sampling uncertainty, subject to the design and available replication. Non-probability sampling does not provide those probabilities; its uncertainty requires additional modelling assumptions rather than the usual design-based formulae.</p></li>
 <li><p>Both divide the population into subgroups, but stratified sampling selects units within each stratum randomly, whereas quota sampling fills each subgroup by convenience, so only stratified sampling is a probability method.</p></li>
 <li><p>Cluster sampling reduces travel and data-collection cost, since only a few clusters are visited and every unit within them is enumerated, rather than chasing scattered individual units.</p></li>
 </ol>
@@ -1229,7 +1274,7 @@ E(\bar{X})=\mu
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Bowley1906" class="csl-entry" role="listitem">
 Bowley, Arthur Lyon. 1906. <span>“Address to the Economic Science and Statistics Section of the British Association for the Advancement of Science.”</span> <em>Journal of the Royal Statistical Society</em> 69 (3): 540–58. <a href="https://doi.org/10.2307/2339344">https://doi.org/10.2307/2339344</a>.
 </div>
@@ -1238,6 +1283,12 @@ Kiaer, Anders Nicolai. 1895. <span>“Observations Et Expériences Concernant De
 </div>
 <div id="ref-Mahalanobis1944" class="csl-entry" role="listitem">
 Mahalanobis, Prasanta Chandra. 1944. <span>“On Large-Scale Sample Surveys.”</span> <em>Philosophical Transactions of the Royal Society of London. Series B, Biological Sciences</em> 231 (584): 329–451. <a href="https://doi.org/10.1098/rstb.1944.0002">https://doi.org/10.1098/rstb.1944.0002</a>.
+</div>
+<div id="ref-PSUSampling8" class="csl-entry" role="listitem">
+The Pennsylvania State University. n.d.-a. <span>“Part 2 of Cluster and Systematic Sampling.”</span> Accessed October 19, 2026. <a href="https://online.stat.psu.edu/stat506/Lesson08">https://online.stat.psu.edu/stat506/Lesson08</a>.
+</div>
+<div id="ref-PSUSampling6" class="csl-entry" role="listitem">
+The Pennsylvania State University. n.d.-b. <span>“Part a: Stratified Sampling.”</span> Accessed October 19, 2026. <a href="https://online.stat.psu.edu/stat506/Lesson06">https://online.stat.psu.edu/stat506/Lesson06</a>.
 </div>
 </div>
 </section>
@@ -1330,7 +1381,7 @@ Mahalanobis, Prasanta Chandra. 1944. <span>“On Large-Scale Sample Surveys.”<
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1673,16 +1724,17 @@ Mahalanobis, Prasanta Chandra. 1944. <span>“On Large-Scale Sample Surveys.”<
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

@@ -1,6 +1,6 @@
 # Probability
 
-Probability is a cornerstone of statistical methods, providing the mathematical framework to quantify and analyze uncertainty. In the diverse and dynamic field of agricultural research, uncertainty often arises in areas such as yield predictions, pest control strategies, and the impact of environmental variables on crop growth. Understanding probability equips researchers and students with the tools to make informed decisions in the face of variability and randomness.
+Probability is a cornerstone of statistical methods, providing the mathematical framework to quantify and analyse uncertainty. In the diverse and dynamic field of agricultural research, uncertainty often arises in areas such as yield predictions, pest control strategies, and the impact of environmental variables on crop growth. Understanding probability equips researchers and students with the tools to make informed decisions in the face of variability and randomness.
 
 This chapter introduces fundamental probability concepts. We begin with the basic definitions and axioms of probability. The chapter progresses to explore key topics such as conditional probability, Bayes’ theorem, and independence of events.
 
@@ -28,7 +28,7 @@ When a coin is tossed, there are two possible outcomes:
 
 -   Tails ($T$)
 
-We say that for an unbiassed coin the probability of the coin landing $H$ is $\frac{1}{2}$ and the probability of the coin landing $T$ is $\frac{1}{2}$
+We say that for an unbiased coin the probability of the coin landing $H$ is $\frac{1}{2}$ and the probability of the coin landing $T$ is $\frac{1}{2}$
 
 ::: {.callout-important title="Note"}
 An unbiased coin is a theoretical concept in probability, referring to a coin designed or assumed to have no preference for either side when tossed, such that the likelihood of landing on heads (H) is exactly the same as landing on tails (T), with each outcome having a probability of $\frac{1}{2}$ or 50%. Its characteristics include perfect symmetry, ensuring the coin is balanced without physical imperfections or uneven weight distribution that could influence the result, and equal probability, where each side is equally likely to face upward after a toss. This assumption generally holds under ideal experimental conditions, free from external factors like uneven surfaces or human bias in the tossing technique.
@@ -42,7 +42,7 @@ A standard die has six faces, numbered from 1 to 6. Under fair conditions, each 
 
 **Playing cards**
 
-A standard deck of playing cards consists of 52 cards, divided into four suits: spades, hearts, diamonds, and clubs, with each suit containing 13 cards. Four suits in playing cards were given in the @fig-suitsincard. The spades suit includes 9 numbered cards from 2 to 10, along with the picture cards ace, king, queen, and jack. Similarly, the hearts, diamonds, and clubs suits each contain 13 cards. Of these 52 cards, 26 are red, consisting of the hearts and diamonds suits, while the other 26 cards are black, comprising the spades and clubs suits. Playing cards can be used to create examples for random experiments, such as drawing a single card from a shuffled deck to determine its specific identity. Other experiments include drawing a card and checking its suit etc. These simple experiments can be easily modified with conditions or repetition, making playing cards a versatile tool for exploring probability and random events.
+A standard deck of playing cards consists of 52 cards, divided into four suits: spades, hearts, diamonds, and clubs, with each suit containing 13 cards. Four suits in playing cards were given in the @fig-suitsincard. The spades suit includes 9 numbered cards from 2 to 10, along with the ace and the three picture cards: king, queen, and jack. Similarly, the hearts, diamonds, and clubs suits each contain 13 cards. Of these 52 cards, 26 are red, consisting of the hearts and diamonds suits, while the other 26 cards are black, comprising the spades and clubs suits. Playing cards can be used to create examples for random experiments, such as drawing a single card from a shuffled deck to determine its specific identity. Other experiments include drawing a card and checking its suit etc. These simple experiments can be easily modified with conditions or repetition, making playing cards a versatile tool for exploring probability and random events.
 
 ::: {#fig-suitsincard layout-ncol="4"}
 ![Spades](images/probability/spade.png){#fig-spade width="50px" height="50px"}
@@ -67,17 +67,17 @@ Random variables can be classified into two types:
 
 In mathematical terms, if $S$ is the sample space of a random experiment, a random variable $X$ is a function that maps sample space to real number set, which can be represented as $X: S \to \mathbb{R}$, where $\mathbb{R}$ represents the set of real numbers.
 
-The probability of a random variable can be represented by $P(X = x)$ or $P(x)$, where the small letter $x$ denotes the value taken by the random variable $X$.
+For a discrete random variable, the probability of a particular value can be represented by $P(X=x)$ or $p(x)$, where the small letter $x$ denotes the value taken by the random variable $X$.
 
 Consider the example of throwing a die once. Here, you can define a random variable of your interest. Defining a random variable involves assigning a numerical value to the outcomes of the experiment. Let $X$ represent the number appearing on the die. The possible values of $X$ are: $x = \{1, 2, 3, 4, 5, 6\}$.
 
-Consider another example of even number appearing on the die. Let $X$ represent the even number appearing on the die. The possible values of $X$ are: $x = \{2, 4, 6\}$.
+Consider another example based on whether the result is even. Let $X=1$ if an even number appears and $X=0$ otherwise. The possible values are $\{0,1\}$. This defines $X$ for every outcome in the sample space.
 
 In each of the above cases, you can see that the random variable $X$ assigns a value to the outcomes of the experiment.
 
 ## Probability
 
-Probability is a measure of the likelihood or chance that a particular event will occur. It quantifies uncertainty and is expressed as a number between 0 and 1, where 0 indicates an impossible event and 1 represents a certain event. Mathematically, the probability of an event $A$ is defined as the ratio of the number of favorable outcomes to the total number of possible outcomes, assuming all outcomes are equally likely, and is given by
+Probability is a measure of the likelihood or chance that a particular event will occur. It quantifies uncertainty and is expressed as a number between 0 and 1, where an impossible event has probability 0 and a certain event has probability 1. In continuous models, a possible individual value can also have probability zero; probability zero is not always the same as logical impossibility. Mathematically, the probability of an event $A$ is defined as the ratio of the number of favorable outcomes to the total number of possible outcomes, assuming all outcomes are equally likely, and is given by
 
 Probability of an event $A$ happening:
 
@@ -130,7 +130,7 @@ Ram wants to see how many times a “double” (both dice have same number) come
 
 **Solution**
 
-The *sample space* is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3} {1,4} ... {6,3} {6,4} {6,5} {6,6}. The *event* Ram is looking for is a “double”, where both dice have the same number. It is made up of these 6 sample points: {1,1} {2,2} {3,3} {4,4} {5,5} and {6,6}. You can calculate the probability of the event using @eq-probability1. Probability = $\frac{6}{36}=0.17$.
+The *sample space* is all possible outcomes (36 Sample Points): (1,1), (1,2), (1,3), (1,4), ..., (6,3), (6,4), (6,5), (6,6). The *event* Ram is looking for is a “double”, where both dice have the same number. It is made up of these 6 sample points: (1,1), (2,2), (3,3), (4,4), (5,5) and (6,6). You can calculate the probability of the event using @eq-probability1. Probability = $\frac{6}{36}=\frac16\approx0.17$.
 :::
 
 ### Types of events
@@ -140,7 +140,7 @@ The *sample space* is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3
 Independent events are events where the occurrence of one does not influence the occurrence of another. For instance, consider tossing a coin. If it lands on “heads” three times in a row, the outcome of the next toss remains unaffected by the previous results. The probability of getting “heads” on the next toss is still $\frac{1}{2}$ (or 0.5), just as it is for any fair coin toss. This demonstrates that past outcomes do not influence the probabilities of future events in independent scenarios.
 
 ::: {#exm-prob4}
-A coin is tossed 100 times, and heads appear in 99 of those tosses. What is the probability that heads will appear on the $100^{th}$ toss?
+A fair coin has been tossed 99 times, with heads on every toss. Assuming independent tosses, what is the probability of heads on the $100^{th}$ toss?
 
 **Solution**
 
@@ -152,7 +152,7 @@ Answer is $\frac{1}{2}$ as each toss is independent of previous toss.
 Dependent events are events where the outcome of one event influences the probabilities of subsequent events. For example, consider drawing cards from a deck. The probabilities change as cards are removed from the deck, altering the available outcomes. Initially, the chance of drawing a king on the first card is $\frac{4}{52}$. However, for the second draw, the probabilities depend on the outcome of the first draw. If the first card is a king, only 3 kings remain among the 51 remaining cards, reducing the likelihood of drawing another king to $\frac{3}{51}$. Conversely, if the first card is not a king, all 4 kings remain, making the probability $\frac{4}{51}$. This illustrates how previous outcomes affect probabilities in dependent events.
 
 ::: {.callout-important title="Note"}
-When cards are drawn `with replacement`, each card is returned to the deck after being drawn, so the total number of cards remains constant. This keeps the probabilities unchanged, making the events independent. However, when cards are drawn `without replacement`, the total number of cards decreases after each draw, which alters the probabilities and makes the events dependent.
+When cards are drawn `with replacement`, each card is returned to the deck after being drawn, so the total number of cards remains constant. If the deck is reshuffled and each draw uses the same independent random mechanism, this keeps the draw probabilities unchanged and gives independent draws. However, when cards are drawn `without replacement`, the total number of cards decreases after each draw, which alters the probabilities and makes the events dependent.
 :::
 
 **Mutually exclusive events**
@@ -205,11 +205,11 @@ The probability $p$ of happening of $E$ is given by
 
 $$P\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n}$$ {#eq-statisticalapproach}
 
-where $n$ is the number of times the process is performed which tends to infinity, and $m$ is the number of times the outcome ’$E$’ happens.
+where $n$ is the number of trials and $m$ is the number in which $E$ occurs. For independent repetitions with a common event probability, the law of large numbers supports convergence of the relative frequency to that probability. A finite observed frequency is an estimate, not a guarantee of the next outcome.
 
 [**Limitations**]{.underline}
 
-The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large ($n$) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which does not rely on precise definitions but instead establishes probability based on a set of fundamental axioms or postulates.
+The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large ($n$) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which defines a probability measure through precise axioms rather than through counts of equally likely outcomes alone.
 
 ### Axiomatic approach
 
@@ -221,10 +221,10 @@ The whole field of probability theory is based on the following three axioms
 
 2.  Probability of entire sample space is 1. That is $P\left( S \right) = 1$
 
-3.  If $A$ and $B$ are mutually exclusive events then probability of occurrence of either $A$ or $B$ is denoted by $P(A \cup B)$ shall be given by $P\left( A \cup B \right) = P\left( A \right) + P(B)$
+3.  For any countable collection of mutually exclusive events $A_1,A_2,\ldots$, $P(\bigcup_i A_i)=\sum_iP(A_i)$. In particular, for two mutually exclusive events, $P(A\cup B)=P(A)+P(B)$.$
 
 ::: {.callout-important title="Note"}
-The probability $p$ of the occurrence of an event is referred to as the *probability of success*, while the probability $q$ of its non-occurrence is known as the *probability of failure*. Both $p$ and $q$ are non-negative and cannot exceed unity, *i*.*e*., $0 \leq p \leq 1$ and $0 \leq q \leq 1$. This means the probability of an event always lies between $0$ and $1$, inclusive. The probability of an impossible event is $0$, and the probability of a certain event is $1$. For instance, if $P(A) = 1$, event $A$ is guaranteed to occur, and if $P(A) = 0$, event $A$ cannot occur. Additionally, the number of favorable outcomes $m$ for an event cannot exceed the total number of outcomes $n$.
+The probability $p$ of the occurrence of an event is referred to as the *probability of success*, while the probability $q$ of its non-occurrence is known as the *probability of failure*. Both $p$ and $q$ are non-negative and cannot exceed unity, *i*.*e*., $0 \leq p \leq 1$ and $0 \leq q \leq 1$. This means the probability of an event always lies between $0$ and $1$, inclusive. The probability of an impossible event is $0$, and the probability of a certain event is $1$. An event with probability 1 occurs almost surely under the model. In continuous models, its complement can be nonempty even though its probability is zero. Additionally, the number of favorable outcomes $m$ for an event cannot exceed the total number of outcomes $n$.
 :::
 
 ![Probability always lies between 0 and 1](images/probability/probshow.png){#fig-probshow fig-align="center" style="text-align:center;" width="80%"}
@@ -277,7 +277,7 @@ There are 20 balls in all. So, the total number of possible outcomes is 20
 
 ## Event relations
 
-In probability theory, relationships between events help in analyzing their combined or individual outcomes within a sample space. These relations include concepts such as union, intersection, complement and mutual exclusivity, which are fundamental for understanding how events interact and influence probabilities.
+In probability theory, relationships between events help in analysing their combined or individual outcomes within a sample space. These relations include concepts such as union, intersection, complement and mutual exclusivity, which are fundamental for understanding how events interact and influence probabilities.
 
 **Complement of an event**
 
@@ -309,7 +309,7 @@ According to additive law of probability, for any two events $A$ and $B$ of a sa
 
 $$P(A \cup B) = P(A)+P(B) − P(A \cap B)$$ {#eq-additivelaw}
 
-For mutually exclusive case $P(AꓵB)=0$; in that case:\
+For mutually exclusive case $P(A\cap B)=0$; in that case:\
 $$P(A \cup B) = P(A )+ P(B )$$ {#eq-additivelaw2}
 
 ::: {#exm-prob9}
@@ -370,8 +370,10 @@ This formula expresses the relationship between the joint probability of two eve
 
 $$P(A \cap B) = P(A) \cdot P(B)$$ {#eq-multilaw2}
 
+This equality defines independence and also applies when an event has probability zero. Mutually exclusive events with positive probabilities are not independent: their intersection has probability zero, whereas the product of their probabilities is positive. For three or more events, pairwise independence alone does not imply mutual independence.
+
 ::: {#exm-prob12}
-What is the probability of drawing two aces in succession from a standard deck of 52 cards?
+What is the probability of drawing two aces in succession without replacement from a standard deck of 52 cards?
 
 **Solution**
 
@@ -392,6 +394,8 @@ Combinations can be used to calculate the total number of possible outcomes in a
 
 $$^n C_r = \frac{n!}{r!(n - r)!}$$ {#eq-combn}
 
+Here $n$ and $r$ are integers with $0\leq r\leq n$, $0!=1$, and order does not matter. Counting favourable selections gives probabilities only when all selections in the denominator are equally likely. If order matters, the number of selections without replacement is $n!/(n-r)!$.
+
 ::: {#exm-prob14}
 Calculate $^3 C_2$
 
@@ -401,15 +405,15 @@ $^3 C_2 = \frac{3!}{2!(3 - 2)!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3$
 :::
 
 ::: {#exm-prob15}
-A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn are white and blue?
+A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn without replacement are one white and one blue?
 
 **Solution**
 
-Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by $^{16} C_2 =120$. The number of ways to draw one white ball from 6 white balls is $^6 C_1=6$, and the number of ways to draw one blue ball from 7 blue balls is $^7 C_1 =7$. Since the events are independent, the total number of favorable outcomes is $^6 C_1 \times ^7 C_1 = 6 \times 7 = 42$. Thus, the required probability is:$P(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}$
+Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by $^{16} C_2 =120$. The number of ways to draw one white ball from 6 white balls is $^6 C_1=6$, and the number of ways to draw one blue ball from 7 blue balls is $^7 C_1 =7$. By the multiplication rule for counting choices, the total number of favorable outcomes is $^6 C_1 \times ^7 C_1 = 6 \times 7 = 42$. Thus, the required probability is:$P(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}$
 :::
 
 ::: {#exm-prob16}
-A bag contains 5 red and 4 black balls. What is the probability that both balls drawn are red?
+A bag contains 5 red and 4 black balls. What is the probability that both balls drawn without replacement are red?
 
 **Solution**
 
@@ -418,15 +422,25 @@ Total number of balls = 5 + 4 = 9. The number of ways to draw 2 balls from 9 is 
 
 ::: {#exr-prob2}
 Six cards are drawn at random from a pack of 52 cards. What is the probability that 3 will be red and 3 black?
+
+The number of favourable hands is $\binom{26}{3}\binom{26}{3}$, and the total number is $\binom{52}{6}$. Thus the probability is $\binom{26}{3}^2/\binom{52}{6}=0.33205$, approximately.
 :::
+
+## Law of total probability
+
+If $E_1,\ldots,E_n$ are mutually exclusive events whose union is the sample space, they form a **partition**. For events with positive $P(E_i)$,
+
+$$P(A)=\sum_{i=1}^nP(E_i)P(A\mid E_i).$$
+
+The terms add the contributions to $A$ from all parts of the sample space. This is the denominator used in Bayes' theorem.
 
 ## Bayes’ theorem
 
-Bayes’ theorem gives a mathematical rule for inverting conditional probabilities, allowing one to find the probability of a cause given its effect.
+Bayes’ theorem gives a mathematical rule for inverting conditional probabilities, allowing one to update the probability of a hypothesis or event after observing evidence. A causal interpretation requires additional information about the study.
 
-Let $E_1, E_2, \dots, E_n$ be a set of events associated with a sample space $S$, where all the events $E_1, E_2,\dots, E_n$ have non-zero probability of occurrence and they form a partition of $S$. Let $A$ be any event associated with $S$, then according to Bayes theorem,
+Let $E_1, E_2, \dots, E_n$ be a set of events associated with a sample space $S$, where all the events $E_1, E_2,\dots, E_n$ have non-zero probability of occurrence and they form a partition of $S$. Let $A$ be an event with $P(A)>0$. Then according to Bayes theorem,
 
-$$P(E_i \mid A) =\frac{P(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}{P(E_k)}\cdot P(A \mid E_k)}$$ {#eq-bayestheorem}
+$$P(E_i \mid A) =\frac{P(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}P(E_k)P(A \mid E_k)}$$ {#eq-bayestheorem}
 
 The following terminologies are commonly used when applying Bayes’ theorem:
 
@@ -455,7 +469,7 @@ $$= \frac{\frac{1}{2}\times \frac{3}{5}}{\frac{1}{2}\times \frac{3}{5}+\frac{1}{
 :::
 
 ::: {#exm-prob18}
-A man is known to speak the truth 2 out of 3 times. He throws a die and reports that the number obtained is a four. Find the probability that the number obtained is actually a four.
+A fair die is thrown. A man is asked only whether the result is a four, and must answer yes or no. For either true answer, he answers truthfully with probability $2/3$ and incorrectly with probability $1/3$. He answers yes. Find the probability that the result is actually a four.
 
 **Solution**
 
@@ -474,77 +488,33 @@ $$P(E_1 \mid A)= \frac{\frac{1}{6}\times \frac{2}{3}}{\frac{1}{6}\times \frac{2}
 
 Answers are given at the end of the chapter.
 
-1. A process or procedure that produces an outcome which cannot be predicted with certainty beforehand is called a __________.
+1. The set of all possible outcomes of a random experiment is called the __________ space.
 
-2. The set of all possible outcomes of a random experiment is called the __________.
+2. A subset of the sample space is called an __________.
 
-3. An individual element of the sample space is called a __________.
+3. A real-valued function of the outcomes of a random experiment is called a random __________.
 
-4. A numerical value assigned to the outcomes of a random experiment is called a __________.
+4. Events that cannot occur together are called mutually __________ events.
 
-5. A random variable that takes countable values is called a __________ random variable.
+5. Events whose union is the sample space are called __________ events.
 
-6. A random variable that can take any value within a given range is called a __________ random variable.
+6. Events satisfying $P(A\cap B)=P(A)P(B)$ are called __________ events.
 
-7. Probability is expressed as a number between __________ and __________.
+7. The probability of the sample space is __________.
 
-8. An event whose probability is 0 is called an __________ event.
+8. The probability of the empty event is __________.
 
-9. An event whose probability is 1 is called a __________ event.
+9. The event containing all outcomes outside an event is its __________.
 
-10. An event that consists of one or more outcomes of a random experiment is called an __________.
+10. The probability of an event conditional on another event is called __________ probability.
 
-11. Events that cannot occur at the same time are called __________ events.
+11. For mutually exclusive events, the probability of their union is the __________ of their probabilities.
 
-12. Events that together contain all possible outcomes are called __________ events.
+12. Selecting objects without regard to order is called a __________.
 
-13. Events having the same probability of occurrence are called __________ likely events.
+13. In Bayes' theorem, the probability before incorporating new evidence is called the __________ probability.
 
-14. Events in which the occurrence of one does not influence the occurrence of another are called __________ events.
-
-15. Events in which the occurrence of one influences the probability of another are called __________ events.
-
-16. Drawing cards without replacement generally results in __________ events.
-
-17. Drawing cards with replacement generally results in __________ events.
-
-18. The classical approach to probability is also called the __________ approach.
-
-19. The statistical approach to probability is also called the __________ approach.
-
-20. The axiomatic approach to probability was developed by __________.
-
-21. According to the axiomatic approach, $P(E)$ always lies between __________ and __________.
-
-22. The probability of the entire sample space is __________.
-
-23. The complement of event $A$ is denoted by __________.
-
-24. The union of two events $A$ and $B$ is denoted by __________.
-
-25. The intersection of two events $A$ and $B$ is denoted by __________.
-
-26. The probability of an event and its complement together is __________.
-
-27. Conditional probability measures the probability of one event given that another event has already __________.
-
-28. The probability of $A$ given $B$ is denoted by __________.
-
-29. The multiplication law is used to find the probability of __________ events occurring together.
-
-30. For independent events, $P(A \cap B)$ is equal to __________.
-
-31. The number of ways of selecting $r$ objects from $n$ objects without considering order is called a __________.
-
-32. The notation for combination is __________.
-
-33. Bayes’ theorem is used to find the probability of a __________ given an effect or observed event.
-
-34. In Bayes’ theorem, $P(E_i)$ is called the __________ probability.
-
-35. In Bayes’ theorem, $P(E_i\mid A)$ is called the __________ probability.
-
-36. In Bayes’ theorem, the events $E_1,E_2,\ldots,E_n$ are called the __________.
+14. In Bayes' theorem, the probability after incorporating new evidence is called the __________ probability.
 
 ### Short-answer questions {.unnumbered}
 
@@ -638,15 +608,15 @@ Answers are given at the end of the chapter.
 
 16. A bag contains 3 red, 6 white, and 7 blue balls. Find the probability that two balls drawn are one white and one blue.
 
-17. A bag contains 5 red and 4 black balls. Find the probability that both balls drawn are red.
+17. A bag contains 5 red and 4 black balls. Find the probability that both balls drawn without replacement are red.
 
 18. Six cards are drawn at random from a pack of 52 cards. Find the probability that 3 are red and 3 are black.
 
 19. A bag contains 4 white and 6 black balls, while another bag contains 4 white and 3 black balls. One bag is selected at random and a black ball is drawn. Find the probability that it was drawn from the first bag.
 
-20. A man speaks the truth 2 out of 3 times. He throws a die and reports that the number obtained is 4. Find the probability that the number obtained was actually 4.
+20. Use the yes-or-no reporting model in @exm-prob18: the man correctly answers whether a fair die shows four with probability $2/3$, and incorrectly with probability $1/3$ for either true answer. Given that he answers yes, find the probability that the result is four.
 
-21. A coin is tossed 100 times and heads occur 99 times. What is the probability of obtaining heads on the next toss?
+21. A fair coin is tossed independently 100 times and heads occur 99 times. What is the probability of obtaining heads on the next toss?
 
 22. Explain why the previous outcomes of independent trials do not change the probability of the next trial.
 
@@ -774,8 +744,8 @@ $$
 - $A^c$ → complement of $A$.
 - Conditional probability → probability of an event given that another event has occurred.
 - Multiplication law → used for probability of joint occurrence.
-- With replacement → probabilities remain unchanged and events are independent.
-- Without replacement → probabilities change and events are dependent.
+- With replacement and independent random selection → successive draws have the same probabilities and are independent.
+- Without replacement → successive selections from a finite set are generally dependent.
 - Combination → selection without considering order.
 - Bayes’ theorem → obtains the probability of a cause or hypothesis given observed evidence.
 - Prior probability → probability before considering the evidence.
@@ -787,7 +757,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` Random experiment `2.` Sample space `3.` Sample point `4.` Random variable `5.` Discrete `6.` Continuous `7.` 0; 1 `8.` Impossible `9.` Certain `10.` Event `11.` Mutually exclusive `12.` Exhaustive `13.` Equally `14.` Independent `15.` Dependent `16.` Dependent `17.` Independent `18.` Mathematical `19.` Empirical `20.` A.N. Kolmogorov `21.` 0; 1 `22.` 1 `23.` $A^c$ `24.` $A\cup B$ `25.` $A\cap B$ `26.` 1 `27.` Occurred `28.` $P(A\mid B)$ `29.` Both `30.` $P(A)P(B)$ `31.` Combination `32.` ${}^nC_r$ `33.` Cause `34.` Prior `35.` Posterior `36.` Hypotheses
+`1.` Sample `2.` Event `3.` Variable `4.` Exclusive `5.` Exhaustive `6.` Independent `7.` One `8.` Zero `9.` Complement `10.` Conditional `11.` Sum `12.` Combination `13.` Prior `14.` Posterior
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}

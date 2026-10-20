@@ -1,9 +1,9 @@
 # Large sample test
 
-A sample with a size of 30 or more ($n≥30$) is generally referred to as a large sample. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.  
+A sample size of 30 or more ($n≥30$) is often used as a rough guide to a large sample, but it is not a universal threshold. The required size depends on the population distribution and the statistic being studied. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.  
 
 ## Central Limit Theorem  
-The Central Limit Theorem states that when the sample size is sufficiently large (generally $n≥30$), the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.  
+The Central Limit Theorem states that when the sample size is sufficiently large, the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.  
 
 Mathematically, if a random sample of size $n$ is drawn from a population with mean $\mu$ and variance $\sigma^2$, then as $n$ $\rightarrow$ $\infty$,
 
@@ -24,9 +24,9 @@ where:
 ## Z test  
 
 The $Z$-test is a statistical test based on the standard normal distribution. It is used to test hypotheses about population means and proportions when the sample size is sufficiently large and the necessary assumptions are satisfied. The value of the test statistic is compared with the critical value from the standard normal distribution to decide whether the null hypothesis should 
-be accepted or rejected.  
+be rejected or not rejected.  
 
-The test statistic $Z$ is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The following large sample tests are covered in this chapter:
+The test statistic $Z$ is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. Under $H_0$, $Z$ has an exact or approximate standard normal distribution, $Z \sim N(0,1)$, depending on the test and its assumptions. The following large sample tests are covered in this chapter:
 
 -   Test for a single proportion
 
@@ -37,6 +37,12 @@ The test statistic $Z$ is calculated from a large sample using appropriate formu
 -   Test for the equality of two means
 
 -   Test for the difference of two standard deviations
+
+### Before applying a test {.unnumbered}
+
+First identify the population parameter, the sampling unit and whether the samples are independent or paired. Plants measured within the same plot are not necessarily independent experimental replicates. A large number of measurements cannot correct this dependence. The formulas here assume independent observations; substantial sampling fractions or complex survey designs require the corresponding sampling standard errors.
+
+State the alternative hypothesis and the significance level before examining the result. A one-tailed test is used for a specified direction, not because the observed result happens to be positive or negative. Report the estimated difference as well as the decision. A statistically significant difference need not be large enough to be agriculturally important.
 
 ### Decision rule for the Z test {#sec-decision}
 
@@ -76,6 +82,10 @@ For a two-tailed test, the significance level $\alpha$ is split equally between 
 For a two-tailed test at $\alpha$ = 0.05, we split the significance level equally between the two tails and use the value at $\alpha/2$ = 0.025, which is $Z_{0.025}$ = 1.960. Similarly, for a two-tailed test at $\alpha$ = 0.01 we use $Z_{0.005}$ = 2.576. These are the same critical values shown directly against the overall two-tailed $\alpha$ in @tbl-zcrit2.
 :::
 
+The same decision can be made using a **p-value**. It is the probability, assuming $H_0$ and the test model, of a result at least as extreme as that observed in the direction or directions specified by $H_1$. It is not the probability that $H_0$ is true. Let $\Phi(z)$ denote the cumulative probability of the standard normal distribution. The p-value is $1-\Phi(Z)$ for a right-tailed test, $\Phi(Z)$ for a left-tailed test, and $2[1-\Phi(|Z|)]$ for a two-tailed test. Reject $H_0$ when the p-value is at most $\alpha$.
+
+For example, $Z=-2.00$ in a two-tailed test gives a p-value of approximately 0.0455. Thus the null hypothesis is rejected at the 5% level. Failure to reject a null hypothesis does not prove equality; the sample may provide insufficient precision to detect a difference.
+
 ## Test for a single population proportion
 
 Consider a population with proportion $P$, where $P$ is unknown. We take a random sample of size $n$ from the population and calculate the sample proportion $p$. We want to test whether the population proportion $P$ is equal to a specified value $P_0$, based on the sample proportion $p$. Note here we always frame null hypothesis on population parameter and test using the sample statistics.  
@@ -98,9 +108,9 @@ $$Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}}$$ {#eq-zprop1}
 
 where $Q_0 = 1 - P_0$.
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution with mean 0 and variance 1, $Z \sim N(0,1)$.
+When the null hypothesis is true, this $Z$ approximately follows a standard normal distribution, provided the observations are independent and the expected counts $nP_0$ and $nQ_0$ are sufficiently large. A useful introductory guideline is that both counts should be at least 10. If this condition is not met, an exact binomial test can be used.
 
-The calculated value of $Z$ is then compared with the critical value of $Z$ from the table of the standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See @sec-decision.
+The calculated value of $Z$ is then compared with the critical value of $Z$ from the table of the standard normal distribution. Apply the appropriate one-tailed or two-tailed rule in @sec-decision. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See @sec-decision.
 
 ::: {.callout-note title="Note"}
 The standard error in the single-proportion test is computed using the null value $P_0$, giving $\sqrt{P_0 Q_0/n}$, because the test statistic is derived under the assumption that the null hypothesis is true. Some textbooks use the sample-based standard error $\sqrt{pq/n}$; for large samples the two give very similar results.
@@ -162,9 +172,11 @@ $$Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \df
 
 where $\widehat{P} = \dfrac{n_1 p_1 + n_2 p_2}{n_1 + n_2}$ is the pooled proportion and $\widehat{Q} = 1 - \widehat{P}$.
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$.
+The samples must be independent. For the normal approximation, check that $n_1\widehat{P}$, $n_1\widehat{Q}$, $n_2\widehat{P}$ and $n_2\widehat{Q}$ are sufficiently large; a useful introductory guideline is at least 10 each. Pooling is used because $H_0$ specifies a common population proportion.
 
-The calculated value of $Z$ is compared with the critical value of $Z$ from the standard normal table (see @sec-decision). If the calculated value is higher than the table value, we reject the null hypothesis. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.
+Under the null hypothesis, this statistic is approximately standard normal when the two samples are independent and the expected success and failure counts in each sample are sufficiently large.
+
+The calculated value of $Z$ is compared with the critical value of $Z$ from the standard normal table (see @sec-decision). If the statistic falls in the rejection region specified in @sec-decision, reject $H_0$. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.
 
 ::: {#exm-prop2}
 In order to assess the adoption of a new variety of paddy by farmers, a survey was conducted in a locality. The survey covered 80 farmers with large land holdings and 250 farmers with small land holdings. It was observed that 50 of the large-holding farmers and 78 of the small-holding farmers adopted the new paddy variety. Test whether there is any significant difference in the adoption behaviour of the two groups of farmers. ($\alpha$ = 0.01)
@@ -234,7 +246,7 @@ When $\sigma$ is known, we calculate the test statistic $Z$ using the following 
 
 $$Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}}$$ {#eq-zmean-known}
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
+Under the null hypothesis, this statistic is approximately standard normal for a sufficiently large independent random sample. For independent normal observations with known population standard deviation, it is exactly standard normal. The decision rule is given in @sec-decision.
 
 ::: {#exm-mean-known}
 A fertilizer packing unit is set to fill bags with a mean weight of 50 kg. From long experience the population standard deviation of the filling process is known to be 3.2 kg. A random sample of 64 bags was drawn and the mean weight was found to be 49.2 kg. Test whether the packing process is working at the intended mean weight of 50 kg, at the 5% level of significance.
@@ -270,7 +282,7 @@ When $\sigma$ is unknown, it is replaced by its sample estimate $s$, and we calc
 
 $$Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}}$$ {#eq-zmean-unknown}
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is given in @sec-decision.
+Under the null hypothesis, this statistic is approximately standard normal for a sufficiently large independent random sample. For a normal population with unknown standard deviation, the statistic has an exact $t$ distribution with $n-1$ degrees of freedom. The $t$-test can therefore be used even when the sample is large. The decision rule is given in @sec-decision.
 
 ::: {#exm-mean1}
 A sample of 900 items has a mean of 3.4 cm and a standard deviation of 2.61 cm. Test whether the population mean is 3.25 cm at the 5% significance level.
@@ -332,10 +344,10 @@ When the population standard deviations are equal, we calculate the test statist
 
 $$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}$$ {#eq-zmean2-equal}
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+Under the null hypothesis, this statistic is exactly standard normal for independent samples from normal populations with known common standard deviation. Otherwise, the normal approximation requires suitable large samples. The decision rule is the same as above (see @sec-decision).
 
 ::: {.callout-note title="Note"}
-If the common $\sigma$ is unknown, it is replaced by its pooled estimate $\sqrt{\dfrac{n_1 s_1^2 + n_2 s_2^2}{n_1 + n_2}}$, where $n_1$ and $n_2$ are the sample sizes and $s_1$ and $s_2$ are the sample standard deviations.
+If the common $\sigma$ is unknown, it is replaced by its pooled estimate $\sqrt{\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}}$, where $n_1$ and $n_2$ are the sample sizes and $s_1$ and $s_2$ are the sample standard deviations.
 :::
 
 ::: {#exm-mean2}
@@ -367,7 +379,7 @@ $$= \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}}$$
 
 $$= \frac{0.5}{0.0968} = 5.16$$
 
-Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.
+Since it is a two-tailed test, we compare with the critical value at $\alpha/2$ = 0.025, which is 1.960 (see @sec-decision). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the population means differ significantly. This test compares means; it does not test every feature of the two population distributions.
 :::
 
 ### Standard deviations are not equal 
@@ -376,7 +388,9 @@ When the population standard deviations are not equal, we calculate the test sta
 
 $$Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}}$$ {#eq-zmean2-unequal}
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+Under the null hypothesis, this statistic is exactly standard normal for independent samples from normal populations with known standard deviations. Otherwise, the normal approximation requires suitable large samples. The decision rule is the same as above (see @sec-decision).
+
+If the population standard deviations are unknown, replace them by $s_1$ and $s_2$ for a large-sample approximation. Welch's $t$-test in the next chapter also applies and accounts for the estimation of the standard errors. Both samples must contain enough independent observations; a large combined sample size alone is not sufficient.
 
 ::: {#exm-mean2-unequal}
 Two paddy varieties were compared for their grain yield. A random sample of 100 plots of variety A gave a mean yield of 52 quintals per hectare with a population standard deviation of 8 quintals per hectare, while a random sample of 100 plots of variety B gave a mean yield of 49 quintals per hectare with a population standard deviation of 6 quintals per hectare. The two population standard deviations are known and unequal. Test whether the two varieties differ significantly in mean yield, at the 5% level of significance.
@@ -432,7 +446,9 @@ $H_1$: $\sigma_1$ \> $\sigma_2$ (right-tailed alternative)
 
 $H_1$: $\sigma_1$ $\mathbf{\neq}$ $\sigma_2$ (two-tailed alternative)
 
-For large samples, the sample standard deviation is approximately normally distributed about the population standard deviation, with the standard error of the difference of two sample standard deviations given by
+The normal-population assumption is important here because the variability of a sample standard deviation depends on the population distribution. For non-normal data, use a method appropriate to that distribution, such as a suitable robust variance comparison, rather than applying this formula automatically.
+
+For independent large samples from normal populations, each sample standard deviation is approximately normally distributed about its population standard deviation, with the standard error of the difference of two sample standard deviations given by
 
 $$\text{S.E.}(s_1 - s_2) = \sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}}$$ {#eq-sesd}
 
@@ -440,14 +456,14 @@ Hence, under the null hypothesis, the test statistic is
 
 $$Z = \frac{s_1 - s_2}{\sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}}} \sim N(0,1)$$ {#eq-zsd-known}
 
-When the null hypothesis is true, this $Z$ follows a standard normal distribution, $Z \sim N(0,1)$. The decision rule is the same as above (see @sec-decision).
+Under the null hypothesis, this statistic is approximately standard normal for independent large samples from normal populations. The approximation for standard deviations is not justified by the Central Limit Theorem for means alone. The decision rule is the same as above (see @sec-decision).
 
 The population standard deviations $\sigma_1$ and $\sigma_2$ are usually unknown, and for large samples they are replaced by the corresponding sample standard deviations. The test statistic then reduces to
 
 $$Z = \frac{s_1 - s_2}{\sqrt{\dfrac{s_1^2}{2n_1} + \dfrac{s_2^2}{2n_2}}} \sim N(0,1)$$ {#eq-zsd-unknown}
 
 ::: {#exm-sd}
-Two large samples of plant height measurements were taken from two fields. The first sample of 1000 plants had a standard deviation of 6.0 cm, and the second sample of 1200 plants had a standard deviation of 5.5 cm. Test whether the two populations have equal standard deviations, at the 5% level of significance.
+Two large samples of plant height measurements were taken from two fields. Assume independent random samples from normal populations. The first sample of 1000 plants had a standard deviation of 6.0 cm, and the second sample of 1200 plants had a standard deviation of 5.5 cm. Test whether the two populations have equal standard deviations, at the 5% level of significance.
 
 **Solution**
 
@@ -480,81 +496,61 @@ Since it is a two-tailed test, we compare $|Z|$ with the critical value at $\alp
 Two random samples gave the following data. Test whether the population standard deviations are equal. $n_1$ = 800, $n_2$ = 900, $s_1$ = 4.2, $s_2$ = 3.8. ($\alpha$ = 0.05)
 :::
 
+## Confidence intervals for means and proportions
+
+A confidence interval shows the precision of an estimate as well as its magnitude. For a population mean with known standard deviation, a $100(1-\alpha)\%$ confidence interval is
+
+$$\overline{x}\pm Z_{\alpha/2}\frac{\sigma}{\sqrt{n}}.$$
+
+For two independent means with known standard deviations, the interval is
+
+$$ (\overline{x}_1-\overline{x}_2)\pm Z_{\alpha/2}
+\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}.$$
+
+For unknown standard deviations, the corresponding $t$ intervals are discussed in the next chapter. Large-sample normal intervals replace the population standard deviations by their sample estimates.
+
+For a single proportion, the simple large-sample interval is
+
+$$p\pm Z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}.$$
+
+For the difference of two independent proportions, the corresponding interval is
+
+$$ (p_1-p_2)\pm Z_{\alpha/2}
+\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}.$$
+
+Notice that the standard error for the equality test uses the pooled proportion, whereas this confidence interval uses the two sample proportions separately. These simple proportion intervals require adequate success and failure counts and may perform poorly near 0 or 1; score-based intervals, such as the Wilson interval for one proportion, are preferable in those cases. They should not be used automatically for sparse data.
+
+In @exm-mean-known, the 95% confidence interval is $49.2\pm1.960(0.4)$, or approximately $(48.42,49.98)$ kg. The intended mean of 50 kg lies outside this interval, agreeing with the two-sided test. A confidence interval describes uncertainty about a population parameter, not the range containing a specified percentage of individual observations.
+
 ## Chapter Summary
 
 ### Fill in the blanks {.unnumbered}
 
 Answers are given at the end of the chapter.
 
-1. A sample with a size of __________ or more is generally referred to as a large sample.
+1. The theorem supporting the normal approximation to the sample mean under suitable conditions is the __________ Limit Theorem.
 
-2. Large-sample tests are based mainly on the __________ Limit Theorem.
+2. The standard deviation of a sampling distribution is called the standard __________.
 
-3. According to the Central Limit Theorem, the sampling distribution of the sample mean approaches a __________ distribution as the sample size increases.
+3. The reference distribution used in a Z-test is the standard __________ distribution.
 
-4. The standard normal distribution has mean __________ and variance __________.
+4. For independent observations with population standard deviation $\sigma$, the standard error of the sample mean is __________.
 
-5. The test based on the standard normal distribution is called the __________ test.
+5. In the one-proportion Z-test, the null standard error uses the __________ proportion.
 
-6. The test statistic used in a large-sample Z-test follows the __________ normal distribution when $H_0$ is true.
+6. In a test of equality of two proportions, the common proportion estimated by combining both samples is called the __________ proportion.
 
-7. The four large-sample tests discussed in the chapter are tests for a single proportion, equality of two proportions, a single mean, and equality of two __________.
+7. For two independent sample means, the variance of their difference equals the __________ of their variances.
 
-8. In a test for a single population proportion, the null hypothesis is $H_0:P=$ __________.
+8. For a two-tailed Z-test at the 5% level, the positive critical value is approximately __________.
 
-9. In the single-proportion test, $Q_0=$ __________.
+9. For a right-tailed Z-test at the 5% level, the critical value is approximately __________.
 
-10. The standard error for testing a single population proportion is calculated using the __________ value of the proportion.
+10. For a left-tailed Z-test at the 5% level, the critical value is approximately __________.
 
-11. In the test for equality of two proportions, the pooled proportion is denoted by __________.
+11. Increasing sample size generally __________ the standard error of the mean.
 
-12. In the test for equality of two proportions, the pooled probability of failure is $\widehat{Q}=$ __________.
-
-13. In a test for a single population mean, the null hypothesis is $H_0:\mu=$ __________.
-
-14. When the population standard deviation is known, the test statistic for a single mean uses __________.
-
-15. When the population standard deviation is unknown, the population standard deviation is replaced by the __________ standard deviation.
-
-16. In the test for equality of two means, the null hypothesis is $H_0:\mu_1=$ __________.
-
-17. When two population standard deviations are equal, the common standard deviation is denoted by __________.
-
-18. When two population standard deviations are unequal, the standard error contains __________ separate variance terms.
-
-19. For a two-tailed Z-test at $\alpha=0.05$, the critical value is __________.
-
-20. For a two-tailed Z-test at $\alpha=0.01$, the critical value is __________.
-
-21. For a right-tailed Z-test at $\alpha=0.05$, the critical value is __________.
-
-22. For a left-tailed Z-test at $\alpha=0.05$, the critical value is __________.
-
-23. For a two-tailed test, the significance level $\alpha$ is divided equally between the __________ tails.
-
-24. For a two-tailed test, $H_0$ is rejected when $|Z|$ is __________ than the critical value.
-
-25. For a right-tailed test, $H_0$ is rejected when $Z$ is __________ than the critical value.
-
-26. For a left-tailed test, $H_0$ is rejected when $Z$ is __________ than the negative critical value.
-
-27. The sample proportion is denoted by __________.
-
-28. The sample mean is denoted by __________.
-
-29. The population proportion is denoted by __________.
-
-30. The population mean is denoted by __________.
-
-31. The population standard deviation is denoted by __________.
-
-32. The sample standard deviation is denoted by __________.
-
-33. The difference between the sample mean and the hypothesized population mean is standardized by the __________ of the sample mean.
-
-34. The pooled proportion is calculated by combining the numbers of successes from the __________ samples.
-
-35. The Central Limit Theorem applies when observations are independent and the population has a finite __________.
+12. The normal approximation for a sample proportion requires sufficiently large expected counts of successes and __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -570,7 +566,7 @@ Answers are given at the end of the chapter.
 
 6. Define the Z-test.
 
-7. State the four large-sample tests discussed in the chapter.
+7. List the large-sample tests discussed in the chapter.
 
 8. Explain the general decision rule for a Z-test.
 
@@ -642,7 +638,7 @@ Answers are given at the end of the chapter.
 
 10. A large sample has mean 102, while the hypothesized population mean is 100. The population standard deviation is 10 and the sample size is 400. Calculate the Z statistic and test the hypothesis at $\alpha=0.05$.
 
-11. Two large samples have sizes 1000 and 2000, with means 67.5 and 68 inches respectively. The common population standard deviation is 2.5 inches. Test whether the two samples can be regarded as drawn from the same population at the 5% level.
+11. Two large samples have sizes 1000 and 2000, with means 67.5 and 68 inches respectively. The common population standard deviation is 2.5 inches. Test whether the population means are equal at the 5% level.
 
 12. Two paddy varieties have sample sizes 100 each. Variety A has mean yield 52 quintals per hectare and population standard deviation 8 quintals per hectare, while variety B has mean yield 49 quintals per hectare and population standard deviation 6 quintals per hectare. Test whether the two varieties differ significantly in mean yield at $\alpha=0.05$.
 
@@ -802,7 +798,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` 30 `2.` Central `3.` Normal `4.` 0; 1 `5.` Z `6.` Standard `7.` Means `8.` $P_0$ `9.` $1-P_0$ `10.` Null `11.` $\widehat{P}$ `12.` $1-\widehat{P}$ `13.` $\mu_0$ `14.` $\sigma$ `15.` Sample `16.` $\mu_2$ `17.` $\sigma$ `18.` Two `19.` 1.960 `20.` 2.576 `21.` 1.645 `22.` $-1.645$ `23.` Two `24.` Greater `25.` Greater `26.` Less `27.` $p$ `28.` $\bar{x}$ `29.` $P$ `30.` $\mu$ `31.` $\sigma$ `32.` $s$ `33.` Standard error `34.` Two `35.` Variance
+`1.` Central `2.` Error `3.` Normal `4.` $\sigma/\sqrt{n}$ `5.` Hypothesised `6.` Pooled `7.` Sum `8.` 1.96 `9.` 1.645 `10.` $-1.645$ `11.` Decreases `12.` Failures
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
@@ -831,7 +827,7 @@ $$
 
 12. Given $n_1=n_2=100$, $\bar{x}_1=52$, $\bar{x}_2=49$, $\sigma_1=8$, $\sigma_2=6$. Since the population standard deviations are unequal, using @eq-zmean2-unequal, $Z=\frac{52-49}{\sqrt{\frac{8^2}{100}+\frac{6^2}{100}}}=\frac{3}{1}=3.00$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|3.00|>1.960$, we reject $H_0$. The two paddy varieties differ significantly in mean yield.
 
-13. Given $n_1=n_2=400$, $\bar{x}_1=250$, $\bar{x}_2=220$, $s_1=40$, $s_2=55$. Since the population standard deviations are not given as known, use the pooled estimate $\sigma=\sqrt{\frac{n_1s_1^2+n_2s_2^2}{n_1+n_2}}=\sqrt{\frac{400(40^2)+400(55^2)}{800}}=\sqrt{2312.5}\approx48.09$. Using @eq-zmean2-equal, $Z=\frac{250-220}{48.09\sqrt{\frac{1}{400}+\frac{1}{400}}}\approx8.82$. At $\alpha=0.05$, $Z_{0.025}=1.960$; since $|8.82|>1.960$, we reject $H_0$. There is significant evidence that the two population means are different.
+13. The samples are independent and equal variances are not given. Use the large-sample standard error $\sqrt{s_1^2/n_1+s_2^2/n_2}=\sqrt{40^2/400+55^2/400}=3.4004$. Thus $Z=(250-220)/3.4004=8.82$, which exceeds 1.960. Reject equality of the population means at the two-sided 5% level. Welch's t-test is also appropriate and gives the same conclusion.
 
 14. For a two-tailed test at $\alpha=0.05$, $\frac{\alpha}{2}=0.025$, so $Z_{0.025}=1.960$. The critical values are $-1.960$ and $1.960$.
 
@@ -852,11 +848,11 @@ $$
 ::: {.callout-caution title="Historical Insights"}
 **Why 30? The bell curve, the astronomer, and the birth of large-sample theory**
 
-The reason large-sample tests work at all traces back to one of the most remarkable results in statistics: the **Central Limit Theorem**. It says that no matter what the shape of the parent population, the distribution of the sample mean approaches a normal distribution as the sample size grows. This is why the $Z$-test, which assumes normality, can be applied to almost any large sample.
+The reason many large-sample tests work traces back to the **Central Limit Theorem**. For independent, identically distributed observations with finite positive variance, the distribution of the standardised sample mean approaches the standard normal distribution as the sample size grows. The approximation can be slow for strongly skewed or heavy-tailed populations, and dependence requires additional conditions.
 
 The normal curve itself was first derived by Abraham de Moivre in 1733 as an approximation to the binomial distribution, while he was studying games of chance. It was later rediscovered by Carl Friedrich Gauss around 1809, who used it to model the errors astronomers made when measuring the positions of stars and planets. Because the same bell-shaped curve kept appearing whenever many small independent errors were added together, it came to be called the *normal* distribution, and for a long time the *Gaussian* distribution. [@Gauss1809]
 
-But where did the famous cut-off of "$n \geq 30$" come from? It was never a law of nature. It emerged as a practical rule of thumb in the early twentieth century, around the time William Gosset (writing under the pen name *Student*) developed the $t$-distribution in 1908 while working as a brewer at Guinness in Dublin. Gosset showed that for small samples the normal approximation is unreliable and a separate distribution is needed. As the sample size increases, the $t$-distribution steadily approaches the normal curve, and by about 30 observations the two are so close that the difference rarely matters in practice. That convenient meeting point gave us the boundary between "small" and "large" samples that we still use today. [@Student1908]
+But where does the familiar cut-off of "$n\geq30$" fit? It is a rough teaching convention, not a universal mathematical boundary. For a normal population with unknown standard deviation, the usual mean statistic has an exact t distribution for every sample size greater than one. Its convergence to the normal distribution does not establish that every non-normal sample mean is adequately approximated at 30 observations. [@Student1908]
 
 So the next time you check whether your sample size crosses 30, remember that you are standing on the shoulders of a gambler, an astronomer, and a brewer.
 :::

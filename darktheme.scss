@@ -119,6 +119,42 @@ a:hover {
 }
 
 /* Responsive Adjustments */
+main a,
+main .csl-entry {
+  overflow-wrap: anywhere;
+}
+
+main :is(div, figure):has(> table) {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+main mjx-container[jax="CHTML"][display="true"] {
+  min-width: 0 !important;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-block: 0.4em;
+}
+
+@media (max-width: 767px) {
+  main mjx-container[jax="CHTML"][display="true"] {
+    text-align: left;
+  }
+  main table {
+    display: block;
+    width: max-content;
+    min-width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    table-layout: auto;
+  }
+  main img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .sidebar-title {
     font-size: 1.2rem;

@@ -90,7 +90,7 @@ The amount of computation involved above can be reduced by using the following f
 
 $$\overline{x} = A + \frac{\sum_{i = 1}^{n}{f_{i}d_{i}}}{\sum_{i = 1}^{n}f_{i}}$$ {#eq-assumedmean}
 
-where, $A$ is the assumed mean, which can be any value in *x*. $d_{i} = x_{i} - A$, $f_{i}$ is the frequency of $x_{i}$
+where, $A$ is a convenient assumed mean, which can be any constant. $d_{i} = x_{i} - A$, $f_{i}$ is the frequency of $x_{i}$
 
 Consider the @tbl-plantheight
 
@@ -115,7 +115,7 @@ The mean plant height is 161.08 cm.
 
 [**Direct method**]{.underline}
 
-The mean for grouped data is obtained from the following formula:
+For grouped data, replace the observations in each class by its class mark. This gives an approximate mean unless the actual within-class means equal the class marks. The formula is:
 
 $$\overline{x} = \frac{\sum_{i = 1}^{k}{f_{i}x_{i}}}{n}$$ {#eq-meangpdirect}
 
@@ -157,15 +157,15 @@ If all the class intervals of a grouped frequency distribution have equal size $
 
 $$\overline{x} = A + C\frac{\sum_{i = 1}^{n}{f_{i}u_{i}}}{\sum_{i = 1}^{n}f_{i}}$$ {#eq-meancoding}
 
-where, $A$ is the class mark with the highest frequency, $u_{i} = \frac{x_{i} - A}{C}$, $f_{i}$ is the frequency of $x_{i}$, *C* is the class width.
+where $A$ is a convenient assumed mean, often chosen as the class mark with the highest frequency, $u_{i} = \frac{x_{i} - A}{C}$, $f_{i}$ is the frequency of $x_{i}$, *C* is the class width.
 
-This is called the “coding” method for computing the mean. It is a very short method and should always be used for finding the mean of a grouped frequency distribution with equal class widths.
+This is called the “coding” method for computing the mean. It can simplify hand calculations for a grouped frequency distribution with equal class widths; the direct method gives the same result.
 
 Applying the coding method to the same data used in @exm-ct3 (@tbl-math).
 
 $A$ = 72.5, class mark with highest frequency; $C$ = 5
 
-| Marks | Class mark(${x}_{i}$) | Frequency(${f}_{i}$) | $${u}_{i}=\frac{x_i- 72.5}{5}$$ | $${f}_{i}{u}_{i}$$ |
+| Marks | Class mark(${x}_{i}$) | Frequency(${f}_{i}$) | ${u}_{i}=\frac{x_i- 72.5}{5}$ | ${f}_{i}{u}_{i}$ |
 |:-------------:|:-------------:|:-------------:|:-------------:|:-------------:|
 | 60-65 | 62.5 | 2 | -2 | -4 |
 | 65-70 | 67.5 | 15 | -1 | -15 |
@@ -188,13 +188,13 @@ The mean mark is 72.75%.
 
 2.  It is easy to understand and easy to calculate.
 
-3.  If the number of items is sufficiently large, it is more accurate and more reliable.
+3.  For independent observations with finite variance, the sampling variance of the mean decreases as the sample size increases. A larger sample does not remove bias in selection or measurement.
 
 4.  It is a calculated value and is not based on its position in the series.
 
 5.  It is possible to calculate even if some of the details of the data are lacking.
 
-6.  Of all averages, it is affected least by fluctuations of sampling.
+6.  For a normal population, the sample mean has smaller sampling variance than common alternatives such as the sample median.
 
 7.  It provides a good basis for comparison.
 
@@ -237,12 +237,31 @@ What is the weighted average of the first *n* natural numbers if the weights ass
 
 Using the @eq-weighted
 
-$$\text{Weighted average} = \frac{(1\times1) + (2\times2) + ... + (n\times n)}{1+2+...+n}$$ $$=\frac{1^2+2^2+...+n^2}{1+2+...+n}$$ $$=\frac{n(2n+1)(n+1)/6}{n(n+1)/2}$$ $$=\frac{2n+1}{3}$$
+$$
+\begin{aligned}
+\text{Weighted average}
+&=\frac{1^2+2^2+\cdots+n^2}{1+2+\cdots+n}\\
+&=\frac{n(n+1)(2n+1)/6}{n(n+1)/2}\\
+&=\frac{2n+1}{3}.
+\end{aligned}
+$$
 :::
+
+### Properties of the arithmetic mean
+
+The sum of deviations from the arithmetic mean is zero:
+
+$$\sum_{i=1}^n(x_i-\overline{x})=0.$$
+
+The sum of squared deviations is smallest when deviations are taken from the mean. For any constant $a$,
+
+$$\sum_{i=1}^n(x_i-a)^2=\sum_{i=1}^n(x_i-\overline{x})^2+n(\overline{x}-a)^2.$$
+
+If $y_i=a+bx_i$, then $\overline{y}=a+b\overline{x}$. For groups with sizes $n_1,\ldots,n_g$ and means $\overline{x}_1,\ldots,\overline{x}_g$, the combined mean is $\sum n_j\overline{x}_j/\sum n_j$. Thus, group means should be weighted by their group sizes when combining observations.
 
 ## The median
 
-The **median** is the middle value in a set of data when the values are arranged in order from smallest to largest. If there is an **odd** number of values, the median is the one in the middle, with half of the values smaller and half larger. If there is an **even** number of values, the median is the average of the two middle values. The median is a **positional measure**, which means it depends on the order of the data, not the actual values. It helps to find the central point of the data, especially when there are extreme values or outliers that could affect the average.
+The **median** is the middle value in a set of data when the values are arranged in order from smallest to largest. If there is an **odd** number of values, the median is the one in the middle, with half of the values smaller and half larger. If there is an **even** number of values, the median is the average of the two middle values. The median is a **positional measure**: its location is determined by the ordered positions, while its numerical value is obtained from the observation or observations at those positions. It helps to find the central point of the data, especially when there are extreme values or outliers that could affect the average.
 
 ### Median of ungrouped or raw data
 
@@ -272,7 +291,7 @@ If a number is repeated, we still count it the number of times it appears when w
 $b)$ Arranging the data in an increasing order of magnitude, we obtain 1, 3, 4, 4, 5, 7, 9, 10, 10, 12. Here, N = 10 is an even number and so median = $\frac{1}{2}${5^th^ ordered observation + 6^th^ ordered observation} = $\frac{1}{2}\left( 5 + 7 \right) = 6$.
 
 ::: {.callout-important title="Note"}
-You can see in each case, the median divides the distribution into two equal parts, with 50% of the observations greater than it and the other 50% less than it.
+At least half the observations are less than or equal to a median, and at least half are greater than or equal to it. With repeated values, exactly 50% need not lie strictly on either side.
 :::
 :::
 
@@ -350,7 +369,7 @@ The median of a grouped frequency distribution can be estimated by linear interp
 
 $$Median = L + \left( \frac{\frac{1}{2}N - F}{f_{m}} \right)C$$ {#eq-medlinear}
 
-where, $N$ = total number of observations, $L$ = lower limit of the median class, $F$ = sum of all frequencies below *L*(cumulative frequency), $f_{m}$ = frequency of the median class, $C$ = class width of the median class.
+where, $N$ = total number of observations, $L$ = lower class boundary of the median class, $F$ = sum of all frequencies below *L*(cumulative frequency), $f_{m}$ = frequency of the median class, $C$ = class width of the median class.
 
 [**Estimation from cumulative frequency curve**]{.underline}
 
@@ -376,7 +395,7 @@ $N$ = 60 (Sum of frequencies)
 
 Median class= class interval which contains the $\left( \frac{N}{2} \right)^{\text{th}}$ordered observation; here $\left( \frac{60}{2} \right)^{\text{th}} =$ 30^th^ observation. Before the class 160-165 there are 3+9+16 = 28 observations so 30^th^ observation will be in the class 160-165, therefore it is the median class.
 
-$L$ = lower limit of the median class = 160
+$L$ = lower class boundary of the median class = 160
 
 $F$ = sum of all frequencies below 160(cumulative frequency) = 16+9+3 = 28
 
@@ -397,17 +416,17 @@ using @eq-medlinear, $median = 160 + \left( \frac{\frac{1}{2}60 - 28}{18} \right
 
 1.  Median is not influenced by extreme values because it is a positional average.
 
-2.  Median can be calculated in case of distribution with open-end intervals.
+2.  Median can be estimated with open-end classes if the median class itself has known boundaries and sufficient information is available.
 
-3.  Median can be located even if the data are incomplete.
+3.  Median can sometimes be located with incomplete information, provided the middle ordered value or values can still be identified.
 
 [**Demerits**]{.underline}
 
 1.  A slight change in the series may bring drastic change in median value.
 
-2.  In case of even number of items or continuous series, median is an estimated value other than any value in the series.
+2.  For even-sized raw datasets, the median is the exact average of the two middle values and need not be an observed value. For grouped data, interpolation gives an estimate.
 
-3.  It is not suitable for further mathematical treatment except its use in calculating mean deviation.
+3.  It is less convenient than the mean for some algebraic calculations, such as combining group summaries.
 
 4.  It does not take into account all the observations.
 
@@ -453,18 +472,18 @@ It can be seen that the mode of a distribution may not exist, and even if it exi
 
 **Solution**
 
-The blood group with the highest frequency is O. The mode of the data is therefore blood group O. We can say that most of the patients selected have blood group O. Notice that the mean and the median cannot be applied to the data. This is because the variable “blood group” cannot take numerical values. However, it can be seen that the mode can be used to describe both quantitative and qualitative data.
+The blood group with the highest frequency is O. The mode of the data is therefore blood group O. The largest group of patients selected has blood group O (8 out of 20); it is not a majority. Notice that the mean and the median cannot be applied to the data. This is because blood group is a nominal variable; numerical category codes would not make arithmetic meaningful. However, it can be seen that the mode can be used to describe both quantitative and qualitative data.
 :::
 
 ### Mode of grouped data
 
-Mode of a grouped frequency distribution can be found out using the formula below.
+For equal-width classes with a clear interior modal class, the mode can be estimated using the formula below. With unequal class widths, compare frequency densities rather than frequencies; the formula below must not be applied directly to the raw frequencies.
 
 $$mode = L + \left( \frac{f_{m}-f_{p}}{2f_{m}-f_{p} - f_{s}} \right)C$$ {#eq-mode}
 
 Locate the highest frequency the class corresponding to that frequency is called the **modal class**.
 
-where, $L$ = lower limit of the modal class; $f_{m}$ = the frequency of modal class; $f_{p}$= the frequency of the class preceding the modal class; $f_{s}$= the frequency of the class succeeding the modal class and $C$ = class interval
+where, $L$ = lower class boundary of the modal class; $f_{m}$ = the frequency of modal class; $f_{p}$= the frequency of the class preceding the modal class; $f_{s}$= the frequency of the class succeeding the modal class and $C$ = class width
 
 ::: {#exm-ct12}
 For the frequency distribution of weights of sorghum ear-heads given in @tbl-earhead below. Calculate the mode.
@@ -504,7 +523,7 @@ Consider the figure below. The modal class is the class interval which correspon
 
 2.  It is not affected by extreme values. It can be obtained even if the extreme values are not known.
 
-3.  Mode can be determined in distributions with open classes.
+3.  A modal category can be identified with open-end classes, but a numerical grouped-mode estimate requires sufficient information about the modal class and its neighbours.
 
 4.  Mode can be located on the graph also.
 
@@ -523,57 +542,31 @@ Consider the figure below. The modal class is the class interval which correspon
 
 ### Fill in the blanks {.unnumbered}
 
-Answers are given at the end of the chapter.  
+Answers are given at the end of the chapter.
 
-1. The measures used to represent the central or typical value of a dataset are called measures of __________.
+1. The sum of observations divided by their number is called the arithmetic __________.
 
-2. The three commonly used measures of central tendency are __________, __________, and __________.
+2. The sum of deviations from the arithmetic mean is __________.
 
-3. The arithmetic mean is obtained by dividing the __________ of observations by the number of observations.
+3. The average calculated using assigned weights is called the __________ mean.
 
-4. The sum of deviations of observations from their arithmetic mean is __________.
+4. The middle value of an ordered dataset is called the __________.
 
-5. The arithmetic mean is denoted by __________.
+5. The value occurring most frequently is called the __________.
 
-6. The mean calculated by assigning different importance to observations is called the __________ mean.
+6. A distribution with exactly two modes is called __________.
 
-7. The arithmetic mean calculated by giving equal importance to all observations is called the __________ mean.
+7. The class containing the median position is called the __________ class.
 
-8. The geometric mean is based on the __________ of the observations.
+8. For equal class widths, the class with the highest frequency is called the __________ class.
 
-9. The harmonic mean is particularly useful for averaging __________ or rates.
+9. Among the mean and median, the measure less affected by extreme values is the __________.
 
-10. The median is a measure based on the __________ of observations.
+10. The sum of squared deviations is least when deviations are taken from the arithmetic __________.
 
-11. The median divides an ordered dataset into __________ equal parts.
+11. The measure of central tendency suitable for nominal data is the __________.
 
-12. The value occurring most frequently in a dataset is called the __________.
-
-13. A distribution having one mode is called __________.
-
-14. A distribution having two modes is called __________.
-
-15. A distribution having more than two modes is called __________.
-
-16. In a grouped frequency distribution, the class having the highest frequency is called the __________ class.
-
-17. The median class is the class containing the __________ observation.
-
-18. The mean, median, and mode are equal in a perfectly __________ distribution.
-
-19. In a positively skewed distribution, the relationship is generally __________.
-
-20. In a negatively skewed distribution, the relationship is generally __________.
-
-21. The inequality relationship among arithmetic mean, geometric mean, and harmonic mean is __________.
-
-22. If a constant is added to every observation, the arithmetic mean changes by the __________ constant.
-
-23. If a constant is added to every observation, the standard deviation remains __________.
-
-24. If all observations are equal, their standard deviation is __________.
-
-25. The arithmetic mean, geometric mean, and harmonic mean satisfy the relationship __________.
+12. Adding a constant to every observation increases the mean by the same __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -639,7 +632,7 @@ Answers are given at the end of the chapter.
 
 9. If the arithmetic mean and harmonic mean of positive observations are known, state the possible relationship with the geometric mean.
 
-10. A frequency distribution has a coefficient of variation of 5%, a standard deviation of 2, and a Karl Pearson’s coefficient of skewness of 1.5. Find the mean, median, and mode.
+10. A frequency distribution has a coefficient of variation of 5%, a standard deviation of 2, and Karl Pearson’s coefficient of skewness $(\text{mean}-\text{mode})/SD$ equal to 1.5. Find the mean and mode, and estimate the median using the empirical mean–median–mode relationship.
 
 ### Important formulae {.unnumbered}
 
@@ -711,7 +704,7 @@ $$
 Mode for grouped data:
 
 $$
-Mo=L+\left(\frac{f_1-f_0}{2f_1-f_0-f_2}\right)C
+Mo=L+\left(\frac{f_m-f_p}{2f_m-f_p-f_s}\right)C
 $$
 
 Relationship among arithmetic mean, geometric mean, and harmonic mean:
@@ -737,16 +730,16 @@ $$
 - Multiplying every observation by a constant multiplies the standard deviation by the absolute value of that constant.
 - Sum of deviations from the arithmetic mean = 0.
 - Standard deviation = 0 → all observations are identical.
-- $AM\geq GM\geq HM$.
-- Symmetric distribution → mean = median = mode.
-- Positively skewed distribution → mean > median > mode.
-- Negatively skewed distribution → mean < median < mode.  
+- For positive observations, $AM\geq GM\geq HM$.
+- Symmetric unimodal distribution with a finite mean and a central mode → mean = median = mode.
+- In many familiar positively skewed unimodal distributions, mean > median > mode; this is not a universal theorem.
+- In many familiar negatively skewed unimodal distributions, mean < median < mode; this is not a universal theorem.  
 
 ### Answers to fill in the blanks {.unnumbered}
 
 ::: {.answer-key}
 
-`1.` Central tendency `2.` Mean; Median; Mode `3.` Sum `4.` Zero `5.` $\bar{x}$ `6.` Weighted `7.` Arithmetic `8.` Product `9.` Rates `10.` Position `11.` Two `12.` Mode `13.` Unimodal `14.` Bimodal `15.` Multimodal `16.` Modal `17.` $N/2$th `18.` Symmetric `19.` Mean > Median > Mode `20.` Mean < Median < Mode `21.` $AM\geq GM\geq HM$ `22.` Same `23.` Unchanged `24.` Zero `25.` $AM\geq GM\geq HM$
+`1.` Mean `2.` Zero `3.` Weighted `4.` Median `5.` Mode `6.` Bimodal `7.` Median `8.` Modal `9.` Median `10.` Mean `11.` Mode `12.` Constant
 :::
 
 
@@ -770,7 +763,7 @@ $$
 
 9.  For positive observations, $AM\geq GM\geq HM$, with equality when all observations are equal.
 
-10. From $CV=\frac{SD}{\bar{x}}\times100$, $5=\frac{2}{\bar{x}}\times100 \Rightarrow \bar{x}=40$. From $Sk=\frac{\bar{x}-Mode}{SD}$, $1.5=\frac{40-Mode}{2}\Rightarrow Mode=37$. Using the empirical relationship $Mode=3\,Median-2\,Mean$, $37=3\,Median-80\Rightarrow Median=39$. Thus Mean $=40$, Median $=39$, Mode $=37$.
+10. From $CV=\frac{SD}{\bar{x}}\times100$, $5=\frac{2}{\bar{x}}\times100 \Rightarrow \bar{x}=40$. From $Sk=\frac{\bar{x}-Mode}{SD}$, $1.5=\frac{40-Mode}{2}\Rightarrow Mode=37$. Using the empirical relationship $Mode=3\,Median-2\,Mean$, $37=3\,Median-80\Rightarrow Median=39$. Thus Mean $=40$ and Mode $=37$; the empirical relationship gives Median $\approx39$. The median is not determined exactly by the information supplied.
 
 ::: {.callout-caution title="Historical Insights"}
 **Ancient wall measuring with the mode!**
@@ -779,7 +772,7 @@ Back in the 5^th^ century BCE, the defenders of Plataea, allies of Athens under 
 
 **Astronomy and the mean**
 
-Although the Greeks knew the concept of the arithmetic mean, it wasn’t generalized for multiple values until the 16^th^ century. Simon Stevin’s invention of the decimal system in 1585 made it much easier to calculate. Astronomer Tycho Brahe was one of the first to use the mean, reducing errors in his estimates of celestial body locations.
+Although the Greeks knew the concept of the arithmetic mean, it wasn’t generalized for multiple values until the 16^th^ century. Simon Stevin’s influential 1585 account helped popularise calculation with decimal fractions in Europe. Astronomer Tycho Brahe was one of the first to use the mean, reducing errors in his estimates of celestial body locations.
 
 **Navigation and the median**
 

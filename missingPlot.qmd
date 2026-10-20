@@ -1,8 +1,12 @@
 # Missing plot analysis
 
-In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.
+In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. Accidentally lost or unusable observations may require missing plot analysis. The reason for exclusion must be documented. A poor response caused by the treatment itself, such as treatment-induced plant death, must not automatically be discarded as a missing observation.
 
-The Analysis of such data may be done by different methods.
+### A missing observation in a CRD
+
+In a CRD, an accidentally missing observation generally leaves unequal treatment sample sizes. Calculate each treatment mean from the observations available and fit the one-way model to those observations. If all $v$ treatments remain represented, the residual degrees of freedom are $n_{obs}-v$, where $n_{obs}$ is the number actually observed. Use the unequal-replication standard error for comparisons. Filling the missing value with a mean and counting it as an observed replication would give a false impression of precision. The missingness assumptions still matter.
+
+The analysis of RCBD and Latin-square data with missing plots may be done by different methods.
 
 (i) the most commonly used method currently adopted is known as ‘method of analysis of non – orthogonal data’ which is highly computer based
 
@@ -10,11 +14,13 @@ The Analysis of such data may be done by different methods.
 
 (iii) Analysis of the data with missing values by the technique of analysis of covariance, due to Bartlett.
 
+The additive model must remain estimable from the observed plots. Missingness should not depend on unobserved responses in a way that biases the comparison; accidental sample loss differs from deliberately discarding low yields. With several missing plots, use the observed-data model and check its rank and residual degrees of freedom. Merely subtracting the number of missing plots from complete-data degrees of freedom is valid only when no additional effects become unestimable.
+
 ## Covariance method (Bartlett's approach)
 
 Assume an imaginary covariate X taking values zero for every plot except the missing plot for which it will take the value 1 (or –1) . Now the value of the main variate Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.
 
-In missing plot analysis the degrees of freedom for error and total will be based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one ( when there is one missing value).
+With one missing value, the total and error degrees of freedom are each one less than in the complete design, provided the model remains estimable. In the indicator-covariate approach, the artificial zero is not a new observed response: the additional fitted indicator accounts for the missing position. Do not subtract a second degree of freedom after already using the reduced number of observed responses.
 
 ## Method of substitution
 
@@ -26,7 +32,7 @@ In missing plot analysis the degrees of freedom for error and total will be base
 
 (iv) An iterative procedure is adopted when more than one observation is missing.
 
-### Randomised block design with a single missing value
+### Randomized block design with a single missing value
 
 (i) The missing value in RBD is estimated as
 
@@ -40,7 +46,7 @@ where,\
     T = Total of the observed values of the treatment that contain the missing data\
     G = Grand total of all existing observations.
 
-(ii) This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom. This method provides a proper estimate of the error variance per plot but there is an inflation in treatment sum of squares; ( the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turn out to be just significant, it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula.
+(ii) Place the estimated value in its position and calculate the sums of squares using the RBD procedure. Subtract one degree of freedom from the total and error degrees of freedom. The completed-table error SS agrees with that from the additive model fitted to the observed data, but its treatment SS is inflated. Apply the adjustment below before testing treatments, rather than deciding whether to adjust after seeing the preliminary significance result. Direct fitting of the model to the observed responses is an alternative.
 
 (iii) Estimate of bias in the case of RBD:
 
@@ -54,15 +60,16 @@ This bias is subtracted from the treatment sum of squares. Now test this actual 
 
 (a) For comparing two treatment means in which one of them contains the missing observation:
 
-$$CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} + \frac{v}{r(r-1)(v-1)}\right)}$$ {#eq-CDmsRBD}
+$$CD=t_{\alpha/2,edf} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} + \frac{v}{r(r-1)(v-1)}\right)}$$ {#eq-CDmsRBD}
 
 (b) For comparing other pairs of treatment means (in which neither contains a missing observation):
 
-$$CD=t_{\alpha} \cdot \sqrt{\frac{2\,MSE}{r}}$$
+$$CD=t_{\alpha/2,edf} \cdot \sqrt{\frac{2\,MSE}{r}}$$
 
-where $t_{\alpha}$ denotes the $t$ table value at $(r-1)(v-1)-1$ degrees of freedom.
+where $t_{\alpha/2,edf}$ denotes the $t$ table value at $(r-1)(v-1)-1$ degrees of freedom.
 
-**Example 22.1**: Data of a RBD with five sources of sulphur (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the fresh weight are represented below. One sample was spoiled due to negligence during analysis. Find the missing value and do further analysis.
+::: {#exm-missing-rbd}
+ Data of a RBD with five sources of sulphur (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the fresh weight are represented below. One sample was spoiled due to negligence during analysis. Find the missing value and do further analysis.
 
 | Treatment | Block 1 | Block 2 | Block 3 | Block 4 |
 |:---------:|:-----:|:------:|:-----:|:-----:|
@@ -72,7 +79,7 @@ where $t_{\alpha}$ denotes the $t$ table value at $(r-1)(v-1)-1$ degrees of free
 |   $S_3$   | 0.986 | 0.949 | 0.845 | 0.780 |
 |   $S_4$   | 0.911 | 0.922  | 0.668 | 0.746 |
 
-**Solution 22.1**
+**Solution**
 
 | Treatment | Block 1 | Block 2 | Block 3 | Block 4 | Total |
 |:---------:|:-----:|:------:|:-----------:|:-----:|:-----------:|
@@ -81,48 +88,49 @@ where $t_{\alpha}$ denotes the $t$ table value at $(r-1)(v-1)-1$ degrees of free
 |   $S_2$   | 0.899 | 0.919  |    0.718    | 0.679 |    3.215    |
 |   $S_3$   | 0.986 | 0.949 |    0.845    | 0.780 |    3.56     |
 |   $S_4$   | 0.911 | 0.922  |    0.668    | 0.746 |    3.247    |
-|  Total  | 4.427 | 4.644  | 2.744 + $x$ | 3.333 |    15.873 + $x$    |
+|  Total  | 4.427 | 4.644  | 2.744 + $x$ | 3.333 |    15.148 + $x$    |
 
 Here, $r=4$, $v=5$
 
 Using @eq-msRBD
 
-$$x=\frac{10.976+12.875-15.148}{4\times3}=0.725$$
+$$x=\frac{10.976+12.875-15.148}{4\times3}=0.72525$$
 
-Correction factor, $CF=\dfrac{(15.873)^2}{20}=12.597$
+Correction factor, $CF=\dfrac{(15.87325)^2}{20}=12.598003$
 
-Total SS $=13.036-CF=13.036-12.597=0.439$
+Total SS $=13.036394-12.598003=0.438390$
 
-Treatment SS $=\dfrac{50.95}{4}-12.597=0.1406$
+Treatment SS $=\dfrac{50.952085}{4}-12.598003=0.140018$
 
-Block SS $=\dfrac{64.307}{5}-12.597=0.264$
+Block SS $=\dfrac{64.309650}{5}-12.598003=0.263927$
 
 Using @eq-biasRBD
 
 $$Bias=\frac{(2.744+12.875-15.148)^2}{5\times4\times9}=0.00123$$
 
-Treatment Adj. SS $=0.1406-0.00123=0.139$
+Treatment Adj. SS $=0.140018-0.001232=0.138786$
 
-Total Adj. SS $=0.439-0.00123=0.437$
+Total Adj. SS $=0.438390-0.001232=0.437158$
 
 | Source         | df  | S.S   | M. S.S | $F_{cal}$ | $F_{tab}$ |
 |----------------|-----|-------|--------|-----------|-----------|
-| Block          | 3   | 0.264 | 0.088  | 29.33     | 3.59      |
-| Treatment Adj. | 4   | 0.139 | 0.034  | 11.003    | 3.36      |
-| Error Adj.     | 11  | 0.034 | 0.003  |           |           |
-| Total Adj.     | 18  | 0.437 |        |           |           |
+| Block          | 3   | 0.263927 | 0.087976 | | |
+| Treatment Adj. | 4   | 0.138786 | 0.034696 | 11.080 | 3.36 |
+| Error Adj.     | 11  | 0.034446 | 0.003131 | | |
+| Total Adj.     | 18  | 0.437158 | | | |
 
-Since the $F_{cal}>F_{tab}$ the treatment pairs are significantly different from each other.
+Since the treatment $F_{cal}>F_{tab}$, the treatment means are not all equal. Use the relevant CD to assess individual pairs.
 
 CD for missing data using @eq-CDmsRBD
 
-$$CD=2.201\times\sqrt{\frac{0.003}{4}\left(2+\frac{5}{12}\right)}=0.095$$
+$$CD=2.201\sqrt{\frac{0.003131424}{4}\left(2+\frac{5}{12}\right)}=0.09572$$
 
 CD for other data is
 
-$$CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times0.003}{4}}=0.086$$
+$$CD=2.201\sqrt{\frac{2(0.003131424)}{4}}=0.08709$$
 
-Here, the mean of $S_3$ is maximum, which was found to be on par with the means of $S_1$ and $S_4$. Also, $S_1$ was on par with $S_4$ and $S_2$. The mean of $S_0$ is minimum.
+The substituted treatment means are $S_0=0.63775$, $S_1=0.82506$, $S_2=0.80375$, $S_3=0.89000$, and $S_4=0.81175$. The four means $S_1$ to $S_4$ do not differ significantly under the applicable CDs; all four exceed $S_0$ significantly. In particular, the $S_3-S_2$ difference is $0.08625<0.08709$.
+:::
 
 ### Latin square design with a single missing value
 
@@ -146,9 +154,10 @@ $$Bias=\frac{[(v-1)T+R+C-G]^2}{[(v-1)(v-2)]^2}$$ {#eq-biasLSD}
 
 (iii) For pairwise comparison involving a treatment with a missing observation (comparing two treatment means in which one of them contains a missing observation):
 
-$$CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\right)}$$ {#eq-CDmsLSD}
+$$CD=t_{\alpha/2,edf} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\right)}$$ {#eq-CDmsLSD}
 
-**Example 22.2**: The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.
+::: {#exm-missing-latin}
+ The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.
 
 |       | Col 1  | Col 2  | Col 3  | Col 4   | Col 5  |
 |:-----:|:------:|:------:|:------:|:-------:|:------:|
@@ -158,7 +167,7 @@ $$CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\r
 | Row 4 | B (38) | A (24) | C (36) | D (41)  | E (34) |
 | Row 5 | C (41) | E (24) | B (44) | A (26)  | D (30) |
 
-**Solution 22.2**
+**Solution**
 
 Here, $v=5$
 
@@ -173,35 +182,39 @@ Here, $v=5$
 
 Using @eq-msLSD
 
-$$x=\frac{[5(116+133+150)-(2\times 805)]}{4\times3}=32.083\approx 32$$
+$$x=\frac{5(116+133+150)-2(805)}{4\times3}=32.083333.$$
 
-Correction factor, $CF=\dfrac{(837)^2}{25}=28022.76$
+Keep this unrounded value in the subsequent calculations.
 
-Total SS $=29399-CF=29399-28022.76=1376.24$
+Correction factor, $CF=\dfrac{(837.083333)^2}{25}=28028.340278$
 
-Treatment SS $=\dfrac{129^2+202^2+182^2+190^2+134^2}{5}-28022.76=902.24$
+Total SS $=29404.340278-28028.340278=1376.000000$
 
-Row SS $=\dfrac{168^2+148^2+183^2+173^2+165^2}{5}-28022.76=131.44$
+Treatment SS $=\dfrac{129^2+202^2+182.083333^2+190^2+134^2}{5}-28028.340278=902.727778$
 
-Column SS $=\dfrac{176^2+168^2+171^2+165^2+157^2}{5}-28022.76=40.24$
+Row SS $=\dfrac{168^2+148.083333^2+183^2+173^2+165^2}{5}-28028.340278=130.794444$
+
+Column SS $=\dfrac{176^2+168^2+171^2+165.083333^2+157^2}{5}-28028.340278=40.161111$
 
 Using @eq-biasLSD
 
 $$Bias=\frac{[(4\times150)+133+116-805]^2}{(4\times3)^2}=13.44$$
 
-Treatment Adj. SS $=902.24-13.44=888.8$
+Treatment Adj. SS $=902.727778-13.444444=889.283334$
 
-Total Adj. SS $=1376.24-13.44=1362.8$
+Total Adj. SS $=1376.000000-13.444444=1362.555556$
 
 |     Source     | df  |   SS   |  MSS  | $F_{cal}$ | $F_{tab}$ |
 |:--------------:|:---:|:------:|:-----:|:---------:|:---------:|
-|      Row       |  4  | 131.44 | 32.86 |   1.19    |   3.36    |
-|     Column     |  4  | 40.24  | 10.06 |   0.36    |   3.36    |
-| Treatment Adj. |  4  | 888.8  | 222.2 |   8.08    |   3.36    |
-|   Error Adj.   | 11  | 302.32 | 27.48 |           |           |
-|   Total Adj.   | 23  | 1362.8 |       |           |           |
+| Row | 4 | 130.794 | 32.699 | | |
+| Column | 4 | 40.161 | 10.040 | | |
+| Treatment Adj. | 4 | 889.283 | 222.321 | 8.089 | 3.36 |
+| Error Adj. | 11 | 302.317 | 27.483 | | |
+| Total Adj. | 23 | 1362.556 | | | |
 
-Since the $F_{cal}>F_{tab}$ the treatment pairs are significantly different from each other.
+Since the treatment $F_{cal}>F_{tab}$, the treatment means are not all equal. Use the relevant CD to assess individual pairs.
+
+The block, row and column entries in the substitution tables are parts of the completed-table calculation. They are not separate adjusted tests for those nuisance effects. The missing value breaks orthogonality; if such tests are required, fit nested models to the observed responses and adjust each tested effect for the other effects. The adjusted total shown here is bookkeeping for this treatment-test calculation, not the corrected total SS of the observed responses alone.
 
 CD for missing data using @eq-CDmsLSD
 
@@ -209,16 +222,70 @@ $$CD=2.201\times\sqrt{27.48\left(\frac{2}{5}+\frac{1}{4\times3}\right)}=8.021$$
 
 CD for other data is
 
-$$CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297$$
+$$CD=t_{\alpha/2,edf}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297$$
 
-Here, the mean of B is maximum, which was found to be on par with the means of D and C. The mean of A is minimum, which is on par with E.
+The substituted means are A = 25.8, B = 40.4, C = 36.4167, D = 38.0, and E = 26.8. Under the applicable CDs, B, C, and D are not significantly different from one another, and A and E are not significantly different. Each of B, C, and D exceeds both A and E significantly.
+:::
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. The classical substitution estimate of a missing plot minimizes the error sum of __________.
+
+2. Estimating one missing observation reduces the error degrees of freedom by __________.
+
+3. An estimated missing value is not an additional independent __________.
+
+4. In the RBD missing-value formula, totals exclude the missing __________.
+
+5. The classical substitution procedure may inflate the treatment sum of __________.
+
+6. Repeated updating of several missing-value estimates is called __________.
+
+7. The two blocking factors in a Latin square are rows and __________.
+
+8. The error mean square is used to calculate the standard error of a treatment __________.
+
+### Short-answer questions {.unnumbered}
+
+1. Why must an estimated missing value not be counted as a new independent observation?
+
+2. State how one missing value affects the error and total degrees of freedom.
+
+3. Explain why a treatment causing plant death should not automatically be treated as an accidental missing value.
+
+4. Compare classical substitution with fitting a linear model to the observed data.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. In an RBD, $r=4$, $v=5$, the observed total of the affected block is $B=30$, the observed total of the affected treatment is $T=20$, and the observed grand total is $G=170$. Estimate the missing value.
+
+2. A complete RBD has five treatments and four blocks. If one observation is missing, state the error and total degrees of freedom, assuming the additive model remains estimable.
+
+### Answers to fill in the blanks {.unnumbered}
+
+::: {.answer-key}
+
+`1.` Squares `2.` One `3.` Observation `4.` Value `5.` Squares `6.` Iteration `7.` Columns `8.` Difference
+:::
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1. Using @eq-msRBD, $x=[4(30)+5(20)-170]/[(4-1)(5-1)]=50/12=4.167$.
+
+2. Complete-data error df $=(5-1)(4-1)=12$ and total df $=20-1=19$. With one missing observation, error df $=11$ and total df $=18$.
 
 ::: {.callout-caution title="Historical Insights"}
 **Frank Yates and the art of the missing value**
 
 In the field, experiments rarely go exactly to plan. A goat breaks into a plot, a flood washes out a corner, a technician mislabels a sample, and suddenly one of the neatly balanced yields is simply gone. In the early days of agricultural statistics this was a serious problem, because Fisher's elegant analysis of variance relied on the tidy balance of equal numbers in every treatment and block. A single hole in the data destroyed that balance and, with it, the simple arithmetic of the analysis.
 
-The solution came from **Frank Yates**, Fisher's brilliant younger colleague at the Rothamsted Experimental Station. In the early 1930s Yates worked out that a missing observation could be replaced by an estimated value, chosen precisely so as to *minimise the error sum of squares*, allowing the standard analysis to proceed almost unchanged. His formulae, one for the randomized block design, another for the Latin square, let researchers recover nearly all the information from a damaged experiment with only a small, correctable bias in the treatment sum of squares and the loss of a single degree of freedom. Yates set this out in his 1933 paper on the analysis of replicated experiments with missing values, and the "missing plot technique" quickly became a standard part of every field experimenter's toolkit. It is a fine example of the statistician's craft: not discarding hard-won data because of an accident, but finding a principled way to make the most of what remains. [@Yates1933]
+The solution came from **Frank Yates**, Fisher's brilliant younger colleague at the Rothamsted Experimental Station. In the early 1930s Yates worked out that a missing observation could be replaced by an estimated value, chosen precisely so as to *minimize the error sum of squares*, allowing the standard analysis to proceed almost unchanged. His formulae, one for the randomized block design, another for the Latin square, let researchers recover nearly all the information from a damaged experiment with only a small, correctable bias in the treatment sum of squares and the loss of a single degree of freedom. Yates set this out in his 1933 paper on the analysis of replicated experiments with missing values, and the "missing plot technique" quickly became a standard part of every field experimenter's toolkit. It is a fine example of the statistician's craft: not discarding hard-won data because of an accident, but finding a principled way to make the most of what remains. [@Yates1933]
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -20,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,22 +57,21 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./appendix1.html" rel="next">
 <link href="./missingPlot.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,9 +99,36 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -108,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="24&nbsp; Data transformation – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -306,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -507,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -598,8 +651,8 @@ window.Quarto = {
 </header>
 
 
-<p>Data often requires transformation when it fails to satisfy the assumptions necessary for valid statistical analysis. Applying an appropriate transformation before analysis is essential to avoid a significant loss of precision and accuracy in the results.</p>
-<p>The interpretation of data based on analysis of variance is valid only when the following assumptions are satisfied: (i) treatment and block effects are additive, (ii) experimental errors are independent, (iii) there is homogeneity of variance, <em>i</em>.<em>e</em>. observations have a common variance, and (iv) the character under study follows a normal distribution. Deviations from these assumptions make the interpretation based on ANOVA, and other tests such as <em>t</em>, F, and Z that rely on the same assumptions, invalid. It is therefore necessary to detect such deviations and apply an appropriate remedial measure, most often a suitable transformation of the data.</p>
+<p>Data may require transformation when a suitable model on the original scale does not adequately satisfy the assumptions needed for analysis. A transformation can improve the analysis, but should be chosen from the nature of the response and the model diagnostics.</p>
+<p>For the usual exact ANOVA F-tests, the fitted model should have additive effects where assumed, independent errors, constant error variance, and normally distributed errors. Normality concerns errors about the fitted means, rather than the pooled observations from different treatments. Departures differ in their consequences; a transformation cannot repair a lack of independence caused by the design. Residual diagnostics help determine whether a transformation, a different variance model, or another response distribution is appropriate.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -610,11 +663,11 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The effects of two factors, say treatment and replication, are said to be <strong>additive</strong> if the effect of one factor remains constant across all the levels of the other factor. When this is not the case, the effects are said to be <strong>non-additive</strong>. Two factors are said to have a <strong>multiplicative</strong> effect if their effects become additive only when expressed as percentages of a common base; a logarithmic transformation converts such multiplicative effects into additive ones, which is one of the main reasons the logarithmic transformation is used.</p>
+<p>The effects of two factors, say treatment and replication, are said to be <strong>additive</strong> if the effect of one factor remains constant across all the levels of the other factor. When this is not the case, the effects are said to be <strong>non-additive</strong>. Two factors have a <strong>multiplicative</strong> mean structure when their contributions combine by multiplication; a logarithmic transformation converts a positive product structure into an additive structure, which is one of the main reasons the logarithmic transformation is used.</p>
 </div>
 </div>
-<p>The analysis of variance (ANOVA) on transformed data typically yields conclusions comparable to those from raw data. However, the transformed analysis is more valid when it ensures that the assumptions of ANOVA are met. It is crucial to avoid transforming data merely to achieve desired outcomes. Instead, transformations should be applied objectively to improve the validity of the analysis.</p>
-<p>Statistical tests of significance and mean separations must be performed on the transformed data rather than the raw data. Once the analysis is completed, the means of the transformed data should be computed and re-transformed back into the original units for meaningful interpretation. Additionally, after applying a transformation, it is advisable to test the data for normality to confirm that the assumptions of ANOVA are satisfied. If the data meets the assumptions post-transformation, the analysis can proceed confidently, leading to more reliable and robust conclusions.</p>
+<p>A transformation changes the response scale and can change both the scientific quantity being compared and the significance result. Choose it from the response distribution, the scientific question and model diagnostics, rather than to obtain a desired p-value. It does not guarantee that the model assumptions are met.</p>
+<p>When analysis uses a transformed response, significance tests and mean comparisons should be performed on that scale. Back-transformed estimates can then be reported in the original units. Examine residual plots for variance patterns, outliers, and departures from normality; a non-significant normality test alone does not establish that all assumptions hold. A back-transformed mean generally differs from the arithmetic mean on the original scale and should be labelled accordingly. For example, back-transforming a mean logarithm gives a geometric mean.</p>
 <p>The following are the most commonly used transformations</p>
 <p><span class="math inline">\((i)\)</span> Logarithmic transformation<br>
 </p>
@@ -624,10 +677,10 @@ window.Quarto = {
 </p>
 <section id="logarithmic-transformation" class="level2" data-number="24.1">
 <h2 data-number="24.1" class="anchored" data-anchor-id="logarithmic-transformation"><span class="header-section-number">24.1</span> Logarithmic transformation</h2>
-<p>When the standard deviation of the samples are highly proportional to the mean, the most effective transformation is the logarithmic transformation. In this case the coefficient of variation will be a constant. Another criterion for deciding on this transformation is the evidence of multiplicative rather than additive effects. Then this transformation brings about both additivity of the effects and equality of variance.</p>
-<p>If zero values or negative observations are present add a positive quantity to remove this. Usually log(x+1) or log (x + k) ; k &gt;0 is taken. If data values are less than one then multiply by a constant and then take the logarithms. Usually we use common logarithms.</p>
+<p>When the standard deviation is approximately proportional to the positive treatment mean, the coefficient of variation is roughly constant. A logarithmic transformation can improve additivity and variance stability for this multiplicative structure, subject to residual checks.</p>
+<p>Logarithms require positive values. For non-negative counts containing zeros, <span class="math inline">\(\log(Y+1)\)</span> is a common practical choice, but the choice of constant affects the analysis and should be justified. A positive value less than one can be logged directly; its logarithm is negative. Negative observations require a scientifically justified alternative or a shift making every value positive. Common or natural logarithms may be used consistently.</p>
 <div id="exm-ct47" class="theorem example">
-<p><span class="theorem-title"><strong>Example 24.1</strong></span> The following data in weed counts are recorded from a weedicide trial with 5 treatments and absolute control laid out in RBD. Analyze the data with suitable transformation.</p>
+<p><span class="theorem-title"><strong>Example 24.1</strong></span> The following data in weed counts are recorded from a weedicide trial with 5 treatments and absolute control laid out in RBD. Analyse the data with suitable transformation.</p>
 <div id="tbl-weedcount" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedcount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -693,7 +746,7 @@ Table&nbsp;24.1: Weed count data from a weedicide trial with 5 treatments and an
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>The transformation used is <span class="math inline">\(X=logY\)</span></p>
+<p>The transformation used is <span class="math inline">\(X=\log_{10}Y\)</span>. All calculations use unrounded transformed values; displayed table entries are rounded.</p>
 <div id="tbl-weedlog" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-weedlog-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -714,35 +767,35 @@ Table&nbsp;24.2: Log-transformed weed count data with treatment and block totals
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">T<sub>1</sub></td>
-<td style="text-align: center;">2.227</td>
-<td style="text-align: center;">2.120</td>
+<td style="text-align: center;">2.228</td>
+<td style="text-align: center;">2.121</td>
 <td style="text-align: center;">2.255</td>
 <td style="text-align: center;">2.021</td>
-<td style="text-align: center;">8.63</td>
+<td style="text-align: center;">8.625</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
 <td style="text-align: center;">2.322</td>
-<td style="text-align: center;">2.235</td>
-<td style="text-align: center;">2.198</td>
-<td style="text-align: center;">2.096</td>
-<td style="text-align: center;">8.86</td>
+<td style="text-align: center;">2.236</td>
+<td style="text-align: center;">2.199</td>
+<td style="text-align: center;">2.097</td>
+<td style="text-align: center;">8.853</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
 <td style="text-align: center;">2.204</td>
 <td style="text-align: center;">1.973</td>
-<td style="text-align: center;">2.012</td>
-<td style="text-align: center;">1.812</td>
-<td style="text-align: center;">7.99</td>
+<td style="text-align: center;">2.013</td>
+<td style="text-align: center;">1.813</td>
+<td style="text-align: center;">8.003</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>4</sub></td>
-<td style="text-align: center;">2</td>
+<td style="text-align: center;">2.000</td>
 <td style="text-align: center;">2.079</td>
 <td style="text-align: center;">1.991</td>
 <td style="text-align: center;">1.869</td>
-<td style="text-align: center;">7.94</td>
+<td style="text-align: center;">7.940</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>5</sub></td>
@@ -750,22 +803,22 @@ Table&nbsp;24.2: Log-transformed weed count data with treatment and block totals
 <td style="text-align: center;">1.602</td>
 <td style="text-align: center;">1.924</td>
 <td style="text-align: center;">1.447</td>
-<td style="text-align: center;">6.59</td>
+<td style="text-align: center;">6.597</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
-<td style="text-align: center;">2.565</td>
+<td style="text-align: center;">2.566</td>
 <td style="text-align: center;">2.477</td>
 <td style="text-align: center;">2.785</td>
 <td style="text-align: center;">2.301</td>
-<td style="text-align: center;">10.14</td>
+<td style="text-align: center;">10.129</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;"><span class="math inline">\(Total\)</span></td>
-<td style="text-align: center;">12.94</td>
-<td style="text-align: center;">12.49</td>
-<td style="text-align: center;">13.17</td>
-<td style="text-align: center;">11.55</td>
+<td style="text-align: center;">12.943</td>
+<td style="text-align: center;">12.488</td>
+<td style="text-align: center;">13.168</td>
+<td style="text-align: center;">11.548</td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
@@ -773,8 +826,8 @@ Table&nbsp;24.2: Log-transformed weed count data with treatment and block totals
 </div>
 </figure>
 </div>
-<p>Here, n = 24, <span class="math inline">\(\sum X=\sum logY=50.15\)</span></p>
-<p><span class="math inline">\(\sum X^2=\sum (logY)^2=106.93\)</span>, <span class="math inline">\(CF=104.79\)</span></p>
+<p>Here, <span class="math inline">\(n=24\)</span> and <span class="math inline">\(\sum X=\sum \log Y=50.147\)</span>.</p>
+<p><span class="math inline">\(\sum X^2=106.896\)</span> and <span class="math inline">\(CF=104.780\)</span>.</p>
 <p>The remaining procedure for estimation of sum of squares is same as that of RBD analysis.</p>
 <div id="tbl-weedanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -797,31 +850,31 @@ Table&nbsp;24.3: ANOVA table for the log-transformed weed count data
 <tr class="odd">
 <td style="text-align: center;">Treatment</td>
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">1.74</td>
-<td style="text-align: center;">0.348</td>
-<td style="text-align: center;">37.42</td>
-<td style="text-align: center;">F<sub>(5,15)</sub> = 2.9</td>
+<td style="text-align: center;">1.714</td>
+<td style="text-align: center;">0.343</td>
+<td style="text-align: center;">35.556</td>
+<td style="text-align: center;">2.90</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Block</td>
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">0.26</td>
-<td style="text-align: center;">0.0867</td>
-<td style="text-align: center;">9.32</td>
-<td style="text-align: center;">F<sub>(3,15)</sub> = 3.29</td>
+<td style="text-align: center;">0.257</td>
+<td style="text-align: center;">0.086</td>
+<td style="text-align: center;">8.886</td>
+<td style="text-align: center;">3.29</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Error</td>
 <td style="text-align: center;">15</td>
-<td style="text-align: center;">0.14</td>
-<td style="text-align: center;">0.0093</td>
+<td style="text-align: center;">0.145</td>
+<td style="text-align: center;">0.010</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Total</td>
 <td style="text-align: center;">23</td>
-<td style="text-align: center;">2.14</td>
+<td style="text-align: center;">2.116</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -831,8 +884,8 @@ Table&nbsp;24.3: ANOVA table for the log-transformed weed count data
 </div>
 </figure>
 </div>
-<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
-<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.131\times\sqrt{\frac{2\times0.0093}{4}}=0.145\)</span></p>
+<p>Since <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span>, the treatment means are not all equal. Pairwise differences are assessed using the critical difference.</p>
+<p><span class="math inline">\(CD=t_{\alpha/2,15}\sqrt{\frac{2MSE}{r}}=2.131\sqrt{\frac{2(0.009643)}{4}}=0.148\)</span></p>
 <p>Here, the mean of T<sub>6</sub> is maximum, T<sub>2</sub> and T<sub>1</sub> is on par. Also T<sub>3</sub> is on par with T<sub>4</sub>. Mean of T<sub>5</sub> is minimum.</p>
 <p>Retransformed mean values: <span class="math inline">\(Y=antilogX\)</span></p>
 <div id="tbl-weedretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
@@ -841,7 +894,7 @@ Table&nbsp;24.3: ANOVA table for the log-transformed weed count data
 Table&nbsp;24.4: Retransformed treatment means for the weedicide trial
 </figcaption>
 <div aria-describedby="tbl-weedretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatments</th>
@@ -852,33 +905,33 @@ Table&nbsp;24.4: Retransformed treatment means for the weedicide trial
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">T<sub>1</sub></td>
-<td style="text-align: center;">2.157</td>
-<td style="text-align: center;">143.71</td>
+<td style="text-align: center;">2.156</td>
+<td style="text-align: center;">143.295</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
-<td style="text-align: center;">2.215</td>
-<td style="text-align: center;">164.06</td>
+<td style="text-align: center;">2.213</td>
+<td style="text-align: center;">163.429</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
-<td style="text-align: center;">1.997</td>
-<td style="text-align: center;">99.61</td>
+<td style="text-align: center;">2.001</td>
+<td style="text-align: center;">100.173</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>4</sub></td>
 <td style="text-align: center;">1.985</td>
-<td style="text-align: center;">96.61</td>
+<td style="text-align: center;">96.585</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>5</sub></td>
-<td style="text-align: center;">1.647</td>
-<td style="text-align: center;">44.41</td>
+<td style="text-align: center;">1.649</td>
+<td style="text-align: center;">44.585</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
-<td style="text-align: center;">2.535</td>
-<td style="text-align: center;">342.77</td>
+<td style="text-align: center;">2.532</td>
+<td style="text-align: center;">340.669</td>
 </tr>
 </tbody>
 </table>
@@ -889,11 +942,11 @@ Table&nbsp;24.4: Retransformed treatment means for the weedicide trial
 </section>
 <section id="square-root-transformation" class="level2" data-number="24.2">
 <h2 data-number="24.2" class="anchored" data-anchor-id="square-root-transformation"><span class="header-section-number">24.2</span> Square root transformation</h2>
-<p>When data following Poisson distributions are available first take the square root of the observations, then apply the analysis of variance. Counts of rare events (very little probability) such as number of defectives, insect counts, percentage of seeds affected by a disease etc. tend to follow the Poisson fashion. For the Poisson distribution the counts appear such that the variance of x is proportional to the mean <em>i.e.</em> <span class="math inline">\(σ_x^2=k.\bar x\)</span>. For a Poisson distribution of errors k =1 but usually the value of k&gt;1.</p>
-<p>The data of these types are transformed to square roots. If some counts are very small then transformations like <span class="math inline">\(\sqrt {x+1}\)</span> or <span class="math inline">\(\sqrt x+\sqrt {x+1}\)</span> (for x &lt;10) or <span class="math inline">\(\sqrt {x+k}\)</span> stabilizes the variance more effectively.</p>
-<p>The means of the square root scale are reconverted to the original scale by squaring. These values are slightly lower than the original mean because the mean of a set of square roots is less than the square root of the original mean. A rough correction is applied by adding the MSE in square root analysis to each of the converted mean. In general, we can say that the data requiring square root transformation do not violate assumptions of the ANOVA as drastically as data requiring logarithmic transformations.</p>
+<p>For Poisson-type counts, the variance is proportional to the mean. A square root transformation can approximately stabilise that variance. For an exact Poisson distribution, variance equals mean; a relationship <span class="math inline">\(\operatorname{Var}(Y)=kE(Y)\)</span> with <span class="math inline">\(k&gt;1\)</span> describes overdispersion rather than an exact Poisson distribution. Disease counts out of a fixed number of seeds are binomial, not automatically Poisson.</p>
+<p>Zero counts can be square-rooted directly. For very small counts, traditional alternatives include <span class="math inline">\(\sqrt{Y+1}\)</span>, <span class="math inline">\(\sqrt{Y}+\sqrt{Y+1}\)</span>, or the Anscombe transformation <span class="math inline">\(2\sqrt{Y+3/8}\)</span>. They are approximations and do not guarantee normally distributed errors. The constant and transformation must be stated and applied consistently.</p>
+<p>If <span class="math inline">\(X=\sqrt{Y+c}\)</span>, the inverse is <span class="math inline">\(Y=X^2-c\)</span>. The inverse of a mean on the transformed scale is no greater than the arithmetic mean of the original observations, by concavity of the square root, and the difference need not be small. Adding an appropriate transformed-scale variance is sometimes used as a model-based correction for estimating an original-scale mean. Adding MSE is only an approximation under a specified model; it does not automatically recover the raw mean. Neither square root nor logarithmic data have a universal ranking of how severely they violate ANOVA assumptions.</p>
 <div id="exm-ct48" class="theorem example">
-<p><span class="theorem-title"><strong>Example 24.2</strong></span> The number of living larvae recorded from the plots under seven treatments from a RBD experiments on rice is given below. Analyze the data and draw the inference.</p>
+<p><span class="theorem-title"><strong>Example 24.2</strong></span> The number of living larvae recorded from the plots under seven treatments from a RBD experiments on rice is given below. Analyse the data and draw the inference.</p>
 <div id="tbl-larvaraw" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -973,7 +1026,7 @@ Table&nbsp;24.5: Living larvae count data from an RBD experiment on rice
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>The given data is that of RBD, relating to certain larva count observed from various plots. This type of count data follows Poisson distribution and attain normality of error, the square root transformation is used before conducting ANOVA. When the data contains observations ‘0’, transformation is obtained by taking <span class="math inline">\(\sqrt {X+1}\)</span>.</p>
+<p>The data are larval counts from an RBD. A square root transformation is used here as a traditional approach for Poisson-type counts. Counts need not follow a Poisson distribution merely because they are counts, so the transformed model still requires diagnostic checks. For this illustration, use <span class="math inline">\(X=\sqrt{Y+1}\)</span> for every observed larval count <span class="math inline">\(Y\)</span>, including the zeros.</p>
 <div id="tbl-larvasqrt" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvasqrt-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -997,7 +1050,7 @@ Table&nbsp;24.6: Square-root transformed larvae count data with treatment and bl
 <td style="text-align: center;">T<sub>1</sub></td>
 <td style="text-align: center;">3.162</td>
 <td style="text-align: center;">3.606</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.000</td>
 <td style="text-align: center;">1.414</td>
 <td style="text-align: center;">9.182</td>
 <td style="text-align: center;">2.296</td>
@@ -1005,16 +1058,16 @@ Table&nbsp;24.6: Square-root transformed larvae count data with treatment and bl
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
 <td style="text-align: center;">2.236</td>
-<td style="text-align: center;">3</td>
+<td style="text-align: center;">3.000</td>
 <td style="text-align: center;">2.449</td>
 <td style="text-align: center;">1.414</td>
-<td style="text-align: center;">9.099</td>
+<td style="text-align: center;">9.100</td>
 <td style="text-align: center;">2.275</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
 <td style="text-align: center;">2.646</td>
-<td style="text-align: center;">4</td>
+<td style="text-align: center;">4.000</td>
 <td style="text-align: center;">2.646</td>
 <td style="text-align: center;">1.732</td>
 <td style="text-align: center;">11.024</td>
@@ -1026,7 +1079,7 @@ Table&nbsp;24.6: Square-root transformed larvae count data with treatment and bl
 <td style="text-align: center;">2.646</td>
 <td style="text-align: center;">2.236</td>
 <td style="text-align: center;">2.449</td>
-<td style="text-align: center;">10.493</td>
+<td style="text-align: center;">10.494</td>
 <td style="text-align: center;">2.623</td>
 </tr>
 <tr class="odd">
@@ -1035,33 +1088,33 @@ Table&nbsp;24.6: Square-root transformed larvae count data with treatment and bl
 <td style="text-align: center;">4.243</td>
 <td style="text-align: center;">3.317</td>
 <td style="text-align: center;">3.317</td>
-<td style="text-align: center;">16.169</td>
+<td style="text-align: center;">16.167</td>
 <td style="text-align: center;">4.042</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
-<td style="text-align: center;">6</td>
+<td style="text-align: center;">6.000</td>
 <td style="text-align: center;">5.385</td>
 <td style="text-align: center;">1.732</td>
-<td style="text-align: center;">4</td>
+<td style="text-align: center;">4.000</td>
 <td style="text-align: center;">17.117</td>
 <td style="text-align: center;">4.279</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>7</sub></td>
 <td style="text-align: center;">1.414</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
-<td style="text-align: center;">1</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
+<td style="text-align: center;">1.000</td>
 <td style="text-align: center;">4.414</td>
 <td style="text-align: center;">1.104</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;"><span class="math inline">\(Total\)</span></td>
 <td style="text-align: center;">23.912</td>
-<td style="text-align: center;">23.88</td>
-<td style="text-align: center;">14.38</td>
-<td style="text-align: center;">15.326</td>
+<td style="text-align: center;">23.879</td>
+<td style="text-align: center;">14.380</td>
+<td style="text-align: center;">15.327</td>
 <td style="text-align: center;">77.498</td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1070,7 +1123,7 @@ Table&nbsp;24.6: Square-root transformed larvae count data with treatment and bl
 </div>
 </figure>
 </div>
-<p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=7\)</span>, <span class="math inline">\(n=28\)</span>, <span class="math inline">\(CF=214.498\)</span></p>
+<p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=7\)</span>, <span class="math inline">\(n=28\)</span>, <span class="math inline">\(CF=214.497\)</span>.</p>
 <div id="tbl-larvaanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1092,18 +1145,18 @@ Table&nbsp;24.7: ANOVA table for the square-root transformed larvae count data
 <tr class="odd">
 <td style="text-align: center;">Treatment</td>
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">28.663</td>
-<td style="text-align: center;">4.777</td>
-<td style="text-align: center;">7.743</td>
-<td style="text-align: center;">4.01</td>
+<td style="text-align: center;">28.658</td>
+<td style="text-align: center;">4.776</td>
+<td style="text-align: center;">7.745</td>
+<td style="text-align: center;">2.66</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Block</td>
 <td style="text-align: center;">3</td>
-<td style="text-align: center;">11.746</td>
+<td style="text-align: center;">11.745</td>
 <td style="text-align: center;">3.915</td>
-<td style="text-align: center;">6.346</td>
-<td style="text-align: center;">5.09</td>
+<td style="text-align: center;">6.348</td>
+<td style="text-align: center;">3.16</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Error</td>
@@ -1116,7 +1169,7 @@ Table&nbsp;24.7: ANOVA table for the square-root transformed larvae count data
 <tr class="even">
 <td style="text-align: center;">Total</td>
 <td style="text-align: center;">27</td>
-<td style="text-align: center;">51.510</td>
+<td style="text-align: center;">51.503</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1126,17 +1179,17 @@ Table&nbsp;24.7: ANOVA table for the square-root transformed larvae count data
 </div>
 </figure>
 </div>
-<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
-<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=2.101\times\sqrt{\frac{2\times0.617}{4}}=1.17\)</span></p>
+<p>Since <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span>, the treatment means are not all equal. Pairwise differences are assessed using the critical difference.</p>
+<p><span class="math inline">\(CD=t_{\alpha/2,edf}\times\sqrt{\frac{2MSE}{r}}=2.101\times\sqrt{\frac{2\times0.617}{4}}=1.17\)</span></p>
 <p>Here, the mean of T<sub>6</sub> is maximum, T<sub>3</sub> is found to be on par with mean of T<sub>4</sub>, T<sub>1</sub> and T<sub>2</sub>. Mean of T<sub>7</sub> is minimum.</p>
-<p>Retransformed mean values: <span class="math inline">\(X=Y^2-1\)</span></p>
+<p>Retransformed mean values: <span class="math inline">\(Y=X^2-1\)</span></p>
 <div id="tbl-larvaretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-larvaretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;24.8: Retransformed treatment means for the larval count trial
 </figcaption>
 <div aria-describedby="tbl-larvaretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatments</th>
@@ -1148,37 +1201,37 @@ Table&nbsp;24.8: Retransformed treatment means for the larval count trial
 <tr class="odd">
 <td style="text-align: center;">T<sub>1</sub></td>
 <td style="text-align: center;">2.296</td>
-<td style="text-align: center;">4.272</td>
+<td style="text-align: center;">4.269</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
 <td style="text-align: center;">2.275</td>
-<td style="text-align: center;">4.176</td>
+<td style="text-align: center;">4.175</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
 <td style="text-align: center;">2.756</td>
-<td style="text-align: center;">6.596</td>
+<td style="text-align: center;">6.595</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>4</sub></td>
 <td style="text-align: center;">2.623</td>
-<td style="text-align: center;">5.880</td>
+<td style="text-align: center;">5.882</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>5</sub></td>
 <td style="text-align: center;">4.042</td>
-<td style="text-align: center;">15.338</td>
+<td style="text-align: center;">15.337</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
 <td style="text-align: center;">4.279</td>
-<td style="text-align: center;">17.310</td>
+<td style="text-align: center;">17.312</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>7</sub></td>
 <td style="text-align: center;">1.104</td>
-<td style="text-align: center;">0.219</td>
+<td style="text-align: center;">0.218</td>
 </tr>
 </tbody>
 </table>
@@ -1189,14 +1242,9 @@ Table&nbsp;24.8: Retransformed treatment means for the larval count trial
 </section>
 <section id="angular-transformation" class="level2" data-number="24.3">
 <h2 data-number="24.3" class="anchored" data-anchor-id="angular-transformation"><span class="header-section-number">24.3</span> Angular transformation</h2>
-<p>This transformation is appropriate for percentage data that derived from counts which follows Binomial distribution. However, the data like percentage of carbohydrates, percentage of protein, etc need not to be transformed before applying analysis of variance.</p>
-<p>If <span class="math inline">\(a_{ij}\)</span> success out of n trials are obtained in the j<sup>th</sup> replicate of the i<sup>th</sup> treatment the estimate of proportion <span class="math inline">\(p _{ij}=a_{ij}/n\)</span> has variance <span class="math inline">\(p_{ij}(1- p_{ij})/ n\)</span>. Usually these proportions are expressed in percentages. In binomial data variance tends to be small at the two ends of the range of values but larger towards the middle. This tendency also can be used to identify the transformation.</p>
-<p>The following rules are useful in choosing the proper transformation scale for percentage data derived from counts:</p>
-<ol type="1">
-<li><p>If all the proportions in the data lie within the range of 30% to 70%, no transformation is needed.</p></li>
-<li><p>If all the proportions lie either within 0% to 30%, or within 70% to 100%, but not spread across both ends, the square root transformation should be used.</p></li>
-<li><p>If the proportions are spread across the whole range, from 0% to 100%, the angular (arc sine) transformation should be used.</p></li>
-</ol>
+<p>This is a traditional transformation for percentage data derived from binomial counts. However, the data like percentage of carbohydrates, percentage of protein, etc need not to be transformed before applying analysis of variance.</p>
+<p>If <span class="math inline">\(a_{ij}\)</span> success out of n trials are obtained in the j<sup>th</sup> replicate of the i<sup>th</sup> treatment the sample proportion <span class="math inline">\(\hat{p}_{ij}=a_{ij}/n\)</span> has variance <span class="math inline">\(p_{ij}(1-p_{ij})/n\)</span>, where <span class="math inline">\(p_{ij}\)</span> is the underlying success probability. Replacing <span class="math inline">\(p_{ij}\)</span> by <span class="math inline">\(\hat{p}_{ij}\)</span> gives an estimate of this variance. Usually these proportions are expressed in percentages. In binomial data variance tends to be small at the two ends of the range of values but larger towards the middle. This tendency also can be used to identify the transformation.</p>
+<p>The traditional 30%–70% guideline is only a rough guide for binomial percentages with comparable denominators. It is not a rule that a single percentage outside that range requires transformation. Assess the variance pattern and model residuals. A binomial generalised linear model is another option, especially when denominators differ. If a transformation is used, apply the same transformation to every observation in the analysis.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1207,12 +1255,12 @@ Table&nbsp;24.8: Retransformed treatment means for the larval count trial
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If even a single proportion in the data lies outside the 30% to 70% range, all the observations, not just the extreme ones, must be transformed together using the appropriate transformation identified from the three rules above.</p>
+<p>The angular transformation is a traditional approximate variance-stabilising transformation for binomial proportions. It does not automatically make the errors normal or the variances equal, particularly with small denominators or proportions near zero or one.</p>
 </div>
 </div>
 <p>The transformation is obtained by taking the angle whose sine is the square root of the proportion. (percentage / 100) <em>i.e</em> <span class="math inline">\(arcSin \sqrt p_{ij}\)</span> or <span class="math inline">\(Sin^{-1} \sqrt p_{ij}\)</span>. For <span class="math inline">\(p_{ij}\)</span> = 0 or 1 (<em>i.e.</em> 0% or 100%) the angular transformation is improved by replacing 0 by 1/4n and 1 by 1-1/4n where, n is the total number of units under observation.</p>
 <div id="exm-ct49" class="theorem example">
-<p><span class="theorem-title"><strong>Example 24.3</strong></span> The following are results on percentage mortality of insects recorded from a laboratory experiment using 6 levels of ekalux - 0, 1, 2, 3, 4 and 5%. Hundred insects were treated and mortality percentages are recorded below. Analyze the data.</p>
+<p><span class="theorem-title"><strong>Example 24.3</strong></span> The following are results on percentage mortality of insects recorded from a laboratory experiment using 6 levels of ekalux - 0, 1, 2, 3, 4 and 5%. Each concentration was applied independently to four experimental units, with 100 insects assessed in each unit, and mortality percentages are recorded below. Analyse the data.</p>
 <div id="tbl-mortalityraw" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityraw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1278,13 +1326,10 @@ Table&nbsp;24.9: Percentage mortality data from an insecticide trial
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>When percentage values are given the transformation used is angular transformation.</p>
-<p><span class="math inline">\(X=sin^{-1}\sqrt p\)</span>, where <span class="math inline">\(p=Y/100\)</span>, the proportion of percentages. Here, 0% is replaced by 1/4n</p>
-<p><span class="math inline">\(p=\frac {1/4n}{100}=0.0025\)</span>, where n = 100, number of insects.</p>
-<p><span class="math inline">\(X=sin^{-1}(\sqrt {\frac{0.0025}{100}})=0.286\)</span></p>
-<p>and 100% is replaced by 100-1/4n <em>i.e.</em></p>
-<p><span class="math inline">\(p=\frac {100-1/4n}{100}=0.999\)</span></p>
-<p>and <span class="math inline">\(X=sin^{-1}\sqrt {0.999}=89.714\)</span></p>
+<p>For this example, use the angular transformation in degrees:</p>
+<p><span class="math display">\[X=\frac{180}{\pi}\sin^{-1}\sqrt{p},\qquad p=Y/100.\]</span></p>
+<p>There are 100 insects in each replicate. Under the endpoint convention described above, replace a zero proportion by <span class="math inline">\(1/(4n)=1/400=0.0025\)</span>, and a unit proportion by <span class="math inline">\(1-1/(4n)=0.9975\)</span>. These are proportions and must not be divided by 100 again.</p>
+<p>Thus, 0% gives <span class="math inline">\(X=2.866^\circ\)</span>, and 100% gives <span class="math inline">\(X=87.134^\circ\)</span>.</p>
 <div id="tbl-mortalityangular" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityangular-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1306,64 +1351,64 @@ Table&nbsp;24.10: Angular-transformed mortality percentage data with treatment t
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">T<sub>1</sub></td>
-<td style="text-align: center;">0.286</td>
-<td style="text-align: center;">0.286</td>
-<td style="text-align: center;">9.97</td>
-<td style="text-align: center;">8.13</td>
-<td style="text-align: center;">18.672</td>
-<td style="text-align: center;">4.668</td>
+<td style="text-align: center;">2.866</td>
+<td style="text-align: center;">2.866</td>
+<td style="text-align: center;">9.974</td>
+<td style="text-align: center;">8.130</td>
+<td style="text-align: center;">23.836</td>
+<td style="text-align: center;">5.959</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
-<td style="text-align: center;">20.26</td>
-<td style="text-align: center;">22.79</td>
-<td style="text-align: center;">25.10</td>
-<td style="text-align: center;">24.35</td>
-<td style="text-align: center;">92.5</td>
-<td style="text-align: center;">23.125</td>
+<td style="text-align: center;">20.268</td>
+<td style="text-align: center;">22.786</td>
+<td style="text-align: center;">25.104</td>
+<td style="text-align: center;">24.350</td>
+<td style="text-align: center;">92.509</td>
+<td style="text-align: center;">23.127</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
-<td style="text-align: center;">35.06</td>
-<td style="text-align: center;">33.21</td>
-<td style="text-align: center;">36.27</td>
-<td style="text-align: center;">35.67</td>
-<td style="text-align: center;">140.21</td>
-<td style="text-align: center;">35.0525</td>
+<td style="text-align: center;">35.062</td>
+<td style="text-align: center;">33.211</td>
+<td style="text-align: center;">36.271</td>
+<td style="text-align: center;">35.669</td>
+<td style="text-align: center;">140.212</td>
+<td style="text-align: center;">35.053</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>4</sub></td>
-<td style="text-align: center;">46.15</td>
-<td style="text-align: center;">47.29</td>
-<td style="text-align: center;">49.60</td>
-<td style="text-align: center;">47.87</td>
-<td style="text-align: center;">190.91</td>
-<td style="text-align: center;">47.7275</td>
+<td style="text-align: center;">46.146</td>
+<td style="text-align: center;">47.294</td>
+<td style="text-align: center;">49.603</td>
+<td style="text-align: center;">47.870</td>
+<td style="text-align: center;">190.914</td>
+<td style="text-align: center;">47.728</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>5</sub></td>
-<td style="text-align: center;">68.03</td>
-<td style="text-align: center;">62.03</td>
-<td style="text-align: center;">63.43</td>
-<td style="text-align: center;">62.73</td>
-<td style="text-align: center;">256.22</td>
-<td style="text-align: center;">64.055</td>
+<td style="text-align: center;">68.027</td>
+<td style="text-align: center;">62.028</td>
+<td style="text-align: center;">63.435</td>
+<td style="text-align: center;">62.725</td>
+<td style="text-align: center;">256.215</td>
+<td style="text-align: center;">64.054</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
-<td style="text-align: center;">69.73</td>
-<td style="text-align: center;">62.73</td>
-<td style="text-align: center;">89.714</td>
-<td style="text-align: center;">89.714</td>
-<td style="text-align: center;">311.888</td>
-<td style="text-align: center;">77.972</td>
+<td style="text-align: center;">69.732</td>
+<td style="text-align: center;">62.725</td>
+<td style="text-align: center;">87.134</td>
+<td style="text-align: center;">87.134</td>
+<td style="text-align: center;">306.725</td>
+<td style="text-align: center;">76.681</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>The sum of squares are estimated as the same procedure of CRD</p>
+<p>Assume the four independently treated experimental units per concentration were allocated using a CRD. The ANOVA is calculated on unrounded angular values in degrees, using the CRD procedure. This is a worked calculation under the transformed normal-error model; the small number of units and endpoint values still require diagnostic assessment.</p>
 <div id="tbl-mortalityanova" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-mortalityanova-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1385,23 +1430,23 @@ Table&nbsp;24.11: ANOVA table for the angular-transformed mortality data
 <tr class="odd">
 <td style="text-align: center;">Treatment</td>
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">14445.45</td>
-<td style="text-align: center;">2889.091</td>
-<td style="text-align: center;">74.107</td>
+<td style="text-align: center;">13701.261</td>
+<td style="text-align: center;">2740.252</td>
+<td style="text-align: center;">89.882</td>
 <td style="text-align: center;">2.77</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Error</td>
 <td style="text-align: center;">18</td>
-<td style="text-align: center;">701.732</td>
-<td style="text-align: center;">38.985</td>
+<td style="text-align: center;">548.769</td>
+<td style="text-align: center;">30.487</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Total</td>
 <td style="text-align: center;">23</td>
-<td style="text-align: center;">15147.19</td>
+<td style="text-align: center;">14250.030</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1411,9 +1456,9 @@ Table&nbsp;24.11: ANOVA table for the angular-transformed mortality data
 </div>
 </figure>
 </div>
-<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> treatment pairs are the are significantly different from each other.</p>
-<p><span class="math inline">\(CD=t_{\alpha}\times\sqrt{\frac{2MSE}{r}}=1.734\times\sqrt{\frac{2\times38.985}{4}}=7.655\)</span></p>
-<p>Here, the mean of T<sub>6</sub> is maximum and mean of T<sub>1</sub> is minimum. Every treatments pairs are significantly different from each other.</p>
+<p>Since <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span>, the treatment means are not all equal. Pairwise differences are assessed using the critical difference.</p>
+<p><span class="math inline">\(CD=t_{\alpha/2,18}\sqrt{\frac{2MSE}{r}}=2.101\sqrt{\frac{2(30.487)}{4}}=8.203\)</span></p>
+<p>Here, the mean of T<sub>6</sub> is maximum and mean of T<sub>1</sub> is minimum. Every pair of treatment means differs significantly under the calculated protected LSD.</p>
 <p>Retransformed mean values: <span class="math inline">\(Y=100\times sin^2X\)</span></p>
 <div id="tbl-mortalityretrans" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1421,7 +1466,7 @@ Table&nbsp;24.11: ANOVA table for the angular-transformed mortality data
 Table&nbsp;24.12: Retransformed treatment means for the mortality trial
 </figcaption>
 <div aria-describedby="tbl-mortalityretrans-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatments</th>
@@ -1432,33 +1477,33 @@ Table&nbsp;24.12: Retransformed treatment means for the mortality trial
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">T<sub>1</sub></td>
-<td style="text-align: center;">4.668</td>
-<td style="text-align: center;">0.662</td>
+<td style="text-align: center;">5.959</td>
+<td style="text-align: center;">1.078</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>2</sub></td>
-<td style="text-align: center;">23.125</td>
-<td style="text-align: center;">15.424</td>
+<td style="text-align: center;">23.127</td>
+<td style="text-align: center;">15.427</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>3</sub></td>
-<td style="text-align: center;">35.052</td>
-<td style="text-align: center;">32.985</td>
+<td style="text-align: center;">35.053</td>
+<td style="text-align: center;">32.986</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>4</sub></td>
-<td style="text-align: center;">47.727</td>
-<td style="text-align: center;">54.753</td>
+<td style="text-align: center;">47.728</td>
+<td style="text-align: center;">54.755</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">T<sub>5</sub></td>
-<td style="text-align: center;">64.055</td>
-<td style="text-align: center;">80.858</td>
+<td style="text-align: center;">64.054</td>
+<td style="text-align: center;">80.857</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">T<sub>6</sub></td>
-<td style="text-align: center;">77.972</td>
-<td style="text-align: center;">95.657</td>
+<td style="text-align: center;">76.681</td>
+<td style="text-align: center;">94.693</td>
 </tr>
 </tbody>
 </table>
@@ -1483,7 +1528,7 @@ Table&nbsp;24.12: Retransformed treatment means for the mortality trial
 Table&nbsp;24.13: Choosing the appropriate transformation based on the distribution and the mean-variance relationship
 </figcaption>
 <div aria-describedby="tbl-transformguide-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <colgroup>
 <col style="width: 18%">
 <col style="width: 44%">
@@ -1527,12 +1572,12 @@ Table&nbsp;24.13: Choosing the appropriate transformation based on the distribut
 </section>
 <section id="box-cox-transformation" class="level2" data-number="24.4">
 <h2 data-number="24.4" class="anchored" data-anchor-id="box-cox-transformation"><span class="header-section-number">24.4</span> Box-Cox transformation</h2>
-<p>The logarithmic, square root, and angular transformations discussed above are all specific cases of a wider family known as <strong>power transformations</strong>, that is, transformations that raise the data to some exponent, or power. For instance, the square root transformation can be written as <span class="math inline">\(Y^{1/2}\)</span>, and a reciprocal transformation as <span class="math inline">\(Y^{-1}\)</span>. The <strong>Box-Cox transformation</strong> generalizes this idea into a single transformation with one parameter, <span class="math inline">\(\lambda\)</span>, and includes the common transformations above as special cases.</p>
+<p>The logarithmic and square root transformations are related to a wider family of <strong>power transformations</strong>. For example, a square root uses the power <span class="math inline">\(1/2\)</span>, and a reciprocal uses the power <span class="math inline">\(-1\)</span>. The <strong>Box-Cox transformation</strong> provides a family indexed by <span class="math inline">\(\lambda\)</span> for strictly positive responses. The angular transformation is not a member of this family.</p>
 <p>The Box-Cox transformation of a variable <span class="math inline">\(Y\)</span> takes the form</p>
 <p><span id="eq-boxcox"><span class="math display">\[
 X = \begin{cases} \dfrac{Y^{\lambda}-1}{\lambda}, &amp; \lambda \neq 0 \\ \log Y, &amp; \lambda = 0 \end{cases}
 \tag{24.1}\]</span></span></p>
-<p>where <span class="math inline">\(Y\)</span> is the untransformed variable, <span class="math inline">\(X\)</span> is the transformed variable, and <span class="math inline">\(\lambda\)</span> is the Box-Cox parameter. The value of <span class="math inline">\(\lambda\)</span> is estimated as the value that minimizes the error sum of squares from the analysis of variance, so that the resulting transformation gives the best fit for that particular dataset rather than being chosen only from general rules about the distribution.</p>
+<p>where <span class="math inline">\(Y\)</span> is the untransformed variable, <span class="math inline">\(X\)</span> is the transformed variable, and <span class="math inline">\(\lambda\)</span> is the Box-Cox parameter. The value of <span class="math inline">\(\lambda\)</span> is commonly estimated by maximising the profile likelihood for the fitted model, including the transformation Jacobian. Minimizing unadjusted residual sums of squares across different transformed scales is not a valid selection rule.</p>
 <p><a href="#tbl-boxcoxlambda" class="quarto-xref">Table&nbsp;<span>24.14</span></a> shows how familiar transformations correspond to specific values of <span class="math inline">\(\lambda\)</span>.</p>
 <div id="tbl-boxcoxlambda" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1554,7 +1599,7 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1.00</td>
-<td style="text-align: center;">No transformation needed; results are identical to the original data</td>
+<td style="text-align: center;">Identity up to a shift: the formula gives <span class="math inline">\(Y-1\)</span>; ANOVA F-tests are unchanged</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">0.50</td>
@@ -1585,43 +1630,27 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 </div>
 </figure>
 </div>
-<p>In practice, the analysis of variance is carried out for a range of trial values of <span class="math inline">\(\lambda\)</span> (for example, from 0 to 1 in steps of 0.05), and the value of <span class="math inline">\(\lambda\)</span> giving the minimum error sum of squares is chosen as the most appropriate transformation for that particular dataset. Since the Box-Cox transformation searches directly for the value that minimizes the error sum of squares, it can identify a suitable transformation even in situations that do not fit neatly into the Poisson, binomial, or empirical mean-variance relationships covered by the earlier transformations, making it a more general, data-driven alternative to selecting a transformation from fixed rules.</p>
+<p>In practice, fit the model across a suitable range of trial values of <span class="math inline">\(\lambda\)</span> and compare their profile likelihoods. A nearby simple power may be preferred for interpretation when it is supported by the likelihood. The transformations in <a href="#tbl-boxcoxlambda" class="quarto-xref">Table&nbsp;<span>24.14</span></a> correspond to Box-Cox values up to shifts and nonzero scale factors; at negative powers the formula also reverses the sign relative to a simple reciprocal. These are monotone transformations, so the inverse and interpretation must match the actual formula; at <span class="math inline">\(\lambda=1\)</span>, the formula gives <span class="math inline">\(Y-1\)</span>. Residual diagnostics are still required after choosing the transformation.</p>
+<p>The angular examples use degrees. When computing a back-transformation in software whose sine function uses radians, convert <span class="math inline">\(X\)</span> degrees to <span class="math inline">\(X\pi/180\)</span> radians before calculating <span class="math inline">\(100\sin^2(X\pi/180)\)</span>.</p>
 </section>
 <section id="chapter-summary" class="level2" data-number="24.5">
 <h2 data-number="24.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">24.5</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>Data transformation is used when data fail to satisfy the __________ necessary for valid statistical analysis.</p></li>
-<li><p>Transformation should be applied to improve the __________ of statistical analysis and not merely to obtain a desired result.</p></li>
-<li><p>Statistical tests of significance and mean separation should be performed on the __________ data.</p></li>
-<li><p>After analysis, transformed means should be __________ to the original scale for interpretation.</p></li>
-<li><p>The three common transformations discussed in the chapter are logarithmic, square root, and __________ transformation.</p></li>
-<li><p>Logarithmic transformation is appropriate when the standard deviation is highly __________ to the mean.</p></li>
-<li><p>Logarithmic transformation is also useful when the effects are __________ rather than additive.</p></li>
-<li><p>When zero or negative values occur, a positive constant is added before taking the __________.</p></li>
-<li><p>A commonly used transformation for data containing zero values is __________.</p></li>
-<li><p>Counts of rare events generally follow the __________ distribution.</p></li>
-<li><p>For a Poisson distribution, the variance is approximately __________ to the mean.</p></li>
-<li><p>The usual transformation for Poisson-type count data is the __________ root transformation.</p></li>
-<li><p>When very small counts including zero occur, the transformation commonly used is __________.</p></li>
-<li><p>After square root transformation, the transformed means are reconverted to the original scale by __________ them.</p></li>
-<li><p>Data expressed as percentages derived from counts generally follow the __________ distribution.</p></li>
-<li><p>The appropriate transformation for binomial percentage data is the __________ transformation.</p></li>
-<li><p>The angular transformation is given by <span class="math inline">\(sin^{-1}\sqrt p\)</span>, where <span class="math inline">\(p\)</span> is the __________.</p></li>
-<li><p>If all proportions lie between __________% and __________%, angular transformation is generally not required.</p></li>
-<li><p>If at least one proportion lies outside the 30-70% range, __________ observations should be transformed.</p></li>
-<li><p>A percentage of 0 is replaced by __________ before angular transformation.</p></li>
-<li><p>A percentage of 100 is replaced by __________ before angular transformation.</p></li>
-<li><p>The logarithmic transformation used in the chapter is <span class="math inline">\(X=\)</span> __________.</p></li>
-<li><p>The square root transformation used when zero observations are present is <span class="math inline">\(X=\)</span> __________.</p></li>
-<li><p>The angular transformation used for percentage data is <span class="math inline">\(X=\)</span> __________.</p></li>
-<li><p>After angular transformation, the original percentage is obtained using <span class="math inline">\(Y=\)</span> __________.</p></li>
-<li><p>For Poisson data, the variance is proportional to the __________.</p></li>
-<li><p>For empirical data with <span class="math inline">\(\sigma^2=c^2\mu^2\)</span>, the appropriate transformation is __________.</p></li>
-<li><p>For binomial data, the variance is <span class="math inline">\(\frac{p(1-p)}{n}\)</span> and the appropriate transformation is __________.</p></li>
-<li><p>For empirical data with <span class="math inline">\(\sigma^2=c^2\mu\)</span>, the appropriate transformation is __________.</p></li>
-<li><p>After transformation, normality should be checked to confirm that the assumptions of __________ are satisfied.</p></li>
+<li><p>A change of measurement scale used before analysis is called a data __________.</p></li>
+<li><p>Unequal error variances are described as __________.</p></li>
+<li><p>A transformation commonly used for positive data with multiplicative effects is the __________ transformation.</p></li>
+<li><p>A traditional variance-stabilising transformation for Poisson counts is the __________ root transformation.</p></li>
+<li><p>A traditional variance-stabilising transformation for binomial proportions is the __________ square root transformation.</p></li>
+<li><p>In the angular transformation <span class="math inline">\(\sin^{-1}\sqrt{p}\)</span>, <span class="math inline">\(p\)</span> denotes a __________.</p></li>
+<li><p>After a transformation is chosen, significance tests are performed on the __________ scale.</p></li>
+<li><p>Converting a transformed result to the original scale is called __________ transformation.</p></li>
+<li><p>The inverse of the square root transformation is __________.</p></li>
+<li><p>The inverse of a logarithmic transformation is __________.</p></li>
+<li><p>For a Poisson distribution, the variance equals the __________.</p></li>
+<li><p>After fitting an ANOVA model, its assumptions should be assessed using the __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1630,7 +1659,7 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 <li><p>What is data transformation?</p></li>
 <li><p>Why is data transformation required before statistical analysis?</p></li>
 <li><p>Why should transformation not be used merely to obtain a desired statistical result?</p></li>
-<li><p>What are the three transformations discussed in the chapter?</p></li>
+<li><p>What are the three traditional transformations discussed in the chapter?</p></li>
 <li><p>Explain when logarithmic transformation is appropriate.</p></li>
 <li><p>What is the relationship between mean and standard deviation that suggests logarithmic transformation?</p></li>
 <li><p>Explain how logarithmic transformation helps to achieve equality of variance.</p></li>
@@ -1650,7 +1679,7 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 <li><p>Explain why the variance of binomial data is not constant over the range of proportions.</p></li>
 <li><p>State the rule for deciding whether angular transformation is required.</p></li>
 <li><p>How are 0% and 100% observations treated before angular transformation?</p></li>
-<li><p>Explain the complete procedure for analyzing percentage data using angular transformation.</p></li>
+<li><p>Explain the complete procedure for analysing percentage data using angular transformation.</p></li>
 <li><p>How are angular-transformed means retransformed to the original percentage scale?</p></li>
 <li><p>Explain the relationship between distribution, variance, and appropriate transformation.</p></li>
 <li><p>Why should the transformed data be tested for normality?</p></li>
@@ -1661,6 +1690,7 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 </section>
 <section id="numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
 <ol type="1">
 <li><p>A weed count dataset contains large differences in variability among treatments, with the standard deviation increasing approximately in proportion to the mean. Which transformation should be used? Give the reason.</p></li>
 <li><p>Explain how you would transform a dataset containing zero and positive weed counts using logarithmic transformation.</p></li>
@@ -1675,8 +1705,8 @@ Table&nbsp;24.14: Common values of the Box-Cox parameter <span class="math inlin
 <li><p>For <span class="math inline">\(p=0.25\)</span>, calculate the angular transformation <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
 <li><p>For <span class="math inline">\(p=0.64\)</span>, calculate the angular transformation <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
 <li><p>A treatment has an angular-transformed mean of <span class="math inline">\(45^\circ\)</span>. Calculate the retransformed percentage using <span class="math inline">\(Y=100\times sin^2X\)</span>.</p></li>
-<li><p>A treatment has a square root transformed mean of 4.2. Calculate the approximate retransformed value using <span class="math inline">\(X=Y^2-1\)</span>.</p></li>
-<li><p>A weedicide experiment is conducted in RBD and the weed counts are highly variable. Explain the complete procedure for analyzing the experiment after logarithmic transformation.</p></li>
+<li><p>A treatment has mean 4.2 after the transformation <span class="math inline">\(X=\sqrt{Y+1}\)</span>. Calculate the approximate retransformed value using <span class="math inline">\(Y=X^2-1\)</span>.</p></li>
+<li><p>A weedicide experiment is conducted in RBD and the weed counts are highly variable. Explain the complete procedure for analysing the experiment after logarithmic transformation.</p></li>
 <li><p>In a transformed RBD analysis, the treatment effect is significant. Explain how treatment means should be compared.</p></li>
 <li><p>Explain why the conclusions from transformed data should be interpreted using retransformed means rather than the transformed means alone.</p></li>
 <li><p>In a percentage mortality experiment, one treatment has 100% mortality in one replication. Explain how this observation should be handled before angular transformation.</p></li>
@@ -1731,7 +1761,7 @@ p=1-\frac{1}{4n}
 <p><span class="math display">\[
 Y=antilogX
 \]</span></p>
-<p>Retransformation after square root transformation:</p>
+<p>Retransformation after <span class="math inline">\(X=\sqrt{Y+1}\)</span>:</p>
 <p><span class="math display">\[
 Y=X^2-1
 \]</span></p>
@@ -1761,7 +1791,7 @@ CV=\frac{SD}{Mean}\times100
 \]</span></p>
 <p>Critical difference for transformed means in an RBD:</p>
 <p><span class="math display">\[
-CD=t_\alpha\sqrt{\frac{2MSE}{r}}
+CD=t_{\alpha/2,edf}\sqrt{\frac{2MSE}{r}}
 \]</span></p>
 </section>
 <section id="quick-revision" class="level3 unnumbered">
@@ -1772,29 +1802,29 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
 <li><p>Transformation should not be chosen merely to obtain a desired conclusion.</p></li>
 <li><p>ANOVA and mean separation → performed on the transformed data.</p></li>
 <li><p>Final means → retransformed to the original scale for interpretation.</p></li>
-<li><p>Normality → should be checked after transformation.</p></li>
-<li><p>Three transformations in the chapter → logarithmic, square root, and angular.</p></li>
+<li><p>Normality → assess model errors using residual diagnostics after transformation.</p></li>
+<li><p>Transformations covered → logarithmic, square root, angular, and the Box-Cox family.</p></li>
 <li><p>Logarithmic transformation → suitable when standard deviation is proportional to the mean.</p></li>
 <li><p>Log transformation → also useful for multiplicative rather than additive effects.</p></li>
-<li><p>Zero or negative values → require addition of a positive constant before logarithmic transformation.</p></li>
+<li><p>Logarithms require positive inputs; shifts need justification, and an alternative model may be preferable.</p></li>
 <li><p>Common transformation for zero values → <span class="math inline">\(\log(Y+1)\)</span>.</p></li>
-<li><p>If observations are less than one → multiply by a constant before taking logarithms.</p></li>
+<li><p>Positive observations below one can be logged directly; their logarithms are negative.</p></li>
 <li><p>Square root transformation → appropriate for Poisson-type count data.</p></li>
 <li><p>Examples → insect counts, number of defectives, and counts of seeds affected by disease.</p></li>
 <li><p>Poisson distribution → <span class="math inline">\(\sigma^2=\mu\)</span>.</p></li>
 <li><p>Empirical square root case → <span class="math inline">\(\sigma^2=c^2\mu\)</span>.</p></li>
-<li><p>Zero counts → use <span class="math inline">\(\sqrt{Y+1}\)</span>.</p></li>
+<li><p>Zero counts → <span class="math inline">\(\sqrt Y\)</span> is defined; the worked example uses <span class="math inline">\(\sqrt{Y+1}\)</span> consistently.</p></li>
 <li><p>Retransformation of square root mean → square the value and subtract 1.</p></li>
-<li><p>Retransformed square root mean → may be slightly lower than the original mean.</p></li>
-<li><p>A rough correction → add MSE from the square root analysis to the converted mean.</p></li>
+<li><p>Retransformed square root mean → no greater than the original arithmetic mean; the difference may be substantial.</p></li>
+<li><p>Back-transformed means are not generally arithmetic means; any bias correction must match the fitted model.</p></li>
 <li><p>Angular transformation → appropriate for percentage data derived from binomial counts.</p></li>
 <li><p>Binomial variance → <span class="math inline">\(\sigma^2=p(1-p)/n\)</span>.</p></li>
-<li><p>Percentage data between 30% and 70% → generally no transformation is required.</p></li>
-<li><p>If at least one proportion lies outside 30-70% → transform all observations.</p></li>
+<li><p>The 30%–70% guideline is approximate; use the binomial model and residual diagnostics to assess the analysis.</p></li>
+<li><p>A single proportion outside 30%–70% does not automatically require transformation. If used, apply one transformation consistently.</p></li>
 <li><p>Angular transformation → <span class="math inline">\(sin^{-1}\sqrt p\)</span>.</p></li>
 <li><p>For 0% → replace with <span class="math inline">\(1/(4n)\)</span>.</p></li>
 <li><p>For 100% → replace with <span class="math inline">\(1-1/(4n)\)</span>.</p></li>
-<li><p>Retransformation of angular mean → <span class="math inline">\(100\times sin^2X\)</span>.</p></li>
+<li><p>Retransformation of angular mean → <span class="math inline">\(100\times sin^2X\)</span>, using the same angular unit as in the forward transformation.</p></li>
 <li><p>Percentage of protein, carbohydrate, etc. → need not necessarily be transformed because such percentages are not necessarily binomial proportions.</p></li>
 <li><p>Distribution and transformation:</p>
 <ul>
@@ -1814,37 +1844,37 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Assumptions <code>2.</code> Validity <code>3.</code> Transformed <code>4.</code> Retransformed <code>5.</code> Angular <code>6.</code> Proportional <code>7.</code> Multiplicative <code>8.</code> Logarithm <code>9.</code> <span class="math inline">\(\log(Y+1)\)</span> <code>10.</code> Poisson <code>11.</code> Proportional <code>12.</code> Square <code>13.</code> <span class="math inline">\(\sqrt{Y+1}\)</span> <code>14.</code> Squaring <code>15.</code> Binomial <code>16.</code> Angular <code>17.</code> Proportion <code>18.</code> 30; 70 <code>19.</code> All <code>20.</code> <span class="math inline">\(1/(4n)\)</span> <code>21.</code> <span class="math inline">\(1-1/(4n)\)</span> <code>22.</code> <span class="math inline">\(\log Y\)</span> <code>23.</code> <span class="math inline">\(\sqrt{Y+1}\)</span> <code>24.</code> <span class="math inline">\(sin^{-1}\sqrt p\)</span> <code>25.</code> <span class="math inline">\(100\times sin^2X\)</span> <code>26.</code> Mean <code>27.</code> <span class="math inline">\(\log(x)\)</span> <code>28.</code> <span class="math inline">\(sin^{-1}\sqrt p\)</span> <code>29.</code> <span class="math inline">\(\sqrt x\)</span> <code>30.</code> ANOVA</p>
+<p><code>1.</code> Transformation <code>2.</code> Heteroscedasticity <code>3.</code> Logarithmic <code>4.</code> Square <code>5.</code> Arcsine <code>6.</code> Proportion <code>7.</code> Transformed <code>8.</code> Back <code>9.</code> Squaring <code>10.</code> Exponentiation <code>11.</code> Mean <code>12.</code> Residuals</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
 <li><p>Since the standard deviation increases approximately in proportion to the mean, the coefficient of variation is roughly constant across treatments, indicating a multiplicative rather than additive effect. The logarithmic transformation should be used, as it converts multiplicative effects into additive ones and stabilizes the variance in this situation.</p></li>
-<li><p>Since the dataset contains zero values, <span class="math inline">\(\log(Y+1)\)</span> should be used rather than <span class="math inline">\(\log Y\)</span>, applying it to every observation, including the positive ones, so that all values remain on the same transformed scale.</p></li>
+<li><p>If a logarithmic analysis is justified, <span class="math inline">\(\log(Y+1)\)</span> is one possible choice for nonnegative counts containing zeros, applying it to every observation, including the positive ones, so that all values remain on the same transformed scale.</p></li>
 <li><p>Using <span class="math inline">\(X=\sqrt{Y+1}\)</span>: for <span class="math inline">\(Y=0,1,4,9,16\)</span>, <span class="math inline">\(X=1.000,\ 1.414,\ 2.236,\ 3.162,\ 4.123\)</span> respectively.</p></li>
-<li><p>The square root transformation should be used, since small insect counts of rare events typically follow a Poisson distribution, for which the variance is proportional to the mean, matching the variance-stabilizing property of the square root transformation.</p></li>
+<li><p>A square root transformation is a traditional option under the stated Poisson-type model, for which the variance is proportional to the mean, matching the variance-stabilizing property of the square root transformation.</p></li>
 <li><p>For <span class="math inline">\(Y=9,16,25,36,49\)</span>, <span class="math inline">\(\sqrt{Y}=3,4,5,6,7\)</span> respectively.</p></li>
-<li><p>For Poisson-type data the variance is proportional to the mean itself (<span class="math inline">\(\sigma^2=\mu\)</span>), which is exactly the relationship the square root transformation stabilizes. The logarithmic transformation instead stabilizes variance proportional to the square of the mean (<span class="math inline">\(\sigma^2=c^2\mu^2\)</span>), which does not match the Poisson case.</p></li>
-<li><p>Since the percentages (20, 35, 45, 60, 80) include values both below 30% (20) and above 70% (80), spreading across the whole 0-100% range, the angular (arc sine) transformation should be used.</p></li>
-<li><p>All the percentages (35, 42, 58, 65) lie within the 30% to 70% range, so no transformation is required.</p></li>
-<li><p>One value, 25, lies below 30%, so transformation is required; since the values are confined to only the lower extreme (0-30%) and do not extend above 70%, the square root transformation, not the angular transformation, should be used.</p></li>
-<li><p>The 0% observation is replaced by <span class="math inline">\(\dfrac{1}{4n}\)</span> and the 100% observation is replaced by <span class="math inline">\(1-\dfrac{1}{4n}\)</span> (expressed as a proportion), where <span class="math inline">\(n\)</span> is the total number of units on which the percentage was based; the remaining observations (15%, 48%, 76%) are converted directly to proportions and transformed along with the adjusted extreme values, since at least one value lies outside 30-70%.</p></li>
+<li><p>For Poisson-type data the variance is proportional to the mean itself (<span class="math inline">\(\sigma^2=\mu\)</span>), for which the square root transformation gives approximate variance stability. The logarithmic transformation instead stabilizes variance proportional to the square of the mean (<span class="math inline">\(\sigma^2=c^2\mu^2\)</span>), which does not match the Poisson case.</p></li>
+<li><p>For binomial percentages with comparable denominators, the angular transformation is a traditional option. The range 20%–80% alone does not prove it is necessary; examine the variance pattern and residuals, or consider a binomial model.</p></li>
+<li><p>The percentages satisfy the traditional 30%–70% guideline, so an untransformed analysis may be reasonable with comparable denominators. Residual diagnostics are still needed; the range alone does not establish the assumptions.</p></li>
+<li><p>One value below 30% does not make transformation compulsory. The appropriate analysis depends on the denominators, mean-variance relationship, and residuals. The angular transformation is a traditional option for binomial proportions; a square root can be useful as an approximation for small proportions near zero.</p></li>
+<li><p>The 0% observation is replaced by <span class="math inline">\(\dfrac{1}{4n}\)</span> and the 100% observation is replaced by <span class="math inline">\(1-\dfrac{1}{4n}\)</span> (expressed as a proportion), where <span class="math inline">\(n\)</span> is the total number of units on which the percentage was based; the remaining observations (15%, 48%, 76%) are converted directly to proportions and transformed along with the adjusted extreme values, under the angular transformation chosen for this exercise.</p></li>
 <li><p><span class="math inline">\(\sin^{-1}\sqrt{0.25}=\sin^{-1}(0.5)=30^\circ\)</span>.</p></li>
 <li><p><span class="math inline">\(\sin^{-1}\sqrt{0.64}=\sin^{-1}(0.8)\approx53.13^\circ\)</span>.</p></li>
 <li><p><span class="math inline">\(Y=100\times\sin^2(45^\circ)=100\times0.5=50\%\)</span>.</p></li>
 <li><p><span class="math inline">\(X^2-1=4.2^2-1=16.64\)</span>.</p></li>
 <li><p>First take <span class="math inline">\(X=\log Y\)</span> (or <span class="math inline">\(\log(Y+1)\)</span> if any weed count is zero) for every observation. Carry out the usual RBD analysis of variance on the transformed values <span class="math inline">\(X\)</span> to obtain the ANOVA table and test the treatment and block F values. If the treatment effect is significant, calculate the critical difference on the transformed scale and group the transformed treatment means. Finally, retransform the treatment means back to the original scale using <span class="math inline">\(Y=\text{antilog}\,X\)</span> for interpretation.</p></li>
-<li><p>The treatment means should first be compared on the transformed scale itself, using the critical difference calculated from the transformed-scale MSE, since the additivity and homogeneity of variance assumptions hold on that scale; only after this comparison should the means be retransformed to the original scale for reporting.</p></li>
-<li><p>The transformed scale is chosen purely to satisfy the statistical assumptions of ANOVA and does not correspond to a scale that is meaningful to interpret directly (for example, log counts or angles are not intuitive units); retransforming the means restores them to the original, practically meaningful units (counts, percentages, etc.) in which the results can be properly understood.</p></li>
+<li><p>The treatment means should first be compared on the transformed scale itself, using the critical difference calculated from the transformed-scale MSE, provided the model diagnostics support the additivity and variance assumptions on that scale; only after this comparison should the means be retransformed to the original scale for reporting.</p></li>
+<li><p>Back-transformed estimates express the fitted results in the original units and aid interpretation. The transformed scale may itself have a useful scientific meaning, such as log response ratios. A back-transformed mean is generally not the original-scale arithmetic mean, so its interpretation should be stated.</p></li>
 <li><p>Since 100% mortality occurred in that replication, it should be replaced by <span class="math inline">\(1-\dfrac{1}{4n}\)</span> (as a proportion) before applying the angular transformation, where <span class="math inline">\(n\)</span> is the number of insects on which that percentage was based.</p></li>
-<li><p>The relationship <span class="math inline">\(\sigma^2=\mu\)</span> corresponds to a Poisson distribution, for which the square root transformation is appropriate.</p></li>
+<li><p>The relationship <span class="math inline">\(\sigma^2=\mu\)</span> is consistent with a Poisson variance function but does not uniquely establish the distribution. For Poisson-type counts, for which the square root transformation is appropriate.</p></li>
 <li><p>The relationship <span class="math inline">\(\sigma^2=c^2\mu^2\)</span> is the empirical case matching the logarithmic transformation.</p></li>
 <li><p>The relationship <span class="math inline">\(\sigma^2=c^2\mu\)</span> is the empirical case matching the square root transformation.</p></li>
-<li><p>The relationship <span class="math inline">\(\sigma^2=\dfrac{p(1-p)}{n}\)</span> corresponds to a binomial distribution, for which the angular (arc sine) transformation is appropriate.</p></li>
+<li><p>This is the variance of a sample proportion from <span class="math inline">\(n\)</span> independent Bernoulli trials with probability <span class="math inline">\(p\)</span>. The angular transformation gives approximate variance stability for comparable denominators; the variance relationship alone does not uniquely identify a distribution.</p></li>
 <li><p>ANOVA on transformed data assumes that all the observations have been placed on the same scale; if only some observations are transformed while others are left in the original scale, the resulting values are no longer comparable, and the assumptions of additivity and homogeneity of variance that the transformation was meant to restore would not hold across the whole dataset.</p></li>
-<li><p>The choice of a transformation (logarithmic, square root, or angular) is based on a general theoretical relationship between the mean and variance for a class of data, but this relationship may not hold exactly for every dataset. Checking normality after transformation confirms whether the chosen transformation has actually corrected the departure from ANOVA’s assumptions for that particular dataset, rather than assuming it automatically has.</p></li>
-<li><p>In the logarithmic example, weed counts spanning a wide range were transformed and retransformed using antilog; in the square root example, small larval counts including zeros were transformed using <span class="math inline">\(\sqrt{Y+1}\)</span> and retransformed by squaring and subtracting 1; and in the angular example, mortality percentages spanning nearly the whole 0-100% range were transformed using <span class="math inline">\(\sin^{-1}\sqrt p\)</span> and retransformed using <span class="math inline">\(100\times\sin^2X\)</span>. In all three cases, the treatment showing the extreme response in the raw data (highest weed count, highest larval count, highest mortality) also emerged as significantly different from the others after retransformation, confirming that the appropriate transformation preserved the substantive conclusions while satisfying the assumptions of ANOVA.</p></li>
+<li><p>The choice of a transformation (logarithmic, square root, or angular) is based on a general theoretical relationship between the mean and variance for a class of data, but this relationship may not hold exactly for every dataset. Residual diagnostics help assess whether the transformed model is adequate. Neither a transformation nor a non-significant normality test confirms that every ANOVA assumption holds.</p></li>
+<li><p>The weed example uses logarithms, the larval-count example uses <span class="math inline">\(\sqrt{Y+1}\)</span>, and the mortality example uses angular values in degrees. ANOVA and pairwise comparisons are performed on the transformed scale. Back-transformed estimates aid interpretation but are not generally original-scale arithmetic means. The larval treatments with the largest means, T<sub>6</sub> and T<sub>5</sub>, are not significantly different by the calculated CD; an extreme sample mean need not differ significantly from every other mean.</p></li>
 </ol>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
@@ -1856,9 +1886,9 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Two statisticians whose names sounded so alike, they had to write a paper together</strong></p>
-<p>In the early 1960s, the British statistician <strong>Sir David Cox</strong> visited the University of Wisconsin, where <strong>George E. P. Box</strong> was on the faculty. As the story is often told, the two decided they simply had to collaborate on a paper together, largely because of the near-rhyme of their surnames, and because both were British statisticians working an ocean away from home. The result, published in 1964 in the <em>Journal of the Royal Statistical Society</em>, was “An Analysis of Transformations,” the paper that introduced what the world now calls the <strong>Box-Cox transformation</strong>.</p>
-<p>There is a further connection running through this story: George Box was married to Joan Fisher, the daughter of Sir Ronald A. Fisher, whose work on randomization, ANOVA, and experimental design runs through so much of this book. What began as a light-hearted collaboration between two statisticians with similar names produced one of the most widely used tools for choosing a transformation, a single equation, indexed by one parameter <span class="math inline">\(\lambda\)</span>, that quietly contains the logarithmic, square root, and reciprocal transformations as special cases, sixty years on, still finding the “right” scale for data one dataset at a time.</p>
+<p><strong>Finding a suitable scale: Box and Cox</strong></p>
+<p>In 1964, George E. P. Box and David R. Cox published <em>An Analysis of Transformations</em>. Box was affiliated with the University of Wisconsin, while Cox was at Birkbeck College, University of London. Their paper treated the choice of transformation as part of fitting a statistical model, rather than a rule applied automatically to every dataset. <span class="citation" data-cites="BoxCox1964">(<a href="references.html#ref-BoxCox1964" role="doc-biblioref">Box and Cox 1964</a>)</span></p>
+<p>The family indexed by <span class="math inline">\(\lambda\)</span> connects familiar transformations such as logarithms, square roots and reciprocals. Its value lies in providing a systematic way to examine which scale is supported by the data and model. Choosing a transformation still leaves the researcher responsible for checking the residuals and interpreting the results on the scale actually used.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1877,6 +1907,11 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
 
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-BoxCox1964" class="csl-entry" role="listitem">
+Box, George E. P., and David R. Cox. 1964. <span>“An Analysis of Transformations.”</span> <em>Journal of the Royal Statistical Society: Series B (Methodological)</em> 26 (2): 211–43. <a href="https://doi.org/10.1111/j.2517-6161.1964.tb00553.x">https://doi.org/10.1111/j.2517-6161.1964.tb00553.x</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -1967,7 +2002,7 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2301,8 +2336,8 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./appendix1.html" class="pagination-link" aria-label="Appendix 1">
-        <span class="nav-page-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./appendix1.html" class="pagination-link" aria-label="Sources of official data">
+        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -2310,16 +2345,17 @@ CD=t_\alpha\sqrt{\frac{2MSE}{r}}
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

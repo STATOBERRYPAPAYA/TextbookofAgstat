@@ -1,0 +1,87 @@
+Mean raw : computed = 7.33333333333 ; displayed = 7.33 
+Weighted mean : computed = 23.3333333333 ; displayed = 23.33 
+Mean frequency : computed = 161.08 ; displayed = 161.08 
+Mean grouped : computed = 72.75 ; displayed = 72.75 
+Median odd : computed = 20 ; displayed = 20 
+Median even : computed = 6 ; displayed = 6 
+Median discrete odd : computed = 2 ; displayed = 2 
+Median discrete even : computed = 2.5 ; displayed = 2.5 
+Median grouped : computed = 160.555555556 ; displayed = 160.56 
+Mode grouped : computed = 108.235294118 ; displayed = 108.24 
+GM raw : computed = 60.9682418845 ; displayed = 60.97 
+HM raw : computed = 11.5254237288 ; displayed = 11.53 
+HM frequency : computed = 21.9005231586 ; displayed = 21.9 
+Cistern time : computed = 1.875 ; displayed = 1.875 
+Equal-distance speed : computed = 72 ; displayed = 72 
+MAD : computed = 2.66666666667 ; displayed = 2.66666666667 
+One-proportion Z : computed = 1.490711985 ; displayed = 1.49 
+Two-proportion Z : computed = 5.00075566691 ; displayed = 5 
+Known-sigma Z : computed = -2 ; displayed = -2 
+Unknown-sigma large Z : computed = 1.72413793103 ; displayed = 1.724 
+Equal-sigma two-mean Z : computed = 5.16397779494 ; displayed = 5.16 
+Unequal known-sigma Z : computed = 3 ; displayed = 3 
+SD-difference Z : computed = 2.85811517055 ; displayed = 2.86 
+One-sample t : computed = 1.83564369493 ; displayed = 1.836 
+Paired t : computed = -4.32049379894 ; displayed = -4.321 
+Correlation t : computed = 3 ; displayed = 3 
+Mendel GOF : computed = 0.666666666667 ; displayed = 0.667 
+2x2 Pearson : computed = 3.92673198312 ; displayed = 3.93 
+3x3 Pearson : computed = 26.2596139718 ; displayed = 26.3 
+Yates example
+
+	Pearson's Chi-squared test with Yates' continuity correction
+
+data:  matrix(c(4, 46, 18, 32), 2, byrow = TRUE)
+X-squared = 9.848484848, df = 1, p-value = 0.00169971695
+
+TWO-WAY ANOVA
+  Chemicals   A   B   C   D   E Total
+1     $S_1$  43  41  42  46  45   217
+2     $S_2$  45  41  42  46  42   216
+3     $S_3$  49  46  44  46  44   229
+4     $S_4$  42  42  42  45  41   212
+5     Total 179 170 170 183 172   874
+Analysis of Variance Table
+
+Response: as.vector(M)
+                                       Df Sum Sq     Mean Sq F value   Pr(>F)  
+factor(rep(1:nrow(M), ncol(M)))         3   32.2 10.73333333 4.71795 0.021290 *
+factor(rep(1:ncol(M), each = nrow(M)))  4   34.7  8.67500000 3.81319 0.031763 *
+Residuals                              12   27.3  2.27500000                   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+CRD
+Analysis of Variance Table
+
+Response: as.vector(M)
+                           Df Sum Sq Mean Sq  F value     Pr(>F)    
+factor(rep(1:5, each = 4))  4 331.30  82.825 13.04331 8.9296e-05 ***
+Residuals                  15  95.25   6.350                        
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+RCBD
+Analysis of Variance Table
+
+Response: as.vector(M)
+                           Df Sum Sq     Mean Sq F value     Pr(>F)    
+factor(rep(1:4, each = 5))  3  260.0 86.66666667   26.00 1.5507e-05 ***
+factor(rep(1:5, 4))         4   91.2 22.80000000    6.84  0.0041525 ** 
+Residuals                  12   40.0  3.33333333                       
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+LATIN SQUARE
+Analysis of Variance Table
+
+Response: as.vector(Y)
+                           Df  Sum Sq      Mean Sq  F value     Pr(>F)    
+factor(as.vector(T))        4 1064.96 266.24000000 19.71175 3.2971e-05 ***
+factor(rep(1:5, 5))         4  253.76  63.44000000  4.69694   0.016343 *  
+factor(rep(1:5, each = 5))  4  272.56  68.14000000  5.04492   0.012807 *  
+Residuals                  12  162.08  13.50666667                        
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+REGRESSION
+    (Intercept)     Temperature 
+-159.4741523409   30.0878617942 
+            1 
+442.283083544 

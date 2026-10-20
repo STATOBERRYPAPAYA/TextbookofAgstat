@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>19&nbsp; Multiple comparison tests – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./singleFactor.html" rel="next">
 <link href="./anova.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="19&nbsp; Multiple comparison tests – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="19&nbsp; Multiple comparison tests – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -589,8 +622,9 @@ window.Quarto = {
   <li><a href="#tukeys-test" id="toc-tukeys-test" class="nav-link" data-scroll-target="#tukeys-test"><span class="header-section-number">19.4</span> Tukey’s test</a></li>
   <li><a href="#a-worked-example" id="toc-a-worked-example" class="nav-link" data-scroll-target="#a-worked-example"><span class="header-section-number">19.5</span> A worked example</a></li>
   <li><a href="#letter-grouping-display-of-results" id="toc-letter-grouping-display-of-results" class="nav-link" data-scroll-target="#letter-grouping-display-of-results"><span class="header-section-number">19.6</span> Letter grouping (display of results)</a></li>
-  <li><a href="#other-multiple-comparison-tests" id="toc-other-multiple-comparison-tests" class="nav-link" data-scroll-target="#other-multiple-comparison-tests"><span class="header-section-number">19.7</span> Other multiple comparison tests</a></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">19.8</span> Chapter Summary</a>
+  <li><a href="#unequal-replication-and-planned-comparisons" id="toc-unequal-replication-and-planned-comparisons" class="nav-link" data-scroll-target="#unequal-replication-and-planned-comparisons"><span class="header-section-number">19.7</span> Unequal replication and planned comparisons</a></li>
+  <li><a href="#other-multiple-comparison-tests" id="toc-other-multiple-comparison-tests" class="nav-link" data-scroll-target="#other-multiple-comparison-tests"><span class="header-section-number">19.8</span> Other multiple comparison tests</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">19.9</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -628,7 +662,7 @@ window.Quarto = {
 
 <p>ANOVA is an omnibus test. An <em>omnibus test</em>, as the general name suggests, refers to an overall or global test. It is implemented on an overall hypothesis that tends to find whether there is any significant difference between the treatment means (in the case of ANOVA) or not.</p>
 <p>ANOVA does not tell us which treatment pairs are different. More clearly, on rejecting the null hypothesis in ANOVA, we conclude that at least a pair of treatment means are different, but it does not give any idea about which specific treatments are different. In order to identify which treatment means are significantly different, we need to employ <strong>multiple comparison tests</strong>, also known as <strong>post-hoc tests</strong>.</p>
-<p>A significant omnibus F test in the ANOVA procedure is a prerequisite before conducting post-hoc comparisons; otherwise, those comparisons are not required. There are several methods for performing post-hoc tests. In this chapter, we discuss the three that are most widely used in agricultural research:</p>
+<p>A significant omnibus F test is required for protected Fisher’s LSD. Procedures such as Tukey’s HSD control their specified family-wise error rate without requiring a preliminary significant F test. The comparisons and their error-control procedure should be chosen to match the research objectives. There are several methods for performing post-hoc tests. In this chapter, we discuss the three that are most widely used in agricultural research:</p>
 <ul>
 <li><p>Fisher’s LSD test (Least Significant Difference test)</p></li>
 <li><p>Duncan’s Multiple Range Test (DMRT)</p></li>
@@ -637,9 +671,9 @@ window.Quarto = {
 <section id="why-do-we-need-a-post-hoc-test" class="level2" data-number="19.1">
 <h2 data-number="19.1" class="anchored" data-anchor-id="why-do-we-need-a-post-hoc-test"><span class="header-section-number">19.1</span> Why do we need a post-hoc test?</h2>
 <p>A <strong>Type I error</strong> occurs when the null hypothesis <span class="math inline">\(H_0\)</span> is statistically rejected even though it is actually true (a false positive), whereas a <strong>Type II error</strong> refers to failing to reject <span class="math inline">\(H_0\)</span> when it is actually false (a false negative). In a post-hoc test, we compare each of the treatment pairs individually. For example, consider a situation in which three treatments A, B, and C are compared. They may form the following three pairs: A versus B, A versus C, and B versus C. The set of pairwise comparisons for a given experiment is called a <strong>family</strong>. The Type I error rate for the whole set of comparisons taken together is called the <strong>family-wise error rate</strong> (FWER) <span class="citation" data-cites="Lee">(<a href="references.html#ref-Lee" role="doc-biblioref">Lee and Lee 2018</a>)</span>.</p>
-<p>For example, if one performs a pairwise test between two groups A and B at the 5% level of significance (<span class="math inline">\(\alpha\)</span>) and observes that they are not significantly different, then the chance that a correct decision is made (not committing a Type I error) is 95%. If a second pairwise test between groups B and C is also carried out and gives a non-significant result, then the probability of making a correct decision on both the A–B and B–C comparisons is <span class="math inline">\(0.95 \times 0.95 = 0.9025\)</span>, or 90.25%. Consequently, the actual Type I error rate for the family is <span class="math inline">\(1 - 0.9025 = 0.0975\)</span>, not 0.05. If the comparison between groups A and C is also non-significant, the probability of correctly declaring non-significance for all three pairs is <span class="math inline">\(0.95 \times 0.95 \times 0.95 = 0.857\)</span>, and the actual family-wise Type I error rate is <span class="math inline">\(1 - 0.857 = 0.143\)</span>, which is more than 14%. So the chance of a Type I error increases sharply when several treatment pairs are tested together. Multiple comparison tests are devised in such a way that a correction is incorporated to control this inflation in <span class="math inline">\(\alpha\)</span>, so that the actual level of significance remains at the prescribed rate (in our case 0.05).</p>
+<p>To illustrate the effect of multiple testing, suppose <span class="math inline">\(N\)</span> independent tests are performed, each at level <span class="math inline">\(\alpha\)</span>, and all their null hypotheses are true. The probability of avoiding a Type I error in every test is <span class="math inline">\((1-\alpha)^N\)</span>. Therefore, the probability of at least one Type I error is <span class="math inline">\(1-(1-\alpha)^N\)</span>. For three independent tests at the 5% level, this is <span class="math inline">\(1-0.95^3=0.1426\)</span>, or about 14.3%. Pairwise comparisons sharing treatment groups are generally dependent, so this calculation illustrates the problem but is not their exact family-wise error rate. A non-significant observed result does not itself have a 95% probability of being correct.</p>
 <p><span id="eq-inflated"><span class="math display">\[\text{Inflated } \alpha = 1 - \left( 1 - \alpha \right)^{N} \tag{19.1}\]</span></span></p>
-<p>where <span class="math inline">\(N\)</span> is the number of hypotheses (comparisons) tested. As <a href="#eq-inflated" class="quarto-xref">Equation&nbsp;<span>19.1</span></a> shows, the inflation of the probability of a Type I error increases with the number of comparisons.</p>
+<p>where <span class="math inline">\(N\)</span> is the number of independent hypotheses tested and all null hypotheses are true. As <a href="#eq-inflated" class="quarto-xref">Equation&nbsp;<span>19.1</span></a> shows, the inflation of the probability of a Type I error increases with the number of comparisons.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -650,7 +684,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The number of possible pairwise comparisons among <span class="math inline">\(v\)</span> treatments is <span class="math inline">\(\binom{v}{2} = \dfrac{v(v-1)}{2}\)</span>. For example, with 5 treatments there are <span class="math inline">\(\dfrac{5 \times 4}{2} = 10\)</span> pairwise comparisons, and without any correction the family-wise error rate would rise to <span class="math inline">\(1 - (0.95)^{10} = 0.40\)</span>, or 40%.</p>
+<p>The number of possible pairwise comparisons among <span class="math inline">\(v\)</span> treatments is <span class="math inline">\(\binom{v}{2} = \dfrac{v(v-1)}{2}\)</span>. For example, with 5 treatments there are <span class="math inline">\(\dfrac{5 \times 4}{2} = 10\)</span> pairwise comparisons. The independent-test illustration gives <span class="math inline">\(1-(0.95)^{10}\approx0.40\)</span>, or 40%; the exact rate for these dependent pairwise comparisons is not given by this formula.</p>
 </div>
 </div>
 </section>
@@ -692,7 +726,7 @@ window.Quarto = {
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_{i} = \mu_{j}\)</span>, <em>i</em>.<em>e</em>. <span class="math inline">\(\mu_{i} - \mu_{j} = 0\)</span>.</p>
 <p>A t-test can be used to test this hypothesis:</p>
 <p><span id="eq-lsdt"><span class="math display">\[t = \frac{\overline{T_{i}} - \overline{T_{j}}}{SE(d)} \tag{19.6}\]</span></span></p>
-<p>The <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence interval for the mean difference <span class="math inline">\(\overline{T_{i}} - \overline{T_{j}}\)</span> is <span class="math inline">\(\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm t_{\frac{\alpha}{2},\, edf}\, SE(d)\)</span>, which can be written as <span class="math inline">\(\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm \text{LSD}\)</span>. So, if <span class="math inline">\(\left| \overline{T_{i}} - \overline{T_{j}} \right| &gt; \text{LSD}\)</span>, the confidence interval does not include 0, and we reject the null hypothesis and conclude that the two treatment means are different, with <span class="math inline">\(100(1 - \alpha)\%\)</span> confidence.</p>
+<p>The individual <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for the population mean difference <span class="math inline">\(\mu_i-\mu_j\)</span>, before any simultaneous-coverage adjustment, is <span class="math inline">\(\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm t_{\frac{\alpha}{2},\, edf}\, SE(d)\)</span>, which can be written as <span class="math inline">\(\left( \overline{T_{i}} - \overline{T_{j}} \right) \pm \text{LSD}\)</span>. So, if <span class="math inline">\(\left| \overline{T_{i}} - \overline{T_{j}} \right| &gt; \text{LSD}\)</span>, the confidence interval does not include 0, and we reject the null hypothesis and conclude that the two treatment means are different, at the specified individual significance level. These individual intervals are not simultaneous confidence intervals for all pairs.</p>
 </section>
 <section id="advantages-and-disadvantages-of-lsd" class="level3" data-number="19.2.3">
 <h3 data-number="19.2.3" class="anchored" data-anchor-id="advantages-and-disadvantages-of-lsd"><span class="header-section-number">19.2.3</span> Advantages and disadvantages of LSD</h3>
@@ -706,15 +740,15 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The LSD test is also known as the <strong>protected Fisher’s LSD test</strong>. “Protected” means that the pairwise calculations are performed only when the null hypothesis has already been rejected by the ANOVA. This first step helps to control the false positive rate (Type I error) for the entire family of comparisons <span class="citation" data-cites="Hayter">(<a href="references.html#ref-Hayter" role="doc-biblioref">Hayter 1986</a>)</span>.</p>
+<p>The LSD test is also known as the <strong>protected Fisher’s LSD test</strong>. “Protected” means that the pairwise calculations are performed only when the null hypothesis has already been rejected by the ANOVA. This first step controls the family-wise Type I error when all treatment means are equal, but does not generally provide strong control when some means differ <span class="citation" data-cites="Hayter">(<a href="references.html#ref-Hayter" role="doc-biblioref">Hayter 1986</a>)</span>.</p>
 </div>
 </div>
-<p>While the protected Fisher’s LSD test was the first post-hoc test ever developed, it does not correct for <span class="math inline">\(\alpha\)</span> inflation as effectively as some other post-hoc tests. Fisher’s LSD procedure is known to preserve the experiment-wise Type I error rate at the nominal level only when the number of treatments is exactly three <span class="citation" data-cites="Meier">(<a href="references.html#ref-Meier" role="doc-biblioref">Meier 2006</a>)</span>. Nevertheless, the LSD is still the most commonly used post-hoc test in agricultural research. When the number of treatments is larger, it is advisable to also consider DMRT or Tukey’s test.</p>
+<p>While the protected Fisher’s LSD test was the first post-hoc test ever developed, it does not correct for <span class="math inline">\(\alpha\)</span> inflation as effectively as some other post-hoc tests. Fisher’s LSD procedure is known to preserve the experiment-wise Type I error rate at the nominal level for two or three treatments under the usual model, but not generally for more than three <span class="citation" data-cites="Meier">(<a href="references.html#ref-Meier" role="doc-biblioref">Meier 2006</a>)</span>. Nevertheless, the LSD is still the most commonly used post-hoc test in agricultural research. When strict family-wise error control is required for all pairwise comparisons, Tukey’s test is preferable. DMRT is more liberal and does not provide the same family-wise protection.</p>
 </section>
 </section>
 <section id="duncans-multiple-range-test-dmrt" class="level2" data-number="19.3">
 <h2 data-number="19.3" class="anchored" data-anchor-id="duncans-multiple-range-test-dmrt"><span class="header-section-number">19.3</span> Duncan’s Multiple Range Test (DMRT)</h2>
-<p>When a comparison of all possible pairs of treatment means is required, we can use <strong>Duncan’s Multiple Range Test (DMRT)</strong>, devised by Duncan in 1955. It is especially useful when the number of treatments to be compared is large, and it is very popular in the plant sciences. In this test, the standard error of a mean is multiplied by tabulated values (<span class="math inline">\(r_{p}\)</span>) for different values of <span class="math inline">\(p\)</span>, where p is the number of ordered treatment means spanned by the comparison, including the two means being compared. For example, when comparing two adjacent means, p=2. If one mean lies between the two means being compared, then p=3. If two means lie between them, then p=4, and so on. The calculated critical value is then used to decide whether the difference between the two treatment means is significant. For given <span class="math inline">\(p\)</span>, the <span class="math inline">\(r_p\)</span> values are obtained from DMRT tables, a table is provided in <a href="appendix2.html" class="quarto-xref"><span>Chapter 26</span></a>.</p>
+<p>When a comparison of all possible pairs of treatment means is required, we can use <strong>Duncan’s Multiple Range Test (DMRT)</strong>, devised by Duncan in 1955. It is especially useful when the number of treatments to be compared is large, and it is very popular in the plant sciences. In this test, the standard error of a mean is multiplied by tabulated values (<span class="math inline">\(r_{p}\)</span>) for different values of <span class="math inline">\(p\)</span>, where p is the number of ordered treatment means spanned by the comparison, including the two means being compared. For example, when comparing two adjacent means, p=2. If one mean lies between the two means being compared, then p=3. If two means lie between them, then p=4, and so on. The calculated critical value is then used to decide whether the difference between the two treatment means is significant. For given <span class="math inline">\(p\)</span>, the <span class="math inline">\(r_p\)</span> values are obtained from DMRT tables, a table is provided in <a href="appendix2.html" class="quarto-xref"><span>Appendix B</span></a>.</p>
 <p>Unlike Fisher’s LSD, which uses the same critical difference for every pair of means, DMRT uses progressively larger critical values as p increases. Consequently, treatment means that are farther apart in the ordered list are compared using a larger critical value.</p>
 <p><strong>Steps in DMRT</strong></p>
 <ol type="1">
@@ -722,6 +756,7 @@ window.Quarto = {
 <li><p>Calculate the standard error of a mean as</p></li>
 </ol>
 <p><span id="eq-sedmrt"><span class="math display">\[SE(\overline{Y}) = \sqrt{\frac{\text{MSE}}{r}} \tag{19.7}\]</span></span></p>
+<p>The formula above assumes equal replication and the appropriate common-error model. Do not use it unchanged for unequal replication, adjusted means or split-plot comparisons.</p>
 <ol start="3" type="1">
 <li><p>From the statistical tables of <strong>Duncan’s multiple ranges</strong>, note the <span class="math inline">\(r_{p}\)</span> values for <span class="math inline">\(p = 2, 3, \ldots, v\)</span> treatments, corresponding to the error degrees of freedom.</p></li>
 <li><p>Calculate the shortest significant ranges (<span class="math inline">\(R_{p}\)</span>), where</p></li>
@@ -741,7 +776,7 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The critical value <span class="math inline">\(R_{p}\)</span> in DMRT gradually increases as the means being compared are ranked further apart. This means the “protection level” of the test relaxes as the number of means spanned increases, making DMRT more powerful (more likely to declare a difference) than a test based on a single critical value like the LSD. It is, however, more liberal than Tukey’s test, so it may declare more pairs significant.</p>
+<p>The critical value <span class="math inline">\(R_{p}\)</span> in DMRT gradually increases as the means being compared are ranked further apart. This means the “protection level” of the test relaxes as the number of means spanned increases, making DMRT more liberal than Tukey’s HSD. For the same pair and error variance, its critical range is generally at least as large as the LSD threshold, so increasing the range does not make it more liberal than LSD. It is, however, more liberal than Tukey’s test, so it may declare more pairs significant.</p>
 </div>
 </div>
 </section>
@@ -757,6 +792,7 @@ window.Quarto = {
 <div id="exm-postdoc" class="theorem example">
 <p><span class="theorem-title"><strong>Example 19.1</strong></span> A field experiment was conducted to compare the yield (in kg per plot) of five fertilizer treatments <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, and <span class="math inline">\(T_5\)</span>, laid out in a completely randomized design with four replications (<span class="math inline">\(r = 4\)</span>). The ANOVA gave a significant treatment effect (<span class="math inline">\(F\)</span> significant at the 5% level), with an error mean square <span class="math inline">\(\text{MSE} = 0.5333\)</span> and error degrees of freedom <span class="math inline">\(edf = 15\)</span>. The treatment means are given below. Identify which treatments differ from one another using the LSD, DMRT, and Tukey’s tests at the 5% level of significance.</p>
 <table class="table-bordered caption-top table">
+<caption>Treatment means in the comparison example</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatment</th>
@@ -787,6 +823,7 @@ window.Quarto = {
 <p><strong>(b) Duncan’s Multiple Range Test.</strong></p>
 <p>For DMRT first, arrange the means in descending order:</p>
 <table class="table-bordered caption-top table">
+<caption>Treatment means in descending order</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Rank</th>
@@ -818,8 +855,9 @@ window.Quarto = {
 </table>
 <p>The standard error of a mean, using <a href="#eq-sedmrt" class="quarto-xref">Equation&nbsp;<span>19.7</span></a>, is</p>
 <p><span class="math display">\[SE(\overline{Y}) = \sqrt{\frac{\text{MSE}}{r}} = \sqrt{\frac{0.5333}{4}} = 0.3651\]</span></p>
-<p>The Duncan’s range values <span class="math inline">\(r_{p}\)</span> at the 5% level for <span class="math inline">\(edf = 15\)</span>, <span class="math inline">\(r_{p}\)</span> can be obtained from DMRT table given in <a href="appendix2.html" class="quarto-xref"><span>Chapter 26</span></a> and the shortest significant ranges <span class="math inline">\(R_{p} = r_{p} \cdot SE(\overline{Y})\)</span> from <a href="#eq-rp" class="quarto-xref">Equation&nbsp;<span>19.8</span></a>, are</p>
+<p>The Duncan’s range values <span class="math inline">\(r_{p}\)</span> at the 5% level for <span class="math inline">\(edf = 15\)</span>, <span class="math inline">\(r_{p}\)</span> can be obtained from DMRT table given in <a href="appendix2.html" class="quarto-xref"><span>Appendix B</span></a> and the shortest significant ranges <span class="math inline">\(R_{p} = r_{p} \cdot SE(\overline{Y})\)</span> from <a href="#eq-rp" class="quarto-xref">Equation&nbsp;<span>19.8</span></a>, are</p>
 <table class="table-bordered caption-top table">
+<caption>Duncan range values and shortest significant ranges</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(p\)</span> (means apart)</th>
@@ -849,7 +887,7 @@ window.Quarto = {
 <p><strong>(c) Tukey’s HSD test.</strong> The studentised range value at the 5% level for <span class="math inline">\(v = 5\)</span> treatments and <span class="math inline">\(edf = 15\)</span> is <span class="math inline">\(q_{0.05,\,(5,15)} = 4.367\)</span>. Using <a href="#eq-hsd" class="quarto-xref">Equation&nbsp;<span>19.9</span></a>,</p>
 <p><span class="math display">\[\text{HSD} = q_{0.05,\,(5,15)} \cdot \sqrt{\frac{\text{MSE}}{r}} = 4.367 \times 0.3651 = 1.59\]</span></p>
 <p>Any two treatment means differing by more than 1.59 are significantly different.</p>
-<p>The pairwise comparisons under the three tests are summarised in <a href="#tbl-comparison" class="quarto-xref">Table&nbsp;<span>19.1</span></a>. For each pair, S denotes a significant difference and NS a non-significant one.</p>
+<p>The pairwise comparisons under the three tests are summarized in <a href="#tbl-comparison" class="quarto-xref">Table&nbsp;<span>19.1</span></a>. For each pair, S denotes a significant difference and NS a non-significant one.</p>
 <div id="tbl-comparison" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -989,7 +1027,8 @@ Table&nbsp;19.1: Pairwise comparisons under the three tests
 </ol>
 <p>Let us apply this to the results in <a href="#exm-postdoc" class="quarto-xref">Example&nbsp;<span>19.1</span></a>.</p>
 <p>For the LSD and DMRT, every pair of treatments is significantly different, so no two treatments share a letter, and each receives its own letter:</p>
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
+<caption>Letter grouping under LSD and DMRT</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatment</th>
@@ -1026,7 +1065,8 @@ Table&nbsp;19.1: Pairwise comparisons under the three tests
 </tbody>
 </table>
 <p>For Tukey’s HSD, the pairs <span class="math inline">\(T_3 - T_2\)</span>, <span class="math inline">\(T_2 - T_4\)</span>, and <span class="math inline">\(T_4 - T_1\)</span> are not significant, so those treatments share letters. Starting from the top: <span class="math inline">\(T_5\)</span> differs from all others and gets <em>a</em>. <span class="math inline">\(T_3\)</span> starts <em>b</em>; <span class="math inline">\(T_2\)</span> is not different from <span class="math inline">\(T_3\)</span>, so it also gets <em>b</em>, but <span class="math inline">\(T_2\)</span> is also not different from <span class="math inline">\(T_4\)</span>, so a new letter <strong>c</strong> begins at <span class="math inline">\(T_2\)</span>, giving it <em>bc</em>. <span class="math inline">\(T_4\)</span> is not different from <span class="math inline">\(T_2\)</span> (<em>c</em>) and not different from <span class="math inline">\(T_1\)</span>, so it takes <em>cd</em>. <span class="math inline">\(T_1\)</span> is not different from <span class="math inline">\(T_4\)</span>, so it takes <em>d</em>.</p>
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
+<caption>Letter grouping under Tukey’s HSD</caption>
 <thead>
 <tr class="header">
 <th style="text-align: center;">Treatment</th>
@@ -1063,7 +1103,7 @@ Table&nbsp;19.1: Pairwise comparisons under the three tests
 </tbody>
 </table>
 <p>Reading the Tukey grouping: <span class="math inline">\(T_5\)</span> (a) stands alone as the highest-yielding treatment, significantly better than all others. <span class="math inline">\(T_3\)</span> and <span class="math inline">\(T_2\)</span> share the letter b, so they are on par. <span class="math inline">\(T_2\)</span> and <span class="math inline">\(T_4\)</span> share c, and <span class="math inline">\(T_4\)</span> and <span class="math inline">\(T_1\)</span> share d, so those neighbouring pairs are also on par. But <span class="math inline">\(T_3\)</span> (b) and <span class="math inline">\(T_4\)</span> (cd) share no letter, so they are significantly different, and likewise <span class="math inline">\(T_2\)</span> (bc) and <span class="math inline">\(T_1\)</span> (d) are significantly different. This overlapping pattern is exactly what the letter notation is designed to convey.</p>
-<p>An older but equivalent way of displaying the same information is the <strong>line (or underscore) notation</strong>. The treatment means are first arranged in order, and each group of adjacent means that are not significantly different from one another is joined by a common line. When groups overlap, the lines are drawn at different levels, some above and some below the row of means, so that they do not collide. Two treatments joined (directly or through a chain) by a common line are on par, while two treatments with no connecting line between them are significantly different. For the Tukey results in <a href="#exm-postdoc" class="quarto-xref">Example&nbsp;<span>19.1</span></a>, one line would join <span class="math inline">\(T_3\)</span> and <span class="math inline">\(T_2\)</span>, a second line (at a different level) would join <span class="math inline">\(T_2\)</span> and <span class="math inline">\(T_4\)</span>, and a third would join <span class="math inline">\(T_4\)</span> and <span class="math inline">\(T_1\)</span>, while <span class="math inline">\(T_5\)</span> has no line at all, since it differs significantly from every other treatment. This conveys exactly the same groupings as the letters a, b, bc, cd, and d.&nbsp;The letter notation is now more common in printed tables because it is easier to typeset, but the two notations carry identical meaning.</p>
+<p>An older but equivalent way of displaying the same information is the <strong>line (or underscore) notation</strong>. The treatment means are first arranged in order, and each group of adjacent means that are not significantly different from one another is joined by a common line. When groups overlap, the lines are drawn at different levels, some above and some below the row of means, so that they do not collide. Two treatments covered by the same individual line are not significantly different, while two treatments with no connecting line between them are significantly different. For the Tukey results in <a href="#exm-postdoc" class="quarto-xref">Example&nbsp;<span>19.1</span></a>, one line would join <span class="math inline">\(T_3\)</span> and <span class="math inline">\(T_2\)</span>, a second line (at a different level) would join <span class="math inline">\(T_2\)</span> and <span class="math inline">\(T_4\)</span>, and a third would join <span class="math inline">\(T_4\)</span> and <span class="math inline">\(T_1\)</span>, while <span class="math inline">\(T_5\)</span> has no line at all, since it differs significantly from every other treatment. A chain of overlapping lines does not make its endpoints nonsignificant: <span class="math inline">\(T_3\)</span> and <span class="math inline">\(T_1\)</span> remain significantly different. This conveys exactly the same groupings as the letters a, b, bc, cd, and d.&nbsp;The letter notation is now more common in printed tables because it is easier to typeset, but the two notations carry identical meaning.</p>
 <div id="fig-tukey1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tukey1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1087,57 +1127,40 @@ Figure&nbsp;19.1: line (or underscore) notation illustration using <a href="#exm
 <p>The letter grouping method is more common in modern statistical software (such as R, SAS, SPSS, GenStat, JMP and cloud platforms like RAISINS), whereas the line or underscore notation was frequently used in older agricultural statistics texts and research publications. Both methods are equivalent in interpretation.</p>
 </div>
 </div>
+<p>A shared letter means only that the specified procedure did not detect a difference at the chosen level. It does not establish equality or practical equivalence. Non-significance is not transitive: two pairs may be nonsignificant while a third pair connecting their endpoints is significant. Check every pair in the final letter display against the comparison results.</p>
 </section>
-<section id="other-multiple-comparison-tests" class="level2" data-number="19.7">
-<h2 data-number="19.7" class="anchored" data-anchor-id="other-multiple-comparison-tests"><span class="header-section-number">19.7</span> Other multiple comparison tests</h2>
+<section id="unequal-replication-and-planned-comparisons" class="level2" data-number="19.7">
+<h2 data-number="19.7" class="anchored" data-anchor-id="unequal-replication-and-planned-comparisons"><span class="header-section-number">19.7</span> Unequal replication and planned comparisons</h2>
+<p>For independent group means with unequal sample sizes under the common-variance model, the <strong>Tukey–Kramer</strong> critical difference for means <span class="math inline">\(i\)</span> and <span class="math inline">\(j\)</span> is</p>
+<p><span class="math display">\[q_{\alpha,(v,edf)}\sqrt{\frac{\text{MSE}}2\left(\frac1{r_i}+\frac1{r_j}\right)}.\]</span></p>
+<p>It reduces to the HSD formula when the replications are equal. For adjusted means or designs with more than one error stratum, use the covariance matrix and error term appropriate to the fitted model; a sample-size substitution alone may be incorrect.</p>
+<p>A <strong>contrast</strong> is a specified linear comparison <span class="math inline">\(L=\sum_i c_i\mu_i\)</span> with <span class="math inline">\(\sum_i c_i=0\)</span>. For independent group means, estimate it by <span class="math inline">\(\hat L=\sum_i c_i\overline{Y}_i\)</span>, with <span class="math inline">\(SE(\hat L)=\sqrt{\text{MSE}\sum_i c_i^2/r_i}\)</span>. For a single pre-specified contrast, test <span class="math inline">\(H_0:L=0\)</span> using <span class="math inline">\(t=\hat L/SE(\hat L)\)</span> and the error degrees of freedom. A family of planned contrasts may still require multiple-testing control. Two contrasts with coefficients <span class="math inline">\(c_i\)</span> and <span class="math inline">\(d_i\)</span> are orthogonal under this model when <span class="math inline">\(\sum_i c_id_i/r_i=0\)</span>. In a balanced experiment this reduces to <span class="math inline">\(\sum_i c_id_i=0\)</span>.</p>
+<p>For example, comparing a control mean with the average of two new treatments uses coefficients <span class="math inline">\((-1,1/2,1/2)\)</span>. This directly answers a different question from testing all three pairs. Planned comparisons need not wait for a significant omnibus test when they are analysed under a pre-specified valid procedure.</p>
+</section>
+<section id="other-multiple-comparison-tests" class="level2" data-number="19.8">
+<h2 data-number="19.8" class="anchored" data-anchor-id="other-multiple-comparison-tests"><span class="header-section-number">19.8</span> Other multiple comparison tests</h2>
 <p>Besides the three tests discussed above, several other multiple comparison procedures exist, each designed for a particular situation. These include the <strong>Student-Newman-Keuls (SNK) test</strong>, the <strong>Bonferroni method</strong>, the <strong>Dunnett method</strong> (used when every treatment is compared only against a single control), and <strong>Scheffé’s test</strong> (used for testing general contrasts among means). A detailed treatment of these methods is beyond the scope of this book; the interested reader may refer to a specialised text on the design and analysis of experiments.</p>
 </section>
-<section id="chapter-summary" class="level2" data-number="19.8">
-<h2 data-number="19.8" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">19.8</span> Chapter Summary</h2>
+<section id="chapter-summary" class="level2" data-number="19.9">
+<h2 data-number="19.9" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">19.9</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>ANOVA is an __________ test that determines whether there is an overall significant difference among treatment means.</p></li>
-<li><p>ANOVA does not identify which specific treatment __________ are significantly different.</p></li>
-<li><p>Tests used to identify specific differences among treatment means after a significant ANOVA are called __________ comparison tests.</p></li>
-<li><p>Multiple comparison tests are also called __________ tests.</p></li>
-<li><p>A significant omnibus __________ test is a prerequisite before conducting post-hoc comparisons.</p></li>
-<li><p>Rejecting the null hypothesis in ANOVA indicates that at least one pair of treatment means is __________.</p></li>
-<li><p>Rejecting a true null hypothesis is called a Type __________ error.</p></li>
-<li><p>Failing to reject a false null hypothesis is called a Type __________ error.</p></li>
-<li><p>The collection of all pairwise comparisons in an experiment is called a __________.</p></li>
-<li><p>The probability of making at least one Type I error among a family of comparisons is called the __________ error rate.</p></li>
-<li><p>The number of possible pairwise comparisons among <span class="math inline">\(v\)</span> treatments is __________.</p></li>
-<li><p>Fisher’s Least Significant Difference test is abbreviated as __________.</p></li>
-<li><p>Fisher’s LSD test was developed by __________.</p></li>
-<li><p>In India, LSD is commonly referred to as the __________ Difference or CD.</p></li>
-<li><p>In Fisher’s LSD procedure, pairwise comparisons are performed only after the ANOVA is found to be __________.</p></li>
-<li><p>Fisher’s LSD is therefore also called __________ Fisher’s LSD.</p></li>
-<li><p>The LSD is calculated using the error mean square obtained from the __________.</p></li>
-<li><p>The standard error of the difference between two treatment means depends on the __________ and the number of replications.</p></li>
-<li><p>If the difference between two treatment means is greater than the LSD, the means are considered significantly __________.</p></li>
-<li><p>Duncan’s Multiple Range Test is abbreviated as __________.</p></li>
-<li><p>DMRT was developed by __________ in 1955.</p></li>
-<li><p>In DMRT, treatment means are first arranged in __________ order.</p></li>
-<li><p>In DMRT, <span class="math inline">\(p\)</span> represents the number of ordered treatment means __________ by the comparison.</p></li>
-<li><p>The critical values used in DMRT are denoted by __________.</p></li>
-<li><p>The shortest significant range in DMRT is denoted by __________.</p></li>
-<li><p>The shortest significant range is calculated as <span class="math inline">\(R_p=\)</span> __________.</p></li>
-<li><p>Unlike LSD, DMRT uses progressively __________ critical values as the number of means spanned increases.</p></li>
-<li><p>Tukey’s test is also called the Honestly Significant __________ test.</p></li>
-<li><p>Tukey’s HSD test was proposed by __________.</p></li>
-<li><p>Tukey’s test is based on the __________ range statistic.</p></li>
-<li><p>For equal replications, Tukey’s test uses a single critical value called the __________.</p></li>
-<li><p>Tukey’s test controls the family-wise error rate for the __________ set of pairwise comparisons.</p></li>
-<li><p>Compared with LSD and DMRT, Tukey’s test is more __________.</p></li>
-<li><p>A treatment grouping in which treatments that are not significantly different share a common letter is called __________ grouping.</p></li>
-<li><p>In letter notation, treatments that do not share any common letter are significantly __________.</p></li>
-<li><p>The older method of displaying groups of treatment means using connecting lines is called __________ notation.</p></li>
-<li><p>A treatment that belongs to two overlapping non-significant groups may receive __________ letters.</p></li>
-<li><p>The Bonferroni method, Dunnett method, Scheffé’s test, and SNK test are examples of other __________ comparison procedures.</p></li>
-<li><p>Dunnett’s test is particularly useful when each treatment is compared with a single __________.</p></li>
-<li><p>Scheffé’s test is used for testing general __________ among means.</p></li>
+<li><p>A test of the overall equality of several treatment means is called an __________ test.</p></li>
+<li><p>A significant treatment F-test indicates that not all treatment means are __________.</p></li>
+<li><p>The probability of at least one Type I error in a family of tests is called the __________ error rate.</p></li>
+<li><p>The number of pairwise comparisons among <span class="math inline">\(v\)</span> treatment means is __________.</p></li>
+<li><p>The full form of LSD in mean comparison is Least Significant __________.</p></li>
+<li><p>Fisher’s LSD is also called the Critical __________ in agricultural experiments.</p></li>
+<li><p>Fisher’s LSD applied after a significant omnibus F-test is called __________ LSD.</p></li>
+<li><p>The error variance used in mean-comparison procedures is estimated by the error mean __________.</p></li>
+<li><p>The full form of DMRT is Duncan’s Multiple __________ Test.</p></li>
+<li><p>Tukey’s test uses the studentised __________ distribution.</p></li>
+<li><p>Tukey’s HSD controls the family-wise error rate for all __________ comparisons.</p></li>
+<li><p>The procedure designed for comparing several treatments with one control is __________ test.</p></li>
+<li><p>Scheffe’s procedure can be used to test all linear __________ among means.</p></li>
+<li><p>In a compact letter display, means with no letter in common are significantly __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1191,9 +1214,9 @@ Figure&nbsp;19.1: line (or underscore) notation illustration using <a href="#exm
 <ol type="1">
 <li><p>Explain why a significant ANOVA result does not identify which treatment means differ.</p></li>
 <li><p>For 5 treatments, calculate the total number of possible pairwise comparisons.</p></li>
-<li><p>If each of 10 pairwise comparisons is performed at <span class="math inline">\(\alpha=0.05\)</span> without correction, calculate the approximate family-wise Type I error rate using the formula given in the chapter.</p></li>
-<li><p>An ANOVA gives a non-significant treatment effect. Should Fisher’s LSD, DMRT, or Tukey’s test be conducted? Give a reason.</p></li>
-<li><p>An experiment has four treatments with equal replications. The MSE is 0.5333, <span class="math inline">\(r=4\)</span>, and <span class="math inline">\(edf=15\)</span>. Calculate the LSD at the 5% level using <span class="math inline">\(t_{0.025,15}=2.131\)</span>.</p></li>
+<li><p>If 10 independent tests are performed at <span class="math inline">\(\alpha=0.05\)</span> and all null hypotheses are true, calculate the family-wise Type I error rate.</p></li>
+<li><p>An ANOVA gives a non-significant treatment effect. Explain why protected Fisher’s LSD should not proceed, and whether Tukey’s HSD requires this preliminary test.</p></li>
+<li><p>An experiment has five treatments with four replications each. The MSE is 0.5333 and <span class="math inline">\(edf=15\)</span>. Calculate the LSD at the 5% level using <span class="math inline">\(t_{0.025,15}=2.131\)</span>.</p></li>
 <li><p>Two treatment means are 25.5 and 24.0, and the LSD is 1.10. Determine whether the two treatments differ significantly.</p></li>
 <li><p>Two treatment means are 25.5 and 24.0, and Tukey’s HSD is 1.59. Determine whether the two treatments differ significantly.</p></li>
 <li><p>Explain why a treatment difference of 1.5 is significant under LSD but not significant under Tukey’s HSD in the worked example.</p></li>
@@ -1262,7 +1285,7 @@ R_p=r_p\cdot SE(\overline{Y})
 <li><p>Significant ANOVA → indicates that at least one pair of treatment means differs.</p></li>
 <li><p>ANOVA alone → does not identify which specific treatment pairs differ.</p></li>
 <li><p>Multiple comparison tests → used to identify specific differences among treatment means.</p></li>
-<li><p>Post-hoc tests → should generally be conducted after a significant ANOVA.</p></li>
+<li><p>Protected Fisher’s LSD requires a significant ANOVA; Tukey’s HSD does not require this preliminary test.</p></li>
 <li><p>Type I error → rejecting a true null hypothesis.</p></li>
 <li><p>Type II error → failing to reject a false null hypothesis.</p></li>
 <li><p>Family → complete set of pairwise comparisons in an experiment.</p></li>
@@ -1275,7 +1298,7 @@ R_p=r_p\cdot SE(\overline{Y})
 <li><p>Decision under LSD → if <span class="math inline">\(|\overline{T_i}-\overline{T_j}|&gt;\text{LSD}\)</span>, the means differ significantly.</p></li>
 <li><p>Equal replications → <span class="math inline">\(\text{LSD}=t_{\alpha/2,edf}\sqrt{2\text{MSE}/r}\)</span>.</p></li>
 <li><p>LSD is relatively liberal compared with Tukey’s test.</p></li>
-<li><p>Fisher’s LSD controls experiment-wise Type I error effectively only when the number of treatments is exactly three, as discussed in the chapter.</p></li>
+<li><p>Fisher’s LSD controls experiment-wise Type I error effectively for two or three treatments under the usual model, but not generally for more than three, as discussed in the chapter.</p></li>
 <li><p>DMRT → Duncan’s Multiple Range Test.</p></li>
 <li><p>DMRT → useful when comparing many treatment means and widely used in plant sciences.</p></li>
 <li><p>DMRT procedure → rank means, calculate standard error, obtain <span class="math inline">\(r_p\)</span>, calculate <span class="math inline">\(R_p\)</span>, and compare differences with the appropriate <span class="math inline">\(R_p\)</span>.</p></li>
@@ -1313,16 +1336,16 @@ R_p=r_p\cdot SE(\overline{Y})
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Omnibus <code>2.</code> Pairs <code>3.</code> Multiple <code>4.</code> Post-hoc <code>5.</code> F <code>6.</code> Different <code>7.</code> I <code>8.</code> II <code>9.</code> Family <code>10.</code> Family-wise <code>11.</code> <span class="math inline">\(\dfrac{v(v-1)}{2}\)</span> <code>12.</code> LSD <code>13.</code> Fisher <code>14.</code> Critical <code>15.</code> Significant <code>16.</code> Protected <code>17.</code> ANOVA <code>18.</code> MSE <code>19.</code> Different <code>20.</code> DMRT <code>21.</code> Duncan <code>22.</code> Descending <code>23.</code> Spanned <code>24.</code> <span class="math inline">\(r_p\)</span> <code>25.</code> <span class="math inline">\(R_p\)</span> <code>26.</code> <span class="math inline">\(r_p \cdot SE(\overline{Y})\)</span> <code>27.</code> Larger <code>28.</code> Difference <code>29.</code> John Tukey <code>30.</code> Studentised <code>31.</code> HSD <code>32.</code> Entire <code>33.</code> Conservative <code>34.</code> Compact letter <code>35.</code> Different <code>36.</code> Line <code>37.</code> Multiple <code>38.</code> Multiple <code>39.</code> Control <code>40.</code> Contrasts</p>
+<p><code>1.</code> Omnibus <code>2.</code> Equal <code>3.</code> Family-wise <code>4.</code> <span class="math inline">\(v(v-1)/2\)</span> <code>5.</code> Difference <code>6.</code> Difference <code>7.</code> Protected <code>8.</code> Square <code>9.</code> Range <code>10.</code> Range <code>11.</code> Pairwise <code>12.</code> Dunnett’s <code>13.</code> Contrasts <code>14.</code> Different</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
-<li><p>A significant ANOVA rejects the overall null hypothesis, showing that at least one pair of treatment means differs, but because it is an omnibus test it does not indicate which specific pair or pairs are responsible, so pairwise post-hoc tests are required.</p></li>
+<li><p>A significant ANOVA provides evidence against equality of all treatment means but does not identify the differing pairs. Planned contrasts or suitable multiple-comparison procedures can address the comparisons of scientific interest.</p></li>
 <li><p>Using <a href="#eq-inflated" class="quarto-xref">Equation&nbsp;<span>19.1</span></a> context, the number of pairwise comparisons is <span class="math inline">\(\dfrac{v(v-1)}{2} = \dfrac{5 \times 4}{2} = 10\)</span>.</p></li>
-<li><p>Using <a href="#eq-inflated" class="quarto-xref">Equation&nbsp;<span>19.1</span></a>, inflated <span class="math inline">\(\alpha = 1-(1-0.05)^{10} = 1-(0.95)^{10} = 0.40\)</span>, about 40%.</p></li>
-<li><p>None of them should be conducted, since a non-significant ANOVA means there is no overall treatment effect, and post-hoc tests require a significant omnibus F test first.</p></li>
+<li><p>Under the illustrative assumption of ten independent true-null tests, <a href="#eq-inflated" class="quarto-xref">Equation&nbsp;<span>19.1</span></a> gives <span class="math inline">\(1-(1-0.05)^{10}\approx0.40\)</span>. Pairwise comparisons sharing treatment means are dependent, so this is not their exact family-wise error probability.</p></li>
+<li><p>Protected Fisher’s LSD should not proceed because its first-stage F-test is non-significant. Tukey’s HSD does not require a preliminary significant F-test and may be used for the specified family of pairwise comparisons. A non-significant omnibus test does not prove that all treatment effects are zero.</p></li>
 <li><p>Using <a href="#eq-lsdequal" class="quarto-xref">Equation&nbsp;<span>19.5</span></a>, <span class="math inline">\(\text{LSD} = 2.131 \times \sqrt{\dfrac{2 \times 0.5333}{4}} = 2.131 \times 0.5164 = 1.10\)</span>.</p></li>
 <li><p>The difference is <span class="math inline">\(25.5-24.0 = 1.5\)</span>, which exceeds the LSD of 1.10, so the two treatments differ significantly.</p></li>
 <li><p>The difference is <span class="math inline">\(25.5-24.0 = 1.5\)</span>, which is less than the HSD of 1.59, so the two treatments do not differ significantly.</p></li>
@@ -1345,6 +1368,20 @@ R_p=r_p\cdot SE(\overline{Y})
 <li><p>Under LSD every pair differs significantly, so each treatment gets its own letter: <span class="math inline">\(T_5\)</span>: a, <span class="math inline">\(T_3\)</span>: b, <span class="math inline">\(T_2\)</span>: c, <span class="math inline">\(T_4\)</span>: d, <span class="math inline">\(T_1\)</span>: e.</p></li>
 <li><p>Under LSD and DMRT the critical values (1.10 to 1.21) are smaller than every pairwise difference (the smallest being 1.5), so all pairs are significant and no two treatments share a letter.</p></li>
 </ol>
+<div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Caution</span>Historical Insights
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>One overall question and several comparisons</strong></p>
+<p>ANOVA asks whether all treatment population means are equal. Agricultural researchers often need a second answer: which comparisons show evidence of a difference? Fisher’s protected LSD, Duncan’s multiple range procedure and Tukey’s HSD address this task with different error-control properties. Their choice should follow the purpose of the comparisons, not simply which method produces the most significant results. The distinction between an overall test and a family of comparisons remains important even when software carries out both calculations automatically.</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1361,7 +1398,7 @@ R_p=r_p\cdot SE(\overline{Y})
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Hayter" class="csl-entry" role="listitem">
 Hayter, Anthony J. 1986. <span>“The Maximum Familywise Error Rate of Fisher’s Least Significant Difference Test.”</span> <em>Journal of the American Statistical Association</em> 81 (396): 1000–1004. <a href="https://doi.org/10.1080/01621459.1986.10478364">https://doi.org/10.1080/01621459.1986.10478364</a>.
 </div>
@@ -1462,7 +1499,7 @@ Meier, Ulrich. 2006. <span>“A Note on the Power of Fisher’s Least Significan
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1805,16 +1842,17 @@ Meier, Ulrich. 2006. <span>“A Note on the Power of Fisher’s Least Significan
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

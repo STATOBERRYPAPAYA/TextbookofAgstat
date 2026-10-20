@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>7&nbsp; Skewness and kurtosis – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./association.html" rel="next">
 <link href="./dispersion.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,13 +99,40 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -132,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="7&nbsp; Skewness and kurtosis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="7&nbsp; Skewness and kurtosis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -330,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -531,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -591,7 +624,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#karl-pearsons-coefficient-of-skewness-s_k" id="toc-karl-pearsons-coefficient-of-skewness-s_k" class="nav-link" data-scroll-target="#karl-pearsons-coefficient-of-skewness-s_k"><span class="header-section-number">7.2.1</span> Karl Pearson’s coefficient of skewness (<span class="math inline">\(S_{k}\)</span>)</a></li>
   <li><a href="#bowleys-measure-of-skewness-sq" id="toc-bowleys-measure-of-skewness-sq" class="nav-link" data-scroll-target="#bowleys-measure-of-skewness-sq"><span class="header-section-number">7.2.2</span> Bowley’s measure of skewness (<em>S</em><sub>Q</sub>)</a></li>
-  <li><a href="#kellys-measure-of-skewness-sp" id="toc-kellys-measure-of-skewness-sp" class="nav-link" data-scroll-target="#kellys-measure-of-skewness-sp"><span class="header-section-number">7.2.3</span> Kelly’s measure of skewness (<em>S</em><sub>p</sub>)</a></li>
+  <li><a href="#kelleys-measure-of-skewness-sp" id="toc-kelleys-measure-of-skewness-sp" class="nav-link" data-scroll-target="#kelleys-measure-of-skewness-sp"><span class="header-section-number">7.2.3</span> Kelley’s measure of skewness (<em>S</em><sub>p</sub>)</a></li>
   <li><a href="#measure-based-on-moments" id="toc-measure-based-on-moments" class="nav-link" data-scroll-target="#measure-based-on-moments"><span class="header-section-number">7.2.4</span> Measure based on moments</a></li>
   </ul></li>
   <li><a href="#kurtosis" id="toc-kurtosis" class="nav-link" data-scroll-target="#kurtosis"><span class="header-section-number">7.3</span> Kurtosis</a>
@@ -638,7 +671,7 @@ window.Quarto = {
 <p>The shape of a distribution helps us understand the symmetry, peakedness, and presence of tails in the data. While a histogram provides a visual summary of the shape, we often need numerical measures for precise analysis. These measures include:</p>
 <ul>
 <li><strong>Skewness</strong>, which quantifies the degree of asymmetry in the data distribution.</li>
-<li><strong>Kurtosis</strong>, which measures the “tailedness” or peakedness of the distribution.</li>
+<li><strong>Kurtosis</strong>, which measures the fourth standardised central moment and reflects tail behaviour and sensitivity to extreme observations.</li>
 </ul>
 <p>In this chapter, we will have a detailed discussion on these two important measures of shape, understanding how they are calculated and interpreted. By the end, you’ll be able to evaluate whether a distribution is symmetric, positively or negatively skewed, and whether it has light or heavy tails.</p>
 <section id="skewness" class="level2" data-number="7.1">
@@ -665,7 +698,7 @@ Figure&nbsp;7.1: Histogram of a symmetric distribution
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>For a symmetric distribution skewness = 0; mean = median = mode. <a href="#fig-symmdist" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows what a symmetric distribution looks like.</p>
+<p>For a symmetric unimodal distribution with a finite mean and a unique central mode, mean = median = mode. Moment skewness is zero when the third moment exists and the variance is positive. <a href="#fig-symmdist" class="quarto-xref">Figure&nbsp;<span>7.2</span></a> shows what a symmetric distribution looks like.</p>
 </div>
 </div>
 <div id="fig-symmdist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
@@ -754,7 +787,7 @@ Figure&nbsp;7.7: Data set with positive skewness or right skewed
 <p>You have noticed that the mean, median and mode are not equal in a skewed distribution. The Karl Pearson’s measure of skewness is based upon the divergence of mean from mode in a skewed distribution.</p>
 <p><span id="eq-karlsq"><span class="math display">\[S_{k} = \frac{mean - mode}{\text{standard deviation}} \tag{7.1}\]</span></span></p>
 <p>The sign of <span class="math inline">\(S_{k}\)</span> gives the direction of skewness and its magnitude gives the extent of skewness. If <span class="math inline">\(S_{k}\)</span> &gt; 0, the distribution is positively skewed, and if <span class="math inline">\(S_{k}\)</span> &lt; 0 it is negatively skewed.</p>
-<p>In <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> since mode is used, there is a problem that if mode is not defined for a distribution we cannot find <span class="math inline">\(S_{k}\)</span>. But empirical relation between mean, median and mode states that, for a moderately symmetrical distribution <span class="math inline">\(\ mean - mode \approx 3(mean - median)\)</span>. So <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> can be written as</p>
+<p>In <a href="#eq-karlsq" class="quarto-xref">Equation&nbsp;<span>7.1</span></a> since mode is used, there is a problem that if mode is not defined for a distribution we cannot find <span class="math inline">\(S_{k}\)</span>. But empirical relation between mean, median and mode states that, for some moderately skewed unimodal distributions <span class="math inline">\(\ mean - mode \approx 3(mean - median)\)</span>. This leads to Pearson’s second coefficient, based on the median:</p>
 <p><span id="eq-karlsq2"><span class="math display">\[S_{k} = \frac{3(mean - median)}{\text{standard deviation}} \tag{7.2}\]</span></span></p>
 <div id="exm-ct33" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7.1</strong></span> Compute the Karl Pearson’s coefficient of skewness from the following data:</p>
@@ -1031,9 +1064,9 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 </div>
 </figure>
 </div>
-<p>using <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a></p>
+<p>The mode is 61, so Pearson’s first coefficient is approximately <span class="math inline">\((61.40-61)/1.77=0.23\)</span>. To illustrate Pearson’s second coefficient, use <a href="#eq-karlsq2" class="quarto-xref">Equation&nbsp;<span>7.2</span></a>:</p>
 <p><span class="math display">\[S_{k} = \frac{3(61.40 - 61)}{1.77} = \frac{1.2}{1.77} = 0.68\]</span></p>
-<p>Hence, the Karl Pearson’s coefficient of skewness <span class="math inline">\(S_{k}\)</span> = <span class="math inline">\(0.68\)</span>, Thus the distribution is positively skewed.</p>
+<p>Hence, Pearson’s second coefficient is approximately 0.68. The two coefficients need not agree numerically because their relationship is empirical, not an identity. Here both are positive.</p>
 </div>
 </section>
 <section id="bowleys-measure-of-skewness-sq" class="level3" data-number="7.2.2">
@@ -1044,9 +1077,9 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 <p>Equation can be further modified into</p>
 <p><span id="eq-bowleyssk2"><span class="math display">\[S_{Q} = \frac{Q_{3} - 2Q_{2} + Q_{1}}{Q_{3} - Q_{1}} \tag{7.4}\]</span></span></p>
 <ul>
-<li><p><span class="math inline">\(S_{Q}\)</span> = 0 means that the curve is symmetrical.</p></li>
-<li><p><span class="math inline">\(S_{Q}\)</span> &gt; 0 means the curve is positively skewed.</p></li>
-<li><p><span class="math inline">\(S_{Q}\)</span>&lt; 0 means the curve is negatively skewed.</p></li>
+<li><p><span class="math inline">\(S_Q=0\)</span> means that the quartiles are equally spaced about the median; this alone does not prove symmetry.</p></li>
+<li><p><span class="math inline">\(S_Q&gt;0\)</span> means the upper quartile is farther from the median than the lower quartile.</p></li>
+<li><p><span class="math inline">\(S_Q&lt;0\)</span> means the lower quartile is farther from the median than the upper quartile.</p></li>
 </ul>
 <p>Let’s find Bowley’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>. From the cumulative frequency in <a href="#tbl-karlcf" class="quarto-xref">Table&nbsp;<span>7.3</span></a>, the quartiles can be calculated. Calculation of <span class="math inline">\({Q}_{1}\)</span>, <span class="math inline">\(Q_{2}\)</span>, <span class="math inline">\(Q_{3}\)</span> is given in <a href="central2.html#sec-quartile" class="quarto-xref"><span>Section 5.5.1</span></a>.</p>
 <p><span class="math display">\[{Q}_{1} = 60\]</span></p>
@@ -1054,26 +1087,29 @@ Table&nbsp;7.3: Cumulative frequency for skewness calculation
 <p><span class="math display">\[Q_{3} = 63\]</span></p>
 <p><span class="math display">\[S_{Q} = \frac{63 - (2 \times 61) + 60}{63 - 60} = \ \frac{1}{3} = 0.33\]</span></p>
 <p>Since <span class="math inline">\(S_{Q}\)</span> &gt; 0 means the curve is positively skewed.</p>
+<p>Bowley’s coefficient lies between -1 and 1 when <span class="math inline">\(Q_3&gt;Q_1\)</span>; it is undefined when the interquartile range is zero. Kelley’s coefficient has the same restriction using <span class="math inline">\(P_{90}-P_{10}\)</span>.</p>
 </section>
-<section id="kellys-measure-of-skewness-sp" class="level3" data-number="7.2.3">
-<h3 data-number="7.2.3" class="anchored" data-anchor-id="kellys-measure-of-skewness-sp"><span class="header-section-number">7.2.3</span> Kelly’s measure of skewness (<em>S</em><sub>p</sub>)</h3>
-<p>Bowley’s measure of skewness is based on the middle 50% of the observations; it leaves 25% of the observations on each extreme of the distribution. As an improvement over Bowley’s measure, Kelly has suggested a measure based on Percentiles, including <em>P</em><sub>10</sub> and <em>P</em><sub>90</sub> so that only 10% of the observations on each extreme are ignored.</p>
-<p><span id="eq-kellyskew"><span class="math display">\[{Kelly’s\ Measure\ of\ Skewness,\ S}_{p} = \frac{\left( P_{90} - P_{50} \right) - \left( P_{50} - P_{10} \right)}{\left( P_{90} - P_{50} \right) + \left( P_{50} - P_{10} \right)} \tag{7.5}\]</span></span></p>
+<section id="kelleys-measure-of-skewness-sp" class="level3" data-number="7.2.3">
+<h3 data-number="7.2.3" class="anchored" data-anchor-id="kelleys-measure-of-skewness-sp"><span class="header-section-number">7.2.3</span> Kelley’s measure of skewness (<em>S</em><sub>p</sub>)</h3>
+<p>Bowley’s measure of skewness is based on the middle 50% of the observations; it leaves 25% of the observations on each extreme of the distribution. As an improvement over Bowley’s measure, Kelley has suggested a measure based on Percentiles, including <em>P</em><sub>10</sub> and <em>P</em><sub>90</sub> so that only 10% of the observations on each extreme are ignored.</p>
+<p><span id="eq-kellyskew"><span class="math display">\[{Kelley’s\ Measure\ of\ Skewness,\ S}_{p} = \frac{\left( P_{90} - P_{50} \right) - \left( P_{50} - P_{10} \right)}{\left( P_{90} - P_{50} \right) + \left( P_{50} - P_{10} \right)} \tag{7.5}\]</span></span></p>
 <div id="exr-ct3" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> Try to find Kelly’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a></p>
+<p><span class="theorem-title"><strong>Exercise 7.1</strong></span> Try to find Kelley’s measure of skewness for <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a></p>
 </div>
+<p>The measure above is named after <strong>Truman L. Kelley</strong>.</p>
 </section>
 <section id="measure-based-on-moments" class="level3" data-number="7.2.4">
 <h3 data-number="7.2.4" class="anchored" data-anchor-id="measure-based-on-moments"><span class="header-section-number">7.2.4</span> Measure based on moments</h3>
 <p>Before going into measuring skewness using moments, one should know what a moment is:</p>
 <p><strong>Moments</strong></p>
-<p>The <strong><em>r</em></strong><sup><strong>th</strong></sup> <strong>moment about mean</strong> of a distribution, denoted by <span class="math inline">\(\mu_r\)</span> is given by</p>
-<p><span id="eq-moments"><span class="math display">\[\mu_{r} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{r}}}{N} \tag{7.6}\]</span></span></p>
-<p>where, <span class="math inline">\(f_{i}\)</span> is the frequency of <em>i</em><sup>th</sup> observation or class mark <span class="math inline">\(x_{i}\)</span>, <span class="math inline">\(N = \sum f_{i}\)</span>, the number of observations</p>
+<p>The <strong><em>r</em></strong><sup><strong>th</strong></sup> <strong>moment about mean</strong> of the empirical frequency distribution, denoted by <span class="math inline">\(\mu_r\)</span> is given by</p>
+<p><span id="eq-moments"><span class="math display">\[\mu_{r} = \frac{\sum_{i = 1}^{k}{f_{i}\left( x_{i} - \overline{x} \right)^{r}}}{N} \tag{7.6}\]</span></span></p>
+<p>where <span class="math inline">\(k\)</span> is the number of distinct values or classes, <span class="math inline">\(f_{i}\)</span> is the frequency of the value or class mark <span class="math inline">\(x_{i}\)</span>, <span class="math inline">\(N = \sum f_{i}\)</span>, the number of observations</p>
 <p>Moment about mean is also called as <strong>central moment</strong>.</p>
-<p>If <em>r</em> = 0, <span class="math inline">\(\mu_{0} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{0}}}{N}\)</span> = 1</p>
-<p>If <em>r</em> = 1, <span class="math inline">\(\mu_{1} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{1}}}{N}\)</span> = 0 (sum of deviation about mean is zero)</p>
-<p>If <em>r</em> = 2, <span class="math inline">\(\mu_{2} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{2}}}{N}\)</span> = <span class="math inline">\(\sigma^{2}\)</span>, Population variance</p>
+<p>If <em>r</em> = 0, <span class="math inline">\(\mu_{0} = \frac{\sum_{i = 1}^{k}{f_{i}\left( x_{i} - \overline{x} \right)^{0}}}{N}\)</span> = 1</p>
+<p>If <em>r</em> = 1, <span class="math inline">\(\mu_{1} = \frac{\sum_{i = 1}^{k}{f_{i}\left( x_{i} - \overline{x} \right)^{1}}}{N}\)</span> = 0 (sum of deviation about mean is zero)</p>
+<p>If <em>r</em> = 2, <span class="math inline">\(\mu_{2} = \frac{\sum_{i = 1}^{k}{f_{i}\left( x_{i} - \overline{x} \right)^{2}}}{N}\)</span> = the variance of the empirical distribution (divisor <span class="math inline">\(N\)</span>), not the unbiased sample variance (divisor <span class="math inline">\(N-1\)</span>)</p>
+<p>A moment about zero is called a <strong>raw moment</strong>. For the same empirical distribution, <span class="math inline">\(\mu'_r=\sum f_ix_i^r/N\)</span>, so <span class="math inline">\(\mu'_1=\bar x\)</span> and <span class="math inline">\(\mu_2=\mu'_2-(\mu'_1)^2\)</span>. Central moments of orders 3 and 4 are used below to describe skewness and kurtosis. The divisor is <span class="math inline">\(N\)</span> throughout these empirical moments, even when <span class="math inline">\(s^2\)</span> elsewhere uses <span class="math inline">\(N-1\)</span>.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1107,7 +1143,7 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 <span class="math inline">\(\left( x_{i}-\overline{x} \right)^{3}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math inline">\({f_{i}\left( x_{i}-\overline{x}\right)}^{3}\)</span>
+<span class="math inline">\(f_{i}\left( x_{i}-\overline{x}\right)^{3}\)</span>
 </th>
 </tr>
 </thead>
@@ -1120,10 +1156,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 10
 </td>
 <td style="text-align:center;">
--39.304
+-39.341103
 </td>
 <td style="text-align:center;">
--393.040
+-393.411026
 </td>
 </tr>
 <tr>
@@ -1134,10 +1170,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 18
 </td>
 <td style="text-align:center;">
--13.824
+-13.842490
 </td>
 <td style="text-align:center;">
--248.832
+-249.164811
 </td>
 </tr>
 <tr>
@@ -1148,10 +1184,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 30
 </td>
 <td style="text-align:center;">
--2.744
+-2.750294
 </td>
 <td style="text-align:center;">
--82.320
+-82.508807
 </td>
 </tr>
 <tr>
@@ -1162,10 +1198,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 42
 </td>
 <td style="text-align:center;">
--0.064
+-0.064515
 </td>
 <td style="text-align:center;">
--2.688
+-2.709619
 </td>
 </tr>
 <tr>
@@ -1176,10 +1212,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 35
 </td>
 <td style="text-align:center;">
-0.216
+0.214847
 </td>
 <td style="text-align:center;">
-7.560
+7.519644
 </td>
 </tr>
 <tr>
@@ -1190,10 +1226,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 28
 </td>
 <td style="text-align:center;">
-4.096
+4.087792
 </td>
 <td style="text-align:center;">
-114.688
+114.458164
 </td>
 </tr>
 <tr>
@@ -1204,10 +1240,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 16
 </td>
 <td style="text-align:center;">
-17.576
+17.554319
 </td>
 <td style="text-align:center;">
-281.216
+280.869105
 </td>
 </tr>
 <tr>
@@ -1218,10 +1254,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 8
 </td>
 <td style="text-align:center;">
-46.656
+46.614429
 </td>
 <td style="text-align:center;">
-373.248
+372.915436
 </td>
 </tr>
 <tr>
@@ -1232,10 +1268,10 @@ Sum
 187
 </td>
 <td style="text-align:center;">
-12.608
+12.472987
 </td>
 <td style="text-align:center;">
-49.832
+47.968086
 </td>
 </tr>
 </tbody>
@@ -1244,7 +1280,7 @@ Sum
 </figure>
 </div>
 <p>Mean = 61.40</p>
-<p><span class="math display">\[\mu_{3} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{3}}}{N} = \ \frac{49.832}{187} = 0.266\]</span></p>
+<p><span class="math display">\[\mu_{3} = \frac{\sum_i f_i(x_i-\bar{x})^3}{N} = \frac{47.968086}{187} = 0.256514\]</span></p>
 <p>In short values of following moments about mean are</p>
 <div id="tbl-momentsabtmean" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1252,7 +1288,7 @@ Sum
 Table&nbsp;7.5: Moments about mean
 </figcaption>
 <div aria-describedby="tbl-momentsabtmean-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Moments about mean</th>
@@ -1279,29 +1315,27 @@ Table&nbsp;7.5: Moments about mean
 </div>
 <section id="beta-one-and-gamma-one" class="level4">
 <h4 class="anchored" data-anchor-id="beta-one-and-gamma-one">Beta one and gamma one</h4>
-<p>The moment measure of skewness is based on the property that, for a symmetrical distribution, all odd ordered central moments are equal to zero. We note that <span class="math inline">\(\mu_{1}\)</span> = 0, for every distribution, therefore, the lowest order moment that can provide an absolute measure of skewness is <span class="math inline">\(\mu_{3}\)</span>. So measures of skewness are based on <span class="math inline">\(\mu_{3}\)</span>.</p>
+<p>The moment measure of skewness is based on the property that, for a symmetrical distribution, all existing odd-order central moments are equal to zero. We note that <span class="math inline">\(\mu_{1}\)</span> = 0, for every distribution, therefore, the lowest order moment that can provide an absolute measure of skewness is <span class="math inline">\(\mu_{3}\)</span>. So measures of skewness are based on <span class="math inline">\(\mu_{3}\)</span>.</p>
 <p><span id="eq-betaone"><span class="math display">\[\beta_{1} = \frac{\mu_{3}^{2}}{\mu_{2}^{3}} \tag{7.7}\]</span></span></p>
 <p>Pronounced as ’beta one’.</p>
-<p><span class="math inline">\(\beta_{1}\)</span>= 0 means that the curve is symmetrical. The greater the value of <span class="math inline">\(\beta_{1}\)</span> the more skewed the distribution. One serious limitation of <span class="math inline">\(\beta_{1}\)</span> is that it cannot tell the direction of skewness <em>i</em>.<em>e</em>. whether it is positive or negative. Since <span class="math inline">\(\mu_{2}\)</span> is always positive (as it is variance) and <span class="math inline">\(\mu_{3}^{2}\)</span> is positive, <span class="math inline">\(\beta_{1}\)</span> will be positive always. This drawback is removed by calculating <span class="math inline">\(\text{γ}_{1}\)</span>, called as Karl Pearson’s <span class="math inline">\(\text{γ}_{1}\)</span>, pronounced as ’gamma one’.</p>
-<p><span id="eq-gammaone"><span class="math display">\[\gamma_{1} = \sqrt{\beta_{1}} = \frac{\mu_{3}}{\mu_{2}^{3/2}} \tag{7.8}\]</span></span></p>
+<p><span class="math inline">\(\beta_{1}=0\)</span> means that the third central moment is zero; symmetry is sufficient but not necessary for this. The greater the value of <span class="math inline">\(\beta_{1}\)</span> the more skewed the distribution. One serious limitation of <span class="math inline">\(\beta_{1}\)</span> is that it cannot tell the direction of skewness <em>i</em>.<em>e</em>. whether it is positive or negative. When the variance is positive, <span class="math inline">\(\beta_1\)</span> is nonnegative; it is zero when the third central moment is zero. These standardised coefficients are undefined for a constant dataset, whose variance is zero. This drawback is removed by calculating <span class="math inline">\(\text{γ}_{1}\)</span>, called as Karl Pearson’s <span class="math inline">\(\text{γ}_{1}\)</span>, pronounced as ’gamma one’.</p>
+<p><span id="eq-gammaone"><span class="math display">\[\gamma_{1} = \frac{\mu_{3}}{\mu_{2}^{3/2}} = \operatorname{sgn}(\mu_3)\sqrt{\beta_1} \tag{7.8}\]</span></span></p>
 <p>If <span class="math inline">\(\mu_{3}\)</span> is positive <span class="math inline">\(\gamma_{1}\)</span> is positive, If <span class="math inline">\(\mu_{3}\)</span> is negative <span class="math inline">\(\gamma_{1}\)</span> is negative</p>
 <ul>
-<li><p><span class="math inline">\(\gamma_{1}\)</span>= 0 means that the curve is symmetrical.</p></li>
+<li><p><span class="math inline">\(\gamma_{1}=0\)</span> means zero third-moment skewness; this alone does not prove symmetry.</p></li>
 <li><p><span class="math inline">\(\gamma_{1}\)</span> &gt; 0 means the curve is positively skewed.</p></li>
 <li><p><span class="math inline">\(\gamma_{1}\)</span>&lt; 0 means the curve is negatively skewed.</p></li>
 </ul>
-<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>, <span class="math inline">\(\beta_{1}\)</span> and <span class="math inline">\(\gamma_{1}\)</span> can be calculated as follows</p>
-<p><span class="math inline">\(\mu_{3}\)</span> = 0.266</p>
-<p><span class="math inline">\(\mu_{2}\)</span> = 3.123</p>
-<p><span class="math inline">\(\beta_{1} = \frac{\mu_{3}^{2}}{\mu_{2}^{3}}\)</span> = <span class="math inline">\(\frac{\left( 0.266 \right)^{2}}{\left( 3.123 \right)^{3}} = \ \frac{0.071}{30.46} = 0.0023\)</span></p>
-<p><span class="math inline">\(\gamma_{1} = \sqrt{\beta_{1}} = \ \sqrt{0.0023} = + 0.05\)</span></p>
+<p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a> in <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a>, calculate the moments using <span class="math inline">\(N=187\)</span> and the unrounded mean <span class="math inline">\(11482/187\)</span>. The second central moment uses divisor <span class="math inline">\(N\)</span>, whereas the earlier unbiased sample variance uses <span class="math inline">\(N-1\)</span>.</p>
+<p><span class="math display">\[\mu_2=3.106523,\qquad \mu_3=0.256514.\]</span></p>
+<p><span class="math display">\[\beta_1=\frac{\mu_3^2}{\mu_2^3}=0.002195,\qquad \gamma_1=\frac{\mu_3}{\mu_2^{3/2}}=0.046849.\]</span></p>
 <p>Since <span class="math inline">\(\mu_{3}\)</span> is positive, <span class="math inline">\(\gamma_{1}\)</span> is also positive. Since <span class="math inline">\(\gamma_{1}\)</span> is only slightly greater than 0, the distribution is only slightly skewed to the right.</p>
 </section>
 </section>
 </section>
 <section id="kurtosis" class="level2" data-number="7.3">
 <h2 data-number="7.3" class="anchored" data-anchor-id="kurtosis"><span class="header-section-number">7.3</span> Kurtosis</h2>
-<p>Kurtosis is a statistical measure that describes the shape of a distribution’s frequency curve, focusing on its relative peakedness. While skewness measures the asymmetry or lack of symmetry in a distribution, kurtosis evaluates how sharp or flat the peak of the curve is. There are three categories of frequency curves depending upon the shape of their peak as shown in <a href="#fig-kurtopeak" class="quarto-xref">Figure&nbsp;<span>7.8</span></a>.</p>
+<p>Kurtosis is the fourth standardised central moment. It describes an aspect of distribution shape associated with tail weight and extreme observations. It is often introduced through sketches of peaked and flat curves, but peak height alone does not determine kurtosis. <a href="#fig-kurtopeak" class="quarto-xref">Figure&nbsp;<span>7.8</span></a> illustrates the traditional comparison.</p>
 <div id="fig-kurtopeak" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-kurtopeak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1312,7 +1346,8 @@ Figure&nbsp;7.8: Three categories of frequency curves
 </figcaption>
 </figure>
 </div>
-<p>Kurtosis refers to degree of flatness or peakedness of the curve. It is measured relative to the peakedness of normal curve. The normal curve is considered as <em>mesokurtic</em>. If a curve is more peaked than normal curve, it is called <em>leptokurtic</em>. If a curve is more flat-topped than normal curve, it is called <em>platykurtic</em>. The condition of peakedness (leptokurtic) or flatness (platykurtic) is called <strong>kurtosis of excess</strong>.</p>
+<p>The normal distribution has kurtosis <span class="math inline">\(\beta_2=3\)</span> and is called <em>mesokurtic</em>. A distribution with <span class="math inline">\(\beta_2&gt;3\)</span> is called <em>leptokurtic</em>, while one with <span class="math inline">\(\beta_2&lt;3\)</span> is called <em>platykurtic</em>. <strong>Excess kurtosis</strong> is the difference <span class="math inline">\(\beta_2-3\)</span>. These classifications do not, by themselves, establish symmetry or normality.</p>
+<p>The moment coefficients require the relevant moments to exist and the variance to be positive. Sample estimates may vary considerably when a few extreme observations dominate the third or fourth powers. Different measures of skewness describe different aspects of asymmetry and can give different magnitudes or even different signs.</p>
 <section id="measure-of-kurtosis" class="level3" data-number="7.3.1">
 <h3 data-number="7.3.1" class="anchored" data-anchor-id="measure-of-kurtosis"><span class="header-section-number">7.3.1</span> Measure of kurtosis</h3>
 <p>Kurtosis is measured using <span class="math inline">\(\beta_{2}\)</span> ’beta two’ and <span class="math inline">\(\gamma_{2}\)</span> ’gamma two’ given by Karl Pearson</p>
@@ -1349,7 +1384,7 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 <span class="math inline">\(\left( x_{i}-\overline{x} \right)^{4}\)</span>
 </th>
 <th style="text-align:center;">
-<span class="math inline">\({f_{i}\left( x_{i}-\overline{x}\right)}^{4}\)</span>
+<span class="math inline">\(f_{i}\left( x_{i}-\overline{x}\right)^{4}\)</span>
 </th>
 </tr>
 </thead>
@@ -1362,10 +1397,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 10
 </td>
 <td style="text-align:center;">
-133.634
+133.801825
 </td>
 <td style="text-align:center;">
-1336.336
+1338.018248
 </td>
 </tr>
 <tr>
@@ -1376,10 +1411,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 18
 </td>
 <td style="text-align:center;">
-33.178
+33.236780
 </td>
 <td style="text-align:center;">
-597.197
+598.262034
 </td>
 </tr>
 <tr>
@@ -1390,10 +1425,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 30
 </td>
 <td style="text-align:center;">
-3.842
+3.853352
 </td>
 <td style="text-align:center;">
-115.248
+115.600575
 </td>
 </tr>
 <tr>
@@ -1404,10 +1439,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 42
 </td>
 <td style="text-align:center;">
-0.026
+0.025875
 </td>
 <td style="text-align:center;">
-1.075
+1.086746
 </td>
 </tr>
 <tr>
@@ -1418,10 +1453,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 35
 </td>
 <td style="text-align:center;">
-0.130
+0.128678
 </td>
 <td style="text-align:center;">
-4.536
+4.503744
 </td>
 </tr>
 <tr>
@@ -1432,10 +1467,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 28
 </td>
 <td style="text-align:center;">
-6.554
+6.536095
 </td>
 <td style="text-align:center;">
-183.501
+183.010648
 </td>
 </tr>
 <tr>
@@ -1446,10 +1481,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 16
 </td>
 <td style="text-align:center;">
-45.698
+45.622455
 </td>
 <td style="text-align:center;">
-731.162
+729.959279
 </td>
 </tr>
 <tr>
@@ -1460,10 +1495,10 @@ frequency (<span class="math inline">\(f_{i}\)</span>)
 8
 </td>
 <td style="text-align:center;">
-167.962
+167.762091
 </td>
 <td style="text-align:center;">
-1343.693
+1342.096729
 </td>
 </tr>
 <tr>
@@ -1474,10 +1509,10 @@ Sum
 187
 </td>
 <td style="text-align:center;">
-391.021
+390.967151
 </td>
 <td style="text-align:center;">
-4312.747
+4312.538002
 </td>
 </tr>
 </tbody>
@@ -1485,11 +1520,10 @@ Sum
 </div>
 </figure>
 </div>
-<p>Mean, <span class="math inline">\(\overline{x}\)</span> = 61.40</p>
-<p><span class="math inline">\(\mu_{2}\)</span> = 3.123 (calculation shown in previous example)</p>
-<p><span class="math inline">\(\mu_{4} = \frac{\sum_{i = 1}^{N}{f_{i}\left( x_{i} - \overline{x} \right)^{4}}}{N} = \frac{4312.747}{187} = 23.063\)</span></p>
-<p><span class="math inline">\(\beta_{2} = \frac{\mu_{4}}{\mu_{2}^{2}} = \frac{23.063}{\left( 3.123 \right)^{2}} = 2.365\)</span></p>
-<p><span class="math inline">\(\beta_{2}\)</span> is 2.365, which is close to 3, distribution can be considered slightly platykurtic close to symmetric.</p>
+<p>Using the unrounded mean gives</p>
+<p><span class="math display">\[\mu_2=3.106523,\qquad \mu_4=\frac{4312.538002}{187}=23.061701.\]</span></p>
+<p><span class="math display">\[\beta_2=\frac{23.061701}{(3.106523)^2}=2.389694.\]</span></p>
+<p>The distribution is platykurtic. This calculation does not, by itself, establish symmetry.</p>
 <p>You can verify the frequency curve of <a href="#exm-ct33" class="quarto-xref">Example&nbsp;<span>7.1</span></a> <a href="#fig-freqcurvex" class="quarto-xref">Figure&nbsp;<span>7.9</span></a>, it can be seen that it is slightly right tailed (positively skewed).</p>
 <div id="fig-freqcurvex" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
 <figure class="quarto-float quarto-float-fig figure">
@@ -1512,41 +1546,20 @@ Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Exam
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>Skewness measures the degree of __________ in a distribution.</p></li>
-<li><p>Kurtosis measures the relative __________ or flatness of a distribution.</p></li>
-<li><p>A distribution that looks the same on both sides of its centre is called a __________ distribution.</p></li>
-<li><p>In a symmetric distribution, mean, median, and mode are __________.</p></li>
-<li><p>In a symmetric distribution, the coefficient of skewness is __________.</p></li>
-<li><p>A distribution with a longer tail on the left side is called __________ skewed.</p></li>
-<li><p>A distribution with a longer tail on the right side is called __________ skewed.</p></li>
-<li><p>In a negatively skewed distribution, the relationship among mean, median, and mode is __________.</p></li>
-<li><p>In a positively skewed distribution, the relationship among mean, median, and mode is __________.</p></li>
-<li><p>Karl Pearson’s coefficient of skewness is based on the difference between the __________ and __________.</p></li>
-<li><p>The sign of Karl Pearson’s coefficient indicates the __________ of skewness.</p></li>
-<li><p>A positive value of Karl Pearson’s coefficient indicates __________ skewness.</p></li>
-<li><p>A negative value of Karl Pearson’s coefficient indicates __________ skewness.</p></li>
-<li><p>Bowley’s measure of skewness is based on __________.</p></li>
-<li><p>Bowley’s measure is particularly useful when the data contain extreme values or an __________ distribution.</p></li>
-<li><p>Kelly’s measure of skewness is based on __________, including <span class="math inline">\(P_{10}\)</span> and <span class="math inline">\(P_{90}\)</span>.</p></li>
-<li><p>The <span class="math inline">\(r\)</span>th moment about the mean is called the <span class="math inline">\(r\)</span>th __________ moment.</p></li>
-<li><p>The zeroth central moment is equal to __________.</p></li>
-<li><p>The first central moment is equal to __________.</p></li>
-<li><p>The second central moment is equal to the population __________.</p></li>
-<li><p>The third central moment is the lowest-order central moment that can provide an absolute measure of __________.</p></li>
-<li><p>The measure <span class="math inline">\(\beta_1\)</span> is based on the __________ central moment and the __________ central moment.</p></li>
-<li><p><span class="math inline">\(\gamma_1\)</span> is called Karl Pearson’s __________.</p></li>
-<li><p>If <span class="math inline">\(\gamma_1&gt;0\)</span>, the distribution is __________ skewed.</p></li>
-<li><p>If <span class="math inline">\(\gamma_1&lt;0\)</span>, the distribution is __________ skewed.</p></li>
-<li><p>Kurtosis is measured using <span class="math inline">\(\beta_2\)</span> and __________.</p></li>
-<li><p>The normal curve is called __________.</p></li>
-<li><p>A curve more peaked than the normal curve is called __________.</p></li>
-<li><p>A curve flatter than the normal curve is called __________.</p></li>
-<li><p>If <span class="math inline">\(\beta_2=3\)</span>, the distribution is __________.</p></li>
-<li><p>If <span class="math inline">\(\beta_2&gt;3\)</span>, the distribution is __________.</p></li>
-<li><p>If <span class="math inline">\(\beta_2&lt;3\)</span>, the distribution is __________.</p></li>
-<li><p>If <span class="math inline">\(\gamma_2=0\)</span>, the distribution is __________.</p></li>
-<li><p>If <span class="math inline">\(\gamma_2&gt;0\)</span>, the distribution is __________.</p></li>
-<li><p>If <span class="math inline">\(\gamma_2&lt;0\)</span>, the distribution is __________.</p></li>
+<li><p>The asymmetry of a distribution is measured by __________.</p></li>
+<li><p>A distribution with a longer right tail is __________ skewed.</p></li>
+<li><p>A distribution with a longer left tail is __________ skewed.</p></li>
+<li><p>Bowley’s coefficient of skewness is based on __________.</p></li>
+<li><p>Kelley’s coefficient of skewness can be calculated using the 10th, 50th, and 90th __________.</p></li>
+<li><p>A moment calculated about the mean is called a __________ moment.</p></li>
+<li><p>The first central moment is __________.</p></li>
+<li><p>The second central moment is the population __________.</p></li>
+<li><p>The sign of the third standardised central moment indicates the direction of __________.</p></li>
+<li><p>Kurtosis is based on the __________ standardised central moment.</p></li>
+<li><p>The kurtosis coefficient <span class="math inline">\(\beta_2\)</span> of a normal distribution is __________.</p></li>
+<li><p>The excess kurtosis of a normal distribution is __________.</p></li>
+<li><p>A distribution with <span class="math inline">\(\beta_2&gt;3\)</span> is called __________.</p></li>
+<li><p>A distribution with <span class="math inline">\(\beta_2&lt;3\)</span> is called __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1562,8 +1575,8 @@ Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Exam
 <li><p>Why is the alternative Karl Pearson’s formula based on mean and median useful?</p></li>
 <li><p>Define Bowley’s measure of skewness.</p></li>
 <li><p>Explain the situations in which Bowley’s measure of skewness is useful.</p></li>
-<li><p>Define Kelly’s measure of skewness.</p></li>
-<li><p>Why does Kelly’s measure use <span class="math inline">\(P_{10}\)</span> and <span class="math inline">\(P_{90}\)</span>?</p></li>
+<li><p>Define Kelley’s measure of skewness.</p></li>
+<li><p>Why does Kelley’s measure use <span class="math inline">\(P_{10}\)</span> and <span class="math inline">\(P_{90}\)</span>?</p></li>
 <li><p>What is a central moment?</p></li>
 <li><p>Explain the first four central moments.</p></li>
 <li><p>Why is the third central moment used as a measure of skewness?</p></li>
@@ -1575,7 +1588,7 @@ Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Exam
 <li><p>Define <span class="math inline">\(\beta_2\)</span> and explain its interpretation.</p></li>
 <li><p>Define <span class="math inline">\(\gamma_2\)</span> and explain its interpretation.</p></li>
 <li><p>Distinguish between skewness and kurtosis.</p></li>
-<li><p>Compare Karl Pearson’s, Bowley’s, Kelly’s, and moment-based measures of skewness.</p></li>
+<li><p>Compare Karl Pearson’s, Bowley’s, Kelley’s, and moment-based measures of skewness.</p></li>
 </ol>
 </section>
 <section id="numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1588,9 +1601,9 @@ Figure&nbsp;7.9: Frequency curve of <a href="#exm-ct33" class="quarto-xref">Exam
 <li><p>A distribution has <span class="math inline">\(Q_1=60\)</span>, <span class="math inline">\(Q_2=61\)</span>, and <span class="math inline">\(Q_3=63\)</span>. Calculate Bowley’s coefficient of skewness and interpret the result.</p></li>
 <li><p>A distribution has <span class="math inline">\(Q_1=20\)</span>, <span class="math inline">\(Q_2=25\)</span>, and <span class="math inline">\(Q_3=35\)</span>. Calculate Bowley’s coefficient of skewness.</p></li>
 <li><p>A distribution has <span class="math inline">\(Q_1=25\)</span>, <span class="math inline">\(Q_2=35\)</span>, and <span class="math inline">\(Q_3=40\)</span>. Determine whether the distribution is positively or negatively skewed using Bowley’s measure.</p></li>
-<li><p>A distribution has <span class="math inline">\(P_{10}=20\)</span>, <span class="math inline">\(P_{50}=30\)</span>, and <span class="math inline">\(P_{90}=50\)</span>. Calculate Kelly’s measure of skewness.</p></li>
-<li><p>A distribution has <span class="math inline">\(P_{10}=15\)</span>, <span class="math inline">\(P_{50}=25\)</span>, and <span class="math inline">\(P_{90}=35\)</span>. Calculate Kelly’s measure of skewness and interpret the result.</p></li>
-<li><p>Calculate the third central moment for a frequency distribution using</p></li>
+<li><p>A distribution has <span class="math inline">\(P_{10}=20\)</span>, <span class="math inline">\(P_{50}=30\)</span>, and <span class="math inline">\(P_{90}=50\)</span>. Calculate Kelley’s measure of skewness.</p></li>
+<li><p>A distribution has <span class="math inline">\(P_{10}=15\)</span>, <span class="math inline">\(P_{50}=25\)</span>, and <span class="math inline">\(P_{90}=35\)</span>. Calculate Kelley’s measure of skewness and interpret the result.</p></li>
+<li><p>For the frequency distribution in <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a>, calculate the third central moment using</p></li>
 </ol>
 <p><span class="math display">\[
 \mu_3=\frac{\sum f_i(x_i-\bar{x})^3}{N}
@@ -1627,13 +1640,13 @@ S_Q=\frac{(Q_3-Q_2)-(Q_2-Q_1)}{(Q_3-Q_2)+(Q_2-Q_1)}
 <p><span class="math display">\[
 S_Q=\frac{Q_3-2Q_2+Q_1}{Q_3-Q_1}
 \]</span></p>
-<p>Kelly’s coefficient of skewness:</p>
+<p>Kelley’s coefficient of skewness:</p>
 <p><span class="math display">\[
 S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 \]</span></p>
 <p><span class="math inline">\(r\)</span>th central moment:</p>
 <p><span class="math display">\[
-\mu_r=\frac{\sum_{i=1}^{N}f_i(x_i-\bar{x})^r}{N}
+\mu_r=\frac{\sum_{i=1}^{k}f_i(x_i-\bar{x})^r}{N}
 \]</span></p>
 <p>Zeroth central moment:</p>
 <p><span class="math display">\[
@@ -1649,7 +1662,7 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 \]</span></p>
 <p>Third central moment:</p>
 <p><span class="math display">\[
-\mu_3=\frac{\sum_{i=1}^{N}f_i(x_i-\bar{x})^3}{N}
+\mu_3=\frac{\sum_{i=1}^{k}f_i(x_i-\bar{x})^3}{N}
 \]</span></p>
 <p>Measure of skewness based on moments:</p>
 <p><span class="math display">\[
@@ -1657,8 +1670,7 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 \]</span></p>
 <p>Karl Pearson’s <span class="math inline">\(\gamma_1\)</span>:</p>
 <p><span class="math display">\[
-\gamma_1=\sqrt{\beta_1}
-=\frac{\mu_3}{\mu_2^{3/2}}
+\gamma_1=\frac{\mu_3}{\mu_2^{3/2}}=\operatorname{sgn}(\mu_3)\sqrt{\beta_1}
 \]</span></p>
 <p>Measure of kurtosis:</p>
 <p><span class="math display">\[
@@ -1673,20 +1685,20 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 <h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
 <ul>
 <li>Skewness → degree of asymmetry of a distribution.</li>
-<li>Kurtosis → relative peakedness or flatness of a distribution.</li>
-<li>Symmetric distribution → mean = median = mode.</li>
+<li>Kurtosis → fourth standardised central moment, associated with tail behaviour and extreme observations.</li>
+<li>For a symmetric unimodal distribution with an existing mean and a unique central mode, mean = median = mode.</li>
 <li>Symmetric distribution → skewness = 0.</li>
 <li>Negatively skewed → longer left tail.</li>
-<li>Negatively skewed → mean &lt; median &lt; mode.</li>
+<li>Many unimodal left-skewed distributions have mean &lt; median &lt; mode; this is not universal.</li>
 <li>Positively skewed → longer right tail.</li>
-<li>Positively skewed → mean &gt; median &gt; mode.</li>
+<li>Many unimodal right-skewed distributions have mean &gt; median &gt; mode; this is not universal.</li>
 <li>Karl Pearson’s measure → based on mean, mode or median, and standard deviation.</li>
 <li>Bowley’s measure → based on quartiles.</li>
-<li>Kelly’s measure → based on percentiles, particularly <span class="math inline">\(P_{10}\)</span>, <span class="math inline">\(P_{50}\)</span>, and <span class="math inline">\(P_{90}\)</span>.</li>
+<li>Kelley’s measure → based on percentiles, particularly <span class="math inline">\(P_{10}\)</span>, <span class="math inline">\(P_{50}\)</span>, and <span class="math inline">\(P_{90}\)</span>.</li>
 <li>Moment-based skewness → based on the third central moment.</li>
 <li><span class="math inline">\(\beta_1\)</span> → indicates the extent of skewness but not its direction.</li>
 <li><span class="math inline">\(\gamma_1\)</span> → indicates both magnitude and direction of skewness.</li>
-<li><span class="math inline">\(\gamma_1=0\)</span> → symmetric.</li>
+<li><span class="math inline">\(\gamma_1=0\)</span> → zero third-moment skewness; symmetry is not established.</li>
 <li><span class="math inline">\(\gamma_1&gt;0\)</span> → positively skewed.</li>
 <li><span class="math inline">\(\gamma_1&lt;0\)</span> → negatively skewed.</li>
 <li><span class="math inline">\(\beta_2=3\)</span> → mesokurtic.</li>
@@ -1704,7 +1716,7 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Asymmetry <code>2.</code> Peakedness <code>3.</code> Symmetric <code>4.</code> Equal <code>5.</code> Zero <code>6.</code> Negatively <code>7.</code> Positively <code>8.</code> Mean &lt; Median &lt; Mode <code>9.</code> Mean &gt; Median &gt; Mode <code>10.</code> Mean; Mode <code>11.</code> Direction <code>12.</code> Positive <code>13.</code> Negative <code>14.</code> Quartiles <code>15.</code> Open-ended <code>16.</code> Percentiles <code>17.</code> Central <code>18.</code> 1 <code>19.</code> 0 <code>20.</code> Variance <code>21.</code> Skewness <code>22.</code> Third; Second <code>23.</code> Gamma one <code>24.</code> Positively <code>25.</code> Negatively <code>26.</code> <span class="math inline">\(\gamma_2\)</span> <code>27.</code> Mesokurtic <code>28.</code> Leptokurtic <code>29.</code> Platykurtic <code>30.</code> Mesokurtic <code>31.</code> Leptokurtic <code>32.</code> Platykurtic <code>33.</code> Mesokurtic <code>34.</code> Leptokurtic <code>35.</code> Platykurtic</p>
+<p><code>1.</code> Skewness <code>2.</code> Positively <code>3.</code> Negatively <code>4.</code> Quartiles <code>5.</code> Percentiles <code>6.</code> Central <code>7.</code> Zero <code>8.</code> Variance <code>9.</code> Skewness <code>10.</code> Fourth <code>11.</code> 3 <code>12.</code> Zero <code>13.</code> Leptokurtic <code>14.</code> Platykurtic</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1717,11 +1729,11 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 <li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span>7.4</span></a>, <span class="math inline">\(S_Q=\frac{35-2(25)+20}{35-20}=0.33\)</span>; the distribution is positively skewed.</p></li>
 <li><p>Using <a href="#eq-bowleyssk2" class="quarto-xref">Equation&nbsp;<span>7.4</span></a>, <span class="math inline">\(S_Q=\frac{40-2(35)+25}{40-25}=-0.33\)</span>; since <span class="math inline">\(S_Q&lt;0\)</span>, the distribution is negatively skewed.</p></li>
 <li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>, <span class="math inline">\(S_P=\frac{(50-30)-(30-20)}{(50-30)+(30-20)}=0.33\)</span>; the distribution is positively skewed.</p></li>
-<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>, <span class="math inline">\(S_P=\frac{(35-25)-(25-15)}{(35-25)+(25-15)}=0\)</span>; the distribution is symmetric.</p></li>
-<li><p>Using <a href="#eq-moments" class="quarto-xref">Equation&nbsp;<span>7.6</span></a> with <span class="math inline">\(r=3\)</span>: find the mean <span class="math inline">\(\bar{x}\)</span>, cube each deviation <span class="math inline">\((x_i-\bar{x})\)</span>, multiply by the frequency <span class="math inline">\(f_i\)</span>, sum, and divide by <span class="math inline">\(N\)</span>.</p></li>
+<li><p>Using <a href="#eq-kellyskew" class="quarto-xref">Equation&nbsp;<span>7.5</span></a>, <span class="math inline">\(S_P=\frac{(35-25)-(25-15)}{(35-25)+(25-15)}=0\)</span>. These percentiles are equally spaced about the median; this does not establish symmetry of the entire distribution.</p></li>
+<li><p>For <a href="#tbl-skewnessmodel" class="quarto-xref">Table&nbsp;<span>7.1</span></a>, <span class="math inline">\(N=187\)</span> and <span class="math inline">\(\bar{x}=11482/187\approx61.4011\)</span>. Using <a href="#eq-moments" class="quarto-xref">Equation&nbsp;<span>7.6</span></a>, <span class="math inline">\(\mu_3=\sum f_i(x_i-\bar{x})^3/N\approx0.2565\)</span>. Keep the mean unrounded during the calculation.</p></li>
 <li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span>7.7</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span>7.8</span></a>, <span class="math inline">\(\beta_1=\frac{2^2}{4^3}=0.0625\)</span> and <span class="math inline">\(\gamma_1=\frac{2}{4^{3/2}}=0.25\)</span>; since <span class="math inline">\(\gamma_1&gt;0\)</span>, the distribution is positively skewed.</p></li>
 <li><p>Using <a href="#eq-betaone" class="quarto-xref">Equation&nbsp;<span>7.7</span></a> and <a href="#eq-gammaone" class="quarto-xref">Equation&nbsp;<span>7.8</span></a>, <span class="math inline">\(\beta_1=\frac{(-2)^2}{5^3}=0.032\)</span> and <span class="math inline">\(\gamma_1=\frac{-2}{5^{3/2}}=-0.179\)</span>; since <span class="math inline">\(\gamma_1&lt;0\)</span>, the distribution is negatively skewed.</p></li>
-<li><p>If <span class="math inline">\(\beta_1=0\)</span>, the distribution is symmetric.</p></li>
+<li><p>If <span class="math inline">\(\beta_1=0\)</span> and the relevant moments exist with positive variance, the third central moment is zero. This does not, by itself, prove symmetry.</p></li>
 <li><p>Since <span class="math inline">\(\gamma_1=0.5&gt;0\)</span>, the distribution is positively skewed.</p></li>
 <li><p>Since <span class="math inline">\(\gamma_1=-0.5&lt;0\)</span>, the distribution is negatively skewed.</p></li>
 <li><p>Using <a href="#eq-beta2" class="quarto-xref">Equation&nbsp;<span>7.9</span></a>, <span class="math inline">\(\beta_2=\frac{48}{4^2}=3\)</span>; since <span class="math inline">\(\beta_2=3\)</span>, the distribution is mesokurtic.</p></li>
@@ -1743,7 +1755,7 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 <div class="callout-body-container callout-body">
 <p><strong>“Crabs and kurtosis”</strong></p>
 <p>The story of <strong>kurtosis</strong> and <strong>skewness</strong> begins with a fascinating scientific journey involving <strong>crabs</strong>! In the late 1800s, Karl Pearson, a pioneering statistician, worked with biologist Walter Weldon to study variations in the size of crustaceans, like crabs. They noticed that the data didn’t follow the usual normal pattern, so Pearson developed new tools to better understand the shapes of these unusual data distributions.</p>
-<p>He created the concept of <strong>skewness</strong> to measure whether the data was symmetrical or had long tails on one side. Then, he developed <strong>kurtosis</strong>, a measure of how “peaked” or “flat” the data distribution was compared to the normal curve. These ideas helped statisticians better analyze data that didn’t fit the typical patterns, paving the way for modern statistical tools we still use today! <span class="citation" data-cites="fiori2009kurtosis">(<a href="references.html#ref-fiori2009kurtosis" role="doc-biblioref">Fiori and Zenga 2009</a>)</span></p>
+<p>He created the concept of <strong>skewness</strong> to measure whether the data was symmetrical or had long tails on one side. He also developed <strong>kurtosis</strong>, a standardised fourth-moment measure sensitive to tail extremity relative to the normal distribution. These ideas helped statisticians better analyse data that didn’t fit the typical patterns, paving the way for modern statistical tools we still use today! <span class="citation" data-cites="fiori2009kurtosis">(<a href="references.html#ref-fiori2009kurtosis" role="doc-biblioref">Fiori and Zenga 2009</a>)</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1763,7 +1775,7 @@ S_P=\frac{(P_{90}-P_{50})-(P_{50}-P_{10})}{(P_{90}-P_{50})+(P_{50}-P_{10})}
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-fiori2009kurtosis" class="csl-entry" role="listitem">
 Fiori, Anna M., and Michele Zenga. 2009. <span>“Karl Pearson and the Origin of Kurtosis.”</span> <em>International Statistical Review</em> 77 (1): 40–50. <a href="https://doi.org/10.1111/j.1751-5823.2009.00076.x">https://doi.org/10.1111/j.1751-5823.2009.00076.x</a>.
 </div>
@@ -1858,7 +1870,7 @@ Fiori, Anna M., and Michele Zenga. 2009. <span>“Karl Pearson and the Origin of
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2201,16 +2213,17 @@ Fiori, Anna M., and Michele Zenga. 2009. <span>“Karl Pearson and the Origin of
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>15&nbsp; Small sample tests – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./designofexperiments.html" rel="next">
 <link href="./largeSampletest.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,13 +99,40 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -132,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="15&nbsp; Small sample tests – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="15&nbsp; Small sample tests – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -330,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -531,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -593,7 +626,7 @@ window.Quarto = {
   <li><a href="#when-the-population-variances-are-unequal" id="toc-when-the-population-variances-are-unequal" class="nav-link" data-scroll-target="#when-the-population-variances-are-unequal">When the population variances are unequal</a></li>
   </ul></li>
   <li><a href="#paired-t-test" id="toc-paired-t-test" class="nav-link" data-scroll-target="#paired-t-test"><span class="header-section-number">15.3</span> Paired t-test</a></li>
-  <li><a href="#testing-the-significance-of-a-correlation-coefficient" id="toc-testing-the-significance-of-a-correlation-coefficient" class="nav-link" data-scroll-target="#testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">15.4</span> Testing the significance of a correlation coefficient</a></li>
+  <li><a href="#sec-test-correlation" id="toc-sec-test-correlation" class="nav-link" data-scroll-target="#sec-test-correlation"><span class="header-section-number">15.4</span> Testing the significance of a correlation coefficient</a></li>
   <li><a href="#chi-square-test-chi2" id="toc-chi-square-test-chi2" class="nav-link" data-scroll-target="#chi-square-test-chi2"><span class="header-section-number">15.5</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</a>
   <ul class="collapse">
   <li><a href="#chi-square-test-for-goodness-of-fit" id="toc-chi-square-test-for-goodness-of-fit" class="nav-link" data-scroll-target="#chi-square-test-for-goodness-of-fit"><span class="header-section-number">15.5.1</span> Chi-square test for goodness of fit</a></li>
@@ -605,7 +638,9 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#decision-rule-for-the-f-test" id="toc-decision-rule-for-the-f-test" class="nav-link" data-scroll-target="#decision-rule-for-the-f-test">Decision rule for the F-test</a></li>
   </ul></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">15.7</span> Chapter Summary</a>
+  <li><a href="#confidence-interval-for-a-population-mean" id="toc-confidence-interval-for-a-population-mean" class="nav-link" data-scroll-target="#confidence-interval-for-a-population-mean"><span class="header-section-number">15.7</span> Confidence interval for a population mean</a></li>
+  <li><a href="#choosing-the-appropriate-test" id="toc-choosing-the-appropriate-test" class="nav-link" data-scroll-target="#choosing-the-appropriate-test"><span class="header-section-number">15.8</span> Choosing the appropriate test</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">15.9</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -653,10 +688,10 @@ table tbody tr:nth-child(even) {
   background-color: transparent !important;
 }
 </style>
-<p>In the previous chapter we have seen tests for samples having size larger than 30. If the sample size <span class="math inline">\(n\)</span> is less than 30 (<span class="math inline">\(n &lt; 30\)</span>), it is known as a <strong>small sample</strong>. For small samples, the sampling distributions commonly used are the <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span> and <span class="math inline">\(\chi^2\)</span> (chi-square) distributions. The study of the sampling distribution of a statistic for small samples is known as <strong>small sample theory</strong>.</p>
+<p>The previous chapter introduced large-sample normal approximations. A sample size below 30 is often called small, but 30 is not a universal boundary. The <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span> and <span class="math inline">\(\chi^2\)</span> distributions used here are also applicable to larger samples when their model assumptions hold. For small samples, those assumptions are especially important.</p>
 <section id="tests-based-on-students-t-distribution-t-tests" class="level2" data-number="15.1">
 <h2 data-number="15.1" class="anchored" data-anchor-id="tests-based-on-students-t-distribution-t-tests"><span class="header-section-number">15.1</span> Tests based on Student’s t distribution (t-tests)</h2>
-<p>The <span class="math inline">\(t\)</span>-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. distribution with different degrees of freedom is shown in <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>. As the degrees of freedom increase, the <span class="math inline">\(t\)</span> distribution converges to the standard normal distribution. <span class="math inline">\(t\)</span>-statistic can be calculated from the sample using formulas for different situations discussed below.</p>
+<p>The <span class="math inline">\(t\)</span>-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. The distribution with different degrees of freedom is shown in <a href="#fig-tdist" class="quarto-xref">Figure&nbsp;<span>15.1</span></a>. As the degrees of freedom increase, the <span class="math inline">\(t\)</span> distribution converges to the standard normal distribution. <span class="math inline">\(t\)</span>-statistic can be calculated from the sample using formulas for different situations discussed below.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="fig-tdist" class="quarto-float quarto-figure quarto-figure-center anchored">
@@ -674,12 +709,13 @@ Figure&nbsp;15.1: t distribution curves for varying degrees of freedom, compared
 <p><strong>Assumptions of the t-test</strong></p>
 <ul>
 <li><p>The parent population from which the sample is drawn is normal.</p></li>
-<li><p>The sample is a random sample.</p></li>
+<li><p>The sample is a random sample, and the observations used as independent units are independent.</p></li>
 <li><p>The population standard deviation <span class="math inline">\(\sigma\)</span> is unknown.</p></li>
 </ul>
+<p>For independent two-sample tests, observations must be independent both within and between the groups. For the paired test, the pairs must be independent and the normality assumption applies to the within-pair differences. Inspect the observations for strong skewness and unusual values, especially in small samples. If the assumptions are doubtful, a suitable transformation, a randomization test justified by the design, or an appropriate nonparametric method may be needed. Rank tests do not automatically test the same hypothesis about means.</p>
 <section id="test-for-a-single-population-mean" class="level3" data-number="15.1.1">
 <h3 data-number="15.1.1" class="anchored" data-anchor-id="test-for-a-single-population-mean"><span class="header-section-number">15.1.1</span> Test for a single population mean</h3>
-<p>Consider a population with mean <span class="math inline">\(\mu\)</span>, where <span class="math inline">\(\mu\)</span> is unknown. We take a random sample of size <span class="math inline">\(n\)</span> (<span class="math inline">\(n &lt; 30\)</span>) from the population and calculate the sample mean <span class="math inline">\(\overline{x}\)</span>. We want to test whether the population mean <span class="math inline">\(\mu\)</span> is equal to a known constant <span class="math inline">\(\mu_0\)</span>, based on the sample mean.</p>
+<p>Consider a population with mean <span class="math inline">\(\mu\)</span>, where <span class="math inline">\(\mu\)</span> is unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and calculate the sample mean <span class="math inline">\(\overline{x}\)</span>. We want to test whether the population mean <span class="math inline">\(\mu\)</span> is equal to a known constant <span class="math inline">\(\mu_0\)</span>, based on the sample mean.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = <span class="math inline">\(\mu_0\)</span></p>
 <p>The alternative hypothesis may be either:</p>
@@ -699,7 +735,7 @@ Figure&nbsp;15.1: t distribution curves for varying degrees of freedom, compared
 <li><p><span class="math inline">\(t &gt; t_{\alpha}\)</span> ; for a right-tailed test</p></li>
 <li><p><span class="math inline">\(t &lt; -t_{\alpha}\)</span> ; for a left-tailed test</p></li>
 </ul>
-<p>Here <span class="math inline">\(t_{\alpha}\)</span> or <span class="math inline">\(t_{\alpha/2}\)</span> is obtained from the table of Student’s <span class="math inline">\(t\)</span> distribution for the given degrees of freedom <span class="math inline">\(n - 1\)</span> and level of significance <span class="math inline">\(\alpha\)</span>. If the calculated value of the test statistic is greater than the critical value from the table, we reject the null hypothesis. Otherwise, we do not have enough evidence to reject it.You can see the t-table in <a href="appendix4.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>28.1</span></a> of Appendix 4</p>
+<p>Here <span class="math inline">\(t_{\alpha}\)</span> or <span class="math inline">\(t_{\alpha/2}\)</span> is obtained from the table of Student’s <span class="math inline">\(t\)</span> distribution for the given degrees of freedom <span class="math inline">\(n - 1\)</span> and level of significance <span class="math inline">\(\alpha\)</span>. Use the signed statistic for a one-tailed test and its absolute value for a two-tailed test, as specified above. Otherwise, we do not have enough evidence to reject it. You can see the t-table in <a href="appendix4.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>D.1</span></a> of <a href="appendix4.html" class="quarto-xref"><span>Appendix D</span></a></p>
 <div id="exm-tmean1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 15.1</strong></span> Based on field experiments, a new variety of green gram is expected to give a yield of 12 quintals per hectare. The variety was tested on 10 randomly selected farmers’ fields. The yields (quintals per hectare) were recorded as 14.3, 12.6, 13.7, 10.9, 13.7, 12, 11.4, 12, 12.6, and 13.1. Do the results confirm the expectation?</p>
 <p><strong>Solution</strong></p>
@@ -886,8 +922,8 @@ Yield
 <p>The test statistic is:</p>
 <p><span class="math display">\[t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfrac{1.0853}{\sqrt{10}}}\]</span></p>
 <p><span class="math display">\[= \frac{0.63}{0.3432} = 1.835\]</span></p>
-<p>The table value of <span class="math inline">\(t\)</span> for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the <a href="appendix4.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>28.1</span></a> in Appendix 4).</p>
-<p>Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare. That is null hypothesis is not rejected and the results confirm the expectation.</p>
+<p>The table value of <span class="math inline">\(t\)</span> for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the <a href="appendix4.html#tbl-ttable" class="quarto-xref">Table&nbsp;<span>D.1</span></a> in <a href="appendix4.html" class="quarto-xref"><span>Appendix D</span></a>).</p>
+<p>Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare. The null hypothesis is not rejected; this does not establish that the expected mean is exactly correct.</p>
 </div>
 <div id="exr-tmean1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.1</strong></span> The mean weekly sales of soap bars in departmental stores were 146.3 bars per store. After an advertising campaign, the mean weekly sales in 22 stores for a typical week was 153.7, with a standard deviation of 17.2. Was the advertising campaign successful? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
@@ -896,13 +932,13 @@ Yield
 </section>
 <section id="test-for-equality-of-two-means" class="level2" data-number="15.2">
 <h2 data-number="15.2" class="anchored" data-anchor-id="test-for-equality-of-two-means"><span class="header-section-number">15.2</span> Test for equality of two means</h2>
-<p>Let there be two normally distributed populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Let the population standard deviations be equal and unknown. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations, with sample means <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> respectively. We want to test whether the two population means are significantly different, based on the sample means.</p>
+<p>Let there be two normally distributed populations with means <span class="math inline">\(\mu_1\)</span> and <span class="math inline">\(\mu_2\)</span>. Let the population standard deviations be unknown. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations, with sample means <span class="math inline">\(\overline{x}_1\)</span> and <span class="math inline">\(\overline{x}_2\)</span> respectively. We want to test whether the two population means are significantly different, based on the sample means.</p>
 <p>There are two cases under this situation:</p>
 <ol type="1">
 <li><p>Population variances are equal. (Homogeneous variances)</p></li>
 <li><p>Population variances are unequal. (Heterogeneous variances)</p></li>
 </ol>
-<p>Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see <a href="#sec-ftest" class="quarto-xref"><span>Section 15.6</span></a>).</p>
+<p>The pooled t-test assumes equal population variances. When this assumption is not justified, Welch’s t-test can be used without a preliminary F-test. Choosing a t-test solely from a preliminary variance test can distort its error rate; the choice should also reflect the study design and the plausibility of the assumptions.</p>
 <section id="when-the-population-variances-are-equal-homogeneous" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="when-the-population-variances-are-equal-homogeneous">When the population variances are equal (homogeneous)</h3>
 <p>The null hypothesis to be tested is:</p>
@@ -931,8 +967,31 @@ Yield
 <p>The degrees of freedom of the Welch t-test are calculated as follows:</p>
 <p><span id="eq-welch-df"><span class="math display">\[\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\dfrac{s_1^4}{n_1^2 (n_1 - 1)} + \dfrac{s_2^4}{n_2^2 (n_2 - 1)}} \tag{15.4}\]</span></span></p>
 <p>Once the <span class="math inline">\(t\)</span> value is determined, read the critical value of Student’s <span class="math inline">\(t\)</span> distribution from the table corresponding to the significance level. The decision rule is the same as for the previous t-test (see <a href="#sec-tdecision" class="quarto-xref"><span>Section 15.1.2</span></a>).</p>
+<div id="exm-pooled-complete" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.2</strong></span> Two independent random samples of yields from normal populations have <span class="math inline">\(n_1=8\)</span>, <span class="math inline">\(\overline{x}_1=24\)</span>, <span class="math inline">\(s_1^2=9\)</span>, and <span class="math inline">\(n_2=10\)</span>, <span class="math inline">\(\overline{x}_2=20\)</span>, <span class="math inline">\(s_2^2=16\)</span>. Yield is measured in quintals per hectare. Assuming equal population variances, test whether the population means differ at the 5% level.</p>
+<p><strong>Solution</strong></p>
+<p>Null hypothesis, <span class="math inline">\(H_0:\mu_1=\mu_2\)</span>.</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1:\mu_1\neq\mu_2\)</span> (two-tailed test).</p>
+<p>The pooled variance is</p>
+<p><span class="math display">\[s^2=\frac{7(9)+9(16)}{8+10-2}=12.9375.\]</span></p>
+<p>Using <a href="#eq-t-two-equal" class="quarto-xref">Equation&nbsp;<span>15.2</span></a>,</p>
+<p><span class="math display">\[t=\frac{24-20}{\sqrt{12.9375}\sqrt{1/8+1/10}}=2.344.\]</span></p>
+<p>The degrees of freedom are <span class="math inline">\(8+10-2=16\)</span>. The two-tailed 5% critical value is 2.120. Since <span class="math inline">\(2.344&gt;2.120\)</span>, we reject <span class="math inline">\(H_0\)</span>. The population means differ significantly under the stated common-variance model. Equal population variances do not require the two sample variances to be numerically equal.</p>
+</div>
+<div id="exm-welch-complete" class="theorem example">
+<p><span class="theorem-title"><strong>Example 15.3</strong></span> Two independent random samples of plots gave the following results: <span class="math inline">\(n_1=10\)</span>, <span class="math inline">\(\overline{x}_1=25\)</span>, <span class="math inline">\(s_1=4\)</span>; <span class="math inline">\(n_2=12\)</span>, <span class="math inline">\(\overline{x}_2=21\)</span>, <span class="math inline">\(s_2=2\)</span>. Yield is measured in quintals per hectare. Assuming normal populations, test whether the population means differ at the 5% level without assuming equal variances.</p>
+<p><strong>Solution</strong></p>
+<p>Null hypothesis, <span class="math inline">\(H_0:\mu_1=\mu_2\)</span>.</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1:\mu_1\neq\mu_2\)</span> (two-tailed test).</p>
+<p>Using <a href="#eq-t-welch" class="quarto-xref">Equation&nbsp;<span>15.3</span></a>,</p>
+<p><span class="math display">\[t=\frac{25-21}{\sqrt{16/10+4/12}}=2.877.\]</span></p>
+<p>Using <a href="#eq-welch-df" class="quarto-xref">Equation&nbsp;<span>15.4</span></a>,</p>
+<p><span class="math display">\[\text{df}=\frac{(16/10+4/12)^2}{(16/10)^2/9+(4/12)^2/11}
+\approx12.69.\]</span></p>
+<p>The two-tailed 5% critical value is approximately 2.166 and the p-value is approximately 0.0132. Since <span class="math inline">\(2.877&gt;2.166\)</span>, we reject <span class="math inline">\(H_0\)</span>. The estimated difference is 4 quintals per hectare, with a higher mean in the first population. Software can use the fractional degrees of freedom directly. If only a printed table is available, using the next lower available degrees of freedom gives a conservative critical value.</p>
+</div>
 <div id="exr-tmean2" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 15.2</strong></span> In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
+<p><span class="theorem-title"><strong>Exercise 15.2</strong></span> In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. Assume the treatments were allocated to independent groups of plots. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 <p><strong>Ammonium chloride</strong>: 13.4, 10.9, 11.2, 11.8, 14, 15.3, 14.2, 12.6, 17, 16.2, 16.5, 15.7</p>
 <p><strong>Urea</strong>: 12, 11.7, 10.7, 11.2, 14.8, 14.4, 13.9, 13.7, 16.9, 16, 15.6, 16</p>
 </div>
@@ -941,6 +1000,7 @@ Yield
 <section id="paired-t-test" class="level2" data-number="15.3">
 <h2 data-number="15.3" class="anchored" data-anchor-id="paired-t-test"><span class="header-section-number">15.3</span> Paired t-test</h2>
 <p>The paired t-test is used to compare the means of two related samples, that is, when we have two values (a pair of values) for the same experimental unit. For example, suppose 20 cows receive a treatment for 3 months and the question is whether the treatment has an impact on milk yield. The milk yield of the 20 cows is measured before and after the treatment. This gives 20 values before treatment and 20 values after treatment. To test whether there is any significant difference between before and after, the paired t-test can be used, because the two sets of values being compared are related. We have a pair of values for each cow, one before and one after treatment.</p>
+<p>The number <span class="math inline">\(n\)</span> in this test is the number of pairs, not the total number of measurements. The differences should be independent between pairs and approximately normal for the exact small-sample test. Two samples of the same size are not paired unless there is a meaningful matching of their observations. In a before-and-after study without a suitable control, a significant change alone does not establish that the treatment caused it.</p>
 <p>Suppose we have two correlated random samples <span class="math inline">\(x_1, x_2, \ldots, x_n\)</span> and <span class="math inline">\(y_1, y_2, \ldots, y_n\)</span>. We want to test whether the two population means are significantly different.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1\)</span> = <span class="math inline">\(\mu_2\)</span></p>
@@ -953,7 +1013,7 @@ Yield
 <p>where <span class="math inline">\(\overline{d} = \dfrac{\sum_{i=1}^{n} d_i}{n}\)</span>, <span class="math inline">\(d_i = x_i - y_i\)</span>, and <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( d_i - \overline{d} \right)^2}{n - 1}\)</span>.</p>
 <p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. For a two-tailed test, we compare <span class="math inline">\(|t|\)</span> with the critical value. The decision rule is the same as for the previous t-test (see <a href="#sec-tdecision" class="quarto-xref"><span>Section 15.1.2</span></a>).</p>
 <div id="exm-paired1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.2</strong></span> In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.</p>
+<p><span class="theorem-title"><strong>Example 15.4</strong></span> In an experiment, plots were divided into two equal parts. One part received soil treatment A and the second part received soil treatment B. Each plot was planted with sorghum. The sorghum yield (kg/plot) was observed as shown below. Test the effectiveness of the soil treatments on sorghum yield.</p>
 <table class="caption-top table">
 <tbody>
 <tr class="odd">
@@ -1193,40 +1253,44 @@ Sl No.&nbsp;
 <p><span class="theorem-title"><strong>Exercise 15.3</strong></span> A certain stimulus administered to each of 12 patients resulted in the following increase in blood pressure: 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, 6. Can it be concluded that the stimulus is, in general, accompanied by an increase in blood pressure? (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
-<section id="testing-the-significance-of-a-correlation-coefficient" class="level2" data-number="15.4">
-<h2 data-number="15.4" class="anchored" data-anchor-id="testing-the-significance-of-a-correlation-coefficient"><span class="header-section-number">15.4</span> Testing the significance of a correlation coefficient</h2>
-<p>Let there be two normally distributed populations with correlation coefficient <span class="math inline">\(\rho\)</span>. We want to test the null hypothesis that the population correlation coefficient is zero (<span class="math inline">\(\rho = 0\)</span>). A t-test can be used for this purpose. If we reject the null hypothesis, we conclude that there is a significant correlation in the population (<span class="math inline">\(\rho \neq 0\)</span>). If we do not have enough evidence to reject the null hypothesis, we conclude that there is no significant correlation.</p>
+<section id="sec-test-correlation" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="sec-test-correlation"><span class="header-section-number">15.4</span> Testing the significance of a correlation coefficient</h2>
+<p>Let paired observations follow a bivariate normal population with correlation coefficient <span class="math inline">\(\rho\)</span>. We want to test the null hypothesis that the population correlation coefficient is zero (<span class="math inline">\(\rho = 0\)</span>). A t-test can be used for this purpose. If we reject the null hypothesis, we conclude that there is a significant correlation in the population (<span class="math inline">\(\rho \neq 0\)</span>). If we do not have enough evidence to reject the null hypothesis, we conclude that there is no significant correlation.</p>
 <p>The null hypothesis to be tested is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho\)</span> = 0</p>
 <p>The alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (two-tailed alternative)</p>
 <p>The test statistic is:</p>
 <p><span id="eq-t-corr"><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} \tag{15.6}\]</span></span></p>
-<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of <span class="math inline">\(t\)</span> corresponding to <span class="math inline">\(n - 2\)</span> degrees of freedom and the level of significance <span class="math inline">\(\alpha\)</span>. In our case <span class="math inline">\(\alpha\)</span> = 0.05. This t-test is used when the sample size is small (<span class="math inline">\(n &lt; 30\)</span>).</p>
-<p><strong>When the sample size is large (<span class="math inline">\(n \geq 30\)</span>)</strong>, the exact distribution of <span class="math inline">\(r\)</span> is no longer close to a <span class="math inline">\(t\)</span> distribution, and Fisher’s Z-transformation is preferred. The sample correlation coefficient <span class="math inline">\(r\)</span> is transformed as:</p>
+<p>Under the null hypothesis, <span class="math inline">\(t\)</span> follows a <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n - 2\)</span> degrees of freedom. For the two-tailed alternative, we reject the null hypothesis if <span class="math inline">\(|t|\)</span> is greater than the table value corresponding to <span class="math inline">\(n - 2\)</span> degrees of freedom and the level of significance <span class="math inline">\(\alpha\)</span>. In our case <span class="math inline">\(\alpha\)</span> = 0.05. Under the stated bivariate normal model, this t-test for zero correlation is exact for any sample size <span class="math inline">\(n&gt;2\)</span>.</p>
+<p><strong>Fisher’s Z-transformation</strong> provides a large-sample approximation useful for confidence intervals and tests involving correlation, including nonzero hypothesised correlations. It does not replace the exact zero-correlation t-test merely because <span class="math inline">\(n\geq30\)</span>. The sample correlation coefficient <span class="math inline">\(r\)</span> is transformed as:</p>
 <p><span id="eq-fisherz"><span class="math display">\[Z = \frac{1}{2} \ln\left( \frac{1 + r}{1 - r} \right) \tag{15.7}\]</span></span></p>
 <p>Under the null hypothesis <span class="math inline">\(H_0: \rho = 0\)</span>, the statistic <span class="math inline">\(Z\sqrt{n - 3}\)</span> follows approximately a standard normal distribution. The test statistic is therefore:</p>
 <p><span id="eq-fisherz-test"><span class="math display">\[Z_{\text{cal}} = Z \sqrt{n - 3} \tag{15.8}\]</span></span></p>
 <p>We reject the null hypothesis if <span class="math inline">\(|Z_{\text{cal}}|\)</span> exceeds the table value of the standard normal distribution at the chosen level of significance (1.96 at the 5% level, two-tailed).</p>
+<p>To test <span class="math inline">\(H_0:\rho=\rho_0\)</span>, where <span class="math inline">\(-1&lt;\rho_0&lt;1\)</span>, use</p>
+<p><span class="math display">\[Z_{\text{cal}}=\left[Z-\frac12\ln\left(\frac{1+\rho_0}{1-\rho_0}\right)\right]\sqrt{n-3}.\]</span></p>
+<p>An approximate <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval on the transformed scale is <span class="math inline">\(Z\pm Z_{\alpha/2}/\sqrt{n-3}\)</span>. Convert each endpoint <span class="math inline">\(u\)</span> back to the correlation scale using <span class="math inline">\((e^{2u}-1)/(e^{2u}+1)\)</span>. These approximations require independent pairs, a suitable bivariate normal model, <span class="math inline">\(n&gt;3\)</span> and enough observations for the approximation to be adequate. They are undefined at <span class="math inline">\(r=1\)</span> or <span class="math inline">\(r=-1\)</span>. A significant Pearson correlation indicates a linear association; it does not establish causation, and a nonsignificant result does not rule out a nonlinear relationship.</p>
 <div id="exm-corr1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.3</strong></span> A plant breeder studied the relationship between plant height and grain yield in a sample of 18 rice genotypes and obtained a correlation coefficient of 0.6. Test whether the population correlation coefficient is significant.</p>
+<p><span class="theorem-title"><strong>Example 15.5</strong></span> A plant breeder studied the relationship between plant height and grain yield in a sample of 18 rice genotypes and obtained a correlation coefficient of 0.6. Test whether the population correlation coefficient is significant.</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\rho\)</span> = 0 (population correlation coefficient is zero)</p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\rho\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0 (population correlation coefficient is not zero)</p>
 <p>Sample correlation coefficient (<span class="math inline">\(r\)</span>) = 0.6</p>
 <p>Number of pairs (<span class="math inline">\(n\)</span>) = 18</p>
-<p>Since the sample size is small (<span class="math inline">\(n &lt; 30\)</span>), the <span class="math inline">\(t\)</span>-test is used:</p>
+<p>Under the bivariate normal model, the following <span class="math inline">\(t\)</span> statistic is used to test zero correlation:</p>
 <p><span class="math display">\[t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.6 \sqrt{18 - 2}}{\sqrt{1 - 0.36}} = \frac{0.6 \times 4}{\sqrt{0.64}} = \frac{2.4}{0.8} = 3.00\]</span></p>
 <p><span class="math inline">\(t_{\text{cal}}\)</span> = 3.00. The table value of <span class="math inline">\(t\)</span> for <span class="math inline">\(n - 2 = 16\)</span> degrees of freedom at the 5% level of significance (two-tailed) is 2.120. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that there is a significant correlation between plant height and grain yield.</p>
 </div>
 </section>
 <section id="chi-square-test-chi2" class="level2" data-number="15.5">
 <h2 data-number="15.5" class="anchored" data-anchor-id="chi-square-test-chi2"><span class="header-section-number">15.5</span> Chi-square test (<span class="math inline">\(\chi^2\)</span>)</h2>
-<p>Chi-square tests are based on the sampling distribution called the chi-square distribution (<span class="math inline">\(\chi^2\)</span> distribution). The <span class="math inline">\(\chi^2\)</span> tests are based on the following assumptions:</p>
+<p>If <span class="math inline">\(Z_1,Z_2,\ldots,Z_\nu\)</span> are independent standard normal variables, then <span class="math inline">\(\sum_{i=1}^{\nu}Z_i^2\)</span> has a chi-square distribution with <span class="math inline">\(\nu\)</span> degrees of freedom. It takes only nonnegative values, has mean <span class="math inline">\(\nu\)</span> and variance <span class="math inline">\(2\nu\)</span>, and is positively skewed. The skewness decreases as the degrees of freedom increase.</p>
+<p>Chi-square tests are based on the sampling distribution called the chi-square distribution (<span class="math inline">\(\chi^2\)</span> distribution). The goodness-of-fit and independence tests for categorical counts are based on the following conditions:</p>
 <ol type="1">
 <li><p>The sample observations are independent.</p></li>
-<li><p>The total frequency should be reasonably large, say greater than 50.</p></li>
-<li><p>The theoretical cell frequencies should not be less than 5. If any theoretical cell frequency is less than 5, it is pooled with the preceding or succeeding frequency so that the pooled frequency is more than 5, and the degrees of freedom lost in pooling are adjusted.</p></li>
+<li><p>The expected frequencies must be sufficiently large for the chi-square approximation; a total sample size greater than 50 is not a universal requirement.</p></li>
+<li><p>A common introductory guideline is to have expected frequencies of at least 5. In a goodness-of-fit test, substantively appropriate adjacent categories may be combined, with degrees of freedom adjusted. In contingency tables, categories should not be combined merely to obtain significance; an exact or simulation-based test may be preferable for sparse data.</p></li>
 <li><p>The constraints on the cell frequencies should be linear, for example <span class="math inline">\(\sum O_i = \sum E_i\)</span>, where <span class="math inline">\(O_i\)</span> and <span class="math inline">\(E_i\)</span> represent the observed and expected frequencies.</p></li>
 </ol>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
@@ -1239,7 +1303,7 @@ Sl No.&nbsp;
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <span class="math inline">\(\chi^2\)</span> tests do not make any assumptions regarding the parent population from which the observations are taken. Such tests do not involve any population parameter. Hence these tests are known as <strong>non-parametric tests</strong> or <strong>distribution-free tests</strong>.</p>
+<p>Chi-square goodness-of-fit and independence tests analyse categorical counts without assuming normally distributed measurements. They still require a specified probability model and suitable expected frequencies. In contrast, the chi-square test for a population variance is a parametric test requiring a normal population.</p>
 </div>
 </div>
 <p><strong>Degrees of freedom in <span class="math inline">\(\chi^2\)</span> tests</strong>: Degrees of freedom refers to the number of independent variates that make up the statistic. In general, it is the total number of observations less the number of independent constraints imposed on the observations. For example, if <span class="math inline">\(k\)</span> is the number of independent constraints in a set of data on <span class="math inline">\(n\)</span> observations, then degrees of freedom = <span class="math inline">\(n - k\)</span>.</p>
@@ -1253,17 +1317,17 @@ Sl No.&nbsp;
 <h3 data-number="15.5.1" class="anchored" data-anchor-id="chi-square-test-for-goodness-of-fit"><span class="header-section-number">15.5.1</span> Chi-square test for goodness of fit</h3>
 <p>A very powerful test for the significance of the discrepancy between theory and experiment was given by Prof.&nbsp;Karl Pearson in 1900 and is known as the “<span class="math inline">\(\chi^2\)</span> test for goodness of fit”. <span class="citation" data-cites="Pearson1900">(<a href="references.html#ref-Pearson1900" role="doc-biblioref">Pearson 1900</a>)</span></p>
 <p>We want to test the null hypothesis:</p>
-<p><span class="math inline">\(H_0\)</span>: There is no significant difference between theory and experiment.</p>
+<p><span class="math inline">\(H_0\)</span>: The population category probabilities follow the specified theoretical distribution.</p>
 <p>against the alternative hypothesis:</p>
-<p><span class="math inline">\(H_1\)</span>: There is a significant difference between theory and experiment.</p>
+<p><span class="math inline">\(H_1\)</span>: The population category probabilities do not follow the specified theoretical distribution.</p>
 <p>If <span class="math inline">\(O_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is a set of observed frequencies and <span class="math inline">\(E_i\)</span> (<span class="math inline">\(i = 1, 2, \ldots, n\)</span>) is the corresponding set of expected (theoretical) frequencies, then Karl Pearson’s chi-square test statistic is:</p>
 <p><span id="eq-chi-gof"><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} \tag{15.9}\]</span></span></p>
-<p>Here <span class="math inline">\(O_i\)</span> represents the <span class="math inline">\(i^{\text{th}}\)</span> observed frequency and <span class="math inline">\(E_i\)</span> the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom (when no parameter is estimated from the data).</p>
+<p>Here <span class="math inline">\(O_i\)</span> represents the <span class="math inline">\(i^{\text{th}}\)</span> observed frequency and <span class="math inline">\(E_i\)</span> the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic approximately follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom when there are <span class="math inline">\(n\)</span> categories and no parameters are estimated from the data. When <span class="math inline">\(m\)</span> parameters are estimated by an appropriate fitting method, the usual degrees of freedom are <span class="math inline">\(n-1-m\)</span>.</p>
 <section id="decision-rule-for-the-goodness-of-fit-test" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-goodness-of-fit-test">Decision rule for the goodness-of-fit test</h4>
-<p>Let <span class="math inline">\(\chi^2_{\text{cal}}\)</span> be the calculated value, degrees of freedom = <span class="math inline">\(n - 1\)</span>, and <span class="math inline">\(\alpha\)</span> the level of significance. We reject the null hypothesis if <span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{\text{tab}}\)</span>, where <span class="math inline">\(\chi^2_{\text{tab}}\)</span> is the table value of <span class="math inline">\(\chi^2\)</span> at <span class="math inline">\(n - 1\)</span> degrees of freedom. In the case of the <span class="math inline">\(\chi^2\)</span> test, only a one-tailed (right-tailed) test is used.</p>
+<p>Let <span class="math inline">\(\chi^2_{\text{cal}}\)</span> be the calculated value and <span class="math inline">\(\alpha\)</span> the level of significance. Use <span class="math inline">\(n-1\)</span> degrees of freedom when all category probabilities are specified, or <span class="math inline">\(n-1-m\)</span> when <span class="math inline">\(m\)</span> parameters are estimated as described above. We reject the null hypothesis if <span class="math inline">\(\chi^2_{\text{cal}} &gt; \chi^2_{\text{tab}}\)</span>, where <span class="math inline">\(\chi^2_{\text{tab}}\)</span> is the table value of <span class="math inline">\(\chi^2\)</span> at the appropriate degrees of freedom. For this goodness-of-fit test, the rejection region is in the right tail. The chi-square test for a population variance can instead be one-sided or two-sided, depending on its alternative.</p>
 <div id="exm-gof1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.4</strong></span> In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. In a cross between parents of genetic constitution AAbb and aaBB, the phenotypes in the sample are classified as follows:</p>
+<p><span class="theorem-title"><strong>Example 15.6</strong></span> In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. Parents of genetic constitution AAbb and aaBB produce an AaBb F1 generation. After selfing or intercrossing the F1, the F2 phenotypes are classified as follows:</p>
 <table class="caption-top table">
 <tbody>
 <tr class="odd">
@@ -1398,7 +1462,7 @@ Expected (Ei)
 <span class="math inline">\(\frac{\left( \mathbf{O}_{\mathbf{i}}\mathbf{-}\mathbf{E}_{\mathbf{i}} \right)^{\mathbf{2}}}{\mathbf{E}_{\mathbf{i}}}\)</span>
 </td>
 <td style="text-align:center;">
-0.11
+0.1
 </td>
 <td style="text-align:center;">
 0.033
@@ -1410,7 +1474,7 @@ Expected (Ei)
 0.4
 </td>
 <td style="text-align:center;">
-0.676
+0.667
 </td>
 </tr>
 </tbody>
@@ -1419,11 +1483,11 @@ Expected (Ei)
 </figure>
 </div>
 <p><span class="math display">\[\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667\]</span></p>
-<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 0.667. The table value of chi-square for <span class="math inline">\(4 - 1 = 3\)</span> degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.</p>
+<p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 0.667. The table value of chi-square for <span class="math inline">\(4 - 1 = 3\)</span> degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. There is insufficient evidence of departure from the 9:3:3:1 ratio; the test does not prove the ratio.</p>
 </div>
 <div id="exr-gof1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.4</strong></span> The number of yeast cells counted in a haemocytometer is compared with the theoretical value given below. Does the experimental result support the theory? (<span class="math inline">\(\alpha = 0.05\)</span>)</p>
-<table class="caption-top table">
+<table class="compact-data-table caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Yeast per cell</th>
@@ -1562,8 +1626,8 @@ Table&nbsp;15.4: General form of an r x s contingency table
 <p><span class="math inline">\((B_j)\)</span> = the number of items possessing attribute <span class="math inline">\(B_j\)</span> (<span class="math inline">\(j = 1, 2, \ldots, s\)</span>)</p>
 <p><span class="math inline">\(\sum (A_i) = \sum (B_j) = N\)</span> is the total frequency.</p>
 <div id="exm-conting1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.5</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a 2 x 2 contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
-<table class="caption-top table">
+<p><span class="theorem-title"><strong>Example 15.7</strong></span> In order to determine the possible effect of a chemical treatment on the germination rate of cotton seeds, a pot culture experiment was conducted. The results are given below in the form of a 2 x 2 contingency table. (<span class="math inline">\(X\)</span> = germination, <span class="math inline">\(Y\)</span> = chemical treatment). Attribute <span class="math inline">\(X\)</span> has two classes, <span class="math inline">\(X_1\)</span> = germinated and <span class="math inline">\(X_2\)</span> = not germinated. Attribute <span class="math inline">\(Y\)</span> has two classes, <span class="math inline">\(Y_1\)</span> = treated and <span class="math inline">\(Y_2\)</span> = untreated.</p>
+<table class="compact-data-table caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">X/Y</th>
@@ -1627,16 +1691,23 @@ Table&nbsp;15.4: General form of an r x s contingency table
 <p>From the table, the row totals are <span class="math inline">\(R_1 = 140\)</span> (treated) and <span class="math inline">\(R_2 = 160\)</span> (untreated), and the column totals are <span class="math inline">\(C_1 = 238\)</span> (germinated) and <span class="math inline">\(C_2 = 62\)</span> (not germinated), with <span class="math inline">\(n = 300\)</span>. The expected frequency for each cell is <span class="math inline">\(E_{ij} = \dfrac{\text{(row total)} \times \text{(column total)}}{n}\)</span>:</p>
 <p><span class="math display">\[E_{11} = \frac{140 \times 238}{300} = 111.07, \qquad E_{12} = \frac{140 \times 62}{300} = 28.93\]</span></p>
 <p><span class="math display">\[E_{21} = \frac{160 \times 238}{300} = 126.93, \qquad E_{22} = \frac{160 \times 62}{300} = 33.07\]</span></p>
-<p><span class="math display">\[\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93} + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07} = 3.93\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\chi^2 &amp;= \sum \frac{(O - E)^2}{E}\\
+&amp;= \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93}\\
+&amp;\quad + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07}\\
+&amp;= 3.93
+\end{aligned}
+\]</span></p>
 <p><span class="math inline">\(\chi^2_{\text{cal}} = 3.93\)</span>. The table value of chi-square for <span class="math inline">\((2-1)(2-1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the chemical treatment significantly affects the germination rate of cotton seeds.</p>
-<p>Note that none of the four cell frequencies here is below 5, so the ordinary chi-square test applies directly; no continuity correction is needed. <a href="#sec-yates" class="quarto-xref"><span>Section 15.5.3.1</span></a> takes up the case where a cell frequency is small.</p>
+<p>All four expected frequencies exceed 5, so the ordinary chi-square approximation is reasonable. <a href="#sec-yates" class="quarto-xref"><span>Section 15.5.3.1</span></a> discusses the optional continuity correction and sparse tables. The analysis assumes independent seed outcomes; if treatment is assigned to pots and seeds within a pot are dependent, the pot must be accounted for as the experimental unit.</p>
 </div>
 </section>
 <section id="expected-frequencies" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="expected-frequencies">Expected frequencies</h4>
 <p>The expected frequency corresponding to each observed frequency <span class="math inline">\((A_i B_j)\)</span> is calculated from the formula:</p>
 <p><span id="eq-expected"><span class="math display">\[E_{ij} = \frac{(A_i)(B_j)}{N} \tag{15.10}\]</span></span></p>
-<p>where <span class="math inline">\((A_i)\)</span> is the total of the <span class="math inline">\(i\)</span>th row and <span class="math inline">\((B_j)\)</span> is the total of the <span class="math inline">\(j\)</span>th column of the contingency table, and <span class="math inline">\(N\)</span> is the grand total of all observations.</p>
+<p>where <span class="math inline">\((A_i)\)</span> is the total for class <span class="math inline">\(A_i\)</span> and <span class="math inline">\((B_j)\)</span> is the total for class <span class="math inline">\(B_j\)</span> of the contingency table, and <span class="math inline">\(N\)</span> is the grand total of all observations.</p>
 </section>
 <section id="degrees-of-freedom" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="degrees-of-freedom">Degrees of freedom</h4>
@@ -1652,9 +1723,9 @@ Table&nbsp;15.4: General form of an r x s contingency table
 <p><span id="eq-chi-indep"><span class="math display">\[\chi^2 = \sum_{i=1}^{r} \sum_{j=1}^{s} \frac{\left( O_{ij} - E_{ij} \right)^2}{E_{ij}} \tag{15.11}\]</span></span></p>
 <p>where <span class="math inline">\(O_{ij}\)</span> = observed frequencies, <span class="math inline">\(E_{ij}\)</span> = expected frequencies, <span class="math inline">\(r\)</span> = number of rows, and <span class="math inline">\(s\)</span> = number of columns.</p>
 <p>It can be verified that <span class="math inline">\(\sum_{i=1}^{r} \sum_{j=1}^{s} O_{ij} = \sum_{i=1}^{r} \sum_{j=1}^{s} E_{ij}\)</span>.</p>
-<p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\((r - 1)(s - 1)\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
+<p>Under the null hypothesis, the test statistic approximately follows a chi-square distribution with <span class="math inline">\((r - 1)(s - 1)\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
 <div id="exm-conting2" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.6</strong></span> In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.</p>
+<p><span class="theorem-title"><strong>Example 15.8</strong></span> In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.</p>
 <div id="tbl-conting2" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-conting2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1999,13 +2070,13 @@ Table&nbsp;15.8: General form of a 2×2 contingency table
 <p>The null hypothesis is <span class="math inline">\(H_0\)</span>: the two attributes are independent. The alternative hypothesis is <span class="math inline">\(H_1\)</span>: the two attributes are not independent.</p>
 <p>For a 2×2 contingency table, <span class="math inline">\(\chi^2\)</span> can be found directly using the shortcut formula:</p>
 <p><span id="eq-chi-2x2"><span class="math display">\[\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2} \tag{15.12}\]</span></span></p>
-<p>Under the null hypothesis, the statistic follows a chi-square distribution with <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom.</p>
+<p>Under the null hypothesis, the statistic approximately follows a chi-square distribution with <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom.</p>
 <section id="sec-yates" class="level4">
 <h4 class="anchored" data-anchor-id="sec-yates">Yates’ correction for continuity</h4>
-<p>In a 2×2 contingency table, the number of degrees of freedom is <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span>. If any one of the cell frequencies is less than 5, then pooling would result in <span class="math inline">\(\chi^2\)</span> with 0 degrees of freedom, which is meaningless. In this case we apply a correction due to Yates, known as <strong>Yates’ correction for continuity</strong>. The correction is made by subtracting <span class="math inline">\(n/2\)</span> from the absolute value of <span class="math inline">\((ad - bc)\)</span>. The modified test statistic is:</p>
-<p><span id="eq-yates"><span class="math display">\[\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2} \tag{15.13}\]</span></span></p>
+<p>Yates’ continuity correction is an optional adjustment to the chi-square approximation for a 2×2 table. Its use is not determined simply by an observed count being less than 5. Adequacy of the approximation depends on expected frequencies; Fisher’s exact test is an alternative for sparse tables. Pooling is generally inappropriate if it removes the scientific comparison of interest. The continuity-corrected statistic, with the correction capped to prevent a negative adjusted discrepancy, is:</p>
+<p><span id="eq-yates"><span class="math display">\[\chi^2 = \frac{n\left[\max\left(0,\left|ad-bc\right|-\dfrac{n}{2}\right)\right]^2}{C_1 C_2 R_1 R_2} \tag{15.13}\]</span></span></p>
 <div id="exm-yates1" class="theorem example">
-<p><span class="theorem-title"><strong>Example 15.7</strong></span> In a field trial to study the effect of a bio-pesticide on aphid infestation in okra, 50 plants were treated with the bio-pesticide and 50 were left untreated as controls. The number of plants showing aphid infestation was recorded, as shown below.</p>
+<p><span class="theorem-title"><strong>Example 15.9</strong></span> In a field trial to study the effect of a bio-pesticide on aphid infestation in okra, 50 plants were treated with the bio-pesticide and 50 were left untreated as controls. The number of plants showing aphid infestation was recorded, as shown below.</p>
 <div id="tbl-yatesdata" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-yatesdata-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -2047,14 +2118,14 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 </div>
 <p><span class="math inline">\(H_0\)</span>: The bio-pesticide has no effect on aphid infestation (the attributes are independent).</p>
 <p><span class="math inline">\(H_1\)</span>: The bio-pesticide affects aphid infestation.</p>
-<p>Here <span class="math inline">\(a = 4\)</span>, <span class="math inline">\(b = 46\)</span>, <span class="math inline">\(c = 18\)</span>, <span class="math inline">\(d = 32\)</span>, <span class="math inline">\(R_1 = 50\)</span>, <span class="math inline">\(R_2 = 50\)</span>, <span class="math inline">\(C_1 = 22\)</span>, <span class="math inline">\(C_2 = 78\)</span>, and <span class="math inline">\(n = 100\)</span>. Since one of the cell frequencies (<span class="math inline">\(a = 4\)</span>) is less than 5, Yates’ correction for continuity is applied.</p>
+<p>Here <span class="math inline">\(a = 4\)</span>, <span class="math inline">\(b = 46\)</span>, <span class="math inline">\(c = 18\)</span>, <span class="math inline">\(d = 32\)</span>, <span class="math inline">\(R_1 = 50\)</span>, <span class="math inline">\(R_2 = 50\)</span>, <span class="math inline">\(C_1 = 22\)</span>, <span class="math inline">\(C_2 = 78\)</span>, and <span class="math inline">\(n = 100\)</span>. The expected frequencies are 11 and 39 in each row, so a chi-square approximation is reasonable. Yates’ correction is applied here to illustrate the continuity-corrected calculation.</p>
 <p><span class="math display">\[\chi^2 = \frac{100\left( \left| 4 \times 32 - 46 \times 18 \right| - \dfrac{100}{2} \right)^2}{22 \times 78 \times 50 \times 50}\]</span></p>
 <p><span class="math display">\[= \frac{100\left( \left| 128 - 828 \right| - 50 \right)^2}{4{,}290{,}000} = \frac{100 \times 650^2}{4{,}290{,}000} = 9.85\]</span></p>
 <p><span class="math inline">\(\chi^2_{\text{cal}}\)</span> = 9.85. The table value of chi-square for <span class="math inline">\((2 - 1)(2 - 1) = 1\)</span> degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the bio-pesticide significantly reduces aphid infestation in okra.</p>
 </div>
 <div id="exr-yates1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.5</strong></span> In an experiment on the effect of a growth regulator on fruit setting in muskmelon, the following results were obtained. Test whether fruit setting in muskmelon and the application of the growth regulator are independent at the 5% level.</p>
-<table class="caption-top table">
+<table class="compact-data-table caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"></th>
@@ -2082,11 +2153,18 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 <h3 data-number="15.5.4" class="anchored" data-anchor-id="chi-square-test-for-a-population-variance"><span class="header-section-number">15.5.4</span> Chi-square test for a population variance</h3>
 <p>Consider a normal population with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, where both are unknown. We take a random sample of size <span class="math inline">\(n\)</span> from the population and want to test whether the population variance <span class="math inline">\(\sigma^2\)</span> is equal to a known constant <span class="math inline">\(\sigma_0^2\)</span>, based on the sample variance.</p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma^2\)</span> = <span class="math inline">\(\sigma_0^2\)</span></p>
-<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma^2\)</span> &gt; <span class="math inline">\(\sigma_0^2\)</span></p>
+<p>The alternative hypothesis may be <span class="math inline">\(H_1:\sigma^2&gt;\sigma_0^2\)</span>, <span class="math inline">\(H_1:\sigma^2&lt;\sigma_0^2\)</span>, or <span class="math inline">\(H_1:\sigma^2\neq\sigma_0^2\)</span>.</p>
 <p>The test statistic is:</p>
 <p><span id="eq-chi-var"><span class="math display">\[\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2} \tag{15.14}\]</span></span></p>
 <p>where <span class="math inline">\(s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}\)</span> is the sample variance.</p>
-<p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\(n - 1\)</span> degrees of freedom. The decision rule is the same as for the goodness-of-fit test.</p>
+<p>Under the null hypothesis, the test statistic follows a chi-square distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. This exact result requires independent observations from a normal population.</p>
+<p>Let <span class="math inline">\(\chi^2_{\gamma,\nu}\)</span> denote the critical value with probability <span class="math inline">\(\gamma\)</span> to its right, for <span class="math inline">\(\nu=n-1\)</span> degrees of freedom. The rejection rules are:</p>
+<ul>
+<li>For <span class="math inline">\(H_1:\sigma^2&gt;\sigma_0^2\)</span>, reject if <span class="math inline">\(\chi^2&gt;\chi^2_{\alpha,\nu}\)</span>.</li>
+<li>For <span class="math inline">\(H_1:\sigma^2&lt;\sigma_0^2\)</span>, reject if <span class="math inline">\(\chi^2&lt;\chi^2_{1-\alpha,\nu}\)</span>.</li>
+<li>For <span class="math inline">\(H_1:\sigma^2\neq\sigma_0^2\)</span>, reject below <span class="math inline">\(\chi^2_{1-\alpha/2,\nu}\)</span> or above <span class="math inline">\(\chi^2_{\alpha/2,\nu}\)</span>.</li>
+</ul>
+<p>The two-sided critical values are not symmetric because the chi-square distribution is not symmetric. For example, with <span class="math inline">\(n=15\)</span>, <span class="math inline">\(s^2=12.5\)</span> and <span class="math inline">\(\sigma_0^2=10\)</span>, the statistic is <span class="math inline">\(14(12.5)/10=17.5\)</span>. At the two-sided 5% level, the critical values for 14 degrees of freedom are 5.629 and 26.119. Since 17.5 lies between them, we do not reject <span class="math inline">\(H_0\)</span>.</p>
 <div id="exr-chivar1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.6</strong></span> Test the null hypothesis that <span class="math inline">\(\sigma^2\)</span> = 0.16 against the alternative hypothesis <span class="math inline">\(\sigma^2\)</span> &gt; 0.16, given that <span class="math inline">\(s^2\)</span> = 0.01719 for a random sample of size 11 from a normal population. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
@@ -2094,79 +2172,63 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 </section>
 <section id="sec-ftest" class="level2" data-number="15.6">
 <h2 data-number="15.6" class="anchored" data-anchor-id="sec-ftest"><span class="header-section-number">15.6</span> F-test for equality of two population variances</h2>
+<p>If <span class="math inline">\(U\)</span> and <span class="math inline">\(V\)</span> are independent chi-square variables with <span class="math inline">\(\nu_1\)</span> and <span class="math inline">\(\nu_2\)</span> degrees of freedom, then <span class="math inline">\((U/\nu_1)/(V/\nu_2)\)</span> has an <span class="math inline">\(F\)</span> distribution. The numerator and denominator degrees of freedom must be stated in that order. The distribution takes positive values and is generally positively skewed. Interchanging the variances gives the reciprocal ratio and interchanges the degrees of freedom.</p>
 <p>Let there be two normally distributed populations with variances <span class="math inline">\(\sigma_1^2\)</span> and <span class="math inline">\(\sigma_2^2\)</span> respectively. Let samples of sizes <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> be taken from these populations. We want to test whether the two population variances are significantly different, based on the sample variances.</p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma_1^2\)</span> = <span class="math inline">\(\sigma_2^2\)</span></p>
-<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1^2\)</span> &gt; <span class="math inline">\(\sigma_2^2\)</span></p>
-<p>The test statistic (taking the larger sample variance in the numerator) is:</p>
-<p><span id="eq-f"><span class="math display">\[F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 &gt; s_2^2 \tag{15.15}\]</span></span></p>
-<p>Under the null hypothesis, the test statistic follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span> degrees of freedom.</p>
+<p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1^2\)</span> <span class="math inline">\(\neq\)</span> <span class="math inline">\(\sigma_2^2\)</span></p>
+<p>With the population labels fixed in advance, the test statistic is:</p>
+<p><span id="eq-f"><span class="math display">\[F = \frac{s_1^2}{s_2^2} \tag{15.15}\]</span></span></p>
+<p>For independent samples from normal populations, this ratio has an <span class="math inline">\(F\)</span> distribution under <span class="math inline">\(H_0\)</span>, with <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span> degrees of freedom.</p>
+<p>The variance-ratio <span class="math inline">\(F\)</span>-test is sensitive to departures from normality. For non-normal populations, Levene’s test or its median-based form is often more suitable for comparing variances. A large sample alone does not make the exact normal-population <span class="math inline">\(F\)</span> test valid for arbitrary distributions.</p>
 <section id="decision-rule-for-the-f-test" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="decision-rule-for-the-f-test">Decision rule for the F-test</h3>
-<p>If the calculated value is greater than the table value of <span class="math inline">\(F\)</span> at the specified level of significance and the two degrees of freedom (that is, <span class="math inline">\(n_1 - 1\)</span> and <span class="math inline">\(n_2 - 1\)</span>), we reject the null hypothesis. You can see the F-table for 5% level of significance <a href="appendix5.html" class="quarto-xref"><span>Chapter 29</span></a>.</p>
-<div class="callout callout-style-default callout-note callout-titled" title="Note">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The larger sample variance is always placed in the numerator so that <span class="math inline">\(F \geq 1\)</span>. If <span class="math inline">\(s_2^2 &gt; s_1^2\)</span>, then the test statistic is <span class="math inline">\(F = \dfrac{s_2^2}{s_1^2}\)</span>, which follows an <span class="math inline">\(F\)</span> distribution with <span class="math inline">\(n_2 - 1\)</span> and <span class="math inline">\(n_1 - 1\)</span> degrees of freedom.</p>
-</div>
-</div>
+<p>For the two-sided alternative, reject <span class="math inline">\(H_0\)</span> if the ratio is below the lower <span class="math inline">\(\alpha/2\)</span> critical value or above the upper <span class="math inline">\(\alpha/2\)</span> critical value. If the larger sample variance is placed in the numerator for convenience, use the upper-tail <span class="math inline">\(\alpha/2\)</span> critical value with degrees of freedom corresponding to the numerator and denominator samples. A pre-specified one-sided alternative uses the appropriate single tail at level <span class="math inline">\(\alpha\)</span>. The 5% upper-tail F-table is in <a href="appendix5.html" class="quarto-xref"><span>Appendix E</span></a>; a two-sided 5% test needs 2.5% upper-tail critical values.</p>
 <div id="exr-fvar1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 15.7</strong></span> For a random sample from one normal population, <span class="math inline">\(n_1\)</span> = 11 and <span class="math inline">\(s_1^2\)</span> = 21.87. For another random sample from a second normal population, <span class="math inline">\(n_2\)</span> = 8 and <span class="math inline">\(s_2^2\)</span> = 15.36. Test the equality of variances. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
 </section>
-<section id="chapter-summary" class="level2" data-number="15.7">
-<h2 data-number="15.7" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">15.7</span> Chapter Summary</h2>
+<section id="confidence-interval-for-a-population-mean" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="confidence-interval-for-a-population-mean"><span class="header-section-number">15.7</span> Confidence interval for a population mean</h2>
+<p>A significance test addresses a specified value of a population parameter. A <strong>confidence interval</strong> also shows the range of parameter values compatible with the data and the assumed model. For independent observations from a normal population with unknown standard deviation, a <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval for the mean is</p>
+<p><span id="eq-mean-confidence"><span class="math display">\[
+\bar x\ \pm\ t_{\alpha/2,\,n-1}\frac{s}{\sqrt n},
+\tag{15.16}\]</span></span></p>
+<p>where <span class="math inline">\(t_{\alpha/2,\,n-1}\)</span> is the upper-tail critical value. In <a href="#exm-tmean1" class="quarto-xref">Example&nbsp;<span>15.1</span></a>, <span class="math inline">\(\bar x=12.63\)</span>, <span class="math inline">\(s=1.0853\)</span> and <span class="math inline">\(n=10\)</span>. The 95% confidence interval is</p>
+<p><span class="math display">\[12.63\pm2.262\frac{1.0853}{\sqrt{10}}
+\approx(11.85,\ 13.41)\text{ quintals per hectare}.\]</span></p>
+<p>Because 12 lies within this interval, the corresponding two-sided 5% t-test does not reject <span class="math inline">\(\mu=12\)</span>. A 95% confidence procedure covers the fixed population mean in 95% of repeated samples under its assumptions; this is not a 95% probability assigned to the fixed mean after the interval has been calculated.</p>
+<p>For two independent means, a confidence interval for <span class="math inline">\(\mu_1-\mu_2\)</span> is</p>
+<p><span class="math display">\[ (\overline{x}_1-\overline{x}_2)\pm t_{\alpha/2,\nu}\,\text{S.E.}.\]</span></p>
+<p>For the pooled test, use <span class="math inline">\(\text{S.E.}=s\sqrt{1/n_1+1/n_2}\)</span> and <span class="math inline">\(\nu=n_1+n_2-2\)</span>. For Welch’s test, use <span class="math inline">\(\text{S.E.}=\sqrt{s_1^2/n_1+s_2^2/n_2}\)</span> and the degrees of freedom in <a href="#eq-welch-df" class="quarto-xref">Equation&nbsp;<span>15.4</span></a>. For paired observations, the interval for the mean difference is <span class="math inline">\(\overline{d}\pm t_{\alpha/2,n-1}s/\sqrt{n}\)</span>, where <span class="math inline">\(s\)</span> is the standard deviation of the differences. The pooled and paired intervals are exact under their normal models; the Welch interval is approximate.</p>
+<p>In <a href="#exm-welch-complete" class="quarto-xref">Example&nbsp;<span>15.3</span></a>, the 95% confidence interval is <span class="math inline">\(4\pm2.166\sqrt{16/10+4/12}\)</span>, or approximately <span class="math inline">\((0.99,7.01)\)</span> quintals per hectare. It excludes zero, agreeing with the two-sided test.</p>
+</section>
+<section id="choosing-the-appropriate-test" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="choosing-the-appropriate-test"><span class="header-section-number">15.8</span> Choosing the appropriate test</h2>
+<p>For one mean with unknown population standard deviation, use the one-sample <span class="math inline">\(t\)</span>-test. For two independent means, use the pooled test when a common variance is justified, or Welch’s test when it is not. For matched measurements, use the paired test on the differences. Equal sample sizes alone do not determine this choice.</p>
+<p>For categorical counts, use goodness of fit to compare one classification with specified probabilities, and a contingency-table test to study association between two classifications. The same contingency-table calculation can compare category proportions across independently sampled groups; this is called a test of homogeneity. Each independent unit must contribute to only one cell. Paired binary observations require a paired method, such as McNemar’s test, rather than the ordinary independence test.</p>
+<p>For one normal-population variance, use the chi-square variance test; for the ratio of two independent normal-population variances, use the <span class="math inline">\(F\)</span>-test. These are different applications from chi-square tests on counts and from the ANOVA <span class="math inline">\(F\)</span>-test discussed later.</p>
+<p>For each test, report the statistic, degrees of freedom where applicable, p-value or critical value, and the conclusion in terms of the population parameter. Also report the estimated effect and a confidence interval where appropriate. Repeated testing of many hypotheses increases the chance of false rejections; a collection of treatment comparisons should be planned and analysed with an appropriate multiple-comparison procedure.</p>
+</section>
+<section id="chapter-summary" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">15.9</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A sample with size less than __________ is generally called a small sample.</p></li>
-<li><p>The study of sampling distributions for small samples is called __________ sample theory.</p></li>
-<li><p>The three important sampling distributions used in small-sample tests are the __________, __________, and __________ distributions.</p></li>
-<li><p>Student’s <span class="math inline">\(t\)</span>-test is mainly used when the population standard deviation is __________.</p></li>
-<li><p>One of the important assumptions of the <span class="math inline">\(t\)</span>-test is that the parent population is __________.</p></li>
-<li><p>The sample used in a <span class="math inline">\(t\)</span>-test should be a __________ sample.</p></li>
-<li><p>For a one-sample <span class="math inline">\(t\)</span>-test, the degrees of freedom are __________.</p></li>
-<li><p>The null hypothesis for testing a single population mean is <span class="math inline">\(H_0:\mu=\)</span> __________.</p></li>
-<li><p>The test statistic for a single population mean is based on the sample mean and sample __________.</p></li>
-<li><p>When comparing two means with equal population variances, the __________ variance is used.</p></li>
-<li><p>When two population variances are unequal, the appropriate test for comparing two means is the __________ <span class="math inline">\(t\)</span>-test.</p></li>
-<li><p>The degrees of freedom for the equal-variance two-sample <span class="math inline">\(t\)</span>-test are __________.</p></li>
-<li><p>The degrees of freedom for the Welch <span class="math inline">\(t\)</span>-test are calculated using the __________ formula.</p></li>
-<li><p>The paired <span class="math inline">\(t\)</span>-test is used when the two observations being compared are __________.</p></li>
-<li><p>In a paired <span class="math inline">\(t\)</span>-test, <span class="math inline">\(d_i\)</span> represents the __________ between the two paired observations.</p></li>
-<li><p>The degrees of freedom for a paired <span class="math inline">\(t\)</span>-test are __________.</p></li>
-<li><p>To test whether a population correlation coefficient is zero, the test statistic follows a __________ distribution.</p></li>
-<li><p>The null hypothesis for testing the significance of a correlation coefficient is <span class="math inline">\(H_0:\rho=\)</span> __________.</p></li>
-<li><p>The degrees of freedom for testing the significance of a correlation coefficient are __________.</p></li>
-<li><p>The chi-square test is based on the __________ distribution.</p></li>
-<li><p>Chi-square tests are generally classified as __________-parametric tests.</p></li>
-<li><p>The chi-square test for goodness of fit compares observed frequencies with __________ frequencies.</p></li>
-<li><p>The chi-square goodness-of-fit test was developed by __________.</p></li>
-<li><p>The chi-square goodness-of-fit statistic is calculated using the differences between __________ and __________ frequencies.</p></li>
-<li><p>In the goodness-of-fit test, if no parameter is estimated from the data, the degrees of freedom are __________.</p></li>
-<li><p>The chi-square goodness-of-fit test is a __________-tailed test.</p></li>
-<li><p>The chi-square test of independence is used to determine whether two __________ are independent.</p></li>
-<li><p>Data for a chi-square test of independence are usually arranged in a __________ table.</p></li>
-<li><p>The expected frequency in a contingency table is obtained by multiplying the corresponding __________ total and __________ total and dividing by the grand total.</p></li>
-<li><p>The degrees of freedom for an <span class="math inline">\(r\times s\)</span> contingency table are __________.</p></li>
-<li><p>In a 2×2 contingency table, the degrees of freedom are __________.</p></li>
-<li><p>Yates’ correction is used for a __________ contingency table when a cell frequency is less than 5.</p></li>
-<li><p>In the chi-square test for a population variance, the null hypothesis is <span class="math inline">\(H_0:\sigma^2=\)</span> __________.</p></li>
-<li><p>The test statistic for testing a population variance follows a chi-square distribution with __________ degrees of freedom.</p></li>
-<li><p>The <span class="math inline">\(F\)</span>-test is used to test the equality of two population __________.</p></li>
-<li><p>In the <span class="math inline">\(F\)</span>-test, the __________ sample variance is placed in the numerator.</p></li>
-<li><p>Placing the larger sample variance in the numerator ensures that <span class="math inline">\(F\)</span> is __________ than or equal to 1.</p></li>
-<li><p>The degrees of freedom of the <span class="math inline">\(F\)</span> distribution are __________ and __________.</p></li>
-<li><p>The <span class="math inline">\(t\)</span> distribution was developed by William Sealy __________.</p></li>
-<li><p>Gosset published his work under the pen name __________.</p></li>
+<li><p>For a normal population with unknown variance, the standardised sample mean follows Student’s __________ distribution.</p></li>
+<li><p>The degrees of freedom of a one-sample t-test are __________.</p></li>
+<li><p>The two-sample t-test assuming equal population variances uses a __________ variance estimate.</p></li>
+<li><p>The two-sample t-test that does not assume equal population variances is called __________ t-test.</p></li>
+<li><p>The t-test based on within-pair differences is called the __________ t-test.</p></li>
+<li><p>For <span class="math inline">\(n\)</span> independent pairs, the paired t-test has __________ degrees of freedom.</p></li>
+<li><p>For testing zero Pearson correlation under a bivariate normal model, the t-test has __________ degrees of freedom.</p></li>
+<li><p>A test comparing observed and expected category frequencies is called a chi-square __________-of-fit test.</p></li>
+<li><p>The expected cell frequency under independence equals the row total multiplied by the column total and divided by the __________ total.</p></li>
+<li><p>The degrees of freedom for independence in an <span class="math inline">\(r\times s\)</span> table are __________.</p></li>
+<li><p>For a normal population, the variance test uses the __________ distribution.</p></li>
+<li><p>The ratio of two independent sample variances from normal populations is tested using the __________ distribution.</p></li>
+<li><p>Student was the pen name of William Sealy __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -2196,7 +2258,7 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 <li><p>What are the degrees of freedom for testing the significance of a correlation coefficient?</p></li>
 <li><p>Define the chi-square distribution.</p></li>
 <li><p>State the assumptions of the chi-square test.</p></li>
-<li><p>Why are chi-square tests called non-parametric or distribution-free tests?</p></li>
+<li><p>Distinguish chi-square tests for categorical counts from the chi-square test for a normal population variance.</p></li>
 <li><p>What is meant by degrees of freedom in a chi-square test?</p></li>
 <li><p>List the three important chi-square tests discussed in the chapter.</p></li>
 <li><p>Explain the chi-square goodness-of-fit test.</p></li>
@@ -2228,7 +2290,7 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 <li><p>A new variety of green gram is expected to produce 12 quintals per hectare. A random sample of 10 farmers’ fields gives yields of 14.3, 12.6, 13.7, 10.9, 13.7, 12, 11.4, 12, 12.6, and 13.1 quintals per hectare. Test whether the results confirm the expectation at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>The mean weekly sales of soap bars before an advertising campaign was 146.3 bars per store. After the campaign, the mean weekly sales in 22 stores was 153.7 with standard deviation 17.2. Test whether the advertising campaign was successful at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>Two sources of nitrogen, ammonium chloride and urea, were compared for paddy grain yield. Test whether the two sources differ in effectiveness at <span class="math inline">\(\alpha=0.05\)</span> using the data given in the chapter.</p></li>
-<li><p>Explain why an <span class="math inline">\(F\)</span>-test is performed before choosing between the equal-variance and unequal-variance two-sample <span class="math inline">\(t\)</span>-tests.</p></li>
+<li><p>State the variance assumption of the pooled two-sample t-test. Explain when Welch’s t-test is appropriate and whether a preliminary F-test is required.</p></li>
 <li><p>Two related treatments are applied to the same experimental units. Explain why an ordinary two-sample <span class="math inline">\(t\)</span>-test is not appropriate and why a paired <span class="math inline">\(t\)</span>-test should be used.</p></li>
 <li><p>Soil treatments A and B gave paired yields of 49, 53, 51, 52, 47, 50, 52, 53 and 52, 55, 52, 53, 50, 54, 54, 53 kg/plot, respectively. Test whether the treatments differ significantly at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A stimulus administered to each of 12 patients produced changes in blood pressure of 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, and 6. Test whether the stimulus is associated with an increase in blood pressure at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
@@ -2237,7 +2299,7 @@ Table&nbsp;15.9: Effect of a bio-pesticide on aphid infestation in okra
 <li><p>Observed frequencies of yeast cells are 103, 143, 98, 42, 8, and 6, while the corresponding expected frequencies are 106, 141, 93, 41, 14, and 5. Test the goodness of fit at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A survey classifies farms according to tenure status and soil fertility. Test whether tenure status and soil fertility are independent using the contingency table given in the chapter.</p></li>
 <li><p>For a 2×2 contingency table with frequencies <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, and <span class="math inline">\(d\)</span>, derive the shortcut formula for the chi-square statistic.</p></li>
-<li><p>In a 2×2 contingency table, one of the cell frequencies is less than 5. Explain why Yates’ correction is required.</p></li>
+<li><p>Distinguish between observed and expected cell frequencies when assessing a chi-square approximation. Explain the roles of Yates’ correction and Fisher’s exact test in a 2×2 table.</p></li>
 <li><p>Test the null hypothesis <span class="math inline">\(\sigma^2=0.16\)</span> against the alternative <span class="math inline">\(\sigma^2&gt;0.16\)</span> when <span class="math inline">\(s^2=0.01719\)</span> and <span class="math inline">\(n=11\)</span> at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>Two samples from normal populations have <span class="math inline">\(n_1=11\)</span>, <span class="math inline">\(s_1^2=21.87\)</span>, <span class="math inline">\(n_2=8\)</span>, and <span class="math inline">\(s_2^2=15.36\)</span>. Test the equality of population variances at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A sample of 15 observations has sample variance 12.5. Test whether the population variance is 10 at the 5% level using the appropriate chi-square test.</p></li>
@@ -2315,8 +2377,9 @@ df=n-2
 \]</span></p>
 <p>Degrees of freedom for goodness-of-fit test:</p>
 <p><span class="math display">\[
-df=n-1
+df=n-1-m
 \]</span></p>
+<p>Here <span class="math inline">\(n\)</span> is the number of categories and <span class="math inline">\(m\)</span> is the number of parameters estimated from the data; use <span class="math inline">\(m=0\)</span> when all probabilities are specified.</p>
 <p>Expected frequency in an <span class="math inline">\(r\times s\)</span> contingency table:</p>
 <p><span class="math display">\[
 E_{ij}=\frac{(A_i)(B_j)}{N}
@@ -2335,7 +2398,7 @@ df=(r-1)(s-1)
 \]</span></p>
 <p>Yates’ corrected chi-square statistic:</p>
 <p><span class="math display">\[
-\chi^2=\frac{n\left(|ad-bc|-\frac{n}{2}\right)^2}{C_1C_2R_1R_2}
+\chi^2=\frac{n[\max(0,|ad-bc|-n/2)]^2}{C_1C_2R_1R_2}
 \]</span></p>
 <p>Chi-square test statistic for population variance:</p>
 <p><span class="math display">\[
@@ -2347,7 +2410,7 @@ df=n-1
 \]</span></p>
 <p><span class="math inline">\(F\)</span> statistic:</p>
 <p><span class="math display">\[
-F=\frac{s_1^2}{s_2^2},\quad s_1^2&gt;s_2^2
+F=\frac{s_1^2}{s_2^2}
 \]</span></p>
 <p>Degrees of freedom for <span class="math inline">\(F\)</span> test:</p>
 <p><span class="math display">\[
@@ -2357,11 +2420,11 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <section id="quick-revision" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
 <ul>
-<li>Small sample → generally <span class="math inline">\(n&lt;30\)</span>.</li>
+<li>Small sample → often described as <span class="math inline">\(n&lt;30\)</span>, but this is not a universal boundary.</li>
 <li>Small sample theory → study of sampling distributions for small samples.</li>
 <li>Important small-sample distributions → <span class="math inline">\(t\)</span>, <span class="math inline">\(\chi^2\)</span>, and <span class="math inline">\(F\)</span>.</li>
 <li>Student’s <span class="math inline">\(t\)</span>-test → used mainly for small samples when <span class="math inline">\(\sigma\)</span> is unknown.</li>
-<li>Basic <span class="math inline">\(t\)</span>-test assumptions → normal parent population, random sample, and unknown population standard deviation.</li>
+<li>Exact one-sample <span class="math inline">\(t\)</span>-test → independent random observations from a normal population with unknown standard deviation.</li>
 <li>One-sample <span class="math inline">\(t\)</span>-test → tests a population mean against a specified value.</li>
 <li>One-sample <span class="math inline">\(t\)</span> degrees of freedom → <span class="math inline">\(n-1\)</span>.</li>
 <li>Two-sample <span class="math inline">\(t\)</span>-test → compares two population means.</li>
@@ -2378,10 +2441,10 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <li>For the correlation test, <span class="math inline">\(H_0:\rho=0\)</span>.</li>
 <li>Correlation test degrees of freedom → <span class="math inline">\(n-2\)</span>.</li>
 <li>Chi-square tests → based on the chi-square distribution.</li>
-<li>Chi-square tests in this chapter are non-parametric or distribution-free tests.</li>
+<li>Chi-square tests for categorical counts differ from the parametric variance test for a normal population.</li>
 <li>Important chi-square tests → goodness of fit, independence of attributes, and population variance.</li>
 <li>Goodness-of-fit test → compares observed and expected frequencies.</li>
-<li>Goodness-of-fit null hypothesis → no significant difference between theory and observation.</li>
+<li>Goodness-of-fit null hypothesis → category probabilities follow the specified distribution.</li>
 <li>Goodness-of-fit test is right-tailed.</li>
 <li>Goodness-of-fit degrees of freedom → <span class="math inline">\(n-1\)</span> when no parameter is estimated.</li>
 <li>Independence test → determines whether two attributes are independent.</li>
@@ -2389,19 +2452,19 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <li>Expected frequency → row total × column total ÷ grand total.</li>
 <li><span class="math inline">\(r\times s\)</span> contingency table degrees of freedom → <span class="math inline">\((r-1)(s-1)\)</span>.</li>
 <li>2×2 contingency table degrees of freedom → 1.</li>
-<li>Yates’ correction → used for a 2×2 table when a cell frequency is less than 5, as specified in this chapter.</li>
+<li>Yates’ correction → optional continuity adjustment for a 2×2 chi-square approximation; assess expected frequencies and consider an exact test for sparse data.</li>
 <li>Population variance test → tests a specified value of <span class="math inline">\(\sigma^2\)</span>.</li>
 <li>Chi-square variance statistic → <span class="math inline">\(\frac{(n-1)s^2}{\sigma_0^2}\)</span>.</li>
 <li><span class="math inline">\(F\)</span>-test → tests equality of two population variances.</li>
-<li>Larger sample variance → always placed in the numerator of <span class="math inline">\(F\)</span>.</li>
-<li>Therefore, <span class="math inline">\(F\geq1\)</span>.</li>
+<li>Placing the larger sample variance first is a convenience for a two-sided F-test with upper-tail area <span class="math inline">\(\alpha/2\)</span>.</li>
+<li>With the larger variance in the numerator, <span class="math inline">\(F\geq1\)</span>; with fixed labels, <span class="math inline">\(F\)</span> may be less than 1.</li>
 <li><span class="math inline">\(F\)</span> degrees of freedom → <span class="math inline">\(n_1-1\)</span> and <span class="math inline">\(n_2-1\)</span>.</li>
 <li>In hypothesis testing, compare the calculated statistic with the appropriate table value.</li>
 <li>For a two-tailed <span class="math inline">\(t\)</span>-test → reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(|t|\)</span> exceeds the critical value.</li>
 <li>For a right-tailed <span class="math inline">\(t\)</span>-test → reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(t\)</span> exceeds the critical value.</li>
 <li>For a left-tailed <span class="math inline">\(t\)</span>-test → reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(t\)</span> is less than the negative critical value.</li>
-<li>For chi-square tests → reject <span class="math inline">\(H_0\)</span> when calculated <span class="math inline">\(\chi^2\)</span> exceeds the table value.</li>
-<li>For the <span class="math inline">\(F\)</span>-test → reject <span class="math inline">\(H_0\)</span> when calculated <span class="math inline">\(F\)</span> exceeds the table value.</li>
+<li>Goodness-of-fit and independence tests use the upper chi-square tail; a variance test may be one-sided or two-sided.</li>
+<li>For a two-sided F-test → use both <span class="math inline">\(\alpha/2\)</span> tails, or the equivalent larger-variance ratio with an upper <span class="math inline">\(\alpha/2\)</span> cutoff.</li>
 <li>William Sealy Gosset developed the <span class="math inline">\(t\)</span> distribution and published under the name “Student”.</li>
 <li>Student’s <span class="math inline">\(t\)</span> distribution has heavier tails than the normal distribution.</li>
 </ul>
@@ -2409,16 +2472,16 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> 30 <code>2.</code> Small <code>3.</code> <span class="math inline">\(\chi^2\)</span>; <span class="math inline">\(F\)</span>; <span class="math inline">\(t\)</span> <code>4.</code> Unknown <code>5.</code> Normal <code>6.</code> Random <code>7.</code> <span class="math inline">\(n-1\)</span> <code>8.</code> <span class="math inline">\(\mu_0\)</span> <code>9.</code> Standard deviation <code>10.</code> Pooled <code>11.</code> Welch <code>12.</code> <span class="math inline">\(n_1+n_2-2\)</span> <code>13.</code> Welch-Satterthwaite <code>14.</code> Related <code>15.</code> Difference <code>16.</code> <span class="math inline">\(n-1\)</span> <code>17.</code> <span class="math inline">\(t\)</span> <code>18.</code> 0 <code>19.</code> <span class="math inline">\(n-2\)</span> <code>20.</code> Chi-square <code>21.</code> Non <code>22.</code> Expected <code>23.</code> Karl Pearson <code>24.</code> Observed; expected <code>25.</code> <span class="math inline">\(n-1\)</span> <code>26.</code> Right <code>27.</code> Attributes <code>28.</code> Contingency <code>29.</code> Row; column <code>30.</code> <span class="math inline">\((r-1)(s-1)\)</span> <code>31.</code> 1 <code>32.</code> 2×2 <code>33.</code> <span class="math inline">\(\sigma_0^2\)</span> <code>34.</code> <span class="math inline">\(n-1\)</span> <code>35.</code> Variances <code>36.</code> Larger <code>37.</code> Greater <code>38.</code> <span class="math inline">\(n_1-1\)</span>; <span class="math inline">\(n_2-1\)</span> <code>39.</code> Gosset <code>40.</code> Student</p>
+<p><code>1.</code> <span class="math inline">\(t\)</span> <code>2.</code> <span class="math inline">\(n-1\)</span> <code>3.</code> Pooled <code>4.</code> Welch’s <code>5.</code> Paired <code>6.</code> <span class="math inline">\(n-1\)</span> <code>7.</code> <span class="math inline">\(n-2\)</span> <code>8.</code> Goodness <code>9.</code> Grand <code>10.</code> <span class="math inline">\((r-1)(s-1)\)</span> <code>11.</code> Chi-square <code>12.</code> <span class="math inline">\(F\)</span> <code>13.</code> Gosset</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
 <li><p>Given <span class="math inline">\(n=10\)</span>, <span class="math inline">\(\bar{x}=12.63\)</span>, <span class="math inline">\(s=1.0853\)</span>, <span class="math inline">\(\mu_0=12\)</span>. Using <a href="#eq-t-single" class="quarto-xref">Equation&nbsp;<span>15.1</span></a>, <span class="math inline">\(t=\frac{12.63-12}{1.0853/\sqrt{10}}=1.835\)</span>, with <span class="math inline">\(df=9\)</span>. At <span class="math inline">\(\alpha=0.05\)</span> (two-tailed), the table value is 2.262; since <span class="math inline">\(|1.835|&lt;2.262\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the mean yield differs from 12 quintals per hectare.</p></li>
-<li><p>Given <span class="math inline">\(n=22\)</span>, <span class="math inline">\(\bar{x}=153.7\)</span>, <span class="math inline">\(s=17.2\)</span>, <span class="math inline">\(\mu_0=146.3\)</span>. To test whether the campaign was successful, <span class="math inline">\(H_0:\mu=146.3\)</span> and <span class="math inline">\(H_1:\mu&gt;146.3\)</span> (right-tailed). Using <a href="#eq-t-single" class="quarto-xref">Equation&nbsp;<span>15.1</span></a>, <span class="math inline">\(t=\frac{153.7-146.3}{17.2/\sqrt{22}}\approx2.02\)</span>, with <span class="math inline">\(df=21\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the one-tailed critical value is approximately 1.721; since <span class="math inline">\(2.02&gt;1.721\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the advertising campaign increased weekly sales.</p></li>
-<li><p>The two treatments are applied to independent groups, so an independent two-sample <span class="math inline">\(t\)</span>-test is appropriate. First test the equality of the population variances using the <span class="math inline">\(F\)</span>-test. If the variances are homogeneous, use <a href="#eq-t-two-equal" class="quarto-xref">Equation&nbsp;<span>15.2</span></a> with the pooled variance; if unequal, use Welch’s test, <a href="#eq-t-welch" class="quarto-xref">Equation&nbsp;<span>15.3</span></a>. The decision is made by comparing the calculated <span class="math inline">\(t\)</span> with the appropriate critical value.</p></li>
-<li><p>The equal-variance two-sample <span class="math inline">\(t\)</span>-test assumes <span class="math inline">\(\sigma_1^2=\sigma_2^2\)</span>, so the equality of population variances should first be assessed. The <span class="math inline">\(F\)</span>-test is used for this purpose: if the variances can be regarded as equal, the pooled-variance <span class="math inline">\(t\)</span>-test is used; if unequal, Welch’s <span class="math inline">\(t\)</span>-test is used.</p></li>
+<li><p>Given <span class="math inline">\(n=22\)</span>, <span class="math inline">\(\bar{x}=153.7\)</span>, <span class="math inline">\(s=17.2\)</span>, <span class="math inline">\(\mu_0=146.3\)</span>. To test whether the campaign was successful, <span class="math inline">\(H_0:\mu=146.3\)</span> and <span class="math inline">\(H_1:\mu&gt;146.3\)</span> (right-tailed). Using <a href="#eq-t-single" class="quarto-xref">Equation&nbsp;<span>15.1</span></a>, <span class="math inline">\(t=\frac{153.7-146.3}{17.2/\sqrt{22}}\approx2.02\)</span>, with <span class="math inline">\(df=21\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the one-tailed critical value is approximately 1.721; since <span class="math inline">\(2.02&gt;1.721\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the mean weekly sales after the campaign exceeds the benchmark of 146.3. This comparison alone does not establish that the campaign caused the increase.</p></li>
+<li><p>The two treatments are applied to independent groups. Welch’s t-test, <a href="#eq-t-welch" class="quarto-xref">Equation&nbsp;<span>15.3</span></a>, does not require equal population variances. From <a href="#exr-tmean2" class="quarto-xref">Exercise&nbsp;<span>15.2</span></a>, the sample means are 14.0667 and 13.9083 kg/plot. The Welch statistic is <span class="math inline">\(t=0.1846\)</span>, with approximately 21.995 degrees of freedom and a two-sided p-value of 0.8552. We do not reject equality of population means at the 5% level.</p></li>
+<li><p>The pooled t-test assumes equal population variances; Welch’s t-test does not. A preliminary F-test is not required for Welch’s test. Failure to reject a variance test does not establish equal variances.</p></li>
 <li><p>When two observations are obtained from the same experimental unit, the observations are related and are not independent, so the analysis should focus on the within-unit differences rather than treating the two sets as independent samples. The paired <span class="math inline">\(t\)</span>-test is appropriate because it tests whether the mean paired difference is significantly different from zero.</p></li>
 <li><p>For each plot, <span class="math inline">\(d_i=A_i-B_i\)</span>, giving <span class="math inline">\(\bar{d}=-2\)</span> and <span class="math inline">\(s=1.309\)</span>. Using <a href="#eq-t-paired" class="quarto-xref">Equation&nbsp;<span>15.5</span></a>, <span class="math inline">\(t=\frac{-2}{1.309/\sqrt{8}}=-4.321\)</span>, with <span class="math inline">\(df=7\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is 2.365; since <span class="math inline">\(|-4.321|&gt;2.365\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is a significant difference between treatments A and B; since <span class="math inline">\(\bar{d}\)</span> is negative, treatment B produced the higher mean yield.</p></li>
 <li><p>Let <span class="math inline">\(d\)</span> denote the change in blood pressure, so <span class="math inline">\(H_0:\mu_d=0\)</span> and <span class="math inline">\(H_1:\mu_d&gt;0\)</span>. The observed differences are <span class="math inline">\(5,2,8,-1,3,0,-2,1,5,0,4,6\)</span>, with mean <span class="math inline">\(\bar{d}=\frac{31}{12}=2.583\)</span> and sample standard deviation <span class="math inline">\(s=3.088\)</span>. Using <a href="#eq-t-paired" class="quarto-xref">Equation&nbsp;<span>15.5</span></a>, <span class="math inline">\(t=\frac{2.583}{3.088/\sqrt{12}}\approx2.90\)</span>, with <span class="math inline">\(df=11\)</span>. At <span class="math inline">\(\alpha=0.05\)</span> for a one-tailed test, the critical value is approximately 1.796; since <span class="math inline">\(2.90&gt;1.796\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the stimulus is associated with an increase in blood pressure.</p></li>
@@ -2427,11 +2490,11 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <li><p>Using <a href="#eq-chi-gof" class="quarto-xref">Equation&nbsp;<span>15.9</span></a> with the given observed and expected frequencies, <span class="math inline">\(\chi^2=\frac{(103-106)^2}{106}+\frac{(143-141)^2}{141}+\frac{(98-93)^2}{93}+\frac{(42-41)^2}{41}+\frac{(8-14)^2}{14}+\frac{(6-5)^2}{5}\approx3.18\)</span>, with <span class="math inline">\(df=5\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the critical value is approximately 11.070; since <span class="math inline">\(3.18&lt;11.070\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. The observed frequencies do not differ significantly from the expected frequencies.</p></li>
 <li><p><span class="math inline">\(H_0\)</span>: the two attributes are independent; <span class="math inline">\(H_1\)</span>: the two attributes are not independent. Using <a href="#eq-expected" class="quarto-xref">Equation&nbsp;<span>15.10</span></a> for each cell, the calculated chi-square value given in the chapter is <span class="math inline">\(\chi^2_{\text{cal}}=26.3\)</span>. The table value at 4 degrees of freedom and <span class="math inline">\(\alpha=0.05\)</span> is <span class="math inline">\(\chi^2_{\text{tab}}=9.488\)</span>; since <span class="math inline">\(26.3&gt;9.488\)</span>, we reject <span class="math inline">\(H_0\)</span>. Tenure status and soil fertility are not independent.</p></li>
 <li><p>For a 2×2 table with cell frequencies <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span> and total <span class="math inline">\(n\)</span>, <a href="#eq-chi-2x2" class="quarto-xref">Equation&nbsp;<span>15.12</span></a> gives <span class="math inline">\(\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}\)</span>, where <span class="math inline">\(R_1,R_2\)</span> are the row totals and <span class="math inline">\(C_1,C_2\)</span> are the column totals. The degrees of freedom are <span class="math inline">\(df=(2-1)(2-1)=1\)</span>.</p></li>
-<li><p>For a 2×2 table, the degrees of freedom are only 1. If a cell frequency is less than 5, the usual pooling procedure would eliminate the only degree of freedom, so Yates’ correction for continuity is used instead, giving the corrected statistic in <a href="#eq-yates" class="quarto-xref">Equation&nbsp;<span>15.13</span></a>.</p></li>
+<li><p>The approximation is assessed using expected frequencies, not an observed count alone. Yates’ correction adjusts the chi-square approximation for continuity and can be conservative. Fisher’s exact test is an alternative for a sparse 2×2 table; combining categories may destroy the comparison of interest.</p></li>
 <li><p>Given <span class="math inline">\(\sigma_0^2=0.16\)</span>, <span class="math inline">\(s^2=0.01719\)</span>, <span class="math inline">\(n=11\)</span>, so <span class="math inline">\(H_0:\sigma^2=0.16\)</span> and <span class="math inline">\(H_1:\sigma^2&gt;0.16\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.14</span></a>, <span class="math inline">\(\chi^2=\frac{10(0.01719)}{0.16}=1.0744\)</span>, with <span class="math inline">\(df=10\)</span>. Since the calculated value is much smaller than the right-tailed critical value at <span class="math inline">\(\alpha=0.05\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population variance is greater than 0.16.</p></li>
-<li><p>Given <span class="math inline">\(n_1=11\)</span>, <span class="math inline">\(s_1^2=21.87\)</span>, <span class="math inline">\(n_2=8\)</span>, <span class="math inline">\(s_2^2=15.36\)</span>, so <span class="math inline">\(H_0:\sigma_1^2=\sigma_2^2\)</span> and <span class="math inline">\(H_1:\sigma_1^2&gt;\sigma_2^2\)</span>. Since <span class="math inline">\(21.87&gt;15.36\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=\frac{21.87}{15.36}=1.424\)</span>, with <span class="math inline">\(df_1=10\)</span> and <span class="math inline">\(df_2=7\)</span>. The calculated value is less than the corresponding critical value at <span class="math inline">\(\alpha=0.05\)</span>, so we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the two population variances differ.</p></li>
-<li><p>Given <span class="math inline">\(n=15\)</span>, <span class="math inline">\(s^2=12.5\)</span>, <span class="math inline">\(\sigma_0^2=10\)</span>, so <span class="math inline">\(H_0:\sigma^2=10\)</span> and <span class="math inline">\(H_1:\sigma^2\neq10\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.14</span></a>, <span class="math inline">\(\chi^2=\frac{14(12.5)}{10}=17.5\)</span>, with <span class="math inline">\(df=14\)</span>. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at <span class="math inline">\(\alpha/2=0.025\)</span>; the decision is made by determining whether 17.5 lies in the rejection region.</p></li>
-<li><p>The larger sample variance should be placed in the numerator. Since <span class="math inline">\(25&gt;16\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=\frac{25}{16}=1.5625\)</span>; this ensures <span class="math inline">\(F\geq1\)</span> and simplifies the comparison with the upper-tail <span class="math inline">\(F\)</span> critical value.</p></li>
+<li><p>Given <span class="math inline">\(n_1=11\)</span>, <span class="math inline">\(s_1^2=21.87\)</span>, <span class="math inline">\(n_2=8\)</span>, <span class="math inline">\(s_2^2=15.36\)</span>, test <span class="math inline">\(H_0:\sigma_1^2=\sigma_2^2\)</span> against <span class="math inline">\(H_1:\sigma_1^2\neq\sigma_2^2\)</span>. Using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=21.87/15.36=1.424\)</span>. With the larger variance in the numerator, compare with the upper 2.5% critical value <span class="math inline">\(F_{0.025;10,7}=4.761\)</span>. Since <span class="math inline">\(1.424&lt;4.761\)</span>, we do not reject <span class="math inline">\(H_0\)</span> at the two-sided 5% level.</p></li>
+<li><p>Given <span class="math inline">\(n=15\)</span>, <span class="math inline">\(s^2=12.5\)</span>, <span class="math inline">\(\sigma_0^2=10\)</span>, so <span class="math inline">\(H_0:\sigma^2=10\)</span> and <span class="math inline">\(H_1:\sigma^2\neq10\)</span>. Using <a href="#eq-chi-var" class="quarto-xref">Equation&nbsp;<span>15.14</span></a>, <span class="math inline">\(\chi^2=\frac{14(12.5)}{10}=17.5\)</span>, with <span class="math inline">\(df=14\)</span>. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at <span class="math inline">\(\alpha/2=0.025\)</span>; the critical values are approximately 5.629 and 26.119. Since <span class="math inline">\(5.629&lt;17.5&lt;26.119\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population variance differs from 10.</p></li>
+<li><p>For convenience in a two-sided test, the larger sample variance may be placed in the numerator. Since <span class="math inline">\(25&gt;16\)</span>, using <a href="#eq-f" class="quarto-xref">Equation&nbsp;<span>15.15</span></a>, <span class="math inline">\(F=\frac{25}{16}=1.5625\)</span>; this ensures <span class="math inline">\(F\geq1\)</span> and simplifies comparison with an upper-tail critical value. For a two-sided test, that critical value uses tail area <span class="math inline">\(\alpha/2\)</span>, with the numerator and denominator degrees of freedom in the corresponding order.</p></li>
 <li><p>Given <span class="math inline">\(r=0.35\)</span>, <span class="math inline">\(n=20\)</span>, so <span class="math inline">\(H_0:\rho=0\)</span> and <span class="math inline">\(H_1:\rho\neq0\)</span>. Using <a href="#eq-t-corr" class="quarto-xref">Equation&nbsp;<span>15.6</span></a>, <span class="math inline">\(t=\frac{0.35\sqrt{18}}{\sqrt{1-0.35^2}}\approx1.585\)</span>, with <span class="math inline">\(df=18\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is approximately 2.101; since <span class="math inline">\(1.585&lt;2.101\)</span>, we do not reject <span class="math inline">\(H_0\)</span>. There is insufficient evidence that the population correlation coefficient differs significantly from zero.</p></li>
 <li><p>Given <span class="math inline">\(n=12\)</span>, <span class="math inline">\(\bar{x}=25\)</span>, <span class="math inline">\(s=4\)</span>, <span class="math inline">\(\mu_0=22\)</span>, so <span class="math inline">\(H_0:\mu=22\)</span> and <span class="math inline">\(H_1:\mu\neq22\)</span>. Using <a href="#eq-t-single" class="quarto-xref">Equation&nbsp;<span>15.1</span></a>, <span class="math inline">\(t=\frac{25-22}{4/\sqrt{12}}\approx2.598\)</span>, with <span class="math inline">\(df=11\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, the two-tailed critical value is approximately 2.201; since <span class="math inline">\(2.598&gt;2.201\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the population mean differs from 22.</p></li>
 <li><p>When two independent small samples come from populations with equal variances, use the pooled two-sample <span class="math inline">\(t\)</span>-test, <a href="#eq-t-two-equal" class="quarto-xref">Equation&nbsp;<span>15.2</span></a>, with pooled variance <span class="math inline">\(s^2=\frac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}\)</span> and degrees of freedom <span class="math inline">\(df=n_1+n_2-2\)</span>.</p></li>
@@ -2448,8 +2511,8 @@ df_1=n_1-1,\qquad df_2=n_2-1
 <div class="callout-body-container callout-body">
 <p><strong>A brewer, a secret, and the birth of the t distribution</strong></p>
 <p>At the beginning of the twentieth century, the Guinness brewery in Dublin employed a young Oxford-trained chemist named <strong>William Sealy Gosset</strong>. His job was to bring scientific rigour to brewing, judging the quality of barley and hops from only a handful of samples. The trouble was that the statistical methods of the day assumed large samples, while Gosset rarely had more than a few observations to work with. The normal-distribution based tests simply did not behave well for such small samples.</p>
-<p>Working through this problem, Gosset derived the exact sampling distribution of the mean when the population standard deviation is unknown and must be estimated from a small sample. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the <strong>t distribution</strong>. It was one of the first genuinely small-sample results in statistics.</p>
-<p>Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal <em>Biometrika</em> under the modest pen name <strong>“Student”</strong>. <span class="citation" data-cites="Student1908">(<a href="references.html#ref-Student1908" role="doc-biblioref">Student 1908</a>)</span> For this reason the distribution has been known ever since as <strong>Student’s t distribution</strong>, and the associated test as <strong>Student’s t-test</strong>, even though there was never any student involved. The true author was a brewer solving a very practical problem, one pint of statistics at a time.</p>
+<p>Working through this problem, Gosset derived the exact sampling distribution of the standardised sample mean when the population standard deviation is estimated from independent normal observations. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the <strong>t distribution</strong>. It was one of the first genuinely small-sample results in statistics.</p>
+<p>Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal <em>Biometrika</em> under the modest pen name <strong>“Student”</strong>. <span class="citation" data-cites="Student1908">(<a href="references.html#ref-Student1908" role="doc-biblioref">Student 1908</a>)</span> For this reason the distribution has been known ever since as <strong>Student’s t distribution</strong>, and the associated test as <strong>Student’s t-test</strong>. The true author was a brewer solving a very practical problem, one pint of statistics at a time.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -2469,7 +2532,7 @@ df_1=n_1-1,\qquad df_2=n_2-1
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Pearson1900" class="csl-entry" role="listitem">
 Pearson, Karl. 1900. <span>“On the Criterion That a Given System of Deviations from the Probable in the Case of a Correlated System of Variables Is Such That It Can Be Reasonably Supposed to Have Arisen from Random Sampling.”</span> <em>Philosophical Magazine, Series 5</em> 50 (302): 157–75. <a href="https://doi.org/10.1080/14786440009463897">https://doi.org/10.1080/14786440009463897</a>.
 </div>
@@ -2567,7 +2630,7 @@ Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2910,16 +2973,17 @@ Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

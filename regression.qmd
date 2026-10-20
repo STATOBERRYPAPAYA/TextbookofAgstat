@@ -28,7 +28,7 @@ There are different types of regression techniques, depending on the nature of t
 
 -   **Multiple linear regression**: An extension of simple linear regression, allowing for the analysis of the relationship between one dependent variable (*y*) and multiple independent variables (more than one *x*). It is used when the outcome is influenced by more than one factor.
 
--   **Nonlinear regression**: Deals with situations where the relationship between variables is not a straight line.
+-   **Nonlinear regression**: Uses a mean function that is nonlinear in its unknown parameters. A curve is not necessarily a nonlinear regression model: a polynomial such as $y=\alpha+\beta_1x+\beta_2x^2+e$ is linear in its coefficients.
 
 -   **Logistic regression**: Used when the dependent variable is categorical, such as predicting whether a plant will survive (yes or no) based on environmental factors.
 
@@ -62,11 +62,11 @@ Refer to the scatter diagram of @tbl-corrdata in @fig-scattercorrdata. To repres
 Possible lines drawn to show the functional relationship between soil moisture and yield
 :::
 
-The best fit line is the one that minimises the distances between the observed data points and the line itself. These distances are minimised collectively using a specific mathematical criterion. The regression technique provides a systematic approach to determine and draw this best fit line. Before going further into regression, it is essential to understand the concepts of **error** and **residual**, which play a critical role in determining the best fit line.
+The best fit line is the one that minimizes the distances between the observed data points and the line itself. In ordinary least squares, these are vertical deviations in the response direction, and their squared values are minimized collectively. The regression technique provides a systematic approach to determine and draw this best fit line. Before going further into regression, it is essential to understand the concepts of **error** and **residual**, which play a critical role in determining the best fit line.
 
 ### Error and residual
 
-In regression analysis, an **error** represents the difference between an observed value and the value based on the true regression line. True regression line here what we meant is the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.
+In regression analysis, an **error** represents the difference between an observed value and the value based on the true regression line. By the true regression line, we mean the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.
 
 A **residual** is the difference between an observed value and the value predicted by the regression line fitted from sample data. For a given data point, the residual is calculated as:
 
@@ -78,7 +78,7 @@ In essence, a residual serves as an estimate of the error. From @fig-residual, y
 
 ![Residual and the best fit line](images/regression/residual_regression.svg){#fig-residual fig-align="center" width="80%" style="text-align:center;"}
 
-The distance of the $i$th observation ($e_i$) from the fitted line is the residual. The best fit line is obtained by minimising these distances, which is achieved using the **principle of least squares**, discussed in @sec-leastsquares. Before identifying the best fit line, it is useful to recall the concept of a straight line.
+The distance of the $i$th observation ($e_i$) from the fitted line is the residual. The best fit line is obtained by minimizing these distances, which is achieved using the **principle of least squares**, discussed in @sec-leastsquares. Before identifying the best fit line, it is useful to recall the concept of a straight line.
 
 ### Straight lines
 
@@ -98,7 +98,7 @@ A line has two important features: the **intercept** ($\alpha$) and the **slope*
 Intercept and slope of a straight line
 :::
 
-The values $\alpha$ and $\beta$ act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating $\alpha$ and $\beta$ such that the error $e_i$ of each observation is minimised. For this, we use the *method of least squares*.
+The values $\alpha$ and $\beta$ act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating $\alpha$ and $\beta$ such that the sum of squared vertical residuals is minimized. For this, we use the *method of least squares*.
 
 ### Method of least squares {#sec-leastsquares}
 
@@ -109,12 +109,12 @@ $$y_i = \alpha + \beta x_i + e_i$$ {#eq-simpleregression}
 where $e_i$ is the $i$th error term corresponding to $y_i$, for $i = 1, 2, \ldots, n$.
 
 ::: {.callout-important title="Note"}
-One way to obtain the line of best fit is by estimating $\alpha$ and $\beta$ by minimising the error sum $\sum_{i=1}^{n} e_i$. However, by theorem, $\sum_{i=1}^{n} e_i = 0$ for any fitted line, so this does not uniquely determine $\alpha$ and $\beta$. Instead, we estimate $\alpha$ and $\beta$ by minimising $\sum_{i=1}^{n} e_i^2$. The term $\sum_{i=1}^{n} e_i^2$ is called the **error sum of squares**. Since we are minimising the sum of the squared error terms, this process is known as the **principle of least squares**.
+Minimizing the signed sum of deviations does not provide a suitable line of best fit. The sum of signed residuals can be made arbitrarily negative by increasing the intercept, so minimizing it does not define a best-fitting line. At the least-squares solution with an intercept, the residuals sum to zero. Instead, we estimate $\alpha$ and $\beta$ by minimizing $\sum_{i=1}^{n} e_i^2$. The term $\sum_{i=1}^{n} e_i^2$ is called the **error sum of squares**. Since we are minimizing the sum of the squared error terms, this process is known as the **principle of least squares**.
 :::
 
 [**Principle of least squares**]{.underline}
 
-The principle of least squares is the statistical method used to determine the line of best fit by minimising the sum of squares of the errors, i.e., minimising $\sum_{i=1}^{n} e_i^2$ [@Draper1998].
+The principle of least squares is the statistical method used to determine the line of best fit by minimizing the sum of squares of the errors, i.e., minimizing $\sum_{i=1}^{n} e_i^2$ [@Draper1998].
 
 Starting from @eq-simpleregression:
 
@@ -126,7 +126,7 @@ Let $E = \sum_{i=1}^{n} e_i^2$.
 
 $$E=\sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} [y_i - (\alpha + \beta x_i)]^2$$ {#eq-leastsq3}
 
-We want to minimise @eq-leastsq3 to estimate $\alpha$ and $\beta$. This is done by taking the partial derivative of $\sum_{i=1}^{n} e_i^2$ with respect to $\alpha$ and $\beta$ separately, and equating each to zero. Doing so yields two equations called the **normal equations**. Solving these normal equations gives the formulas for estimating $\alpha$ and $\beta$.
+We want to minimize @eq-leastsq3 to estimate $\alpha$ and $\beta$. This is done by taking the partial derivative of $\sum_{i=1}^{n} e_i^2$ with respect to $\alpha$ and $\beta$ separately, and equating each to zero. Doing so yields two equations called the **normal equations**. Solving these normal equations gives the formulas for estimating $\alpha$ and $\beta$.
 
 Differentiating with respect to $\alpha$ and equating to zero:
 
@@ -197,7 +197,7 @@ Once $\hat{\beta}$ is known, the intercept is obtained directly from @eq-solve2:
 
 $$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x}$$ {#eq-regeqn5}
 
-where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.
+where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$. The covariance and variance in the ratio must use the same divisor; either $n$ in both or $n-1$ in both gives the same slope.
 
 ::: {.callout-important title="Note"}
 Once the estimates $\hat{\alpha}$ and $\hat{\beta}$ are obtained using @eq-regeqn4 and @eq-regeqn5, the estimated regression line can be written as:
@@ -207,15 +207,17 @@ $$\hat{y} = \hat{\alpha} + \hat{\beta}\, x$$ {#eq-regestimate}
 Note that the predicted value of $y$ is written as $\hat{y}$ (y-hat) to distinguish it from the observed value $y$. Also note that the regression line always passes through the point $(\overline{x},\, \overline{y})$, which can be verified by substituting $x = \overline{x}$ into @eq-regestimate.
 :::
 
+The normal equations treat $\alpha$ and $\beta$ as candidate values during minimisation. After fitting, the residual is $\hat e_i=y_i-\hat y_i$, whereas the unobserved model error is $e_i=y_i-E(y_i\mid x_i)$. Least squares minimizes squared residuals; it does not reveal each true error. The predictor must vary, so $\sum(x_i-\overline{x})^2>0$.
+
 ### Regression coefficient {#sec-regressionbeta}
 
-The regression coefficient $\beta$ in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable ($x$) and the dependent variable ($y$). Specifically, $\hat{\beta}$ indicates the expected change in $y$ for a one-unit increase in $x$, when all other factors are held constant [@Montgomery2021].
+The regression coefficient $\beta$ in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable ($x$) and the dependent variable ($y$). Specifically, $\hat{\beta}$ indicates the expected change in $y$ for a one-unit increase in $x$, according to the fitted conditional mean relationship [@Montgomery2021]. In simple regression, other unmeasured factors have not automatically been held constant.
 
 Regression coefficients can take any real value from $-\infty$ to $+\infty$. A positive $\hat{\beta}$ implies a direct relationship (as $x$ increases, $y$ increases), while a negative $\hat{\beta}$ implies an inverse relationship (as $x$ increases, $y$ decreases). A coefficient of zero suggests no linear relationship between the variables.
 
 The formula for $\hat{\beta}$ is obtained by solving normal equations @eq-normaleq1 and @eq-normaleq2, and is given by @eq-regeqn3, which can be used for hand calculations:
 
-$$\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}$$
+$$\hat{\beta}=\frac{\sum_i x_i y_i-(\sum_i x_i)(\sum_i y_i)/n}{\sum_i x_i^2-(\sum_i x_i)^2/n}$$
 
 @eq-regeqn3 can be written more compactly as @eq-regeqn4:
 
@@ -237,37 +239,41 @@ where $\overline{y}$ = mean of $y$ and $\overline{x}$ = mean of $x$.
 
 For the results of a regression analysis to be reliable and meaningful, certain underlying assumptions must be met. These ensure that the estimates are accurate, predictions are unbiased, and conclusions drawn from the model are valid [@Montgomery2021; @Draper1998].
 
-1.  **Linearity**\
-    The relationship between the independent variable(s) and the dependent variable is linear, changes in $y$ are proportional to changes in $x$.
+1.  **Linear conditional mean**\
+    For simple linear regression, $E(y_i\mid x_i)=\alpha+\beta x_i$. Thus the error has mean zero conditional on the predictor: $E(e_i\mid x_i)=0$. The individual observations need not lie exactly on the line.
 
 2.  **Independence**\
-    The observations in the dataset are independent of each other, and the residuals (errors) are also independent.
+    The errors for different observations are independent. Fitted residuals are not generally independent because they share estimated coefficients.
 
 3.  **Homoscedasticity**\
-    The variance of the residuals is constant across all levels of the independent variable(s). The spread of the residuals should remain consistent and not show patterns of increasing or decreasing variance.
+    The variance of the errors is constant across all levels of the independent variable(s). The spread of the residuals should remain consistent and not show patterns of increasing or decreasing variance.
 
-4.  **Normality of residuals**\
-    The residuals are normally distributed. This is particularly important for hypothesis testing and constructing confidence intervals. The normality assumption does not strongly influence the estimation of regression coefficients themselves, but it matters for inference.
+4.  **Normality of errors**\
+    For the usual exact t-tests, F-tests, and confidence intervals, the errors are normally distributed conditional on the predictors. This is particularly important for hypothesis testing and constructing confidence intervals. The normality assumption does not strongly influence the estimation of regression coefficients themselves, but it matters for inference.
 
-5.  **No multicollinearity**\
-    In the case of multiple regression, the independent variables should not be highly correlated with each other. Multicollinearity can distort the estimates of regression coefficients and make them difficult to interpret.
+5.  **No exact multicollinearity**\
+    In multiple regression, no predictor may be an exact linear combination of the others. Exact dependence prevents unique coefficient estimates. High but imperfect dependence can increase standard errors and make individual coefficients unstable; it does not by itself make least-squares estimates biased.
 
-6.  **No autocorrelation**\
-    There should be no autocorrelation in the residuals, the residual of one observation should not be correlated with the residual of another.
+6.  **No autocorrelation of errors**\
+    Errors at different times or locations should not be correlated under the usual independent-error model. Residual plots against time or field position help assess this assumption; fitted residuals themselves share the estimated coefficients.
 
 7.  **Correct model specification**\
-    The model should include all relevant variables and exclude irrelevant ones. The functional form of the relationship between variables should be correctly specified.
+    The model should describe the conditional mean correctly. Omitting a relevant variable associated with an included predictor can bias its estimated effect; including an unnecessary predictor can reduce precision. The functional form of the relationship between variables should be correctly specified.
 
 Violations of these assumptions can lead to biased, inconsistent, or inefficient estimates, affecting the validity of the regression analysis.
 
 ::: {.callout-important title="Note"}
-The essence of the assumptions in linear regression can be summarised as $e \sim \text{i.i.d.}(0, \sigma^2)$. This denotes that the errors are *independent and identically distributed (i.i.d.)*, with a mean of zero and a constant variance $\sigma^2$.
+The essence of the assumptions in linear regression can be summarized as $e \sim \text{i.i.d.}(0, \sigma^2)$. This denotes that the errors are *independent and identically distributed (i.i.d.)*, with a mean of zero and a constant variance $\sigma^2$.
 
 -   **Independence** ensures that the error for one observation does not influence the error for another.
 -   **Identically distributed** means all errors are drawn from the same probability distribution.
 -   **Mean of zero** ensures that errors do not introduce systematic bias into the model's predictions.
 -   **Constant variance** (homoscedasticity) means the errors maintain a consistent level of variability across all values of the independent variable(s).
 :::
+
+### Checking the fitted model
+
+Plot residuals against fitted values and against each predictor to look for curvature and changing spread. For observations collected in time or field order, also examine that order for dependence. A normal probability plot helps assess the normal-error assumption. Investigate unusual observations and influential points against the original records; do not delete them merely to obtain significance. Assess predictions on new observations when prediction is the objective.
 
 ## Two lines of regression
 
@@ -407,10 +413,10 @@ As seen from @eq-betayonx and @eq-betaxony, the two regression coefficients are 
 
 1.  **Regression lines are the lines of best fit**
 
-    Each regression line is obtained using the **least squares principle**, which minimises the sum of the squared deviations between the observed and predicted values.
+    Each regression line is obtained using the **least squares principle**, which minimizes the sum of the squared deviations between the observed and predicted values.
 
-    -   The regression line of $y$ on $x$ minimises the sum of squared **vertical** deviations.
-    -   The regression line of $x$ on $y$ minimises the sum of squared **horizontal** deviations.
+    -   The regression line of $y$ on $x$ minimizes the sum of squared **vertical** deviations.
+    -   The regression line of $x$ on $y$ minimizes the sum of squared **horizontal** deviations.
 
 2.  **Both regression lines pass through the point of means**
 
@@ -422,13 +428,13 @@ As seen from @eq-betayonx and @eq-betaxony, the two regression coefficients are 
 
 3.  **The position of the regression lines depends on the correlation coefficient**
 
-    The angle between the two regression lines depends on the magnitude of the correlation coefficient ($r$).
+    The angle between the two regression lines depends on the correlation and on the relative axis scales. It is not a unit-free measure of association.
 
     -   If $|r|=1$, the two regression lines coincide, indicating a perfect linear relationship.
     -   If $r=0$, the regression lines are perpendicular to each other, indicating no linear relationship.
     -   For $0<|r|<1$, the two regression lines intersect at an angle between $0^\circ$ and $90^\circ$.
 
-    The position and angle of the regression lines therefore reflect the strength of the linear relationship between the variables (see @fig-twolines2).
+    With axis scales held fixed, their relative positions illustrate the linear association (see @fig-twolines2).
 
 4.  **Regression lines are unique**
 
@@ -524,7 +530,7 @@ $n = 12$
 
 $$\overline{x} = \frac{224.1}{12} = 18.675$$
 
-$$\overline{y} = \frac{4829}{12} = 402.416$$
+$$\overline{y} = \frac{4829}{12} = 402.416667$$
 
 $$cov(x,y) = \frac{1}{n}\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y}) = \frac{5325.03}{12} = 443.752$$
 
@@ -536,19 +542,44 @@ $$\hat{\beta} = \frac{cov(x,y)}{var(x)} = \frac{443.752}{14.749} = 30.088$$
 
 Using @eq-regeqn5:
 
-$$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} = 402.416 - 30.088 \times 18.675 = -159.477$$
+$$\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} = 402.416667 - 30.08786179 \times 18.675 = -159.474152$$
 
 The estimated regression equation is therefore:
 
-$$\hat{y} = -159.477 + 30.088\, x$$
+$$\hat{y} = -159.474152 + 30.087862\, x$$
 
-$$\text{Crop yield (Rs)} = -159.477 + 30.088 \times \text{(soil moisture \%)}$$
+$$\text{Crop yield (Rs)} = -159.474152 + 30.087862 \times \text{(soil moisture \%)}$$
 
 For a soil moisture content of 20% ($x = 20$):
 
-$$\hat{y} = -159.477 + 30.088 \times 20 = 442.28$$
+$$\hat{y} = -159.474152 + 30.087862 \times 20 = 442.28$$
 
 The predicted monetary crop yield at an average soil moisture of 20% is **Rs 442.28**.
+
+For the reverse regression, use $b_{xy}=S_{xy}/S_{yy}$ on the same 12 observations. This gives
+
+$$\hat x=6.412805+0.03047139y.$$
+
+This is not obtained by simply rearranging the fitted regression of $y$ on $x$. For the first observation, $x=14.2$ and $y=215$, the fitted monetary yield is 267.77 Rs, so its residual is $215-267.77=-52.77$ Rs. The negative residual means that this observed yield is below the fitted line.
+
+### Assessing fit and uncertainty
+
+For simple linear regression with an intercept, define $S_{xx}=\sum(x_i-\bar x)^2$ and $SSE=\sum(y_i-\hat y_i)^2$. The residual mean square is $s_e^2=SSE/(n-2)$. The **coefficient of determination** is
+
+$$R^2=1-\frac{SSE}{\sum(y_i-\bar y)^2}.$$
+
+It is the proportion of the observed variation about $\bar y$ accounted for by the fitted model. In simple linear regression with an intercept, $R^2=r^2$. A high value does not establish causation, a correct model, or reliable prediction outside the observed range.
+
+Under the independent normal-error model with constant variance, the slope standard error is $SE(\hat\beta)=s_e/\sqrt{S_{xx}}$. A test of $H_0:\beta=0$ uses $t=\hat\beta/SE(\hat\beta)$ with $n-2$ df; its two-sided confidence interval is $\hat\beta\pm t_{\alpha/2,n-2}SE(\hat\beta)$.
+
+For $x=x_0$, let $\hat y_0=\hat\alpha+\hat\beta x_0$. The standard errors for the estimated mean response and for predicting a new independent response differ:
+
+$$SE_{\text{mean}}=s_e\sqrt{\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}},$$
+$$SE_{\text{prediction}}=s_e\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}.$$
+
+Use the corresponding standard error in $\hat y_0\pm t_{\alpha/2,n-2}SE$. A prediction interval is wider because a new observation has its own error in addition to uncertainty in the fitted mean. These formulae assume that $x_0$ is measured without relevant error and the same model applies.
+
+For the printed soil-moisture data, the fitted model gives $R^2=0.9168$, $s_e=38.13$ Rs and 10 error df. At $x_0=20\%$, the estimated mean response is 442.28 Rs, with a 95% confidence interval of approximately (416.34, 468.22) Rs. The 95% prediction interval for a new independent response is approximately (353.46, 531.11) Rs. These calculations use unrounded fitted coefficients. Avoid extrapolation beyond the moisture range studied, and do not interpret this observational association as proof of a fertilizer or irrigation effect. [@Draper1998]
 :::
 
 ## Correlation and regression
@@ -565,7 +596,7 @@ Correlation focuses on measuring the strength and direction of an association be
 | **Causation** | Does not imply causation. | Does not establish causation by itself; causal interpretation requires appropriate study design and valid assumptions. |
 | **Variables involved** | Treats both variables equally; no distinction between dependent and independent variables. | Clearly distinguishes between the dependent (response) variable and the independent (predictor) variable(s). |
 | **Symmetry** | Symmetric: $r_{xy}=r_{yx}$. | Asymmetric: the regression of $y$ on $x$ differs from the regression of $x$ on $y$. |
-| **Equation** | Summarised by the correlation coefficient, e.g., $r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}$. | Produces a regression equation, e.g., $\hat{y}=\hat{\alpha}+\hat{\beta}x$. |
+| **Equation** | Summarized by the correlation coefficient, e.g., $r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}$. | Produces a regression equation, e.g., $\hat{y}=\hat{\alpha}+\hat{\beta}x$. |
 | **Output** | Produces a single correlation coefficient ($r$). | Produces regression coefficients (intercept and slope), fitted values, residuals, and prediction equations. |
 | **Range** | The correlation coefficient lies between $-1$ and $+1$. | Regression coefficients are not bounded and may take any real value ($-\infty$ to $+\infty$). |
 | **Units** | Dimensionless (unit-free). | Regression coefficients depend on the units of measurement of the variables. |
@@ -581,105 +612,35 @@ Correlation focuses on measuring the strength and direction of an association be
 
 Answers are given at the end of the chapter.
 
-1. Regression analysis is used to understand and quantify the __________ between variables.
+1. The variable predicted by a regression model is called the __________ variable.
 
-2. The variable whose value is explained, predicted, or modelled is called the __________ variable.
+2. A regression model with one predictor and a straight-line mean response is called __________ linear regression.
 
-3. The variable used to explain or predict the dependent variable is called the __________ variable.
+3. The coefficient representing change in mean response per unit increase in the predictor is the __________.
 
-4. The dependent variable is commonly denoted by __________.
+4. The predicted response when the predictor is zero is the __________.
 
-5. The independent variable is commonly denoted by __________.
+5. The difference between an observed response and its fitted value is called a __________.
 
-6. In agricultural research, crop yield is commonly treated as the __________ variable.
+6. The method that minimizes the sum of squared residuals is called __________ squares.
 
-7. A regression involving one dependent variable and one independent variable is called __________ linear regression.
+7. An ordinary least-squares line with an intercept passes through the point __________.
 
-8. Regression involving one dependent variable and two or more independent variables is called __________ linear regression.
+8. Constant error variance is called __________.
 
-9. Regression used when the relationship between variables is not a straight line is called __________ regression.
+9. Correlation between successive errors is called __________.
 
-10. Regression used when the dependent variable is categorical is called __________ regression.
+10. Strong linear dependence among predictors is called __________.
 
-11. A fitted line used to represent the relationship between two variables is called the line of __________ fit.
+11. The product of the two simple regression coefficients equals the __________ of Pearson's correlation coefficient.
 
-12. The difference between an observed value and the value predicted by the fitted regression line is called a __________.
+12. The two simple regression coefficients have the same __________.
 
-13. The difference between an observed value and the value based on the true regression line is called an __________.
+13. Regression coefficients are unaffected by a change of origin but are affected by a change of __________.
 
-14. Residuals are __________, whereas errors are theoretical and generally unknown.
+14. When $r=\pm1$, the two regression lines __________.
 
-15. The principle used to obtain the line of best fit by minimising the sum of squared residuals is called the principle of __________ squares.
-
-16. The equation of a straight line is $Y=\alpha+\beta X$, where $\alpha$ is the __________ and $\beta$ is the __________.
-
-17. The slope of a regression line represents the expected change in $Y$ for a __________-unit increase in $X$.
-
-18. The regression coefficient is denoted by __________.
-
-19. The intercept represents the value of $Y$ when $X$ is equal to __________.
-
-20. The fitted regression equation is written as $\hat{y}=$ __________.
-
-21. The regression line always passes through the point __________.
-
-22. The two normal equations are obtained by differentiating the sum of squared errors with respect to __________ and __________.
-
-23. The regression coefficient $\hat{\beta}$ can be expressed as the ratio of __________ to __________.
-
-24. A positive regression coefficient indicates a __________ relationship between $x$ and $y$.
-
-25. A negative regression coefficient indicates an __________ relationship between $x$ and $y$.
-
-26. Regression coefficients can take any real value from __________ to __________.
-
-27. The regression of $y$ on $x$ is used to predict __________ from __________.
-
-28. The regression of $x$ on $y$ is used to predict __________ from __________.
-
-29. The regression coefficient of $y$ on $x$ is denoted by __________.
-
-30. The regression coefficient of $x$ on $y$ is denoted by __________.
-
-31. The product of the two regression coefficients is equal to the __________ of the correlation coefficient.
-
-32. The two regression coefficients always have the same __________.
-
-33. If one regression coefficient is greater than one, the other must be __________ than one.
-
-34. Both regression coefficients cannot exceed __________ simultaneously.
-
-35. Regression coefficients are independent of change of __________ but not of change of __________.
-
-36. If $r=0$, both regression coefficients are __________.
-
-37. If $r=\pm1$, the two regression lines __________.
-
-38. The regression lines of $y$ on $x$ and $x$ on $y$ intersect at the point __________.
-
-39. The regression line of $y$ on $x$ minimises the sum of squared __________ deviations.
-
-40. The regression line of $x$ on $y$ minimises the sum of squared __________ deviations.
-
-41. One of the assumptions of linear regression is __________.
-
-42. Constant variance of residuals is called __________.
-
-43. In multiple regression, the independent variables should not be highly correlated with each other. This condition is called absence of __________.
-
-44. The errors in a regression model should not exhibit __________.
-
-45. The errors are often summarised as $e\sim\text{i.i.d.}(0,\sigma^2)$, where i.i.d. means __________ and __________ distributed.
-
-46. Regression does not establish __________ by itself.
-
-47. Correlation treats the two variables __________, whereas regression distinguishes between dependent and independent variables.
-
-48. Correlation is __________ when the two variables are interchanged, whereas regression is not.
-
-49. The correlation coefficient is bounded between __________ and __________, whereas regression coefficients are unbounded.
-
-50. The regression coefficient can be expressed in terms of correlation and standard deviations as $\beta_{yx}=$ __________.
+15. Regression alone does not establish __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -703,7 +664,7 @@ Answers are given at the end of the chapter.
 
 10. Define the principle of least squares.
 
-11. Why is the sum of errors not minimised directly in least squares estimation?
+11. Why is the sum of errors not minimized directly in least squares estimation?
 
 12. Explain the meaning of intercept and slope in a straight line.
 
@@ -727,7 +688,7 @@ Answers are given at the end of the chapter.
 
 22. What is autocorrelation?
 
-23. Why is normality of residuals important in regression analysis?
+23. Why is normality of errors important for the usual exact inference in regression analysis?
 
 24. What is meant by correct model specification?
 
@@ -835,10 +796,10 @@ $$
 y_i=\alpha+\beta x_i+e_i
 $$
 
-Residual:
+Residual after fitting:
 
 $$
-e_i=y_i-(\alpha+\beta x_i)
+\hat e_i=y_i-(\hat\alpha+\hat\beta x_i)
 $$
 
 Sum of squared errors:
@@ -972,12 +933,12 @@ $$
 - Independent variable → predictor or explanatory variable.
 - Simple linear regression → one dependent variable and one independent variable.
 - Multiple linear regression → one dependent variable and two or more independent variables.
-- Nonlinear regression → relationship is not a straight line.
+- Nonlinear regression → mean function nonlinear in its unknown parameters; polynomial regression can be linear in its coefficients.
 - Logistic regression → categorical dependent variable.
 - Line of best fit → fitted line obtained using least squares.
 - Error → theoretical difference from the true regression relationship.
 - Residual → observed value minus fitted value.
-- Least squares → minimises the sum of squared residuals.
+- Least squares → minimizes the sum of squared residuals.
 - Slope $\beta$ → expected change in $y$ for a one-unit increase in $x$.
 - Intercept $\alpha$ → value of $y$ when $x=0$.
 - Regression coefficient can range from $-\infty$ to $+\infty$.
@@ -994,7 +955,7 @@ $$
 - Both regression coefficients cannot exceed 1 simultaneously.
 - Regression coefficients are independent of change of origin but not of change of scale.
 - Regression coefficients depend on the correlation and the relative standard deviations of the variables.
-- Linearity, independence, homoscedasticity, normality of residuals, absence of multicollinearity, absence of autocorrelation, and correct model specification are important assumptions.
+- Linearity, independence, homoscedasticity, normality of errors for exact inference, absence of exact multicollinearity, absence of error autocorrelation, and correct model specification are important assumptions.
 - Regression lines are unique for a given dataset.
 - Correlation measures association; regression models the relationship and allows prediction.
 - Correlation is symmetric; regression is asymmetric.
@@ -1006,7 +967,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` Relationships `2.` Dependent `3.` Independent `4.` $y$ `5.` $x$ `6.` Dependent `7.` Simple `8.` Multiple `9.` Nonlinear `10.` Logistic `11.` Best `12.` Residual `13.` Error `14.` Measurable `15.` Least `16.` Intercept; Slope `17.` One `18.` $\beta$ `19.` Zero `20.` $\hat{\alpha}+\hat{\beta}x$ `21.` $(\bar{x},\bar{y})$ `22.` $\alpha$; $\beta$ `23.` Covariance; Variance `24.` Direct `25.` Inverse `26.` $-\infty$; $+\infty$ `27.` $y$; $x$ `28.` $x$; $y$ `29.` $\beta_{yx}$ `30.` $\beta_{xy}$ `31.` Square `32.` Sign `33.` Less `34.` One `35.` Origin; Scale `36.` Zero `37.` Coincide `38.` $(\bar{x},\bar{y})$ `39.` Vertical `40.` Horizontal `41.` Linearity `42.` Homoscedasticity `43.` Multicollinearity `44.` Autocorrelation `45.` Independent; identically `46.` Causation `47.` Equally `48.` Symmetric `49.` $-1$; $+1$ `50.` $r\frac{\sigma_y}{\sigma_x}$
+`1.` Dependent `2.` Simple `3.` Slope `4.` Intercept `5.` Residual `6.` Least `7.` $(\bar{x},\bar{y})$ `8.` Homoscedasticity `9.` Autocorrelation `10.` Multicollinearity `11.` Square `12.` Sign `13.` Scale `14.` Coincide `15.` Causation
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
@@ -1072,7 +1033,7 @@ $$
 
 The story of regression begins with Sir Francis Galton's groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon **"regression toward the mean"** - the offspring's heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term "regression" into statistics but also inspired the development of tools for studying relationships between variables. [@Galton1886]
 
-Galton's work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient - the same $r$ we use today. [@Pearson1896] Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.
+Galton's work was later placed on a firm mathematical foundation by Karl Pearson, who developed the mathematical treatment of correlation and regression and introduced the product-moment correlation coefficient - the same $r$ we use today. [@Pearson1896] Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.
 :::
 ::: {.callout-tip title="Quotes to Inspire"}
 **“Statistics is the art of never having to say you’re wrong.”**\

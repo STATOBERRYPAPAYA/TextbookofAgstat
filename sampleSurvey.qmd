@@ -24,11 +24,11 @@ Sample surveys are particularly useful in the following situations:
 
 A **sampling unit** is the basic unit selected from the population for inclusion in the sample and on which observations or measurements are made. The population is regarded as being made up of these sampling units, which must be clearly defined and must not overlap. The nature of the sampling unit depends on the objective of the study. For example, in a crop-cutting survey, a field or a small plot marked within a field may be the sampling unit; in a household survey, a household is the sampling unit; in a livestock survey, an individual animal may be the sampling unit; and in a farmer adoption study, an individual farmer may be the sampling unit.
 
-**Census** is the complete enumeration of every unit in the population. In a census, data are collected from all population units rather than from a sample. For example, the counting of every single farmer in a village to record his land holding is a census, whereas recording the land holding of only 50 selected farmers is a sample survey. A census gives exact information but is costly and time-consuming, and is often impossible when the population is very large or when measurement destroys the unit.
+**Census** is the complete enumeration of every unit in the population. In a census, data are collected from all population units rather than from a sample. For example, the counting of every single farmer in a village to record his land holding is a census, whereas recording the land holding of only 50 selected farmers is a sample survey. A census is free from sampling error, but may still be affected by non-sampling errors. It is costly and time-consuming, and is often impossible when the population is very large or when measurement destroys the unit.
 
 **Sample size** is the total number of sampling units included in the sample. It is usually denoted by ($n$). The ratio $\dfrac{n}{N}$ is called the **sampling fraction**. For example, if 50 farmers are selected from a village of 500 farmers, the sample size is $n = 50$ and the sampling fraction is $\dfrac{50}{500} = 0.1$, or 10%.
 
-**Sampling design (Sampling method)** is the procedure used to select units from the population. A good sampling design ensures that the selected sample is representative of the population, allowing reliable conclusions to be drawn. The choice of sampling design depends on the objective of the study, the nature of the population, and the resources available.
+**Sampling design (Sampling method)** is the procedure used to select units from the population. A suitable probability design supports valid estimation of population quantities and their sampling uncertainty; no design guarantees that every realised sample exactly represents the population. The choice depends on the study objective, population structure, and available resources.
 
 **Sampling frame** is the complete list or source that identifies all the sampling units in the population from which the sample is selected. It should include every unit in the target population, with no omissions or duplication. For example, if the population consists of all farmers in a village, the voters' list, farmer registry, or village household register can serve as the sampling frame, provided it includes all farmers. An incomplete or outdated frame (for example, one that leaves out newly settled farmers) leads to a biased sample, because some units of the population never get a chance to be selected.
 
@@ -39,12 +39,11 @@ A **sampling unit** is the basic unit selected from the population for inclusion
 **Estimator** is a statistic used to estimate an unknown population parameter from sample data. It is a function of the sample observations and produces an **estimate** of the parameter. For example, the sample mean $\bar{x}$ is an estimator of the population mean $\mu$; the particular value it takes for a given sample, say 38 kg, is an estimate.
 
 **Expectation (Expected Value)** of an estimator is the long-run average of the values that the estimator would take if the same sampling procedure were repeated a very large number of times. It is denoted by $E(\cdot)$.\
-Suppose the average yield of a crop in a population is 40 kg per plot. If many random samples of the same size are drawn and the sample mean is calculated for each sample, the sample means will vary from one sample to another. However, the average of all these sample means will be 40 kg per plot. Thus, $E(\bar{X})=\mu=40$.
+Suppose the average yield of a crop in a population is 40 kg per plot. Under simple random sampling, if many samples of the same size are drawn and the sample mean is calculated for each sample, the sample means will vary from one sample to another. However, the average of all these sample means will be 40 kg per plot. Thus, $E(\bar{X})=\mu=40$.
 
-An estimator is said to be an **unbiased estimator** of a population parameter if its expected value is equal to the true value of that parameter. Thus, if $t$ is an estimator of the parameter $\theta$, then $t$ is unbiased if $E(t)=\theta$. Unbiasedness means that, although a single sample estimate may be higher or lower than the true value, on average the estimator neither overestimates nor underestimates the parameter. For example, the sample mean $\bar{x}$ is an unbiased estimator of the population mean $\mu$.
+An estimator is said to be an **unbiased estimator** of a population parameter if its expected value is equal to the true value of that parameter. Thus, if $t$ is an estimator of the parameter $\theta$, then $t$ is unbiased if $E(t)=\theta$. Unbiasedness means that, although a single sample estimate may be higher or lower than the true value, on average the estimator neither overestimates nor underestimates the parameter. For example, under simple random sampling, the sample mean $\bar{x}$ is an unbiased estimator of the population mean $\mu$.
 
-**Sampling Error** is the difference between a sample estimate and the corresponding true population value that arises because only a sample, and not the entire population, is observed. Sampling error is a natural consequence of sampling and decreases as the sample becomes more representative of the population.\
-Sampling errors arise primarily due to: (i) faulty selection of samples (ii) substitution of sampling units already included in the study (iii) faulty demarcation of sampling units (iv) improper choice of statistical methods for estimating parameters. As long as sampling errors are sufficiently small, the sampling method can be reliably used for studying a population. Sampling errors are absent in a complete census. Increasing the sample size decreases the sampling error.
+**Sampling Error** is the difference between a sample estimate and the corresponding true population value that arises because only a sample, and not the entire population, is observed. Sampling error occurs even when a probability sample is selected and measured correctly. For a fixed design and population, increasing the sample size generally reduces the standard error, but does not guarantee a smaller error in every realised sample. Errors due to faulty implementation, unauthorised substitution of selected units, incorrect demarcation, or inappropriate estimation procedures are not ordinary random sampling fluctuations. Sampling error is absent in a complete census.
 
 ```{r echo=FALSE, out.width="70%", fig.align='center'}
 #| label: fig-samperror
@@ -52,7 +51,7 @@ Sampling errors arise primarily due to: (i) faulty selection of samples (ii) sub
 knitr::include_graphics("images/sample_survey/sampling_error.svg")
 ```
 
-**Non-sampling error** are the errors other than sampling errors - such as those arising through non-response, incompleteness, or inaccuracy in recording. Data obtained from a census are free from sampling errors but are still subject to non-sampling errors. Sample survey data are subject to both types of errors.
+**Non-sampling errors** are errors other than sampling errors - such as those arising through non-response, incompleteness, or inaccuracy in recording. Data obtained from a census are free from sampling errors but are still subject to non-sampling errors. Sample survey data are subject to both types of errors.
 
 Non-sampling errors can occur due to: (i) faulty planning and definitions - inadequate data specifications, errors in locating units, lack of trained personnel; (ii) response errors - misunderstanding of questions, or bias on the part of the interviewer or respondent; (iii) non-response bias - where full information is not obtained; and (iv) errors in coverage, compilation, and publication.  
 
@@ -113,7 +112,7 @@ knitr::include_graphics("images/sample_survey/sampling_methods.svg")
 
 ### Probability sampling {.unnumbered}
 
-Probability sampling is the scientific method of selecting samples according to the laws of probability, in which each unit in the population has a definite, pre-assigned probability of being selected. This may mean:
+Probability sampling is the scientific method of selecting samples according to the laws of probability, in which each unit in the population has a known, positive probability of inclusion. This may mean:
 
 1.  All units have an equal chance of being chosen.
 2.  Units are sometimes selected with different probabilities.
@@ -121,7 +120,7 @@ Probability sampling is the scientific method of selecting samples according to 
 
 #### Simple random sampling {.unnumbered}  
 
-Simple Random Sampling (SRS) is the most basic and widely used probability sampling method. It is appropriate when the population is relatively homogeneous with respect to the characteristic being studied. In SRS, every unit in the population has an equal and independent chance of being selected, and every possible sample of a given size has an equal probability of selection.  
+Simple Random Sampling (SRS) is the most basic and widely used probability sampling method. It is appropriate when the population is relatively homogeneous with respect to the characteristic being studied. In simple random sampling without replacement, every possible sample of a given size has an equal probability of selection, and each population unit has the same inclusion probability. The selections are not independent. In simple random sampling with replacement, successive draws are independent and every unit has the same probability of selection on each draw.  
 
 There are two types of simple random sampling:
 
@@ -129,12 +128,12 @@ There are two types of simple random sampling:
 
 **Simple Random Sampling Without Replacement (SRSWOR):** After a unit is selected, it is not returned to the population. Hence, each unit can be selected only once. This is the method most commonly used in practice.
 
-The main advantage of SRS is its simplicity and the fact that it gives every unit an equal chance, making the sample free from selection bias. Its main limitation is that it needs a complete list (frame) of all units, and if the population is spread over a wide area, visiting the randomly scattered units can be costly and time-consuming.
+The main advantage of SRS is its simplicity and the fact that it gives every unit an equal chance, supporting an unbiased sample-mean estimator when selection and response follow the stated design. A realised sample can still be unbalanced, and nonresponse or frame omissions can introduce bias. Its main limitation is that it needs a complete list (frame) of all units, and if the population is spread over a wide area, visiting the randomly scattered units can be costly and time-consuming.
 
 To select a simple random sample, all population units are assigned unique identification numbers from 1 to *N*. Then, *n* numbers are selected completely at random using methods such as the lottery method, random number tables, or computer-generated random numbers.
 
 ::: {.callout-note title="Example"}
-A mango orchard has 300 mango trees, and we wish to estimate the average number of fruits per tree by selecting a simple random sample of 30 trees. Each tree is assigned a unique number from 1 to 300. Using a random number generator (or a random number table), 30 distinct numbers between 1 and 300 are drawn. The trees corresponding to these numbers form the simple random sample without replacement (SRSWOR), and the number of fruits on each selected tree is counted. Because the selection is completely random, every tree, whether healthy or weak, tall or short, has the same chance of being chosen, so the sample fairly represents the whole orchard.
+A mango orchard has 300 mango trees, and we wish to estimate the average number of fruits per tree by selecting a simple random sample of 30 trees. Each tree is assigned a unique number from 1 to 300. Using a random number generator (or a random number table), 30 distinct numbers between 1 and 300 are drawn. The trees corresponding to these numbers form the simple random sample without replacement (SRSWOR), and the number of fruits on each selected tree is counted. Because the selection is completely random, every tree, whether healthy or weak, tall or short, has the same chance of being chosen, although an individual sample may still differ from the whole orchard by chance.
 :::
 
 
@@ -163,11 +162,13 @@ The interval between two successive selected units is called the sampling interv
 
 $$k=\frac{N}{n}$$  
 
-where *N* is the population size and *n* is the required sample size. After calculating *k*, a random starting number between 1 and *k* is chosen. Beginning with this unit, every *k* th unit is included in the sample until the required sample size is obtained.
+where *N* is the population size and *n* is the required sample size. When $N/n$ is an integer, a random starting number between 1 and *k* is chosen. If $N/n$ is not an integer, a suitable fractional-interval or circular procedure is needed; simply rounding *k* may change the sample size. Beginning with this unit, every *k* th unit is included in the sample until the required sample size is obtained.
 
 ::: {.callout-note title="Example"}
 A researcher wishes to select a sample of 20 trees from a row plantation of 300 rubber trees that are already numbered 1 to 300 along the rows. The sampling interval is $k=\frac{300}{20}=15$. A random starting number between 1 and 15 is selected, say 8. The sample then consists of trees numbered 8, 23, 38, 53, 68, 83, and so on, continuing by adding 15 each time until 20 trees have been selected. This is easier to carry out in the field than drawing 20 separate random numbers, since the enumerator simply walks down the rows selecting every 15th tree.
 :::
+
+A repeating pattern in the list that coincides with the sampling interval can make a systematic sample poorly representative. The ordering of units should therefore be examined before this method is used.
 
 #### Cluster sampling {.unnumbered}
 
@@ -184,9 +185,66 @@ Suppose a researcher wishes to estimate the average yield of paddy farms in a di
 #| fig-cap: "Illustration of cluster sampling. From a population consisting of *N* clusters of size *M*, *n* clusters are selected at random, and all units within the selected clusters are included in the sample."
 knitr::include_graphics("images/sample_survey/cluster.svg")
 ```
+#### Multistage sampling {.unnumbered}
+
+In multistage sampling, units are selected in stages. For example, villages may be selected first, farms within the selected villages next, and plots within the selected farms last. Villages are the first-stage sampling units, while farms and plots are units at subsequent stages. Unlike one-stage cluster sampling, multistage sampling does not require complete enumeration of each selected cluster. The probabilities used at every stage must be taken into account when estimating population quantities.
+
+### Stratification, clustering, and sampling weights {.unnumbered}
+
+Stratified sampling selects a sample from every stratum; one-stage cluster sampling selects only some clusters and observes all units in those clusters. Stratification aims to improve precision by forming internally similar groups, while clustering often reduces field costs. Similarity among units in a cluster can reduce the information gained from a given number of observations.
+
+When strata differ in size, the population mean is estimated by weighting each stratum mean by its population share:
+
+$$\bar{x}_{st}=\sum_{h=1}^{H}W_h\bar{x}_h,\qquad W_h=\frac{N_h}{N}.$$ {#eq-stratified-mean}
+
+Here $H$ is the number of strata, $N_h$ is the population size of stratum $h$, and $\bar{x}_h$ is its sample mean. A simple average of the stratum means is generally inappropriate when stratum sizes differ. More generally, unequal-probability designs require weights that reflect the selection probabilities.
+
+### Estimation under SRSWOR {.unnumbered}
+
+For a simple random sample without replacement from a finite population, the sample mean estimates the population mean. Its estimated standard error is
+
+$$\widehat{SE}(\bar{x})=\sqrt{\left(1-\frac{n}{N}\right)\frac{s^2}{n}},\qquad s^2=\frac{\sum_{i=1}^{n}(x_i-\bar{x})^2}{n-1}.$$ {#eq-srswor-se}
+
+The factor $\sqrt{1-n/N}$ is the **finite population correction**. It accounts for the reduction in sampling uncertainty when a substantial part of a finite population is observed. The standard error measures the sampling variability of the estimator; it is different from the standard deviation describing variability among observations.
+
+::: {#exm-survey-se}
+A population contains 100 units. An SRSWOR of 25 units gives a sample mean of 40 kg and a sample standard deviation of 5 kg. Estimate the standard error of the sample mean.
+
+**Solution**
+
+Using @eq-srswor-se,
+
+$$\widehat{SE}(\bar{x})=\sqrt{(1-25/100)\frac{5^2}{25}}=\sqrt{0.75}=0.866\text{ kg}.$$
+
+Thus, the estimated population mean is 40 kg and its estimated standard error is 0.866 kg. Sampling uncertainty remains even though the survey has been carried out correctly.
+:::
+
+### Estimating totals, proportions and stratified precision {.unnumbered}
+
+Under SRSWOR, estimate a population total by $\hat T=N\overline{x}$, with $\widehat{SE}(\hat T)=N\widehat{SE}(\overline{x})$. For a yes-or-no characteristic coded 1 and 0, the sample mean is the sample proportion $\hat p$. Its estimated variance is $(1-n/N)\hat p(1-\hat p)/(n-1)$ for $n>1$.
+
+For independent SRSWOR samples in each stratum, the estimated variance of the stratified mean is
+
+$$\widehat{\operatorname{Var}}(\overline{x}_{st})=
+\sum_{h=1}^H W_h^2\left(1-\frac{n_h}{N_h}\right)\frac{s_h^2}{n_h}.$$
+
+Each non-census stratum needs enough observations to estimate its variance. Proportional allocation uses $n_h=nN_h/N$. With equal per-unit costs and known planning standard deviations $S_h$, Neyman allocation uses $n_h=nN_hS_h/\sum_jN_jS_j$ to minimize variance for a fixed total sample size, subject to feasible stratum sample sizes. Round allocations so that they sum to the required sample size. [@PSUSampling6]
+
+For example, suppose the 200 small, 300 medium and 100 large farms have sample mean outputs of 20, 30 and 50 quintals per farm. The estimated mean output per farm is $(200/600)20+(300/600)30+(100/600)50=30$ quintals. The simple average of the three means is 33.33 and is inappropriate here. Average output per farm is also different from district yield per hectare, which requires the corresponding production and area totals.
+
+For an unequal-probability design, the basic sampling weight is $w_i=1/\pi_i$, where $\pi_i$ is the inclusion probability of unit $i$. The Horvitz–Thompson total is $\hat T=\sum_{i\in s}x_i/\pi_i$. Its variance requires the design's joint inclusion probabilities or a suitable design-based variance method. Probability proportional to size (PPS) sampling uses a known size measure, such as village area, to give larger units greater selection probabilities. The estimator must reflect the actual design, not simply average the selected observations without considering weights.
+
+### Sample size and field implementation {.unnumbered}
+
+For preliminary planning of an SRS mean estimate, a normal-approximation calculation is $n_0=z^2\sigma^2/d^2$, where $d$ is the desired absolute margin of error, $z$ is the two-sided normal critical value and $\sigma^2$ is a planning variance. With the descriptive finite-population variance $\sigma^2=\sum(x_i-\mu)^2/N$, the finite-population adjustment is $n=Nn_0/(N-1+n_0)$. Round the final value up. For a proportion, use $P(1-P)$ in place of $\sigma^2$; 0.25 is the conservative planning value when no useful prior proportion is available. This is a planning approximation and does not guarantee precision for every sample.
+
+For example, with $N=1000$, anticipated $P=0.5$, $d=0.05$ and $z=1.96$, $n_0=384.16$ and $n=277.74$, so at least 278 completed observations are planned under these assumptions. Complex designs and nonresponse require further allowance. A design effect compares the design variance with the SRS variance at the same sample size; clustered observations may require a larger sample for the same precision.
+
+Train the investigators, pre-test questions, record nonresponse and avoid replacing unavailable selected units by convenient neighbours. Adjustments for nonresponse need defensible assumptions and do not automatically remove bias. A single systematic sample generally does not provide a direct unbiased variance estimate from within-sample replication; use a variance method justified by the design or stated additional assumptions. [@PSUSampling8]
+
 ### Non-probability sampling {.unnumbered}
 
-In non-probability sampling, the sample is selected on the basis of the researcher's judgement, convenience, or some other non-random criterion, rather than by giving each unit a known chance of selection. Because the selection does not follow the laws of probability, some units of the population may have no chance at all of being included. As a result, the sampling error cannot be measured, and the results cannot be validly generalised to the whole population using probability theory. Non-probability sampling is nevertheless useful when a sampling frame is not available, when the study is exploratory or qualitative, when time and money are very limited, or when the population is difficult to reach. The main methods are described below.
+In non-probability sampling, the sample is selected on the basis of the researcher's judgement, convenience, or some other non-random criterion, rather than by giving each unit a known chance of selection. Because the selection does not follow the laws of probability, some units of the population may have no chance at all of being included. The usual design-based sampling error cannot be estimated from the selection mechanism. Population inference then needs additional, explicit modelling assumptions; a large non-probability sample alone does not supply them. Non-probability sampling is nevertheless useful when a sampling frame is not available, when the study is exploratory or qualitative, when time and money are very limited, or when the population is difficult to reach. The main methods are described below.
 
 #### Convenience sampling {.unnumbered}
 
@@ -201,7 +259,7 @@ An agricultural student who wants to know the common pests of brinjal interviews
 Consecutive sampling is similar to convenience sampling, but instead of taking one convenient group and stopping, the researcher collects data from every accessible unit (or group) one after another over a period of time, until the desired number is reached or the study period ends. By continuing over time, it can capture changes or patterns that a single convenient snapshot would miss, though it still lacks random selection.
 
 ::: {.callout-note title="Example"}
-A veterinary officer records the health details of every sick animal brought to a village clinic each day, continuing day after day for two months. Each day's cases are added to the sample one after another, allowing the officer to observe how disease incidence changes over the season, even though the animals were never randomly selected.
+A veterinary officer records the health details of every sick animal brought to a village clinic each day, continuing day after day for two months. Each day's cases are added to the sample one after another, allowing the officer to observe how the pattern of illness among animals attending the clinic changes over the season, even though the animals were never randomly selected.
 :::
 
 #### Quota sampling {.unnumbered}
@@ -238,115 +296,41 @@ A researcher wants to study farmers in a district who practise a rare traditiona
 \
 
 
+The sampling design determines how an estimate and its standard error should be calculated. The next chapter uses sampling distributions to explain how sample evidence can be assessed against a claim about a population parameter.
+
+### Reading a random-number table
+
+Number 50 units from 01 to 50 and suppose a sample of five is required without replacement. Choose a starting place and reading direction before reading pairs of random digits. If the successive pairs are 07, 83, 14, 14, 00, 32, 48, 61 and 05, accept 07, 14, 32, 48 and 05. Reject 00, numbers above 50 and repeated accepted numbers. Continue until five distinct valid numbers have been obtained. This illustrates the selection procedure; the pairs must actually come from a suitable random-number source.
+
 ## Chapter Summary
 
 ### Fill in the blanks {.unnumbered}
 
 Answers are given at the end of the chapter.
 
-1. The systematic collection of information from a sample is called a __________.
+1. A numerical constant describing a population is termed a __________.
 
-2. The complete collection of individuals, objects, or units about which information is required is called the __________.
+2. A numerical measure calculated from sample observations is termed a __________.
 
-3. The total number of units in a population is called the population __________.
+3. Complete enumeration of a population is called a __________.
 
-4. A population that can be counted in principle is called a __________ population.
+4. The list of sampling units used for sample selection is called the sampling __________.
 
-5. A subset of the population selected for study is called a __________.
+5. A statistic used to estimate a population parameter is called an __________.
 
-6. A sample that reflects the important characteristics of the population is called a __________ sample.
+6. An estimator whose expected value equals the population parameter is said to be __________.
 
-7. The basic unit selected from the population for inclusion in the sample is called the __________ unit.
+7. The ratio of sample size to population size is called the sampling __________.
 
-8. Complete enumeration of every unit in the population is called a __________.
+8. In stratified random sampling, the population is divided into non-overlapping groups called __________.
 
-9. The total number of sampling units included in the sample is called the __________ size.
+9. In one-stage cluster sampling, all units in each selected cluster are __________.
 
-10. The ratio $\frac{n}{N}$ is called the __________ fraction.
+10. Sampling with a random start followed by selection at regular intervals is called __________ sampling.
 
-11. The procedure used to select units from a population is called the sampling __________.
+11. Errors due to non-response are classified as __________ errors.
 
-12. The complete list or source identifying all sampling units in the population is called the sampling __________.
-
-13. A numerical constant describing a characteristic of the population is called a __________.
-
-14. A numerical measure calculated from sample data is called a __________.
-
-15. A statistic used to estimate an unknown population parameter is called an __________.
-
-16. The particular value obtained from an estimator for a given sample is called an __________.
-
-17. The long-run average value of an estimator is called its __________.
-
-18. An estimator whose expected value is equal to the true population parameter is called an __________ estimator.
-
-19. The difference between a sample estimate and the corresponding population value due to observing only a sample is called __________ error.
-
-20. Errors arising from non-response, inaccurate recording, faulty planning, and incomplete coverage are called __________ errors.
-
-21. Sampling errors are absent when a complete __________ is conducted.
-
-22. Increasing the sample size generally __________ sampling error.
-
-23. A confidence interval is an __________ estimate of a population parameter.
-
-24. A confidence level is expressed as $100(1-\alpha)$ __________.
-
-25. If $\alpha=0.05$, the confidence level is __________%.
-
-26. If $\alpha=0.01$, the confidence level is __________%.
-
-27. A 95% confidence interval refers to the long-run performance of the __________ used to construct the interval.
-
-28. In probability sampling, every population unit has a __________ probability of selection.
-
-29. In simple random sampling, every unit has an __________ and __________ chance of selection.
-
-30. In SRSWR, a selected unit is __________ to the population before the next draw.
-
-31. In SRSWOR, a selected unit is __________ returned to the population.
-
-32. In stratified random sampling, the population is divided into non-overlapping groups called __________.
-
-33. In stratified random sampling, a random sample is selected independently from each __________.
-
-34. In systematic sampling, the interval between successive selected units is called the sampling __________.
-
-35. The sampling interval in systematic sampling is given by $k=$ __________.
-
-36. In systematic sampling, the first unit is selected __________.
-
-37. In cluster sampling, the population is divided into naturally occurring groups called __________.
-
-38. In cluster sampling, a random sample of __________ is selected.
-
-39. In cluster sampling, all units within the selected clusters are __________.
-
-40. Probability sampling follows the laws of __________.
-
-41. In non-probability sampling, the probability of selection is generally __________ known.
-
-42. In convenience sampling, units are selected because they are easiest to __________.
-
-43. In consecutive sampling, accessible units are selected one after another until the desired number is __________.
-
-44. In quota sampling, a fixed number of units is decided for each __________.
-
-45. In quota sampling, units within each subgroup are selected by __________ rather than randomly.
-
-46. Purposive sampling is also called __________ sampling.
-
-47. In purposive sampling, units are deliberately selected based on the researcher's __________.
-
-48. Snowball sampling is also called __________-referral sampling.
-
-49. Snowball sampling is useful when the target population is difficult to __________ or identify.
-
-50. The representative method of sample surveys was formally proposed by __________ in 1895.
-
-51. __________ later introduced random sampling and probability-based inference into survey work.
-
-52. Large-scale sample surveys in India were pioneered by __________.
+12. The error absent in a complete census is __________ error.
 
 ### Short-answer questions {.unnumbered}
 
@@ -484,7 +468,7 @@ Answers are given at the end of the chapter.
 
 19. A sample estimate of average crop yield is 38 kg, while the true population mean is 40 kg. Calculate the sampling error.
 
-20. A sample mean is used to estimate a population mean. Explain why the sample mean is considered an unbiased estimator of the population mean.
+20. Under simple random sampling, explain why the sample mean is an unbiased estimator of the population mean.
 
 21. Explain why an incomplete or outdated sampling frame can produce a biased sample.
 
@@ -545,7 +529,7 @@ $$
 - Unbiased estimator → estimator whose expected value equals the true parameter.
 - Sampling error → difference caused by observing a sample rather than the entire population.
 - Sampling error is absent in a census.
-- Increasing sample size generally decreases sampling error.
+- Increasing sample size generally decreases standard error for a fixed design and population.
 - Non-sampling error → errors other than sampling error.
 - Census data can still contain non-sampling errors.
 - Confidence interval → interval estimate of a population parameter.
@@ -554,7 +538,7 @@ $$
 - $\alpha=0.01$ → 99% confidence level.
 - A 95% confidence interval describes the long-run performance of the interval construction method.
 - Probability sampling → selection based on probability laws.
-- Simple random sampling → every unit has an equal and independent chance of selection.
+- Simple random sampling → equal inclusion probabilities; successive draws are independent only with replacement.
 - SRSWR → selected unit is returned before the next selection.
 - SRSWOR → selected unit is not returned.
 - SRS requires a complete sampling frame.
@@ -582,7 +566,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` Sample survey `2.` Population `3.` Size `4.` Finite `5.` Sample `6.` Representative `7.` Sampling `8.` Census `9.` Sample `10.` Sampling `11.` Design `12.` Frame `13.` Parameter `14.` Statistic `15.` Estimator `16.` Estimate `17.` Expectation `18.` Unbiased `19.` Sampling `20.` Non-sampling `21.` Census `22.` Decreases `23.` Interval `24.` Percent `25.` 95 `26.` 99 `27.` Method `28.` Definite `29.` Equal; independent `30.` Returned `31.` Not `32.` Strata `33.` Stratum `34.` Interval `35.` $\frac{N}{n}$ `36.` Randomly `37.` Clusters `38.` Clusters `39.` Enumerated `40.` Probability `41.` Not `42.` Reach `43.` Reached `44.` Subgroup `45.` Convenience `46.` Judgement `47.` Judgement `48.` Chain `49.` Find `50.` Anders Nicolai Kiaer `51.` Arthur Lyon Bowley `52.` Prasanta Chandra Mahalanobis
+`1.` Parameter `2.` Statistic `3.` Census `4.` Frame `5.` Estimator `6.` Unbiased `7.` Fraction `8.` Strata `9.` Enumerated `10.` Systematic `11.` Non-sampling `12.` Sampling
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
@@ -621,17 +605,17 @@ $$
 
 17. A census enumerates every unit, so there is no sampling error; but non-sampling errors (non-response, recording, coverage, processing) can still occur.
 
-18. As the sample size increases, the sample becomes more representative of the population, so the sampling error generally decreases.
+18. For a fixed design and population, a larger sample generally has a smaller standard error. For example, under independent sampling the standard error of the mean is $\sigma/\sqrt{n}$. The error in an individual realised sample need not decrease.
 
-19. Sampling error is the difference between estimkate and true population value. It can be calculated as $=38-40=-2$, so the estimate is 2 units below the population value.
+19. Sampling error is the difference between estimate and true population value. It can be calculated as $=38-40=-2$, so the estimate is 2 units below the population value.
 
-20. The sample mean is unbiased because $E(\bar{X})=\mu$; over repeated samples the average of the sample means equals the population mean.
+20. Under simple random sampling, the sample mean is unbiased because $E(\bar{X})=\mu$; over repeated samples the average of the sample means equals the population mean.
 
 21. An incomplete or outdated frame gives some population units no chance of selection, producing selection bias and an unrepresentative sample.
 
 22. In SRS units are drawn individually at random; in stratified sampling random samples are drawn within strata; in systematic sampling every $k$th unit is taken after a random start; in cluster sampling whole clusters are drawn and fully enumerated.
 
-23. Probability sampling uses random selection with known probabilities and permits sampling error to be estimated; non-probability sampling uses non-random selection, so some units may have no chance of selection and sampling error cannot be measured.
+23. Probability sampling uses random selection with known positive inclusion probabilities for population units and supports design-based estimation of sampling uncertainty, subject to the design and available replication. Non-probability sampling does not provide those probabilities; its uncertainty requires additional modelling assumptions rather than the usual design-based formulae.
 
 24. Both divide the population into subgroups, but stratified sampling selects units within each stratum randomly, whereas quota sampling fills each subgroup by convenience, so only stratified sampling is a probability method.
 

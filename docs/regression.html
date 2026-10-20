@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>9&nbsp; Regression analysis – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./probability.html" rel="next">
 <link href="./association.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,13 +99,40 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -132,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="9&nbsp; Regression analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="9&nbsp; Regression analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -330,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -531,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -590,6 +623,7 @@ window.Quarto = {
   <li><a href="#sec-regressionbeta" id="toc-sec-regressionbeta" class="nav-link" data-scroll-target="#sec-regressionbeta"><span class="header-section-number">9.1.4</span> Regression coefficient</a></li>
   <li><a href="#intercept" id="toc-intercept" class="nav-link" data-scroll-target="#intercept"><span class="header-section-number">9.1.5</span> Intercept</a></li>
   <li><a href="#assumptions" id="toc-assumptions" class="nav-link" data-scroll-target="#assumptions"><span class="header-section-number">9.1.6</span> Assumptions</a></li>
+  <li><a href="#checking-the-fitted-model" id="toc-checking-the-fitted-model" class="nav-link" data-scroll-target="#checking-the-fitted-model"><span class="header-section-number">9.1.7</span> Checking the fitted model</a></li>
   </ul></li>
   <li><a href="#two-lines-of-regression" id="toc-two-lines-of-regression" class="nav-link" data-scroll-target="#two-lines-of-regression"><span class="header-section-number">9.2</span> Two lines of regression</a>
   <ul class="collapse">
@@ -634,7 +668,7 @@ window.Quarto = {
 </header>
 
 
-<p>Regression analysis is one of the most important tools in statistics, used to understand and quantify the relationships between variables. In essence, regression helps us answer questions such as: “How does a change in one variable (like fertilizer usage) affect another variable (like crop yield)?” It provides a mathematical framework to explore these relationships based on observed data <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
+<p>Regression analysis is one of the most important tools in statistics, used to understand and quantify the relationships between variables. In essence, regression helps us answer questions such as: “How does a change in one variable (like fertilizer usage) affect another variable (like crop yield)?” It provides a mathematical framework to explore these relationships based on observed data <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery et al. 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
 <p>Regression analysis involves two types of variables:</p>
 <ul>
 <li><p><strong>Dependent variable</strong> (<em>y</em>): The dependent variable (usually denoted as <em>y</em>) is the variable whose values are to be explained, predicted, or modeled based on one or more independent variables. It represents the outcome or response of interest and is assumed to depend on the values of the explanatory variables. For example, crop yield is often the dependent variable in agricultural experiments. In regression analysis, it is commonly referred to as the response variable, outcome variable, criterion variable, target variable, explained variable, regressand, or simply the response.</p></li>
@@ -653,7 +687,7 @@ window.Quarto = {
 <ul>
 <li><p><strong>Simple linear regression</strong>: Examines the relationship between one independent variable and one dependent variable, assuming a straight-line relationship.</p></li>
 <li><p><strong>Multiple linear regression</strong>: An extension of simple linear regression, allowing for the analysis of the relationship between one dependent variable (<em>y</em>) and multiple independent variables (more than one <em>x</em>). It is used when the outcome is influenced by more than one factor.</p></li>
-<li><p><strong>Nonlinear regression</strong>: Deals with situations where the relationship between variables is not a straight line.</p></li>
+<li><p><strong>Nonlinear regression</strong>: Uses a mean function that is nonlinear in its unknown parameters. A curve is not necessarily a nonlinear regression model: a polynomial such as <span class="math inline">\(y=\alpha+\beta_1x+\beta_2x^2+e\)</span> is linear in its coefficients.</p></li>
 <li><p><strong>Logistic regression</strong>: Used when the dependent variable is categorical, such as predicting whether a plant will survive (yes or no) based on environmental factors.</p></li>
 </ul>
 <p><strong>Practical applications</strong></p>
@@ -718,15 +752,15 @@ Figure&nbsp;9.1: Possible lines drawn to show the functional relationship betwee
 </figcaption>
 </figure>
 </div>
-<p>The best fit line is the one that minimises the distances between the observed data points and the line itself. These distances are minimised collectively using a specific mathematical criterion. The regression technique provides a systematic approach to determine and draw this best fit line. Before going further into regression, it is essential to understand the concepts of <strong>error</strong> and <strong>residual</strong>, which play a critical role in determining the best fit line.</p>
+<p>The best fit line is the one that minimizes the distances between the observed data points and the line itself. In ordinary least squares, these are vertical deviations in the response direction, and their squared values are minimized collectively. The regression technique provides a systematic approach to determine and draw this best fit line. Before going further into regression, it is essential to understand the concepts of <strong>error</strong> and <strong>residual</strong>, which play a critical role in determining the best fit line.</p>
 <section id="error-and-residual" class="level3" data-number="9.1.1">
 <h3 data-number="9.1.1" class="anchored" data-anchor-id="error-and-residual"><span class="header-section-number">9.1.1</span> Error and residual</h3>
-<p>In regression analysis, an <strong>error</strong> represents the difference between an observed value and the value based on the true regression line. True regression line here what we meant is the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.</p>
+<p>In regression analysis, an <strong>error</strong> represents the difference between an observed value and the value based on the true regression line. By the true regression line, we mean the line that reflects the actual relationship between variables in the entire population. Since the true regression line is based on the whole population and is usually unknown, the error is a theoretical concept that cannot be directly measured.</p>
 <p>A <strong>residual</strong> is the difference between an observed value and the value predicted by the regression line fitted from sample data. For a given data point, the residual is calculated as:</p>
 <p><span class="math display">\[\text{Residual} = \text{Observed value} - \text{Predicted value}\]</span></p>
 <p>Residuals are measurable because they are derived from the observed data and the fitted regression line. Unlike the errors which are theoretical deviations from the true underlying model, the residuals provide a practical estimate of these deviations, allowing us to assess the goodness of fit and identify any patterns or discrepancies in the model.</p>
 <p>In essence, a residual serves as an estimate of the error. From <a href="#fig-residual" class="quarto-xref">Figure&nbsp;<span>9.2</span></a>, you can see the residual <span class="math inline">\(e_i\)</span> of the <span class="math inline">\(i\)</span>th observation in a fitted regression line.</p>
-<div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-residual" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-residual-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/residual_regression.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -736,7 +770,7 @@ Figure&nbsp;9.2: Residual and the best fit line
 </figcaption>
 </figure>
 </div>
-<p>The distance of the <span class="math inline">\(i\)</span>th observation (<span class="math inline">\(e_i\)</span>) from the fitted line is the residual. The best fit line is obtained by minimising these distances, which is achieved using the <strong>principle of least squares</strong>, discussed in <a href="#sec-leastsquares" class="quarto-xref"><span>Section 9.1.3</span></a>. Before identifying the best fit line, it is useful to recall the concept of a straight line.</p>
+<p>The distance of the <span class="math inline">\(i\)</span>th observation (<span class="math inline">\(e_i\)</span>) from the fitted line is the residual. The best fit line is obtained by minimizing these distances, which is achieved using the <strong>principle of least squares</strong>, discussed in <a href="#sec-leastsquares" class="quarto-xref"><span>Section 9.1.3</span></a>. Before identifying the best fit line, it is useful to recall the concept of a straight line.</p>
 </section>
 <section id="straight-lines" class="level3" data-number="9.1.2">
 <h3 data-number="9.1.2" class="anchored" data-anchor-id="straight-lines"><span class="header-section-number">9.1.2</span> Straight lines</h3>
@@ -749,7 +783,7 @@ Figure&nbsp;9.2: Residual and the best fit line
 <div aria-describedby="fig-interceptandslope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-interceptandslope" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-intercept" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-intercept" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-intercept-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/intercept_diagram.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:60.0%" data-ref-parent="fig-interceptandslope">
@@ -763,7 +797,7 @@ Figure&nbsp;9.2: Residual and the best fit line
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-interceptandslope" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-slope" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-slope" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-slope-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/slope_change.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:60.0%" data-ref-parent="fig-interceptandslope">
@@ -781,7 +815,7 @@ Figure&nbsp;9.3: Intercept and slope of a straight line
 </figcaption>
 </figure>
 </div>
-<p>The values <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that the error <span class="math inline">\(e_i\)</span> of each observation is minimised. For this, we use the <em>method of least squares</em>.</p>
+<p>The values <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> act as a fingerprint of a line, with these two values, we can uniquely identify any straight line. So our problem reduces to finding the line of best fit by estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> such that the sum of squared vertical residuals is minimized. For this, we use the <em>method of least squares</em>.</p>
 </section>
 <section id="sec-leastsquares" class="level3" data-number="9.1.3">
 <h3 data-number="9.1.3" class="anchored" data-anchor-id="sec-leastsquares"><span class="header-section-number">9.1.3</span> Method of least squares</h3>
@@ -798,17 +832,17 @@ Figure&nbsp;9.3: Intercept and slope of a straight line
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>One way to obtain the line of best fit is by estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> by minimising the error sum <span class="math inline">\(\sum_{i=1}^{n} e_i\)</span>. However, by theorem, <span class="math inline">\(\sum_{i=1}^{n} e_i = 0\)</span> for any fitted line, so this does not uniquely determine <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. Instead, we estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> by minimising <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span>. The term <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> is called the <strong>error sum of squares</strong>. Since we are minimising the sum of the squared error terms, this process is known as the <strong>principle of least squares</strong>.</p>
+<p>Minimizing the signed sum of deviations does not provide a suitable line of best fit. The sum of signed residuals can be made arbitrarily negative by increasing the intercept, so minimizing it does not define a best-fitting line. At the least-squares solution with an intercept, the residuals sum to zero. Instead, we estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> by minimizing <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span>. The term <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> is called the <strong>error sum of squares</strong>. Since we are minimizing the sum of the squared error terms, this process is known as the <strong>principle of least squares</strong>.</p>
 </div>
 </div>
 <p><u><strong>Principle of least squares</strong></u></p>
-<p>The principle of least squares is the statistical method used to determine the line of best fit by minimising the sum of squares of the errors, i.e., minimising <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
+<p>The principle of least squares is the statistical method used to determine the line of best fit by minimizing the sum of squares of the errors, i.e., minimizing <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
 <p>Starting from <a href="#eq-simpleregression" class="quarto-xref">Equation&nbsp;<span>9.2</span></a>:</p>
 <p><span id="eq-leastsq1"><span class="math display">\[e_i = y_i - (\alpha + \beta x_i) \tag{9.3}\]</span></span></p>
 <p><span id="eq-leastsq2"><span class="math display">\[e_i^2 = [y_i - (\alpha + \beta x_i)]^2 \tag{9.4}\]</span></span></p>
 <p>Let <span class="math inline">\(E = \sum_{i=1}^{n} e_i^2\)</span>.</p>
 <p><span id="eq-leastsq3"><span class="math display">\[E=\sum_{i=1}^{n} e_i^2 = \sum_{i=1}^{n} [y_i - (\alpha + \beta x_i)]^2 \tag{9.5}\]</span></span></p>
-<p>We want to minimise <a href="#eq-leastsq3" class="quarto-xref">Equation&nbsp;<span>9.5</span></a> to estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. This is done by taking the partial derivative of <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> separately, and equating each to zero. Doing so yields two equations called the <strong>normal equations</strong>. Solving these normal equations gives the formulas for estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
+<p>We want to minimize <a href="#eq-leastsq3" class="quarto-xref">Equation&nbsp;<span>9.5</span></a> to estimate <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>. This is done by taking the partial derivative of <span class="math inline">\(\sum_{i=1}^{n} e_i^2\)</span> with respect to <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> separately, and equating each to zero. Doing so yields two equations called the <strong>normal equations</strong>. Solving these normal equations gives the formulas for estimating <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span>.</p>
 <p>Differentiating with respect to <span class="math inline">\(\alpha\)</span> and equating to zero:</p>
 <p><span id="eq-lssquares1"><span class="math display">\[\frac{\partial E}{\partial \alpha} = \sum_{i=1}^n 2 \left[ y_i - (\alpha + \beta x_i) \right](-1) = 0 \tag{9.6}\]</span></span></p>
 <p><span id="eq-lssquares2"><span class="math display">\[\Rightarrow -2 \sum_{i=1}^n \left[ y_i - \alpha - \beta x_i \right] = 0 \tag{9.7}\]</span></span></p>
@@ -844,7 +878,7 @@ This gives us:</p>
 <strong>Solving for <span class="math inline">\(\hat{\alpha}\)</span></strong></p>
 <p>Once <span class="math inline">\(\hat{\beta}\)</span> is known, the intercept is obtained directly from <a href="#eq-solve2" class="quarto-xref">Equation&nbsp;<span>9.15</span></a>:</p>
 <p><span id="eq-regeqn5"><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} \tag{9.18}\]</span></span></p>
-<p>where <span class="math inline">\(\overline{y}\)</span> = mean of <span class="math inline">\(y\)</span> and <span class="math inline">\(\overline{x}\)</span> = mean of <span class="math inline">\(x\)</span>.</p>
+<p>where <span class="math inline">\(\overline{y}\)</span> = mean of <span class="math inline">\(y\)</span> and <span class="math inline">\(\overline{x}\)</span> = mean of <span class="math inline">\(x\)</span>. The covariance and variance in the ratio must use the same divisor; either <span class="math inline">\(n\)</span> in both or <span class="math inline">\(n-1\)</span> in both gives the same slope.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -860,13 +894,14 @@ This gives us:</p>
 <p>Note that the predicted value of <span class="math inline">\(y\)</span> is written as <span class="math inline">\(\hat{y}\)</span> (y-hat) to distinguish it from the observed value <span class="math inline">\(y\)</span>. Also note that the regression line always passes through the point <span class="math inline">\((\overline{x},\, \overline{y})\)</span>, which can be verified by substituting <span class="math inline">\(x = \overline{x}\)</span> into <a href="#eq-regestimate" class="quarto-xref">Equation&nbsp;<span>9.19</span></a>.</p>
 </div>
 </div>
+<p>The normal equations treat <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> as candidate values during minimisation. After fitting, the residual is <span class="math inline">\(\hat e_i=y_i-\hat y_i\)</span>, whereas the unobserved model error is <span class="math inline">\(e_i=y_i-E(y_i\mid x_i)\)</span>. Least squares minimizes squared residuals; it does not reveal each true error. The predictor must vary, so <span class="math inline">\(\sum(x_i-\overline{x})^2&gt;0\)</span>.</p>
 </section>
 <section id="sec-regressionbeta" class="level3" data-number="9.1.4">
 <h3 data-number="9.1.4" class="anchored" data-anchor-id="sec-regressionbeta"><span class="header-section-number">9.1.4</span> Regression coefficient</h3>
-<p>The regression coefficient <span class="math inline">\(\beta\)</span> in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable (<span class="math inline">\(x\)</span>) and the dependent variable (<span class="math inline">\(y\)</span>). Specifically, <span class="math inline">\(\hat{\beta}\)</span> indicates the expected change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x\)</span>, when all other factors are held constant <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>)</span>.</p>
+<p>The regression coefficient <span class="math inline">\(\beta\)</span> in linear regression represents the slope of the regression line. It quantifies the relationship between the independent variable (<span class="math inline">\(x\)</span>) and the dependent variable (<span class="math inline">\(y\)</span>). Specifically, <span class="math inline">\(\hat{\beta}\)</span> indicates the expected change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x\)</span>, according to the fitted conditional mean relationship <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery et al. 2021</a>)</span>. In simple regression, other unmeasured factors have not automatically been held constant.</p>
 <p>Regression coefficients can take any real value from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>. A positive <span class="math inline">\(\hat{\beta}\)</span> implies a direct relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> increases), while a negative <span class="math inline">\(\hat{\beta}\)</span> implies an inverse relationship (as <span class="math inline">\(x\)</span> increases, <span class="math inline">\(y\)</span> decreases). A coefficient of zero suggests no linear relationship between the variables.</p>
 <p>The formula for <span class="math inline">\(\hat{\beta}\)</span> is obtained by solving normal equations <a href="#eq-normaleq1" class="quarto-xref">Equation&nbsp;<span>9.9</span></a> and <a href="#eq-normaleq2" class="quarto-xref">Equation&nbsp;<span>9.13</span></a>, and is given by <a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.16</span></a>, which can be used for hand calculations:</p>
-<p><span class="math display">\[\hat{\beta}=\frac{\sum_{i = 1}^{n}{y_{i}x_{i} - \frac{\sum_{i = 1}^{n}{y_{i}\sum_{i = 1}^{n}x_{i}}}{n}}}{\sum_{i = 1}^{n}x_{i}^{2} - \frac{\left( \sum_{i = 1}^{n}x_{i} \right)^{2}}{n}}\]</span></p>
+<p><span class="math display">\[\hat{\beta}=\frac{\sum_i x_i y_i-(\sum_i x_i)(\sum_i y_i)/n}{\sum_i x_i^2-(\sum_i x_i)^2/n}\]</span></p>
 <p><a href="#eq-regeqn3" class="quarto-xref">Equation&nbsp;<span>9.16</span></a> can be written more compactly as <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.17</span></a>:</p>
 <p><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)}\]</span></p>
 </section>
@@ -880,22 +915,22 @@ This gives us:</p>
 </section>
 <section id="assumptions" class="level3" data-number="9.1.6">
 <h3 data-number="9.1.6" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">9.1.6</span> Assumptions</h3>
-<p>For the results of a regression analysis to be reliable and meaningful, certain underlying assumptions must be met. These ensure that the estimates are accurate, predictions are unbiased, and conclusions drawn from the model are valid <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
+<p>For the results of a regression analysis to be reliable and meaningful, certain underlying assumptions must be met. These ensure that the estimates are accurate, predictions are unbiased, and conclusions drawn from the model are valid <span class="citation" data-cites="Montgomery2021 Draper1998">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery et al. 2021</a>; <a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span>.</p>
 <ol type="1">
-<li><p><strong>Linearity</strong><br>
-The relationship between the independent variable(s) and the dependent variable is linear, changes in <span class="math inline">\(y\)</span> are proportional to changes in <span class="math inline">\(x\)</span>.</p></li>
+<li><p><strong>Linear conditional mean</strong><br>
+For simple linear regression, <span class="math inline">\(E(y_i\mid x_i)=\alpha+\beta x_i\)</span>. Thus the error has mean zero conditional on the predictor: <span class="math inline">\(E(e_i\mid x_i)=0\)</span>. The individual observations need not lie exactly on the line.</p></li>
 <li><p><strong>Independence</strong><br>
-The observations in the dataset are independent of each other, and the residuals (errors) are also independent.</p></li>
+The errors for different observations are independent. Fitted residuals are not generally independent because they share estimated coefficients.</p></li>
 <li><p><strong>Homoscedasticity</strong><br>
-The variance of the residuals is constant across all levels of the independent variable(s). The spread of the residuals should remain consistent and not show patterns of increasing or decreasing variance.</p></li>
-<li><p><strong>Normality of residuals</strong><br>
-The residuals are normally distributed. This is particularly important for hypothesis testing and constructing confidence intervals. The normality assumption does not strongly influence the estimation of regression coefficients themselves, but it matters for inference.</p></li>
-<li><p><strong>No multicollinearity</strong><br>
-In the case of multiple regression, the independent variables should not be highly correlated with each other. Multicollinearity can distort the estimates of regression coefficients and make them difficult to interpret.</p></li>
-<li><p><strong>No autocorrelation</strong><br>
-There should be no autocorrelation in the residuals, the residual of one observation should not be correlated with the residual of another.</p></li>
+The variance of the errors is constant across all levels of the independent variable(s). The spread of the residuals should remain consistent and not show patterns of increasing or decreasing variance.</p></li>
+<li><p><strong>Normality of errors</strong><br>
+For the usual exact t-tests, F-tests, and confidence intervals, the errors are normally distributed conditional on the predictors. This is particularly important for hypothesis testing and constructing confidence intervals. The normality assumption does not strongly influence the estimation of regression coefficients themselves, but it matters for inference.</p></li>
+<li><p><strong>No exact multicollinearity</strong><br>
+In multiple regression, no predictor may be an exact linear combination of the others. Exact dependence prevents unique coefficient estimates. High but imperfect dependence can increase standard errors and make individual coefficients unstable; it does not by itself make least-squares estimates biased.</p></li>
+<li><p><strong>No autocorrelation of errors</strong><br>
+Errors at different times or locations should not be correlated under the usual independent-error model. Residual plots against time or field position help assess this assumption; fitted residuals themselves share the estimated coefficients.</p></li>
 <li><p><strong>Correct model specification</strong><br>
-The model should include all relevant variables and exclude irrelevant ones. The functional form of the relationship between variables should be correctly specified.</p></li>
+The model should describe the conditional mean correctly. Omitting a relevant variable associated with an included predictor can bias its estimated effect; including an unnecessary predictor can reduce precision. The functional form of the relationship between variables should be correctly specified.</p></li>
 </ol>
 <p>Violations of these assumptions can lead to biased, inconsistent, or inefficient estimates, affecting the validity of the regression analysis.</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
@@ -908,7 +943,7 @@ The model should include all relevant variables and exclude irrelevant ones. The
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The essence of the assumptions in linear regression can be summarised as <span class="math inline">\(e \sim \text{i.i.d.}(0, \sigma^2)\)</span>. This denotes that the errors are <em>independent and identically distributed (i.i.d.)</em>, with a mean of zero and a constant variance <span class="math inline">\(\sigma^2\)</span>.</p>
+<p>The essence of the assumptions in linear regression can be summarized as <span class="math inline">\(e \sim \text{i.i.d.}(0, \sigma^2)\)</span>. This denotes that the errors are <em>independent and identically distributed (i.i.d.)</em>, with a mean of zero and a constant variance <span class="math inline">\(\sigma^2\)</span>.</p>
 <ul>
 <li><strong>Independence</strong> ensures that the error for one observation does not influence the error for another.</li>
 <li><strong>Identically distributed</strong> means all errors are drawn from the same probability distribution.</li>
@@ -917,6 +952,10 @@ The model should include all relevant variables and exclude irrelevant ones. The
 </ul>
 </div>
 </div>
+</section>
+<section id="checking-the-fitted-model" class="level3" data-number="9.1.7">
+<h3 data-number="9.1.7" class="anchored" data-anchor-id="checking-the-fitted-model"><span class="header-section-number">9.1.7</span> Checking the fitted model</h3>
+<p>Plot residuals against fitted values and against each predictor to look for curvature and changing spread. For observations collected in time or field order, also examine that order for dependence. A normal probability plot helps assess the normal-error assumption. Investigate unusual observations and influential points against the original records; do not delete them merely to obtain significance. Assess predictions on new observations when prediction is the objective.</p>
 </section>
 </section>
 <section id="two-lines-of-regression" class="level2" data-number="9.2">
@@ -927,7 +966,7 @@ The model should include all relevant variables and exclude irrelevant ones. The
 <div aria-describedby="fig-twolines-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-yonx_plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-yonx_plot" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-yonx_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/yonx.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:60.0%" data-ref-parent="fig-twolines">
@@ -941,7 +980,7 @@ The model should include all relevant variables and exclude irrelevant ones. The
 </div>
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-twolines" style="flex-basis: 100.0%;justify-content: flex-start;">
-<div id="fig-xony_plot" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-xony_plot" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-xony_plot-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/xony.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:60.0%" data-ref-parent="fig-twolines">
@@ -1045,23 +1084,23 @@ Y=\frac{y-b}{k},
 <h3 data-number="9.2.2" class="anchored" data-anchor-id="properties-of-regression-lines"><span class="header-section-number">9.2.2</span> Properties of Regression Lines</h3>
 <ol type="1">
 <li><p><strong>Regression lines are the lines of best fit</strong></p>
-<p>Each regression line is obtained using the <strong>least squares principle</strong>, which minimises the sum of the squared deviations between the observed and predicted values.</p>
+<p>Each regression line is obtained using the <strong>least squares principle</strong>, which minimizes the sum of the squared deviations between the observed and predicted values.</p>
 <ul>
-<li>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> minimises the sum of squared <strong>vertical</strong> deviations.</li>
-<li>The regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> minimises the sum of squared <strong>horizontal</strong> deviations.</li>
+<li>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> minimizes the sum of squared <strong>vertical</strong> deviations.</li>
+<li>The regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> minimizes the sum of squared <strong>horizontal</strong> deviations.</li>
 </ul></li>
 <li><p><strong>Both regression lines pass through the point of means</strong></p>
 <p>The regression lines of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> always intersect at the point</p>
 <p><span class="math display">\[(\bar{x},\,\bar{y}),\]</span></p>
 <p>where <span class="math inline">\(\bar{x}\)</span> and <span class="math inline">\(\bar{y}\)</span> are the arithmetic means of the variables.</p></li>
 <li><p><strong>The position of the regression lines depends on the correlation coefficient</strong></p>
-<p>The angle between the two regression lines depends on the magnitude of the correlation coefficient (<span class="math inline">\(r\)</span>).</p>
+<p>The angle between the two regression lines depends on the correlation and on the relative axis scales. It is not a unit-free measure of association.</p>
 <ul>
 <li>If <span class="math inline">\(|r|=1\)</span>, the two regression lines coincide, indicating a perfect linear relationship.</li>
 <li>If <span class="math inline">\(r=0\)</span>, the regression lines are perpendicular to each other, indicating no linear relationship.</li>
 <li>For <span class="math inline">\(0&lt;|r|&lt;1\)</span>, the two regression lines intersect at an angle between <span class="math inline">\(0^\circ\)</span> and <span class="math inline">\(90^\circ\)</span>.</li>
 </ul>
-<p>The position and angle of the regression lines therefore reflect the strength of the linear relationship between the variables (see <a href="#fig-twolines2" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>).</p></li>
+<p>With axis scales held fixed, their relative positions illustrate the linear association (see <a href="#fig-twolines2" class="quarto-xref">Figure&nbsp;<span>9.5</span></a>).</p></li>
 <li><p><strong>Regression lines are unique</strong></p>
 <p>For a given dataset, there is only one regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and one regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</p></li>
 <li><p><strong>The two regression lines are identical only under perfect correlation</strong></p>
@@ -1071,7 +1110,7 @@ Y=\frac{y-b}{k},
 <li><p><strong>Prediction depends on the direction of regression</strong></p>
 <p>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is used to predict the value of <span class="math inline">\(y\)</span> from a given value of <span class="math inline">\(x\)</span>, whereas the regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is used to predict the value of <span class="math inline">\(x\)</span> from a given value of <span class="math inline">\(y\)</span>. These two regression equations are generally different unless <span class="math inline">\(|r|=1\)</span>.</p></li>
 </ol>
-<div id="fig-twolines2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
+<div id="fig-twolines2" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-twolines2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="images/regression/correglinesvg.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="text-align:center;;width:80.0%">
@@ -1125,7 +1164,7 @@ Regression is valuable for modelling trends and forecasting future values. Appli
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Multiple regression</strong> is an extension of simple linear regression that models the relationship between a dependent variable and two or more independent variables <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery, Peck, and Vining 2021</a>)</span>. It allows researchers to account for the combined effect of multiple factors on an outcome. For instance, crop yield can be predicted based on a combination of soil nutrients, rainfall, temperature, and fertilizer application.</p>
+<p><strong>Multiple regression</strong> is an extension of simple linear regression that models the relationship between a dependent variable and two or more independent variables <span class="citation" data-cites="Montgomery2021">(<a href="references.html#ref-Montgomery2021" role="doc-biblioref">Montgomery et al. 2021</a>)</span>. It allows researchers to account for the combined effect of multiple factors on an outcome. For instance, crop yield can be predicted based on a combination of soil nutrients, rainfall, temperature, and fertilizer application.</p>
 <p>In a multiple regression model, the relationship between the dependent variable <span class="math inline">\(y\)</span> and independent variables <span class="math inline">\(x_1, x_2, \ldots, x_k\)</span> is expressed as:</p>
 <p><span id="eq-multireg"><span class="math display">\[y = \alpha + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_k x_k + e \tag{9.24}\]</span></span></p>
 <p>Where <span class="math inline">\(y\)</span> is the dependent variable; <span class="math inline">\(\alpha\)</span> is the intercept; <span class="math inline">\(\beta_1, \beta_2, \ldots, \beta_k\)</span> are the coefficients for each independent variable; <span class="math inline">\(x_1, x_2, \ldots, x_k\)</span> are the independent variables; and <span class="math inline">\(e\)</span> is the error term.</p>
@@ -1140,7 +1179,7 @@ Regression is valuable for modelling trends and forecasting future values. Appli
 <p><strong>Solution</strong></p>
 <p>Step 1: Fit a model treating monetary crop yield as the dependent variable (<span class="math inline">\(y\)</span>) and average soil moisture as the independent variable (<span class="math inline">\(x\)</span>). Fitting a model means estimating <span class="math inline">\(\hat{\beta}\)</span> using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.17</span></a> and <span class="math inline">\(\hat{\alpha}\)</span> using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.18</span></a>.</p>
 <p>Step 2: Substitute <span class="math inline">\(x = 20\)</span> into the fitted equation to obtain the predicted crop yield.</p>
-<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Calculation table for regression" data-filters="parse-latex">
+<div id="tbl-regressioncalc" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-filters="parse-latex" data-tbl-cap="Calculation table for regression">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-regressioncalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Table&nbsp;9.1: Calculation table for regression
@@ -1479,19 +1518,33 @@ SUM
 </div>
 <p><span class="math inline">\(n = 12\)</span></p>
 <p><span class="math display">\[\overline{x} = \frac{224.1}{12} = 18.675\]</span></p>
-<p><span class="math display">\[\overline{y} = \frac{4829}{12} = 402.416\]</span></p>
+<p><span class="math display">\[\overline{y} = \frac{4829}{12} = 402.416667\]</span></p>
 <p><span class="math display">\[cov(x,y) = \frac{1}{n}\sum_{i=1}^{n}(x_i - \overline{x})(y_i - \overline{y}) = \frac{5325.03}{12} = 443.752\]</span></p>
 <p><span class="math display">\[var(x) = \frac{1}{n}\sum_{i=1}^{n}(x_i - \overline{x})^2 = \frac{176.983}{12} = 14.749\]</span></p>
 <p>Using <a href="#eq-regeqn4" class="quarto-xref">Equation&nbsp;<span>9.17</span></a>:</p>
 <p><span class="math display">\[\hat{\beta} = \frac{cov(x,y)}{var(x)} = \frac{443.752}{14.749} = 30.088\]</span></p>
 <p>Using <a href="#eq-regeqn5" class="quarto-xref">Equation&nbsp;<span>9.18</span></a>:</p>
-<p><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} = 402.416 - 30.088 \times 18.675 = -159.477\]</span></p>
+<p><span class="math display">\[\hat{\alpha} = \overline{y} - \hat{\beta}\,\overline{x} = 402.416667 - 30.08786179 \times 18.675 = -159.474152\]</span></p>
 <p>The estimated regression equation is therefore:</p>
-<p><span class="math display">\[\hat{y} = -159.477 + 30.088\, x\]</span></p>
-<p><span class="math display">\[\text{Crop yield (Rs)} = -159.477 + 30.088 \times \text{(soil moisture \%)}\]</span></p>
+<p><span class="math display">\[\hat{y} = -159.474152 + 30.087862\, x\]</span></p>
+<p><span class="math display">\[\text{Crop yield (Rs)} = -159.474152 + 30.087862 \times \text{(soil moisture \%)}\]</span></p>
 <p>For a soil moisture content of 20% (<span class="math inline">\(x = 20\)</span>):</p>
-<p><span class="math display">\[\hat{y} = -159.477 + 30.088 \times 20 = 442.28\]</span></p>
+<p><span class="math display">\[\hat{y} = -159.474152 + 30.087862 \times 20 = 442.28\]</span></p>
 <p>The predicted monetary crop yield at an average soil moisture of 20% is <strong>Rs 442.28</strong>.</p>
+<p>For the reverse regression, use <span class="math inline">\(b_{xy}=S_{xy}/S_{yy}\)</span> on the same 12 observations. This gives</p>
+<p><span class="math display">\[\hat x=6.412805+0.03047139y.\]</span></p>
+<p>This is not obtained by simply rearranging the fitted regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span>. For the first observation, <span class="math inline">\(x=14.2\)</span> and <span class="math inline">\(y=215\)</span>, the fitted monetary yield is 267.77 Rs, so its residual is <span class="math inline">\(215-267.77=-52.77\)</span> Rs. The negative residual means that this observed yield is below the fitted line.</p>
+<section id="assessing-fit-and-uncertainty" class="level3" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="assessing-fit-and-uncertainty"><span class="header-section-number">9.3.1</span> Assessing fit and uncertainty</h3>
+<p>For simple linear regression with an intercept, define <span class="math inline">\(S_{xx}=\sum(x_i-\bar x)^2\)</span> and <span class="math inline">\(SSE=\sum(y_i-\hat y_i)^2\)</span>. The residual mean square is <span class="math inline">\(s_e^2=SSE/(n-2)\)</span>. The <strong>coefficient of determination</strong> is</p>
+<p><span class="math display">\[R^2=1-\frac{SSE}{\sum(y_i-\bar y)^2}.\]</span></p>
+<p>It is the proportion of the observed variation about <span class="math inline">\(\bar y\)</span> accounted for by the fitted model. In simple linear regression with an intercept, <span class="math inline">\(R^2=r^2\)</span>. A high value does not establish causation, a correct model, or reliable prediction outside the observed range.</p>
+<p>Under the independent normal-error model with constant variance, the slope standard error is <span class="math inline">\(SE(\hat\beta)=s_e/\sqrt{S_{xx}}\)</span>. A test of <span class="math inline">\(H_0:\beta=0\)</span> uses <span class="math inline">\(t=\hat\beta/SE(\hat\beta)\)</span> with <span class="math inline">\(n-2\)</span> df; its two-sided confidence interval is <span class="math inline">\(\hat\beta\pm t_{\alpha/2,n-2}SE(\hat\beta)\)</span>.</p>
+<p>For <span class="math inline">\(x=x_0\)</span>, let <span class="math inline">\(\hat y_0=\hat\alpha+\hat\beta x_0\)</span>. The standard errors for the estimated mean response and for predicting a new independent response differ:</p>
+<p><span class="math display">\[SE_{\text{mean}}=s_e\sqrt{\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}},\]</span> <span class="math display">\[SE_{\text{prediction}}=s_e\sqrt{1+\frac1n+\frac{(x_0-\bar x)^2}{S_{xx}}}.\]</span></p>
+<p>Use the corresponding standard error in <span class="math inline">\(\hat y_0\pm t_{\alpha/2,n-2}SE\)</span>. A prediction interval is wider because a new observation has its own error in addition to uncertainty in the fitted mean. These formulae assume that <span class="math inline">\(x_0\)</span> is measured without relevant error and the same model applies.</p>
+<p>For the printed soil-moisture data, the fitted model gives <span class="math inline">\(R^2=0.9168\)</span>, <span class="math inline">\(s_e=38.13\)</span> Rs and 10 error df. At <span class="math inline">\(x_0=20\%\)</span>, the estimated mean response is 442.28 Rs, with a 95% confidence interval of approximately (416.34, 468.22) Rs. The 95% prediction interval for a new independent response is approximately (353.46, 531.11) Rs. These calculations use unrounded fitted coefficients. Avoid extrapolation beyond the moisture range studied, and do not interpret this observational association as proof of a fertilizer or irrigation effect. <span class="citation" data-cites="Draper1998">(<a href="references.html#ref-Draper1998" role="doc-biblioref">Draper and Smith 1998</a>)</span></p>
+</section>
 </div>
 </section>
 <section id="correlation-and-regression" class="level2" data-number="9.4">
@@ -1550,7 +1603,7 @@ Table&nbsp;9.2: Correlation versus regression
 </tr>
 <tr class="odd">
 <td style="text-align: left;"><strong>Equation</strong></td>
-<td style="text-align: left;">Summarised by the correlation coefficient, e.g., <span class="math inline">\(r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}\)</span>.</td>
+<td style="text-align: left;">Summarized by the correlation coefficient, e.g., <span class="math inline">\(r=\dfrac{\operatorname{Cov}(x,y)}{\sigma_x\sigma_y}\)</span>.</td>
 <td style="text-align: left;">Produces a regression equation, e.g., <span class="math inline">\(\hat{y}=\hat{\alpha}+\hat{\beta}x\)</span>.</td>
 </tr>
 <tr class="even">
@@ -1595,56 +1648,21 @@ Table&nbsp;9.2: Correlation versus regression
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>Regression analysis is used to understand and quantify the __________ between variables.</p></li>
-<li><p>The variable whose value is explained, predicted, or modelled is called the __________ variable.</p></li>
-<li><p>The variable used to explain or predict the dependent variable is called the __________ variable.</p></li>
-<li><p>The dependent variable is commonly denoted by __________.</p></li>
-<li><p>The independent variable is commonly denoted by __________.</p></li>
-<li><p>In agricultural research, crop yield is commonly treated as the __________ variable.</p></li>
-<li><p>A regression involving one dependent variable and one independent variable is called __________ linear regression.</p></li>
-<li><p>Regression involving one dependent variable and two or more independent variables is called __________ linear regression.</p></li>
-<li><p>Regression used when the relationship between variables is not a straight line is called __________ regression.</p></li>
-<li><p>Regression used when the dependent variable is categorical is called __________ regression.</p></li>
-<li><p>A fitted line used to represent the relationship between two variables is called the line of __________ fit.</p></li>
-<li><p>The difference between an observed value and the value predicted by the fitted regression line is called a __________.</p></li>
-<li><p>The difference between an observed value and the value based on the true regression line is called an __________.</p></li>
-<li><p>Residuals are __________, whereas errors are theoretical and generally unknown.</p></li>
-<li><p>The principle used to obtain the line of best fit by minimising the sum of squared residuals is called the principle of __________ squares.</p></li>
-<li><p>The equation of a straight line is <span class="math inline">\(Y=\alpha+\beta X\)</span>, where <span class="math inline">\(\alpha\)</span> is the __________ and <span class="math inline">\(\beta\)</span> is the __________.</p></li>
-<li><p>The slope of a regression line represents the expected change in <span class="math inline">\(Y\)</span> for a __________-unit increase in <span class="math inline">\(X\)</span>.</p></li>
-<li><p>The regression coefficient is denoted by __________.</p></li>
-<li><p>The intercept represents the value of <span class="math inline">\(Y\)</span> when <span class="math inline">\(X\)</span> is equal to __________.</p></li>
-<li><p>The fitted regression equation is written as <span class="math inline">\(\hat{y}=\)</span> __________.</p></li>
-<li><p>The regression line always passes through the point __________.</p></li>
-<li><p>The two normal equations are obtained by differentiating the sum of squared errors with respect to __________ and __________.</p></li>
-<li><p>The regression coefficient <span class="math inline">\(\hat{\beta}\)</span> can be expressed as the ratio of __________ to __________.</p></li>
-<li><p>A positive regression coefficient indicates a __________ relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
-<li><p>A negative regression coefficient indicates an __________ relationship between <span class="math inline">\(x\)</span> and <span class="math inline">\(y\)</span>.</p></li>
-<li><p>Regression coefficients can take any real value from __________ to __________.</p></li>
-<li><p>The regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is used to predict __________ from __________.</p></li>
-<li><p>The regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is used to predict __________ from __________.</p></li>
-<li><p>The regression coefficient of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> is denoted by __________.</p></li>
-<li><p>The regression coefficient of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> is denoted by __________.</p></li>
-<li><p>The product of the two regression coefficients is equal to the __________ of the correlation coefficient.</p></li>
-<li><p>The two regression coefficients always have the same __________.</p></li>
-<li><p>If one regression coefficient is greater than one, the other must be __________ than one.</p></li>
-<li><p>Both regression coefficients cannot exceed __________ simultaneously.</p></li>
-<li><p>Regression coefficients are independent of change of __________ but not of change of __________.</p></li>
-<li><p>If <span class="math inline">\(r=0\)</span>, both regression coefficients are __________.</p></li>
-<li><p>If <span class="math inline">\(r=\pm1\)</span>, the two regression lines __________.</p></li>
-<li><p>The regression lines of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> intersect at the point __________.</p></li>
-<li><p>The regression line of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> minimises the sum of squared __________ deviations.</p></li>
-<li><p>The regression line of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span> minimises the sum of squared __________ deviations.</p></li>
-<li><p>One of the assumptions of linear regression is __________.</p></li>
-<li><p>Constant variance of residuals is called __________.</p></li>
-<li><p>In multiple regression, the independent variables should not be highly correlated with each other. This condition is called absence of __________.</p></li>
-<li><p>The errors in a regression model should not exhibit __________.</p></li>
-<li><p>The errors are often summarised as <span class="math inline">\(e\sim\text{i.i.d.}(0,\sigma^2)\)</span>, where i.i.d. means __________ and __________ distributed.</p></li>
-<li><p>Regression does not establish __________ by itself.</p></li>
-<li><p>Correlation treats the two variables __________, whereas regression distinguishes between dependent and independent variables.</p></li>
-<li><p>Correlation is __________ when the two variables are interchanged, whereas regression is not.</p></li>
-<li><p>The correlation coefficient is bounded between __________ and __________, whereas regression coefficients are unbounded.</p></li>
-<li><p>The regression coefficient can be expressed in terms of correlation and standard deviations as <span class="math inline">\(\beta_{yx}=\)</span> __________.</p></li>
+<li><p>The variable predicted by a regression model is called the __________ variable.</p></li>
+<li><p>A regression model with one predictor and a straight-line mean response is called __________ linear regression.</p></li>
+<li><p>The coefficient representing change in mean response per unit increase in the predictor is the __________.</p></li>
+<li><p>The predicted response when the predictor is zero is the __________.</p></li>
+<li><p>The difference between an observed response and its fitted value is called a __________.</p></li>
+<li><p>The method that minimizes the sum of squared residuals is called __________ squares.</p></li>
+<li><p>An ordinary least-squares line with an intercept passes through the point __________.</p></li>
+<li><p>Constant error variance is called __________.</p></li>
+<li><p>Correlation between successive errors is called __________.</p></li>
+<li><p>Strong linear dependence among predictors is called __________.</p></li>
+<li><p>The product of the two simple regression coefficients equals the __________ of Pearson’s correlation coefficient.</p></li>
+<li><p>The two simple regression coefficients have the same __________.</p></li>
+<li><p>Regression coefficients are unaffected by a change of origin but are affected by a change of __________.</p></li>
+<li><p>When <span class="math inline">\(r=\pm1\)</span>, the two regression lines __________.</p></li>
+<li><p>Regression alone does not establish __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1660,7 +1678,7 @@ Table&nbsp;9.2: Correlation versus regression
 <li><p>What is a line of best fit?</p></li>
 <li><p>Explain the difference between error and residual.</p></li>
 <li><p>Define the principle of least squares.</p></li>
-<li><p>Why is the sum of errors not minimised directly in least squares estimation?</p></li>
+<li><p>Why is the sum of errors not minimized directly in least squares estimation?</p></li>
 <li><p>Explain the meaning of intercept and slope in a straight line.</p></li>
 <li><p>Derive the normal equations for simple linear regression.</p></li>
 <li><p>Explain the estimation of the regression coefficient using the normal equations.</p></li>
@@ -1672,7 +1690,7 @@ Table&nbsp;9.2: Correlation versus regression
 <li><p>What is homoscedasticity?</p></li>
 <li><p>What is multicollinearity?</p></li>
 <li><p>What is autocorrelation?</p></li>
-<li><p>Why is normality of residuals important in regression analysis?</p></li>
+<li><p>Why is normality of errors important for the usual exact inference in regression analysis?</p></li>
 <li><p>What is meant by correct model specification?</p></li>
 <li><p>Explain the two lines of regression.</p></li>
 <li><p>Distinguish between regression of <span class="math inline">\(y\)</span> on <span class="math inline">\(x\)</span> and regression of <span class="math inline">\(x\)</span> on <span class="math inline">\(y\)</span>.</p></li>
@@ -1757,9 +1775,9 @@ Y=\alpha+\beta X
 <p><span class="math display">\[
 y_i=\alpha+\beta x_i+e_i
 \]</span></p>
-<p>Residual:</p>
+<p>Residual after fitting:</p>
 <p><span class="math display">\[
-e_i=y_i-(\alpha+\beta x_i)
+\hat e_i=y_i-(\hat\alpha+\hat\beta x_i)
 \]</span></p>
 <p>Sum of squared errors:</p>
 <p><span class="math display">\[
@@ -1854,12 +1872,12 @@ y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
 <li>Independent variable → predictor or explanatory variable.</li>
 <li>Simple linear regression → one dependent variable and one independent variable.</li>
 <li>Multiple linear regression → one dependent variable and two or more independent variables.</li>
-<li>Nonlinear regression → relationship is not a straight line.</li>
+<li>Nonlinear regression → mean function nonlinear in its unknown parameters; polynomial regression can be linear in its coefficients.</li>
 <li>Logistic regression → categorical dependent variable.</li>
 <li>Line of best fit → fitted line obtained using least squares.</li>
 <li>Error → theoretical difference from the true regression relationship.</li>
 <li>Residual → observed value minus fitted value.</li>
-<li>Least squares → minimises the sum of squared residuals.</li>
+<li>Least squares → minimizes the sum of squared residuals.</li>
 <li>Slope <span class="math inline">\(\beta\)</span> → expected change in <span class="math inline">\(y\)</span> for a one-unit increase in <span class="math inline">\(x\)</span>.</li>
 <li>Intercept <span class="math inline">\(\alpha\)</span> → value of <span class="math inline">\(y\)</span> when <span class="math inline">\(x=0\)</span>.</li>
 <li>Regression coefficient can range from <span class="math inline">\(-\infty\)</span> to <span class="math inline">\(+\infty\)</span>.</li>
@@ -1876,7 +1894,7 @@ y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
 <li>Both regression coefficients cannot exceed 1 simultaneously.</li>
 <li>Regression coefficients are independent of change of origin but not of change of scale.</li>
 <li>Regression coefficients depend on the correlation and the relative standard deviations of the variables.</li>
-<li>Linearity, independence, homoscedasticity, normality of residuals, absence of multicollinearity, absence of autocorrelation, and correct model specification are important assumptions.</li>
+<li>Linearity, independence, homoscedasticity, normality of errors for exact inference, absence of exact multicollinearity, absence of error autocorrelation, and correct model specification are important assumptions.</li>
 <li>Regression lines are unique for a given dataset.</li>
 <li>Correlation measures association; regression models the relationship and allows prediction.</li>
 <li>Correlation is symmetric; regression is asymmetric.</li>
@@ -1888,7 +1906,7 @@ y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Relationships <code>2.</code> Dependent <code>3.</code> Independent <code>4.</code> <span class="math inline">\(y\)</span> <code>5.</code> <span class="math inline">\(x\)</span> <code>6.</code> Dependent <code>7.</code> Simple <code>8.</code> Multiple <code>9.</code> Nonlinear <code>10.</code> Logistic <code>11.</code> Best <code>12.</code> Residual <code>13.</code> Error <code>14.</code> Measurable <code>15.</code> Least <code>16.</code> Intercept; Slope <code>17.</code> One <code>18.</code> <span class="math inline">\(\beta\)</span> <code>19.</code> Zero <code>20.</code> <span class="math inline">\(\hat{\alpha}+\hat{\beta}x\)</span> <code>21.</code> <span class="math inline">\((\bar{x},\bar{y})\)</span> <code>22.</code> <span class="math inline">\(\alpha\)</span>; <span class="math inline">\(\beta\)</span> <code>23.</code> Covariance; Variance <code>24.</code> Direct <code>25.</code> Inverse <code>26.</code> <span class="math inline">\(-\infty\)</span>; <span class="math inline">\(+\infty\)</span> <code>27.</code> <span class="math inline">\(y\)</span>; <span class="math inline">\(x\)</span> <code>28.</code> <span class="math inline">\(x\)</span>; <span class="math inline">\(y\)</span> <code>29.</code> <span class="math inline">\(\beta_{yx}\)</span> <code>30.</code> <span class="math inline">\(\beta_{xy}\)</span> <code>31.</code> Square <code>32.</code> Sign <code>33.</code> Less <code>34.</code> One <code>35.</code> Origin; Scale <code>36.</code> Zero <code>37.</code> Coincide <code>38.</code> <span class="math inline">\((\bar{x},\bar{y})\)</span> <code>39.</code> Vertical <code>40.</code> Horizontal <code>41.</code> Linearity <code>42.</code> Homoscedasticity <code>43.</code> Multicollinearity <code>44.</code> Autocorrelation <code>45.</code> Independent; identically <code>46.</code> Causation <code>47.</code> Equally <code>48.</code> Symmetric <code>49.</code> <span class="math inline">\(-1\)</span>; <span class="math inline">\(+1\)</span> <code>50.</code> <span class="math inline">\(r\frac{\sigma_y}{\sigma_x}\)</span></p>
+<p><code>1.</code> Dependent <code>2.</code> Simple <code>3.</code> Slope <code>4.</code> Intercept <code>5.</code> Residual <code>6.</code> Least <code>7.</code> <span class="math inline">\((\bar{x},\bar{y})\)</span> <code>8.</code> Homoscedasticity <code>9.</code> Autocorrelation <code>10.</code> Multicollinearity <code>11.</code> Square <code>12.</code> Sign <code>13.</code> Scale <code>14.</code> Coincide <code>15.</code> Causation</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1935,7 +1953,7 @@ y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
 <div class="callout-body-container callout-body">
 <p><strong>Regression and the Study of Heights</strong></p>
 <p>The story of regression begins with Sir Francis Galton’s groundbreaking work on heredity in the late nineteenth century. While studying the heights of parents and their children, Galton noticed a fascinating pattern: tall parents tended to have slightly shorter children, and shorter parents tended to have slightly taller children. He called this phenomenon <strong>“regression toward the mean”</strong> - the offspring’s heights seemed to move closer to the population average, not further away from it. This observation not only introduced the term “regression” into statistics but also inspired the development of tools for studying relationships between variables. <span class="citation" data-cites="Galton1886">(<a href="references.html#ref-Galton1886" role="doc-biblioref">Galton 1886</a>)</span></p>
-<p>Galton’s work was later placed on a firm mathematical foundation by Karl Pearson, who formalised the method of least squares in the context of regression and introduced the product-moment correlation coefficient - the same <span class="math inline">\(r\)</span> we use today. <span class="citation" data-cites="Pearson1896">(<a href="references.html#ref-Pearson1896" role="doc-biblioref">Pearson 1896</a>)</span> Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.</p>
+<p>Galton’s work was later placed on a firm mathematical foundation by Karl Pearson, who developed the mathematical treatment of correlation and regression and introduced the product-moment correlation coefficient - the same <span class="math inline">\(r\)</span> we use today. <span class="citation" data-cites="Pearson1896">(<a href="references.html#ref-Pearson1896" role="doc-biblioref">Pearson 1896</a>)</span> Together, their contributions laid the foundation for modern regression analysis, which remains an essential technique in fields ranging from agriculture to space exploration.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1955,15 +1973,15 @@ y=\alpha+\beta_1x_1+\beta_2x_2+\cdots+\beta_kx_k+e
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Draper1998" class="csl-entry" role="listitem">
-Draper, Norman R., and Harry Smith. 1998. <em>Applied Regression Analysis</em>. 3rd ed. Wiley Series in Probability and Statistics. New York: John Wiley &amp; Sons.
+Draper, Norman R., and Harry Smith. 1998. <em>Applied Regression Analysis</em>. 3rd ed. Wiley Series in Probability and Statistics. John Wiley &amp; Sons.
 </div>
 <div id="ref-Galton1886" class="csl-entry" role="listitem">
 Galton, Francis. 1886. <span>“Regression Towards Mediocrity in Hereditary Stature.”</span> <em>The Journal of the Anthropological Institute of Great Britain and Ireland</em> 15: 246–63. <a href="https://doi.org/10.2307/2841583">https://doi.org/10.2307/2841583</a>.
 </div>
 <div id="ref-Montgomery2021" class="csl-entry" role="listitem">
-Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2021. <em>Introduction to Linear Regression Analysis</em>. 6th ed. Hoboken, NJ: John Wiley &amp; Sons.
+Montgomery, Douglas C., Elizabeth A. Peck, and G. Geoffrey Vining. 2021. <em>Introduction to Linear Regression Analysis</em>. 6th ed. John Wiley &amp; Sons.
 </div>
 <div id="ref-Pearson1896" class="csl-entry" role="listitem">
 Pearson, Karl. 1896. <span>“Mathematical Contributions to the Theory of Evolution. <span>III</span>. Regression, Heredity, and Panmixia.”</span> <em>Philosophical Transactions of the Royal Society of London, Series A</em> 187: 253–318. <a href="https://doi.org/10.1098/rsta.1896.0007">https://doi.org/10.1098/rsta.1896.0007</a>.
@@ -2059,7 +2077,7 @@ Pearson, Karl. 1896. <span>“Mathematical Contributions to the Theory of Evolut
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2402,16 +2420,17 @@ Pearson, Karl. 1896. <span>“Mathematical Contributions to the Theory of Evolut
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

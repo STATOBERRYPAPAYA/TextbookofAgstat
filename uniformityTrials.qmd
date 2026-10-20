@@ -6,7 +6,7 @@ Uniformity trials can also be planned to determine the suitable size and shape o
 
 ## How a uniformity trial is performed
 
-A uniformity trial is conducted to know the nature of the soil fertility gradient. In a uniformity trial, a particular variety of a crop is sown over the entire experimental field and uniformly managed throughout the growing season without applying fertilizer. At the time of harvest, a substantial border is removed from all sides of the field. The remainder of the field is divided into small plots, which are termed **basic units**. The size of the basic unit is decided by judgement, depending on the crop. The smaller the basic unit, the more accurate the study of heterogeneity that is possible. The produce from each basic unit is harvested and recorded separately. The yield differences between the basic units are taken as the measure of soil heterogeneity of the study area.
+A uniformity trial is conducted to know the nature of the soil fertility gradient. In a uniformity trial, a particular variety of a crop is sown over the entire experimental field and uniformly managed throughout the growing season. Any fertilizer and other management inputs must be applied uniformly; fertilizer omission is not a defining requirement. At the time of harvest, a substantial border is removed from all sides of the field. The remainder of the field is divided into small plots, which are termed **basic units**. The size of the basic unit is decided by judgement, depending on the crop. Smaller basic units reveal finer spatial detail, but their size must also allow reliable harvesting and weighing at a practical cost. Very small units are not automatically more accurate. The produce from each basic unit is harvested and recorded separately. The yield differences between the basic units are taken as the measure of soil heterogeneity of the study area.
 
 Several types of analysis are available to evaluate the pattern of soil heterogeneity based on uniformity trial data. We will discuss some of these procedures in detail.
 
@@ -16,15 +16,15 @@ An approach to describe the heterogeneity of land is to construct a fertility co
 
 ## Serial correlation
 
-The serial correlation procedure is generally used to test the randomness of a data set. However, it is also useful in characterizing the trend in soil fertility using uniformity trial data. Horizontal and vertical serial correlations are calculated. These correlations give an idea of whether the fertility gradient is more pronounced horizontally or vertically. A low serial correlation indicates that fertile areas occur in spots, and a high value indicates that there is a gradient.
+Serial correlation describes association between neighbouring yields. Positive values indicate similarity between nearby units, but do not by themselves establish a directional fertility gradient. The sequence and treatment of boundaries must be stated. The following formula is for a circular sequence:
 
 $$r_{s} = \frac{\sum_{i=1}^{n} X_{i}X_{i+1} - \dfrac{\left( \sum_{i=1}^{n} X_{i} \right)^{2}}{n}}{\sum_{i=1}^{n} X_{i}^{2} - \dfrac{\left( \sum_{i=1}^{n} X_{i} \right)^{2}}{n}}$$ {#eq-serialcorr}
 
-where $X_{i}$ is the value of the $i^{\text{th}}$ basic unit and $n$ is the number of basic units.
+where $X_{i}$ is the yield at position $i$ in the chosen sequence, $n$ is the number of units, and $X_{n+1}=X_1$. In the worked example, successive columns or rows are traversed in alternating directions to form a serpentine sequence. The closing pair and turns between strips affect the coefficient, so it is a descriptive sequence statistic rather than a pure directional neighbour correlation.
 
 ## Mean square between strips
 
-This method is simpler to compute and has the same objective as the serial correlation. The units are first combined as horizontal and vertical strips. The variability between strips is measured in each direction by the mean square between strips. The relative size of the two mean squares indicates whether the fertility gradient is more pronounced horizontally or vertically.
+This method is simpler to compute and has the same objective as the serial correlation. The units are first combined as horizontal and vertical strips. The variability between strips is measured in each direction by the mean square between strips. A mean square between vertical strips measures changes across columns, along the horizontal direction. A mean square between horizontal strips measures changes across rows, along the vertical direction. The strip orientation and the direction across which its totals vary must be distinguished; these are descriptive comparisons, not proof of a monotonic gradient.
 
 $$\text{Sum of squares (Vertical)} = \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n}$$ {#eq-ssvertical}
 
@@ -46,27 +46,40 @@ Taking logarithms on both sides,
 
 $$\log V_{x} = \log V_{1} - b\log x$$ {#eq-smithlog}
 
-where $x$ is the number of basic units in a plot, $V_{x}$ is the variance of the mean per plot of $x$ units, $V_{1}$ is the variance of the mean per plot of one unit, and $b$ is the regression coefficient. The value of $b$ is determined by the principle of least squares. $b$ is called **Smith's index of soil heterogeneity**. The index gives a single value as a quantitative measure of heterogeneity in the area.
+where $x$ is the number of basic units in a plot, $V_{x}$ is the variance of the mean per plot of $x$ units, $V_{1}$ is the variance of the mean per plot of one unit, and $b$ is the negative of the slope in the log–log regression. The value of $b$ is determined by the principle of least squares. $b$ is called **Smith's index of soil heterogeneity**. The index gives a single value as a quantitative measure of heterogeneity in the area.
 
 ### Smith's index of soil heterogeneity {#sec-smith}
 
 **Step 1.** Combine the basic units to simulate plots of different sizes and shapes. Use only combinations that fit exactly into the whole area, *i*.*e*. the product of the number of simulated plots and the number of basic units per plot must equal the total number of basic units.
 
-**Step 2.** For each of the simulated plots constructed in Step 1, compute the yield total $T$ as the sum of the basic units that make up that plot, and compute the between-plot variance $V_{(x)}$:
+**Step 2.** For each of the simulated plots constructed in Step 1, compute the yield total $T$ as the sum of the basic units that make up that plot, and compute the between-plot sum of squares $Q_x$:
 
-$$V_{(x)} = \sum_{i=1}^{w}\frac{T_{i}^{2}}{x} - \frac{G^{2}}{rc}$$ {#eq-betweenplotvar}
+$$Q_x = \sum_{i=1}^{w}\frac{T_{i}^{2}}{x} - \frac{G^{2}}{rc}$$ {#eq-betweenplotvar}
 
 where $w = \dfrac{rc}{x}$ is the total number of simulated plots of size $x$ basic units. $r$ is the number of rows and $c$ is the number of columns. $G$ is the total of all the basic units.
 
-**Step 3.** For each plot size and shape, compute the variance per unit area:
+**Step 3.** Compute the sample variance of the simulated plot means, which is the variance per basic unit area used here. Put $N=rc$, $z_i=T_i/x$ and $\bar z=G/N$. Then
 
-$$V_{x} = \frac{V_{(x)}}{rc - 1}$$ {#eq-varperunit}
+$$V_x=\frac{Q_x}{N-x}=\frac{Q_x}{rc-x}$$ {#eq-varperunit}
 
-**Step 4.** For each plot size having more than one shape, test the homogeneity of the between-plot variances $V_{(x)}$ to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. If they are found to be homogeneous, the average of the $V_{(x)}$ values over all plot shapes of a given size is computed; otherwise the $V_{(x)}$ of each plot shape of a given size is used separately for further calculation.
+To see why the divisor is $N-x$, note that there are $w=N/x$ plot means and
 
-For example, there are two plot shapes for size 2 m², *i*.*e*. 2 × 1 m and 1 × 2 m. For both of these plots $V_{(x)}$ is calculated. Homogeneity is tested using the F test. If it is non-significant, the average of the $V_{(x)}$ values over the plot shapes 2 × 1 m and 1 × 2 m is calculated.
+$$Q_x=x\sum_{i=1}^{w}(z_i-\bar z)^2.$$
 
-**Step 5.** Using the values of the variance per unit area $V_{x}$ computed in Steps 3 and 4, estimate the regression coefficient between $V_{x}$ and plot size $x$.
+Therefore,
+
+$$V_x=\frac{\sum_{i=1}^{w}(z_i-\bar z)^2}{w-1}
+     =\frac{Q_x}{x(w-1)}.$$
+
+This is equivalent to calculating the sample variance of the plot totals and dividing it by $x^2$, as in Gomez and Gomez (1984, pp. 489–491). [@gomez] The sum of squares $Q_x$ is an intermediate quantity, not a variance. At least two simulated plots are needed, so exclude $x=N$ from variance calculations.
+
+Some software uses a different field-scaled quantity, $Q_x/(N-1)$. It agrees with $V_x$ when $x=1$ but differs for larger plots. Do not substitute that quantity into this calculation or combine its fitted index with the adjustment table below.
+
+**Step 4.** Compare the variation for different shapes of the same size descriptively. The shapes are alternative partitions of the same observations, so their variance estimates are dependent. An ordinary two-sample F test or a chi-square variance test cannot automatically be applied to these values. Either retain the shapes separately, as in this example, or specify a descriptive averaging rule in advance. Formal inference requires a justified spatial model or independent replication.
+
+For example, compare 2 × 1 m and 1 × 2 m plots of size 2 m² using the same definition of $V_x$. A difference may be useful for choosing an orientation, but a non-significant test would not establish equality, even if a valid test were available.
+
+**Step 5.** Using the values of the variance per unit area $V_{x}$ computed in Steps 3 and 4, estimate the slope relating $\log V_x-\log V_1$ to $\log x$.
 
 Using Fairfield Smith's variance law, @eq-smithlog can be written as
 
@@ -78,15 +91,29 @@ $$Y = cX \quad \text{where} \quad c = -b, \ X = \log x$$
 
 $b$ is estimated by fitting a regression between $Y$ and $X$.
 
-**Step 6.** Obtain the adjusted $b$ from the computed $b$ value using the range $\dfrac{x_{1}}{n}$, where $x_{1}$ is the size of the basic unit and $n$ is the whole area size. Columns 2 and 3 in @tbl-adjb give the range of $\dfrac{x_{1}}{n}$. Once you have the computed $b$ and the value of $\dfrac{x_{1}}{n}$, you can calculate the corresponding adjusted $b$ using @tbl-adjb by interpolation as follows.
+**Step 6.** Convert the fitted index $b_{\text{cal}}$ to the table-adjusted index.
 
-Find $L_1$ and $L_2$ such that the calculated $b$ lies between them, $L_1 \leq b_{\text{cal}} \leq L_2$, where $L_1$ and $L_2$ are the values in the computed $b$ column of @tbl-adjb. Let $y_1$ and $y_2$ be the values corresponding to $L_1$ and $L_2$ under the range of $\dfrac{x_{1}}{n}$ in @tbl-adjb. Then use the formula
+**Why is an adjustment made?** The fitted index describes the relationship between plot size and variance within the particular, finite area used for the uniformity trial. Smith introduced an adjustment to express this relationship for a theoretically unlimited field, so that the index is less tied to the size of the area observed. Here, an unlimited field is a mathematical reference for generalising the relationship; it does not mean that the trial must cover an unlimited area. [@Smith1938]
 
-$$\text{Adjusted } b = y_{1} + (b_{\text{cal}} - L_{1})\frac{\left( y_{2} - y_{1} \right)}{\left( L_{2} - L_{1} \right)}$$ {#eq-adjb}
+The adjustment therefore accounts for the finite area of the trial. Its size depends on the fitted index and on the area of a basic unit relative to the whole trial. It changes the index used in this generalisation; it does not change the observed yields or the variances already calculated. It is also separate from the degrees-of-freedom correction used to calculate a sample variance. The fitted index and the adjusted index should consequently be labelled separately when reporting the results.
+
+@tbl-adjb reproduces Table 12.5 of Gomez and Gomez (1984, p. 493); their interpolation procedure is on p. 494. [@gomez] The two adjusted-value columns refer to ranges of $x_1/A$, where $x_1$ is the physical area of one basic unit and $A$ is the area of the whole trial, expressed in the same units. This dimensionless ratio equals $1/N$ when all $N$ basic units have equal area. It is not the size $x$ of each simulated plot.
+
+Use the table as follows:
+
+1. Calculate $x_1/A$ and choose the adjusted-value column whose heading contains that ratio.
+2. In the first column, find the two computed-index values $L_1$ and $L_2$ that bracket $b_{\text{cal}}$.
+3. In the selected adjusted-value column, read $y_1$ opposite $L_1$ and $y_2$ opposite $L_2$.
+4. Interpolate between those two entries:
+
+$$b_{\text{adj}}=y_1+(b_{\text{cal}}-L_1)
+                 \frac{y_2-y_1}{L_2-L_1}.$$ {#eq-adjb}
+
+The fraction $(b_{\text{cal}}-L_1)/(L_2-L_1)$ locates the fitted index between the two rows. Apply the same fraction to the change $y_2-y_1$ in adjusted values. If the fitted index is exactly a tabulated value, read its adjusted value directly. The table gives an approximate adjustment within the stated ranges; do not extrapolate beyond its rows or columns without a justified method.
 
 ```{r echo=FALSE, warning=FALSE, results='asis'}
 #| label: tbl-adjb
-#| tbl-cap: "Adjusted b table. Obtain the value of b using the range values and the computed b value."
+#| tbl-cap: "Adjusted values of Smith's soil heterogeneity index"
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/b.csv")
@@ -101,16 +128,16 @@ kable_styling(
 ```
 
 ::: {.callout-note title="Note"}
-A relatively low value of the calculated adjusted Smith's index of soil heterogeneity ($b$) indicates a relatively high degree of correlation among adjacent plots in the study area, which means the change in the level of soil fertility tends to be gradual rather than in patches. Even though $b$ is a regression coefficient, its value lies between 0 and 1.
+A relatively low Smith's index is consistent with a slower reduction in variation as plot size increases, often associated with positive correlation between nearby units. Values between 0 and 1 are common under Smith's empirical model; an unconstrained fitted slope need not give a value in this range. The index alone does not identify the spatial pattern.
 :::
 
 ## Maximum curvature method {#sec-mcm}
 
-This method is used to find the optimal plot size for the experiment. In this method, the basic units of the uniformity trial are combined to form new units. The new units are formed by combining columns, rows, or both. The combination of columns and rows is done in such a way that no column or row is left out. For each set of units, the coefficient of variation (CV) is computed. A curve is plotted by taking the plot size (in terms of basic units) on the X-axis and the CV values on the Y-axis of a graph sheet. The point at which the curve takes a turn, *i*.*e*. the point of maximum curvature, is located by inspection. The value corresponding to the point of maximum curvature is the optimum plot size.
+This method is used to find the optimal plot size for the experiment. In this method, the basic units of the uniformity trial are combined to form new units. The new units are formed by combining columns, rows, or both. The combination of columns and rows is done in such a way that no column or row is left out. For each set of units, the coefficient of variation (CV) is computed. A curve is plotted by taking the plot size (in terms of basic units) on the X-axis and the CV values on the Y-axis of a graph sheet. The point at which the curve takes a turn, *i*.*e*. an apparent bend, is located by inspection. Its horizontal coordinate provides a traditional graphical guide to plot size. The result depends on axis scales, the range of sizes examined and the objective; it is not a universal economic optimum.
 
 ## Uniformity trial explained
 
-Let us discuss in detail the procedures explained above using an example. Consider a rice crop field of 12 m × 17 m, uniformly managed throughout the growing season without applying fertilizer. At the time of harvest, a border of 1 m is removed from all sides of the field. The resultant effective area is now 10 m × 15 m. The entire field is divided into basic units of size 1 m × 1 m, and the yield (in grams) is noted from each basic unit. There are 150 basic units.
+Let us discuss in detail the procedures explained above using an example. Consider a rice crop field of 12 m × 17 m, uniformly managed throughout the growing season. Any fertilizer and other management inputs must be applied uniformly; fertilizer omission is not a defining requirement. At the time of harvest, a border of 1 m is removed from all sides of the field. The resultant effective area is now 10 m × 15 m. The entire field is divided into basic units of size 1 m × 1 m, and the yield (in grams) is noted from each basic unit. There are 150 basic units.
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-u1
@@ -134,7 +161,7 @@ Also known as a soil productivity contour map. The construction of a fertility c
 knitr::include_graphics("images/uniform2.png")
 ```
 
-**Step 2.** The moving averages are labelled as shown below. After the calculation of moving averages, there are now 8 values in a row and 13 values in a column. The dimension of each plot in the figure below can be considered as 1.25 m × 1.154 m ($10/8 = 1.25$ and $15/13 = 1.154$).
+**Step 2.** The moving averages are labelled as shown below. After the calculation of moving averages, there are now 8 values in a row and 13 values in a column. Each moving average summarises a 3 m × 3 m window. Adjacent window centres remain 1 m apart; overlapping windows do not create new physical plots of size $10/8$ by $15/13$.
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-u3
@@ -185,14 +212,14 @@ The pairwise calculation of horizontal values is shown in @fig-serial2.
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-serial2
 #| fig-cap: "Pairwise calculation of horizontal values"
-knitr::include_graphics("images/serial1.png")
+knitr::include_graphics("images/serial2.png")
 ```
 
 Using @eq-serialcorr,
 
 Horizontal $r_{s} = \dfrac{100946042 - \dfrac{(122777)^{2}}{150}}{101325715 - \dfrac{(122777)^{2}}{150}} = 0.54317$
 
-Both coefficients are low, which indicates the presence of fertile areas in spots. However, the horizontal serial correlation coefficient was a little higher than the vertical, implying some fertility gradient in the horizontal direction. The relative magnitude of the two serial correlations should not, however, be used to indicate the relative degree of the gradients in the two directions.
+The coefficients show positive association along the two serpentine sequences. The horizontal value is somewhat higher, but these statistics alone do not establish spots, patches or a directional gradient. Use the contour map and strip analysis to investigate the spatial pattern.
 
 ### Mean square between strips
 
@@ -204,28 +231,40 @@ knitr::include_graphics("images/meansq.png")
 
 $G = 122777$, $n = 150$.
 
-$$\text{Sum of squares (Vertical)} = \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n} = \frac{12686^{2} + 12816^{2} + \ldots + 12253^{2}}{15} - \frac{122777^{2}}{150} = 63971.47$$
+$$
+\begin{aligned}
+\text{Sum of squares (Vertical)} &= \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n}\\
+&= \frac{12686^{2} + 12816^{2} + \ldots + 12253^{2}}{15} - \frac{122777^{2}}{150}\\
+&= 63971.47
+\end{aligned}
+$$
 
-$$\text{Sum of squares (Horizontal)} = \frac{\sum_{i=1}^{r} H_{i}^{2}}{c} - \frac{G^{2}}{n} = \frac{8874^{2} + 8877^{2} + \ldots + 7692^{2}}{10} - \frac{122777^{2}}{150} = 341185.77$$
+$$
+\begin{aligned}
+\text{Sum of squares (Horizontal)} &= \frac{\sum_{i=1}^{r} H_{i}^{2}}{c} - \frac{G^{2}}{n}\\
+&= \frac{8874^{2} + 8877^{2} + \ldots + 7692^{2}}{10} - \frac{122777^{2}}{150}\\
+&= 341185.77
+\end{aligned}
+$$
 
 $$\text{Mean square (Vertical)} = \frac{63971.47}{9} = 7107.94$$
 
 $$\text{Mean square (Horizontal)} = \frac{341185.77}{14} = 24370.41$$
 
 ::: {.callout-note title="Note"}
-The results show that the horizontal-strip mean square is almost 3 times higher than the vertical-strip mean square, indicating that the trend of soil fertility was more pronounced along the length than along the width of the field.
+The horizontal-strip mean square is about 3.43 times the vertical-strip mean square. This indicates a stronger component of yield variation across rows, along the length of this field. It does not by itself prove a monotonic fertility gradient or provide a significance test.
 :::
 
 ### Smith's index of soil heterogeneity
 
 ::: {#exm-smith}
-The optimal plot size can be identified using this method. From the possible plot sizes, the optimum plot size can be found using the method explained in @sec-smith. @tbl-plotsizes shows 9 different plot sizes created from the uniformity trial data in @fig-u1.
+Smith's method describes how variance changes with plot size. Selecting a practical plot size also requires the available area, replication, precision and costs. @tbl-plotsizes shows nine plot-size and shape arrangements created from the uniformity trial data in @fig-u1.
 
 **Solution**
 
 ```{r echo=FALSE, warning=FALSE, results='asis'}
 #| label: tbl-plotsizes
-#| tbl-cap: "Nine different plot sizes created from the uniformity trial data"
+#| tbl-cap: "Nine plot-size and shape arrangements from the uniformity trial data"
 library(knitr)
 library(kableExtra)
 dt<-read.csv("csv/Book20.csv", check.names = FALSE)
@@ -248,7 +287,7 @@ It is recommended that the reader first read @sec-smith and then read this examp
 knitr::include_graphics("images/smith.png")
 ```
 
-Now consider the equation for the between-plot variance, @eq-betweenplotvar, where $w = \dfrac{rc}{x}$ is the total number of simulated plots of size $x$ basic units. $r$ is the number of rows and $c$ is the number of columns. $G$ is the total of all the basic units. The totals of each of the six plots are shown in @fig-smith2.
+Now consider the between-plot sum of squares in @eq-betweenplotvar, where $w = \dfrac{rc}{x}$ is the total number of simulated plots of size $x$ basic units. $r$ is the number of rows and $c$ is the number of columns. $G$ is the total of all the basic units. The totals of each of the six plots are shown in @fig-smith2.
 
 ```{r echo=FALSE, out.width="30%", fig.align='center'}
 #| label: fig-smith2
@@ -256,13 +295,13 @@ Now consider the equation for the between-plot variance, @eq-betweenplotvar, whe
 knitr::include_graphics("images/smith2.png")
 ```
 
-$$V_{(25)} = \frac{21366^{2} + 21433^{2} + \ldots + 18811^{2}}{25} - \frac{(122777)^{2}}{150} = 218767.71$$
+$$Q_{25} = \frac{21366^{2} + 21433^{2} + \ldots + 18811^{2}}{25} - \frac{(122777)^{2}}{150} = 218767.71$$
 
 The variance per unit area is given by @eq-varperunit,
 
-$$V_{25} = \frac{218767.71}{149} = 1468.24$$
+$$V_{25}=\frac{Q_{25}}{150-25}=\frac{218767.71}{125}=1750.14.$$
 
-The coefficient of variation is calculated as $\dfrac{\text{standard deviation}}{\text{mean}} \times 100$. Here, for the plot size of 25, the standard deviation $= \sqrt{1468.24} = 38.318$, and the mean of the entire data set $= 818.5133$. Therefore, $\text{C.V} = \dfrac{38.318}{818.5133} = 0.047$. Similarly, it can be calculated for all the plot sizes. The $V_{x}$ and C.V for all other plot sizes are summarized in @tbl-vxcv.
+There are $150/25=6$ plot means. Their sample standard deviation is $\sqrt{1750.141707}=41.8347$, and their mean is $818.5133$. Hence $CV=100(41.8347/818.5133)=5.11\%$, or 5.1% to one decimal place. The corresponding variances and CV values for all plot sizes and shapes are summarized in @tbl-vxcv.
 
 ```{r echo=FALSE, warning=FALSE, results='asis'}
 #| label: tbl-vxcv
@@ -282,18 +321,18 @@ kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
   column_spec(1:7, width = "2cm", extra_css = "text-align: center;")
 ```
 
-For each plot size having more than one shape (here plot size 5 has more than one shape), test the homogeneity of the between-plot variances $V_{(x)}$ to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. For each plot size whose plot-shape effect is non-significant, compute the average of the $V_{x}$ values over all plot shapes and proceed with the estimation of Smith's index of soil heterogeneity.
+For size 5, the two orientations give the following between-plot sums of squares. Retain both orientations separately in the regression; do not treat them as independent samples for a variance test.
 
-$V_{(x)}$ calculated for both plot shapes:
+$Q_x$ calculated for both plot shapes:
 
-| Plot shape | $V_{(x)}$ |
+| Plot shape | $Q_x$ |
 |:----------:|:---------:|
-| 1 × 5      | 456895.9  |
-| 5 × 1      | 329859.5  |
+| 1 × 5      | 329859.5  |
+| 5 × 1      | 456895.9  |
 
-: Between-plot variance for the two shapes of the size-5 plot {#tbl-plotshapevar .bordered}
+: Between-plot sums of squares for size-5 plot shapes {#tbl-plotshapevar .bordered}
 
-The degrees of freedom for the F test are $(w_{1} - 1,\ w_{2} - 1)$, where $w_{1}$ and $w_{2}$ are the number of plots of each particular shape. Here, the degrees of freedom $= (30 - 1,\ 30 - 1) = (29, 29)$. F is calculated as the ratio of the $V_{(x)}$ of the two plot shapes, $F_{\text{cal}} = \dfrac{456895.9}{329859.5} = 1.39$. The calculated value of F is compared with the table value of F. The table value of F at $(29, 29)$ degrees of freedom is $F_{\text{table}} = 1.860$. Since $F_{\text{cal}} < F_{\text{table}}$, the calculated F is non-significant, so we take the average of the $V_{x}$ of both plot shapes and proceed. In our example, we proceeded without taking the average. This F test example is included for a better understanding of the theory.
+The descriptive ratio is $456895.9/329859.5=1.39$. Thus the 5 × 1 orientation has about 39% more variation than the 1 × 5 orientation under the same scaling. Because both partitions use the same field observations, comparison with an ordinary $F_{29,29}$ critical value is not justified. This ratio provides no valid significance test of orientation.
 
 Now Smith's index of soil heterogeneity is estimated as follows.
 
@@ -317,13 +356,15 @@ kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
 
 Fit a linear regression $Y = cX$ and estimate the value of $c$, where $c = -b$.
 
-The estimated value of $c$ is $-0.3952$. Therefore, the calculated value of $b = 0.3952$. In our case, $\dfrac{x_{1}}{n} = \dfrac{1}{150} = 0.0067$. Now we need to find the adjusted value as explained in Step 6 of @sec-smith using @tbl-adjb. The value of $\dfrac{x_{1}}{n} = 0.0067$ is between 0.001 and 0.01.
+Using the nine plot-size and shape arrangements separately and the sample variances defined in Step 3, the regression through the origin gives $c=-0.360686601$, so $b_{\text{cal}}=0.360686601\approx0.3607$. This is a descriptive fit: the alternative partitions reuse the same field observations. We retain both size-5 shapes rather than selecting one after a significance test.
 
-Here $b_{\text{cal}} = 0.3952$, $y_{1} = 0.443$, $y_{2} = 0.528$, $L_{1} = 0.40$, and $L_{2} = 0.50$.
+If both the intercept and slope are estimated freely in $\log V_x=a-b\log x$, the same nine arrangements give $b=0.3468$. That is a different fit. The calculation above fixes the intercept at the observed $\log V_1$, as specified by $Y=cX$, and gives $b=0.3607$. State which fitting method is used; the two estimates should not be substituted for one another without changing the model.
 
-$$\text{Adjusted } b = 0.443 + (0.3952 - 0.40)\frac{(0.528 - 0.443)}{(0.50 - 0.40)} = 0.43892$$
+One basic unit has area $x_1=1\text{ m}^2$ and the whole trial has area $A=150\text{ m}^2$. Thus $x_1/A=1/150=0.006667$, which selects the **0.001 to 0.01** column. The computed index 0.3607 lies between $L_1=0.35$ and $L_2=0.40$. In that column, the corresponding adjusted entries are $y_1=0.403$ and $y_2=0.443$.
 
-The value obtained from the interpolation matches the adjusted $b$ in @tbl-adjb. If the $b$ value is low, it indicates a relatively high degree of correlation among adjacent plots in the study area, indicating a gradual change in soil fertility. But here $b$ is 0.43892, which is moderate, so there is no indication of a gradient, only a slight indication of patches.
+$$b_{\text{adj}}=0.403+(0.3607-0.35)\frac{0.443-0.403}{0.40-0.35}=0.41156.$$
+
+The fitted index is 21.4% of the way from 0.35 to 0.40, so the adjusted value is 21.4% of the way from 0.403 to 0.443. The result 0.41156 uses the rounded fitted index; retaining full precision gives 0.4115493, or 0.41155. Report which rounding convention is used. Thus, 0.3607 describes the fitted relationship within this trial, whereas approximately 0.41156 is the index after the finite-area adjustment prescribed by the table. The increase does not mean that the field has physically become more heterogeneous. Neither value is a percentage of soil heterogeneity. This adjusted index is a summary of variance reduction with increasing plot size; it does not establish a gradient direction or distinguish gradients from patches.
 :::
 
 ### Maximum curvature method
@@ -333,15 +374,15 @@ This method (see @sec-mcm) is used to find the optimum plot size. A curve is plo
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-mcm1
 #| fig-cap: "Relationship between CV and plot size"
-knitr::include_graphics("images/mcm1.png")
+knitr::include_graphics("images/mcm-cv-corrected.svg")
 ```
 
-@fig-mcm1 indicates that as the plot size increases, the coefficient of variation decreases, and this decrease is maximum with the square-shaped plot of 5 m × 5 m. As we took a small data set for illustrative purposes, it is clearly seen that the 5 m × 5 m plot has the lowest CV value and also the lowest variance per basic unit area.
+@fig-mcm1 shows that the 5 m × 5 m plot has the lowest CV among the arrangements examined. This does not establish a point of maximum curvature or prove that this plot size is optimal: the curve must include enough sizes beyond the apparent bend, and the result depends on the axis scales and practical costs. Treat the figure as an illustration of variation reduction.
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-mcm2
 #| fig-cap: "Relationship between variance per basic unit area and plot size"
-knitr::include_graphics("images/mcm2.png")
+knitr::include_graphics("images/mcm-variance-corrected.svg")
 ```
 
 @fig-mcm2 shows the relationship between the variance per basic unit area $V_{x}$ and the plot size $x$.  
@@ -352,85 +393,29 @@ knitr::include_graphics("images/mcm2.png")
 
 Answers are given at the end of the chapter.
 
-1. A trial conducted to study the nature and extent of fertility variation in a field is called a __________ trial.
+1. A field trial conducted under uniform treatment to study field variability is called a __________ trial.
 
-2. In a uniformity trial, the entire experimental field is planted with a single __________ of crop.
+2. The smallest harvested subdivision in a uniformity trial is called a __________ unit.
 
-3. In a uniformity trial, the crop is managed __________ throughout the growing season.
+3. A map showing spatial patterns in yield is called a fertility __________ map.
 
-4. Fertilizer is generally __________ in a uniformity trial.
+4. The correlation between yields of neighbouring units is a form of __________ correlation.
 
-5. The small plots into which the effective field is divided are called __________ units.
+5. The relationship $V_x=V_1/x^b$ is known as Smith's __________ law.
 
-6. The smaller the basic unit, the more accurately the study of field __________ can be made.
+6. The parameter $b$ in Smith's law is an index of soil __________.
 
-7. The yield differences between basic units are used as a measure of soil __________.
+7. Taking logarithms of Smith's variance law produces a __________ relationship.
 
-8. A fertility contour map is constructed using __________ averages of yields.
+8. The slope of the regression of $\log V_x$ on $\log x$ is __________.
 
-9. Moving averages help to reduce the large random variation expected on __________ plots.
+9. The yield of a simulated plot is the __________ of the yields of its constituent basic units.
 
-10. Serial correlation can be calculated in both the __________ and __________ directions.
+10. To convert the variance of plot totals to the variance of yield per basic unit, divide by the __________ of the number of basic units per plot.
 
-11. A low serial correlation indicates that fertile areas occur in __________.
+11. In the maximum curvature method, plot size is plotted against the coefficient of __________.
 
-12. A high serial correlation indicates the presence of a fertility __________.
-
-13. The relative size of horizontal and vertical serial correlations gives an indication of the __________ of fertility pattern.
-
-14. The mean square between strips method has the same objective as the __________ correlation method.
-
-15. In the mean square between strips method, basic units are combined into __________ and __________ strips.
-
-16. The variability between strips is measured using the __________ square between strips.
-
-17. Smith's variance law describes the relationship between plot size and the __________ of the mean per plot.
-
-18. Fairfield Smith's variance law is represented by $V_x=$ __________.
-
-19. The parameter $b$ in Smith's variance law is called Smith's index of soil __________.
-
-20. A lower value of Smith's index generally indicates a higher degree of __________ among adjacent plots.
-
-21. The value of Smith's index $b$ lies between __________ and __________.
-
-22. In constructing simulated plots, the product of the number of plots and the number of basic units per plot must equal the __________ number of basic units.
-
-23. The total yield of the basic units forming a simulated plot is denoted by __________.
-
-24. The variance between simulated plots is denoted by __________.
-
-25. Variance per unit area is obtained by dividing the between-plot variance by __________.
-
-26. When a plot size has more than one possible shape, the homogeneity of the variances can be tested using the __________ test or the __________ test.
-
-27. If the variances for different plot shapes are homogeneous, their __________ is used for further calculation.
-
-28. Smith's index is estimated by fitting a __________ between $\log V_x-\log V_1$ and $\log x$.
-
-29. In the regression equation $Y=cX$, the relationship between $c$ and Smith's index is __________.
-
-30. The adjusted value of Smith's index is obtained by __________ when the calculated value lies between two tabulated values.
-
-31. The maximum curvature method is used to determine the __________ plot size.
-
-32. In the maximum curvature method, plot size is plotted on the __________ axis.
-
-33. In the maximum curvature method, coefficient of variation is plotted on the __________ axis.
-
-34. As plot size increases, the coefficient of variation generally __________.
-
-35. The plot size corresponding to the point of maximum curvature is considered the __________ plot size.
-
-36. The first true uniformity trial was conducted at __________ Experimental Station.
-
-37. The first true uniformity trial was conducted by W. B. Mercer and __________.
-
-38. The historical uniformity trial was conducted using a field of __________.
-
-39. The study showed that neighbouring plots tended to __________ one another.
-
-40. The historical uniformity trial demonstrated that combining small plots into larger plots reduces the variability per __________ area.
+12. For a fixed total experimental area, increasing plot size reduces the number of available __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -442,7 +427,7 @@ Answers are given at the end of the chapter.
 
 4. What are basic units?
 
-5. Why should the basic units be as small as possible?
+5. What factors determine a suitable basic-unit size?
 
 6. How can a uniformity trial help in planning a field experiment?
 
@@ -466,7 +451,7 @@ Answers are given at the end of the chapter.
 
 16. Distinguish between horizontal and vertical strips.
 
-17. How is the direction of the fertility gradient identified using mean squares between strips?
+17. What do the mean squares between vertical and horizontal strips describe, and why do they not by themselves establish a monotonic fertility gradient?
 
 18. What is Fairfield Smith's variance law?
 
@@ -484,9 +469,9 @@ Answers are given at the end of the chapter.
 
 25. Explain how variance per unit area is calculated.
 
-26. Why is the homogeneity of variance tested when a plot size has more than one shape?
+26. Why should different plot shapes of the same size be compared?
 
-27. Explain how the F test is used to compare variances of different plot shapes.
+27. Why is an ordinary two-sample F test inappropriate for alternative partitions of the same field?
 
 28. Explain the regression procedure used to estimate Smith's index.
 
@@ -516,13 +501,13 @@ Answers are given at the end of the chapter.
 
 2. If the effective field in Question 1 is divided into 1 m × 1 m basic units, find the total number of basic units.
 
-3. In a uniformity trial, explain why fertilizer is not applied to the crop.
+3. Explain why fertilizer and other management inputs must be applied uniformly in a uniformity trial.
 
 4. A uniformity trial gives low horizontal and vertical serial correlation coefficients. What does this indicate about the distribution of fertility?
 
 5. The horizontal serial correlation is 0.54 and the vertical serial correlation is 0.44. Explain the interpretation based on the chapter.
 
-6. Calculate the vertical and horizontal mean squares between strips when the required strip totals and grand total are given.
+6. Use the strip totals in @fig-meansq to calculate the vertical and horizontal mean squares between strips.
 
 7. The vertical mean square is 7107.94 and the horizontal mean square is 24370.41. Which direction shows greater fertility variation?
 
@@ -532,17 +517,17 @@ Answers are given at the end of the chapter.
 
 10. A plot size contains $x$ basic units and the field contains $rc$ basic units. Find the number of simulated plots.
 
-11. Calculate the between-plot variance when the simulated plot totals, total number of basic units, and grand total are given.
+11. Use the six size-25 plot totals in @fig-smith2 to calculate the between-plot sum of squares $Q_{25}$ and then the sample variance of plot means $V_{25}$.
 
-12. Explain why the variance per unit area is calculated after obtaining the between-plot variance.
+12. Explain the distinction between the between-plot sum of squares $Q_x$ and the variance per basic unit area $V_x$.
 
-13. For a plot size having two orientations, the calculated variances are 456895.9 and 329859.5. Calculate the F statistic.
+13. For a plot size having two orientations, the between-plot sums of squares are 456895.9 and 329859.5. Calculate their descriptive ratio.
 
-14. If the calculated F value is 1.39 and the table value is 1.860, state the conclusion regarding plot orientation.
+14. A ratio of 1.39 is obtained from two alternative partitions of the same field. Can it be compared directly with an ordinary F-table value? Explain.
 
-15. Given $b_{\text{cal}}=0.3952$, $L_1=0.40$, $L_2=0.50$, $y_1=0.443$, and $y_2=0.528$, calculate the adjusted Smith's index.
+15. Given $b_{\text{cal}}=0.3607$, $L_1=0.35$, $L_2=0.40$, $y_1=0.403$, and $y_2=0.443$, calculate the adjusted Smith's index.
 
-16. Explain the interpretation of an adjusted Smith's index of 0.43892.
+16. Explain the interpretation of an adjusted Smith's index of 0.41156.
 
 17. A uniformity trial gives CV values for several plot sizes. Explain how the optimum plot size can be identified using the maximum curvature method.
 
@@ -638,16 +623,16 @@ $$
 w=\frac{rc}{x}
 $$
 
-Between-plot variance:
+Between-plot sum of squares:
 
 $$
-V_{(x)}=\sum_{i=1}^{w}\frac{T_i^2}{x}-\frac{G^2}{rc}
+Q_x=\sum_{i=1}^{w}\frac{T_i^2}{x}-\frac{G^2}{rc}
 $$
 
 Variance per unit area:
 
 $$
-V_x=\frac{V_{(x)}}{rc-1}
+V_x=\frac{Q_x}{rc-x}
 $$
 
 Coefficient of variation:
@@ -668,10 +653,10 @@ $$
 \text{Adjusted }b=y_1+(b_{\text{cal}}-L_1)\frac{y_2-y_1}{L_2-L_1}
 $$
 
-F statistic for comparing variances of two plot shapes:
+Descriptive ratio for two plot shapes (not an F test for dependent partitions):
 
 $$
-F=\frac{\text{Larger variance}}{\text{Smaller variance}}
+R=\frac{\text{Larger between-plot sum of squares}}{\text{Smaller between-plot sum of squares}}
 $$
 
 ### Quick revision {.unnumbered}
@@ -680,7 +665,7 @@ $$
 
 - A single crop variety is grown over the entire field.
 
-- The crop is managed uniformly and fertilizer is not applied.
+- All management inputs, including fertilizer if used, are applied uniformly.
 
 - A substantial border is removed before dividing the field into basic units.
 
@@ -688,7 +673,7 @@ $$
 
 - Yield differences among basic units → measure of soil heterogeneity.
 
-- Smaller basic units → more accurate study of field heterogeneity.
+- Smaller basic units → finer spatial detail, balanced against harvesting accuracy and cost.
 
 - Uniformity trials can help determine → fertility variation, plot size, plot shape, and block size.
 
@@ -702,19 +687,19 @@ $$
 
 - Horizontal and vertical serial correlations → used to identify the direction of fertility variation.
 
-- Low serial correlation → fertile areas occur in spots.
+- Low serial correlation → little linear association at the chosen lag; this alone does not establish patches.
 
-- High serial correlation → fertility gradient is present.
+- High serial correlation → neighbouring yields are associated; use the field map to assess gradients and patches.
 
 - Mean square between strips → simpler method having the same objective as serial correlation.
 
-- Vertical strips → used to study fertility variation in the vertical direction.
+- Between vertical strips → measures variation across columns, in the horizontal direction.
 
-- Horizontal strips → used to study fertility variation in the horizontal direction.
+- Between horizontal strips → measures variation across rows, in the vertical direction.
 
 - Larger strip mean square → indicates greater variation in that direction.
 
-- Fairfield Smith's variance law → relates plot size to variance per plot.
+- Fairfield Smith's variance law → relates plot size to the variance of yield per basic unit area.
 
 - Smith's law → $V_x=V_1/x^b$.
 
@@ -722,23 +707,23 @@ $$
 
 - $b$ → quantitative measure of soil heterogeneity.
 
-- Lower $b$ → higher correlation among adjacent plots and more gradual change in fertility.
+- Lower $b$ → slower fitted variance reduction, often associated with positive nearby correlation; a gradient is not established.
 
-- Higher $b$ → greater tendency for fertility variation to occur in patches.
+- Higher $b$ → a faster fitted reduction in variance as plot size increases; it does not establish a patch pattern.
 
-- Smith's index lies between 0 and 1.
+- Values from 0 to 1 describe the usual idealised range of Smith's index; empirical fitted values can fall outside this range.
 
 - Simulated plots → formed by combining basic units into different sizes and shapes.
 
 - Only plot arrangements that fit exactly within the whole field are used.
 
-- Between-plot variance → calculated for each simulated plot size and shape.
+- Between-plot sum of squares → calculated for each simulated plot size and shape.
 
-- Variance per unit area → obtained by dividing between-plot variance by $rc-1$.
+- Variance per basic unit area $V_x$ → sample variance of plot means, equal to $Q_x/(rc-x)$.
 
-- When a plot size has more than one shape → test homogeneity of variances using F test or chi-square test.
+- Alternative shapes partition the same field → their variance estimates are dependent.
 
-- Non-significant plot-shape effect → average the variance values for the different shapes.
+- Retain shapes separately or state a descriptive averaging rule; an ordinary F test does not justify pooling dependent partitions.
 
 - Smith's index → estimated by regression of $Y=\log V_x-\log V_1$ on $X=\log x$.
 
@@ -752,7 +737,7 @@ $$
 
 - As plot size increases → CV generally decreases.
 
-- Point of maximum curvature → gives the optimum plot size.
+- Apparent bend → a traditional plot-size guide sensitive to axis scales and the available arrangements.
 
 - In the rice example → the field was 12 m × 17 m.
 
@@ -764,19 +749,19 @@ $$
 
 - In the example, horizontal serial correlation → 0.54317.
 
-- Both serial correlations were low, indicating fertile areas occurring in spots.
+- Positive sequence correlations describe nearby similarity; they do not by themselves establish patches or gradients.
 
-- The horizontal value was somewhat higher, suggesting some fertility gradient in the horizontal direction.
+- The higher horizontal sequence correlation alone does not establish a horizontal fertility gradient.
 
-- In the example, horizontal-strip mean square was much larger than vertical-strip mean square, indicating a stronger fertility trend along the length of the field.
+- In the example, the larger horizontal-strip mean square indicates greater yield variation across rows; a monotonic gradient is not established.
 
-- For plot size 25 m² in the example → $V_{25}=1468.24$.
+- For plot size 25 m² in the example → $V_{25}=1750.14$.
 
-- The calculated Smith's index in the example was $b=0.3952$ before adjustment.
+- The calculated Smith's index in the example was $b=0.3607$ before adjustment.
 
-- The adjusted Smith's index in the example was approximately $0.43892$.
+- The adjusted Smith's index in the example was approximately $0.41156$.
 
-- The adjusted value indicated moderate heterogeneity, with no clear fertility gradient but a slight indication of patches.
+- The index summarises variance reduction with plot size; identifying gradients or patches also requires spatial information.
 
 - Uniformity trials are important because field variability exists even when all management practices are kept uniform.
 
@@ -784,7 +769,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` Uniformity `2.` Variety `3.` Uniformly `4.` Not applied `5.` Basic `6.` Heterogeneity `7.` Heterogeneity `8.` Moving `9.` Small `10.` Horizontal; vertical `11.` Spots `12.` Gradient `13.` Direction `14.` Serial `15.` Horizontal; vertical `16.` Mean `17.` Variance `18.` $V_1/x^b$ `19.` Heterogeneity `20.` Correlation `21.` 0; 1 `22.` Total `23.` $T$ `24.` $V_{(x)}$ `25.` $rc-1$ `26.` F; chi-square `27.` Average `28.` Regression `29.` $c=-b$ `30.` Interpolation `31.` Optimum `32.` X `33.` Y `34.` Decreases `35.` Optimum `36.` Rothamsted `37.` A. D. Hall `38.` Wheat `39.` Resemble `40.` Unit
+`1.` Uniformity `2.` Basic `3.` Contour `4.` Serial `5.` Variance `6.` Heterogeneity `7.` Linear `8.` $-b$ `9.` Sum `10.` Square `11.` Variation `12.` Plots
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
@@ -793,37 +778,38 @@ $$
 
 2.  With 1 m × 1 m basic units, the number of basic units is $10\times15=150$.
 
-3.  Fertilizer is not applied so that any yield differences among basic units reflect only the natural heterogeneity of the soil, rather than being confounded with a differential response to fertilizer.
+3. Fertilizer need not be omitted. Apply it, and all other management inputs, uniformly so that treatment differences do not create artificial spatial variation. Yield variation can also include measurement error and other environmental effects.
 
-4.  Low horizontal and vertical serial correlations indicate that fertile areas are scattered as spots or patches across the field rather than following a systematic gradient in either direction.
+4. Low neighbour correlations indicate little linear association at the chosen lag. They do not establish spots or patches; inspect the spatial map and other diagnostics.
 
-5.  Since the horizontal correlation (0.54) is somewhat higher than the vertical correlation (0.44), there may be a slight fertility gradient along the horizontal direction, but because both values are relatively low, the dominant pattern is still one of fertile areas occurring in patches rather than a strong directional gradient.
+5. There is positive association along both chosen sequences, somewhat stronger horizontally. The coefficients alone do not establish a directional gradient or classify the field as patchy.
 
-6.  Using @eq-ssvertical and @eq-sshorizontal, compute $SS_V=\dfrac{\sum V_i^2}{r}-\dfrac{G^2}{n}$ and $SS_H=\dfrac{\sum H_i^2}{c}-\dfrac{G^2}{n}$ from the given vertical strip totals $V_i$, horizontal strip totals $H_i$, and grand total $G$; then divide each by its degrees of freedom, $(c-1)$ for vertical and $(r-1)$ for horizontal, using @eq-msvertical and @eq-mshorizontal.
+6.  The vertical and horizontal sums of squares are 63971.47 and 341185.77. Their mean squares are $63971.47/9=7107.94$ and $341185.77/14=24370.41$, respectively. Using @eq-ssvertical and @eq-sshorizontal, compute $SS_V=\dfrac{\sum V_i^2}{r}-\dfrac{G^2}{n}$ and $SS_H=\dfrac{\sum H_i^2}{c}-\dfrac{G^2}{n}$ from the given vertical strip totals $V_i$, horizontal strip totals $H_i$, and grand total $G$; then divide each by its degrees of freedom, $(c-1)$ for vertical and $(r-1)$ for horizontal, using @eq-msvertical and @eq-mshorizontal.
 
-7.  Since the horizontal mean square (24370.41) is much larger than the vertical mean square (7107.94), the horizontal direction shows greater fertility variation.
+7.  The greater mean square between horizontal strips indicates greater variation across rows, along the vertical length of the field. The strip names refer to their orientation, not to the direction perpendicular to them.
 
-8.  Serial correlation reflects the pattern of association between neighbouring units, but its numerical value is not a calibrated measure of the steepness of a gradient. Two correlation values can therefore indicate which direction shows a stronger tendency toward a gradient, but their relative magnitude should not be read as a precise quantitative comparison of the two gradients' strengths.
+8. Serial correlation measures association between neighbouring yields at the chosen lag. It is not a calibrated measure of gradient steepness, and comparing two coefficients alone does not determine the direction or strength of a fertility gradient. Examine the field map and strip variation as well.
 
 9.  The total number of basic units is $n=r\times c$.
 
 10. The number of simulated plots of size $x$ basic units is $w=\dfrac{rc}{x}$.
 
-11. Using @eq-betweenplotvar, compute $V_{(x)}=\displaystyle\sum_{i=1}^{w}\dfrac{T_i^2}{x}-\dfrac{G^2}{rc}$ from the given simulated plot totals $T_i$, the total number of basic units $rc$, and the grand total $G$.
+11. The six plot totals give $Q_{25}=218767.71$. Using @eq-varperunit, $V_{25}=Q_{25}/(150-25)=1750.14$. The first quantity is a sum of squares; the second is a sample variance.
 
-12. Between-plot variance alone is not directly comparable across different plot sizes, since it is computed from totals over different numbers of basic units. Dividing by $rc-1$ converts it to a variance per unit area, placing all plot sizes on a common, comparable scale.
 
-13. $F_{\text{cal}}=\dfrac{456895.9}{329859.5}=1.39$.
+12. With $z_i=T_i/x$, $Q_x=x\sum(z_i-\bar z)^2$ and $w=rc/x$. Thus the sample variance of plot means is $V_x=Q_x/[x(w-1)]=Q_x/(rc-x)$. The alternative field-scaled quantity $Q_x/(rc-1)$ is different and is not used with this worked adjustment.
 
-14. Since $F_{\text{cal}}=1.39$ is less than $F_{\text{table}}=1.860$, the difference between the two plot orientations is non-significant, meaning the plot-shape effect does not significantly affect the variance for that plot size, so the values for the two shapes can be averaged.
+13. The descriptive ratio is $R=456895.9/329859.5=1.39$. It is not automatically an F statistic with a known reference distribution.
 
-15. Adjusted $b=0.443+(0.3952-0.40)\dfrac{(0.528-0.443)}{(0.50-0.40)}=0.43892$.
+14. No. Alternative partitions reuse the same observations, so their variance estimates are dependent. The independent normal-sample assumptions of the ordinary variance-ratio F test are not met. No significance conclusion follows from this ratio alone.
 
-16. An adjusted Smith's index of 0.43892 is a moderate value, neither close to 0 nor close to 1. It shows no strong indication of a fertility gradient, but only a slight indication that fertile areas occur in patches.
+15. Adjusted $b=0.403+(0.3607-0.35)\dfrac{0.443-0.403}{0.40-0.35}=0.41156$.
 
-17. The plot size (in basic units) is plotted on the X-axis and the corresponding CV values on the Y-axis. As plot size increases, CV generally decreases; the point at which the curve bends most sharply, the point of maximum curvature, is located by inspection, and the plot size corresponding to that point is taken as the optimum.
+16. The value 0.41156 indicates an intermediate rate of variance reduction as plot size increases. Smith's index alone cannot establish whether the field has a gradient or patches; directional and spatial analyses are needed.
 
-18. The plot size near where the CV curve levels off, that is, near the point of maximum curvature, would be considered appropriate, since increasing the plot size beyond this point gives only a small further reduction in CV for a proportionally larger increase in plot size.
+17. Plot size on the X-axis and CV on the Y-axis. Locate an apparent bend as a traditional graphical guide. State the axis scales and arrangements examined. Inspection alone does not establish a unique statistical or economic optimum.
+
+18. The plot size near where the CV curve levels off, that is, near the point of maximum curvature, may be a candidate, provided the scale, precision, replication and cost considerations support it, since increasing the plot size beyond this point gives only a small further reduction in CV for a proportionally larger increase in plot size.
 
 19. Different crops and fields have different patterns and magnitudes of inherent soil heterogeneity, so the plot size at which the CV curve stabilises will naturally differ from one crop or field to another.
 
@@ -832,9 +818,9 @@ $$
 ::: {.callout-caution title="Historical Insights"}
 **The wheat field that started it all**
 
-In 1910, at the Rothamsted Experimental Station in England, two researchers named **W. B. Mercer** and **A. D. Hall** carried out what is now regarded as the first true uniformity trial. They took a single one-acre field of wheat, grew it under completely uniform treatment, and then harvested it as 500 tiny separate plots, each just about one-fortieth of an acre, recording the grain and straw yield of every plot on its own. When they looked at the results, something important became clear: even though every plot had received identical treatment, the yields varied considerably from one plot to the next. This variation could only be due to the natural heterogeneity of the soil itself.
+In 1910, at the Rothamsted Experimental Station in England, two researchers named **W. B. Mercer** and **A. D. Hall** carried out a classic uniformity trial. They took a single one-acre field of wheat, grew it under completely uniform treatment, and then harvested it as 500 tiny separate plots, each approximately one five-hundredth of an acre, recording the grain and straw yield of every plot on its own. When they looked at the results, something important became clear: even though every plot had received identical treatment, the yields varied considerably from one plot to the next. The variation revealed spatial differences despite uniform treatment; measurement error and other environmental influences can also contribute.
 
-Their 1911 paper, *The Experimental Error of Field Trials*, showed that neighbouring plots tended to resemble one another, and that combining small plots into larger ones reduced the variability per unit area, exactly the ideas behind the fertility contour map, the serial correlation, and Fairfield Smith's variance law that you have studied in this chapter. [@MercerHall1911] The experiment gave agricultural scientists their first real measure of soil variability, and it convinced a generation of researchers that the size and shape of a plot, and the way plots are grouped into blocks, must be chosen deliberately rather than by guesswork. Nearly every design principle in the modern field experiment traces back to that patiently subdivided acre of wheat.
+Their 1911 paper, *The Experimental Error of Field Trials*, showed that neighbouring plots tended to resemble one another, and that combining small plots into larger ones reduced the variability per unit area, exactly the ideas behind the fertility contour map, the serial correlation, and Fairfield Smith's variance law that you have studied in this chapter. [@MercerHall1911] The experiment provided an influential measure of field variability, and it convinced a generation of researchers that the size and shape of a plot, and the way plots are grouped into blocks, must be chosen deliberately rather than by guesswork. The patiently subdivided acre remains an influential illustration of the importance of field variability.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

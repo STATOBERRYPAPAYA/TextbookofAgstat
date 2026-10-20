@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>6&nbsp; Measures of dispersion – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./skewness.html" rel="next">
 <link href="./central2.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="6&nbsp; Measures of dispersion – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="6&nbsp; Measures of dispersion – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -588,7 +621,11 @@ window.Quarto = {
   <li><a href="#standard-deviation-for-frequency-table" id="toc-standard-deviation-for-frequency-table" class="nav-link" data-scroll-target="#standard-deviation-for-frequency-table"><span class="header-section-number">6.5.2</span> Standard deviation for frequency table</a></li>
   </ul></li>
   <li><a href="#coefficient-of-variation" id="toc-coefficient-of-variation" class="nav-link" data-scroll-target="#coefficient-of-variation"><span class="header-section-number">6.6</span> Coefficient of variation</a></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">6.7</span> Chapter Summary</a>
+  <li><a href="#relative-measures-and-properties-of-dispersion" id="toc-relative-measures-and-properties-of-dispersion" class="nav-link" data-scroll-target="#relative-measures-and-properties-of-dispersion"><span class="header-section-number">6.7</span> Relative measures and properties of dispersion</a>
+  <ul class="collapse">
+  <li><a href="#combining-groups" id="toc-combining-groups" class="nav-link" data-scroll-target="#combining-groups"><span class="header-section-number">6.7.1</span> Combining groups</a></li>
+  </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">6.8</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -809,14 +846,14 @@ Table&nbsp;6.3: Model frequency distribution table for range calculation
 <p><strong>Solution</strong></p>
 <p>L = Upper boundary of the highest class = 75</p>
 <p>S = Lower boundary of the lowest class = 60</p>
-<p>Range = L - S = 75 - 60 = 15</p>
+<p>Using the outer class boundaries gives an approximate range of <span class="math inline">\(75-60=15\)</span>. The exact range of the original observations is not recoverable from the grouped table.</p>
 </div>
 <p><strong>Merits and demerits of range</strong></p>
 <p><u><strong>Merits</strong></u></p>
 <ol type="1">
 <li><p>It is simple to understand.</p></li>
 <li><p>It is easy to calculate.</p></li>
-<li><p>In certain types of problems like quality control, weather forecasts, share price analysis, etc.</p></li>
+<li><p>It is useful as a quick summary in applications such as quality control and the reporting of daily temperature ranges.</p></li>
 </ol>
 <p><u><strong>Demerits</strong></u></p>
 <ol type="1">
@@ -831,6 +868,7 @@ Table&nbsp;6.3: Model frequency distribution table for range calculation
 <h2 data-number="6.3" class="anchored" data-anchor-id="the-inter-quartile-range-iqr"><span class="header-section-number">6.3</span> The inter-quartile range (IQR)</h2>
 <p>The range is a simple and quick measure to calculate. However, because it relies solely on the maximum and minimum values in a data set, it does not provide information about how the data is distributed between these two values. As a result, the range may not be an effective measure of dispersion, especially if one or both of these values are significantly different from the rest of the data. To address this limitation, the interquartile range is often used. The interquartile range is a more robust measure of dispersion, defined as the difference between the upper and lower quartiles of the data. IQR is also known as midspread. Thus,</p>
 <p><span id="eq-iqr"><span class="math display">\[IQR = Q_3 - Q_1 \tag{6.2}\]</span></span></p>
+<p>Half the interquartile range is the <strong>quartile deviation</strong>, <span class="math inline">\(QD=(Q_3-Q_1)/2\)</span>.</p>
 <p>The inter-quartile range of a set of data is therefore not affected by values of the data outside <em>Q</em><sub>1</sub> and <em>Q</em><sub>3</sub> making it a more reliable measure of spread for skewed or non-normal distributions.</p>
 <div id="exm-ct26" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6.3</strong></span> Consider the two sets of data A &amp; B below, find IQR</p>
@@ -974,17 +1012,17 @@ Table&nbsp;6.5: Calculation of mean absolute deviation
 <ol type="1">
 <li><p>Mean deviation is simple and easy.</p></li>
 <li><p>Different items of observations can be easily compared with mean deviation.</p></li>
-<li><p>Mean deviation is better than quartile deviation and range because it is based on all the observations of the series.</p></li>
+<li><p>Mean deviation uses all observations, whereas range and quartile deviation summarize selected features of the distribution. The preferred measure depends on the purpose.</p></li>
 <li><p>Mean deviation is less affected by the extreme values in the series while comparing to standard deviation.</p></li>
 <li><p>Mean deviation is rigidly defined. So, it has fixed value.</p></li>
 <li><p>Mean deviation about median will be least.</p></li>
 </ol>
 <p><u><strong>Demerits</strong></u></p>
 <ol type="1">
-<li><p>Mean deviation becomes difficult to compute mean deviation in case of fractions.</p></li>
+<li><p>Calculations by hand can become tedious when the observations contain many decimal places.</p></li>
 <li><p>It is not applicable for algebraic calculations.</p></li>
 <li><p>It cannot be calculated from open-end class intervals.</p></li>
-<li><p>Mean deviation is not a good measure as it ignores negative signs of deviations.</p></li>
+<li><p>Taking absolute deviations avoids cancellation, but makes some algebraic calculations less convenient than with squared deviations.</p></li>
 </ol>
 </section>
 <section id="the-variance-and-standard-deviation" class="level2" data-number="6.5">
@@ -993,7 +1031,8 @@ Table&nbsp;6.5: Calculation of mean absolute deviation
 <p><span id="eq-samplevariance"><span class="math display">\[
 \mathbf{\text{sample variance}},\mathit{s}^{2} = \frac{\sum_{i = 1}^{n} (x_{i} - \overline{x})^{2}}{n - 1}
 \tag{6.4}\]</span></span></p>
-<p>The sample <strong>standard deviation</strong>, <em>s</em>, is the positive square root of the sample variance.</p>
+<p>The sample variance requires <span class="math inline">\(n&gt;1\)</span>. The divisor <span class="math inline">\(n-1\)</span> accounts for estimating the mean from the same sample: the deviations sum to zero, leaving <span class="math inline">\(n-1\)</span> independent deviations. For independent observations from a population with finite variance, this makes <span class="math inline">\(s^2\)</span> an unbiased estimator of the population variance. The square root <span class="math inline">\(s\)</span> is not generally an unbiased estimator of the population standard deviation.</p>
+<p>The sample <strong>standard deviation</strong>, <em>s</em>, is the non-negative square root of the sample variance.</p>
 <p><span id="eq-samplesd"><span class="math display">\[\mathbf{\text{standard deviation} ,\mathit{s} = \ }\sqrt{\frac{\sum_{i = 1}^{n} (x_{i} - \overline{x})^{2}}{n - 1}} \tag{6.5}\]</span></span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
@@ -1006,7 +1045,7 @@ Table&nbsp;6.5: Calculation of mean absolute deviation
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Why standard deviation?</strong></p>
-<p>While both variance and standard deviation measure data dispersion, standard deviation is preferred for practical interpretation. Variance is expressed in squared units, making it harder to interpret. For example, if the data represents lengths in meters, the variance is in square meters (m²), which complicates understanding variability. In contrast, standard deviation is the square root of variance, preserving the original unit (e.g., meters), making it more intuitive. Thus, standard deviation is preferred for its clarity and ease of interpretation, especially when analyzing how data points deviate from the mean.</p>
+<p>While both variance and standard deviation measure data dispersion, standard deviation is preferred for practical interpretation. Variance is expressed in squared units, making it harder to interpret. For example, if the data represents lengths in meters, the variance is in square meters (m²), which complicates understanding variability. In contrast, standard deviation is the square root of variance, preserving the original unit (e.g., meters), making it more intuitive. Thus, standard deviation is preferred for its clarity and ease of interpretation, especially when analysing how data points deviate from the mean.</p>
 </div>
 </div>
 <p>If the standard deviation of data set A is greater than that of data set B, it indicates that data set A is more dispersed than data set B. A higher standard deviation means that the values in data set A are more spread out from the mean compared to the values in data set B. It’s important to note that the standard deviation of any data set is always a non-negative number, as it represents the square root of the variance, which is always non-negative. Variance and standard deviation can never be negative values.</p>
@@ -1159,10 +1198,13 @@ Table&nbsp;6.7: Calculation of standard deviation of set B
 <p><span class="math display">\[Sample\ standard\ deviation,\ s_{B} = \ \sqrt{s_{B}^{2}} = \ \sqrt{10.8} = 3.29\]</span></p>
 <p>It can be seen that <span class="math inline">\(s_{B} &gt; s_{A}\)</span>, confirming that data set B is more dispersed than data set A as shown in <a href="#fig-scatterab" class="quarto-xref">Figure&nbsp;<span>6.1</span></a>.</p>
 </div>
+<p>If the observations are the entire finite population and the aim is to describe their spread, the population variance is</p>
+<p><span class="math display">\[\sigma^2=\frac{1}{N}\sum_{i=1}^N(x_i-\mu)^2.\]</span></p>
+<p>This descriptive divisor <span class="math inline">\(N\)</span> differs from the sample divisor <span class="math inline">\(n-1\)</span>. In finite-population sampling theory, another useful quantity is <span class="math inline">\(S^2=\sum_{i=1}^N(x_i-\mu)^2/(N-1)\)</span>; the sampling formulas must be used with the variance convention under which they were derived.</p>
 <section id="an-alternative-formula-for-computing-the-variance" class="level3" data-number="6.5.1">
 <h3 data-number="6.5.1" class="anchored" data-anchor-id="an-alternative-formula-for-computing-the-variance"><span class="header-section-number">6.5.1</span> An alternative formula for computing the variance</h3>
 <p>The computation of <em>s</em>² requires calculations of <span class="math inline">\(\overline{x}\)</span>, <em>n</em> subtractions and <em>n</em> squaring and adding operations. If the original observations or the deviations <span class="math inline">\(\left( x_{i} - \overline{x} \right)\)</span> are not integers, the deviations <span class="math inline">\(\left( x_{i} - \overline{x} \right)\)</span> may be difficult to work with, and several decimals may have to be carried to ensure numerical accuracy. A more efficient computational formula for <em>s</em>² is given by</p>
-<p><span id="eq-alternatevar"><span class="math display">\[s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{x_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}x_{i} \right)^{2} \right\} \tag{6.6}\]</span></span></p>
+<p><span id="eq-alternatevar"><span class="math display">\[s^2=\frac{\sum_{i=1}^n x_i^2-(\sum_{i=1}^n x_i)^2/n}{n-1} \tag{6.6}\]</span></span></p>
 <div id="exm-ct29" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6.6</strong></span> Consider the data set below; find standard deviation?</p>
 <div id="tbl-alternatesd" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
@@ -1254,7 +1296,7 @@ Table&nbsp;6.9: Calculation of sd using alternate formula
 </figure>
 </div>
 <p>using <a href="#eq-alternatevar" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> ; here <em>n</em> = 9</p>
-<p><span class="math inline">\(s^{2} = \frac{1}{8}\left\{ 700 - {\frac{1}{9}\left( 72 \right)}^{2} \right\}\)</span> = 15.5</p>
+<p><span class="math inline">\(s^{2} = \frac{1}{8}\left(700-\frac{72^2}{9}\right)=15.5\)</span></p>
 <p><span class="math inline">\(s = \ \sqrt{15.5} = 3.94\)</span></p>
 </div>
 </section>
@@ -1262,7 +1304,7 @@ Table&nbsp;6.9: Calculation of sd using alternate formula
 <h3 data-number="6.5.2" class="anchored" data-anchor-id="standard-deviation-for-frequency-table"><span class="header-section-number">6.5.2</span> Standard deviation for frequency table</h3>
 <section id="discrete-frequency-table" class="level4">
 <h4 class="anchored" data-anchor-id="discrete-frequency-table">Discrete frequency table</h4>
-<p><span id="eq-sdfreq"><span class="math display">\[s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{{f_{i}x}_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}{f_{i}x}_{i} \right)^{2} \right\} \tag{6.7}\]</span></span></p>
+<p><span id="eq-sdfreq"><span class="math display">\[s^2=\frac{\sum_{i=1}^k f_i x_i^2-(\sum_{i=1}^k f_i x_i)^2/n}{n-1} \tag{6.7}\]</span></span></p>
 <p>where, <span class="math inline">\(x_i\)</span> is the <em>i</em><sup>th</sup> observation and <span class="math inline">\(f_{i}\)</span> is the corresponding frequency</p>
 <div id="exm-ct30" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6.7</strong></span> The frequency distributions of seed yield of 50 sesamum plants are given below. Find the standard deviation.</p>
@@ -1275,7 +1317,7 @@ Table&nbsp;6.10: A model frequency distributions of seed yield
 <table class="table-bordered caption-top table">
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Seed yield in gms (<em>x</em>)</td>
+<td style="text-align: center;">Seed yield in g (<em>x</em>)</td>
 <td style="text-align: center;">3</td>
 <td style="text-align: center;">4</td>
 <td style="text-align: center;">5</td>
@@ -1358,14 +1400,15 @@ Table&nbsp;6.11: Calculation of standard deviation for frequency table
 </section>
 <section id="grouped-frequency-table" class="level4">
 <h4 class="anchored" data-anchor-id="grouped-frequency-table">Grouped frequency table</h4>
-<p><span id="eq-sdgrp"><span class="math display">\[s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{{f_{i}d}_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}{f_{i}d}_{i} \right)^{2} \right\} \tag{6.8}\]</span></span></p>
+<p><span id="eq-sdgrp"><span class="math display">\[s^2=\frac{c^2}{n-1}\left[\sum_{i=1}^k f_i d_i^2-\frac{(\sum_{i=1}^k f_i d_i)^2}{n}\right] \tag{6.8}\]</span></span></p>
+<p>This calculation replaces observations by their class marks and therefore gives an approximate variance. The coding form assumes equal class widths.</p>
 <p>where, <span class="math inline">\(f_{i}\)</span> is the frequency of <em>i</em><sup>th</sup> class, <span class="math inline">\(d_{i} = \frac{x_{i} - A}{c}\)</span>, where <span class="math inline">\(x_{i}\)</span> is the class mark, <span class="math inline">\(A\)</span> is the class mark with the highest frequency and <em>c</em> is the class interval.</p>
 <div id="exm-ct31" class="theorem example">
 <p><span class="theorem-title"><strong>Example 6.8</strong></span> The frequency distributions of seed yield of 50 sesamum plants are given below. Find the standard deviation</p>
 <div id="tbl-grpseedyld" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-grpseedyld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;6.12: A model gropued frequency distributions of seed yield
+Table&nbsp;6.12: A model grouped frequency distribution of seed yield
 </figcaption>
 <div aria-describedby="tbl-grpseedyld-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="table-bordered caption-top table">
@@ -1379,7 +1422,7 @@ Table&nbsp;6.12: A model gropued frequency distributions of seed yield
 </colgroup>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;">Seed yield in gms (<em>x</em>)</td>
+<td style="text-align: center;">Seed yield in g (<em>x</em>)</td>
 <td style="text-align: center;">2.5–3.5</td>
 <td style="text-align: center;">3.5–4.5</td>
 <td style="text-align: center;">4.5–5.5</td>
@@ -1421,7 +1464,7 @@ Table&nbsp;6.13: Calculation of sd for grouped frequency distribution
 <th style="text-align: center;"><strong>Seed yield</strong></th>
 <th style="text-align: center;"><span class="math inline">\(f_{i}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(x_{i}\)</span></th>
-<th style="text-align: center;"><span class="math display">\[d_{i} = \frac{x_{i} - A}{c}\]</span></th>
+<th style="text-align: center;"><span class="math inline">\(d_{i} = \frac{x_{i} - A}{c}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(f_{i}.d_{i}\)</span></th>
 <th style="text-align: center;"><span class="math inline">\(f_{i}.d_{i}^{2}\)</span></th>
 </tr>
@@ -1470,8 +1513,8 @@ Table&nbsp;6.13: Calculation of sd for grouped frequency distribution
 <tr class="even">
 <td style="text-align: center;"><strong>Total</strong></td>
 <td style="text-align: center;"><strong>50</strong></td>
-<td style="text-align: center;"><strong>25</strong></td>
-<td style="text-align: center;"><strong>0</strong></td>
+<td style="text-align: center;">—</td>
+<td style="text-align: center;">—</td>
 <td style="text-align: center;"><strong>21</strong></td>
 <td style="text-align: center;"><strong>77</strong></td>
 </tr>
@@ -1499,7 +1542,7 @@ Table&nbsp;6.13: Calculation of sd for grouped frequency distribution
 <ol type="1">
 <li><p>It is not easy to understand and it is difficult to calculate.</p></li>
 <li><p>It gives more weight to extreme values because the values are squared up.</p></li>
-<li><p>As it is an absolute measure of variability, it cannot be used for the purpose of comparison.</p></li>
+<li><p>As an absolute measure, it should not be compared directly across different units or unrelated measurement scales. It can be compared for measurements on the same scale.</p></li>
 </ol>
 </section>
 </section>
@@ -1507,7 +1550,7 @@ Table&nbsp;6.13: Calculation of sd for grouped frequency distribution
 <section id="coefficient-of-variation" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="coefficient-of-variation"><span class="header-section-number">6.6</span> Coefficient of variation</h2>
 <p>The standard deviation is an absolute measure of dispersion. It is expressed in terms of units in which the original figures are collected and stated. The standard deviation of heights of plants cannot be compared with the standard deviation of weights of the grains, as both are expressed in different units, <em>i</em>.<em>e</em>. heights in centimetre and weights in kilograms.</p>
-<p>Therefore, the standard deviation must be converted into a relative measure of dispersion for the purpose of comparison. The relative measure is known as the <strong>coefficient of variation</strong>. The coefficient of variation is obtained by dividing the standard deviation by the mean and expressed in percentage.</p>
+<p>Therefore, the standard deviation must be converted into a relative measure of dispersion for the purpose of comparison. The relative measure is known as the <strong>coefficient of variation</strong>. The coefficient of variation is obtained by dividing the standard deviation by the mean and expressing the result as a percentage. It is meaningful for ratio-scale measurements with a positive mean. It is unstable near zero and is generally unsuitable when the mean is zero or negative, or when the scale has an arbitrary zero such as Celsius temperature.</p>
 <p><span id="eq-cv"><span class="math display">\[\text{Coefficient of variation} \, (C.V) = \frac{\text{standard deviation}}{\text{mean}} \times 100 \tag{6.9}\]</span></span></p>
 <p>A higher C.V. indicates greater variability in the dataset, meaning the data values are more dispersed relative to the mean. In contrast, a lower C.V. signifies lower variability, indicating that the data values are more closely clustered around the mean. This measure is particularly useful when comparing datasets with different units or scales.</p>
 <div id="exm-ct32" class="theorem example">
@@ -1522,42 +1565,43 @@ Table&nbsp;6.13: Calculation of sd for grouped frequency distribution
 <br>
 </p>
 </section>
-<section id="chapter-summary" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">6.7</span> Chapter Summary</h2>
+<section id="relative-measures-and-properties-of-dispersion" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="relative-measures-and-properties-of-dispersion"><span class="header-section-number">6.7</span> Relative measures and properties of dispersion</h2>
+<p>Relative measures have no measurement unit. For positive observations with nonzero denominators, the coefficient of range is <span class="math inline">\((x_{\max}-x_{\min})/(x_{\max}+x_{\min})\)</span>, and the coefficient of quartile deviation is <span class="math inline">\((Q_3-Q_1)/(Q_3+Q_1)\)</span>. A mean-deviation coefficient divides the mean deviation by the same centre about which it was calculated. State that centre; a zero or unsuitable denominator makes such a ratio uninformative.</p>
+<p>Mean absolute deviation can be calculated about any chosen centre <span class="math inline">\(a\)</span> as <span class="math inline">\(\sum|x_i-a|/n\)</span>. It is smallest when <span class="math inline">\(a\)</span> is a median. This should not be confused with the <strong>median absolute deviation</strong>, <span class="math inline">\(\operatorname{median}|x_i-\operatorname{median}(x)|\)</span>, which is also often abbreviated MAD. In this chapter, MAD denotes the mean absolute deviation unless stated otherwise.</p>
+<p>Adding a constant does not change variance. If <span class="math inline">\(y_i=a+bx_i\)</span>, then <span class="math inline">\(s_y^2=b^2s_x^2\)</span> and <span class="math inline">\(s_y=|b|s_x\)</span>. Variance therefore has squared measurement units, whereas SD has the original units.</p>
+<section id="combining-groups" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="combining-groups"><span class="header-section-number">6.7.1</span> Combining groups</h3>
+<p>Suppose groups have sizes <span class="math inline">\(n_j\)</span>, means <span class="math inline">\(\bar x_j\)</span> and sample variances <span class="math inline">\(s_j^2\)</span>. Put <span class="math inline">\(N=\sum_jn_j\)</span> and <span class="math inline">\(\bar x=\sum_jn_j\bar x_j/N\)</span>. The combined sample variance is</p>
+<p><span id="eq-combined-variance"><span class="math display">\[s^2=\frac{\sum_j(n_j-1)s_j^2+\sum_jn_j(\bar x_j-\bar x)^2}{N-1}. \tag{6.10}\]</span></span></p>
+<p>The first sum is variation within groups; the second is variation between their means. Averaging the group SDs does not give the combined SD.</p>
+<div id="exm-combined-sd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 6.10</strong></span> Two samples have <span class="math inline">\((n_1,\bar x_1,s_1)=(3,4,1)\)</span> and <span class="math inline">\((n_2,\bar x_2,s_2)=(2,6,2)\)</span>. Find their combined mean and SD.</p>
+<p><strong>Solution</strong></p>
+<p>The combined mean is <span class="math inline">\((3\times4+2\times6)/5=4.8\)</span>. From <a href="#eq-combined-variance" class="quarto-xref">Equation&nbsp;<span>6.10</span></a>,</p>
+<p><span class="math display">\[s^2=\frac{2(1)^2+1(2)^2+3(4-4.8)^2+2(6-4.8)^2}{4}=2.7.\]</span></p>
+<p>Therefore, the combined SD is <span class="math inline">\(\sqrt{2.7}=1.64\)</span>, approximately.</p>
+</div>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">6.8</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>The extent to which observations deviate from a central value is called __________.</p></li>
-<li><p>The statistical measures used to quantify the spread or variability of data are called measures of __________.</p></li>
-<li><p>The simplest measure of dispersion is the __________.</p></li>
-<li><p>The range is the difference between the __________ observation and the __________ observation.</p></li>
-<li><p>The range is denoted by __________.</p></li>
-<li><p>For a grouped frequency distribution, the largest value for calculating range is taken as the __________ boundary of the highest class.</p></li>
-<li><p>For a grouped frequency distribution, the smallest value for calculating range is taken as the __________ boundary of the lowest class.</p></li>
-<li><p>The interquartile range is the difference between the __________ and __________ quartiles.</p></li>
-<li><p>The interquartile range is also known as the __________.</p></li>
-<li><p>The interquartile range is not affected by observations outside __________ and __________.</p></li>
-<li><p>The mean absolute deviation is also known as the __________ deviation.</p></li>
-<li><p>Mean absolute deviation is calculated by taking the average of the __________ deviations from a central value.</p></li>
-<li><p>The most important measures of variability are variance and __________.</p></li>
-<li><p>Sample variance is denoted by __________.</p></li>
-<li><p>Sample standard deviation is denoted by __________.</p></li>
-<li><p>Standard deviation is the positive __________ root of variance.</p></li>
-<li><p>Variance is expressed in __________ units of the original measurements.</p></li>
-<li><p>Standard deviation is expressed in the __________ units as the original measurements.</p></li>
-<li><p>The standard deviation of a dataset can never be __________.</p></li>
-<li><p>A larger standard deviation indicates __________ dispersion of observations around the mean.</p></li>
-<li><p>A smaller standard deviation indicates __________ dispersion of observations around the mean.</p></li>
-<li><p>The relative measure of dispersion used to compare variability between datasets is called the coefficient of __________.</p></li>
-<li><p>The coefficient of variation is expressed as a __________.</p></li>
-<li><p>A higher coefficient of variation indicates __________ relative variability.</p></li>
-<li><p>A lower coefficient of variation indicates __________ relative variability.</p></li>
-<li><p>The standard deviation is an __________ measure of dispersion.</p></li>
-<li><p>The coefficient of variation is a __________ measure of dispersion.</p></li>
-<li><p>The term “standard deviation” was first introduced in writing by __________ in 1894.</p></li>
-<li><p>The concept of variance was introduced by __________.</p></li>
-<li><p>The mean absolute deviation about the __________ is the least.</p></li>
+<li><p>The spread of observations is called __________.</p></li>
+<li><p>The difference between the largest and smallest observations is the __________.</p></li>
+<li><p>The difference between the third and first quartiles is the __________ range.</p></li>
+<li><p>Half the interquartile range is called the quartile __________.</p></li>
+<li><p>The average of absolute deviations from a specified central value is the mean __________ deviation.</p></li>
+<li><p>The mean absolute deviation is minimized when deviations are taken from the __________.</p></li>
+<li><p>The non-negative square root of variance is the standard __________.</p></li>
+<li><p>Variance is expressed in the __________ of the original measurement units.</p></li>
+<li><p>Standard deviation is expressed in the __________ units as the observations.</p></li>
+<li><p>The standard deviation of identical observations is __________.</p></li>
+<li><p>The usual unbiased sample variance uses the divisor __________.</p></li>
+<li><p>The standard deviation expressed as a percentage of a positive mean is the coefficient of __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1751,7 +1795,7 @@ CV=\frac{s}{\bar{x}}\times100
 <li>MAD → average absolute deviation from a central value.</li>
 <li>MAD about the median is the least.</li>
 <li>Variance → average squared deviation, using <span class="math inline">\(n-1\)</span> for sample variance.</li>
-<li>Standard deviation → positive square root of sample variance.</li>
+<li>Standard deviation → non-negative square root of sample variance.</li>
 <li>Variance is expressed in squared units.</li>
 <li>Standard deviation is expressed in the original units.</li>
 <li>Standard deviation is always non-negative.</li>
@@ -1771,7 +1815,7 @@ CV=\frac{s}{\bar{x}}\times100
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Dispersion <code>2.</code> Dispersion <code>3.</code> Range <code>4.</code> Largest; smallest <code>5.</code> <span class="math inline">\(R\)</span> <code>6.</code> Upper <code>7.</code> Lower <code>8.</code> Third (upper); first (lower) <code>9.</code> Midspread <code>10.</code> <span class="math inline">\(Q_1\)</span>; <span class="math inline">\(Q_3\)</span> <code>11.</code> Mean <code>12.</code> Absolute <code>13.</code> Standard deviation <code>14.</code> <span class="math inline">\(s^2\)</span> <code>15.</code> <span class="math inline">\(s\)</span> <code>16.</code> Square <code>17.</code> Squared <code>18.</code> Same <code>19.</code> Negative <code>20.</code> Greater <code>21.</code> Lower <code>22.</code> Variation <code>23.</code> Percentage <code>24.</code> Greater <code>25.</code> Lower <code>26.</code> Absolute <code>27.</code> Relative <code>28.</code> Karl Pearson <code>29.</code> R.A. Fisher <code>30.</code> Median</p>
+<p><code>1.</code> Dispersion <code>2.</code> Range <code>3.</code> Interquartile <code>4.</code> Deviation <code>5.</code> Absolute <code>6.</code> Median <code>7.</code> Deviation <code>8.</code> Square <code>9.</code> Same <code>10.</code> Zero <code>11.</code> <span class="math inline">\(n-1\)</span> <code>12.</code> Variation</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1779,7 +1823,7 @@ CV=\frac{s}{\bar{x}}\times100
 <ol type="1">
 <li><p>Using <a href="#eq-range" class="quarto-xref">Equation&nbsp;<span>6.1</span></a>, <span class="math inline">\(R=L-S=96-35=61\)</span>.</p></li>
 <li><p>Using <a href="#eq-range" class="quarto-xref">Equation&nbsp;<span>6.1</span></a>, <span class="math inline">\(40=L-15\Rightarrow L=55\)</span>; the largest observation is 55.</p></li>
-<li><p>Using <a href="#eq-range" class="quarto-xref">Equation&nbsp;<span>6.1</span></a> with class boundaries, <span class="math inline">\(R=L-S=75-60=15\)</span>.</p></li>
+<li><p>The outer class boundaries give an approximate range of <span class="math inline">\(75-60=15\)</span>; the exact range of the original data is unknown.</p></li>
 <li><p>Using <a href="#eq-iqr" class="quarto-xref">Equation&nbsp;<span>6.2</span></a>, <span class="math inline">\(IQR=Q_3-Q_1=11-4.5=6.5\)</span>.</p></li>
 <li><p><span class="math inline">\(IQR_A=6.5\)</span> and <span class="math inline">\(IQR_B=2\)</span>; since <span class="math inline">\(IQR_A&gt;IQR_B\)</span>, dataset A is more dispersed according to the interquartile range.</p></li>
 <li><p>Using <a href="#eq-mad" class="quarto-xref">Equation&nbsp;<span>6.3</span></a>, <span class="math inline">\(\bar{x}=16\)</span> and <span class="math inline">\(\sum|x_i-\bar{x}|=16\)</span>, so <span class="math inline">\(MAD=\frac{16}{6}=2.67\)</span>.</p></li>
@@ -1787,7 +1831,7 @@ CV=\frac{s}{\bar{x}}\times100
 <li><p>Similarly, <span class="math inline">\(\bar{x}=3\)</span> and <span class="math inline">\(\sum(x_i-\bar{x})^2=54\)</span>, so <span class="math inline">\(s^2=\frac{54}{5}=10.8\)</span> and <span class="math inline">\(s=\sqrt{10.8}=3.29\)</span>. Since <span class="math inline">\(3.29&gt;1.414\)</span>, dataset B is more dispersed than dataset A.</p></li>
 <li><p>Using <a href="#eq-alternatevar" class="quarto-xref">Equation&nbsp;<span>6.6</span></a> with <span class="math inline">\(\sum x_i=72\)</span>, <span class="math inline">\(\sum x_i^2=700\)</span>, <span class="math inline">\(n=9\)</span>: <span class="math inline">\(s^2=\frac{1}{8}\left(700-\frac{72^2}{9}\right)=15.5\)</span>, so <span class="math inline">\(s=\sqrt{15.5}=3.94\)</span>.</p></li>
 <li><p>Using <a href="#eq-sdfreq" class="quarto-xref">Equation&nbsp;<span>6.7</span></a> with <span class="math inline">\(n=50\)</span>, <span class="math inline">\(\sum f_ix_i=271\)</span>, <span class="math inline">\(\sum f_ix_i^2=1537\)</span>: <span class="math inline">\(s^2=\frac{1}{49}\left(1537-\frac{271^2}{50}\right)=1.3914\)</span>, so <span class="math inline">\(s=1.18\)</span>.</p></li>
-<li><p>Using <a href="#eq-sdgrp" class="quarto-xref">Equation&nbsp;<span>6.8</span></a> with <span class="math inline">\(A=5\)</span>, <span class="math inline">\(c=1\)</span>, <span class="math inline">\(\sum f_id_i=21\)</span>, <span class="math inline">\(\sum f_id_i^2=77\)</span>: <span class="math inline">\(s^2=\frac{1}{49}\left(77-\frac{21^2}{50}\right)=1.3914\)</span>, so <span class="math inline">\(s=1.18\)</span>, matching question 10 since <span class="math inline">\(c=1\)</span> leaves the variance unchanged.</p></li>
+<li><p>Using the class-midpoint approximation in <a href="#eq-sdgrp" class="quarto-xref">Equation&nbsp;<span>6.8</span></a> with <span class="math inline">\(A=5\)</span>, <span class="math inline">\(c=1\)</span>, <span class="math inline">\(\sum f_id_i=21\)</span>, <span class="math inline">\(\sum f_id_i^2=77\)</span>: <span class="math inline">\(s^2=\frac{1}{49}\left(77-\frac{21^2}{50}\right)=1.3914\)</span>, so <span class="math inline">\(s=1.18\)</span>, matching question 10 because the class marks and frequencies are the same; this does not establish that the underlying raw observations have identical variances.</p></li>
 <li><p>Using <a href="#eq-cv" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>, <span class="math inline">\(CV=\frac{10}{50}\times100=20\%\)</span>.</p></li>
 <li><p>Using <a href="#eq-cv" class="quarto-xref">Equation&nbsp;<span>6.9</span></a>, <span class="math inline">\(CV=\frac{5}{55}\times100=9.1\%\)</span>.</p></li>
 <li><p>From questions 12 and 13, <span class="math inline">\(CV_{\text{yield}}=20\%&gt;CV_{\text{height}}=9.1\%\)</span>, so yield has greater relative variability than plant height.</p></li>
@@ -1827,7 +1871,7 @@ CV=\frac{s}{\bar{x}}\times100
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Fisher1918" class="csl-entry" role="listitem">
 Fisher, Ronald A. 1918. <span>“The Correlation Between Relatives on the Supposition of Mendelian Inheritance.”</span> <em>Transactions of the Royal Society of Edinburgh</em> 52 (2): 399–433. <a href="https://doi.org/10.1017/S0080456800012163">https://doi.org/10.1017/S0080456800012163</a>.
 </div>
@@ -1925,7 +1969,7 @@ Pearson, Karl. 1894. <span>“Contributions to the Mathematical Theory of Evolut
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2268,16 +2312,17 @@ Pearson, Karl. 1894. <span>“Contributions to the Mathematical Theory of Evolut
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

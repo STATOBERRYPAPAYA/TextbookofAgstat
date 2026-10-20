@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -32,22 +38,21 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./probabilitydist.html" rel="next">
 <link href="./regression.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,9 +80,36 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -108,16 +140,18 @@ window.Quarto = {
 
 <meta property="og:title" content="10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="10&nbsp; Probability – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -306,8 +340,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -507,47 +541,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -576,8 +610,9 @@ window.Quarto = {
   <li><a href="#conditional-probability" id="toc-conditional-probability" class="nav-link" data-scroll-target="#conditional-probability"><span class="header-section-number">10.8</span> Conditional probability</a></li>
   <li><a href="#multiplication-law-of-probability" id="toc-multiplication-law-of-probability" class="nav-link" data-scroll-target="#multiplication-law-of-probability"><span class="header-section-number">10.9</span> Multiplication law of probability</a></li>
   <li><a href="#probability-using-combinations" id="toc-probability-using-combinations" class="nav-link" data-scroll-target="#probability-using-combinations"><span class="header-section-number">10.10</span> Probability using combinations</a></li>
-  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">10.11</span> Bayes’ theorem</a></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">10.12</span> Chapter Summary</a>
+  <li><a href="#law-of-total-probability" id="toc-law-of-total-probability" class="nav-link" data-scroll-target="#law-of-total-probability"><span class="header-section-number">10.11</span> Law of total probability</a></li>
+  <li><a href="#bayes-theorem" id="toc-bayes-theorem" class="nav-link" data-scroll-target="#bayes-theorem"><span class="header-section-number">10.12</span> Bayes’ theorem</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">10.13</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -613,7 +648,7 @@ window.Quarto = {
 </header>
 
 
-<p>Probability is a cornerstone of statistical methods, providing the mathematical framework to quantify and analyze uncertainty. In the diverse and dynamic field of agricultural research, uncertainty often arises in areas such as yield predictions, pest control strategies, and the impact of environmental variables on crop growth. Understanding probability equips researchers and students with the tools to make informed decisions in the face of variability and randomness.</p>
+<p>Probability is a cornerstone of statistical methods, providing the mathematical framework to quantify and analyse uncertainty. In the diverse and dynamic field of agricultural research, uncertainty often arises in areas such as yield predictions, pest control strategies, and the impact of environmental variables on crop growth. Understanding probability equips researchers and students with the tools to make informed decisions in the face of variability and randomness.</p>
 <p>This chapter introduces fundamental probability concepts. We begin with the basic definitions and axioms of probability. The chapter progresses to explore key topics such as conditional probability, Bayes’ theorem, and independence of events.</p>
 <section id="random-experiment" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="random-experiment"><span class="header-section-number">10.1</span> Random experiment</h2>
@@ -632,7 +667,7 @@ window.Quarto = {
 <li><p>Heads (<span class="math inline">\(H\)</span>)</p></li>
 <li><p>Tails (<span class="math inline">\(T\)</span>)</p></li>
 </ul>
-<p>We say that for an unbiassed coin the probability of the coin landing <span class="math inline">\(H\)</span> is <span class="math inline">\(\frac{1}{2}\)</span> and the probability of the coin landing <span class="math inline">\(T\)</span> is <span class="math inline">\(\frac{1}{2}\)</span></p>
+<p>We say that for an unbiased coin the probability of the coin landing <span class="math inline">\(H\)</span> is <span class="math inline">\(\frac{1}{2}\)</span> and the probability of the coin landing <span class="math inline">\(T\)</span> is <span class="math inline">\(\frac{1}{2}\)</span></p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -659,7 +694,7 @@ Figure&nbsp;10.1: Two dice
 </figure>
 </div>
 <p><strong>Playing cards</strong></p>
-<p>A standard deck of playing cards consists of 52 cards, divided into four suits: spades, hearts, diamonds, and clubs, with each suit containing 13 cards. Four suits in playing cards were given in the <a href="#fig-suitsincard" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>. The spades suit includes 9 numbered cards from 2 to 10, along with the picture cards ace, king, queen, and jack. Similarly, the hearts, diamonds, and clubs suits each contain 13 cards. Of these 52 cards, 26 are red, consisting of the hearts and diamonds suits, while the other 26 cards are black, comprising the spades and clubs suits. Playing cards can be used to create examples for random experiments, such as drawing a single card from a shuffled deck to determine its specific identity. Other experiments include drawing a card and checking its suit etc. These simple experiments can be easily modified with conditions or repetition, making playing cards a versatile tool for exploring probability and random events.</p>
+<p>A standard deck of playing cards consists of 52 cards, divided into four suits: spades, hearts, diamonds, and clubs, with each suit containing 13 cards. Four suits in playing cards were given in the <a href="#fig-suitsincard" class="quarto-xref">Figure&nbsp;<span>10.2</span></a>. The spades suit includes 9 numbered cards from 2 to 10, along with the ace and the three picture cards: king, queen, and jack. Similarly, the hearts, diamonds, and clubs suits each contain 13 cards. Of these 52 cards, 26 are red, consisting of the hearts and diamonds suits, while the other 26 cards are black, comprising the spades and clubs suits. Playing cards can be used to create examples for random experiments, such as drawing a single card from a shuffled deck to determine its specific identity. Other experiments include drawing a card and checking its suit etc. These simple experiments can be easily modified with conditions or repetition, making playing cards a versatile tool for exploring probability and random events.</p>
 <div id="fig-suitsincard" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-suitsincard-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -730,14 +765,14 @@ Figure&nbsp;10.2: Four suits in playing cards
 <li><strong>Continuous random variables</strong>: These can take on any value within a given range, which is typically uncountable (e.g., the height of individuals in a population).</li>
 </ol>
 <p>In mathematical terms, if <span class="math inline">\(S\)</span> is the sample space of a random experiment, a random variable <span class="math inline">\(X\)</span> is a function that maps sample space to real number set, which can be represented as <span class="math inline">\(X: S \to \mathbb{R}\)</span>, where <span class="math inline">\(\mathbb{R}\)</span> represents the set of real numbers.</p>
-<p>The probability of a random variable can be represented by <span class="math inline">\(P(X = x)\)</span> or <span class="math inline">\(P(x)\)</span>, where the small letter <span class="math inline">\(x\)</span> denotes the value taken by the random variable <span class="math inline">\(X\)</span>.</p>
+<p>For a discrete random variable, the probability of a particular value can be represented by <span class="math inline">\(P(X=x)\)</span> or <span class="math inline">\(p(x)\)</span>, where the small letter <span class="math inline">\(x\)</span> denotes the value taken by the random variable <span class="math inline">\(X\)</span>.</p>
 <p>Consider the example of throwing a die once. Here, you can define a random variable of your interest. Defining a random variable involves assigning a numerical value to the outcomes of the experiment. Let <span class="math inline">\(X\)</span> represent the number appearing on the die. The possible values of <span class="math inline">\(X\)</span> are: <span class="math inline">\(x = \{1, 2, 3, 4, 5, 6\}\)</span>.</p>
-<p>Consider another example of even number appearing on the die. Let <span class="math inline">\(X\)</span> represent the even number appearing on the die. The possible values of <span class="math inline">\(X\)</span> are: <span class="math inline">\(x = \{2, 4, 6\}\)</span>.</p>
+<p>Consider another example based on whether the result is even. Let <span class="math inline">\(X=1\)</span> if an even number appears and <span class="math inline">\(X=0\)</span> otherwise. The possible values are <span class="math inline">\(\{0,1\}\)</span>. This defines <span class="math inline">\(X\)</span> for every outcome in the sample space.</p>
 <p>In each of the above cases, you can see that the random variable <span class="math inline">\(X\)</span> assigns a value to the outcomes of the experiment.</p>
 </section>
 <section id="probability" class="level2" data-number="10.3">
 <h2 data-number="10.3" class="anchored" data-anchor-id="probability"><span class="header-section-number">10.3</span> Probability</h2>
-<p>Probability is a measure of the likelihood or chance that a particular event will occur. It quantifies uncertainty and is expressed as a number between 0 and 1, where 0 indicates an impossible event and 1 represents a certain event. Mathematically, the probability of an event <span class="math inline">\(A\)</span> is defined as the ratio of the number of favorable outcomes to the total number of possible outcomes, assuming all outcomes are equally likely, and is given by</p>
+<p>Probability is a measure of the likelihood or chance that a particular event will occur. It quantifies uncertainty and is expressed as a number between 0 and 1, where an impossible event has probability 0 and a certain event has probability 1. In continuous models, a possible individual value can also have probability zero; probability zero is not always the same as logical impossibility. Mathematically, the probability of an event <span class="math inline">\(A\)</span> is defined as the ratio of the number of favorable outcomes to the total number of possible outcomes, assuming all outcomes are equally likely, and is given by</p>
 <p>Probability of an event <span class="math inline">\(A\)</span> happening:</p>
 <p><span id="eq-probability1"><span class="math display">\[P(A) = \frac{\text{Number of favourable outcomes}}{\text{Total possible outcomes}} \tag{10.1}\]</span></span><br>
 here favourable outcome means outcomes favouring the happening of event <span class="math inline">\(A\)</span>.</p>
@@ -782,14 +817,14 @@ Figure&nbsp;10.3: Sample space and sample point
 <div id="exm-prob3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.3</strong></span> Ram wants to see how many times a “double” (both dice have same number) comes up when throwing 2 dice.</p>
 <p><strong>Solution</strong></p>
-<p>The <em>sample space</em> is all possible outcomes (36 Sample Points): {1,1} {1,2} {1,3} {1,4} … {6,3} {6,4} {6,5} {6,6}. The <em>event</em> Ram is looking for is a “double”, where both dice have the same number. It is made up of these 6 sample points: {1,1} {2,2} {3,3} {4,4} {5,5} and {6,6}. You can calculate the probability of the event using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>. Probability = <span class="math inline">\(\frac{6}{36}=0.17\)</span>.</p>
+<p>The <em>sample space</em> is all possible outcomes (36 Sample Points): (1,1), (1,2), (1,3), (1,4), …, (6,3), (6,4), (6,5), (6,6). The <em>event</em> Ram is looking for is a “double”, where both dice have the same number. It is made up of these 6 sample points: (1,1), (2,2), (3,3), (4,4), (5,5) and (6,6). You can calculate the probability of the event using <a href="#eq-probability1" class="quarto-xref">Equation&nbsp;<span>10.1</span></a>. Probability = <span class="math inline">\(\frac{6}{36}=\frac16\approx0.17\)</span>.</p>
 </div>
 <section id="types-of-events" class="level3" data-number="10.4.1">
 <h3 data-number="10.4.1" class="anchored" data-anchor-id="types-of-events"><span class="header-section-number">10.4.1</span> Types of events</h3>
 <p><strong>Independent events</strong></p>
 <p>Independent events are events where the occurrence of one does not influence the occurrence of another. For instance, consider tossing a coin. If it lands on “heads” three times in a row, the outcome of the next toss remains unaffected by the previous results. The probability of getting “heads” on the next toss is still <span class="math inline">\(\frac{1}{2}\)</span> (or 0.5), just as it is for any fair coin toss. This demonstrates that past outcomes do not influence the probabilities of future events in independent scenarios.</p>
 <div id="exm-prob4" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.4</strong></span> A coin is tossed 100 times, and heads appear in 99 of those tosses. What is the probability that heads will appear on the <span class="math inline">\(100^{th}\)</span> toss?</p>
+<p><span class="theorem-title"><strong>Example 10.4</strong></span> A fair coin has been tossed 99 times, with heads on every toss. Assuming independent tosses, what is the probability of heads on the <span class="math inline">\(100^{th}\)</span> toss?</p>
 <p><strong>Solution</strong></p>
 <p>Answer is <span class="math inline">\(\frac{1}{2}\)</span> as each toss is independent of previous toss.</p>
 </div>
@@ -805,7 +840,7 @@ Figure&nbsp;10.3: Sample space and sample point
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>When cards are drawn <code>with replacement</code>, each card is returned to the deck after being drawn, so the total number of cards remains constant. This keeps the probabilities unchanged, making the events independent. However, when cards are drawn <code>without replacement</code>, the total number of cards decreases after each draw, which alters the probabilities and makes the events dependent.</p>
+<p>When cards are drawn <code>with replacement</code>, each card is returned to the deck after being drawn, so the total number of cards remains constant. If the deck is reshuffled and each draw uses the same independent random mechanism, this keeps the draw probabilities unchanged and gives independent draws. However, when cards are drawn <code>without replacement</code>, the total number of cards decreases after each draw, which alters the probabilities and makes the events dependent.</p>
 </div>
 </div>
 <p><strong>Mutually exclusive events</strong></p>
@@ -840,9 +875,9 @@ Figure&nbsp;10.3: Sample space and sample point
 <p>The statistical approach to probability, also known as the <em>empirical approach</em>, is based on observing and recording outcomes from repeated experiments. The probability of an event is determined as the ratio of the number of times the event occurs <span class="math inline">\(m\)</span> to the total number of trials <span class="math inline">\(n\)</span> as when <span class="math inline">\(n\)</span> approaches infinity. This method is useful when theoretical probabilities cannot be calculated but relies on the practicality of conducting a large number of trials and assumes consistency in experimental conditions.</p>
 <p>The probability <span class="math inline">\(p\)</span> of happening of <span class="math inline">\(E\)</span> is given by</p>
 <p><span id="eq-statisticalapproach"><span class="math display">\[P\left( E \right) = \lim_{n \rightarrow \infty}\frac{m}{n} \tag{10.3}\]</span></span></p>
-<p>where <span class="math inline">\(n\)</span> is the number of times the process is performed which tends to infinity, and <span class="math inline">\(m\)</span> is the number of times the outcome ’<span class="math inline">\(E\)</span>’ happens.</p>
+<p>where <span class="math inline">\(n\)</span> is the number of trials and <span class="math inline">\(m\)</span> is the number in which <span class="math inline">\(E\)</span> occurs. For independent repetitions with a common event probability, the law of large numbers supports convergence of the relative frequency to that probability. A finite observed frequency is an estimate, not a guarantee of the next outcome.</p>
 <p><u><strong>Limitations</strong></u></p>
-<p>The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large (<span class="math inline">\(n\)</span>) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which does not rely on precise definitions but instead establishes probability based on a set of fundamental axioms or postulates.</p>
+<p>The statistical approach also has limitations. In some cases, the experiment may not be practically repeatable, making it impossible to rely on repeated trials. Additionally, it raises the question of how large (<span class="math inline">\(n\)</span>) must be to provide a good approximation of the probability. To address these issues, Russian mathematician A.N. Kolmogorov introduced the axiomatic approach, which defines a probability measure through precise axioms rather than through counts of equally likely outcomes alone.</p>
 </section>
 <section id="axiomatic-approach" class="level3" data-number="10.5.3">
 <h3 data-number="10.5.3" class="anchored" data-anchor-id="axiomatic-approach"><span class="header-section-number">10.5.3</span> Axiomatic approach</h3>
@@ -851,7 +886,7 @@ Figure&nbsp;10.3: Sample space and sample point
 <ol type="1">
 <li><p>Probability of an event, <span class="math inline">\(P(E)\)</span> lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>. That is <span class="math inline">\(0 \leq P(E) \leq 1\)</span></p></li>
 <li><p>Probability of entire sample space is 1. That is <span class="math inline">\(P\left( S \right) = 1\)</span></p></li>
-<li><p>If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are mutually exclusive events then probability of occurrence of either <span class="math inline">\(A\)</span> or <span class="math inline">\(B\)</span> is denoted by <span class="math inline">\(P(A \cup B)\)</span> shall be given by <span class="math inline">\(P\left( A \cup B \right) = P\left( A \right) + P(B)\)</span></p></li>
+<li><p>For any countable collection of mutually exclusive events <span class="math inline">\(A_1,A_2,\ldots\)</span>, <span class="math inline">\(P(\bigcup_i A_i)=\sum_iP(A_i)\)</span>. In particular, for two mutually exclusive events, <span class="math inline">\(P(A\cup B)=P(A)+P(B)\)</span>.$</p></li>
 </ol>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
@@ -863,7 +898,7 @@ Figure&nbsp;10.3: Sample space and sample point
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The probability <span class="math inline">\(p\)</span> of the occurrence of an event is referred to as the <em>probability of success</em>, while the probability <span class="math inline">\(q\)</span> of its non-occurrence is known as the <em>probability of failure</em>. Both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are non-negative and cannot exceed unity, <em>i</em>.<em>e</em>., <span class="math inline">\(0 \leq p \leq 1\)</span> and <span class="math inline">\(0 \leq q \leq 1\)</span>. This means the probability of an event always lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, inclusive. The probability of an impossible event is <span class="math inline">\(0\)</span>, and the probability of a certain event is <span class="math inline">\(1\)</span>. For instance, if <span class="math inline">\(P(A) = 1\)</span>, event <span class="math inline">\(A\)</span> is guaranteed to occur, and if <span class="math inline">\(P(A) = 0\)</span>, event <span class="math inline">\(A\)</span> cannot occur. Additionally, the number of favorable outcomes <span class="math inline">\(m\)</span> for an event cannot exceed the total number of outcomes <span class="math inline">\(n\)</span>.</p>
+<p>The probability <span class="math inline">\(p\)</span> of the occurrence of an event is referred to as the <em>probability of success</em>, while the probability <span class="math inline">\(q\)</span> of its non-occurrence is known as the <em>probability of failure</em>. Both <span class="math inline">\(p\)</span> and <span class="math inline">\(q\)</span> are non-negative and cannot exceed unity, <em>i</em>.<em>e</em>., <span class="math inline">\(0 \leq p \leq 1\)</span> and <span class="math inline">\(0 \leq q \leq 1\)</span>. This means the probability of an event always lies between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>, inclusive. The probability of an impossible event is <span class="math inline">\(0\)</span>, and the probability of a certain event is <span class="math inline">\(1\)</span>. An event with probability 1 occurs almost surely under the model. In continuous models, its complement can be nonempty even though its probability is zero. Additionally, the number of favorable outcomes <span class="math inline">\(m\)</span> for an event cannot exceed the total number of outcomes <span class="math inline">\(n\)</span>.</p>
 </div>
 </div>
 <div id="fig-probshow" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" style="text-align:center;">
@@ -913,7 +948,7 @@ Figure&nbsp;10.4: Probability always lies between 0 and 1
 </section>
 <section id="event-relations" class="level2" data-number="10.6">
 <h2 data-number="10.6" class="anchored" data-anchor-id="event-relations"><span class="header-section-number">10.6</span> Event relations</h2>
-<p>In probability theory, relationships between events help in analyzing their combined or individual outcomes within a sample space. These relations include concepts such as union, intersection, complement and mutual exclusivity, which are fundamental for understanding how events interact and influence probabilities.</p>
+<p>In probability theory, relationships between events help in analysing their combined or individual outcomes within a sample space. These relations include concepts such as union, intersection, complement and mutual exclusivity, which are fundamental for understanding how events interact and influence probabilities.</p>
 <p><strong>Complement of an event</strong></p>
 <p>In probability, the complement of an event refers to all outcomes in the sample space that are not favorable to the given event. If <span class="math inline">\(A\)</span> is an event, its complement is denoted by <span class="math inline">\(A^c\)</span>, and it represents the occurrence of all outcomes where <span class="math inline">\(A\)</span> does not happen.</p>
 <p>For example, consider the experiment of tossing a die. Let <span class="math inline">\(A\)</span> be the event of getting an even number. The favorable outcomes for <span class="math inline">\(A\)</span> are <span class="math inline">\(\{2, 4, 6\}\)</span>. The remaining outcomes, <span class="math inline">\(\{1, 3, 5\}\)</span>, do not satisfy <span class="math inline">\(A\)</span> and are therefore the complement of <span class="math inline">\(A\)</span>. These outcomes represent the occurrence of <span class="math inline">\(A^c\)</span>, where <span class="math inline">\(A\)</span> does not occur, therefore in this case <span class="math inline">\(A^c=\{1, 3, 5\}\)</span> .</p>
@@ -949,7 +984,7 @@ Figure&nbsp;10.6: Venn diagram showing intersection of two events
 <h2 data-number="10.7" class="anchored" data-anchor-id="additive-law-of-probability"><span class="header-section-number">10.7</span> Additive law of probability</h2>
 <p>According to additive law of probability, for any two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> of a sample space <span class="math inline">\(S\)</span>, the probability of the union of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is equal to the sum of their individual probabilities, minus the probability of their intersection.</p>
 <p><span id="eq-additivelaw"><span class="math display">\[P(A \cup B) = P(A)+P(B) − P(A \cap B) \tag{10.5}\]</span></span></p>
-<p>For mutually exclusive case <span class="math inline">\(P(AꓵB)=0\)</span>; in that case:<br>
+<p>For mutually exclusive case <span class="math inline">\(P(A\cap B)=0\)</span>; in that case:<br>
 <span id="eq-additivelaw2"><span class="math display">\[P(A \cup B) = P(A )+ P(B ) \tag{10.6}\]</span></span></p>
 <div id="exm-prob9" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.9</strong></span> A card is drawn from a well-shuffled deck of 52 cards. What is the probability that it is either a spade or a king?</p>
@@ -986,8 +1021,9 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <p><span id="eq-multilaw"><span class="math display">\[P(A \cap B) = P(A) \cdot P(B \mid A) \tag{10.8}\]</span></span></p>
 <p>This formula expresses the relationship between the joint probability of two events and their conditional probability. If <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> are independent events, then <span class="math inline">\(P(B \mid A) = P(B)\)</span>, and the formula simplifies to:</p>
 <p><span id="eq-multilaw2"><span class="math display">\[P(A \cap B) = P(A) \cdot P(B) \tag{10.9}\]</span></span></p>
+<p>This equality defines independence and also applies when an event has probability zero. Mutually exclusive events with positive probabilities are not independent: their intersection has probability zero, whereas the product of their probabilities is positive. For three or more events, pairwise independence alone does not imply mutual independence.</p>
 <div id="exm-prob12" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.13</strong></span> What is the probability of drawing two aces in succession from a standard deck of 52 cards?</p>
+<p><span class="theorem-title"><strong>Example 10.13</strong></span> What is the probability of drawing two aces in succession without replacement from a standard deck of 52 cards?</p>
 <p><strong>Solution</strong></p>
 <p>Let <span class="math inline">\(A\)</span> be the event that the first card drawn is an ace. <span class="math inline">\(B\)</span> be the event that the second card drawn is an ace. The probability of <span class="math inline">\(A\)</span> (drawing an ace on the first draw) is <span class="math inline">\(P(A) = \frac{4}{52}\)</span>. If the first card is an ace, there are only 3 aces left in a deck of 51 cards. The probability of <span class="math inline">\(B\)</span> (drawing an ace on the second draw given that the first card was an ace) is <span class="math inline">\(P(B \mid A) = \frac{3}{51}\)</span>. Now using <a href="#eq-multilaw" class="quarto-xref">Equation&nbsp;<span>10.8</span></a> the probability of drawing two aces in succession is given by <span class="math inline">\(P(A \cap B) = P(A) \cdot P(B \mid A) = \frac{4}{52} \cdot \frac{3}{51} = \frac{12}{2652} = \frac{1}{221}\)</span></p>
 </div>
@@ -1001,30 +1037,38 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <h2 data-number="10.10" class="anchored" data-anchor-id="probability-using-combinations"><span class="header-section-number">10.10</span> Probability using combinations</h2>
 <p>Combinations can be used to calculate the total number of possible outcomes in a probability problem. The formula for combinations is given by:</p>
 <p><span id="eq-combn"><span class="math display">\[^n C_r = \frac{n!}{r!(n - r)!} \tag{10.10}\]</span></span></p>
+<p>Here <span class="math inline">\(n\)</span> and <span class="math inline">\(r\)</span> are integers with <span class="math inline">\(0\leq r\leq n\)</span>, <span class="math inline">\(0!=1\)</span>, and order does not matter. Counting favourable selections gives probabilities only when all selections in the denominator are equally likely. If order matters, the number of selections without replacement is <span class="math inline">\(n!/(n-r)!\)</span>.</p>
 <div id="exm-prob14" class="theorem example">
 <p><span class="theorem-title"><strong>Example 10.15</strong></span> Calculate <span class="math inline">\(^3 C_2\)</span></p>
 <p><strong>Solution</strong></p>
 <p><span class="math inline">\(^3 C_2 = \frac{3!}{2!(3 - 2)!} = \frac{3 \times 2 \times 1}{2 \times 1} = 3\)</span></p>
 </div>
 <div id="exm-prob15" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.16</strong></span> A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn are white and blue?</p>
+<p><span class="theorem-title"><strong>Example 10.16</strong></span> A bag contains 3 red, 6 white, and 7 blue balls. What is the probability that two balls drawn without replacement are one white and one blue?</p>
 <p><strong>Solution</strong></p>
-<p>Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by <span class="math inline">\(^{16} C_2 =120\)</span>. The number of ways to draw one white ball from 6 white balls is <span class="math inline">\(^6 C_1=6\)</span>, and the number of ways to draw one blue ball from 7 blue balls is <span class="math inline">\(^7 C_1 =7\)</span>. Since the events are independent, the total number of favorable outcomes is <span class="math inline">\(^6 C_1 \times ^7 C_1 = 6 \times 7 = 42\)</span>. Thus, the required probability is:<span class="math inline">\(P(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}\)</span></p>
+<p>Total number of balls = 3 + 6 + 7 = 16. The number of ways to draw 2 balls from 16 is given by <span class="math inline">\(^{16} C_2 =120\)</span>. The number of ways to draw one white ball from 6 white balls is <span class="math inline">\(^6 C_1=6\)</span>, and the number of ways to draw one blue ball from 7 blue balls is <span class="math inline">\(^7 C_1 =7\)</span>. By the multiplication rule for counting choices, the total number of favorable outcomes is <span class="math inline">\(^6 C_1 \times ^7 C_1 = 6 \times 7 = 42\)</span>. Thus, the required probability is:<span class="math inline">\(P(\text{one white and one blue}) = \frac{^6 C_1 \times ^7 C_1}{^{16} C_2} = \frac{42}{120} = \frac{7}{20}\)</span></p>
 </div>
 <div id="exm-prob16" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.17</strong></span> A bag contains 5 red and 4 black balls. What is the probability that both balls drawn are red?</p>
+<p><span class="theorem-title"><strong>Example 10.17</strong></span> A bag contains 5 red and 4 black balls. What is the probability that both balls drawn without replacement are red?</p>
 <p><strong>Solution</strong></p>
 <p>Total number of balls = 5 + 4 = 9. The number of ways to draw 2 balls from 9 is given by <span class="math inline">\(^9 C_2 = \frac{9 \times 8}{2 \times 1} = 36\)</span>. The number of ways to draw 2 red balls from 5 red balls is <span class="math inline">\(^5 C_2 = \frac{5 \times 4}{2 \times 1} = 10\)</span>. Thus, the required probability is: <span class="math inline">\(P(\text{both red balls}) = \frac{^5 C_2}{^9 C_2} = \frac{10}{36} = \frac{5}{18}\)</span></p>
 </div>
 <div id="exr-prob2" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 10.2</strong></span> Six cards are drawn at random from a pack of 52 cards. What is the probability that 3 will be red and 3 black?</p>
+<p>The number of favourable hands is <span class="math inline">\(\binom{26}{3}\binom{26}{3}\)</span>, and the total number is <span class="math inline">\(\binom{52}{6}\)</span>. Thus the probability is <span class="math inline">\(\binom{26}{3}^2/\binom{52}{6}=0.33205\)</span>, approximately.</p>
 </div>
 </section>
-<section id="bayes-theorem" class="level2" data-number="10.11">
-<h2 data-number="10.11" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">10.11</span> Bayes’ theorem</h2>
-<p>Bayes’ theorem gives a mathematical rule for inverting conditional probabilities, allowing one to find the probability of a cause given its effect.</p>
-<p>Let <span class="math inline">\(E_1, E_2, \dots, E_n\)</span> be a set of events associated with a sample space <span class="math inline">\(S\)</span>, where all the events <span class="math inline">\(E_1, E_2,\dots, E_n\)</span> have non-zero probability of occurrence and they form a partition of <span class="math inline">\(S\)</span>. Let <span class="math inline">\(A\)</span> be any event associated with <span class="math inline">\(S\)</span>, then according to Bayes theorem,</p>
-<p><span id="eq-bayestheorem"><span class="math display">\[P(E_i \mid A) =\frac{P(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}{P(E_k)}\cdot P(A \mid E_k)} \tag{10.11}\]</span></span></p>
+<section id="law-of-total-probability" class="level2" data-number="10.11">
+<h2 data-number="10.11" class="anchored" data-anchor-id="law-of-total-probability"><span class="header-section-number">10.11</span> Law of total probability</h2>
+<p>If <span class="math inline">\(E_1,\ldots,E_n\)</span> are mutually exclusive events whose union is the sample space, they form a <strong>partition</strong>. For events with positive <span class="math inline">\(P(E_i)\)</span>,</p>
+<p><span class="math display">\[P(A)=\sum_{i=1}^nP(E_i)P(A\mid E_i).\]</span></p>
+<p>The terms add the contributions to <span class="math inline">\(A\)</span> from all parts of the sample space. This is the denominator used in Bayes’ theorem.</p>
+</section>
+<section id="bayes-theorem" class="level2" data-number="10.12">
+<h2 data-number="10.12" class="anchored" data-anchor-id="bayes-theorem"><span class="header-section-number">10.12</span> Bayes’ theorem</h2>
+<p>Bayes’ theorem gives a mathematical rule for inverting conditional probabilities, allowing one to update the probability of a hypothesis or event after observing evidence. A causal interpretation requires additional information about the study.</p>
+<p>Let <span class="math inline">\(E_1, E_2, \dots, E_n\)</span> be a set of events associated with a sample space <span class="math inline">\(S\)</span>, where all the events <span class="math inline">\(E_1, E_2,\dots, E_n\)</span> have non-zero probability of occurrence and they form a partition of <span class="math inline">\(S\)</span>. Let <span class="math inline">\(A\)</span> be an event with <span class="math inline">\(P(A)&gt;0\)</span>. Then according to Bayes theorem,</p>
+<p><span id="eq-bayestheorem"><span class="math display">\[P(E_i \mid A) =\frac{P(E_i) \cdot P(A \mid E_i)}{\sum_{k = 1}^{n}P(E_k)P(A \mid E_k)} \tag{10.11}\]</span></span></p>
 <p>The following terminologies are commonly used when applying Bayes’ theorem:</p>
 <p><strong>Hypotheses</strong>: The events <span class="math inline">\(E_1, E_2, \dots, E_n\)</span> are called the hypotheses.</p>
 <p><strong>Prior probability</strong>: The probability <span class="math inline">\(P(E_i)\)</span> is considered the prior probability of hypothesis <span class="math inline">\(E_i\)</span>.</p>
@@ -1041,55 +1085,33 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <span class="math display">\[= \frac{\frac{1}{2}\times \frac{3}{5}}{\frac{1}{2}\times \frac{3}{5}+\frac{1}{2}\times \frac{3}{7}} =\frac{7}{12}\]</span></p>
 </div>
 <div id="exm-prob18" class="theorem example">
-<p><span class="theorem-title"><strong>Example 10.19</strong></span> A man is known to speak the truth 2 out of 3 times. He throws a die and reports that the number obtained is a four. Find the probability that the number obtained is actually a four.</p>
+<p><span class="theorem-title"><strong>Example 10.19</strong></span> A fair die is thrown. A man is asked only whether the result is a four, and must answer yes or no. For either true answer, he answers truthfully with probability <span class="math inline">\(2/3\)</span> and incorrectly with probability <span class="math inline">\(1/3\)</span>. He answers yes. Find the probability that the result is actually a four.</p>
 <p><strong>Solution</strong></p>
 <p>Let <span class="math inline">\(A\)</span> be the event that the man reports that number four is obtained. Let <span class="math inline">\(E_1\)</span> be the event that four is obtained and <span class="math inline">\(E_2\)</span> be its complementary event. Then, <span class="math inline">\(P(E_1)\)</span> = probability that four occurs = <span class="math inline">\(\frac{1}{6}\)</span>. <span class="math inline">\(P(E_2)\)</span> = probability that four does not occur = <span class="math inline">\(1-P(E_1) = 1-\frac{1}{6} = \frac{5}{6}\)</span>. Also, <span class="math inline">\(P(A|E_1)=\)</span> probability that man reports four and it is actually a four <span class="math inline">\(= \frac{2}{3}\)</span> (because man speaks truth 2 out of 3 times). <span class="math inline">\(P(A|E_2)=\)</span> Probability that man reports four and it is not a four <span class="math inline">\(= \frac{1}{3}\)</span>.</p>
 <p>By using Bayes’ theorem, probability that number obtained is actually a four, <span class="math inline">\(P(E_1 \mid A) =\frac{P(E_1) \cdot P(A \mid E_1)}{P(E_1) \cdot P(A \mid E_1)+P(E_2) \cdot P(A \mid E_2)}\)</span>.</p>
 <p><span class="math display">\[P(E_1 \mid A)= \frac{\frac{1}{6}\times \frac{2}{3}}{\frac{1}{6}\times \frac{2}{3}+\frac{5}{6}\times \frac{1}{3}} =\frac{2}{7}\]</span></p>
 </div>
 </section>
-<section id="chapter-summary" class="level2" data-number="10.12">
-<h2 data-number="10.12" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">10.12</span> Chapter Summary</h2>
+<section id="chapter-summary" class="level2" data-number="10.13">
+<h2 data-number="10.13" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">10.13</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A process or procedure that produces an outcome which cannot be predicted with certainty beforehand is called a __________.</p></li>
-<li><p>The set of all possible outcomes of a random experiment is called the __________.</p></li>
-<li><p>An individual element of the sample space is called a __________.</p></li>
-<li><p>A numerical value assigned to the outcomes of a random experiment is called a __________.</p></li>
-<li><p>A random variable that takes countable values is called a __________ random variable.</p></li>
-<li><p>A random variable that can take any value within a given range is called a __________ random variable.</p></li>
-<li><p>Probability is expressed as a number between __________ and __________.</p></li>
-<li><p>An event whose probability is 0 is called an __________ event.</p></li>
-<li><p>An event whose probability is 1 is called a __________ event.</p></li>
-<li><p>An event that consists of one or more outcomes of a random experiment is called an __________.</p></li>
-<li><p>Events that cannot occur at the same time are called __________ events.</p></li>
-<li><p>Events that together contain all possible outcomes are called __________ events.</p></li>
-<li><p>Events having the same probability of occurrence are called __________ likely events.</p></li>
-<li><p>Events in which the occurrence of one does not influence the occurrence of another are called __________ events.</p></li>
-<li><p>Events in which the occurrence of one influences the probability of another are called __________ events.</p></li>
-<li><p>Drawing cards without replacement generally results in __________ events.</p></li>
-<li><p>Drawing cards with replacement generally results in __________ events.</p></li>
-<li><p>The classical approach to probability is also called the __________ approach.</p></li>
-<li><p>The statistical approach to probability is also called the __________ approach.</p></li>
-<li><p>The axiomatic approach to probability was developed by __________.</p></li>
-<li><p>According to the axiomatic approach, <span class="math inline">\(P(E)\)</span> always lies between __________ and __________.</p></li>
-<li><p>The probability of the entire sample space is __________.</p></li>
-<li><p>The complement of event <span class="math inline">\(A\)</span> is denoted by __________.</p></li>
-<li><p>The union of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
-<li><p>The intersection of two events <span class="math inline">\(A\)</span> and <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
-<li><p>The probability of an event and its complement together is __________.</p></li>
-<li><p>Conditional probability measures the probability of one event given that another event has already __________.</p></li>
-<li><p>The probability of <span class="math inline">\(A\)</span> given <span class="math inline">\(B\)</span> is denoted by __________.</p></li>
-<li><p>The multiplication law is used to find the probability of __________ events occurring together.</p></li>
-<li><p>For independent events, <span class="math inline">\(P(A \cap B)\)</span> is equal to __________.</p></li>
-<li><p>The number of ways of selecting <span class="math inline">\(r\)</span> objects from <span class="math inline">\(n\)</span> objects without considering order is called a __________.</p></li>
-<li><p>The notation for combination is __________.</p></li>
-<li><p>Bayes’ theorem is used to find the probability of a __________ given an effect or observed event.</p></li>
-<li><p>In Bayes’ theorem, <span class="math inline">\(P(E_i)\)</span> is called the __________ probability.</p></li>
-<li><p>In Bayes’ theorem, <span class="math inline">\(P(E_i\mid A)\)</span> is called the __________ probability.</p></li>
-<li><p>In Bayes’ theorem, the events <span class="math inline">\(E_1,E_2,\ldots,E_n\)</span> are called the __________.</p></li>
+<li><p>The set of all possible outcomes of a random experiment is called the __________ space.</p></li>
+<li><p>A subset of the sample space is called an __________.</p></li>
+<li><p>A real-valued function of the outcomes of a random experiment is called a random __________.</p></li>
+<li><p>Events that cannot occur together are called mutually __________ events.</p></li>
+<li><p>Events whose union is the sample space are called __________ events.</p></li>
+<li><p>Events satisfying <span class="math inline">\(P(A\cap B)=P(A)P(B)\)</span> are called __________ events.</p></li>
+<li><p>The probability of the sample space is __________.</p></li>
+<li><p>The probability of the empty event is __________.</p></li>
+<li><p>The event containing all outcomes outside an event is its __________.</p></li>
+<li><p>The probability of an event conditional on another event is called __________ probability.</p></li>
+<li><p>For mutually exclusive events, the probability of their union is the __________ of their probabilities.</p></li>
+<li><p>Selecting objects without regard to order is called a __________.</p></li>
+<li><p>In Bayes’ theorem, the probability before incorporating new evidence is called the __________ probability.</p></li>
+<li><p>In Bayes’ theorem, the probability after incorporating new evidence is called the __________ probability.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1144,11 +1166,11 @@ Hence, the probability of drawing a King given that the card drawn is a face car
 <li><p>A die is tossed twice. Find the probability of obtaining a number greater than 4 on both throws.</p></li>
 <li><p>Calculate <span class="math inline">\(^3C_2\)</span>.</p></li>
 <li><p>A bag contains 3 red, 6 white, and 7 blue balls. Find the probability that two balls drawn are one white and one blue.</p></li>
-<li><p>A bag contains 5 red and 4 black balls. Find the probability that both balls drawn are red.</p></li>
+<li><p>A bag contains 5 red and 4 black balls. Find the probability that both balls drawn without replacement are red.</p></li>
 <li><p>Six cards are drawn at random from a pack of 52 cards. Find the probability that 3 are red and 3 are black.</p></li>
 <li><p>A bag contains 4 white and 6 black balls, while another bag contains 4 white and 3 black balls. One bag is selected at random and a black ball is drawn. Find the probability that it was drawn from the first bag.</p></li>
-<li><p>A man speaks the truth 2 out of 3 times. He throws a die and reports that the number obtained is 4. Find the probability that the number obtained was actually 4.</p></li>
-<li><p>A coin is tossed 100 times and heads occur 99 times. What is the probability of obtaining heads on the next toss?</p></li>
+<li><p>Use the yes-or-no reporting model in <a href="#exm-prob18" class="quarto-xref">Example&nbsp;<span>10.19</span></a>: the man correctly answers whether a fair die shows four with probability <span class="math inline">\(2/3\)</span>, and incorrectly with probability <span class="math inline">\(1/3\)</span> for either true answer. Given that he answers yes, find the probability that the result is four.</p></li>
+<li><p>A fair coin is tossed independently 100 times and heads occur 99 times. What is the probability of obtaining heads on the next toss?</p></li>
 <li><p>Explain why the previous outcomes of independent trials do not change the probability of the next trial.</p></li>
 </ol>
 </section>
@@ -1247,8 +1269,8 @@ P(E_i\mid A)=
 <li><span class="math inline">\(A^c\)</span> → complement of <span class="math inline">\(A\)</span>.</li>
 <li>Conditional probability → probability of an event given that another event has occurred.</li>
 <li>Multiplication law → used for probability of joint occurrence.</li>
-<li>With replacement → probabilities remain unchanged and events are independent.</li>
-<li>Without replacement → probabilities change and events are dependent.</li>
+<li>With replacement and independent random selection → successive draws have the same probabilities and are independent.</li>
+<li>Without replacement → successive selections from a finite set are generally dependent.</li>
 <li>Combination → selection without considering order.</li>
 <li>Bayes’ theorem → obtains the probability of a cause or hypothesis given observed evidence.</li>
 <li>Prior probability → probability before considering the evidence.</li>
@@ -1260,7 +1282,7 @@ P(E_i\mid A)=
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Random experiment <code>2.</code> Sample space <code>3.</code> Sample point <code>4.</code> Random variable <code>5.</code> Discrete <code>6.</code> Continuous <code>7.</code> 0; 1 <code>8.</code> Impossible <code>9.</code> Certain <code>10.</code> Event <code>11.</code> Mutually exclusive <code>12.</code> Exhaustive <code>13.</code> Equally <code>14.</code> Independent <code>15.</code> Dependent <code>16.</code> Dependent <code>17.</code> Independent <code>18.</code> Mathematical <code>19.</code> Empirical <code>20.</code> A.N. Kolmogorov <code>21.</code> 0; 1 <code>22.</code> 1 <code>23.</code> <span class="math inline">\(A^c\)</span> <code>24.</code> <span class="math inline">\(A\cup B\)</span> <code>25.</code> <span class="math inline">\(A\cap B\)</span> <code>26.</code> 1 <code>27.</code> Occurred <code>28.</code> <span class="math inline">\(P(A\mid B)\)</span> <code>29.</code> Both <code>30.</code> <span class="math inline">\(P(A)P(B)\)</span> <code>31.</code> Combination <code>32.</code> <span class="math inline">\({}^nC_r\)</span> <code>33.</code> Cause <code>34.</code> Prior <code>35.</code> Posterior <code>36.</code> Hypotheses</p>
+<p><code>1.</code> Sample <code>2.</code> Event <code>3.</code> Variable <code>4.</code> Exclusive <code>5.</code> Exhaustive <code>6.</code> Independent <code>7.</code> One <code>8.</code> Zero <code>9.</code> Complement <code>10.</code> Conditional <code>11.</code> Sum <code>12.</code> Combination <code>13.</code> Prior <code>14.</code> Posterior</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1410,7 +1432,7 @@ P(E_i\mid A)=
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1753,16 +1775,17 @@ P(E_i\mid A)=
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

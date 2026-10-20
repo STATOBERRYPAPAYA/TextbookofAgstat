@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./multipleComparison.html" rel="next">
 <link href="./uniformityTrials.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,13 +99,40 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -132,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="18&nbsp; Analysis of variance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -330,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -531,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -587,16 +620,25 @@ window.Quarto = {
   <li><a href="#mean-squares" id="toc-mean-squares" class="nav-link" data-scroll-target="#mean-squares"><span class="header-section-number">18.3</span> Mean squares</a></li>
   <li><a href="#test-statistic-f" id="toc-test-statistic-f" class="nav-link" data-scroll-target="#test-statistic-f"><span class="header-section-number">18.4</span> Test statistic F</a></li>
   <li><a href="#assumptions-of-anova" id="toc-assumptions-of-anova" class="nav-link" data-scroll-target="#assumptions-of-anova"><span class="header-section-number">18.5</span> Assumptions of ANOVA</a></li>
-  <li><a href="#types-of-anova" id="toc-types-of-anova" class="nav-link" data-scroll-target="#types-of-anova"><span class="header-section-number">18.6</span> Types of ANOVA</a>
+  <li><a href="#checking-the-fitted-model" id="toc-checking-the-fitted-model" class="nav-link" data-scroll-target="#checking-the-fitted-model"><span class="header-section-number">18.6</span> Checking the fitted model</a></li>
+  <li><a href="#types-of-anova" id="toc-types-of-anova" class="nav-link" data-scroll-target="#types-of-anova"><span class="header-section-number">18.7</span> Types of ANOVA</a>
   <ul class="collapse">
-  <li><a href="#sec-oneway" id="toc-sec-oneway" class="nav-link" data-scroll-target="#sec-oneway"><span class="header-section-number">18.6.1</span> One-way ANOVA</a></li>
-  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">18.6.2</span> Two-way ANOVA</a></li>
+  <li><a href="#sec-oneway" id="toc-sec-oneway" class="nav-link" data-scroll-target="#sec-oneway"><span class="header-section-number">18.7.1</span> One-way ANOVA</a></li>
+  <li><a href="#two-way-anova" id="toc-two-way-anova" class="nav-link" data-scroll-target="#two-way-anova"><span class="header-section-number">18.7.2</span> Two-way ANOVA</a></li>
   </ul></li>
-  <li><a href="#models-under-anova" id="toc-models-under-anova" class="nav-link" data-scroll-target="#models-under-anova"><span class="header-section-number">18.7</span> Models under ANOVA</a>
+  <li><a href="#models-under-anova" id="toc-models-under-anova" class="nav-link" data-scroll-target="#models-under-anova"><span class="header-section-number">18.8</span> Models under ANOVA</a>
   <ul class="collapse">
-  <li><a href="#sec-fixed" id="toc-sec-fixed" class="nav-link" data-scroll-target="#sec-fixed"><span class="header-section-number">18.7.1</span> Fixed effects model</a></li>
-  <li><a href="#sec-randomeff1" id="toc-sec-randomeff1" class="nav-link" data-scroll-target="#sec-randomeff1"><span class="header-section-number">18.7.2</span> Random effects model</a></li>
-  <li><a href="#sec-mixed" id="toc-sec-mixed" class="nav-link" data-scroll-target="#sec-mixed"><span class="header-section-number">18.7.3</span> Mixed effects model</a></li>
+  <li><a href="#sec-fixed" id="toc-sec-fixed" class="nav-link" data-scroll-target="#sec-fixed"><span class="header-section-number">18.8.1</span> Fixed effects model</a></li>
+  <li><a href="#sec-randomeff1" id="toc-sec-randomeff1" class="nav-link" data-scroll-target="#sec-randomeff1"><span class="header-section-number">18.8.2</span> Random effects model</a></li>
+  <li><a href="#sec-mixed" id="toc-sec-mixed" class="nav-link" data-scroll-target="#sec-mixed"><span class="header-section-number">18.8.3</span> Mixed effects model</a></li>
+  </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">18.9</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -637,8 +679,8 @@ window.Quarto = {
 \end{aligned} \tag{18.1}\]</span></span></p>
 <p>In general, every experiment is conducted on a sample of experimental units, and conclusions are drawn about the corresponding population. In this example, the objective is to determine whether the mean yields produced by fertilizers <strong>A</strong>, <strong>B</strong>, and <strong>C</strong> differ significantly. However, any observed differences in sample means may simply be due to random experimental error rather than true treatment effects. Therefore, a statistical test is required to distinguish genuine treatment differences from chance variation.</p>
 <p><strong>Analysis of Variance (ANOVA)</strong> is the statistical procedure used for this purpose. ANOVA partitions the total observed variation into components attributable to different sources of variation, primarily treatment and experimental error. The fundamental principle of ANOVA is that if the treatment effect is real, the variation among treatment means (between-treatment variation) should be substantially larger than the random variation within treatments (error variation).</p>
-<p>To assess this, ANOVA compares the treatment variance (between-group variance) with the error variance (within-group variance). If the treatment variance is considerably greater than the error variance, it provides evidence that the treatment means are not all equal. Conversely, if the treatment variance is similar to the error variance, the observed differences among treatment means are likely due to random chance.</p>
-<p>In essence, ANOVA is a statistical hypothesis-testing procedure used to determine whether the <strong>means of two or more populations</strong> differ significantly by comparing the variation due to treatments with the variation due to experimental error. The method was developed by Sir Ronald A. Fisher, and it remains one of the most widely used techniques for analyzing experimental data.</p>
+<p>To assess this, ANOVA compares the treatment variance (between-group variance) with the error variance (within-group variance). If the treatment variance is considerably greater than the error variance, it provides evidence that the treatment means are not all equal. Conversely, if the treatment variance is similar to the error variance, the data may provide insufficient evidence to reject equal population means; this does not prove that treatment effects are absent.</p>
+<p>In essence, ANOVA is a statistical hypothesis-testing procedure used to determine whether the <strong>means of two or more populations</strong> differ significantly by comparing the variation due to treatments with the variation due to experimental error. The method was developed by Sir Ronald A. Fisher, and it remains one of the most widely used techniques for analysing experimental data.</p>
 <section id="null-hypothesis-in-anova" class="level2" data-number="18.1">
 <h2 data-number="18.1" class="anchored" data-anchor-id="null-hypothesis-in-anova"><span class="header-section-number">18.1</span> Null hypothesis in ANOVA</h2>
 <p>The null hypothesis in ANOVA is that the population means are equal, which is denoted as <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k\)</span>. The alternative hypothesis is that at least a pair of treatment means are not equal, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_i \neq \mu_j\)</span>, where <span class="math inline">\(i \neq j\)</span>; <span class="math inline">\(i, j = 1, 2, \ldots, k\)</span>, and where <span class="math inline">\(\mu_1, \mu_2, \mu_3, \ldots, \mu_k\)</span> are the <span class="math inline">\(k\)</span> population means.</p>
@@ -646,7 +688,7 @@ window.Quarto = {
 <section id="degrees-of-freedom" class="level2" data-number="18.2">
 <h2 data-number="18.2" class="anchored" data-anchor-id="degrees-of-freedom"><span class="header-section-number">18.2</span> Degrees of freedom</h2>
 <p>Before proceeding further, it is important to understand the concept of degrees of freedom (df). Simply put, degrees of freedom are the number of independent values that are free to vary after certain conditions or constraints have been taken into account.</p>
-<p>To understand this idea, consider a simple example. Suppose you have 7 different hats and you want to wear a different hat every day for one week. On the first day, you can choose any one of the 7 hats. On the second day, you have 6 hats left to choose from. Similarly, on the third day you have 5 choices, and so on. By the sixth day, only two hats remain, so you still have a choice. However, after selecting a hat on the sixth day, there is only one hat left for the seventh day. Therefore, the choice on the last day is no longer free, it is completely determined by the choices made on the previous six days. In this example, there are 6 independent choices, or 7 − 1 = 6 degrees of freedom.</p>
+<p>To understand this idea, consider a simple example. Suppose you have 7 different hats and you want to wear a different hat every day for one week. On the first day, you can choose any one of the 7 hats. On the second day, you have 6 hats left to choose from. Similarly, on the third day you have 5 choices, and so on. By the sixth day, only two hats remain, so you still have a choice. However, after selecting a hat on the sixth day, there is only one hat left for the seventh day. Therefore, the choice on the last day is no longer free, it is completely determined by the choices made on the previous six days. This illustrates how a final value can be determined by earlier choices. It is only an analogy; statistical degrees of freedom concern independent numerical information, not the number of possible hat arrangements.</p>
 <p>Now let us see how this idea applies to statistics.</p>
 <p>Suppose we have three observations: 6, x, and 9, and we know that their mean is 6.</p>
 <p>The mean is calculated as <span class="math inline">\(\frac{6+x+9}{3}=6\)</span>. On solving for x, we get x=3. Although there are three observations, only two of them can vary freely. Once any two values are known, the third value is fixed because the mean must remain equal to 6. Thus, the data have 2 degrees of freedom. This example shows that whenever a value is constrained by other values, it is no longer independent.</p>
@@ -654,19 +696,19 @@ window.Quarto = {
 <p>Using the first formula gives a standard deviation of 9.00, while the second formula gives 9.72. You may wonder why we divide by (n-1) instead of (n). The reason is that the sample mean is first calculated from the same data. Once the mean is known, the deviations of the observations from the mean are no longer all independent because they must satisfy the following condition: <span class="math inline">\(\sum (x_i-\bar{x})=0.\)</span></p>
 <p>This means that if the deviations of the first six observations are known, the deviation of the seventh observation is automatically determined. Therefore, only 6 of the 7 deviations are free to vary, giving 7 − 1 = 6 degrees of freedom.</p>
 <p>It is important to note that all seven observations are used in calculating the standard deviation. However, only (n-1) deviations are independent because one degree of freedom has already been used to estimate the sample mean.</p>
-<p>If we divide by (n), the sample variance tends to underestimate the true population variance. Dividing by (n-1), a correction known as Bessel’s correction, removes this bias and provides an unbiased estimate of the population variance. Consequently, it also gives a better estimate of the population standard deviation.</p>
+<p>If we divide by (n), the sample variance tends to underestimate the true population variance. Dividing by (n-1), a correction known as Bessel’s correction, removes this bias and provides an unbiased estimate of the population variance. The square root of this unbiased variance estimate is the usual sample standard deviation, but it is not itself exactly unbiased for the population standard deviation.</p>
 <p>Degrees of freedom play an important role in many statistical methods. They determine the shape of probability distributions such as the t-distribution, chi-square distribution, and F-distribution, which are used in hypothesis testing. The degrees of freedom therefore influence the critical values and p-values used to decide whether the observed differences are statistically significant.</p>
 </section>
 <section id="mean-squares" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="mean-squares"><span class="header-section-number">18.3</span> Mean squares</h2>
-<p>The sum of squares is the sum of the squared differences of each observation from the mean. That is, Sum of squares = <span class="math inline">\(\sum_{i=1}^{n}\left( x_{i} - \overline{x} \right)^{2}\)</span>, where <span class="math inline">\(i = 1, 2, \ldots, n\)</span>, and the mean <span class="math inline">\(\overline{x} = \dfrac{\sum_{i=1}^{n} x_{i}}{n}\)</span>. The sum of squares generates a measure of variability. In one-way ANOVA we calculate the sum of squares of all observations to get a measure of total variability, along with the within-group and between-group sums of squares, which give an idea of the within-group (error) and between-group (between treatments) variability respectively. Mean sum of squares, or mean squares, are obtained by dividing the sum of squares by the corresponding degrees of freedom. The mean square provides an unbiased estimate of variance. For example, in ANOVA the error mean square (MSE), given by <span class="math inline">\(\dfrac{\text{within-group sum of squares}}{\text{error degrees of freedom}}\)</span>, provides an unbiased estimate of the error variance.</p>
+<p>The sum of squares is the sum of the squared differences of each observation from the mean. That is, Sum of squares = <span class="math inline">\(\sum_{i=1}^{n}\left( x_{i} - \overline{x} \right)^{2}\)</span>, where <span class="math inline">\(i = 1, 2, \ldots, n\)</span>, and the mean <span class="math inline">\(\overline{x} = \dfrac{\sum_{i=1}^{n} x_{i}}{n}\)</span>. The sum of squares generates a measure of variability. In one-way ANOVA we calculate the sum of squares of all observations to get a measure of total variability, along with the within-group and between-group sums of squares, which give an idea of the within-group (error) and between-group (between treatments) variability respectively. Mean sum of squares, or mean squares, are obtained by dividing the sum of squares by the corresponding degrees of freedom. The error mean square provides an unbiased estimate of error variance under the model; other mean squares may also contain treatment or variance-component contributions. For example, in ANOVA the error mean square (MSE), given by <span class="math inline">\(\dfrac{\text{within-group sum of squares}}{\text{error degrees of freedom}}\)</span>, provides an unbiased estimate of the error variance.</p>
 </section>
 <section id="test-statistic-f" class="level2" data-number="18.4">
 <h2 data-number="18.4" class="anchored" data-anchor-id="test-statistic-f"><span class="header-section-number">18.4</span> Test statistic F</h2>
 <p>Any function of sample values is known as a statistic. For example, the sample mean, sample variance, and the sum of all sample values are statistics, because these are all some functions of sample values. If a statistic is used to test a hypothesis, then it is known as a test statistic. Examples of test statistics are <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(\chi^2\)</span>, etc. The test statistic used in ANOVA is <span class="math inline">\(F\)</span>.</p>
 <p>The F-statistic is the ratio of two variances, and it was named after Sir Ronald A. Fisher. It can be proved that when the null hypothesis <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2 = \mu_3 = \ldots = \mu_k\)</span> is true, the ratio of the mean square treatment to the mean square error follows an F distribution.</p>
 <p>The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in <a href="#fig-fdist" class="quarto-xref">Figure&nbsp;<span>18.1</span></a>, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.</p>
-<p>In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others. F-table with critical values of the F distribution at alpha = 0.05 is given in <a href="appendix5.html#tbl-ftable" class="quarto-xref">Table&nbsp;<span>29.1</span></a> in Appendix 5.</p>
+<p>In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others. F-table with critical values of the F distribution at alpha = 0.05 is given in <a href="appendix5.html#tbl-ftable" class="quarto-xref">Table&nbsp;<span>E.1</span></a> in <a href="appendix5.html" class="quarto-xref"><span>Appendix E</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-fdist" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -692,21 +734,27 @@ Figure&nbsp;18.1: The F distribution under different degrees of freedom
 </ul>
 <p>As a result of the above assumptions, the experimental errors are independent and identically distributed (iid) with a normal distribution of mean 0 and variance <span class="math inline">\(\sigma^2\)</span>. In other words, we can say <span class="math inline">\(e_{ij} \sim iid\ N(0, \sigma^{2})\)</span>.</p>
 </section>
-<section id="types-of-anova" class="level2" data-number="18.6">
-<h2 data-number="18.6" class="anchored" data-anchor-id="types-of-anova"><span class="header-section-number">18.6</span> Types of ANOVA</h2>
+<section id="checking-the-fitted-model" class="level2" data-number="18.6">
+<h2 data-number="18.6" class="anchored" data-anchor-id="checking-the-fitted-model"><span class="header-section-number">18.6</span> Checking the fitted model</h2>
+<p>Assumptions concern the errors conditional on the fitted treatment and block effects, not the pooled response values from groups with different means. Plot residuals against fitted values to look for changes in spread or curvature, and use a normal probability plot to assess major departures from normality. For a field experiment, inspect residuals against plot position; for sequential measurements, inspect them against time or run order.</p>
+<p>Investigate unusual observations against the original records without deleting them merely because they affect significance. A transformation or a model for unequal variances can address some departures; neither repairs pseudoreplication or an incorrect experimental unit. Include effect estimates, their uncertainty and the measurement units when reporting an ANOVA, rather than reporting only whether the F test is significant.</p>
+</section>
+<section id="types-of-anova" class="level2" data-number="18.7">
+<h2 data-number="18.7" class="anchored" data-anchor-id="types-of-anova"><span class="header-section-number">18.7</span> Types of ANOVA</h2>
 <p>Based on the model used and the sources of variation studied, ANOVA can be classified into the following types:</p>
 <ul>
 <li>One-way ANOVA</li>
 <li>Two-way ANOVA</li>
 <li><span class="math inline">\(m\)</span>-way ANOVA</li>
 </ul>
-<section id="sec-oneway" class="level3" data-number="18.6.1">
-<h3 data-number="18.6.1" class="anchored" data-anchor-id="sec-oneway"><span class="header-section-number">18.6.1</span> One-way ANOVA</h3>
+<section id="sec-oneway" class="level3" data-number="18.7.1">
+<h3 data-number="18.7.1" class="anchored" data-anchor-id="sec-oneway"><span class="header-section-number">18.7.1</span> One-way ANOVA</h3>
 <p>The simplest form of analysis of variance is one-way analysis of variance (one-way ANOVA). It is used when there is only one factor (source of variation) that is expected to influence the response variable. The objective of one-way ANOVA is to determine whether the means of two or more groups defined by this single factor differ significantly.</p>
-<p>For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertiliser treatments. In this case, the fertiliser treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.</p>
+<p>For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertilizer treatments. In this case, the fertilizer treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.</p>
 <section id="sec-onewaymodel" class="level4">
 <h4 class="anchored" data-anchor-id="sec-onewaymodel">One-way ANOVA model</h4>
 <p><span id="eq-onewaymodel"><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij} \tag{18.2}\]</span></span></p>
+<p>For identifiability in the balanced fixed-effects model, take <span class="math inline">\(\sum_i\tau_i=0\)</span>, so <span class="math inline">\(\mu\)</span> is the overall population mean. The notation <span class="math inline">\(t\)</span> here denotes the number of treatments; the calculations below use <span class="math inline">\(v\)</span> for the same number.</p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. <span class="math inline">\(Y_{ij}\)</span> is the observed value of the <span class="math inline">\(i^{\text{th}}\)</span> treatment from the <span class="math inline">\(j^{\text{th}}\)</span> replication, <span class="math inline">\(\tau_{i}\)</span> is the effect of the <span class="math inline">\(i^{\text{th}}\)</span> treatment, and <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{ij}\)</span> is the error effect, <span class="math inline">\(e_{ij} \sim iid\ N(0, \sigma^{2})\)</span>.</p>
 </section>
 <section id="one-way-classification" class="level4">
@@ -888,7 +936,7 @@ Total
 <section id="total-sum-of-squares-partitioning" class="level4">
 <h4 class="anchored" data-anchor-id="total-sum-of-squares-partitioning">Total sum of squares partitioning</h4>
 <p>ANOVA consists of partitioning the total variation in the <span class="math inline">\(Y_{ij}\)</span> values into variation due to treatments and variation caused by uncontrolled factors (error variation). Therefore, we can write</p>
-<p>Variance of <span class="math inline">\(Y_{ij}\)</span> = <span class="math inline">\(\dfrac{1}{n}\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \bar{Y} \right)^{2}\)</span>, where <span class="math inline">\(n = v \times r\)</span> and the overall mean <span class="math inline">\(\bar{Y} = \dfrac{G}{n}\)</span>.</p>
+<p>The descriptive variance of all observed responses about the grand mean = <span class="math inline">\(\dfrac{1}{n}\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \bar{Y} \right)^{2}\)</span>, where <span class="math inline">\(n = v \times r\)</span> and the overall mean <span class="math inline">\(\bar{Y} = \dfrac{G}{n}\)</span>.</p>
 <p>Total Sum of Squares = <span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - \dfrac{G^{2}}{n}\)</span>; where <span class="math inline">\(\dfrac{G^{2}}{n}\)</span> is known as the correction factor (C.F.).</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Proof">
 <div class="callout-header d-flex align-content-center">
@@ -933,10 +981,15 @@ Total
 = &amp;\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2} \\
 &amp;+ 2\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right)
 \end{aligned}\]</span></p>
-<p>Since the sum of the weighted residuals is zero, <span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0\)</span>, and the above equation becomes</p>
+<p>Within every treatment, <span class="math inline">\(\sum_j(Y_{ij}-\overline{Y}_i)=0\)</span>. Hence the cross-product term vanishes: <span class="math inline">\(\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0\)</span>, and the above equation becomes</p>
 <p><span class="math display">\[= \sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2}\]</span></p>
 <p>Total Sum of Squares = within-group sum of squares + between-group sum of squares, that is,</p>
-<p><span id="eq-sspartition"><span class="math display">\[\text{Total Sum of Squares} = \text{Error Sum of Squares} + \text{Treatment Sum of Squares} \tag{18.4}\]</span></span></p>
+<p><span id="eq-sspartition"><span class="math display">\[
+\begin{aligned}
+\text{Total Sum of Squares} &amp;= \text{Error Sum of Squares}\\
+&amp;\quad + \text{Treatment Sum of Squares}
+\end{aligned}
+\tag{18.4}\]</span></span></p>
 </div>
 </div>
 </section>
@@ -1037,7 +1090,8 @@ Total
 </div>
 </figure>
 </div>
-<p>Here <span class="math inline">\(F \sim F_{(v-1),\ v(r-1)}\)</span>.</p>
+<p>Under <span class="math inline">\(H_0\)</span> and the independent normal-error model, <span class="math inline">\(F\sim F_{(v-1),\ v(r-1)}\)</span>.</p>
+<p>Under this balanced fixed-effects model, <span class="math inline">\(E(\text{MSE})=\sigma^2\)</span> and <span class="math inline">\(E(\text{MST})=\sigma^2+r\sum_i\tau_i^2/(v-1)\)</span>. Thus both estimate the same error variance under <span class="math inline">\(H_0\)</span>, whereas treatment differences increase the expected treatment mean square. Independence of the treatment and error sums of squares under the normal model gives the F-test. This explains why a comparison of mean squares tests means.</p>
 <p>MSE is an estimate of the error variance <span class="math inline">\(\sigma^2\)</span>, and <span class="math inline">\(\sqrt{\dfrac{\text{MSE}}{r}}\)</span> is the standard error of a treatment mean.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
@@ -1056,7 +1110,7 @@ Total
 <section id="sec-onewayexample" class="level4">
 <h4 class="anchored" data-anchor-id="sec-onewayexample">Example of one-way ANOVA</h4>
 <div id="exm-oneway" class="theorem example">
-<p><span class="theorem-title"><strong>Example 18.1</strong></span> The data on tiller count after transplanting were recorded from 4 hill sampling units for a fertilizer trial involving 6 treatments. Test for a significant difference between the treatments. The treatments are labeled as <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, <span class="math inline">\(T_5\)</span>, and <span class="math inline">\(T_6\)</span>.</p>
+<p><span class="theorem-title"><strong>Example 18.1</strong></span> The data on tiller count after transplanting were recorded from four independently treated experimental units per treatment in a fertilizer trial involving six treatments. Test for a significant difference between the treatments. The treatments are labeled as <span class="math inline">\(T_1\)</span>, <span class="math inline">\(T_2\)</span>, <span class="math inline">\(T_3\)</span>, <span class="math inline">\(T_4\)</span>, <span class="math inline">\(T_5\)</span>, and <span class="math inline">\(T_6\)</span>.</p>
 <p><strong>Solution</strong></p>
 <p>The data are arranged as shown in <a href="#tbl-onewayex" class="quarto-xref">Table&nbsp;<span>18.3</span></a>.</p>
 <div id="tbl-onewayex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="One-way classified data on tiller count" data-filters="parse-latex">
@@ -1439,7 +1493,7 @@ Treatments
 <p>Total Sum of Squares,</p>
 <p><span class="math display">\[\text{Total SS} = \sum_{i=1}^{6}\sum_{j=1}^{4} y_{ij}^{2} - CF = 112305 - 98945.04 = 13359.96\]</span></p>
 <p>Treatment Sum of Squares,</p>
-<p><span class="math display">\[\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.3 - 98945.04 = 10427.21\]</span></p>
+<p><span class="math display">\[\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.25 - 98945.04 = 10427.21\]</span></p>
 <p>Error Sum of Squares,</p>
 <p><span class="math display">\[\text{ESS} = \text{Total SS} - \text{Treatment SS} = 13359.96 - 10427.21 = 2932.75\]</span></p>
 <div id="tbl-onewayresult" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="One-way ANOVA table for the tiller count data" data-filters="parse-latex">
@@ -1500,10 +1554,10 @@ Within treatments (Error)
 <span class="math inline">\(6(4-1)=18\)</span>
 </td>
 <td style="text-align:center;width: 3cm; ">
-2932.74
+2932.75
 </td>
 <td style="text-align:center;width: 4cm; ">
-<span class="math inline">\(\dfrac{2932.74}{18}=162.93\)</span>
+<span class="math inline">\(\dfrac{2932.75}{18}=162.93\)</span>
 </td>
 <td style="text-align:center;">
 </td>
@@ -1518,7 +1572,7 @@ Total
 <span class="math inline">\(24-1=23\)</span>
 </td>
 <td style="text-align:center;width: 3cm; ">
-13359.95
+13359.96
 </td>
 <td style="text-align:center;width: 4cm; ">
 </td>
@@ -1532,12 +1586,12 @@ Total
 </div>
 </figure>
 </div>
-<p>Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.</p>
+<p>The calculated F exceeds the 5% critical value, so reject the null hypothesis of equal treatment means. The double asterisk also denotes significance at 1%: the corresponding critical value is <span class="math inline">\(F_{0.01;(5,18)}=4.248\)</span>, still well below 12.80. At least one pair of population means differs; the overall test does not identify which pairs.</p>
 </div>
 </section>
 </section>
-<section id="two-way-anova" class="level3" data-number="18.6.2">
-<h3 data-number="18.6.2" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">18.6.2</span> Two-way ANOVA</h3>
+<section id="two-way-anova" class="level3" data-number="18.7.2">
+<h3 data-number="18.7.2" class="anchored" data-anchor-id="two-way-anova"><span class="header-section-number">18.7.2</span> Two-way ANOVA</h3>
 <p>In one-way analysis of variance (one-way ANOVA), only one factor is considered to influence the response variable. However, in many practical situations, the response variable may be affected by two factors simultaneously. When the objective is to study the effects of two factors on a response variable, two-way analysis of variance (two-way ANOVA) is used. Compared with one-way ANOVA, two-way ANOVA provides more information by allowing the effects of both factors to be examined in a single analysis.</p>
 <p>For example, the milk yield of cows may be influenced by both the type of feed provided and the breed of the cows. Similarly, the moisture content of butter may depend on the fat content of the cream as well as the churning speed used during preparation. In each of these examples, there are two factors that may contribute to the variation in the response variable.</p>
 <p>In two-way ANOVA, the observations are classified according to two factors, and the total variation in the data is partitioned into variation due to Factor A, variation due to Factor B, and experimental error. This enables the researcher to determine whether each factor has a significant effect on the response variable.</p>
@@ -1550,7 +1604,7 @@ Total
 </section>
 <section id="two-way-classification" class="level4">
 <h4 class="anchored" data-anchor-id="two-way-classification">Two-way classification</h4>
-<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#tbl-twoway" class="quarto-xref">Table&nbsp;<span>18.6</span></a>. We have considered the situation of only one observation per cell.</p>
+<p>Consider an experiment with <span class="math inline">\(v\)</span> levels of factor 1 and <span class="math inline">\(r\)</span> levels of factor 2. The observations are recorded as shown in <a href="#tbl-twoway" class="quarto-xref">Table&nbsp;<span>18.6</span></a>. We have considered only one observation per cell and assumed no interaction. With one observation per combination, interaction and experimental error cannot be estimated separately. The residual mean square can serve as error only under the additive model. Replication within combinations is needed for a separate general interaction test; see the factorial chapter.</p>
 <div id="tbl-twoway" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Two-way classification of data" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-twoway-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1845,7 +1899,7 @@ Total
 </div>
 </figure>
 </div>
-<p>Here there are two F values, one for factor A and one for factor B. <span class="math inline">\(F_A \sim F_{(v-1),\ (v-1)(r-1)}\)</span> and <span class="math inline">\(F_B \sim F_{(r-1),\ (v-1)(r-1)}\)</span>.</p>
+<p>Under the additive normal-error model and the corresponding null hypothesis, there are two F values, one for factor A and one for factor B. <span class="math inline">\(F_A \sim F_{(v-1),\ (v-1)(r-1)}\)</span> and <span class="math inline">\(F_B \sim F_{(r-1),\ (v-1)(r-1)}\)</span>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1869,7 +1923,7 @@ Total
 <section id="example-of-two-way-anova" class="level4">
 <h4 class="anchored" data-anchor-id="example-of-two-way-anova">Example of two-way ANOVA</h4>
 <div id="exm-twoway" class="theorem example">
-<p><span class="theorem-title"><strong>Example 18.2</strong></span> Four chemicals <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, <span class="math inline">\(S_3\)</span>, and <span class="math inline">\(S_4\)</span> were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Consider that chemicals and breeds are independent.</p>
+<p><span class="theorem-title"><strong>Example 18.2</strong></span> Four chemicals <span class="math inline">\(S_1\)</span>, <span class="math inline">\(S_2\)</span>, <span class="math inline">\(S_3\)</span>, and <span class="math inline">\(S_4\)</span> were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Assume that the 20 cell observations come from independent experimental units with normal errors of common variance, and that the chemical effects do not interact with breed. The additive assumption, rather than simply calling the factors independent, is required for this unreplicated analysis.</p>
 <p><strong>Solution</strong></p>
 <div id="tbl-twowayex" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-tbl-cap="Two-way classification of observations for chemicals and breeds" data-filters="parse-latex">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -2105,30 +2159,81 @@ Table&nbsp;18.9: ANOVA table for chemicals and breeds
 </section>
 </section>
 </section>
-<section id="models-under-anova" class="level2" data-number="18.7">
-<h2 data-number="18.7" class="anchored" data-anchor-id="models-under-anova"><span class="header-section-number">18.7</span> Models under ANOVA</h2>
+<section id="models-under-anova" class="level2" data-number="18.8">
+<h2 data-number="18.8" class="anchored" data-anchor-id="models-under-anova"><span class="header-section-number">18.8</span> Models under ANOVA</h2>
 <p>Analysis of variance is based on a linear statistical model. This linear model may be either</p>
 <ul>
 <li>Fixed effects model</li>
 <li>Random effects model</li>
 <li>Mixed effects model</li>
 </ul>
-<section id="sec-fixed" class="level3" data-number="18.7.1">
-<h3 data-number="18.7.1" class="anchored" data-anchor-id="sec-fixed"><span class="header-section-number">18.7.1</span> Fixed effects model</h3>
+<section id="sec-fixed" class="level3" data-number="18.8.1">
+<h3 data-number="18.8.1" class="anchored" data-anchor-id="sec-fixed"><span class="header-section-number">18.8.1</span> Fixed effects model</h3>
 <p>A fixed effects model is a statistical model in which the model parameters are fixed or non-random quantities. In using a fixed effects model in agricultural experiments, we assume that the treatment effects are unknown constants.</p>
 <p>The fixed effects model can be explained using an example. Consider an experiment where the experimenter wants to know whether three fields had any impact on the yield of a particular strain of wheat. Observations were taken from 12 plots from each field (replication). The analysis of variance model is</p>
 <p><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij}; \qquad e_{ij} \sim iid\ N(0, \sigma^{2})\]</span></p>
 <p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. Here in our example <span class="math inline">\(t = 3\)</span> and <span class="math inline">\(r = 12\)</span>. <span class="math inline">\(Y_{ij}\)</span> is the observed value of the <span class="math inline">\(i^{\text{th}}\)</span> field from the <span class="math inline">\(j^{\text{th}}\)</span> plot, and <span class="math inline">\(\tau_{i}\)</span> is the effect of the <span class="math inline">\(i^{\text{th}}\)</span> treatment, which is considered to be an unknown constant. <span class="math inline">\(\mu\)</span> is the general effect which is common for all treatments. <span class="math inline">\(e_{ij}\)</span> is the error effect, which is independently and normally distributed with mean 0 and constant variance <span class="math inline">\(\sigma^2\)</span>. In this model, field is a “fixed effect”. Along with <span class="math inline">\(\mu\)</span>, the fixed parameters <span class="math inline">\(\tau_{1}\)</span>, <span class="math inline">\(\tau_{2}\)</span>, and <span class="math inline">\(\tau_{3}\)</span> are the quantities of interest. Using this model, the experimenter can make decisions only on the treatments (fields) tested.</p>
 </section>
-<section id="sec-randomeff1" class="level3" data-number="18.7.2">
-<h3 data-number="18.7.2" class="anchored" data-anchor-id="sec-randomeff1"><span class="header-section-number">18.7.2</span> Random effects model</h3>
-<p>A random effects model, also called a variance components model, is a statistical model where the model parameters are random variables. Consider the example above of the wheat fields. If a random effects model is used, then the fields are assumed to be randomly sampled from a population of fields in that area, and the analysis of variance model is</p>
+<section id="sec-randomeff1" class="level3" data-number="18.8.2">
+<h3 data-number="18.8.2" class="anchored" data-anchor-id="sec-randomeff1"><span class="header-section-number">18.8.2</span> Random effects model</h3>
+<p>A random effects model, also called a variance components model, is a statistical model in which some effects are modelled as random variables; their variance components are unknown fixed parameters. Consider the example above of the wheat fields. If a random effects model is used, then the fields are assumed to be randomly sampled from a population of fields in that area, and the analysis of variance model is</p>
 <p><span class="math display">\[Y_{ij} = \mu + \tau_{i} + e_{ij}; \qquad e_{ij} \sim iid\ N(0, \sigma^{2}); \quad \tau_{i} \sim N(0, \sigma_{\tau}^{2})\]</span></p>
-<p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. Here <span class="math inline">\(\tau_{i}\)</span> is considered as a random variable, <span class="math inline">\(\tau_{i} \sim N(0, \sigma_{\tau}^{2})\)</span>, and <span class="math inline">\(e_{ij} \sim N(0, \sigma^{2})\)</span>. In this model, field is a “random effect”. The statistical model describes the whole ensemble of possible repetitions of the experiment in the region from which the fields were selected. The experimenter could make generalisations about all the fields in that particular region based on the experiment. One important consequence of random effects is that the responses (the <span class="math inline">\(Y_{ij}\)</span>’s) are no longer independent. The random <span class="math inline">\(\tau_{i}\)</span>’s induce correlations among the responses. The responses jointly have a multivariate normal distribution.</p>
+<p>Assume the random field effects are independent of one another and of all errors.</p>
+<p>where <span class="math inline">\(i = 1, 2, \ldots, t\)</span> and <span class="math inline">\(j = 1, 2, \ldots, r\)</span>. Here <span class="math inline">\(\tau_{i}\)</span> is considered as a random variable, <span class="math inline">\(\tau_{i} \sim N(0, \sigma_{\tau}^{2})\)</span>, and <span class="math inline">\(e_{ij} \sim N(0, \sigma^{2})\)</span>. In this model, field is a “random effect”. The statistical model describes the whole ensemble of possible repetitions of the experiment in the region from which the fields were selected. The model supports inference about the variability among fields in the population from which they were sampled, subject to the sampling and model assumptions. One important consequence of random effects is that the responses (the <span class="math inline">\(Y_{ij}\)</span>’s) are no longer independent. The random <span class="math inline">\(\tau_{i}\)</span>’s induce correlations among the responses. The responses jointly have a multivariate normal distribution.</p>
 </section>
-<section id="sec-mixed" class="level3" data-number="18.7.3">
-<h3 data-number="18.7.3" class="anchored" data-anchor-id="sec-mixed"><span class="header-section-number">18.7.3</span> Mixed effects model</h3>
+<section id="sec-mixed" class="level3" data-number="18.8.3">
+<h3 data-number="18.8.3" class="anchored" data-anchor-id="sec-mixed"><span class="header-section-number">18.8.3</span> Mixed effects model</h3>
 <p>A mixed model, mixed-effects model, or mixed error-component model is a statistical model containing both fixed effects and random effects. For example, in an agricultural trial where several specific fertilizers of interest (fixed effect) are tested across a random sample of fields drawn from a larger region (random effect), the model contains both kinds of effects and is therefore a mixed model.</p>
+<p>ANOVA is an omnibus test: it assesses overall equality of means. It does not identify every pairwise difference. The next chapter explains multiple-comparison procedures for that purpose.</p>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="18.9">
+<h2 data-number="18.9" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">18.9</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>ANOVA stands for Analysis of __________.</p></li>
+<li><p>The null hypothesis in a one-way fixed-effects ANOVA states that all population means are __________.</p></li>
+<li><p>A sum of squares divided by its degrees of freedom is called a mean __________.</p></li>
+<li><p>The denominator of the usual treatment F-ratio is the __________ mean square.</p></li>
+<li><p>The total degrees of freedom for <span class="math inline">\(N\)</span> observations are __________.</p></li>
+<li><p>The treatment degrees of freedom for <span class="math inline">\(v\)</span> groups are __________.</p></li>
+<li><p>The error degrees of freedom in a one-way ANOVA are __________.</p></li>
+<li><p>The usual exact ANOVA F-test assumes normally distributed __________.</p></li>
+<li><p>A model containing both fixed and random effects is called a __________ model.</p></li>
+<li><p>An F-test of the overall equality of treatment means is called an __________ test.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Explain why ANOVA compares mean squares when testing differences between means.</p></li>
+<li><p>Distinguish fixed and random effects.</p></li>
+<li><p>State the assumptions of a one-way ANOVA.</p></li>
+<li><p>Explain why a significant F-test does not identify the treatment pairs that differ.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>In a CRD with four treatments and five observations per treatment, treatment SS is 120 and error SS is 80. Calculate the degrees of freedom, mean squares, and treatment F-ratio.</p></li>
+<li><p>A treatment F-test is non-significant at the 5% level. Does this establish equality of the population means? Explain.</p></li>
+</ol>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<div class="answer-key">
+<p><code>1.</code> Variance <code>2.</code> Equal <code>3.</code> Square <code>4.</code> Error <code>5.</code> <span class="math inline">\(N-1\)</span> <code>6.</code> <span class="math inline">\(v-1\)</span> <code>7.</code> <span class="math inline">\(N-v\)</span> <code>8.</code> Errors <code>9.</code> Mixed <code>10.</code> Omnibus</p>
+</div>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>There are <span class="math inline">\(N=20\)</span> observations. Treatment df <span class="math inline">\(=3\)</span>, error df <span class="math inline">\(=16\)</span>, and total df <span class="math inline">\(=19\)</span>. Treatment MS <span class="math inline">\(=120/3=40\)</span> and MSE <span class="math inline">\(=80/16=5\)</span>, giving <span class="math inline">\(F=40/5=8\)</span>.</p></li>
+<li><p>No.&nbsp;The data provide insufficient evidence to reject equality at that level. This does not establish that all population means are identical.</p></li>
+</ol>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -2161,9 +2266,9 @@ Table&nbsp;18.9: ANOVA table for chemicals and breeds
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Fisher1925" class="csl-entry" role="listitem">
-Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver; Boyd.
+Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Oliver; Boyd.
 </div>
 </div>
 </section>
@@ -2256,7 +2361,7 @@ Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinb
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2599,16 +2704,17 @@ Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinb
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

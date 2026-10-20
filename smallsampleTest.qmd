@@ -41,11 +41,11 @@ clean_table <- function(x) {
 }
 ```
 
-In the previous chapter we have seen tests for samples having size larger than 30. If the sample size $n$ is less than 30 ($n < 30$), it is known as a **small sample**. For small samples, the sampling distributions commonly used are the $t$, $F$ and $\chi^2$ (chi-square) distributions. The study of the sampling distribution of a statistic for small samples is known as **small sample theory**.
+The previous chapter introduced large-sample normal approximations. A sample size below 30 is often called small, but 30 is not a universal boundary. The $t$, $F$ and $\chi^2$ distributions used here are also applicable to larger samples when their model assumptions hold. For small samples, those assumptions are especially important.
 
 ## Tests based on Student's t distribution (t-tests)  
 
-The $t$-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. distribution with different degrees of freedom is shown in @fig-tdist. As the degrees of freedom increase, the $t$ distribution converges to the standard normal distribution. $t$-statistic can be calculated from the sample using formulas for different situations discussed below.  
+The $t$-distribution is a probability distribution used mainly for statistical inference when the sample size is small and the population standard deviation is unknown. It is similar to the normal distribution but has heavier tails. The distribution with different degrees of freedom is shown in @fig-tdist. As the degrees of freedom increase, the $t$ distribution converges to the standard normal distribution. $t$-statistic can be calculated from the sample using formulas for different situations discussed below.  
 
 ```{r fig-tdist, echo=FALSE, warning=FALSE, fig.cap="t distribution curves for varying degrees of freedom, compared with the standard normal"}
 library(ggplot2)
@@ -71,13 +71,15 @@ ggplot() +
 
 -   The parent population from which the sample is drawn is normal.
 
--   The sample is a random sample.
+-   The sample is a random sample, and the observations used as independent units are independent.
 
 -   The population standard deviation $\sigma$ is unknown.
 
+For independent two-sample tests, observations must be independent both within and between the groups. For the paired test, the pairs must be independent and the normality assumption applies to the within-pair differences. Inspect the observations for strong skewness and unusual values, especially in small samples. If the assumptions are doubtful, a suitable transformation, a randomization test justified by the design, or an appropriate nonparametric method may be needed. Rank tests do not automatically test the same hypothesis about means.
+
 ### Test for a single population mean
 
-Consider a population with mean $\mu$, where $\mu$ is unknown. We take a random sample of size $n$ ($n < 30$) from the population and calculate the sample mean $\overline{x}$. We want to test whether the population mean $\mu$ is equal to a known constant $\mu_0$, based on the sample mean.
+Consider a population with mean $\mu$, where $\mu$ is unknown. We take a random sample of size $n$ from the population and calculate the sample mean $\overline{x}$. We want to test whether the population mean $\mu$ is equal to a known constant $\mu_0$, based on the sample mean.
 
 The null hypothesis to be tested is:
 
@@ -109,7 +111,7 @@ Let $t$ be the calculated value, degrees of freedom = $n - 1$, and $\alpha$ be t
 
 -   $t < -t_{\alpha}$ ; for a left-tailed test
 
-Here $t_{\alpha}$ or $t_{\alpha/2}$ is obtained from the table of Student's $t$ distribution for the given degrees of freedom $n - 1$ and level of significance $\alpha$. If the calculated value of the test statistic is greater than the critical value from the table, we reject the null hypothesis. Otherwise, we do not have enough evidence to reject it.You can see the t-table in @tbl-ttable of Appendix 4
+Here $t_{\alpha}$ or $t_{\alpha/2}$ is obtained from the table of Student's $t$ distribution for the given degrees of freedom $n - 1$ and level of significance $\alpha$. Use the signed statistic for a one-tailed test and its absolute value for a two-tailed test, as specified above. Otherwise, we do not have enough evidence to reject it. You can see the t-table in @tbl-ttable of @sec-appendix-4
 
 ::: {#exm-tmean1}
 Based on field experiments, a new variety of green gram is expected to give a yield of 12 quintals per hectare. The variety was tested on 10 randomly selected farmers' fields. The yields (quintals per hectare) were recorded as 14.3, 12.6, 13.7, 10.9, 13.7, 12, 11.4, 12, 12.6, and 13.1. Do the results confirm the expectation?
@@ -167,9 +169,9 @@ $$t = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} = \frac{12.63 - 12}{\dfra
 
 $$= \frac{0.63}{0.3432} = 1.835$$
 
-The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the @tbl-ttable in Appendix 4).
+The table value of $t$ for 9 degrees of freedom at the 5% level of significance (two-tailed) is 2.262 (see the @tbl-ttable in @sec-appendix-4).
 
-Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare. That is null hypothesis is not rejected and the results confirm the expectation.
+Since the calculated value (1.835) is less than the table value (2.262), we do not have enough evidence to reject the null hypothesis. We conclude that there is insufficient evidence to say the mean differs from 12 quintals per hectare. The null hypothesis is not rejected; this does not establish that the expected mean is exactly correct.
 :::
 
 ::: {#exr-tmean1}
@@ -178,7 +180,7 @@ The mean weekly sales of soap bars in departmental stores were 146.3 bars per st
 
 ## Test for equality of two means
 
-Let there be two normally distributed populations with means $\mu_1$ and $\mu_2$. Let the population standard deviations be equal and unknown. Let samples of sizes $n_1$ and $n_2$ be taken from these populations, with sample means $\overline{x}_1$ and $\overline{x}_2$ respectively. We want to test whether the two population means are significantly different, based on the sample means.
+Let there be two normally distributed populations with means $\mu_1$ and $\mu_2$. Let the population standard deviations be unknown. Let samples of sizes $n_1$ and $n_2$ be taken from these populations, with sample means $\overline{x}_1$ and $\overline{x}_2$ respectively. We want to test whether the two population means are significantly different, based on the sample means.
 
 There are two cases under this situation:
 
@@ -186,7 +188,7 @@ There are two cases under this situation:
 
 2.  Population variances are unequal. (Heterogeneous variances)
 
-Before proceeding to the t-test, an F-test is performed to test the homogeneity of population variances (see @sec-ftest).
+The pooled t-test assumes equal population variances. When this assumption is not justified, Welch's t-test can be used without a preliminary F-test. Choosing a t-test solely from a preliminary variance test can distort its error rate; the choice should also reflect the study design and the plausibility of the assumptions.
 
 ### When the population variances are equal (homogeneous) {.unnumbered}
 
@@ -238,8 +240,49 @@ $$\text{df} = \frac{\left( \dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2} \right)^2}{\d
 
 Once the $t$ value is determined, read the critical value of Student's $t$ distribution from the table corresponding to the significance level. The decision rule is the same as for the previous t-test (see @sec-tdecision).
 
+::: {#exm-pooled-complete}
+Two independent random samples of yields from normal populations have $n_1=8$, $\overline{x}_1=24$, $s_1^2=9$, and $n_2=10$, $\overline{x}_2=20$, $s_2^2=16$. Yield is measured in quintals per hectare. Assuming equal population variances, test whether the population means differ at the 5% level.
+
+**Solution**
+
+Null hypothesis, $H_0:\mu_1=\mu_2$.
+
+Alternative hypothesis, $H_1:\mu_1\neq\mu_2$ (two-tailed test).
+
+The pooled variance is
+
+$$s^2=\frac{7(9)+9(16)}{8+10-2}=12.9375.$$
+
+Using @eq-t-two-equal,
+
+$$t=\frac{24-20}{\sqrt{12.9375}\sqrt{1/8+1/10}}=2.344.$$
+
+The degrees of freedom are $8+10-2=16$. The two-tailed 5% critical value is 2.120. Since $2.344>2.120$, we reject $H_0$. The population means differ significantly under the stated common-variance model. Equal population variances do not require the two sample variances to be numerically equal.
+:::
+
+::: {#exm-welch-complete}
+Two independent random samples of plots gave the following results: $n_1=10$, $\overline{x}_1=25$, $s_1=4$; $n_2=12$, $\overline{x}_2=21$, $s_2=2$. Yield is measured in quintals per hectare. Assuming normal populations, test whether the population means differ at the 5% level without assuming equal variances.
+
+**Solution**
+
+Null hypothesis, $H_0:\mu_1=\mu_2$.
+
+Alternative hypothesis, $H_1:\mu_1\neq\mu_2$ (two-tailed test).
+
+Using @eq-t-welch,
+
+$$t=\frac{25-21}{\sqrt{16/10+4/12}}=2.877.$$
+
+Using @eq-welch-df,
+
+$$\text{df}=\frac{(16/10+4/12)^2}{(16/10)^2/9+(4/12)^2/11}
+\approx12.69.$$
+
+The two-tailed 5% critical value is approximately 2.166 and the p-value is approximately 0.0132. Since $2.877>2.166$, we reject $H_0$. The estimated difference is 4 quintals per hectare, with a higher mean in the first population. Software can use the fractional degrees of freedom directly. If only a printed table is available, using the next lower available degrees of freedom gives a conservative critical value.
+:::
+
 ::: {#exr-tmean2}
-In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. ($\alpha$ = 0.05)
+In order to compare the effectiveness of two sources of nitrogen, namely ammonium chloride and urea, on the grain yield of paddy, an experiment was conducted. Assume the treatments were allocated to independent groups of plots. The results on the grain yield of paddy (kg/plot) under the two treatments are given below. Test whether the two sources differ in effectiveness. ($\alpha$ = 0.05)
 
 **Ammonium chloride**: 13.4, 10.9, 11.2, 11.8, 14, 15.3, 14.2, 12.6, 17, 16.2, 16.5, 15.7
 
@@ -249,6 +292,8 @@ In order to compare the effectiveness of two sources of nitrogen, namely ammoniu
 ## Paired t-test
 
 The paired t-test is used to compare the means of two related samples, that is, when we have two values (a pair of values) for the same experimental unit. For example, suppose 20 cows receive a treatment for 3 months and the question is whether the treatment has an impact on milk yield. The milk yield of the 20 cows is measured before and after the treatment. This gives 20 values before treatment and 20 values after treatment. To test whether there is any significant difference between before and after, the paired t-test can be used, because the two sets of values being compared are related. We have a pair of values for each cow, one before and one after treatment.
+
+The number $n$ in this test is the number of pairs, not the total number of measurements. The differences should be independent between pairs and approximately normal for the exact small-sample test. Two samples of the same size are not paired unless there is a meaningful matching of their observations. In a before-and-after study without a suitable control, a significant change alone does not establish that the treatment caused it.
 
 Suppose we have two correlated random samples $x_1, x_2, \ldots, x_n$ and $y_1, y_2, \ldots, y_n$. We want to test whether the two population means are significantly different.
 
@@ -335,9 +380,9 @@ Since the calculated value $|t|$ = 4.321 is greater than the table value (2.365)
 A certain stimulus administered to each of 12 patients resulted in the following increase in blood pressure: 5, 2, 8, -1, 3, 0, -2, 1, 5, 0, 4, 6. Can it be concluded that the stimulus is, in general, accompanied by an increase in blood pressure? ($\alpha$ = 0.05)
 :::
 
-## Testing the significance of a correlation coefficient
+## Testing the significance of a correlation coefficient {#sec-test-correlation}
 
-Let there be two normally distributed populations with correlation coefficient $\rho$. We want to test the null hypothesis that the population correlation coefficient is zero ($\rho = 0$). A t-test can be used for this purpose. If we reject the null hypothesis, we conclude that there is a significant correlation in the population ($\rho \neq 0$). If we do not have enough evidence to reject the null hypothesis, we conclude that there is no significant correlation.
+Let paired observations follow a bivariate normal population with correlation coefficient $\rho$. We want to test the null hypothesis that the population correlation coefficient is zero ($\rho = 0$). A t-test can be used for this purpose. If we reject the null hypothesis, we conclude that there is a significant correlation in the population ($\rho \neq 0$). If we do not have enough evidence to reject the null hypothesis, we conclude that there is no significant correlation.
 
 The null hypothesis to be tested is:
 
@@ -351,9 +396,9 @@ The test statistic is:
 
 $$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}$$ {#eq-t-corr}
 
-Under the null hypothesis, $t$ follows a $t$ distribution with $n - 2$ degrees of freedom. We reject the null hypothesis if the calculated value is greater than the table value of $t$ corresponding to $n - 2$ degrees of freedom and the level of significance $\alpha$. In our case $\alpha$ = 0.05. This t-test is used when the sample size is small ($n < 30$).
+Under the null hypothesis, $t$ follows a $t$ distribution with $n - 2$ degrees of freedom. For the two-tailed alternative, we reject the null hypothesis if $|t|$ is greater than the table value corresponding to $n - 2$ degrees of freedom and the level of significance $\alpha$. In our case $\alpha$ = 0.05. Under the stated bivariate normal model, this t-test for zero correlation is exact for any sample size $n>2$.
 
-**When the sample size is large ($n \geq 30$)**, the exact distribution of $r$ is no longer close to a $t$ distribution, and Fisher's Z-transformation is preferred. The sample correlation coefficient $r$ is transformed as:
+**Fisher's Z-transformation** provides a large-sample approximation useful for confidence intervals and tests involving correlation, including nonzero hypothesised correlations. It does not replace the exact zero-correlation t-test merely because $n\geq30$. The sample correlation coefficient $r$ is transformed as:
 
 $$Z = \frac{1}{2} \ln\left( \frac{1 + r}{1 - r} \right)$$ {#eq-fisherz}
 
@@ -362,6 +407,12 @@ Under the null hypothesis $H_0: \rho = 0$, the statistic $Z\sqrt{n - 3}$ follows
 $$Z_{\text{cal}} = Z \sqrt{n - 3}$$ {#eq-fisherz-test}
 
 We reject the null hypothesis if $|Z_{\text{cal}}|$ exceeds the table value of the standard normal distribution at the chosen level of significance (1.96 at the 5% level, two-tailed).
+
+To test $H_0:\rho=\rho_0$, where $-1<\rho_0<1$, use
+
+$$Z_{\text{cal}}=\left[Z-\frac12\ln\left(\frac{1+\rho_0}{1-\rho_0}\right)\right]\sqrt{n-3}.$$
+
+An approximate $100(1-\alpha)\%$ confidence interval on the transformed scale is $Z\pm Z_{\alpha/2}/\sqrt{n-3}$. Convert each endpoint $u$ back to the correlation scale using $(e^{2u}-1)/(e^{2u}+1)$. These approximations require independent pairs, a suitable bivariate normal model, $n>3$ and enough observations for the approximation to be adequate. They are undefined at $r=1$ or $r=-1$. A significant Pearson correlation indicates a linear association; it does not establish causation, and a nonsignificant result does not rule out a nonlinear relationship.
 
 ::: {#exm-corr1}
 A plant breeder studied the relationship between plant height and grain yield in a sample of 18 rice genotypes and obtained a correlation coefficient of 0.6. Test whether the population correlation coefficient is significant.
@@ -376,7 +427,7 @@ Sample correlation coefficient ($r$) = 0.6
 
 Number of pairs ($n$) = 18
 
-Since the sample size is small ($n < 30$), the $t$-test is used:
+Under the bivariate normal model, the following $t$ statistic is used to test zero correlation:
 
 $$t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}} = \frac{0.6 \sqrt{18 - 2}}{\sqrt{1 - 0.36}} = \frac{0.6 \times 4}{\sqrt{0.64}} = \frac{2.4}{0.8} = 3.00$$
 
@@ -385,18 +436,20 @@ $t_{\text{cal}}$ = 3.00. The table value of $t$ for $n - 2 = 16$ degrees of free
 
 ## Chi-square test ($\chi^2$)
 
-Chi-square tests are based on the sampling distribution called the chi-square distribution ($\chi^2$ distribution). The $\chi^2$ tests are based on the following assumptions:
+If $Z_1,Z_2,\ldots,Z_\nu$ are independent standard normal variables, then $\sum_{i=1}^{\nu}Z_i^2$ has a chi-square distribution with $\nu$ degrees of freedom. It takes only nonnegative values, has mean $\nu$ and variance $2\nu$, and is positively skewed. The skewness decreases as the degrees of freedom increase.
+
+Chi-square tests are based on the sampling distribution called the chi-square distribution ($\chi^2$ distribution). The goodness-of-fit and independence tests for categorical counts are based on the following conditions:
 
 1.  The sample observations are independent.
 
-2.  The total frequency should be reasonably large, say greater than 50.
+2.  The expected frequencies must be sufficiently large for the chi-square approximation; a total sample size greater than 50 is not a universal requirement.
 
-3.  The theoretical cell frequencies should not be less than 5. If any theoretical cell frequency is less than 5, it is pooled with the preceding or succeeding frequency so that the pooled frequency is more than 5, and the degrees of freedom lost in pooling are adjusted.
+3.  A common introductory guideline is to have expected frequencies of at least 5. In a goodness-of-fit test, substantively appropriate adjacent categories may be combined, with degrees of freedom adjusted. In contingency tables, categories should not be combined merely to obtain significance; an exact or simulation-based test may be preferable for sparse data.
 
 4.  The constraints on the cell frequencies should be linear, for example $\sum O_i = \sum E_i$, where $O_i$ and $E_i$ represent the observed and expected frequencies.
 
 ::: {.callout-note title="Note"}
-The $\chi^2$ tests do not make any assumptions regarding the parent population from which the observations are taken. Such tests do not involve any population parameter. Hence these tests are known as **non-parametric tests** or **distribution-free tests**.
+Chi-square goodness-of-fit and independence tests analyse categorical counts without assuming normally distributed measurements. They still require a specified probability model and suitable expected frequencies. In contrast, the chi-square test for a population variance is a parametric test requiring a normal population.
 :::
 
 **Degrees of freedom in $\chi^2$ tests**: Degrees of freedom refers to the number of independent variates that make up the statistic. In general, it is the total number of observations less the number of independent constraints imposed on the observations. For example, if $k$ is the number of independent constraints in a set of data on $n$ observations, then degrees of freedom = $n - k$.
@@ -415,24 +468,24 @@ A very powerful test for the significance of the discrepancy between theory and 
 
 We want to test the null hypothesis:
 
-$H_0$: There is no significant difference between theory and experiment.
+$H_0$: The population category probabilities follow the specified theoretical distribution.
 
 against the alternative hypothesis:
 
-$H_1$: There is a significant difference between theory and experiment.
+$H_1$: The population category probabilities do not follow the specified theoretical distribution.
 
 If $O_i$ ($i = 1, 2, \ldots, n$) is a set of observed frequencies and $E_i$ ($i = 1, 2, \ldots, n$) is the corresponding set of expected (theoretical) frequencies, then Karl Pearson's chi-square test statistic is:
 
 $$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i}$$ {#eq-chi-gof}
 
-Here $O_i$ represents the $i^{\text{th}}$ observed frequency and $E_i$ the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic follows a chi-square distribution with $n - 1$ degrees of freedom (when no parameter is estimated from the data).
+Here $O_i$ represents the $i^{\text{th}}$ observed frequency and $E_i$ the corresponding expected frequency according to the theory behind the data. Under the null hypothesis, the statistic approximately follows a chi-square distribution with $n - 1$ degrees of freedom when there are $n$ categories and no parameters are estimated from the data. When $m$ parameters are estimated by an appropriate fitting method, the usual degrees of freedom are $n-1-m$.
 
 #### Decision rule for the goodness-of-fit test {.unnumbered}
 
-Let $\chi^2_{\text{cal}}$ be the calculated value, degrees of freedom = $n - 1$, and $\alpha$ the level of significance. We reject the null hypothesis if $\chi^2_{\text{cal}} > \chi^2_{\text{tab}}$, where $\chi^2_{\text{tab}}$ is the table value of $\chi^2$ at $n - 1$ degrees of freedom. In the case of the $\chi^2$ test, only a one-tailed (right-tailed) test is used.
+Let $\chi^2_{\text{cal}}$ be the calculated value and $\alpha$ the level of significance. Use $n-1$ degrees of freedom when all category probabilities are specified, or $n-1-m$ when $m$ parameters are estimated as described above. We reject the null hypothesis if $\chi^2_{\text{cal}} > \chi^2_{\text{tab}}$, where $\chi^2_{\text{tab}}$ is the table value of $\chi^2$ at the appropriate degrees of freedom. For this goodness-of-fit test, the rejection region is in the right tail. The chi-square test for a population variance can instead be one-sided or two-sided, depending on its alternative.
 
 ::: {#exm-gof1}
-In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. In a cross between parents of genetic constitution AAbb and aaBB, the phenotypes in the sample are classified as follows:
+In plant genetics, our interest may be to test whether observed segregation ratios deviate significantly from Mendelian ratios. In such situations we test the agreement between observed and theoretical frequencies; such a test is called a test of goodness of fit. Parents of genetic constitution AAbb and aaBB produce an AaBb F1 generation. After selfing or intercrossing the F1, the F2 phenotypes are classified as follows:
 
 |     |     |     |     |     |
 |:----:|:----:|:----:|:----:|:----:|
@@ -469,7 +522,7 @@ dt %>%
 
 $$\chi^2 = \sum_{i=1}^{n} \frac{\left( O_i - E_i \right)^2}{E_i} = 0.667$$
 
-$\chi^2_{\text{cal}}$ = 0.667. The table value of chi-square for $4 - 1 = 3$ degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. We conclude that the data agree with the 9:3:3:1 ratio.
+$\chi^2_{\text{cal}}$ = 0.667. The table value of chi-square for $4 - 1 = 3$ degrees of freedom at the 5% level of significance is 7.815. Since the calculated value is less than the table value, we do not reject the null hypothesis. There is insufficient evidence of departure from the 9:3:3:1 ratio; the test does not prove the ratio.
 :::  
 
 
@@ -547,11 +600,18 @@ $$E_{11} = \frac{140 \times 238}{300} = 111.07, \qquad E_{12} = \frac{140 \times
 
 $$E_{21} = \frac{160 \times 238}{300} = 126.93, \qquad E_{22} = \frac{160 \times 62}{300} = 33.07$$
 
-$$\chi^2 = \sum \frac{(O - E)^2}{E} = \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93} + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07} = 3.93$$
+$$
+\begin{aligned}
+\chi^2 &= \sum \frac{(O - E)^2}{E}\\
+&= \frac{(118-111.07)^2}{111.07} + \frac{(22-28.93)^2}{28.93}\\
+&\quad + \frac{(120-126.93)^2}{126.93} + \frac{(40-33.07)^2}{33.07}\\
+&= 3.93
+\end{aligned}
+$$
 
 $\chi^2_{\text{cal}} = 3.93$. The table value of chi-square for $(2-1)(2-1) = 1$ degree of freedom at the 5% level of significance is 3.841. Since the calculated value is greater than the table value, we reject the null hypothesis and conclude that the chemical treatment significantly affects the germination rate of cotton seeds.
 
-Note that none of the four cell frequencies here is below 5, so the ordinary chi-square test applies directly; no continuity correction is needed. @sec-yates takes up the case where a cell frequency is small.
+All four expected frequencies exceed 5, so the ordinary chi-square approximation is reasonable. @sec-yates discusses the optional continuity correction and sparse tables. The analysis assumes independent seed outcomes; if treatment is assigned to pots and seeds within a pot are dependent, the pot must be accounted for as the experimental unit.
 :::  
 
 #### Expected frequencies {.unnumbered}
@@ -560,7 +620,7 @@ The expected frequency corresponding to each observed frequency $(A_i B_j)$ is c
 
 $$E_{ij} = \frac{(A_i)(B_j)}{N}$$ {#eq-expected}
 
-where $(A_i)$ is the total of the $i$th row and $(B_j)$ is the total of the $j$th column of the contingency table, and $N$ is the grand total of all observations.
+where $(A_i)$ is the total for class $A_i$ and $(B_j)$ is the total for class $B_j$ of the contingency table, and $N$ is the grand total of all observations.
 
 #### Degrees of freedom {.unnumbered}
 
@@ -584,7 +644,7 @@ where $O_{ij}$ = observed frequencies, $E_{ij}$ = expected frequencies, $r$ = nu
 
 It can be verified that $\sum_{i=1}^{r} \sum_{j=1}^{s} O_{ij} = \sum_{i=1}^{r} \sum_{j=1}^{s} E_{ij}$.
 
-Under the null hypothesis, the test statistic follows a chi-square distribution with $(r - 1)(s - 1)$ degrees of freedom. The decision rule is the same as for the goodness-of-fit test.
+Under the null hypothesis, the test statistic approximately follows a chi-square distribution with $(r - 1)(s - 1)$ degrees of freedom. The decision rule is the same as for the goodness-of-fit test.
 
 ::: {#exm-conting2}
 In a survey, a random sample of 198 farms was classified into three classes according to tenure status (owned, rented, and mixed). They were also classified according to the level of soil fertility (high, moderate, and low). The results are given below. Test whether tenure status depends on soil fertility.
@@ -656,13 +716,13 @@ For a 2×2 contingency table, $\chi^2$ can be found directly using the shortcut 
 
 $$\chi^2 = \frac{n\left( ad - bc \right)^2}{C_1 C_2 R_1 R_2}$$ {#eq-chi-2x2}
 
-Under the null hypothesis, the statistic follows a chi-square distribution with $(2 - 1)(2 - 1) = 1$ degree of freedom.
+Under the null hypothesis, the statistic approximately follows a chi-square distribution with $(2 - 1)(2 - 1) = 1$ degree of freedom.
 
 #### Yates' correction for continuity {#sec-yates}
 
-In a 2×2 contingency table, the number of degrees of freedom is $(2 - 1)(2 - 1) = 1$. If any one of the cell frequencies is less than 5, then pooling would result in $\chi^2$ with 0 degrees of freedom, which is meaningless. In this case we apply a correction due to Yates, known as **Yates' correction for continuity**. The correction is made by subtracting $n/2$ from the absolute value of $(ad - bc)$. The modified test statistic is:
+Yates' continuity correction is an optional adjustment to the chi-square approximation for a 2×2 table. Its use is not determined simply by an observed count being less than 5. Adequacy of the approximation depends on expected frequencies; Fisher's exact test is an alternative for sparse tables. Pooling is generally inappropriate if it removes the scientific comparison of interest. The continuity-corrected statistic, with the correction capped to prevent a negative adjusted discrepancy, is:
 
-$$\chi^2 = \frac{n\left( \left| ad - bc \right| - \dfrac{n}{2} \right)^2}{C_1 C_2 R_1 R_2}$$ {#eq-yates}
+$$\chi^2 = \frac{n\left[\max\left(0,\left|ad-bc\right|-\dfrac{n}{2}\right)\right]^2}{C_1 C_2 R_1 R_2}$$ {#eq-yates}
 
 ::: {#exm-yates1}
 In a field trial to study the effect of a bio-pesticide on aphid infestation in okra, 50 plants were treated with the bio-pesticide and 50 were left untreated as controls. The number of plants showing aphid infestation was recorded, as shown below.
@@ -679,7 +739,7 @@ $H_0$: The bio-pesticide has no effect on aphid infestation (the attributes are 
 
 $H_1$: The bio-pesticide affects aphid infestation.
 
-Here $a = 4$, $b = 46$, $c = 18$, $d = 32$, $R_1 = 50$, $R_2 = 50$, $C_1 = 22$, $C_2 = 78$, and $n = 100$. Since one of the cell frequencies ($a = 4$) is less than 5, Yates' correction for continuity is applied.
+Here $a = 4$, $b = 46$, $c = 18$, $d = 32$, $R_1 = 50$, $R_2 = 50$, $C_1 = 22$, $C_2 = 78$, and $n = 100$. The expected frequencies are 11 and 39 in each row, so a chi-square approximation is reasonable. Yates' correction is applied here to illustrate the continuity-corrected calculation.
 
 $$\chi^2 = \frac{100\left( \left| 4 \times 32 - 46 \times 18 \right| - \dfrac{100}{2} \right)^2}{22 \times 78 \times 50 \times 50}$$
 
@@ -704,7 +764,7 @@ Consider a normal population with mean $\mu$ and variance $\sigma^2$, where both
 
 Null hypothesis, $H_0$: $\sigma^2$ = $\sigma_0^2$
 
-Alternative hypothesis, $H_1$: $\sigma^2$ \> $\sigma_0^2$
+The alternative hypothesis may be $H_1:\sigma^2>\sigma_0^2$, $H_1:\sigma^2<\sigma_0^2$, or $H_1:\sigma^2\neq\sigma_0^2$.
 
 The test statistic is:
 
@@ -712,7 +772,15 @@ $$\chi^2 = \frac{(n - 1)s^2}{\sigma_0^2}$$ {#eq-chi-var}
 
 where $s^2 = \dfrac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n - 1}$ is the sample variance.
 
-Under the null hypothesis, the test statistic follows a chi-square distribution with $n - 1$ degrees of freedom. The decision rule is the same as for the goodness-of-fit test.
+Under the null hypothesis, the test statistic follows a chi-square distribution with $n-1$ degrees of freedom. This exact result requires independent observations from a normal population.
+
+Let $\chi^2_{\gamma,\nu}$ denote the critical value with probability $\gamma$ to its right, for $\nu=n-1$ degrees of freedom. The rejection rules are:
+
+- For $H_1:\sigma^2>\sigma_0^2$, reject if $\chi^2>\chi^2_{\alpha,\nu}$.
+- For $H_1:\sigma^2<\sigma_0^2$, reject if $\chi^2<\chi^2_{1-\alpha,\nu}$.
+- For $H_1:\sigma^2\neq\sigma_0^2$, reject below $\chi^2_{1-\alpha/2,\nu}$ or above $\chi^2_{\alpha/2,\nu}$.
+
+The two-sided critical values are not symmetric because the chi-square distribution is not symmetric. For example, with $n=15$, $s^2=12.5$ and $\sigma_0^2=10$, the statistic is $14(12.5)/10=17.5$. At the two-sided 5% level, the critical values for 14 degrees of freedom are 5.629 and 26.119. Since 17.5 lies between them, we do not reject $H_0$.
 
 ::: {#exr-chivar1}
 Test the null hypothesis that $\sigma^2$ = 0.16 against the alternative hypothesis $\sigma^2$ \> 0.16, given that $s^2$ = 0.01719 for a random sample of size 11 from a normal population. ($\alpha$ = 0.05)
@@ -720,30 +788,63 @@ Test the null hypothesis that $\sigma^2$ = 0.16 against the alternative hypothes
 
 ## F-test for equality of two population variances {#sec-ftest}
 
+If $U$ and $V$ are independent chi-square variables with $\nu_1$ and $\nu_2$ degrees of freedom, then $(U/\nu_1)/(V/\nu_2)$ has an $F$ distribution. The numerator and denominator degrees of freedom must be stated in that order. The distribution takes positive values and is generally positively skewed. Interchanging the variances gives the reciprocal ratio and interchanges the degrees of freedom.
+
 Let there be two normally distributed populations with variances $\sigma_1^2$ and $\sigma_2^2$ respectively. Let samples of sizes $n_1$ and $n_2$ be taken from these populations. We want to test whether the two population variances are significantly different, based on the sample variances.
 
 Null hypothesis, $H_0$: $\sigma_1^2$ = $\sigma_2^2$
 
-Alternative hypothesis, $H_1$: $\sigma_1^2$ \> $\sigma_2^2$
+Alternative hypothesis, $H_1$: $\sigma_1^2$ $\neq$ $\sigma_2^2$
 
-The test statistic (taking the larger sample variance in the numerator) is:
+With the population labels fixed in advance, the test statistic is:
 
-$$F = \frac{s_1^2}{s_2^2}, \quad \text{where } s_1^2 > s_2^2$$ {#eq-f}
+$$F = \frac{s_1^2}{s_2^2}$$ {#eq-f}
 
-Under the null hypothesis, the test statistic follows an $F$ distribution with $n_1 - 1$ and $n_2 - 1$ degrees of freedom.
+For independent samples from normal populations, this ratio has an $F$ distribution under $H_0$, with $n_1-1$ and $n_2-1$ degrees of freedom.
+
+The variance-ratio $F$-test is sensitive to departures from normality. For non-normal populations, Levene's test or its median-based form is often more suitable for comparing variances. A large sample alone does not make the exact normal-population $F$ test valid for arbitrary distributions.
 
 ### Decision rule for the F-test {.unnumbered}
 
-If the calculated value is greater than the table value of $F$ at the specified level of significance and the two degrees of freedom (that is, $n_1 - 1$ and $n_2 - 1$), we reject the null hypothesis. You can see the F-table for 5% level of significance @sec-appendix-5.
-
-::: {.callout-note title="Note"}
-The larger sample variance is always placed in the numerator so that $F \geq 1$. If $s_2^2 > s_1^2$, then the test statistic is $F = \dfrac{s_2^2}{s_1^2}$, which follows an $F$ distribution with $n_2 - 1$ and $n_1 - 1$ degrees of freedom.
-:::
+For the two-sided alternative, reject $H_0$ if the ratio is below the lower $\alpha/2$ critical value or above the upper $\alpha/2$ critical value. If the larger sample variance is placed in the numerator for convenience, use the upper-tail $\alpha/2$ critical value with degrees of freedom corresponding to the numerator and denominator samples. A pre-specified one-sided alternative uses the appropriate single tail at level $\alpha$. The 5% upper-tail F-table is in @sec-appendix-5; a two-sided 5% test needs 2.5% upper-tail critical values.
 
 ::: {#exr-fvar1}
 For a random sample from one normal population, $n_1$ = 11 and $s_1^2$ = 21.87. For another random sample from a second normal population, $n_2$ = 8 and $s_2^2$ = 15.36. Test the equality of variances. ($\alpha$ = 0.05)
 :::  
 
+
+## Confidence interval for a population mean
+
+A significance test addresses a specified value of a population parameter. A **confidence interval** also shows the range of parameter values compatible with the data and the assumed model. For independent observations from a normal population with unknown standard deviation, a $100(1-\alpha)\%$ confidence interval for the mean is
+
+$$
+\bar x\ \pm\ t_{\alpha/2,\,n-1}\frac{s}{\sqrt n},
+$$ {#eq-mean-confidence}
+
+where $t_{\alpha/2,\,n-1}$ is the upper-tail critical value. In @exm-tmean1, $\bar x=12.63$, $s=1.0853$ and $n=10$. The 95% confidence interval is
+
+$$12.63\pm2.262\frac{1.0853}{\sqrt{10}}
+\approx(11.85,\ 13.41)\text{ quintals per hectare}.$$
+
+Because 12 lies within this interval, the corresponding two-sided 5% t-test does not reject $\mu=12$. A 95% confidence procedure covers the fixed population mean in 95% of repeated samples under its assumptions; this is not a 95% probability assigned to the fixed mean after the interval has been calculated.
+
+For two independent means, a confidence interval for $\mu_1-\mu_2$ is
+
+$$ (\overline{x}_1-\overline{x}_2)\pm t_{\alpha/2,\nu}\,\text{S.E.}.$$
+
+For the pooled test, use $\text{S.E.}=s\sqrt{1/n_1+1/n_2}$ and $\nu=n_1+n_2-2$. For Welch's test, use $\text{S.E.}=\sqrt{s_1^2/n_1+s_2^2/n_2}$ and the degrees of freedom in @eq-welch-df. For paired observations, the interval for the mean difference is $\overline{d}\pm t_{\alpha/2,n-1}s/\sqrt{n}$, where $s$ is the standard deviation of the differences. The pooled and paired intervals are exact under their normal models; the Welch interval is approximate.
+
+In @exm-welch-complete, the 95% confidence interval is $4\pm2.166\sqrt{16/10+4/12}$, or approximately $(0.99,7.01)$ quintals per hectare. It excludes zero, agreeing with the two-sided test.
+
+## Choosing the appropriate test
+
+For one mean with unknown population standard deviation, use the one-sample $t$-test. For two independent means, use the pooled test when a common variance is justified, or Welch's test when it is not. For matched measurements, use the paired test on the differences. Equal sample sizes alone do not determine this choice.
+
+For categorical counts, use goodness of fit to compare one classification with specified probabilities, and a contingency-table test to study association between two classifications. The same contingency-table calculation can compare category proportions across independently sampled groups; this is called a test of homogeneity. Each independent unit must contribute to only one cell. Paired binary observations require a paired method, such as McNemar's test, rather than the ordinary independence test.
+
+For one normal-population variance, use the chi-square variance test; for the ratio of two independent normal-population variances, use the $F$-test. These are different applications from chi-square tests on counts and from the ANOVA $F$-test discussed later.
+
+For each test, report the statistic, degrees of freedom where applicable, p-value or critical value, and the conclusion in terms of the population parameter. Also report the estimated effect and a confidence interval where appropriate. Repeated testing of many hypotheses increases the chance of false rejections; a collection of treatment comparisons should be planned and analysed with an appropriate multiple-comparison procedure.
 
 ## Chapter Summary
 
@@ -751,85 +852,31 @@ For a random sample from one normal population, $n_1$ = 11 and $s_1^2$ = 21.87. 
 
 Answers are given at the end of the chapter.
 
-1. A sample with size less than __________ is generally called a small sample.
+1. For a normal population with unknown variance, the standardised sample mean follows Student's __________ distribution.
 
-2. The study of sampling distributions for small samples is called __________ sample theory.
+2. The degrees of freedom of a one-sample t-test are __________.
 
-3. The three important sampling distributions used in small-sample tests are the __________, __________, and __________ distributions.
+3. The two-sample t-test assuming equal population variances uses a __________ variance estimate.
 
-4. Student's $t$-test is mainly used when the population standard deviation is __________.
+4. The two-sample t-test that does not assume equal population variances is called __________ t-test.
 
-5. One of the important assumptions of the $t$-test is that the parent population is __________.
+5. The t-test based on within-pair differences is called the __________ t-test.
 
-6. The sample used in a $t$-test should be a __________ sample.
+6. For $n$ independent pairs, the paired t-test has __________ degrees of freedom.
 
-7. For a one-sample $t$-test, the degrees of freedom are __________.
+7. For testing zero Pearson correlation under a bivariate normal model, the t-test has __________ degrees of freedom.
 
-8. The null hypothesis for testing a single population mean is $H_0:\mu=$ __________.
+8. A test comparing observed and expected category frequencies is called a chi-square __________-of-fit test.
 
-9. The test statistic for a single population mean is based on the sample mean and sample __________.
+9. The expected cell frequency under independence equals the row total multiplied by the column total and divided by the __________ total.
 
-10. When comparing two means with equal population variances, the __________ variance is used.
+10. The degrees of freedom for independence in an $r\times s$ table are __________.
 
-11. When two population variances are unequal, the appropriate test for comparing two means is the __________ $t$-test.
+11. For a normal population, the variance test uses the __________ distribution.
 
-12. The degrees of freedom for the equal-variance two-sample $t$-test are __________.
+12. The ratio of two independent sample variances from normal populations is tested using the __________ distribution.
 
-13. The degrees of freedom for the Welch $t$-test are calculated using the __________ formula.
-
-14. The paired $t$-test is used when the two observations being compared are __________.
-
-15. In a paired $t$-test, $d_i$ represents the __________ between the two paired observations.
-
-16. The degrees of freedom for a paired $t$-test are __________.
-
-17. To test whether a population correlation coefficient is zero, the test statistic follows a __________ distribution.
-
-18. The null hypothesis for testing the significance of a correlation coefficient is $H_0:\rho=$ __________.
-
-19. The degrees of freedom for testing the significance of a correlation coefficient are __________.
-
-20. The chi-square test is based on the __________ distribution.
-
-21. Chi-square tests are generally classified as __________-parametric tests.
-
-22. The chi-square test for goodness of fit compares observed frequencies with __________ frequencies.
-
-23. The chi-square goodness-of-fit test was developed by __________.
-
-24. The chi-square goodness-of-fit statistic is calculated using the differences between __________ and __________ frequencies.
-
-25. In the goodness-of-fit test, if no parameter is estimated from the data, the degrees of freedom are __________.
-
-26. The chi-square goodness-of-fit test is a __________-tailed test.
-
-27. The chi-square test of independence is used to determine whether two __________ are independent.
-
-28. Data for a chi-square test of independence are usually arranged in a __________ table.
-
-29. The expected frequency in a contingency table is obtained by multiplying the corresponding __________ total and __________ total and dividing by the grand total.
-
-30. The degrees of freedom for an $r\times s$ contingency table are __________.
-
-31. In a 2×2 contingency table, the degrees of freedom are __________.
-
-32. Yates' correction is used for a __________ contingency table when a cell frequency is less than 5.
-
-33. In the chi-square test for a population variance, the null hypothesis is $H_0:\sigma^2=$ __________.
-
-34. The test statistic for testing a population variance follows a chi-square distribution with __________ degrees of freedom.
-
-35. The $F$-test is used to test the equality of two population __________.
-
-36. In the $F$-test, the __________ sample variance is placed in the numerator.
-
-37. Placing the larger sample variance in the numerator ensures that $F$ is __________ than or equal to 1.
-
-38. The degrees of freedom of the $F$ distribution are __________ and __________.
-
-39. The $t$ distribution was developed by William Sealy __________.
-
-40. Gosset published his work under the pen name __________.
+13. Student was the pen name of William Sealy __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -881,7 +928,7 @@ Answers are given at the end of the chapter.
 
 24. State the assumptions of the chi-square test.
 
-25. Why are chi-square tests called non-parametric or distribution-free tests?
+25. Distinguish chi-square tests for categorical counts from the chi-square test for a normal population variance.
 
 26. What is meant by degrees of freedom in a chi-square test?
 
@@ -937,7 +984,7 @@ Answers are given at the end of the chapter.
 
 3. Two sources of nitrogen, ammonium chloride and urea, were compared for paddy grain yield. Test whether the two sources differ in effectiveness at $\alpha=0.05$ using the data given in the chapter.
 
-4. Explain why an $F$-test is performed before choosing between the equal-variance and unequal-variance two-sample $t$-tests.
+4. State the variance assumption of the pooled two-sample t-test. Explain when Welch's t-test is appropriate and whether a preliminary F-test is required.
 
 5. Two related treatments are applied to the same experimental units. Explain why an ordinary two-sample $t$-test is not appropriate and why a paired $t$-test should be used.
 
@@ -955,7 +1002,7 @@ Answers are given at the end of the chapter.
 
 12. For a 2×2 contingency table with frequencies $a$, $b$, $c$, and $d$, derive the shortcut formula for the chi-square statistic.
 
-13. In a 2×2 contingency table, one of the cell frequencies is less than 5. Explain why Yates' correction is required.
+13. Distinguish between observed and expected cell frequencies when assessing a chi-square approximation. Explain the roles of Yates' correction and Fisher's exact test in a 2×2 table.
 
 14. Test the null hypothesis $\sigma^2=0.16$ against the alternative $\sigma^2>0.16$ when $s^2=0.01719$ and $n=11$ at $\alpha=0.05$.
 
@@ -1072,8 +1119,10 @@ $$
 Degrees of freedom for goodness-of-fit test:
 
 $$
-df=n-1
+df=n-1-m
 $$
+
+Here $n$ is the number of categories and $m$ is the number of parameters estimated from the data; use $m=0$ when all probabilities are specified.
 
 Expected frequency in an $r\times s$ contingency table:
 
@@ -1102,7 +1151,7 @@ $$
 Yates' corrected chi-square statistic:
 
 $$
-\chi^2=\frac{n\left(|ad-bc|-\frac{n}{2}\right)^2}{C_1C_2R_1R_2}
+\chi^2=\frac{n[\max(0,|ad-bc|-n/2)]^2}{C_1C_2R_1R_2}
 $$
 
 Chi-square test statistic for population variance:
@@ -1120,7 +1169,7 @@ $$
 $F$ statistic:
 
 $$
-F=\frac{s_1^2}{s_2^2},\quad s_1^2>s_2^2
+F=\frac{s_1^2}{s_2^2}
 $$
 
 Degrees of freedom for $F$ test:
@@ -1131,11 +1180,11 @@ $$
 
 ### Quick revision {.unnumbered}
 
-- Small sample → generally $n<30$.
+- Small sample → often described as $n<30$, but this is not a universal boundary.
 - Small sample theory → study of sampling distributions for small samples.
 - Important small-sample distributions → $t$, $\chi^2$, and $F$.
 - Student's $t$-test → used mainly for small samples when $\sigma$ is unknown.
-- Basic $t$-test assumptions → normal parent population, random sample, and unknown population standard deviation.
+- Exact one-sample $t$-test → independent random observations from a normal population with unknown standard deviation.
 - One-sample $t$-test → tests a population mean against a specified value.
 - One-sample $t$ degrees of freedom → $n-1$.
 - Two-sample $t$-test → compares two population means.
@@ -1152,10 +1201,10 @@ $$
 - For the correlation test, $H_0:\rho=0$.
 - Correlation test degrees of freedom → $n-2$.
 - Chi-square tests → based on the chi-square distribution.
-- Chi-square tests in this chapter are non-parametric or distribution-free tests.
+- Chi-square tests for categorical counts differ from the parametric variance test for a normal population.
 - Important chi-square tests → goodness of fit, independence of attributes, and population variance.
 - Goodness-of-fit test → compares observed and expected frequencies.
-- Goodness-of-fit null hypothesis → no significant difference between theory and observation.
+- Goodness-of-fit null hypothesis → category probabilities follow the specified distribution.
 - Goodness-of-fit test is right-tailed.
 - Goodness-of-fit degrees of freedom → $n-1$ when no parameter is estimated.
 - Independence test → determines whether two attributes are independent.
@@ -1163,19 +1212,19 @@ $$
 - Expected frequency → row total × column total ÷ grand total.
 - $r\times s$ contingency table degrees of freedom → $(r-1)(s-1)$.
 - 2×2 contingency table degrees of freedom → 1.
-- Yates' correction → used for a 2×2 table when a cell frequency is less than 5, as specified in this chapter.
+- Yates' correction → optional continuity adjustment for a 2×2 chi-square approximation; assess expected frequencies and consider an exact test for sparse data.
 - Population variance test → tests a specified value of $\sigma^2$.
 - Chi-square variance statistic → $\frac{(n-1)s^2}{\sigma_0^2}$.
 - $F$-test → tests equality of two population variances.
-- Larger sample variance → always placed in the numerator of $F$.
-- Therefore, $F\geq1$.
+- Placing the larger sample variance first is a convenience for a two-sided F-test with upper-tail area $\alpha/2$.
+- With the larger variance in the numerator, $F\geq1$; with fixed labels, $F$ may be less than 1.
 - $F$ degrees of freedom → $n_1-1$ and $n_2-1$.
 - In hypothesis testing, compare the calculated statistic with the appropriate table value.
 - For a two-tailed $t$-test → reject $H_0$ when $|t|$ exceeds the critical value.
 - For a right-tailed $t$-test → reject $H_0$ when $t$ exceeds the critical value.
 - For a left-tailed $t$-test → reject $H_0$ when $t$ is less than the negative critical value.
-- For chi-square tests → reject $H_0$ when calculated $\chi^2$ exceeds the table value.
-- For the $F$-test → reject $H_0$ when calculated $F$ exceeds the table value.
+- Goodness-of-fit and independence tests use the upper chi-square tail; a variance test may be one-sided or two-sided.
+- For a two-sided F-test → use both $\alpha/2$ tails, or the equivalent larger-variance ratio with an upper $\alpha/2$ cutoff.
 - William Sealy Gosset developed the $t$ distribution and published under the name "Student".
 - Student's $t$ distribution has heavier tails than the normal distribution.
 
@@ -1183,18 +1232,18 @@ $$
 
 ::: {.answer-key}
 
-`1.` 30 `2.` Small `3.` $\chi^2$; $F$; $t$ `4.` Unknown `5.` Normal `6.` Random `7.` $n-1$ `8.` $\mu_0$ `9.` Standard deviation `10.` Pooled `11.` Welch `12.` $n_1+n_2-2$ `13.` Welch-Satterthwaite `14.` Related `15.` Difference `16.` $n-1$ `17.` $t$ `18.` 0 `19.` $n-2$ `20.` Chi-square `21.` Non `22.` Expected `23.` Karl Pearson `24.` Observed; expected `25.` $n-1$ `26.` Right `27.` Attributes `28.` Contingency `29.` Row; column `30.` $(r-1)(s-1)$ `31.` 1 `32.` 2×2 `33.` $\sigma_0^2$ `34.` $n-1$ `35.` Variances `36.` Larger `37.` Greater `38.` $n_1-1$; $n_2-1$ `39.` Gosset `40.` Student
+`1.` $t$ `2.` $n-1$ `3.` Pooled `4.` Welch's `5.` Paired `6.` $n-1$ `7.` $n-2$ `8.` Goodness `9.` Grand `10.` $(r-1)(s-1)$ `11.` Chi-square `12.` $F$ `13.` Gosset
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
 1.  Given $n=10$, $\bar{x}=12.63$, $s=1.0853$, $\mu_0=12$. Using @eq-t-single, $t=\frac{12.63-12}{1.0853/\sqrt{10}}=1.835$, with $df=9$. At $\alpha=0.05$ (two-tailed), the table value is 2.262; since $|1.835|<2.262$, we do not reject $H_0$. There is insufficient evidence that the mean yield differs from 12 quintals per hectare.
 
-2.  Given $n=22$, $\bar{x}=153.7$, $s=17.2$, $\mu_0=146.3$. To test whether the campaign was successful, $H_0:\mu=146.3$ and $H_1:\mu>146.3$ (right-tailed). Using @eq-t-single, $t=\frac{153.7-146.3}{17.2/\sqrt{22}}\approx2.02$, with $df=21$. At $\alpha=0.05$, the one-tailed critical value is approximately 1.721; since $2.02>1.721$, we reject $H_0$. There is significant evidence that the advertising campaign increased weekly sales.
+2.  Given $n=22$, $\bar{x}=153.7$, $s=17.2$, $\mu_0=146.3$. To test whether the campaign was successful, $H_0:\mu=146.3$ and $H_1:\mu>146.3$ (right-tailed). Using @eq-t-single, $t=\frac{153.7-146.3}{17.2/\sqrt{22}}\approx2.02$, with $df=21$. At $\alpha=0.05$, the one-tailed critical value is approximately 1.721; since $2.02>1.721$, we reject $H_0$. There is significant evidence that the mean weekly sales after the campaign exceeds the benchmark of 146.3. This comparison alone does not establish that the campaign caused the increase.
 
-3.  The two treatments are applied to independent groups, so an independent two-sample $t$-test is appropriate. First test the equality of the population variances using the $F$-test. If the variances are homogeneous, use @eq-t-two-equal with the pooled variance; if unequal, use Welch's test, @eq-t-welch. The decision is made by comparing the calculated $t$ with the appropriate critical value.
+3.  The two treatments are applied to independent groups. Welch's t-test, @eq-t-welch, does not require equal population variances. From @exr-tmean2, the sample means are 14.0667 and 13.9083 kg/plot. The Welch statistic is $t=0.1846$, with approximately 21.995 degrees of freedom and a two-sided p-value of 0.8552. We do not reject equality of population means at the 5% level.
 
-4.  The equal-variance two-sample $t$-test assumes $\sigma_1^2=\sigma_2^2$, so the equality of population variances should first be assessed. The $F$-test is used for this purpose: if the variances can be regarded as equal, the pooled-variance $t$-test is used; if unequal, Welch's $t$-test is used.
+4.  The pooled t-test assumes equal population variances; Welch's t-test does not. A preliminary F-test is not required for Welch's test. Failure to reject a variance test does not establish equal variances.
 
 5.  When two observations are obtained from the same experimental unit, the observations are related and are not independent, so the analysis should focus on the within-unit differences rather than treating the two sets as independent samples. The paired $t$-test is appropriate because it tests whether the mean paired difference is significantly different from zero.
 
@@ -1212,15 +1261,15 @@ $$
 
 12. For a 2×2 table with cell frequencies $a$, $b$, $c$, $d$ and total $n$, @eq-chi-2x2 gives $\chi^2=\frac{n(ad-bc)^2}{C_1C_2R_1R_2}$, where $R_1,R_2$ are the row totals and $C_1,C_2$ are the column totals. The degrees of freedom are $df=(2-1)(2-1)=1$.
 
-13. For a 2×2 table, the degrees of freedom are only 1. If a cell frequency is less than 5, the usual pooling procedure would eliminate the only degree of freedom, so Yates' correction for continuity is used instead, giving the corrected statistic in @eq-yates.
+13. The approximation is assessed using expected frequencies, not an observed count alone. Yates' correction adjusts the chi-square approximation for continuity and can be conservative. Fisher's exact test is an alternative for a sparse 2×2 table; combining categories may destroy the comparison of interest.
 
 14. Given $\sigma_0^2=0.16$, $s^2=0.01719$, $n=11$, so $H_0:\sigma^2=0.16$ and $H_1:\sigma^2>0.16$. Using @eq-chi-var, $\chi^2=\frac{10(0.01719)}{0.16}=1.0744$, with $df=10$. Since the calculated value is much smaller than the right-tailed critical value at $\alpha=0.05$, we do not reject $H_0$. There is insufficient evidence that the population variance is greater than 0.16.
 
-15. Given $n_1=11$, $s_1^2=21.87$, $n_2=8$, $s_2^2=15.36$, so $H_0:\sigma_1^2=\sigma_2^2$ and $H_1:\sigma_1^2>\sigma_2^2$. Since $21.87>15.36$, using @eq-f, $F=\frac{21.87}{15.36}=1.424$, with $df_1=10$ and $df_2=7$. The calculated value is less than the corresponding critical value at $\alpha=0.05$, so we do not reject $H_0$. There is insufficient evidence that the two population variances differ.
+15. Given $n_1=11$, $s_1^2=21.87$, $n_2=8$, $s_2^2=15.36$, test $H_0:\sigma_1^2=\sigma_2^2$ against $H_1:\sigma_1^2\neq\sigma_2^2$. Using @eq-f, $F=21.87/15.36=1.424$. With the larger variance in the numerator, compare with the upper 2.5% critical value $F_{0.025;10,7}=4.761$. Since $1.424<4.761$, we do not reject $H_0$ at the two-sided 5% level.
 
-16. Given $n=15$, $s^2=12.5$, $\sigma_0^2=10$, so $H_0:\sigma^2=10$ and $H_1:\sigma^2\neq10$. Using @eq-chi-var, $\chi^2=\frac{14(12.5)}{10}=17.5$, with $df=14$. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at $\alpha/2=0.025$; the decision is made by determining whether 17.5 lies in the rejection region.
+16. Given $n=15$, $s^2=12.5$, $\sigma_0^2=10$, so $H_0:\sigma^2=10$ and $H_1:\sigma^2\neq10$. Using @eq-chi-var, $\chi^2=\frac{14(12.5)}{10}=17.5$, with $df=14$. For a two-tailed test, compare the calculated value with the lower and upper chi-square critical values at $\alpha/2=0.025$; the critical values are approximately 5.629 and 26.119. Since $5.629<17.5<26.119$, we do not reject $H_0$. There is insufficient evidence that the population variance differs from 10.
 
-17. The larger sample variance should be placed in the numerator. Since $25>16$, using @eq-f, $F=\frac{25}{16}=1.5625$; this ensures $F\geq1$ and simplifies the comparison with the upper-tail $F$ critical value.
+17. For convenience in a two-sided test, the larger sample variance may be placed in the numerator. Since $25>16$, using @eq-f, $F=\frac{25}{16}=1.5625$; this ensures $F\geq1$ and simplifies comparison with an upper-tail critical value. For a two-sided test, that critical value uses tail area $\alpha/2$, with the numerator and denominator degrees of freedom in the corresponding order.
 
 18. Given $r=0.35$, $n=20$, so $H_0:\rho=0$ and $H_1:\rho\neq0$. Using @eq-t-corr, $t=\frac{0.35\sqrt{18}}{\sqrt{1-0.35^2}}\approx1.585$, with $df=18$. At $\alpha=0.05$, the two-tailed critical value is approximately 2.101; since $1.585<2.101$, we do not reject $H_0$. There is insufficient evidence that the population correlation coefficient differs significantly from zero.
 
@@ -1233,9 +1282,9 @@ $$
 
 At the beginning of the twentieth century, the Guinness brewery in Dublin employed a young Oxford-trained chemist named **William Sealy Gosset**. His job was to bring scientific rigour to brewing, judging the quality of barley and hops from only a handful of samples. The trouble was that the statistical methods of the day assumed large samples, while Gosset rarely had more than a few observations to work with. The normal-distribution based tests simply did not behave well for such small samples.
 
-Working through this problem, Gosset derived the exact sampling distribution of the mean when the population standard deviation is unknown and must be estimated from a small sample. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the **t distribution**. It was one of the first genuinely small-sample results in statistics.
+Working through this problem, Gosset derived the exact sampling distribution of the standardised sample mean when the population standard deviation is estimated from independent normal observations. This distribution, slightly flatter than the normal curve with heavier tails, is what we now call the **t distribution**. It was one of the first genuinely small-sample results in statistics.
 
-Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal *Biometrika* under the modest pen name **"Student"**. [@Student1908] For this reason the distribution has been known ever since as **Student's t distribution**, and the associated test as **Student's t-test**, even though there was never any student involved. The true author was a brewer solving a very practical problem, one pint of statistics at a time.
+Guinness, however, treated its research as a trade secret and did not allow employees to publish under their own names, fearing that competitors would learn how the brewery used statistics. Gosset was therefore obliged to publish his 1908 paper in the journal *Biometrika* under the modest pen name **"Student"**. [@Student1908] For this reason the distribution has been known ever since as **Student's t distribution**, and the associated test as **Student's t-test**. The true author was a brewer solving a very practical problem, one pint of statistics at a time.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

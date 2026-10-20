@@ -1,0 +1,21 @@
+options(digits=12)
+Y<-matrix(c(5,12,11,5,7,9,14,9,9,5,12,5,7,10,6,8,8,5,13,5,7,20,6,9),6,4,byrow=TRUE)
+X<-matrix(c(5,12,11,8,7,9,8,8,9,5,12,7,6,10,8,8,8,5,11,5,8,16,7,9),6,4,byrow=TRUE)
+n<-length(X);v<-6;r<-4
+cfx<-sum(X)^2/n;cfy<-sum(Y)^2/n;csp<-sum(X)*sum(Y)/n
+gxx<-sum(X^2)-cfx;gyy<-sum(Y^2)-cfy;gxy<-sum(X*Y)-csp
+txx<-sum(rowSums(X)^2)/r-cfx;tyy<-sum(rowSums(Y)^2)/r-cfy;txy<-sum(rowSums(X)*rowSums(Y))/r-csp
+exx<-gxx-txx;eyy<-gyy-tyy;exy<-gxy-txy
+reg<-exy^2/exx;error<-eyy-reg;total<-gyy-gxy^2/gxx;treatment<-total-error
+d<-data.frame(y=as.vector(t(Y)),x=as.vector(t(X)),trt=factor(rep(1:6,each=4)))
+fit<-lm(y~trt+x,d);reduced<-lm(y~x,d)
+stopifnot(abs(deviance(fit)-error)<1e-9,abs(deviance(reduced)-deviance(fit)-treatment)<1e-9)
+capture.output({
+ print(c(sumX=sum(X),sumY=sum(Y),CFX=cfx,CFY=cfy,CSP=csp,sumtx2=sum(rowSums(X)^2),sumtxty=sum(rowSums(X)*rowSums(Y))))
+ print(c(GXX=gxx,GYY=gyy,GXY=gxy,TXX=txx,TYY=tyy,TXY=txy,EXX=exx,EYY=eyy,EXY=exy))
+ print(c(b=exy/exx,SSreg=reg,AdjError=error,AdjTotal=total,AdjTreatment=treatment,MSE=error/17,MST=treatment/5,Ftrt=treatment/5/(error/17),Freg=reg/(error/17),Fcritical=qf(.95,5,17)))
+ print(rowMeans(Y)-(exy/exx)*(rowMeans(X)-mean(X)))
+ print(anova(reduced,fit))
+ print(anova(fit,lm(y~trt*x,d)))
+},file='review_tools/ancova_check_results.txt')
+cat('ANCOVA arithmetic agrees with independent nested linear-model fits\n')

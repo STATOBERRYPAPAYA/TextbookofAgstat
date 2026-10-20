@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>11&nbsp; Probability distributions – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -20,7 +26,26 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="site_libs/quarto-nav/quarto-nav.js"></script>
@@ -32,22 +57,21 @@ ul.task-list li input[type="checkbox"] {
 <meta name="quarto:offset" content="./">
 <link href="./sampleSurvey.html" rel="next">
 <link href="./probability.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -75,13 +99,40 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -112,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="11&nbsp; Probability distributions – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="11&nbsp; Probability distributions – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -310,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -511,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -564,21 +617,25 @@ window.Quarto = {
   <ul>
   <li><a href="#probability-distribution" id="toc-probability-distribution" class="nav-link active" data-scroll-target="#probability-distribution"><span class="header-section-number">11.1</span> Probability distribution</a></li>
   <li><a href="#expected-value-of-a-random-variable" id="toc-expected-value-of-a-random-variable" class="nav-link" data-scroll-target="#expected-value-of-a-random-variable"><span class="header-section-number">11.2</span> Expected value of a random variable</a></li>
-  <li><a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">11.3</span> Discrete probability distributions</a>
+  <li><a href="#variance-and-cumulative-probability" id="toc-variance-and-cumulative-probability" class="nav-link" data-scroll-target="#variance-and-cumulative-probability"><span class="header-section-number">11.3</span> Variance and cumulative probability</a></li>
+  <li><a href="#discrete-probability-distributions" id="toc-discrete-probability-distributions" class="nav-link" data-scroll-target="#discrete-probability-distributions"><span class="header-section-number">11.4</span> Discrete probability distributions</a>
   <ul class="collapse">
-  <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution"><span class="header-section-number">11.3.1</span> Bernoulli distribution</a></li>
-  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution"><span class="header-section-number">11.3.2</span> Binomial distribution</a></li>
-  <li><a href="#fitting-of-binomial-distribution" id="toc-fitting-of-binomial-distribution" class="nav-link" data-scroll-target="#fitting-of-binomial-distribution"><span class="header-section-number">11.3.3</span> Fitting of binomial distribution</a></li>
-  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution"><span class="header-section-number">11.3.4</span> Poisson distribution</a></li>
-  <li><a href="#fitting-of-poisson-distribution" id="toc-fitting-of-poisson-distribution" class="nav-link" data-scroll-target="#fitting-of-poisson-distribution"><span class="header-section-number">11.3.5</span> Fitting of Poisson distribution</a></li>
+  <li><a href="#bernoulli-distribution" id="toc-bernoulli-distribution" class="nav-link" data-scroll-target="#bernoulli-distribution"><span class="header-section-number">11.4.1</span> Bernoulli distribution</a></li>
+  <li><a href="#binomial-distribution" id="toc-binomial-distribution" class="nav-link" data-scroll-target="#binomial-distribution"><span class="header-section-number">11.4.2</span> Binomial distribution</a></li>
+  <li><a href="#fitting-of-binomial-distribution" id="toc-fitting-of-binomial-distribution" class="nav-link" data-scroll-target="#fitting-of-binomial-distribution"><span class="header-section-number">11.4.3</span> Fitting of binomial distribution</a></li>
+  <li><a href="#sampling-without-replacement" id="toc-sampling-without-replacement" class="nav-link" data-scroll-target="#sampling-without-replacement"><span class="header-section-number">11.4.4</span> Sampling without replacement</a></li>
+  <li><a href="#poisson-distribution" id="toc-poisson-distribution" class="nav-link" data-scroll-target="#poisson-distribution"><span class="header-section-number">11.4.5</span> Poisson distribution</a></li>
+  <li><a href="#poisson-approximation-to-the-binomial" id="toc-poisson-approximation-to-the-binomial" class="nav-link" data-scroll-target="#poisson-approximation-to-the-binomial"><span class="header-section-number">11.4.6</span> Poisson approximation to the binomial</a></li>
+  <li><a href="#fitting-of-poisson-distribution" id="toc-fitting-of-poisson-distribution" class="nav-link" data-scroll-target="#fitting-of-poisson-distribution"><span class="header-section-number">11.4.7</span> Fitting of Poisson distribution</a></li>
   </ul></li>
-  <li><a href="#continuous-probability-distributions" id="toc-continuous-probability-distributions" class="nav-link" data-scroll-target="#continuous-probability-distributions"><span class="header-section-number">11.4</span> Continuous probability distributions</a>
+  <li><a href="#continuous-probability-distributions" id="toc-continuous-probability-distributions" class="nav-link" data-scroll-target="#continuous-probability-distributions"><span class="header-section-number">11.5</span> Continuous probability distributions</a>
   <ul class="collapse">
-  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution"><span class="header-section-number">11.4.1</span> Normal distribution</a></li>
-  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard normal distribution</a></li>
-  <li><a href="#z-score-table" id="toc-z-score-table" class="nav-link" data-scroll-target="#z-score-table"><span class="header-section-number">11.4.3</span> Z-score table</a></li>
+  <li><a href="#normal-distribution" id="toc-normal-distribution" class="nav-link" data-scroll-target="#normal-distribution"><span class="header-section-number">11.5.1</span> Normal distribution</a></li>
+  <li><a href="#standard-normal-distribution" id="toc-standard-normal-distribution" class="nav-link" data-scroll-target="#standard-normal-distribution"><span class="header-section-number">11.5.2</span> Standard normal distribution</a></li>
+  <li><a href="#z-score-table" id="toc-z-score-table" class="nav-link" data-scroll-target="#z-score-table"><span class="header-section-number">11.5.3</span> Z-score table</a></li>
+  <li><a href="#normal-approximation-to-a-binomial-count" id="toc-normal-approximation-to-a-binomial-count" class="nav-link" data-scroll-target="#normal-approximation-to-a-binomial-count"><span class="header-section-number">11.5.4</span> Normal approximation to a binomial count</a></li>
   </ul></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">11.5</span> Chapter Summary</a>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">11.6</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -615,11 +672,11 @@ window.Quarto = {
 
 
 <p>In statistics, a probability distribution gives the possibility of each possible outcome of a random experiment or event. It provides a systematic way to understand and quantify the probabilities of different occurrences.</p>
-<p>Probability, as a measure of uncertainty, helps us analyze various phenomena. For instance, when rolling a die, the possible outcomes and their likelihoods are described by a probability distribution. Such distributions apply to any random experiment where outcomes are uncertain or unpredictable.</p>
+<p>Probability, as a measure of uncertainty, helps us analyse various phenomena. For instance, when rolling a die, the possible outcomes and their likelihoods are described by a probability distribution. Such distributions apply to any random experiment where outcomes are uncertain or unpredictable.</p>
 <p>In this chapter, we explore the definition, functions, formulas, and types of probability distributions.</p>
 <section id="probability-distribution" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="probability-distribution"><span class="header-section-number">11.1</span> Probability distribution</h2>
-<p>In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let <span class="math inline">\(X\)</span> be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for <span class="math inline">\(X\)</span> are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space <span class="math inline">\(X = \{0, 1, 2, 3\}\)</span>. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in <a href="#tbl-tossingcoin" class="quarto-xref">Table&nbsp;<span>11.1</span></a>.</p>
+<p>In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let <span class="math inline">\(X\)</span> be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for <span class="math inline">\(X\)</span> are 0 heads, 1 head, 2 heads, and 3 heads, forming the range <span class="math inline">\(\{0,1,2,3\}\)</span> of the random variable <span class="math inline">\(X\)</span>. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in <a href="#tbl-tossingcoin" class="quarto-xref">Table&nbsp;<span>11.1</span></a>.</p>
 <div id="tbl-tossingcoin" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-tossingcoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -680,7 +737,7 @@ Table&nbsp;11.1: Possible outcomes on tossing a coin three times
 Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </figcaption>
 <div aria-describedby="tbl-probabilitydistncoin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th><span class="math inline">\(X\)</span></th>
@@ -713,14 +770,14 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </section>
 <section id="expected-value-of-a-random-variable" class="level2" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="expected-value-of-a-random-variable"><span class="header-section-number">11.2</span> Expected value of a random variable</h2>
-<p>Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!</p>
+<p>Expected value is the probability-weighted average of a random variable. It need not be a possible individual outcome. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!</p>
 <p>The expected value of a random variable <span class="math inline">\(X\)</span> is denoted as <span class="math inline">\(E(X)\)</span>.&nbsp;</p>
 <p>The formula for calculating the Expected Value of random variable where there are multiple probabilities is given for discrete and continuous in <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a> and <a href="#eq-expcont" class="quarto-xref">Equation&nbsp;<span>11.2</span></a>.</p>
 <p><u><strong>Discrete case</strong></u></p>
 <p><span id="eq-expdiscrete"><span class="math display">\[E(X) = \sum_{x} x\, p(x) \tag{11.1}\]</span></span></p>
 <p><u><strong>Continuous case</strong></u></p>
-<p><span id="eq-expcont"><span class="math display">\[E(X) = \int_{- \infty}^{\infty}{x p(x)\ \text{dx }};- \infty \leq x \leq \infty \tag{11.2}\]</span></span></p>
-<p>here the random variable <span class="math inline">\(X\)</span> lies between <span class="math inline">\({-\infty}\)</span> and <span class="math inline">\({+\infty}\)</span></p>
+<p><span id="eq-expcont"><span class="math display">\[E(X) = \int_{- \infty}^{\infty}{x f(x)\,dx};- \infty \leq x \leq \infty \tag{11.2}\]</span></span></p>
+<p>Here <span class="math inline">\(f(x)\)</span> is the probability density. Integrating over the whole real line also covers variables with a restricted range, since their density is zero outside that range. A finite expected value requires <span class="math inline">\(E(|X|)&lt;\infty\)</span>.</p>
 <div id="exm-expval1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.1</strong></span> Find the expected value of <span class="math inline">\(X\)</span> of tossing a single unfair die.</p>
 <table class="lightable-classic table table-bordered caption-top">
@@ -759,7 +816,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </tr>
 </tbody>
 </table>
-<p>Using equation <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, <span class="math inline">\(E(X)\)</span> = <span class="math inline">\(\sum_{x} x\, p(x)\)</span> = 0.1+0.2+0.3+0.4+0.5+3 = 4.5</p>
+<p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, <span class="math inline">\(E(X)\)</span> = <span class="math inline">\(\sum_{x} x\, p(x)\)</span> = 0.1+0.2+0.3+0.4+0.5+3 = 4.5</p>
 </div>
 <div id="exr-expval1" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercise 11.1</strong></span> Find <span class="math inline">\(E(X)\)</span> in the following case.</p>
@@ -787,8 +844,15 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 </table>
 </div>
 </section>
-<section id="discrete-probability-distributions" class="level2" data-number="11.3">
-<h2 data-number="11.3" class="anchored" data-anchor-id="discrete-probability-distributions"><span class="header-section-number">11.3</span> Discrete probability distributions</h2>
+<section id="variance-and-cumulative-probability" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="variance-and-cumulative-probability"><span class="header-section-number">11.3</span> Variance and cumulative probability</h2>
+<p>For a random variable with finite second moment, variance is</p>
+<p><span class="math display">\[\operatorname{Var}(X)=E[(X-E(X))^2]=E(X^2)-[E(X)]^2.\]</span></p>
+<p>For discrete variables, <span class="math inline">\(E[g(X)]=\sum_xg(x)p(x)\)</span>; for a variable with density, <span class="math inline">\(E[g(X)]=\int g(x)f(x)\,dx\)</span>, when these expectations exist. If <span class="math inline">\(Y=a+bX\)</span>, then <span class="math inline">\(E(Y)=a+bE(X)\)</span> and <span class="math inline">\(\operatorname{Var}(Y)=b^2\operatorname{Var}(X)\)</span>. Expectations of sums add whenever the expectations exist. Variances add for independent variables with finite variances; without independence, covariance terms must be included.</p>
+<p>The <strong>cumulative distribution function</strong>, <span class="math inline">\(F(x)=P(X\leq x)\)</span>, applies to discrete and continuous distributions. It is nondecreasing, approaches zero to the far left and one to the far right, and satisfies <span class="math inline">\(P(a&lt;X\leq b)=F(b)-F(a)\)</span>. For the three-toss example, <span class="math inline">\(F(1)=P(X=0)+P(X=1)=1/2\)</span>. Later, the standard normal table gives values of this cumulative function.</p>
+</section>
+<section id="discrete-probability-distributions" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="discrete-probability-distributions"><span class="header-section-number">11.4</span> Discrete probability distributions</h2>
 <p>A discrete probability distribution represents the probabilities of outcomes of a discrete random variable, which takes on a countable number of distinct values. For example, the number of heads when flipping a coin three times or the number of defective items in a batch are described by discrete distributions. Each possible outcome is assigned a specific probability, and the sum of these probabilities is always 1.</p>
 <p>We have seen that a probability distribution lists all possible outcomes of a random variable along with their corresponding probabilities, often represented as a table. However, it is often more convenient to express the distribution as an equation. With such an equation, the probability corresponding to any given value of <span class="math inline">\(x\)</span> can be calculated directly. Depending on the situation, various discrete probability distributions are used to model different scenarios. In this chapter, we will focus on the following discrete distributions.</p>
 <ul>
@@ -805,9 +869,9 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <li><p>The <em>p.m.f</em> gives the exact probability for each specific value of the discrete random variable. For a value <span class="math inline">\(x\)</span>, <span class="math inline">\(P(X = x) = p(x)\)</span></p></li>
 <li><p>If a value <span class="math inline">\(x\)</span> is not in the sample space <span class="math inline">\(S\)</span>, its probability is zero: <span class="math inline">\(p(x) = 0 \quad \text{for } x \notin S\)</span></p></li>
 </ul>
-<p>The <em>p.m.f</em> is defined only for the discrete values in the sample space of the random variable <span class="math inline">\(X\)</span>. It does not apply to continuous ranges or non-discrete variables.</p>
-<section id="bernoulli-distribution" class="level3" data-number="11.3.1">
-<h3 data-number="11.3.1" class="anchored" data-anchor-id="bernoulli-distribution"><span class="header-section-number">11.3.1</span> Bernoulli distribution</h3>
+<p>The <em>p.m.f</em> assigns positive probability only at its support values and is zero elsewhere. It does not apply to continuous ranges or non-discrete variables.</p>
+<section id="bernoulli-distribution" class="level3" data-number="11.4.1">
+<h3 data-number="11.4.1" class="anchored" data-anchor-id="bernoulli-distribution"><span class="header-section-number">11.4.1</span> Bernoulli distribution</h3>
 <p>A Bernoulli distribution is a discrete probability distribution that applies to a random experiment with exactly two possible outcomes, commonly referred to as “success” and “failure.” For example, tossing a coin results in two outcomes, which the experimenter can label as success and failure based on their context. Success might be defined as getting a head and failure as getting a tail. The definition of success and failure is flexible and can be tailored by the experimenter to suit the specific scenario under study.</p>
 <p>The probability mass function of the distribution is</p>
 <p><span id="eq-bernoulli"><span class="math display">\[p(x) = p^x (1 - p)^{1 - x}; \quad x = 0, 1 \tag{11.3}\]</span></span></p>
@@ -829,7 +893,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 <div id="exm-bernoulli1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.2</strong></span> Find the probability assuming Bernoulli distribution of a biased coin where probability of success (getting head) <span class="math inline">\(p\)</span> = 0.4</p>
 <p><strong>Solution</strong></p>
-<p>Let <span class="math inline">\(X\)</span> be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a></p>
+<p>Let <span class="math inline">\(X\)</span> be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a></p>
 <p><span class="math inline">\(P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6\)</span></p>
 <p><span class="math inline">\(P(X = 1) = (0.4)^1 (1-0.4)^0 =0.4\)</span></p>
 <p>the distribution can be shown as below:</p>
@@ -839,7 +903,7 @@ Table&nbsp;11.2: Probability distribution of tossing the coin three times
 Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math inline">\(p=0.4\)</span>
 </figcaption>
 <div aria-describedby="tbl-bernoulli1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th><span class="math inline">\(x\)</span></th>
@@ -875,9 +939,9 @@ Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math
 </div>
 </div>
 </section>
-<section id="binomial-distribution" class="level3" data-number="11.3.2">
-<h3 data-number="11.3.2" class="anchored" data-anchor-id="binomial-distribution"><span class="header-section-number">11.3.2</span> Binomial distribution</h3>
-<p>Binomial distribution can be thought of as simply the probability of a success or failure outcome in an experiment or survey that is repeated multiple times; <em>i.e</em>. a Binomial distribution happens, when a Bernoulli trial is repeated <span class="math inline">\(n\)</span> number of times. The binomial is a type of distribution that has two possible outcomes (the prefix “bi” means two, or twice). For example, if you toss a coin 5 times and count the number of heads, that count, <span class="math inline">\(X\)</span>, follows a binomial distribution with <span class="math inline">\(n = 5\)</span>. In short, a single coin toss is a Bernoulli trial, but repeating it several times (more than once) turns it into a binomial experiment.</p>
+<section id="binomial-distribution" class="level3" data-number="11.4.2">
+<h3 data-number="11.4.2" class="anchored" data-anchor-id="binomial-distribution"><span class="header-section-number">11.4.2</span> Binomial distribution</h3>
+<p>Binomial distribution can be thought of as simply the probability of a success or failure outcome in an experiment or survey that is repeated multiple times; <em>i.e</em>. a Binomial distribution happens, when a Bernoulli trial is repeated <span class="math inline">\(n\)</span> number of times. Each Bernoulli trial has two outcomes, but the binomial count has <span class="math inline">\(n+1\)</span> possible values, from 0 to <span class="math inline">\(n\)</span>. For example, if you toss a coin 5 times and count the number of heads, that count, <span class="math inline">\(X\)</span>, follows a binomial distribution with <span class="math inline">\(n = 5\)</span>. In short, a single coin toss is a Bernoulli trial, but repeating it several times (more than once) turns it into a binomial experiment.</p>
 <p><strong>Binomial distributions must also meet the following three criteria:</strong></p>
 <ul>
 <li><p>The number of observations or trials (<span class="math inline">\(n\)</span>) is fixed.</p></li>
@@ -901,7 +965,7 @@ Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In a binomial distribution, the parameters are <span class="math inline">\(n\)</span>, the number of independent trials, and <span class="math inline">\(p\)</span>, the probability of success in a single trial. If X follows a binomial distribution we denote <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>. The mean of <span class="math inline">\(X\)</span> is given by <span class="math inline">\(E(X) = np\)</span>, while the variance is <span class="math inline">\(\text{Var}(X) = npq\)</span>, where<span class="math inline">\(q = 1 - p\)</span>. Since <span class="math inline">\(0 &lt; p &lt; 1\)</span>, it follows that <span class="math inline">\(q\)</span> is also positive but less than 1. This implies that <span class="math inline">\(np &gt; npq\)</span>, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.</p>
+<p>In a binomial distribution, the parameters are <span class="math inline">\(n\)</span>, the number of independent trials, and <span class="math inline">\(p\)</span>, the probability of success in a single trial. If X follows a binomial distribution we denote <span class="math inline">\(X \sim \text{Bin}(n, p)\)</span>. The mean of <span class="math inline">\(X\)</span> is given by <span class="math inline">\(E(X) = np\)</span>, while the variance is <span class="math inline">\(\text{Var}(X) = npq\)</span>, where<span class="math inline">\(q = 1 - p\)</span>. For <span class="math inline">\(n&gt;0\)</span> and <span class="math inline">\(0&lt;p&lt;1\)</span>, <span class="math inline">\(np&gt;npq\)</span>. At <span class="math inline">\(p=0\)</span> or <span class="math inline">\(p=1\)</span>, the binomial distribution is degenerate and has variance zero. In all cases the variance is no greater than the mean.</p>
 </div>
 </div>
 <div id="exm-binom1" class="theorem example">
@@ -912,8 +976,8 @@ Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math
 <p><span class="math inline">\(P(X=6)=\binom{10}{6}\left( \frac{1}{2} \right)^{6}\left( \frac{1}{2} \right)^{10 - 6} = 210 \times \left( \frac{1}{2} \right)^{10} = 0.2051\)</span></p>
 </div>
 </section>
-<section id="fitting-of-binomial-distribution" class="level3" data-number="11.3.3">
-<h3 data-number="11.3.3" class="anchored" data-anchor-id="fitting-of-binomial-distribution"><span class="header-section-number">11.3.3</span> Fitting of binomial distribution</h3>
+<section id="fitting-of-binomial-distribution" class="level3" data-number="11.4.3">
+<h3 data-number="11.4.3" class="anchored" data-anchor-id="fitting-of-binomial-distribution"><span class="header-section-number">11.4.3</span> Fitting of binomial distribution</h3>
 <p>In practice, we often have a set of observed frequencies obtained from an experiment and we wish to know whether a binomial distribution provides a good description of the data. Fitting a distribution means finding a theoretical distribution that closely matches the observed data, so that we can compare the observed frequencies with the expected (theoretical) frequencies.</p>
 <p>To fit a binomial distribution to an observed frequency distribution, we follow these steps:</p>
 <ul>
@@ -927,10 +991,10 @@ Table&nbsp;11.3: Bernoulli distribution for a biased coin with <span class="math
 <div id="tbl-survivorscount" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-survivorscount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;11.4: Number of survivors out of 5 in 100 groups
+Table&nbsp;11.4: Number of mango seedlings surviving out of 5, in 100 groups
 </figcaption>
 <div aria-describedby="tbl-survivorscount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Number surviving (<span class="math inline">\(x\)</span>)</td>
@@ -965,11 +1029,17 @@ Table&nbsp;11.4: Number of survivors out of 5 in 100 groups
 </div>
 </figure>
 </div>
-<p>: Number of mango seedlings surviving out of 5, in 100 groups {#tbl-mangosurvival .bordered}</p>
 <p><strong>Solution</strong></p>
 <p>Here the number of trials is <span class="math inline">\(n = 5\)</span> and the total frequency is <span class="math inline">\(N = 100\)</span>.</p>
 <p>Mean number of surviving seedlings,</p>
-<p><span class="math display">\[\overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 3) + (1 \times 16) + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)}{100} = \frac{252}{100} = 2.52\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\overline{x} &amp;= \frac{\sum f x}{N}\\
+&amp;= \frac{\begin{gathered}(0 \times 3) + (1 \times 16)\\ + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)\end{gathered}}{100}\\
+&amp;= \frac{252}{100}\\
+&amp;= 2.52
+\end{aligned}
+\]</span></p>
 <p>The probability of success is estimated as <span class="math inline">\(p = \dfrac{\overline{x}}{n} = \dfrac{2.52}{5} = 0.504\)</span>, so <span class="math inline">\(q = 1 - 0.504 = 0.496\)</span>.</p>
 <p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \binom{5}{x} p^x q^{5-x}\)</span>, as shown in <a href="#tbl-binomfit1" class="quarto-xref">Table&nbsp;<span>11.5</span></a>.</p>
 <div id="tbl-binomfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
@@ -978,7 +1048,7 @@ Table&nbsp;11.4: Number of survivors out of 5 in 100 groups
 Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 </figcaption>
 <div aria-describedby="tbl-binomfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(x\)</span></th>
@@ -1027,12 +1097,18 @@ Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 </div>
 </figure>
 </div>
-<p>The expected frequencies are close to the observed frequencies, indicating that the binomial distribution provides a good fit to the data.</p>
+<p>The expected frequencies are descriptively close to the observed frequencies. A formal goodness-of-fit test, with appropriate grouping and adjustment for the estimated parameter, can be used to assess the fit. In the chi-square procedure developed in the small-sample-tests chapter, the usual degrees of freedom are <span class="math inline">\(k-1-m\)</span>, where <span class="math inline">\(k\)</span> is the number of retained categories and <span class="math inline">\(m\)</span> is the number of fitted parameters. Here <span class="math inline">\(m=1\)</span> because <span class="math inline">\(p\)</span> is estimated and the five trials per group are fixed by the experiment. Pool categories when necessary for adequate expected frequencies; visual closeness alone is not a test.</p>
 </div>
 </section>
-<section id="poisson-distribution" class="level3" data-number="11.3.4">
-<h3 data-number="11.3.4" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">11.3.4</span> Poisson distribution</h3>
-<p>The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781-1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its most famous applications came nearly 60 years later, when the statistician Ladislaus Bortkiewicz used the Poisson distribution in 1898 to study the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.</p>
+<section id="sampling-without-replacement" class="level3" data-number="11.4.4">
+<h3 data-number="11.4.4" class="anchored" data-anchor-id="sampling-without-replacement"><span class="header-section-number">11.4.4</span> Sampling without replacement</h3>
+<p>The binomial model assumes independent trials with a constant success probability. Suppose a finite lot contains <span class="math inline">\(N\)</span> seeds, of which <span class="math inline">\(K\)</span> are diseased, and <span class="math inline">\(n\)</span> seeds are selected by SRSWOR. The number of diseased seeds follows a <strong>hypergeometric distribution</strong>:</p>
+<p><span class="math display">\[P(X=x)=\frac{\binom Kx\binom{N-K}{n-x}}{\binom Nn}.\]</span></p>
+<p>Here <span class="math inline">\(\max(0,n-N+K)\leq x\leq\min(n,K)\)</span>. Its mean is <span class="math inline">\(nK/N\)</span> and its variance is <span class="math inline">\(n(K/N)(1-K/N)(N-n)/(N-1)\)</span> for <span class="math inline">\(N&gt;1\)</span>. The finite-population factor reflects dependence without replacement. When the sampling fraction is small, a binomial model with <span class="math inline">\(p=K/N\)</span> may approximate it. The combinations used in the previous chapter give this same probability by counting favourable samples.</p>
+</section>
+<section id="poisson-distribution" class="level3" data-number="11.4.5">
+<h3 data-number="11.4.5" class="anchored" data-anchor-id="poisson-distribution"><span class="header-section-number">11.4.5</span> Poisson distribution</h3>
+<p>Siméon Denis Poisson (1781–1840) presented this probability law in his 1837 work on the probability of judicial decisions. <span class="citation" data-cites="Poisson1837">(<a href="references.html#ref-Poisson1837" role="doc-biblioref">Poisson 1837</a>)</span> The distribution models counts in a specified interval or region. Events need not be rare over the whole interval; a high Poisson mean is possible. Its suitability depends on the event-rate and independence assumptions below, rather than on a story about a particular game.</p>
 <p>Other applications and examples where Poisson distribution is used</p>
 <ul>
 <li><p>Pest incidence</p></li>
@@ -1041,15 +1117,16 @@ Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 <li><p>Car accidents</p></li>
 <li><p>Traffic flow and ideal gap distance</p></li>
 <li><p>Number of typing errors on a page</p></li>
-<li><p>Hairs found in McDonald’s hamburgers</p></li>
-<li><p>Spread of an endangered animal in Africa</p></li>
+<li><p>Foreign particles found in a standard-sized food sample</p></li>
+<li><p>Weed occurrences in equal-area quadrats under a suitable random spatial model</p></li>
 <li><p>Failure of a machine in one month</p></li>
 </ul>
-<p>A random variable <span class="math inline">\(X\)</span> is said to follow a Poisson distribution; if it assumes non-negative values and its probability mass function is given by:</p>
-<p><span id="eq-poisson"><span class="math display">\[p(x) = \frac{e^{- \lambda}.\lambda^{x}}{x!}; \quad x = 0, 1, 2, \ldots, \infty \tag{11.5}\]</span></span></p>
+<p>A common Poisson-process model assumes a constant event rate, independent counts in disjoint intervals, and negligible probability of multiple events in a sufficiently short interval. For a rate <span class="math inline">\(r\)</span> per unit time and an interval of length <span class="math inline">\(t\)</span>, the mean count is <span class="math inline">\(\lambda=rt\)</span>. Spatial counts require analogous conditions. Aggregated pests may be overdispersed, so pest counts do not automatically follow a Poisson model.</p>
+<p>A random variable <span class="math inline">\(X\)</span> is said to follow a Poisson distribution if it assumes non-negative integer values and its probability mass function is given by:</p>
+<p><span id="eq-poisson"><span class="math display">\[p(x) = \frac{e^{- \lambda}.\lambda^{x}}{x!}; \quad x = 0, 1, 2, \ldots \tag{11.5}\]</span></span></p>
 <p>where</p>
 <p><span class="math inline">\(e\)</span> = base of the natural logarithm, a constant approximately equal to 2.71828.</p>
-<p><span class="math inline">\(\lambda\)</span> : Average number of successes occurring in a given time interval or region in the Poisson distribution</p>
+<p><span class="math inline">\(\lambda&gt;0\)</span> : Average number of events occurring in a given time interval or region in the Poisson distribution</p>
 <div class="callout callout-style-default callout-important callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1079,8 +1156,12 @@ Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 <p><span class="theorem-title"><strong>Exercise 11.4</strong></span> A company knows from past experience that 3% of the bulbs they produce are defective. Assuming a Poisson distribution, find the probability of getting the following in a sample of 100 bulbs. (a) no defective (b) 1 defective.</p>
 </div>
 </section>
-<section id="fitting-of-poisson-distribution" class="level3" data-number="11.3.5">
-<h3 data-number="11.3.5" class="anchored" data-anchor-id="fitting-of-poisson-distribution"><span class="header-section-number">11.3.5</span> Fitting of Poisson distribution</h3>
+<section id="poisson-approximation-to-the-binomial" class="level3" data-number="11.4.6">
+<h3 data-number="11.4.6" class="anchored" data-anchor-id="poisson-approximation-to-the-binomial"><span class="header-section-number">11.4.6</span> Poisson approximation to the binomial</h3>
+<p>If <span class="math inline">\(X\sim\text{Bin}(n,p)\)</span>, a Poisson distribution with <span class="math inline">\(\lambda=np\)</span> can approximate its probabilities when <span class="math inline">\(n\)</span> is large and <span class="math inline">\(p\)</span> is small. This is an approximation, not an exact change of distribution. For the bulb exercise, independent defects with probability 0.03 give an exact binomial model with <span class="math inline">\(n=100\)</span>; the requested Poisson approximation uses <span class="math inline">\(\lambda=3\)</span>.</p>
+</section>
+<section id="fitting-of-poisson-distribution" class="level3" data-number="11.4.7">
+<h3 data-number="11.4.7" class="anchored" data-anchor-id="fitting-of-poisson-distribution"><span class="header-section-number">11.4.7</span> Fitting of Poisson distribution</h3>
 <p>Fitting a Poisson distribution to an observed frequency distribution allows us to check whether the Poisson distribution provides a good description of the data, which is especially useful when we are dealing with rare events such as pest counts or defects.</p>
 <p>To fit a Poisson distribution to an observed frequency distribution, we follow these steps:</p>
 <ul>
@@ -1096,7 +1177,7 @@ Table&nbsp;11.5: Fitting of binomial distribution to seedling survival data
 Table&nbsp;11.6: Number of diamondback moth larvae per cabbage plant, in 100 plants
 </figcaption>
 <div aria-describedby="tbl-larvaecount-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">Number of Larvae (<span class="math inline">\(x\)</span>)</td>
@@ -1128,8 +1209,16 @@ Table&nbsp;11.6: Number of diamondback moth larvae per cabbage plant, in 100 pla
 </figure>
 </div>
 <p><strong>Solution</strong></p>
-<p>The total frequency is <span class="math inline">\(N = 100\)</span>. The mean number of larvae per plant is</p>
-<p><span class="math display">\[\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 37) + (2 \times 18) + (3 \times 6) + (4 \times 2)}{100} = \frac{99}{100} = 0.99\]</span></p>
+<p>The total frequency is <span class="math inline">\(N=100\)</span>. The final class is open-ended, so the exact sample mean cannot be recovered from the grouped table. For this illustration, approximate both observations in “4 or more” by 4. The resulting approximate mean is</p>
+<p><span class="math display">\[
+\begin{aligned}
+\lambda &amp;= \overline{x}\\
+&amp;= \frac{\sum f x}{N}\\
+&amp;= \frac{\begin{gathered}(0 \times 37) + (1 \times 37)\\ + (2 \times 18) + (3 \times 6) + (4 \times 2)\end{gathered}}{100}\\
+&amp;= \frac{99}{100}\\
+&amp;= 0.99
+\end{aligned}
+\]</span></p>
 <p>The expected frequency for each value of <span class="math inline">\(x\)</span> is obtained from <span class="math inline">\(N \times \dfrac{e^{-\lambda} \lambda^x}{x!}\)</span>, as shown in <a href="#tbl-poissonfit1" class="quarto-xref">Table&nbsp;<span>11.7</span></a>. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, <span class="math inline">\(N\)</span>.</p>
 <div id="tbl-poissonfit1" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1137,7 +1226,7 @@ Table&nbsp;11.6: Number of diamondback moth larvae per cabbage plant, in 100 pla
 Table&nbsp;11.7: Fitting of Poisson distribution to larval count data
 </figcaption>
 <div aria-describedby="tbl-poissonfit1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(x\)</span></th>
@@ -1181,22 +1270,25 @@ Table&nbsp;11.7: Fitting of Poisson distribution to larval count data
 </div>
 </figure>
 </div>
-<p>The expected frequencies agree closely with the observed frequencies, indicating that the Poisson distribution provides a good fit to the data.</p>
+<p>The expected frequencies are descriptively close to the observed frequencies. This is an approximate fit because the open-ended class was represented by 4; formal testing also requires appropriate expected counts and parameter-estimation degrees of freedom.</p>
 </div>
 </section>
 </section>
-<section id="continuous-probability-distributions" class="level2" data-number="11.4">
-<h2 data-number="11.4" class="anchored" data-anchor-id="continuous-probability-distributions"><span class="header-section-number">11.4</span> Continuous probability distributions</h2>
+<section id="continuous-probability-distributions" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="continuous-probability-distributions"><span class="header-section-number">11.5</span> Continuous probability distributions</h2>
 <p>If the random variable X is continuous, the corresponding probability distribution is termed as continuous probability distribution. There are several continuous distributions. Our discussion is limited to only <strong>Normal distribution</strong>.</p>
 <p><u><strong>Probability density function</strong></u></p>
 <p>When a mathematical function is used to describe a continuous probability distribution, it is referred to as a probability density function (commonly abbreviated as <em>p.d.f</em>). It describes how values of a continuous random variable are distributed. It gives the relative likelihood of a variable taking a particular value within a given range. The area under the <em>pdf curve</em> over an interval represents the probability that the variable falls within that range. However, unlike pmf for discrete variables, the pdf itself does not give the probability of a single value but rather the density of possible values.</p>
-<section id="normal-distribution" class="level3" data-number="11.4.1">
-<h3 data-number="11.4.1" class="anchored" data-anchor-id="normal-distribution"><span class="header-section-number">11.4.1</span> Normal distribution</h3>
+<p>A density satisfies <span class="math inline">\(f(x)\geq0\)</span> and <span class="math inline">\(\int_{-\infty}^{\infty}f(x)\,dx=1\)</span>. For <span class="math inline">\(a&lt;b\)</span>,</p>
+<p><span class="math display">\[P(a&lt;X\leq b)=\int_a^bf(x)\,dx.\]</span></p>
+<p>For a variable with a density, <span class="math inline">\(P(X=x)=0\)</span> at every individual value. The density can exceed 1; it is an area, not a height, that gives a probability.</p>
+<section id="normal-distribution" class="level3" data-number="11.5.1">
+<h3 data-number="11.5.1" class="anchored" data-anchor-id="normal-distribution"><span class="header-section-number">11.5.1</span> Normal distribution</h3>
 <p>The name “normal distribution” comes from its historical use in describing many natural and social phenomena that appeared to follow a similar symmetric, bell-shaped pattern. The term “normal” was popularized by Karl Pearson in the early 20th century, though the distribution itself was first studied by Abraham de Moivre and later formalized by Carl Friedrich Gauss.</p>
 <p>The distribution was initially called the <code>Gaussian distribution</code>, as Gauss used it to model errors in astronomical observations. However, statisticians and scientists noticed that this pattern frequently appeared in various real-world data, such as heights, IQ scores, and measurement errors. Because it was so common, it became known as the normal distribution, implying that it represents a “normal” or typical way data is distributed in many natural processes.</p>
-<p>It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). Its significance lies in the Central Limit Theorem, which states that the sum of a large number of independent random variables tends to be normally distributed, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.</p>
+<p>It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). Its significance lies in the Central Limit Theorem, which states that a suitably standardised sum of independent, identically distributed variables with finite positive variance approaches the standard normal distribution, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.</p>
 <p><span id="eq-normaldist"><span class="math display">\[f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}; \quad -\infty &lt; x &lt; +\infty \tag{11.6}\]</span></span></p>
-<p>where <span class="math inline">\(\mu\)</span> is the population mean and <span class="math inline">\(\sigma^2\)</span> is the variance, <span class="math inline">\(e = 2.718\)</span></p>
+<p>where <span class="math inline">\(-\infty&lt;\mu&lt;\infty\)</span> is the population mean and <span class="math inline">\(\sigma^2&gt;0\)</span> is the variance, <span class="math inline">\(e = 2.718\)</span></p>
 <p><u><strong>Parameters of Normal distribution</strong></u></p>
 <p>As with any probability distribution, the parameters of the normal distribution define its shape and probabilities entirely. The normal distribution has two parameters, mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>). The normal distribution does not have just one form. Instead, the shape changes based on the parameter values.</p>
 <div id="fig-normalchange" class="quarto-float quarto-figure quarto-figure-center anchored" style="text-align:center;" data-fig-align="center">
@@ -1295,7 +1387,7 @@ Figure&nbsp;11.6: Area property of normal distribution
 Table&nbsp;11.8: Area property of normal distribution
 </figcaption>
 <div aria-describedby="tbl-areaproperty-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Area</th>
@@ -1304,7 +1396,7 @@ Table&nbsp;11.8: Area property of normal distribution
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(\mu \pm 0.745\sigma\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(\mu \pm 0.6745\sigma\)</span></td>
 <td style="text-align: center;">50</td>
 </tr>
 <tr class="even">
@@ -1337,15 +1429,15 @@ Table&nbsp;11.8: Area property of normal distribution
 <li><p><strong>Defined by two parameters</strong>: The normal distribution is fully defined by its mean (<span class="math inline">\(\mu\)</span>) and standard deviation (<span class="math inline">\(\sigma\)</span>), where <span class="math inline">\(\mu\)</span> determines the center and <span class="math inline">\(\sigma\)</span> determines the spread or width of the curve.</p></li>
 <li><p><strong>Total area under the curve</strong>: The total area under the normal distribution curve is equal to 1, representing the total probability of all possible outcomes.</p></li>
 <li><p><strong>Asymptotic</strong>: The tails of the normal distribution approach, but never actually touch, the horizontal x-axis. This means the probability of extreme values is never exactly zero, but it becomes infinitesimally small.</p></li>
-<li><p><strong>Skewness and Kurtosis</strong>: A normal distribution has skewness equal to 0 (no skew), and kurtosis equal to 3 (mesokurtic), meaning it has a moderate peak and tails.</p></li>
+<li><p><strong>Skewness and Kurtosis</strong>: A normal distribution has skewness 0 and kurtosis 3 (excess kurtosis 0). It provides the reference for the terms mesokurtic, leptokurtic and platykurtic; kurtosis should not be interpreted as peak height alone.</p></li>
 <li><p><strong>Linear combination</strong>: A linear combination of independent normal variables is also normally distributed. This property is crucial in statistical analysis and is a key reason for the widespread use of the normal distribution.</p></li>
-<li><p><strong>Central Limit Theorem</strong>: The normal distribution is central to the Central Limit Theorem, which states that the distribution of the sample mean will tend to be normal regardless of the shape of the original distribution, provided the sample size is sufficiently large.</p></li>
-<li><p><strong>Moments</strong>: All odd order moments are zero in normal distribution.</p></li>
-<li><p><strong>Dispersion</strong>: Quartile Deviation. Q.D = <span class="math inline">\(\frac{2}{3}\sigma\)</span> and Mean Deviation. M.D = <span class="math inline">\(\frac{4}{5}\sigma\)</span>.</p></li>
+<li><p><strong>Central Limit Theorem</strong>: For independent, identically distributed observations with a finite mean and finite, positive variance, the standardized sample mean approaches a standard normal distribution as sample size increases. A fixed threshold such as 30 does not guarantee an adequate approximation; skewness and heavy tails can require much larger samples.</p></li>
+<li><p><strong>Moments</strong>: All odd-order central moments are zero in a normal distribution.</p></li>
+<li><p><strong>Dispersion</strong>: Quartile deviation is <span class="math inline">\(QD\approx0.67449\sigma\)</span>, and mean absolute deviation about the mean is <span class="math inline">\(\sigma\sqrt{2/\pi}\approx0.79788\sigma\)</span>. The familiar values <span class="math inline">\(2\sigma/3\)</span> and <span class="math inline">\(4\sigma/5\)</span> are rough approximations.</p></li>
 </ol>
 </section>
-<section id="standard-normal-distribution" class="level3" data-number="11.4.2">
-<h3 data-number="11.4.2" class="anchored" data-anchor-id="standard-normal-distribution"><span class="header-section-number">11.4.2</span> Standard normal distribution</h3>
+<section id="standard-normal-distribution" class="level3" data-number="11.5.2">
+<h3 data-number="11.5.2" class="anchored" data-anchor-id="standard-normal-distribution"><span class="header-section-number">11.5.2</span> Standard normal distribution</h3>
 <p>The <strong>standard normal distribution</strong> is a special case of the normal distribution where the mean is 0 and the standard deviation is 1. This distribution is also known as the <strong>Z-distribution</strong>. In the standard normal distribution, a value is referred to as a <strong>standard score</strong> or <strong>Z-score</strong>. The Z-score indicates how many standard deviations a data point is from the mean.</p>
 <p>A normal distribution can be converted to a standard normal distribution, which provides several advantages:</p>
 <ol type="1">
@@ -1376,7 +1468,7 @@ Figure&nbsp;11.7: Standardization of normal distribution
 <div id="exm-zscore1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.7</strong></span> A survey of daily travel time (<span class="math inline">\(X\)</span>) had these results (in minutes): 26, 33, 65, 28, 34, 55, 25, 44, 50, 36, 26, 37, 43, 62, 35, 38, 45, 32, 28, 34. Convert it into standard scores (Z-score).</p>
 <p><strong>Solution</strong></p>
-<p>The Mean (<span class="math inline">\(\mu\)</span>) is 38.8 minutes, and the Standard Deviation (<span class="math inline">\(\sigma\)</span>) is 11.4. Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>.</p>
+<p>Treating these 20 observations as the complete descriptive dataset, the mean is 38.8 minutes and the standard deviation using divisor 20 is 11.4 minutes. Use these values to standardise each observation. Descriptive standardisation does not establish normality or justify normal tail probabilities.</p>
 <div id="tbl-zscorecalc" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-zscorecalc-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1514,15 +1606,15 @@ Figure&nbsp;11.8: Z score values of X for <a href="#exm-zscore1" class="quarto-x
 <p>To find the z-score we need to divide the difference between the value, 27, and the mean, 24, by the standard deviation of the set, 2. <span class="math inline">\(z = \frac{27 - 24}{2} = \frac{3}{2} = 1.5\)</span>. This indicates that 27 is +1.5 standard deviations above the mean.</p>
 </div>
 </section>
-<section id="z-score-table" class="level3" data-number="11.4.3">
-<h3 data-number="11.4.3" class="anchored" data-anchor-id="z-score-table"><span class="header-section-number">11.4.3</span> Z-score table</h3>
-<p>A <strong>Z-score table</strong> (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table or standard normal table is given in <a href="appendix3.html#tbl-ztable" class="quarto-xref">Table&nbsp;<span>27.1</span></a> in appendix 3.</p>
+<section id="z-score-table" class="level3" data-number="11.5.3">
+<h3 data-number="11.5.3" class="anchored" data-anchor-id="z-score-table"><span class="header-section-number">11.5.3</span> Z-score table</h3>
+<p>A <strong>Z-score table</strong> (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table or standard normal table is given in <a href="appendix3.html#tbl-ztable" class="quarto-xref">Table&nbsp;<span>C.1</span></a> in <a href="appendix3.html" class="quarto-xref"><span>Appendix C</span></a>.</p>
 <p>Procedure to use a Z-Score Table is given below:</p>
 <ol type="1">
 <li><p><strong>Calculate the Z-score</strong>:<br>
 First, calculate the Z-score using the formula <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a></p></li>
 <li><p><strong>Find the Z-score in the table</strong>:<br>
-Once you have the Z-score, locate its value in the Z-score table <a href="appendix3.html#fig-zscoretable" class="quarto-xref">Figure&nbsp;<span>27.1</span></a>. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.</p></li>
+Once you have the Z-score, locate its value in the Z-score <a href="appendix3.html#tbl-ztable" class="quarto-xref">Table&nbsp;<span>C.1</span></a>. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.</p></li>
 <li><p><strong>Interpret the table value</strong>:<br>
 The value from the Z-table represents the cumulative probability (area under the curve) to the left of the Z-score. For example A Z-score of 1.23 corresponds to a cumulative probability of about <strong>0.8907</strong>, which means there is an 89.07% chance that a value from the distribution is less than or equal to 1.23 standard deviations above the mean.</p></li>
 <li><p><strong>Use the table for finding areas</strong>:<br>
@@ -1531,74 +1623,43 @@ To find the probability that a value lies <strong>above</strong> a certain Z-sco
 If you’re looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that <span class="math inline">\(X\)</span> lies between 0.5 and 1.23 is:<span class="math inline">\(P(0.5 &lt; z &lt; 1.23) = 0.8907 - 0.6915 = 0.1992\)</span>. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.</p></li>
 </ol>
 <div id="exm-zscore3" class="theorem example">
-<p><span class="theorem-title"><strong>Example 11.9</strong></span> Average yield of mango trees in an orchard has a mean of 70 kg and a standard deviation of 12 kg. What is the probable percentage of mango trees with yield more than 85 kg?</p>
+<p><span class="theorem-title"><strong>Example 11.9</strong></span> Yields of mango trees in an orchard are normally distributed with a mean of 70 kg and a standard deviation of 12 kg. What is the probable percentage of mango trees with yield more than 85 kg?</p>
 <p><strong>Solution</strong></p>
 <p>Let <span class="math inline">\(X\)</span> be the yield of a mango tree. It is given that <span class="math inline">\(X \sim N(70, 12^2)\)</span>. We need to find <span class="math inline">\(P(X &gt; 85)\)</span>. This can be standardized to <span class="math inline">\(P\left(z &gt; \frac{85 - 70}{12}\right)\)</span> = <span class="math inline">\(P(z &gt; 1.25)\)</span>. Now <span class="math inline">\(P(z &gt; 1.25) = 1 - P(z \leq 1.25)\)</span>. From the table <span class="math inline">\(P(z \leq 1.25) = 0.8944\)</span>, so the probability is <span class="math inline">\(1 - 0.8944 = 0.1056\)</span>. Hence the percentage of trees with yield above 85 kg = <span class="math inline">\(10.56\%\)</span>.</p>
 </div>
 <div id="exm-zscore4" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11.10</strong></span> The heights of coconut trees, H metres, are Normally distributed with a mean of 14.5 and a variance of 7. Determine the probability that the height of a randomly chosen tree will be less than 12 metres.</p>
 <p><strong>Solution</strong></p>
-<p>Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We need to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9449)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9449)=P(z &gt; 0.9449)\)</span>. <span class="math inline">\(P(z &gt; 0.9449)= 1-P(z \leq 0.9449)\)</span>. From the table <span class="math inline">\(P(z \leq 0.94) =0.8264\)</span> so the probability is 1-0.8264=0.1736.</p>
+<p>Let H be the height of the tree. It is given that <span class="math inline">\(H \sim N(14.5,7)\)</span>. We need to find <span class="math inline">\(P(H &lt; 12)\)</span>. Which can be standardized to <span class="math inline">\(P(z &lt; \frac{12 - 14.5}{\sqrt{7}})\)</span>= <span class="math inline">\(P(z &lt; -0.9449)\)</span>. Since normal distribution is symmetric, <span class="math inline">\(P(z &lt; -0.9449)=P(z &gt; 0.9449)\)</span>. <span class="math inline">\(P(z &gt; 0.9449)= 1-P(z \leq 0.9449)\)</span>. From the table <span class="math inline">\(P(z \leq 0.94) =0.8264\)</span> so the two-decimal table approximation is <span class="math inline">\(1-0.8264=0.1736\)</span>. Using the unrounded z-score gives approximately 0.1724.</p>
 </div>
 </section>
+<section id="normal-approximation-to-a-binomial-count" class="level3" data-number="11.5.4">
+<h3 data-number="11.5.4" class="anchored" data-anchor-id="normal-approximation-to-a-binomial-count"><span class="header-section-number">11.5.4</span> Normal approximation to a binomial count</h3>
+<p>For <span class="math inline">\(X\sim\text{Bin}(n,p)\)</span> with both <span class="math inline">\(np\)</span> and <span class="math inline">\(n(1-p)\)</span> sufficiently large, the count may be approximated by a normal variable with mean <span class="math inline">\(np\)</span> and variance <span class="math inline">\(np(1-p)\)</span>. A useful introductory guideline is at least 10 expected successes and 10 expected failures. Since a count is discrete, a <strong>continuity correction</strong> improves many such approximations: for example, approximate <span class="math inline">\(P(X\leq k)\)</span> by the normal probability below <span class="math inline">\(k+0.5\)</span>, and <span class="math inline">\(P(X=k)\)</span> by the area between <span class="math inline">\(k-0.5\)</span> and <span class="math inline">\(k+0.5\)</span>.</p>
+<p>For example, if <span class="math inline">\(X\sim\text{Bin}(100,0.5)\)</span>, then <span class="math inline">\(P(X\leq55)\)</span> is approximately <span class="math inline">\(\Phi((55.5-50)/5)=\Phi(1.10)=0.8643\)</span>. The exact binomial probability is approximately 0.8644. Exact binomial calculations are preferable when the approximation is doubtful. The uncorrected large-sample proportion tests in the later chapter use the same normal-approximation principle.</p>
 </section>
-<section id="chapter-summary" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">11.5</span> Chapter Summary</h2>
+</section>
+<section id="chapter-summary" class="level2" data-number="11.6">
+<h2 data-number="11.6" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">11.6</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A probability distribution gives the possible outcomes of a __________ variable along with their corresponding probabilities.</p></li>
-<li><p>A probability distribution in which the random variable takes countable values is called a __________ probability distribution.</p></li>
-<li><p>A probability distribution in which the random variable takes continuous values is called a __________ probability distribution.</p></li>
-<li><p>The probability assigned to a particular value of a discrete random variable is called the __________.</p></li>
-<li><p>The expected value of a random variable represents its __________ average value over repeated trials.</p></li>
-<li><p>The expected value of a discrete random variable <span class="math inline">\(X\)</span> is denoted by __________.</p></li>
-<li><p>The expected value of a continuous random variable is obtained using __________.</p></li>
-<li><p>The probability mass function is commonly abbreviated as __________.</p></li>
-<li><p>For a discrete random variable, <span class="math inline">\(p(x)\)</span> represents __________.</p></li>
-<li><p>The sum of all probabilities in a probability mass function is equal to __________.</p></li>
-<li><p>A Bernoulli distribution has exactly __________ possible outcomes.</p></li>
-<li><p>In a Bernoulli distribution, the probability of success is denoted by __________.</p></li>
-<li><p>The probability of failure in a Bernoulli distribution is __________.</p></li>
-<li><p>The parameter of a Bernoulli distribution is __________.</p></li>
-<li><p>The mean of a Bernoulli distribution is __________.</p></li>
-<li><p>The variance of a Bernoulli distribution is __________.</p></li>
-<li><p>A binomial distribution is obtained when a Bernoulli trial is repeated __________ times.</p></li>
-<li><p>In a binomial distribution, the number of trials <span class="math inline">\(n\)</span> is __________.</p></li>
-<li><p>In a binomial distribution, the trials are __________.</p></li>
-<li><p>In a binomial distribution, the probability of success remains __________ from trial to trial.</p></li>
-<li><p>The two parameters of a binomial distribution are __________ and __________.</p></li>
-<li><p>The probability of failure in a binomial distribution is denoted by __________.</p></li>
-<li><p>The mean of a binomial distribution is __________.</p></li>
+<li><p>The probability function of a discrete random variable is called a probability __________ function.</p></li>
+<li><p>The sum of all probabilities in a discrete distribution is __________.</p></li>
+<li><p>The long-run average value of a random variable is its __________ value.</p></li>
+<li><p>A single trial with outcomes coded 0 and 1 follows a __________ distribution.</p></li>
+<li><p>The number of successes in a fixed number of independent Bernoulli trials with constant success probability follows a __________ distribution.</p></li>
+<li><p>The mean of a binomial distribution with parameters <span class="math inline">\(n\)</span> and <span class="math inline">\(p\)</span> is __________.</p></li>
 <li><p>The variance of a binomial distribution is __________.</p></li>
-<li><p>A Poisson distribution is mainly used to model __________ events.</p></li>
-<li><p>The parameter of a Poisson distribution is denoted by __________.</p></li>
-<li><p>In a Poisson distribution, the mean and variance are both equal to __________.</p></li>
-<li><p>The constant <span class="math inline">\(e\)</span> in the Poisson distribution is approximately __________.</p></li>
-<li><p>In fitting a binomial distribution, the probability of success is estimated as __________.</p></li>
-<li><p>In fitting a Poisson distribution, the parameter <span class="math inline">\(\lambda\)</span> is estimated as the observed __________.</p></li>
-<li><p>The expected frequency is obtained by multiplying the probability by the total __________.</p></li>
-<li><p>A continuous probability distribution is described by a probability __________ function.</p></li>
-<li><p>The probability density function is commonly abbreviated as __________.</p></li>
-<li><p>The probability of a continuous random variable falling within an interval is represented by the __________ under the density curve over that interval.</p></li>
-<li><p>The continuous probability distribution discussed in this chapter is the __________ distribution.</p></li>
-<li><p>The normal distribution is characterized by a __________-shaped curve.</p></li>
-<li><p>In a normal distribution, the mean, median, and mode are __________.</p></li>
-<li><p>A normal distribution is __________ about its mean.</p></li>
-<li><p>A normal distribution is defined by the two parameters __________ and __________.</p></li>
-<li><p>The total area under the normal distribution curve is equal to __________.</p></li>
-<li><p>The standard normal distribution has mean __________ and standard deviation __________.</p></li>
-<li><p>The standard normal distribution is also called the __________ distribution.</p></li>
-<li><p>A standardized value in a normal distribution is called a __________ score.</p></li>
-<li><p>The formula used to convert a normal variable into a standard normal variable is called __________.</p></li>
-<li><p>Approximately __________% of observations in a normal distribution lie within <span class="math inline">\(\mu\pm\sigma\)</span>.</p></li>
-<li><p>Approximately __________% of observations lie within <span class="math inline">\(\mu\pm2\sigma\)</span>.</p></li>
-<li><p>Approximately __________% of observations lie within <span class="math inline">\(\mu\pm3\sigma\)</span>.</p></li>
-<li><p>The skewness of a normal distribution is __________.</p></li>
-<li><p>The kurtosis of a normal distribution is __________.</p></li>
-<li><p>The quartile deviation of a normal distribution is __________.</p></li>
-<li><p>The mean deviation of a normal distribution is __________.</p></li>
+<li><p>In a Poisson distribution, the mean is equal to the __________.</p></li>
+<li><p>A Poisson random variable takes non-negative __________ values.</p></li>
+<li><p>A continuous distribution is described by a probability __________ function.</p></li>
+<li><p>For a continuous random variable, probability over an interval is the __________ under its density curve.</p></li>
+<li><p>The total area under a probability density curve is __________.</p></li>
+<li><p>The normal distribution is symmetric about its __________.</p></li>
+<li><p>The mean of the standard normal distribution is __________.</p></li>
+<li><p>The variance of the standard normal distribution is __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1646,7 +1707,7 @@ If you’re looking for the probability that a value falls between two Z-scores,
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
 <li><p>A coin is tossed three times and <span class="math inline">\(X\)</span> denotes the number of heads. Construct the probability distribution of <span class="math inline">\(X\)</span>.</p></li>
-<li><p>Find the expected value of a random variable having the given discrete probability distribution.</p></li>
+<li><p>Using the distribution in question 1, calculate the expected number of heads in three independent tosses of an unbiased coin.</p></li>
 <li><p>Find the expected value of <span class="math inline">\(X\)</span> for an unfair die using the probabilities given in the chapter.</p></li>
 <li><p>A biased coin has probability of success <span class="math inline">\(p=0.4\)</span>. Obtain the Bernoulli probability distribution.</p></li>
 <li><p>A coin is tossed 10 times. Find the probability of obtaining exactly 6 heads.</p></li>
@@ -1665,7 +1726,7 @@ If you’re looking for the probability that a value falls between two Z-scores,
 <li><p>State whether the following is a discrete or continuous probability distribution: height of a plant.</p></li>
 <li><p>A random variable follows <span class="math inline">\(N(70,12^2)\)</span>. Find the Z-score corresponding to <span class="math inline">\(X=85\)</span>.</p></li>
 <li><p>A random variable has mean 24 and standard deviation 2. Find the Z-score corresponding to <span class="math inline">\(X=27\)</span>.</p></li>
-<li><p>A mango orchard has mean yield 70 kg and standard deviation 12 kg. Find the probability that a tree produces more than 85 kg.</p></li>
+<li><p>Tree yields in a mango orchard are normally distributed with mean 70 kg and standard deviation 12 kg. Find the probability that a tree produces more than 85 kg.</p></li>
 <li><p>Heights of coconut trees are normally distributed with mean 14.5 m and variance 7. Find the probability that a randomly selected tree has height less than 12 m.</p></li>
 <li><p>A normal distribution has mean 50 and standard deviation 10. Find the proportion of observations between 40 and 60.</p></li>
 <li><p>A normal distribution has mean 100 and standard deviation 15. Find the Z-score for an observation of 130.</p></li>
@@ -1674,9 +1735,9 @@ If you’re looking for the probability that a value falls between two Z-scores,
 </section>
 <section id="important-formulae" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
-<p>Probability distribution:</p>
+<p>Probability mass function for equally likely elementary outcomes:</p>
 <p><span class="math display">\[
-P(X=x)=\frac{\text{Number of times }X\text{ takes value }x}{\text{Total number of possible outcomes}}
+P(X=x)=\frac{\text{Number of outcomes giving }X=x}{\text{Total number of elementary outcomes}}
 \]</span></p>
 <p>Expected value of a discrete random variable:</p>
 <p><span class="math display">\[
@@ -1684,7 +1745,7 @@ E(X)=\sum_x xp(x)
 \]</span></p>
 <p>Expected value of a continuous random variable:</p>
 <p><span class="math display">\[
-E(X)=\int_{-\infty}^{\infty}xp(x)\,dx
+E(X)=\int_{-\infty}^{\infty}xf(x)\,dx
 \]</span></p>
 <p>Probability mass function:</p>
 <p><span class="math display">\[
@@ -1732,7 +1793,7 @@ p=\frac{\bar{x}}{n}
 \]</span></p>
 <p>Poisson probability mass function:</p>
 <p><span class="math display">\[
-p(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\ldots,\infty
+p(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\ldots
 \]</span></p>
 <p>Poisson mean:</p>
 <p><span class="math display">\[
@@ -1768,11 +1829,11 @@ X\sim N(0,1)
 \]</span></p>
 <p>Quartile deviation for a normal distribution:</p>
 <p><span class="math display">\[
-Q.D.=\frac{2}{3}\sigma
+Q.D.\approx0.67449\sigma
 \]</span></p>
 <p>Mean deviation for a normal distribution:</p>
 <p><span class="math display">\[
-M.D.=\frac{4}{5}\sigma
+M.D.=\sigma\sqrt{2/\pi}\approx0.79788\sigma
 \]</span></p>
 </section>
 <section id="quick-revision" class="level3 unnumbered">
@@ -1798,7 +1859,7 @@ M.D.=\frac{4}{5}\sigma
 <li>Binomial variance → <span class="math inline">\(npq\)</span>.</li>
 <li>In fitting a binomial distribution, <span class="math inline">\(p=\frac{\bar{x}}{n}\)</span>.</li>
 <li>Expected frequency → <span class="math inline">\(N\times p(x)\)</span>.</li>
-<li>Poisson distribution → used mainly for rare events.</li>
+<li>Poisson distribution → models counts under appropriate rate and independence assumptions; it also approximates rare binomial successes.</li>
 <li>Poisson parameter → <span class="math inline">\(\lambda\)</span>.</li>
 <li>Poisson mean → <span class="math inline">\(\lambda\)</span>.</li>
 <li>Poisson variance → <span class="math inline">\(\lambda\)</span>.</li>
@@ -1818,7 +1879,7 @@ M.D.=\frac{4}{5}\sigma
 <li>About 99.73% of observations lie within <span class="math inline">\(\mu\pm3\sigma\)</span>.</li>
 <li>Normal distribution has skewness 0.</li>
 <li>Normal distribution has kurtosis 3.</li>
-<li>All odd-order moments are zero for the normal distribution.</li>
+<li>All odd-order central moments are zero for the normal distribution.</li>
 <li>The total area under the normal curve represents total probability.</li>
 <li>The tails of the normal distribution are asymptotic to the horizontal axis.</li>
 <li>A linear combination of independent normal variables is also normally distributed.</li>
@@ -1831,14 +1892,14 @@ M.D.=\frac{4}{5}\sigma
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Random <code>2.</code> Discrete <code>3.</code> Continuous <code>4.</code> Probability mass function <code>5.</code> Long-run <code>6.</code> <span class="math inline">\(E(X)\)</span> <code>7.</code> Integration <code>8.</code> p.m.f. <code>9.</code> <span class="math inline">\(P(X=x)\)</span> <code>10.</code> 1 <code>11.</code> Two <code>12.</code> <span class="math inline">\(p\)</span> <code>13.</code> <span class="math inline">\(1-p\)</span> <code>14.</code> <span class="math inline">\(p\)</span> <code>15.</code> <span class="math inline">\(p\)</span> <code>16.</code> <span class="math inline">\(p(1-p)\)</span> <code>17.</code> <span class="math inline">\(n\)</span> <code>18.</code> Fixed <code>19.</code> Independent <code>20.</code> Constant <code>21.</code> <span class="math inline">\(n\)</span>; <span class="math inline">\(p\)</span> <code>22.</code> <span class="math inline">\(q\)</span> <code>23.</code> <span class="math inline">\(np\)</span> <code>24.</code> <span class="math inline">\(npq\)</span> <code>25.</code> Rare <code>26.</code> <span class="math inline">\(\lambda\)</span> <code>27.</code> <span class="math inline">\(\lambda\)</span> <code>28.</code> 2.71828 <code>29.</code> <span class="math inline">\(\frac{\bar{x}}{n}\)</span> <code>30.</code> Mean <code>31.</code> Frequency <code>32.</code> Density <code>33.</code> p.d.f. <code>34.</code> Area <code>35.</code> Normal <code>36.</code> Bell <code>37.</code> Equal <code>38.</code> Symmetric <code>39.</code> <span class="math inline">\(\mu\)</span>; <span class="math inline">\(\sigma\)</span> <code>40.</code> 1 <code>41.</code> 0; 1 <code>42.</code> Z <code>43.</code> Z <code>44.</code> Standardization <code>45.</code> 68.26 <code>46.</code> 95.44 <code>47.</code> 99.73 <code>48.</code> 0 <code>49.</code> 3 <code>50.</code> <span class="math inline">\(\frac{2}{3}\sigma\)</span> <code>51.</code> <span class="math inline">\(\frac{4}{5}\sigma\)</span></p>
+<p><code>1.</code> Mass <code>2.</code> One <code>3.</code> Expected <code>4.</code> Bernoulli <code>5.</code> Binomial <code>6.</code> <span class="math inline">\(np\)</span> <code>7.</code> <span class="math inline">\(np(1-p)\)</span> <code>8.</code> Variance <code>9.</code> Integer <code>10.</code> Density <code>11.</code> Area <code>12.</code> One <code>13.</code> Mean <code>14.</code> Zero <code>15.</code> One</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
 <li><p>For 3 tosses of an unbiased coin, <span class="math inline">\(X\in\{0,1,2,3\}\)</span> with <span class="math inline">\(P(X=0)=\frac{1}{8}\)</span>, <span class="math inline">\(P(X=1)=\frac{3}{8}\)</span>, <span class="math inline">\(P(X=2)=\frac{3}{8}\)</span>, <span class="math inline">\(P(X=3)=\frac{1}{8}\)</span>.</p></li>
-<li><p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, multiply each value of <span class="math inline">\(X\)</span> by its probability and sum the products to obtain <span class="math inline">\(E(X)\)</span>.</p></li>
+<li><p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a>, <span class="math inline">\(E(X)=0(1/8)+1(3/8)+2(3/8)+3(1/8)=1.5\)</span>.</p></li>
 <li><p>Using <a href="#eq-expdiscrete" class="quarto-xref">Equation&nbsp;<span>11.1</span></a> for the unfair die example in the chapter, <span class="math inline">\(E(X)=0.1+0.2+0.3+0.4+0.5+3=4.5\)</span>.</p></li>
 <li><p>Using <a href="#eq-bernoulli" class="quarto-xref">Equation&nbsp;<span>11.3</span></a> with <span class="math inline">\(p=0.4\)</span>, <span class="math inline">\(q=0.6\)</span>: <span class="math inline">\(P(X=0)=(0.4)^0(0.6)^1=0.6\)</span> and <span class="math inline">\(P(X=1)=(0.4)^1(0.6)^0=0.4\)</span>.</p></li>
 <li><p>Using <a href="#eq-binomial" class="quarto-xref">Equation&nbsp;<span>11.4</span></a> with <span class="math inline">\(n=10\)</span>, <span class="math inline">\(x=6\)</span>, <span class="math inline">\(p=q=\frac{1}{2}\)</span>, <span class="math inline">\(P(X=6)=\binom{10}{6}\left(\frac{1}{2}\right)^{10}=0.2051\)</span>.</p></li>
@@ -1852,13 +1913,13 @@ M.D.=\frac{4}{5}\sigma
 <li><p>From question 12, <span class="math inline">\(P(X\leq2)=e^{-0.5}\left(1+0.5+\frac{0.5^2}{2!}\right)\approx0.9856\)</span>, so <span class="math inline">\(P(X&gt;2)=1-0.9856=0.0144\)</span>.</p></li>
 <li><p>With <span class="math inline">\(\lambda=np=100(0.03)=3\)</span>, using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>, <span class="math inline">\(P(X=0)=e^{-3}\approx0.0498\)</span>.</p></li>
 <li><p>Using <span class="math inline">\(\lambda=3\)</span> from question 14, <span class="math inline">\(P(X=1)=3e^{-3}\approx0.1494\)</span>.</p></li>
-<li><p>The observed mean is <span class="math inline">\(\lambda=\bar{x}=\frac{99}{100}=0.99\)</span>. Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>, the expected frequencies <span class="math inline">\(N\frac{e^{-\lambda}\lambda^x}{x!}\)</span> are 37.2, 36.8, 18.2, 6.0, 1.8, closely matching the observed frequencies.</p></li>
+<li><p>Approximating each observation in the “4 or more” category by 4 gives <span class="math inline">\(\hat\lambda\approx99/100=0.99\)</span>. Using <a href="#eq-poisson" class="quarto-xref">Equation&nbsp;<span>11.5</span></a>, the expected frequencies <span class="math inline">\(N\frac{e^{-\lambda}\lambda^x}{x!}\)</span> are 37.2, 36.8, 18.2, 6.0, 1.8, closely matching the observed frequencies.</p></li>
 <li><p>The number of defective plants is countable, so it is a discrete probability distribution.</p></li>
 <li><p>Plant height can take any value within a range, so it is a continuous probability distribution.</p></li>
 <li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{85-70}{12}=1.25\)</span>.</p></li>
 <li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{27-24}{2}=1.5\)</span>.</p></li>
 <li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{85-70}{12}=1.25\)</span>; from the Z-table <span class="math inline">\(P(z\leq1.25)=0.8944\)</span>, so <span class="math inline">\(P(z&gt;1.25)=1-0.8944=0.1056\)</span>, or 10.56%.</p></li>
-<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{12-14.5}{\sqrt{7}}=-0.9449\)</span>; by symmetry <span class="math inline">\(P(z&lt;-0.9449)=P(z&gt;0.9449)\)</span>, and from the Z-table <span class="math inline">\(P(z\leq0.94)=0.8264\)</span>, so the probability is <span class="math inline">\(1-0.8264=0.1736\)</span>.</p></li>
+<li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=(12-14.5)/\sqrt7\approx-0.9449\)</span>. The probability is approximately 0.1724. Rounding <span class="math inline">\(z\)</span> first to <span class="math inline">\(-0.94\)</span> and using a two-decimal Z-table gives the less precise approximation 0.1736.</p></li>
 <li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{40-50}{10}=-1\)</span> and <span class="math inline">\(z=\frac{60-50}{10}=1\)</span>; approximately 68.26% of observations lie within one standard deviation of the mean, so <span class="math inline">\(P(40&lt;X&lt;60)\approx0.6826\)</span>.</p></li>
 <li><p>Using <a href="#eq-standard" class="quarto-xref">Equation&nbsp;<span>11.7</span></a>, <span class="math inline">\(z=\frac{130-100}{15}=2\)</span>.</p></li>
 <li><p>A Z-score of <span class="math inline">\(-1.5\)</span> means the observation lies 1.5 standard deviations below the mean.</p></li>
@@ -1874,7 +1935,7 @@ M.D.=\frac{4}{5}\sigma
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>De Moivre’s Final Prediction</strong></p>
-<p>Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the <strong>normal distribution</strong>, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true, and he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.</p>
+<p>Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the <strong>normal distribution</strong>, the elegant bell-shaped curve that governs everything from human traits to measurement errors. A frequently repeated anecdote claims that he predicted his death by extrapolating an increase in his sleeping time. This should be treated as an anecdote, not as a verified scientific prediction. He died on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and providing methods for describing uncertainty mathematically.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1894,6 +1955,11 @@ M.D.=\frac{4}{5}\sigma
 
 
 
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-Poisson1837" class="csl-entry" role="listitem">
+Poisson, Siméon Denis. 1837. <em>Recherches Sur La Probabilité Des Jugements En Matière Criminelle Et En Matière Civile</em>. Bachelier. <a href="https://catalogue.bnf.fr/ark:/12148/cb31129269s">https://catalogue.bnf.fr/ark:/12148/cb31129269s</a>.
+</div>
+</div>
 </section>
 </section>
 
@@ -1984,7 +2050,7 @@ M.D.=\frac{4}{5}\sigma
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2327,16 +2393,17 @@ M.D.=\frac{4}{5}\sigma
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

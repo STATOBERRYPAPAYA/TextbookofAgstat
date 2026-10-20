@@ -1,19 +1,21 @@
 # Single factor experiments
 
-Experiments in which only a single factor varies while all others are kept constant are called single-factor experiments. In such experiments, the treatments consist solely of the different levels of the single variable factor. All other factors are maintained uniformly across all experimental units.
+Experiments in which treatments represent the levels of one factor of interest are called single-factor experiments. Other management practices are kept as uniform as practicable, while remaining differences among units may be controlled by blocking or included in experimental error.
 
 **Examples:**
 
-1.  An experiment to find the best nitrogen level for getting a high yield, where 5 different nitrogen levels are tested. Here, the nitrogen levels are the treatments, and all other factors like irrigation, light, and fertility gradient are assumed to be homogeneous in all experimental units (here the plots are the experimental units).
+1.  An experiment to find the best nitrogen level for getting a high yield, where 5 different nitrogen levels are tested. Here, nitrogen levels are the treatments and plots are the experimental units. Irrigation and other management are kept uniform; a fertility gradient, if present, can be controlled by blocking.
 
 2.  An experiment to find the best feed formulation for milk yield in cows from 4 feed formulas. Here, the feed formula is the only factor that varies, with 4 levels. All other factors like breed of cow, age, and so on are kept constant.
 
 ## Completely Randomized Design (CRD){#sec-crd}  
 
 Completely Randomized Design is the basic single factor design. In this
-design the treatments are assigned completely at random so that each
-experimental unit has the same chance of receiving any one treatment.
-CRD is only appropriate for experiments with homogeneous experimental
+design the treatments are assigned completely at random, subject to the
+planned treatment counts. With equal replication, every unit has the same
+probability of receiving each treatment; with unequal replication, the
+probability for treatment $i$ is $r_i/n$.
+CRD is most appropriate for experiments with homogeneous experimental
 units, such as laboratory and green house experiments, where
 environmental effects are relatively easy to control. For field
 experiments, where there is generally large variation among experimental
@@ -22,8 +24,7 @@ plots, CRD is rarely used.
 CRD provides a layout for conducting experiments, when experimental
 units are homogeneous. Only two basic principles of design,
 randomization @sec-rand and replication @sec-rep are followed in
-CRD. Local control @sec-local is not required as all the experimental
-units are homogeneous. Treatments can have unequal replications in CRD.
+CRD. Blocking is not used. Treatments can have unequal replications in CRD.
 
 ### Randomization procedure {#sec-random1}
 
@@ -31,9 +32,9 @@ Consider an experiment involving four treatments A, B, C, D in CRD. Each treatme
 
 1.  Determine the total number of experimental units ($n$) as the product of the number of treatments ($v$) and the number of replications ($r$); that is, $n = r\ \times v$. For our example, $n = 5 \times 4 = 20$
 
-2.  Assign a unit number to each experimental units in any convenient manner; for example, consecutively from 1 to n. For our example, the unit numbers 1, 2,\... , 20 are assigned to the 20 experimental units as shown in Figure @fig-crdnumbered  
+2.  Assign a unit number to each experimental units in any convenient manner; for example, consecutively from 1 to n. For our example, the unit numbers 1, 2,\... , 20 are assigned to the 20 experimental units as shown in @fig-crdnumbered  
 
-3.  Assign the treatments to the experimental plots by using any randomization schemes. Here we explain a simple randomization scheme in section @sec-random.  
+3.  Assign the treatments to the experimental plots by using any randomization schemes. Here we explain a simple randomization scheme in @sec-random.  
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-crdnumbered
@@ -45,7 +46,7 @@ knitr::include_graphics("images/singlefactor/crdnumbered.svg")
 
 1.  Prepare $n$ identical pieces of paper and divide them into $v$ groups, each group with $r$ pieces of paper. Label each piece of paper of the same group with the same letter (or number) corresponding to a treatment. Uniformly fold each of the $n$ labeled pieces of paper, mix them thoroughly, and place them in a container. For our example, there should be 20 pieces of paper, five each with treatments A, B, C, and D appearing on them.
 
-2.  Draw one piece of paper at a time, without replacement and with constant shaking of the container after each draw to mix its content. For our example, the label and the corresponding sequence in which each piece of paper is drawn. The sequence number can be considered as the experimental unit number to which the treatment is to be assigned.  
+2.  Draw one piece of paper at a time without replacement, mixing the remaining lots after each draw. Record the treatment label and its draw number. The draw number identifies the experimental unit receiving that treatment. Continue until all 20 units have been allocated; the treatment counts remain five each.
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| label: tbl-sequence
@@ -70,7 +71,7 @@ kbl(dt, col.names = NULL, booktabs = TRUE, align = "c") %>%
 
 ### Layout of CRD
 
-After allotting the treatment according to the randomization procedure explained in section @sec-random1. The final layout will look like in the figure @fig-layout.  
+After allotting the treatment according to the randomization procedure explained in @sec-random1. The final layout will look like in the @fig-layout.  
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-layout
@@ -80,7 +81,7 @@ knitr::include_graphics("images/singlefactor/layoutcrd.svg")
 
 ### Statistical model for CRD  
 
-Consider a CRD with *v* treatments with *r* replications. Statistical model for CRD is same as that of one-way ANOVA (@sec-onewaymodel).  
+Consider a CRD with *v* treatments and $r_i$ replications for treatment $i$, with $n=\sum_{i=1}^v r_i$. Its statistical model is the same as that of one-way ANOVA (@sec-onewaymodel).
 $$Y_{\text{ij}} = \mu + \tau_{i} + e_{\text{ij}}$$  
 Where *i* = 1,2, ..., *v* and *j* =1,2, ..., *r*~i~. $Y_{\text{ij}}$ is the observed value of $i^{\text{th}}$
 treatment from $j^{\text{th}}$ replication, $\tau_{i}$ is the effect of $i^{\text{th}}$ treatment. $\mu$ is the general
@@ -89,7 +90,7 @@ effects.$e_{ij}$ $\sim iid\ N(0,\sigma^{2})$
 
 ### Analysis of CRD  
 
-Analysis of CRD is same as that explained in section @sec-onewaycalc of one-way ANOVA.   
+Analysis of CRD is same as that explained in @sec-onewaycalc of one-way ANOVA.   
 
 ::: {.callout-note title="Note"}
 Unequal replication (*i*.*e*. each treatment can have a different number of replications) is possible in CRD. So while calculating the treatment sum of squares, each treatment total is squared and divided by its corresponding replication, and then the sum is taken. If the replication is the same for all treatments, the treatment sum of squares is obtained by taking the sum of the squares of the treatment totals and dividing by the common replication number.
@@ -116,12 +117,12 @@ dt <- data.frame(
   SS = c(
     "$\\text{SST} = \\sum_{i=1}^{v}\\dfrac{T_i^2}{r_i} - \\text{C.F.}$",
     "$\\text{Total SS} - \\text{SST}$",
-    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r} y_{ij}^2 - \\text{C.F.}$"
+    "$\\sum_{i=1}^{v}\\sum_{j=1}^{r_i} y_{ij}^2 - \\text{C.F.}$"
   ),
   
   MSS = c(
     "$\\text{MST}=\\dfrac{\\text{SST}}{v-1}$",
-    "$\\text{MSE}=\\dfrac{\\text{SSE}}{v(r-1)}$",
+    "$\\text{MSE}=\\dfrac{\\text{SSE}}{n-v}$",
     ""
   ),
   
@@ -162,8 +163,10 @@ kbl(
   )
 ```  
 
-#### Post hoc test (LSD) {#sec-postcrd}  
-If the null hypothesis is rejected in ANOVA; we proceed to post-hoc test explained in section @sec-lsd. Fisher's Least significant difference (LSD) test explained in section @sec-lsd is the commonly employed test in agricultural experiments.  
+#Here **Latin Square Design** is a design, whereas **least significant difference** is a pairwise comparison procedure. To avoid confusing the two uses of LSD, the comparison threshold below is called the **critical difference (CD)**.
+
+### Pairwise comparison using the critical difference (CD) {#sec-postcrd}  
+If the null hypothesis is rejected in ANOVA; we proceed to post-hoc test explained in @sec-lsd. Fisher's Least significant difference (LSD) test explained in @sec-lsd is the commonly employed test in agricultural experiments.  
 Arrange the treatment means in descending order. Critical difference (CD) is calculated for each treatment pair $T_{i},\ T_{j}$ using the following formula.
 
 $$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\text{MSE}\left( \frac{1}{r_{i}} + \frac{1}{r_{j}} \right)}$$
@@ -175,22 +178,21 @@ $$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{r}}$
 (for CRD with equal replication)
 
 Here $t_{\left( \frac{\alpha}{2},\ \ \ error\ df \right)}$ denotes the critical value of Student's t for a two tailed test at α level of significance and error degrees of freedom. $r_{i}$ and $r_{j}$ are replications of $T_{i},\ T_{j}$ respectively. If the difference of any two treatment means is greater
-than the critical difference, they are significantly different. If the difference of any two treatment means is less than $\text{C.D}$. they are said to be on par. (*i*.*e*., there is no any statistically significant difference). Those treatments which are at par is given same
+than the critical difference, they are significantly different. If the difference of any two treatment means is less than $\text{C.D}$. they are said to be on par. (*i*.*e*., there is no statistically significant difference). Treatments that are at par are given common
 symbols or letters, such that treatment means without any common letters or symbols are significantly different at corresponding level of significance ($\alpha$).  
 
 ### Replications in CRD {#sec-replical}
 
-An experimenter is free to choose any number of replications in the experiment. The precision in estimating experimental error variance increases as the number of replications increases. But the design should be such that the number of replications should be optimum, since increasing the replications will increase the experiment cost. So, there
-is a rule of thumb that says, error degrees of freedom should be at least 12 to keep type II error in check. One can easily find the number of replications required in a design by using the equation for error degrees of freedom of that design.  
+Replication is chosen before the experiment, balancing precision and cost. It should be planned using the smallest important treatment difference, an estimate of error variance, the significance level, and the required power. A traditional rule of thumb is to aim for at least 12 error degrees of freedom. This is a planning guideline, not a condition for a valid design or a guarantee of adequate power.
 
-It is assumed that *edf* $\geq 12$. For CRD it is given by 
+If this guideline is adopted for an equally replicated CRD, it gives
 
 $$n - v = rv - v = v\left( r - 1 \right) \geq 12$$ {#eq-crdrep}  
 
 where $v$ is the number of treatments, $r$ is the replication and $n$ is the total number of experimental units, $n = vr$.  
 
 ::: {#exm-ct42}
-You have 5 treatments; you are planning to conduct the experiment in CRD. Find the minimum number of replications required.
+You have 5 treatments and are planning a CRD. Using the guideline of at least 12 error degrees of freedom, find the minimum equal replication.
 
 **Solution**
 
@@ -198,11 +200,11 @@ from @eq-crdrep, since v = 5, *edf* $= 5\left( r - 1 \right) \geq 12$
 
 $r \geq 3.4$, since $r$ cannot be a fraction, $r =$ 4
 
-The minimum number of replications required is 4.
+Four replications meet this guideline; a power calculation may require more.
 :::
 
-::: {.callout-note title="Why is the minimum error degrees of freedom for a design taken as 12?"}
-The error degrees of freedom play an important role in determining the critical value of F. As the error degrees of freedom (the denominator degrees of freedom) decrease, the critical value of F increases, making it more difficult to reject the null hypothesis. Consequently, the risk of a Type II error (β) increases, as a true treatment difference may go undetected unless the observed treatment effect is sufficiently large. As the denominator degrees of freedom increase, the critical value of F decreases and becomes relatively stable beyond about 10–12 degrees of freedom. Therefore, 12 error degrees of freedom is commonly taken as a practical minimum when determining the number of replications, providing a reasonable balance between statistical precision and experimental resources.  
+::: {.callout-note title="Interpreting the 12 error-df guideline"}
+More error degrees of freedom generally improve estimation of error variance. Under normal independent errors, the relative standard error of MSE is $\sqrt{2/edf}$, about 41% even at $edf=12$. For fixed numerator df, the upper critical F value decreases as denominator df increases, but there is no universal threshold at 12. Power also depends on treatment differences, error variance and allocation. Designs with fewer error df can be analysed when the model is estimable; their uncertainty may be large.
 
 ![Critical value of F against error degrees of freedom, showing stabilization beyond about 12 degrees of freedom.](images/singlefactor/fcritical.svg){#fig-fcritical fig-align="center" width="80%" style="text-align:center;"}
 :::  
@@ -276,9 +278,9 @@ kbl(dt, booktabs = TRUE, align = "c", escape = FALSE) %>%
 
 Since the F value calculated is greater than table value of F, we can reject the null hypothesis and conclude that there is a significant difference between at least a pair of treatments. So in order to find which treatments are significantly different, we perform Fisher's LSD test.
 
-$$\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{2 \times \text{MSE}}{r}} = 2.131\sqrt{\frac{2(6.350)}{4}} = 2.131 \times 1.7819 = 3.7972$$
+$$\text{CD} = t_{\frac{\alpha}{2}}\sqrt{\frac{2 \times \text{MSE}}{r}} = 2.131\sqrt{\frac{2(6.350)}{4}} = 2.131 \times 1.7819 \approx 3.7972$$
 
-$t_{0.025\text{ at }15 \text{ edf}} = 2.131$ (Just look for the critical value of *t* for a two tailed test at α = 0.05 in the statistical table, see @tbl-ttable in Appendix 4.
+$t_{0.025\text{ at }15 \text{ edf}} = 2.131$ (Just look for the critical value of *t* for a two tailed test at α = 0.05 in the statistical table, see @tbl-ttable in @sec-appendix-4.
 
 It is shown as $t_{\frac{\alpha}{2}}$, since it is a two tailed test in the one side of the t-distribution curve the probability will be $\frac{\alpha}{2}$, so that combined probability is α.)
 
@@ -306,7 +308,7 @@ In the above table we can see that the difference between the means of $V_{2}$ a
 
 : Grouping of treatment means using symbols {#tbl-crdgroupsymbols .bordered}
 
-So, in our example we can conclude that $V_{2}$ is the best variety because it is having the highest mean and is significantly different from others.
+In this experiment, $V_2$ has the highest mean and exceeds the other varieties under protected LSD. This conclusion concerns the response and conditions studied; it does not establish universal superiority.
 
 ::: {.callout-important title="Note"}
 In some cases, more than one alphabet can appear against a treatment mean, see the hypothetical example below.
@@ -347,7 +349,7 @@ When a lettering like this appears, treatments having common alphabets are not s
 
 ### Disadvantages of a CRD
 
-1.  Not suitable for field experiments.
+1.  Often inefficient for heterogeneous fields; it can be used when experimental units are sufficiently homogeneous.
 
 2.  Relatively low accuracy due to lack of local control. Completely homogeneous experimental units are practically difficult in many situations.  
 
@@ -374,7 +376,7 @@ Two important factors to be considered for blocking
 
 -   The selection of the source of variability to be used as the basis for blocking, in field experiments usually fertility gradient or productivity gradient is used as the identified source of variability.
 
--   Proper selection of the block shape and orientation. For example, when the gradient is unidirectional, use long and narrow blocks. Use square blocks for strong fertility gradient in both directions. An experimenter should use his common sense to identify the shape and orientation of the block after examining the field conditions, such that plots in a block are homogeneous.
+-   Proper selection of block shape and orientation. With a unidirectional gradient, narrow blocks with their long axis perpendicular to the gradient often keep within-block variation small. With variation in two directions, examine the field map and consider compact blocks or a row-column design. A square block alone does not control two separate gradients.
 
 ### Randomization in RCBD {#sec-rcbdrandom}
 
@@ -388,7 +390,7 @@ STEP 1. Divide the experimental area into $r$ equal blocks, where $r$ is the num
 knitr::include_graphics("images/singlefactor/rcbd1.png")
 ``` 
 
-STEP 2. Subdivide each block into $v$ experimental plots, where $v$ is the number of treatments. Number the $v$ plots consecutively from 1 to $v$, and assign $v$ treatments at random to the $v$ plots following the randomization scheme for the CRD described in Section @sec-random. In our example each of the 5 blocks are divided into 4 plots. Plots are numbered 1 to 4 in each block. Now for each block, paper lots of 1 to 4 is prepared. Treatment names are written in order and plot number from each lot is recorded in order as shown below.
+STEP 2. Subdivide each block into $v$ experimental plots, where $v$ is the number of treatments. Number the $v$ plots consecutively from 1 to $v$, and assign $v$ treatments at random to the $v$ plots following the randomization scheme for the CRD described in @sec-random. In our example each of the 5 blocks are divided into 4 plots. Plots are numbered 1 to 4 in each block. Now for each block, paper lots of 1 to 4 is prepared. Treatment names are written in order and plot number from each lot is recorded in order as shown below.
 
 | Treatments | A | B | C | D |
 |:----------:|:-:|:-:|:-:|:-:|
@@ -396,7 +398,7 @@ STEP 2. Subdivide each block into $v$ experimental plots, where $v$ is the numbe
 
 : Plot numbers drawn for each treatment in a single block {#tbl-crdlotdraw .bordered}
 
-STEP 3. All the treatments are allotted to the randomly selected plots. Step 2 is repeated in all blocks.  
+STEP 3. All treatments are allotted to the selected plots. Repeat Step 2 with a fresh, independent draw in every block. Do not copy the first block's treatment order into the other blocks.
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-rcbd2
@@ -408,7 +410,7 @@ knitr::include_graphics("images/singlefactor/rcbd2.png")
 
 ### Layout of RCBD
 
-In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in section @sec-rcbdrandom. The final layout will look like in the figure @fig-rcbd3.  
+In RCBD each block will have all the treatments and each treatment appear in a block exactly once. After allotting the treatment according to the randomization procedure explained in @sec-rcbdrandom. The final layout will look like in the @fig-rcbd3.  
 
 ::: {.callout-important title="Note"}
 In RCBD every treatment will have the same number of replications (all treatments are equally replicated, say, $r$ times). So we need a total of $v \times r$ plots for conducting that experiment. Each of $r$ blocks will contain $v$ plots. So in this design, the number of blocks = number of replications of the treatments = $r$, and number of plots within a block = number of treatments = $v$.
@@ -424,15 +426,17 @@ knitr::include_graphics("images/singlefactor/rcbd3.png")
 
 ### Statistical Model for RCBD
 
-Consider a RCBD with $v$ treatments with $r$ replications (Blocks). Statistical model for RCBD is same as that of two-way ANOVA described in section @sec-twowaymodel.  
+Consider a RCBD with $v$ treatments with $r$ replications (Blocks). Statistical model for RCBD is same as that of two-way ANOVA described in @sec-twowaymodel.  
 
 $$Y_{\text{ij}} = \mu + \tau_{i} +  \gamma_{j}+ e_{\text{ij}}$$  
 where, *i* = 1,2, ..., *v* and *j* =1,2, ..., *r*. $Y_{\text{ij}}$ is the observed value of response under $i^{\text{th}}$ treatment and $j^{\text{th}}$ block, $\tau_{i}$ is the effect of $i^{\text{th}}$ factor,$\gamma_{j}$ is the effect of $j^{\text{th}}$ block . $\mu$ is the general
 effect which is common for all treatments. $e_{\text{ij}}$ is the error
 effects.$e_{ij}$ $\sim iid\ N(0,\sigma^{2})$  
 
+The RCBD model assumes additive treatment and block effects. With one observation per treatment in each block, treatment-by-block interaction cannot be estimated separately from error. Residual plots should be examined for unequal variance, outliers, trends and departures from the assumed model.
+
 ### Analysis of RCBD  
-Analysis of RCBD is same as that explained in section @sec-twowaycalc of two-way ANOVA.
+Analysis of RCBD is same as that explained in @sec-twowaycalc of two-way ANOVA.
 
 Observation from $v$ treatments in $r$ blocks is arranged as shown below.  
 
@@ -447,7 +451,7 @@ Observation from $v$ treatments in $r$ blocks is arranged as shown below.
 
 : Two-way arrangement of observations in RCBD {#tbl-rcbd4}
 
-The ANOVA table, following the calculations as in section @sec-twowaycalc, is
+The ANOVA table, following the calculations as in @sec-twowaycalc, is
 
 ```{r tbl-rcbd5,echo=FALSE, warning=FALSE, message=FALSE, results='asis'}
 #| tbl-cap: "ANOVA table of RCBD"
@@ -514,32 +518,32 @@ kbl(
 
 where $\text{C.F} = \dfrac{G^2}{rv}$.
 
-$F_{1} \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_{2} \sim F_{(r-1),\ (v-1)(r-1)}$ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value given in @tbl-ftable of Appendix 5.
+$F_{1} \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_{2} \sim F_{(r-1),\ (v-1)(r-1)}$ are two F values, one for treatment and one for blocks respectively. Decisions on the null hypothesis are made by comparing the corresponding F value to the table value given in @tbl-ftable of @sec-appendix-5.
 
 ::: {.callout-important title="Note"}
-What if $F_{2}$ is not significant? If $F_{2}$ is not significant, it indicates that there is no significant difference between blocks, meaning blocking is not effective. Blocking is considered effective in reducing the experimental error only if $F_{2}$ is significant.
+What if $F_{2}$ is not significant? A non-significant block F-test means that the data provide insufficient evidence of differences between blocks; it does not prove that blocking was ineffective. Blocking should be chosen from prior knowledge of the experimental material. Its gain in precision depends on the variation removed and the error degrees of freedom used, rather than solely on the significance of the block test.
 :::  
 
 ### Post-hoc test in RCBD  
 
-If the null hypothesis for treatments is rejected in ANOVA; we proceed to post-hoc test explained in section @sec-lsd. Arrange the treatment means in descending order. Critical difference (CD) or LSD (Least Significant Difference) is calculated for each treatment pair $T_{i},\ T_{j}$ using the following formula.  
+If the null hypothesis for treatments is rejected in ANOVA; we proceed to post-hoc test explained in @sec-lsd. Arrange the treatment means in descending order. Critical difference (CD) or LSD (Least Significant Difference) is calculated for each treatment pair $T_{i},\ T_{j}$ using the following formula.  
 
 $$CD = \ t_{\frac{\alpha}{2},edf}.\sqrt{\frac{2\ MSE}{r}}$$
 where, $\text{MSE}$ is the Mean Square Error from ANOVA.
 $t_{\frac{\alpha}{2},edf}$ is the critical value of two tailed student's t distribution at $\alpha$ level of significance and error degrees of
 freedom. $r$ is the number of blocks/replication.  
-Procedure for grouping using symbols is same as that of CRD explained in section @sec-postcrd.  
+Procedure for grouping using symbols is same as that of CRD explained in @sec-postcrd.  
 
 ### Replications in RCBD  
 
-As explained in section @sec-replical number of replications in RCBD is found out using the equation of error degrees of freedom (*edf*). It is assumed that *edf* $\geq 12$. For RCBD 
+As explained in @sec-replical, power and precision should guide replication. If the traditional guideline of at least 12 error degrees of freedom is used, an RCBD satisfies
 
 $$(v - 1) (r-1) \geq 12$$ {#eq-rcbdrep}  
 
 where $v$ is the number of treatments and $r$ is the replication. 
 
 ::: {#exm-ct44}
-You have 4 treatments; you are planning to conduct the experiment in RCBD. Find the minimum number of replications required.
+You have 4 treatments and are planning an RCBD. Using the guideline of at least 12 error degrees of freedom, find the minimum number of blocks.
 
 **Solution**
 
@@ -549,7 +553,7 @@ Since $v$ = 4, *edf* $= 3\left( r - 1 \right) \geq 12$
 
 $\implies r \geq 5$, minimum replication required is 5
 
-The number of replications required is 5.
+Five blocks meet this error-df guideline. This does not establish adequate power for a particular treatment difference.
 :::
 
 ::: {#exm-ct46}
@@ -632,7 +636,7 @@ kbl(dt, escape = FALSE, booktabs = TRUE, align = "c") %>%
   column_spec(1, bold = TRUE)
 ```
 
-Since $F_1$ (treatments) and $F_2$ (blocks) both exceed their table values, treatments differ significantly, and blocking has been effective in reducing the experimental error.
+Both treatment and block F values exceed their critical values. The treatment means differ significantly. There is evidence of block differences; the efficiency of blocking also depends on the residual variation and degrees of freedom, as discussed above.
 
 $$CD = t_{\frac{\alpha}{2},edf}\sqrt{\frac{2\,MSE}{r}} = 2.179\sqrt{\frac{2 \times 3.33}{5}} = 2.516$$
 
@@ -647,7 +651,7 @@ Treatment means, in descending order, are C = 51.2, B = 47.2, D = 45.2, A = 41.2
 
 : Grouping of treatment means for the fertilizer trial {#tbl-rcbdgrouping .bordered}
 
-Since $C-B = 4.0$ and $D-A = 4.0$, both exceed the CD of 2.516, so C is significantly superior to all other treatments, and A gives the significantly lowest yield. B and D do not differ significantly from each other ($B-D = 2.0 < CD$), so treatment C is recommended as the best-performing fertilizer.
+Since $C-B = 4.0$ and $D-A = 4.0$, both exceed the CD of 2.516, so C is significantly superior to all other treatments, and A gives the significantly lowest yield. B and D do not differ significantly from each other ($B-D = 2.0 < CD$), so C has the highest mean yield and exceeds the other treatments in this trial under protected LSD. A practical recommendation also needs costs, relevant responses and performance across the intended environments.
 :::
 
 
@@ -666,13 +670,12 @@ technique.
 
 ### Disadvantages of RCBD
 
-1.  RCBD may give misleading results if blocks are not homogeneous.
+1.  Blocks that fail to capture important variation may provide little precision gain. Valid inference still depends on the randomization and error-model assumptions.
 
 2.  RCBD is not suitable for large number of treatments because in that case the block size will increase and it may not be possible to keep large blocks
 homogeneous.  
 
-3. If the data on more than two plots is missing the statistical analysis becomes
-tedious and complicated.
+3. Missing plots remove the simple orthogonal structure. A model fitted to the observed data is preferable to extending complete-data formulas without adjustment.
 
 ## Latin Square Design (LSD) 
 
@@ -695,11 +698,11 @@ A Latin square of $v$ treatments (usually called side $v$) is an arrangement of 
 
 Latin squares of different orders are provided in standard statistical tables for use in experimental design. When $v$ treatments are to be compared, a Latin square of order $v$, that is, a $v\times v$ square, is required. The order of the square is therefore determined directly by the number of treatments in the experiment. For example, an experiment involving four treatments requires a $4\times4$ Latin square, whereas an experiment involving five treatments requires a $5\times5$ Latin square.
 
-Standard Latin squares suitable for experimental use are given in the tables of [@fisher1935statistical]. In these tables, the Latin squares are presented in a standard form, with the treatment symbols arranged in a specified order, usually alphabetically, in the first row. Several standard squares may be available for a particular order, as illustrated in @fig-strdlattice. These standard arrangements serve only as the starting point for constructing the experimental layout; they should not be used directly without randomization.
+Standard Latin squares suitable for experimental use are given in the tables of [@fisher1938statistical]. In these tables, the Latin squares are presented in a standard form, with the treatment symbols arranged in a specified order, usually alphabetically, in the first row. Several standard squares may be available for a particular order, as illustrated in @fig-strdlattice. These standard arrangements serve only as the starting point for constructing the experimental layout; they should not be used directly without randomization.
 
 For a given number of treatments ($v$), select an appropriate standard Latin square of order ($v$) from the statistical tables. The selected square is then randomized so that the treatment allocation is not influenced by the initial systematic arrangement of the standard square. Randomization is carried out by independently permuting the rows, columns, and treatment symbols according to the prescribed procedure. The resulting randomized Latin square provides the treatment allocation to the experimental units, with each treatment occurring exactly once in every row and once in every column. The randomization procedure is described in the following steps.
 
-![Standard Latin squares of orders 4 and 5 from the Fisher and Yates (1935) statistical tables.](images/singlefactor/stdlatin.svg){#fig-strdlattice width="500px" height="600px"}  
+![Standard Latin squares of orders 4 and 5 from the Fisher and Yates statistical tables (first published in 1938).](images/singlefactor/stdlatin.svg){#fig-strdlattice width="500px" height="600px"}
 
 Let $v = 6$. A Latin square for 6 treatments, denoted by *A*, *B*, *C*, *D*, *E* and *F*, can be constructed by placing the symbols in alphabetical order in the first row and generating each subsequent row by a symmetric cyclic shift of the one above it.  
 
@@ -719,7 +722,7 @@ Randomization of a Latin square design involves three steps:
 
 For $v$ treatments, select a Latin square of order $v$ at random from the statistical tables, and then randomize it through the following steps.
 
-*Row randomization*: Number the rows of the selected square from 1 to $v$. Keeping the first row fixed, rearrange the remaining rows in a random order using random numbers. This produces a new square, as shown in @fig-lsdlayout1.
+*Row randomization*: Number the rows of the selected square from 1 to $v$ and randomly permute all row positions. The first row is eligible to move like any other row. A permutation may happen to leave it in place, as in the illustrated arrangement in @fig-lsdlayout1.
 
 ```{r echo=FALSE, out.width="90%", fig.align='center'}
 #| label: fig-lsdlayout1
@@ -739,7 +742,7 @@ knitr::include_graphics("images/singlefactor/lsd_layout2.svg")
 
 ### Layout
 
-The fully randomized square obtained at the end of the randomization procedure, shown in @fig-lsdlayout2, gives the field layout of the design. Each row and each column of the square corresponds to a physical row and column of plots in the field, and each cell gives the treatment to be applied to that plot. Since every treatment appears exactly once in each row and exactly once in each column, variation in both the row and column directions is controlled simultaneously.
+After the row and column permutations illustrated in @fig-lsdlayout2, randomly assign the actual treatments to the letters. Record that mapping with the field layout. Each row and column corresponds to a physical row and column of plots; each cell receives the treatment mapped to its letter. Do not shuffle cells independently, because that would destroy the Latin-square restriction.
 
 ### Statistical model for LSD
 
@@ -750,6 +753,8 @@ $$Y_{\text{ijk}} = \mu + \tau_{i} + R_{j}+ C_{k}+e_{\text{ijk}}$$ {#eq-lsdmodel}
 where $i,j,k = 1,2,3,...\ v$
 
 *i.e.,* the response (yield $Y_{ijk}$) of each plot = a general mean effect ($\mu$) + effect due to the $i^{th}$ treatment ($\tau_{i}$) + effect of the $j^{th}$ row ($R_{j}$) + effect due to the $k^{th}$ column ($C_{k}$) + random error term associated with each plot ($e_{ijk}$).
+
+There are $v^2$ observed plots, not $v^3$ independent observations: the square determines which treatment occurs at each row-column intersection. The model assumes additive treatment, row and column effects, with independent normal errors of common variance for the usual exact F tests. Treatment-by-row, treatment-by-column and row-by-column interactions cannot be estimated separately in a single square.
 
 ### Analysis
 
@@ -838,22 +843,22 @@ kbl(
 
 All these computed F values are compared with the F table values for $(v-1)$ and $(v-1)(v-2)$ degrees of freedom.
 
-### Post hoc test (LSD)
+### Pairwise comparison using the critical difference (CD)
 
-If the treatments turn out to be significant, then the means are compared pairwise using Fisher's Least Significant Difference (LSD) test, as explained in section @sec-lsd.
+If the treatments turn out to be significant, then the means are compared pairwise using Fisher's Least Significant Difference (LSD) test, as explained in @sec-lsd.
 
 $$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}}$$ {#eq-lsdcd}
 
-Here $t_{\left( \frac{\alpha}{2},\ error\ df \right)}$ denotes the critical value of Student's *t* for a two tailed test at $\alpha$ level of significance and error degrees of freedom. If the difference between any two treatment means is greater than the critical difference, they are significantly different; otherwise they are said to be on par. Procedure for grouping using letters or symbols is the same as that of CRD, explained in section @sec-postcrd.
+Here $t_{\left( \frac{\alpha}{2},\ error\ df \right)}$ denotes the critical value of Student's *t* for a two tailed test at $\alpha$ level of significance and error degrees of freedom. If the difference between any two treatment means is greater than the critical difference, they are significantly different; otherwise they are said to be on par. Procedure for grouping using letters or symbols is the same as that of CRD, explained in @sec-postcrd.
 
 ### Replications in LSD
 
-Unlike CRD and RCBD, the number of replications in LSD is not a free choice, since the design requires the number of rows, columns, and treatments to all equal $v$; each treatment is automatically replicated $v$ times, once in each row and once in each column. So instead of solving for the number of replications, the minimum number of treatments $v$ required is found using the equation for error degrees of freedom (*edf*). It is assumed that *edf* $\geq 12$. For LSD
+In a single Latin square, each of the $v$ treatments is replicated $v$ times. The treatment set is determined by the scientific question and should not be enlarged merely to obtain more error degrees of freedom. If the traditional 12 error-df guideline is applied to one square, it gives
 
 $$(v-1)(v-2) \geq 12$$ {#eq-lsdrep}
 
 ::: {#exm-lsdrep}
-Find the minimum number of treatments $v$ (and hence replications) required for an experiment conducted in LSD.
+Find the smallest order $v$ of a single Latin square that meets the guideline of at least 12 error degrees of freedom.
 
 **Solution**
 
@@ -863,7 +868,7 @@ Trying $v = 4$: $(3)(2) = 6 < 12$, not sufficient.
 
 Trying $v = 5$: $(4)(3) = 12 \geq 12$, sufficient.
 
-The minimum number of treatments (and replications) required is 5.
+The smallest order meeting this guideline is 5. Squares of orders 3 and 4 are valid but have only 2 and 6 error df. If more replication is needed for a fixed treatment set, consider replicated squares or another suitable design.
 :::  
 
 ::: {#exm-ct45}
@@ -998,7 +1003,19 @@ Since the F cal is greater than the F table value, all the null hypotheses are r
 
 $$C.D. = t_{\left( \frac{\alpha}{2},\ error\ df \right)}\sqrt{\frac{2\,MSE}{v}} = 2.18\sqrt{\frac{2 \times 13.51}{5}} = 5.07$$
 
-Mean of treatment D is maximum which is statistically at par with A. Mean of E is minimum and statistically at par with C.
+The grouping below uses CD = 5.07. Treatments sharing a letter do not differ significantly under this comparison; those with no letter in common do.
+
+| Treatment | Mean | Grouping |
+|:---:|:---:|:---:|
+| D | 42.0 | a |
+| A | 37.6 | ab |
+| B | 34.2 | b |
+| C | 28.4 | c |
+| E | 23.6 | c |
+
+: Treatment grouping for the Latin-square example {.bordered}
+
+D has the highest sample mean but does not differ significantly from A; A and B also share a letter, although D and B differ. Non-significance is not transitive.
 :::  
 
 ### Advantages of LSD
@@ -1007,10 +1024,12 @@ LSD is efficient when there are trends in fertility in two perpendicular directi
 
 ### Disadvantages of LSD
 
-In LSD there is no restriction like number of replications = number of treatments, as required in RCBD; the number of replications is instead fixed to be equal to the number of treatments $v$. The error degrees of freedom in this design is $(v-1)(v-2)$. For a number of treatments like $v$ = 2, 3 and 4, this value is 0, 2 and 6 respectively (*i.e.,* very small, hence we cannot carry out the experiment as such for these values of $v$).
+In a Latin square, the number of replications per treatment is fixed to equal the number of treatments $v$. In an RCBD, the number of complete blocks can be chosen independently of the number of treatments. The error degrees of freedom in this design is $(v-1)(v-2)$. For a number of treatments like $v$ = 2, 3 and 4, this value is 0, 2 and 6 respectively (*i.e.,* zero or small). A single square of order 2 has no error degrees of freedom; squares of orders 3 and 4 can be analysed but provide limited precision for estimating error.
 
 Similarly when $v>10$ the total number of plots required is $v^2 > 100$. So there will be difficulty in getting a large number of homogeneous plots. So LSD is commonly used for 5 to 10 treatments only.
 
+
+The designs in this chapter provide alternative ways of assigning a single set of treatments. In the next chapter, treatments are formed by combining levels of two or more factors. A factorial treatment structure can be used within a CRD or an RCBD; it is not a replacement for the randomization design.
 
 ## Chapter Summary
 
@@ -1018,81 +1037,31 @@ Similarly when $v>10$ the total number of plots required is $v^2 > 100$. So ther
 
 Answers are given at the end of the chapter.
 
-1.  Experiments in which only a single factor varies while all others are kept constant are called __________ experiments.
+1. The full form of CRD is Completely Randomized __________.
 
-2.  In CRD, treatments are assigned to experimental units __________.
+2. CRD is most suitable when experimental units are relatively __________.
 
-3.  CRD requires only the two basic principles of __________ and replication.
+3. The error degrees of freedom in a CRD with $N$ observations and $v$ treatments are __________.
 
-4.  __________ is not required in CRD since all experimental units are homogeneous.
+4. In an RCBD, each block contains every treatment exactly __________.
 
-5.  CRD is suitable for experiments with __________ experimental units, such as laboratory or greenhouse experiments.
+5. In an RCBD, treatments are randomized independently within each __________.
 
-6.  In CRD, treatments can have __________ replications.
+6. In an RCBD, the number of complete blocks equals the number of __________ per treatment.
 
-7.  The total number of experimental units in CRD is given by $n =$ __________.
+7. The error degrees of freedom in an RCBD with $v$ treatments and $r$ blocks are __________.
 
-8.  The error degrees of freedom in CRD is given by __________.
+8. A Latin square controls variation in two blocking directions called rows and __________.
 
-9.  A common rule of thumb is that the error degrees of freedom of a design should be at least __________.
+9. In a Latin square, each treatment occurs once in every row and every __________.
 
-10. The statistical model for CRD is the same as that of __________ ANOVA.
+10. A Latin square with $v$ treatments requires __________ experimental units.
 
-11. In the CRD model $Y_{ij}=\mu+\tau_i+e_{ij}$, $\tau_i$ represents the effect of the $i^{th}$ __________.
+11. The error degrees of freedom in a Latin square are __________.
 
-12. The post-hoc test commonly used after a significant ANOVA in agricultural experiments is Fisher's __________ test.
+12. The correction factor is the square of the grand total divided by the total number of __________.
 
-13. Treatment pairs whose difference in means is greater than the critical difference are said to be significantly __________.
-
-14. Treatments that are not significantly different from each other are said to be __________.
-
-15. RCBD is recommended when the experimental material has a fertility gradient in __________ direction.
-
-16. Compared to CRD, RCBD additionally uses the principle of __________.
-
-17. Homogeneous sub-groups into which experimental material is grouped in RCBD are called __________.
-
-18. In RCBD, the number of replications equals the number of __________.
-
-19. In RCBD, the number of plots within a block equals the number of __________.
-
-20. The statistical model of RCBD is the same as that of __________ ANOVA.
-
-21. In the RCBD model $Y_{ij}=\mu+\tau_i+\gamma_j+e_{ij}$, $\gamma_j$ represents the effect of the $j^{th}$ __________.
-
-22. If the F value for blocks in an RCBD ANOVA is not significant, it indicates that __________ has not been effective.
-
-23. The error degrees of freedom formula for RCBD is __________.
-
-24. Latin Square Design controls variation in __________ perpendicular directions simultaneously.
-
-25. In a Latin square of side $v$, every treatment is replicated in each row and each column exactly __________.
-
-26. Data from an LSD experiment are classified according to __________ factors, making it a three-way classified design.
-
-27. In an LSD, the number of rows, columns, and treatments are all equal to __________.
-
-28. The error degrees of freedom in an LSD is given by __________.
-
-29. LSD is commonly recommended for __________ to __________ treatments.
-
-30. The mathematician who studied Latin squares in the eighteenth century, long before their use in experimental design, was __________.
-
-31. Fisher introduced the Latin square design in his book __________.
-
-32. In LSD, the total sum of squares is split into __________ components.
-
-33. In LSD, the correction factor is calculated as __________.
-
-34. Among CRD, RCBD, and LSD, for a fixed number of treatments and replications, __________ yields the maximum error degrees of freedom.
-
-35. In a treatment-grouping table, treatments sharing a common letter are __________ significantly different.
-
-36. Fisher's LSD formula for CRD with equal replication uses __________ in the denominator under the square root, along with $2\times\text{MSE}$.
-
-37. In CRD with unequal replication, the C.D. formula uses $\dfrac{1}{r_i}+\dfrac{1}{r_j}$ in place of __________.
-
-38. The blocks in a Latin Square Design are called __________ and __________.
+13. Treatment comparisons use the experimental error mean __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -1120,7 +1089,7 @@ Answers are given at the end of the chapter.
 
 12. State the disadvantages of CRD.
 
-13. Explain why the error degrees of freedom of a design is generally kept at 12 or more.
+13. Explain the limitations of using 12 error degrees of freedom as a replication guideline.
 
 14. Explain how the minimum number of replications required for a CRD is determined.
 
@@ -1160,9 +1129,9 @@ Answers are given at the end of the chapter.
 
 Answers are given at the end of the chapter.
 
-1.  An experimenter has 6 treatments and plans to conduct the experiment in CRD. Find the minimum number of replications required.
+1.  An experimenter has 6 treatments and plans a CRD. Using the guideline of at least 12 error df, find the minimum equal replication.
 
-2.  An experimenter has 5 treatments and plans to conduct the experiment in RCBD. Find the minimum number of blocks required.
+2.  An experimenter has 5 treatments and plans an RCBD. Using the guideline of at least 12 error df, find the minimum number of blocks.
 
 3.  A CRD has 4 treatments with 6 replications each. Write down the degrees of freedom for treatments, error, and total.
 
@@ -1192,16 +1161,16 @@ Answers are given at the end of the chapter.
 
 ### Important formulae {.unnumbered}
 
-Total number of experimental units in CRD:
+Total number of experimental units in an equally replicated CRD:
 
 $$
-n=rt
+n=rv
 $$
 
-Error degrees of freedom in CRD:
+Error degrees of freedom in an equally replicated CRD:
 
 $$
-edf=n-t=t(r-1)
+edf=n-v=v(r-1)
 $$
 
 Error degrees of freedom in RCBD:
@@ -1250,7 +1219,7 @@ $$
 
 * A single factor experiment varies only one factor, the treatments, while all other conditions are kept uniform.
 
-* CRD uses only randomization and replication; local control is not needed since experimental units are already homogeneous.
+* CRD uses randomization and replication without blocking. It is most useful when units are relatively homogeneous.
 
 * CRD is best suited to laboratory and greenhouse experiments; it is rarely used for field experiments because field plots are usually not homogeneous.
 
@@ -1262,7 +1231,7 @@ $$
 
 * The statistical model of CRD matches one-way ANOVA; the model of RCBD matches two-way ANOVA; LSD requires a three-way classification (rows, columns, treatments).
 
-* Error degrees of freedom should generally be at least 12, since F critical values change very little beyond this point; this rule is used to decide the minimum number of replications needed in a design.
+* An error-df target such as 12 is a practical planning guide, not a universal requirement. Replication should also reflect the desired power, precision, anticipated variability, and available resources.
 
 * When the overall F test for treatments is significant, Fisher's Least Significant Difference (LSD) test is used to compare treatment pairs.
 
@@ -1270,21 +1239,21 @@ $$
 
 * Among CRD, RCBD, and LSD (for the same number of treatments and replications), CRD gives the largest error degrees of freedom, since none of the variation is set aside for blocking.
 
-* LSD is typically restricted to 5 to 10 treatments: too few treatments leave almost no error degrees of freedom, and too many require an impractically large number of homogeneous plots.  
+* Latin squares are often used for a modest number of treatments, for practical reasons rather than a mathematical restriction: too few treatments leave almost no error degrees of freedom, and too many require an impractically large number of homogeneous plots.  
 
 
 ### Answers to fill in the blanks {.unnumbered}  
 
 ::: {.answer-key}
 
-`1.` Single factor `2.` Completely at random `3.` Randomization `4.` Local control `5.` Homogeneous `6.` Unequal `7.` $rt$ `8.` $n-t$ or $t(r-1)$ `9.` 12 `10.` One-way `11.` Treatment `12.` Least Significant Difference (LSD) `13.` Different `14.` At par `15.` One `16.` Local control `17.` Blocks `18.` Blocks `19.` Treatments `20.` Two-way `21.` Block `22.` Blocking `23.` $(v-1)(r-1)$ `24.` Two `25.` Once `26.` Three `27.` $v$ `28.` $(v-1)(v-2)$ `29.` Five; ten `30.` Leonhard Euler `31.` *Statistical Methods for Research Workers* `32.` Four `33.` $\dfrac{(\sum y_{ijk})^2}{v^2}$ `34.` CRD `35.` Not `36.` $r$ (the common number of replications) `37.` $\dfrac{2}{r}$ `38.` Rows; columns
+`1.` Design `2.` Homogeneous `3.` $N-v$ `4.` Once `5.` Block `6.` Replications `7.` $(v-1)(r-1)$ `8.` Columns `9.` Column `10.` $v^2$ `11.` $(v-1)(v-2)$ `12.` Observations `13.` Square
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
-1.  For CRD, $edf=t(r-1)\geq12$. With $t=6$, $6(r-1)\geq12 \Rightarrow r-1\geq2 \Rightarrow r\geq3$. The minimum number of replications required is 3.
+1.  For CRD, $edf=v(r-1)\geq12$. With $v=6$, $6(r-1)\geq12 \Rightarrow r-1\geq2 \Rightarrow r\geq3$. Three replications meet the stated error-df guideline; power may require more.
 
-2.  For RCBD, $edf=(v-1)(r-1)\geq12$. With $v=5$, $4(r-1)\geq12 \Rightarrow r-1\geq3 \Rightarrow r\geq4$. The minimum number of blocks required is 4.
+2.  For RCBD, $edf=(v-1)(r-1)\geq12$. With $v=5$, $4(r-1)\geq12 \Rightarrow r-1\geq3 \Rightarrow r\geq4$. Four blocks meet the stated error-df guideline; power may require more.
 
 3.  With $t=4$ treatments and $r=6$ replications, $n=24$. Treatment df $=t-1=3$; Error df $=n-t=20$; Total df $=n-1=23$.
 
@@ -1304,7 +1273,7 @@ $$
 
 11. The difference between the means is $30-28=2$, which is less than the critical difference of 3, so the two treatments are not significantly different; they are said to be at par.
 
-12. CRD would be most appropriate, since the potting mixture is homogeneous and environmental conditions in a greenhouse are relatively easy to control; local control is unnecessary, and CRD gives the simplest analysis with the maximum error degrees of freedom.
+12. CRD is appropriate if the whole set of experimental units is sufficiently homogeneous. A uniform potting mixture alone does not exclude gradients in light or temperature; block on these when necessary. Under the stated homogeneous-unit assumption, and CRD gives the simplest analysis with the maximum error degrees of freedom.
 
 13. RCBD would be most appropriate, since the fertility gradient runs in a single direction and can be controlled by forming blocks perpendicular to that gradient, leaving randomization and replication within each block to handle the remaining variation.
 

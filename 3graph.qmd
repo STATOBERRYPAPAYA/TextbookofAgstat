@@ -1,13 +1,13 @@
 # Graphical representation
 
-Graphs and diagrams play a vital role in statistics by transforming complex data into clear, visual formats that are easier to interpret and analyze. While frequency distributions in tabular form help organize raw data, graphical representations provide a more intuitive way to understand patterns, trends, and relationships within the data. By converting numbers into visual elements, graphs make it simpler to convey information effectively, making them indispensable tools in research, analysis, and communication. Depending on the nature of the data and the intended purpose, various types of graphs and diagrams can be employed to illustrate key insights. This chapter focuses on the fundamental graphs and charts used in statistics to visually represent data.
+Graphs and diagrams play a vital role in statistics by transforming complex data into clear, visual formats that are easier to interpret and analyse. While frequency distributions in tabular form help organize raw data, graphical representations provide a more intuitive way to understand patterns, trends, and relationships within the data. By converting numbers into visual elements, graphs make it simpler to convey information effectively, making them indispensable tools in research, analysis, and communication. Depending on the nature of the data and the intended purpose, various types of graphs and diagrams can be employed to illustrate key insights. This chapter focuses on the fundamental graphs and charts used in statistics to visually represent data.
 
 ## Histogram
 
 A histogram is a graphical representation used to display the frequency distribution of continuous data. It consists of adjacent rectangles, where:
 
 -   The **base** of each rectangle lies along the horizontal axis, with the width determined by the class intervals.\
--   The **height** of each rectangle is proportional to the frequency of the corresponding class.
+-   The **area** of each rectangle is proportional to the class frequency. For equal-width classes, frequency can be used as the height.
 
 Unlike bar charts, histograms have no gaps between the rectangles, emphasizing the continuity of the data. The height of each rectangle represents the frequency for equal-width classes. Histograms are effective tools for visualizing data distribution, identifying patterns, and highlighting skewness or outliers.
 
@@ -23,7 +23,7 @@ $$
 In these cases, the frequency density is plotted on the y-axis to ensure that the *area of each rectangle* accurately represents the frequency of the class. This approach maintains the correct visual representation of the data distribution regardless of the class interval widths.
 :::
 
-**Example 3.1** @tbl-plt displays the frequency distribution of plant heights for a sample of 50 plants. This data can be visualized effectively using a histogram, as shown in @fig-histo.
+@tbl-plt displays the frequency distribution of plant heights for a sample of 50 plants. This data can be visualized effectively using a histogram, as shown in @fig-histo.
 
 | Plant height (cm) | Frequency |
 |:-----------------:|:---------:|
@@ -61,7 +61,7 @@ The less than ogive, also known as the **less than type cumulative frequency cur
 
 Note: LCF denotes less than cumulative frequency.
 
-![Less than ogive](images/lesser_ogive.png){#fig-lessogive fig-align="center" width="60%" style="text-align:center;"}
+![Less than ogive](images/lesser-ogive-corrected.svg){#fig-lessogive fig-align="center" width="60%" style="text-align:center;"}
 
 [**Greater than ogive**]{.underline}
 
@@ -76,9 +76,9 @@ The **greater than ogive**, also known as the **greater than type cumulative fre
 
 Note: GCF denotes greater than cumulative frequency.
 
-![Greater than ogive](images/greater_ogive.png){#fig-greaterogive fig-align="center" width="60%" style="text-align:center;"}
+![Greater than ogive](images/greater-ogive-corrected.svg){#fig-greaterogive fig-align="center" width="60%" style="text-align:center;"}
   
-Intersection of both less than and greater than ogives gives the **median**.  
+The horizontal coordinate of the intersection of the less than and greater than ogives estimates the **median**. Include the starting point at zero for the less than ogive and the ending point at zero for the greater than ogive. The estimate depends on the interpolation within classes. For @tbl-plt, the median position is $50/2=25$, giving $150+[(25-9)/17]\times10=159.41$ cm.  
 
 
 {{< pagebreak >}}    
@@ -86,7 +86,7 @@ Intersection of both less than and greater than ogives gives the **median**.
 
 ## Frequency polygon
 
-A grouped frequency table can also be represented by a frequency polygon, a special type of line graph. To construct it, plot the class frequencies against the corresponding class midpoints and connect successive points with straight lines. The frequency polygon can also be derived by joining the midpoints of a histogram. See @tbl-mpfreq, constructed from @tbl-plt. The frequency polygon, created using @tbl-mpfreq, is shown in @fig-fp. The relation between frequency polygon and histogram can be seen in @fig-fph.
+A grouped frequency table can also be represented by a frequency polygon, a special type of line graph. To construct it, plot the class frequencies against the corresponding class midpoints and connect successive points with straight lines. For equal-width classes, the frequency polygon can also be obtained by joining the midpoints of the tops of the histogram rectangles. Add zero-frequency points one class width beyond the first and last midpoints to close the polygon. For unequal widths, use frequency densities when tracing the histogram heights. See @tbl-mpfreq, constructed from @tbl-plt. The frequency polygon, created using @tbl-mpfreq, is shown in @fig-fp. The relation between frequency polygon and histogram can be seen in @fig-fph.
 
 |                 |     |     |     |     |     |     |
 |:---------------:|:---:|:---:|:---:|:---:|:---:|:---:|
@@ -96,9 +96,9 @@ A grouped frequency table can also be represented by a frequency polygon, a spec
 : Midpoints and frequencies {#tbl-mpfreq .bordered}
 
 ::: {#frequency-poly layout-ncol="2"}
-![Frequency Polygon](images/frequency_polygon.png){#fig-fp width="300" height="200"}
+![Frequency Polygon](images/frequency-polygon-corrected.svg){#fig-fp width="300" height="200"}
 
-![Frequency Polygon and Histogram](images/histopolygon.png){#fig-fph width="300" height="200"}
+![Frequency Polygon and Histogram](images/histopolygon-corrected.svg){#fig-fph width="300" height="200"}
 :::
 
 ## Stem and leaf plot
@@ -124,7 +124,7 @@ Consider a different dataset representing the percentage of adults with a colleg
 
 48.5, 53.2, 42.1, 65.4, 70.3, 38.7, 55.9, 47.3, 59.2, 33.5, 45.6, 62.8, 50.1, 41.3, 36.2, 43.7, 39.8, 66.4, 58.1, 31.2.
 
-The stem and leaf plot for this data is shown in @fig-stemplot3. Here, the tens digit serves as the stem, and the decimal values form the leaves.
+The stem and leaf plot for this data is shown in @fig-stemplot3. Here, the tens digit serves as the stem, and the units and tenths digits form each leaf. A key such as $4\mid8.5=48.5$ must be supplied so that the observations can be read correctly.
 
 ![Stem and leaf plot of decimal data](images/stem3.png){#fig-stemplot3 fig-align="center" style="text-align:center;" width="55%"}
 
@@ -134,7 +134,7 @@ A bar chart or bar graph is a diagram consisting of a series of horizontal or ve
 
 **Simple bar chart**
 
-In a simple bar chart, the height (or length) of each bar, plotted on the y-axis, is equal to the value of the category it represents. @tbl-coconutprod presents hypothetical data on coconut production across five districts of Kerala for a specific year. The data represented using barchart is shown in @fig-barchart1
+In a simple bar chart, the height (or length) of each bar, plotted on the y-axis, is equal to the value of the category it represents. @tbl-coconutprod presents hypothetical data on coconut production across five districts of Kerala for a specific year. These invented figures are only for learning to draw a bar chart; they are not official district estimates or an actual ranking of coconut production. The bar chart is shown in @fig-barchart1.
 
 | District  | Production (million nuts) |
 |:---------:|:-------------------------:|
@@ -144,7 +144,7 @@ In a simple bar chart, the height (or length) of each bar, plotted on the y-axis
 | Ernakulam |           1100            |
 |  Wayanad  |           1400            |
 
-: hypothetical data on coconut production {#tbl-coconutprod .bordered}
+: Hypothetical data on coconut production {#tbl-coconutprod .bordered}
 
 **Component bar chart**
 
@@ -155,7 +155,7 @@ In a component bar chart, the bar for each category is subdivided into component
 The component bar chart shows the changes of each component over the years as well as the comparison of the total sales between different years.
 
 **Grouped bar chart**\
-@fig-cbsales can also be represented using a grouped bar chart shown in @fig-groupedbar. For a grouped bar chart, each category within a group is represented by a bar with a distinct shade or color, allowing for clear comparisons of both within and across groups.
+@fig-cbsales can also be represented using a grouped bar chart shown in @fig-groupedbar. For a grouped bar chart, each category within a group is represented by a bar with a distinct shade or colour, allowing for clear comparisons of both within and across groups.
 
 ::: {layout-nrow="2"}
 ![Barchart](images/barchart.png){#fig-barchart1 fig-align="center" style="text-align:center;"}
@@ -174,7 +174,7 @@ The component bar chart shows the changes of each component over the years as we
 | **Feature** | **Histogram** | **Bar chart** |
 |------------------------|------------------------|------------------------|
 | **Meaning** | A graphical representation using bars to display the frequency of numerical data. | A pictorial representation using bars to compare different categories of data. |
-| **Purpose** | Depicts the distribution of continuous (non-discrete) data. | Compares discrete (categorical) data. |
+| **Purpose** | Depicts the distribution of quantitative data grouped into intervals. | Compares categories; these may also be categories of a discrete numerical variable. |
 | **Type of data** | Quantitative data. | Categorical data. |
 | **Bar spacing** | Bars are adjacent with no gaps. | Bars are separated by spaces. |
 | **Grouping of elements** | Data is grouped into ranges or intervals (bins). | Data is represented as individual categories. |
@@ -189,15 +189,15 @@ A pie chart is a circular graph divided into sectors, each sector representing a
 
 **Steps for constructing a pie chart**
 
-1.  Find the sum of the category values.\
+1.  Check that the categories are non-overlapping parts of a meaningful whole and that the values are nonnegative. Find their sum, which must be positive.\
 2.  Calculate the angle of the sector for each category, using the following formula. Angle of the sector for category A = $\frac{\text{value of category A}}{\text{sum of category values}} \times 360$\
 3.  Construct a circle and mark the center.\
 4.  Use a protractor to divide the circle into sectors, using the angles obtained in step 2.\
 5.  Label each sector clearly.
 
-@tbl-wheatprod presents hypothetical data on the production of different commodities in India during a particular year. The pie chart based on this data is shown in @fig-piechart.
+@tbl-wheatprod presents hypothetical production data for different commodities in an imaginary region. The pie chart based on this data is shown in @fig-piechart.
 
-| Commodities | Production(tonnes) |         Angle          |
+| Commodities | Production (tonnes) |         Angle          |
 |:-----------:|:------------------:|:----------------------:|
 |    Wheat    |       27000        | (27000/81000)×360 = 120 |
 |    Gram     |       22500        |          100           |
@@ -214,13 +214,17 @@ A pie chart is a circular graph divided into sectors, each sector representing a
 
 A boxplot, also known as a **box-and-whisker plot**, visually represents the five-number summary of a dataset: the minimum value, first quartile, median, third quartile, and maximum value. These key statistics provide insights into the dataset’s central tendency, spread, and potential outliers. Quartiles and the median, explained in detail in @sec-positional_avg, are critical components of this summary.
 
-In a boxplot, a rectangular box spans from the first quartile (Q1) to the third quartile (Q3), with a vertical line inside the box indicating the median. Whiskers extend from each end of the box towards the dataset’s minimum and maximum values, providing a clear picture of the range and variability.
+In a boxplot, a rectangular box spans from the first quartile (Q1) to the third quartile (Q3), with a vertical line inside the box indicating the median. In a simple min–max boxplot, whiskers extend to the minimum and maximum. In the modified boxplot described below, they extend only to the most extreme observations within the 1.5 × IQR fences.
 
 @fig-boxplot below shows the parts of a box plot.
 
 ![Anatomy of box plot](images/boxplot.png){#fig-boxplot fig-align="center" width="80%" style="text-align:center;"}
 
-The whiskers do not necessarily extend to the true minimum and maximum of the dataset. Instead, they extend to the most extreme data points that lie within 1.5 × IQR of the box, where the lower whisker limit is $Q_{1}- 1.5\times IQR$ and the upper whisker limit is $Q_{3}+ 1.5\times IQR$; here, $Q_{1}$ and $Q_{3}$ represent the first and third quartiles, and IQR stands for the interquartile range. Any data points falling beyond these limits are plotted individually and considered outliers.
+The whiskers do not necessarily extend to the true minimum and maximum of the dataset. Instead, they extend to the most extreme data points that lie within 1.5 × IQR of the box, where the lower whisker limit is $Q_{1}- 1.5\times IQR$ and the upper whisker limit is $Q_{3}+ 1.5\times IQR$; here, $Q_{1}$ and $Q_{3}$ represent the first and third quartiles, and IQR stands for the interquartile range. Data points beyond these fences are plotted individually as potential outliers. They should be investigated, not deleted automatically. The whisker ends are observed values within the fences, not the numerical fence values themselves.
+
+## Choosing and presenting a graph
+
+Choose a graph according to the question and the type of data. Use a scatter diagram for two quantitative variables, as discussed in the correlation chapter, and a line graph for measurements recorded in time order. State the variable names, units and the period or source of the data. A bar chart normally starts its value axis at zero because bar lengths represent magnitudes. If an axis is truncated, make this clear. Avoid three-dimensional effects that distort comparisons.
 
 ## Advanced visualization
 
@@ -260,55 +264,31 @@ It is important to be aware of the wide variety of visualization tools available
 
 ### Fill in the blanks {.unnumbered}
 
-1. A __________ is a graphical representation of the frequency distribution of continuous data using adjacent rectangles.
+Answers are given at the end of the chapter.
 
-2. In a histogram, the width of each rectangle represents the __________ interval.
+1. A graph representing a continuous frequency distribution by adjoining rectangles is called a __________.
 
-3. When class intervals have equal widths, the height of a histogram rectangle is proportional to the __________.
+2. For unequal class widths, histogram heights should represent frequency __________.
 
-4. When class intervals have unequal widths, the height of a histogram rectangle is proportional to the __________.
+3. A graph of cumulative frequencies is called an __________.
 
-5. An ogive is also known as a __________ frequency curve.
+4. The intersection of the less-than and greater-than ogives provides an estimate of the __________.
 
-6. There are two types of ogives: __________ and __________.
+5. A frequency polygon joins points plotted at class __________.
 
-7. A less than ogive is constructed by plotting less than cumulative frequencies against the __________ class boundaries.
+6. A display that separates each observation into leading and trailing digits is called a __________ plot.
 
-8. A greater than ogive is constructed by plotting greater than cumulative frequencies against the __________ class boundaries.
+7. A diagram used to compare frequencies of categories is called a __________ chart.
 
-9. The intersection of the less than and greater than ogives gives the __________.
+8. A circular diagram showing category proportions is called a __________ chart.
 
-10. A frequency polygon is constructed by plotting class frequencies against the corresponding class __________.
+9. The total angle represented by a pie chart is __________ degrees.
 
-11. A stem-and-leaf plot divides each observation into a __________ and a __________.
+10. The difference between the third and first quartiles is called the __________ range.
 
-12. The leading digits of an observation form the __________ in a stem-and-leaf plot.
+11. In a boxplot, the line inside the box represents the __________.
 
-13. The trailing digits of an observation form the __________ in a stem-and-leaf plot.
-
-14. A bar chart consists of bars of __________ width.
-
-15. The three types of bar charts are __________, __________, and __________ bar charts.
-
-16. In a component bar chart, each bar is divided into __________ parts.
-
-17. A pie chart is a circular graph divided into __________.
-
-18. The angle of a sector in a pie chart is proportional to the __________ represented by that category.
-
-19. A boxplot is also known as a __________ plot.
-
-20. A boxplot is based on the __________-number summary of a dataset.
-
-21. The five-number summary consists of the minimum, Q1, __________, Q3, and maximum.
-
-22. The interquartile range is represented by __________.
-
-23. Observations falling below $Q_1-1.5\times IQR$ or above $Q_3+1.5\times IQR$ are considered __________.
-
-24. A histogram is generally used for __________ data, whereas a bar chart is generally used for __________ data.
-
-25. In a histogram, the bars are __________, whereas in a bar chart, the bars are separated by __________.
+12. Observations beyond the boxplot fences are flagged as potential __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -347,6 +327,20 @@ It is important to be aware of the wide variety of visualization tools available
 17. How are outliers identified in a boxplot?
 
 18. List some advanced graphical methods used in modern data visualization.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. The counts of three crop varieties in a sample are 40, 35 and 25. Calculate their pie-chart angles.
+
+2. Two histogram classes have widths 10 and 20, with frequencies 8 and 12. Find the frequency densities and state which rectangle is taller.
+
+3. The classes 0–10, 10–20 and 20–30 have frequencies 2, 5 and 3. Estimate the median by grouped interpolation.
+
+4. A dataset has $Q_1=12$ and $Q_3=20$. Find the IQR and the 1.5 × IQR fences. Is 35 beyond a fence?
+
+5. Write the endpoints used to close the frequency polygon for classes 0–10, 10–20 and 20–30.
 
 ### Important formulae {.unnumbered}
 
@@ -405,15 +399,27 @@ $$
 
 ::: {.answer-key}
 
-`1.` Histogram `2.` Class `3.` Frequency `4.` Frequency density `5.` Cumulative `6.` Less than; Greater than `7.` Upper `8.` Lower `9.` Median `10.` Midpoints `11.` Stem; Leaf `12.` Stem `13.` Leaf `14.` Equal `15.` Simple; Component; Grouped `16.` Component `17.` Sectors `18.` Value `19.` Box-and-whisker `20.` Five `21.` Median `22.` $Q_3-Q_1$ `23.` Outliers `24.` Continuous; Categorical `25.` Adjacent; Gaps
+`1.` Histogram `2.` Density `3.` Ogive `4.` Median `5.` Midpoints `6.` Stem-and-leaf `7.` Bar `8.` Pie `9.` 360 `10.` Interquartile `11.` Median `12.` Outliers
 :::
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1. The total is 100. The angles are $40(360)/100=144^\circ$, $126^\circ$ and $90^\circ$; they sum to $360^\circ$.
+
+2. The densities are $8/10=0.8$ and $12/20=0.6$. The first rectangle is taller, but the second has the greater area and frequency.
+
+3. There are 10 observations, so the median position is 5. The median class is 10–20, giving $10+[(5-2)/5]\times10=16$. This is an estimate from grouped data.
+
+4. IQR $=20-12=8$. The fences are $12-1.5(8)=0$ and $20+1.5(8)=32$. The observation 35 exceeds the upper fence and is a potential outlier.
+
+5. The observed-class midpoints are 5, 15 and 25. Add zero-frequency points at $(-5,0)$ and $(35,0)$ to close the polygon.
 
 ::: {.callout-caution title="Historical Insights"}
 **"The power of data visualization: the coxcomb plot"**
 
-In 1854, a young nurse named *Florence Nightingale* arrived at a British military hospital in Scutari during the Crimean War and found conditions that horrified her: overcrowded wards, contaminated water, and almost no ventilation. Soldiers were dying by the thousands, and everyone assumed it was from battle wounds. Nightingale, who had been trained in mathematics and statistics from a young age, began meticulously recording the cause of every death. When she analysed her records, the pattern that emerged was staggering: for every soldier who died of wounds sustained in battle, roughly ten died of preventable diseases such as typhus, cholera, and dysentery, caused largely by unsanitary hospital conditions.
+In 1854, a young nurse named *Florence Nightingale* arrived at a British military hospital in Scutari during the Crimean War and found conditions that horrified her: overcrowded wards, contaminated water, and almost no ventilation. Soldiers were dying by the thousands, and everyone assumed it was from battle wounds. Nightingale, who had been trained in mathematics and statistics from a young age, began meticulously recording the cause of every death. When she analysed her records, the pattern that emerged was staggering: for every soldier who died of wounds sustained in battle, many more died of diseases such as typhus, cholera, and dysentery, highlighting the importance of sanitary conditions.
 
-Knowing that dense tables of numbers would never move Queen Victoria or her officials to act, Nightingale invented a new kind of chart, the *coxcomb diagram* (a form of polar area diagram), where each wedge's area, not just its radius, represented the number of deaths in a given month, colour-coded by cause. The diagrams made the scale of preventable deaths impossible to ignore at a glance. Her visual evidence persuaded the government to overhaul military hospital sanitation, and mortality rates fell sharply as a result. Nightingale went on to become the first female member of the Royal Statistical Society. Her work remains one of the earliest and most powerful examples of how a well-designed graph, more than any table of numbers, can drive real-world change.
+Knowing that dense tables of numbers would never move Queen Victoria or her officials to act, Nightingale used the *coxcomb diagram* (a form of polar area diagram), where each wedge's area, not just its radius, represented the number of deaths in a given month, colour-coded by cause. The diagrams made the scale of preventable deaths impossible to ignore at a glance. Her diagrams supported her campaign for military health reform. The decline in wartime mortality should not be attributed to diagrams published later. Nightingale went on to become the first female member of the Royal Statistical Society. Her work remains one of the earliest and most powerful examples of how a well-designed graph, more than any table of numbers, can drive real-world change.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

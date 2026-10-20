@@ -8,9 +8,9 @@ The **geometric mean (GM)** is a specialized measure of central tendency, partic
 
 This approach captures the compounding effects present in the data, making the geometric mean an essential tool for accurately summarizing proportional changes or rates over time. Its utility lies in providing a more representative measure for datasets where changes are multiplicative rather than additive.
 
-The geometric mean of a series containing *n* observations is the *n*^th^ root of the product of the values. If $x_{1},x_{2},\ldots, x_{n}$ are observations then
+For strictly positive observations, the geometric mean of a series containing *n* observations is the *n*^th^ root of the product of the values. If $x_{1},x_{2},\ldots, x_{n}$ are observations then
 
-$$GM = \sqrt[n]{\prod_{i=1}^{n}x_{i}}$$ {#eq-gm1}\
+$$GM = \sqrt[n]{\prod_{i=1}^{n}x_{i}}$$ {#eq-gm1}
 where, $\prod_{i=1}^{n} x_i$ means the product of $x_{1},x_{2},\ldots, x_{n}$
 
 $$= \left( x_1 x_2 \cdots x_n \right)^{\frac{1}{n}}$$
@@ -30,7 +30,7 @@ $$\text{GM} = \operatorname{Antilog} \left( \frac{\sum_{i=1}^{k} f_i \log x_i}{n
 where, $x_{i}$ is the *i*^th^ value in the dataset and for a grouped frequency table $x_{i}$ will be the midpoint of the *i*^th^ class interval calculated as the average of upper and lower limit, $f_{i}$ is the frequency of the *i*^th^ value or class , *k* is the number of classes.
 
 ::: {#exm-ct13}
-If the weight of sorghum ear heads are 45, 60, 48, 100, 65 gms. Find the geometric mean?
+If the weight of sorghum ear heads are 45, 60, 48, 100, 65 g. Find the geometric mean?
 
 | Weight of ear head (*x*) | log(*x*)  |
 |:------------------------:|:---------:|
@@ -49,8 +49,9 @@ Here *n* =5
 
 using @eq-gm3
 
-$$=\operatorname{Antilog}\left( \frac{8.925}{5} \right) $$\
-$$ =\operatorname{Antilog}(1.785) = 60.95$$ note: here $\operatorname{Antilog}\left( x \right) = 10^{x}$ *i*.*e*. $$\operatorname{Antilog}\left( 1.785 \right) = \ 10^{1.785} = 60.95$$
+$$GM=10^{8.925518/5}\approx60.97.$$
+
+The displayed logarithms are rounded; this result uses unrounded base-10 logarithms.
 :::
 
 ::: {#exm-ct14}
@@ -76,7 +77,9 @@ using @eq-gm4
 $${\sum_{i = 1}^{k}{{f_{i}\log}x_{i}} = 57.782
 }$$\
 $${\text{GM} = \ \operatorname{Antilog}\left( \frac{57.782}{32} \right)  }$$\
-$${= \operatorname{Antilog}\left( 1.8056 \right)= 10^{1.8056} = 63.92}$$
+$$GM=10^{57.78234/32}\approx63.93.$$
+
+The final result uses unrounded logarithms; a grouped-data result based on class midpoints is approximate.
 :::
 
 ::: {#exm-ct15}
@@ -99,7 +102,9 @@ Here *n* = 32
 
 using @eq-gm4
 
-$${\sum_{i = 1}^{k}{{f_{i}\log}x_{i}} = 65.787}$$ $${\text{GM} = \ \operatorname{Antilog}\left( \frac{65.787}{32} \right)}$$ $${= \operatorname{Antilog}\left( 2.0558 \right) = 10^{2.0558} = 113.71}$$
+$$GM\approx113.72.$$
+
+The final result uses unrounded logarithms; a grouped-data result based on class midpoints is approximate.
 :::
 
 **Merits and demerits of geometric mean**
@@ -124,21 +129,21 @@ $${\sum_{i = 1}^{k}{{f_{i}\log}x_{i}} = 65.787}$$ $${\text{GM} = \ \operatorname
 
 -   It is difficult to calculate.
 
--   It cannot be calculated, if the number of negative values is odd.
+-   It is generally unsuitable for negative observations in the standard statistical definition.
 
--   It cannot be calculated, if any value of a series is zero.
+-   Its logarithmic calculation requires strictly positive observations. For non-negative data, the product definition gives zero if any value is zero.
 
 -   At times it gives a value which may not be found in the series or impractical.
 
 ## Harmonic mean
 
-Harmonic means are often used in averaging things like rates (e.g. the average travel speed given duration of several trips). Harmonic mean (HM) of a set of observations is defined as the reciprocal of the arithmetic average of the reciprocal of the given value.
+Harmonic means are useful for averaging positive rates when the quantities in their numerators are equal, such as travel speeds over equal distances. Harmonic mean (HM) of a set of observations is defined as the reciprocal of the arithmetic average of the reciprocal of the given value.
 
 ::: {.callout-important title="Note"}
 Harmonic mean can be easily remembered as “reciprocal of the mean of the reciprocals”.
 :::
 
-If $x_{1},\ x_{2},\ldots,\ x_{n}$ are *n* observations then
+For strictly positive observations $x_{1},\ x_{2},\ldots,\ x_{n}$,
 
 $$\text{H.M} = \frac{n}{\sum_{i = 1}^{n}\frac{1}{x_{i}}}$$ {#eq-hm1}
 
@@ -225,7 +230,7 @@ $$
 
 $$= \frac{2 \cdot 3 \cdot 5}{3 + 5} = \frac{30}{8} = 3.75 \, \text{hours}$$
 
-the harmonic mean of the pipes is 3.75 hours, and since both pipes are working together, the total time is half of that, which confirms the answer of 1 hour and 53 minutes.
+the harmonic mean of their individual filling times is 3.75 hours, and since both pipes are working together, the total time is half of that, which confirms the answer of 1 hour and 53 minutes.
 :::
 
 ::: {#exm-ct19}
@@ -264,7 +269,7 @@ So, the average speed for the entire trip is 72 km/h.
 
 -   It is only a summary figure and may not be the actual item in the series.
 
--   It gives greater importance to small items and is therefore, useful only when small items have to be given greater weightage.
+-   It is sensitive to very small positive values; it should be chosen because of the rate structure, not simply to give smaller observations more importance.
 
 -   It is rarely used in grouped data.
 
@@ -283,7 +288,7 @@ For example, if you want to find the average height of students in a class, you 
 **Harmonic Mean (HM)**\
 The harmonic mean is useful when you are working with rates, ratios, or situations where quantities add up as reciprocals. Some examples include:\
 - Speeds (distance per unit time)\
-- Capacitors in a series circuit\
+- Reciprocal addition in a series of capacitors, where the equivalent capacitance is the harmonic mean divided by the number of capacitors\
 - Rates like fuel efficiency or cost per unit
 
 For instance, imagine you are driving the same distance at different speeds. If you want to find the average speed for the entire trip, the harmonic mean is the best choice. This is because speeds relate inversely to time when you go faster, you take less time, and vice versa.
@@ -294,24 +299,24 @@ The geometric mean is the right choice when your data involves multiplication or
 - Percentages (like inflation rates)\
 - Ratios
 
-For example, if you have annual interest rates for 10 years and want to find a single rate that represents the same total growth over that period, the geometric mean gives you the answer. It works by multiplying the rates and taking the root, which accounts for the compounding effect.
+For example, if you have annual interest rates for 10 years and want to find a single rate that represents the same total growth over that period, the geometric mean gives you the answer. It works by multiplying the positive growth factors, taking their geometric mean, and subtracting one to obtain the equivalent growth rate.
 
-Here’s a simple example to understand how the geometric mean works. Suppose you invest Rs.100, and your investment changes over three years as follows: in the first year, it grows by 10%, represented by a growth factor of 1.10; in the second year, it grows by 20%, represented by 1.20; and in the third year, it drops by 10%, represented by 0.90. To find a single rate that would give the same overall growth over the three years, you multiply the growth factors: $1.10 \times 1.20 \times 0.90 = 1.188$. Then, take the cube root (since there are three years): $\sqrt[3]{1.188} \approx 1.059$. This gives a geometric mean rate of approximately 1.059, or 5.9% per year. In other words, if your Rs. 100 investment grew steadily at a rate of 5.9% each year, it would result in the same total growth over three years, leaving you with about Rs. 118.80 at the end.
+Here’s a simple example to understand how the geometric mean works. Suppose you invest Rs.100, and your investment changes over three years as follows: in the first year, it grows by 10%, represented by a growth factor of 1.10; in the second year, it grows by 20%, represented by 1.20; and in the third year, it drops by 10%, represented by 0.90. To find a single rate that would give the same overall growth over the three years, you multiply the growth factors: $1.10 \times 1.20 \times 0.90 = 1.188$. Then, take the cube root (since there are three years): $\sqrt[3]{1.188} \approx 1.059$. This gives a geometric mean growth factor of approximately 1.059, corresponding to a growth rate of 5.9% per year. In other words, if your Rs. 100 investment grew steadily at a rate of 5.9% each year, it would result in the same total growth over three years, leaving you with about Rs. 118.80 at the end.
 
 **Key Takeaways**\
 1. Use **Arithmetic Mean** when values combine directly, like adding lengths or weights.\
-2. Use **Harmonic Mean** for rates or quantities that work reciprocally, like speed or resistance.\
+2. Use **Harmonic Mean** for rates or quantities that work reciprocally, such as speeds over equal distances. The appropriate weights depend on which quantities are held equal.\
 3. Use **Geometric Mean** for data involving multiplication or compounding, like growth rates or percentages.
 
 By understanding the relationship between the data and the type of average, you can choose the most meaningful measure for your analysis.
 
 ## Relation between AM, GM and HM
 
-The formula for the relation between AM, GM, HM is the product of arithmetic mean and harmonic mean is equal to the square of the geometric mean. This can be presented here in the form of @eq-amgmhm
+For **two positive observations**, the product of their arithmetic and harmonic means equals the square of their geometric mean. This equality does not generally hold for three or more observations. This can be presented here in the form of @eq-amgmhm
 
 $$\text{AM}\times\text{HM}=\text{GM}^{2}$$ {#eq-amgmhm}
 
-also
+For any finite set of strictly positive observations,
 
 $$AM \geq GM \geq HM$$ {#eq-gretamgmhm}
 
@@ -329,7 +334,7 @@ Now draw a line from the top of red line which is the GM in @fig-semigm to the c
 
 $$AM \geq GM$$ {#eq-amgm}
 
-![Geometric mean and aritmetic mean on a semi circle](images/central2/semiamgm.svg){#fig-semiamgm fig-align="center" width="50%" style="text-align:center;"}
+![Geometric mean and arithmetic mean on a semi circle](images/central2/semiamgm.svg){#fig-semiamgm fig-align="center" width="50%" style="text-align:center;"}
 
 Now if we draw an altitude to the hypotenuse as shown in @fig-semiamgm, the upper length on the hypotenuse is the harmonic mean . We can now consider another triangle where HM is a leg and the GM is the hypotenuse, this shows the GM is never smaller than the HM. So $$GM \geq HM$$ {#eq-gmhm}
 
@@ -342,10 +347,10 @@ Now from @eq-amgm and @eq-gmhm it is clear that $AM \geq GM \geq HM$
 Positional averages are measures derived directly from the values in a dataset. These averages are based on the position of the values within the series and are used to represent the overall dataset or highlight specific positional characteristics.
 
 ::: {.callout-important title="Note"}
-The **median**, although a simple average, is also a positional average that represents the middle value of an ordered dataset, making it a central point of reference. Similarly, the **mode**, which identifies the most frequently occurring value in the dataset, is also a positional average since it is directly taken from the series.
+The **median** is a positional measure because it depends on the middle rank or ranks of the ordered observations. The **mode** is a frequency-based measure: it identifies the most frequent value or category and does not require numerical ordering.
 :::
 
-The other common positional averages include **percentiles**, **quartiles**, and **deciles**, which divide the data into equal parts to analyze its distribution.
+The other common positional averages include **percentiles**, **quartiles**, and **deciles**, which divide the data into equal parts to analyse its distribution.
 
 In contrast, measures like the **arithmetic mean**, **geometric mean**, and **harmonic mean** are referred to as **mathematical averages**, as they are calculated through specific mathematical operations rather than being derived from the data’s positional properties.
 
@@ -353,11 +358,11 @@ In contrast, measures like the **arithmetic mean**, **geometric mean**, and **ha
 
 The **median** divides a dataset into two equal halves. Similarly, it is possible to divide a dataset into more than two parts. When an **ordered** dataset is divided into four equal sections, the points that mark these divisions are called **quartiles**.
 
-The **first or lower quartile** ($Q_{1}$) is a value that has one fourth, or 25% of the observations below its value.
+The **first or lower quartile** ($Q_{1}$) marks the 25% position in the ordered data. With ties or small samples, exactly 25% need not lie strictly below it.
 
-The **second quartile** ($Q_{2}$) has one-half, or 50% of the observations below its value. The second quartile is equal to the median.
+The **second quartile** ($Q_{2}$) marks the 50% position. The second quartile is equal to the median.
 
-The **third or upper quartile** ($Q_{3}$) is a value that has three-fourths, or 75% of the observations below it. If there are *n* items in a dataset then
+The **third or upper quartile** ($Q_{3}$) marks the 75% position. With ties or small samples, exactly 75% need not lie strictly below it. Different sample-quantile conventions can give different answers. For raw data, the interpolation convention used here places the quartiles at the following ranks:
 
 $$Q_1 = \left( \frac{n + 1}{4} \right)^{\text{th}} {\text{item}}$$ {#eq-quartileq1}
 
@@ -395,11 +400,11 @@ The following steps explain how to calculate quartiles for discrete frequency da
 
 2.  Find $\left( \frac{n + 1}{4} \right)$.
 
-3.  See in the cumulative frequencies, the value just greater than $\left(\frac{n + 1}{4}\right)$, then the corresponding value of $x$ is $Q_{1}$.
+3.  In the discrete-frequency convention used here, round the calculated rank up and locate the first cumulative frequency greater than or equal to that rank. The corresponding value is $Q_1$.
 
 4.  Find $\left( \frac{3(n + 1)}{4}\right)$.
 
-5.  See in the cumulative frequencies, the value just greater than $\left(\frac{3(n + 1)}{4}\right)$, then the corresponding value of $x$ is $Q_{3}$.
+5.  Round this rank up in the same way and locate its value to obtain $Q_3$. This discrete convention can differ from linear interpolation on the expanded raw data; state the convention when comparing results with software. The median remains the middle value or the average of the two middle values.
 
 ::: {#exm-ct21}
 Compute quartiles for the data given below
@@ -456,7 +461,7 @@ $$Q_1 = l_1 + \frac{\frac{n}{4} - m_1}{f_1} \times c_1$$ {#eq-qrtl1}
 
 $$Q_3 = l_3 + \frac{3 \left( \frac{n}{4} \right) - m_3}{f_3} \times c_3$$ {#eq-qrtl2}
 
-where, $l_{1}$ = lower limit of the first quartile class
+where, $l_{1}$ = lower boundary of the first quartile class
 
 $f_{1}$ = frequency of the first quartile class
 
@@ -464,7 +469,7 @@ $c_{1}$ = width of the first quartile class
 
 $m_{1}$ = cumulative frequency preceding the first quartile class
 
-$l_{3}$= lower limit of the 3^rd^ quartile class
+$l_{3}$= lower boundary of the 3^rd^ quartile class
 
 $f_{3}$= frequency of the 3^rd^ quartile class
 
@@ -509,22 +514,26 @@ using @eq-qrtl2
 $$Q_3 = 60 + \frac{153 - 145}{22} \times 10 = 63.64$$
 :::
 
+For grouped data, these formulas assume observations are evenly distributed within the relevant class. They give estimates rather than recovering the exact raw-data quartiles. Use the first cumulative frequency at least as large as the required position; if it equals the position at a class boundary, that boundary is the interpolated result.
+
 ### Percentiles
 
-Percentiles divide an ordered dataset into 100 equal parts, with each part containing 1% of the observations. The *p*^th^ percentile, denoted as $P_p$, is the value below which *x* percent of the data falls.
+Percentiles divide an ordered dataset into 100 equal parts, with each part containing 1% of the observations. The *p*^th^ percentile, denoted as $P_p$, is the value marking the *p* percent position in the ordered data.
 
 For example:\
 - The $P_{50}$, **50^th^ percentile**, is equivalent to the median, representing the middle value of the dataset.\
 - The $P_{25}$, **25^th^ percentile**, corresponds to the first quartile ($Q_1$), which marks the lower 25% of the data.\
 - The $P_{75}$, **75^th^ percentile**, is the third quartile ($Q_3$), indicating that 75% of the data falls below this value.
 
-For raw data, first arrange the *n* observations in increasing order. Then the *x*^th^ percentile is given by
+For raw data, first arrange the *n* observations in increasing order. Then the *p*^th^ percentile is given by
 
 $$P_p = \left( \frac{p(n + 1)}{100} \right)^{\text{th}} \text{ item}$$ {#eq-percentilesingle1}
 
+For the raw-data interpolation rule, let $h=p(n+1)/100$. Between adjacent ranks, interpolate as in @exm-ct23. If $h<1$, use the smallest observation; if $h>n$, use the largest. Software may use other quantile definitions, so state the convention.
+
 #### Percentiles of discrete frequency data
 
-To calculate percentiles for discrete frequency data, follow these steps which is similar to that of quartiles:
+For discrete frequency data, use the same upward-rank convention as for quartiles, except that $P_{50}$ is taken to be the usual median (the average of the two central observations when the total frequency is even). This keeps $P_{50}=Q_2=D_5$. For the other percentiles, follow these steps:
 
 1.  Find the cumulative frequencies.
 
@@ -536,7 +545,7 @@ To calculate percentiles for discrete frequency data, follow these steps which i
 
 find the cumulative frequency that is just greater than or equal to the calculated position $P_p$. The corresponding value of $x$ is the $p$-th percentile.
 
-For example, to find the first percentile ($P_1$): - Calculate $P_1 = \left( \frac{1(n + 1)}{100} \right)$. - Locate the cumulative frequency that is just greater than $P_1$, and the corresponding value of $x$ is $P_1$.
+For example, to find the first percentile, calculate the rank $h=(n+1)/100$. Then find the first cumulative frequency at least as large as $h$ and take its corresponding observed value.
 
 #### Percentiles of a grouped frequency data
 
@@ -554,7 +563,7 @@ $$P_p = l + \frac{\left( \frac{p \times n}{100} \right) - cf}{f} \times c$$ {#eq
 
 where,
 
-${l}$ = lower limit of the percentile class
+${l}$ = lower boundary of the percentile class
 
 ${cf}$ = cumulative frequency preceding the percentile class
 
@@ -598,12 +607,12 @@ Find $P_{25}$, $P_{50}$ & $P_{75}$ for @exm-ct21 & @exm-ct22; verify that $P_{50
 
 Deciles consist of 9 points that divide an ordered dataset into ten equal parts. The *d* ^th^ decile is denoted as $D_d$. It is important to note that the **median** is the **5th decile**.
 
-$$D_d = \left( \frac{d(n + 1)}{10} \right)^{\text{th}} \text{ item}$$ {#eq-decileq1}\
+$$D_d = \left( \frac{d(n + 1)}{10} \right)^{\text{th}} \text{ item}$$ {#eq-decileq1}
 where, $d$ is the decile number (e.g., $d = 1$ for the first decile, $d = 9$ for the ninth decile), and $n$ is the total number of data points.
 
 #### Deciles of discrete frequency data
 
-To calculate deciles for discrete frequency data, follow these steps which are similar to that of percentiles:
+Use the same discrete-frequency convention as for percentiles. In particular, $D_5$ is the usual median. For the other deciles, follow these steps:
 
 1.  Find the cumulative frequencies.
 
@@ -614,7 +623,7 @@ To calculate deciles for discrete frequency data, follow these steps which are s
 3.  Identify the value in the cumulative frequencies.\
     Find the cumulative frequency that is just greater than or equal to the calculated position $D_d$. The corresponding value of $x$ is the $d^{th}$ decile.
 
-For example, to find the first decile ($D_1$): - Calculate $D_1 = \left( \frac{1(n + 1)}{10} \right)$. - Locate the cumulative frequency that is just greater than $D_1$, and the corresponding value of $x$ is $D_1$.
+For example, to find the first decile, calculate the rank $h=(n+1)/10$. Then find the first cumulative frequency at least as large as $h$ and take its corresponding observed value.
 
 #### Deciles of a grouped frequency data
 
@@ -632,7 +641,7 @@ $$D_d = l + \frac{\left( \frac{d \times n}{10} \right) - cf}{f} \times c$$ {#eq-
 
 where,
 
-$l$ = lower limit of the decile class
+$l$ = lower boundary of the decile class
 
 ${cf}$ = cumulative frequency preceding the decile class
 
@@ -647,71 +656,58 @@ Find $\text{D}_{5}$ for @exm-ct21, @exm-ct22 & @exm-ct23; verify that ${D}_{5} =
 :::
 
 
+::: {#exm-grouped-percentile-decile}
+Find the 75th percentile and sixth decile for the following grouped observations.
+
+| Class | 0–10 | 10–20 | 20–30 | 30–40 |
+|:---:|:---:|:---:|:---:|:---:|
+| Frequency | 4 | 8 | 6 | 2 |
+| Cumulative frequency | 4 | 12 | 18 | 20 |
+
+: Grouped observations for percentile and decile interpolation {.bordered}
+
+**Solution**
+
+Here $n=20$. The position for $P_{75}$ is $0.75(20)=15$, which lies in the class 20–30. Using @eq-percentile1,
+
+$$P_{75}=20+\frac{15-12}{6}\times10=25.$$
+
+For $D_6$, the position is $6(20)/10=12$, which coincides with the cumulative frequency at the upper boundary of 10–20. Thus,
+
+$$D_6=10+\frac{12-4}{8}\times10=20.$$
+
+Using the next class at this boundary gives the same value. These are interpolated estimates because the individual observations within each class are unknown.
+:::
+
 ## Chapter Summary
 
 ### Fill in the blanks {.unnumbered}
 
 Answers are given at the end of the chapter.
 
-1. The two special averages discussed in this chapter are __________ and __________.
+1. For positive observations, the nth root of their product is the __________ mean.
 
-2. The geometric mean is particularly suitable for data involving __________, ratios, and percentages.
+2. The reciprocal of the arithmetic mean of reciprocals is the __________ mean.
 
-3. The geometric mean of $n$ observations is the __________ root of their product.
+3. The mean suitable for averaging positive growth factors is the __________ mean.
 
-4. The geometric mean of $x_1,x_2,\ldots,x_n$ is denoted by __________.
+4. The mean suitable for averaging speeds over equal distances is the __________ mean.
 
-5. The geometric mean can be calculated using logarithms by taking the __________ of the arithmetic mean of the logarithms.
+5. For positive observations, AM is greater than or equal to GM, and GM is greater than or equal to __________.
 
-6. For a frequency distribution, the geometric mean is calculated using the frequencies as __________.
+6. AM, GM, and HM are equal when all observations are __________.
 
-7. The geometric mean cannot be calculated if any observation is __________.
+7. Quartiles divide an ordered distribution into __________ equal parts.
 
-8. The geometric mean cannot be calculated if the number of negative values is __________.
+8. The second quartile is equal to the __________.
 
-9. The harmonic mean is the reciprocal of the arithmetic mean of the __________ of the observations.
+9. Deciles divide an ordered distribution into __________ equal parts.
 
-10. The harmonic mean is particularly useful for averaging __________ and rates.
+10. Percentiles divide an ordered distribution into __________ equal parts.
 
-11. The harmonic mean of $n$ observations is denoted by __________.
+11. The 25th percentile is the __________ quartile.
 
-12. Quartiles divide an ordered dataset into __________ equal parts.
-
-13. The first quartile is denoted by __________.
-
-14. The second quartile is denoted by __________ and is equal to the __________.
-
-15. The third quartile is denoted by __________.
-
-16. The second quartile has __________% of observations below it.
-
-17. The first quartile has __________% of observations below it.
-
-18. The third quartile has __________% of observations below it.
-
-19. Percentiles divide an ordered dataset into __________ equal parts.
-
-20. The $50^{th}$ percentile is equal to the __________.
-
-21. The $25^{th}$ percentile is equal to the __________ quartile.
-
-22. The $75^{th}$ percentile is equal to the __________ quartile.
-
-23. Deciles divide an ordered dataset into __________ equal parts.
-
-24. There are __________ deciles in a dataset.
-
-25. The fifth decile is equal to the __________, $Q_2$, and $P_{50}$.
-
-26. In grouped frequency data, the class containing the required quartile position is called the __________ class.
-
-27. In grouped frequency data, the class containing the required percentile position is called the __________ class.
-
-28. In grouped frequency data, the class containing the required decile position is called the __________ class.
-
-29. The arithmetic mean, geometric mean, and harmonic mean are collectively called __________ means.
-
-30. The relationship among the three Pythagorean means is generally written as $AM$ __________ $GM$ __________ $HM$.
+12. The fifth decile is equal to the __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -814,9 +810,9 @@ Answers are given at the end of the chapter.
 
 11. A car travels from City A to City B at 60 km/h and returns over the same distance at 90 km/h. Find the average speed for the entire trip.
 
-12. Find $P_{25}$, $P_{50}$, and $P_{75}$ for a given frequency distribution and verify that $P_{25}=Q_1$, $P_{50}=Q_2$, and $P_{75}=Q_3$.
+12. Using the frequency distribution in @tbl-quartile, find $P_{25}$, $P_{50}$, and $P_{75}$ and verify that $P_{25}=Q_1$, $P_{50}=Q_2$, and $P_{75}=Q_3$.
 
-13. Find $D_5$ for a given dataset and verify that $D_5=Q_2=P_{50}=\text{Median}$.
+13. Using the frequency distribution in @tbl-quartile, find $D_5$ and verify that $D_5=Q_2=P_{50}=\text{Median}$.
 
 ### Important formulae {.unnumbered}
 
@@ -904,7 +900,7 @@ $$
 D_d=l+\frac{\left(\frac{dn}{10}\right)-cf}{f}\times c
 $$
 
-Relationship among Pythagorean means:
+Relationship among Pythagorean means (the first equality is for two positive observations):
 
 $$
 AM\times HM=GM^2
@@ -922,11 +918,11 @@ $$
 - Harmonic mean → reciprocal of the arithmetic mean of reciprocals.
 - Geometric mean gives greater weight to smaller values and less weight to larger values.
 - Harmonic mean gives greater weight to smaller values.
-- Geometric mean cannot be calculated when any observation is zero.
-- Geometric mean cannot be calculated when the number of negative values is odd.
+- The logarithmic GM requires positive observations; the product GM of non-negative values is zero if any value is zero.
+- The standard statistical GM is generally unsuitable for negative observations.
 - Arithmetic mean, geometric mean, and harmonic mean are called Pythagorean means.
 - Mathematical averages → arithmetic mean, geometric mean, and harmonic mean.
-- Positional averages → median, mode, quartiles, percentiles, and deciles.
+- Positional measures → median, quartiles, percentiles, and deciles; mode is based on frequency.
 - Quartiles → divide data into 4 equal parts.
 - $Q_1$ → 25th percentile.
 - $Q_2$ → 50th percentile → Median.
@@ -946,12 +942,12 @@ $$
 
 ::: {.answer-key}
 
-`1.` Geometric mean; Harmonic mean `2.` Growth rates `3.` $n$th `4.` $GM$ `5.` Antilog `6.` $f_i\log x_i$ `7.` Zero `8.` Odd `9.` Reciprocals `10.` Rates `11.` $HM$ `12.` Four `13.` $Q_1$ `14.` $Q_2$; Median `15.` $Q_3$ `16.` 50 `17.` 25 `18.` 75 `19.` Hundred `20.` Median `21.` First `22.` Third `23.` Ten `24.` Nine `25.` Median `26.` Quartile `27.` Percentile `28.` Decile `29.` Pythagorean `30.` $\geq$; $\geq$
+`1.` Geometric `2.` Harmonic `3.` Geometric `4.` Harmonic `5.` HM `6.` Equal `7.` Four `8.` Median `9.` Ten `10.` One hundred `11.` First `12.` Median
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
-1.  Using @eq-gm3, $\sum\log x_i=8.925$, so $GM=\operatorname{Antilog}\left(\frac{8.925}{5}\right)=\operatorname{Antilog}(1.785)=60.95$.
+1.  Using unrounded logarithms in @eq-gm3, $\sum\log_{10}x_i=8.925518$, so $GM=10^{8.925518/5}\approx60.97$.
 
 2.  Using @eq-hm1, $\sum\frac{1}{x}=0.4338$, so $HM=\frac{5}{0.4338}=11.53$.
 
@@ -965,7 +961,7 @@ $$
 
 7.  $D_5$ divides the data at the 50% position, the same as $Q_2$ and $P_{50}$, so $D_5=Q_2=P_{50}=\text{Median}$.
 
-8.  Using @eq-gm4, $\sum f_i\log x_i=57.782$ for $n=32$, so $GM=\operatorname{Antilog}\left(\frac{57.782}{32}\right)=\operatorname{Antilog}(1.8056)=63.92$.
+8.  Using unrounded logarithms in @eq-gm4, $\sum f_i\log_{10}x_i\approx57.78234$ and $n=32$, so $GM\approx63.93$.
 
 9.  Using @eq-hm2 with $n=18$, $\sum f_i\frac{1}{x_i}=0.822$, so $HM=\frac{18}{0.822}=21.90$.
 
@@ -973,9 +969,9 @@ $$
 
 11. Using the harmonic-mean average speed, $S_{\text{avg}}=\frac{2S_1S_2}{S_1+S_2}=\frac{2(60)(90)}{60+90}=\frac{10800}{150}=72$ km/h.
 
-12. Using @eq-percentile1 on the frequency distribution from @tbl-quartile (@exm-ct21, $n=24$): $P_{25}=8=Q_1$, $P_{50}=15=Q_2=\text{Median}$, $P_{75}=24=Q_3$, verifying the relationship.
+12. Using the discrete-frequency convention on the frequency distribution from @tbl-quartile (@exm-ct21, $n=24$): $P_{25}=8=Q_1$, $P_{50}=15=Q_2=\text{Median}$, $P_{75}=24=Q_3$, verifying the relationship.
 
-13. Using @eq-decile on the same distribution as question 12: $D_5=15=Q_2=P_{50}=\text{Median}$, verifying the relationship.
+13. Using the discrete-frequency convention on the same distribution as question 12: $D_5=15=Q_2=P_{50}=\text{Median}$, verifying the relationship.
 
 ::: {.callout-caution title="Historical Insights"}
 **“The harmonic mean and the perfect fourth”**

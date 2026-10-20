@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>16&nbsp; Design of experiments – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./uniformityTrials.html" rel="next">
 <link href="./smallsampleTest.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="16&nbsp; Design of experiments – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="16&nbsp; Design of experiments – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -604,6 +637,8 @@ window.Quarto = {
   <li><a href="#border-effect" id="toc-border-effect" class="nav-link" data-scroll-target="#border-effect"><span class="header-section-number">16.8.1</span> Border effect</a></li>
   <li><a href="#proper-plot-technique" id="toc-proper-plot-technique" class="nav-link" data-scroll-target="#proper-plot-technique"><span class="header-section-number">16.8.2</span> Proper plot technique</a></li>
   <li><a href="#appropriate-statistical-analysis" id="toc-appropriate-statistical-analysis" class="nav-link" data-scroll-target="#appropriate-statistical-analysis"><span class="header-section-number">16.8.3</span> Appropriate statistical analysis</a></li>
+  <li><a href="#planning-and-recording-the-experiment" id="toc-planning-and-recording-the-experiment" class="nav-link" data-scroll-target="#planning-and-recording-the-experiment"><span class="header-section-number">16.8.4</span> Planning and recording the experiment</a></li>
+  <li><a href="#matching-the-design-to-the-experimental-units" id="toc-matching-the-design-to-the-experimental-units" class="nav-link" data-scroll-target="#matching-the-design-to-the-experimental-units"><span class="header-section-number">16.8.5</span> Matching the design to the experimental units</a></li>
   </ul></li>
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">16.9</span> Chapter Summary</a>
   <ul class="collapse">
@@ -643,7 +678,7 @@ window.Quarto = {
 
 
 <p>Design of experiments is an integral component of agricultural research. A scientifically designed experiment is a valuable tool in gaining new knowledge and developing technology. “It is the effective use of the tools of statistical design of experiments that paved the way for the green revolution”, these words of the father of the green revolution in India, Dr.&nbsp;M.S. Swaminathan, show how important the design and analysis of experiments, as well as statistical science, is for agricultural experiments.</p>
-<p>A carefully designed experiment is able to answer all the queries of a researcher with accuracy and reliability, while making efficient use of the available resources. Thus, for successful experimentation, it is highly desirable that scientists and researchers of scientific disciplines, including the agricultural sciences, understand the basic principles of designing an experiment and of analyzing the resultant data from the completed experiment. It may be emphasized that a researcher should always consult a statistician before, during, and after experimentation, if he is not convinced enough about using a design for his experiment or an analysis technique for his data.</p>
+<p>A carefully designed experiment helps answer specified research questions with accuracy and reliability while making efficient use of the available resources. Researchers should understand both the design and the intended analysis before collecting data, and consult a statistician during planning when the design or analysis is uncertain.</p>
 <p>Any scientific investigation involves the formulation of certain assertions (or hypotheses) whose validity is examined through the data generated from an experiment conducted for the purpose.</p>
 <p>The term <strong>experiment</strong> is defined as the systematic procedure carried out under controlled conditions in order to discover an unknown effect, to test or establish a hypothesis, or to illustrate a known effect.</p>
 <p>In agricultural research, Design of Experiments (DoE) is the statistical methodology for planning agricultural experiments so that treatment effects can be estimated accurately, efficiently, and without bias. It involves the systematic allocation of treatments to experimental units while controlling experimental variability through the principles of randomization, replication, and local control. These three principles, <strong>randomization</strong>, <strong>replication</strong>, and <strong>local control</strong>, are together termed the <strong>Basic Principles of Design</strong>, explained in <a href="#sec-basicP" class="quarto-xref"><span>Section 16.7</span></a>. The ultimate goal is to draw valid scientific conclusions about the performance of agricultural treatments under field or laboratory conditions.</p>
@@ -682,7 +717,7 @@ window.Quarto = {
 </section>
 <section id="experimental-units" class="level3" data-number="16.1.3">
 <h3 data-number="16.1.3" class="anchored" data-anchor-id="experimental-units"><span class="header-section-number">16.1.3</span> Experimental units</h3>
-<p>An <strong>experimental unit</strong> is the smallest unit of the experiment to which a treatment is independently applied. It is the unit on which observations are made and from which data are collected. The choice of the experimental unit depends on the nature of the experiment and the objective of the study.</p>
+<p>An <strong>experimental unit</strong> is the smallest unit of the experiment to which a treatment is independently assigned. Measurements may be recorded on that unit or on observational units within it. The choice of the experimental unit depends on the nature of the experiment and the objective of the study.</p>
 <p>In agricultural field experiments, an experimental unit is usually a plot of land. In pot culture experiments, each pot is an experimental unit. In animal experiments, an individual animal or a group of animals may serve as the experimental unit, depending on how the treatments are applied. Similarly, in laboratory experiments, an experimental unit may be a Petri dish, a test tube, a culture flask, or any other unit that receives a treatment independently.</p>
 <p><strong>Examples of experimental units</strong></p>
 <ul>
@@ -701,7 +736,7 @@ window.Quarto = {
 </section>
 <section id="factors" class="level3" data-number="16.1.5">
 <h3 data-number="16.1.5" class="anchored" data-anchor-id="factors"><span class="header-section-number">16.1.5</span> Factors</h3>
-<p>Factors are the variables whose influence on a response variable is being studied in the experiment. If only one factor is being studied in an experiment, then such an experiment is called a single-factor experiment. If more than one factor is being studied simultaneously in an experiment, then such an experiment is called a multi-factor or factorial experiment. The term factor is commonly used in the case of factorial experiments. For example, temperature and concentration of chemicals in a chemical experiment are two factors; nitrogen, phosphorus, and potassium fertilizers are three factors in an agronomic experiment. Dose and time of application of a chemical formulation are two factors in a laboratory experiment.</p>
+<p>Factors are the variables whose influence on a response variable is being studied in the experiment. If only one factor is being studied in an experiment, then such an experiment is called a single-factor experiment. If more than one factor is studied, it is a multi-factor experiment. In a full factorial experiment, all combinations of the chosen factor levels are included; not every multi-factor arrangement is a full factorial. The term factor is commonly used in the case of factorial experiments. For example, temperature and concentration of chemicals in a chemical experiment are two factors; nitrogen, phosphorus, and potassium fertilizers are three factors in an agronomic experiment. Dose and time of application of a chemical formulation are two factors in a laboratory experiment.</p>
 </section>
 <section id="factor-levels" class="level3" data-number="16.1.6">
 <h3 data-number="16.1.6" class="anchored" data-anchor-id="factor-levels"><span class="header-section-number">16.1.6</span> Factor levels</h3>
@@ -709,12 +744,12 @@ window.Quarto = {
 </section>
 <section id="observational-unit" class="level3" data-number="16.1.7">
 <h3 data-number="16.1.7" class="anchored" data-anchor-id="observational-unit"><span class="header-section-number">16.1.7</span> Observational unit</h3>
-<p>An observational unit is a unit on which the response variables are measured. Observational units are often the same as experimental units, but this may not always be true. The mistake of confusing the observational unit with the experimental unit leads to pseudo-replication, as discussed in a paper by <span class="citation" data-cites="hurlbert">(<a href="references.html#ref-hurlbert" role="doc-biblioref">Hurlbert 1984</a>)</span>. Consider an experiment to investigate the effects of ultraviolet (UV) levels on the growth of smolt. The experiment is conducted in two tanks, where one tank receives high levels of UV light and the other receives no UV light. Fish are placed in each tank, and at the end of the experiment the growth of the individual fish is measured. In this experiment, the tanks are the experimental units but the observational units are the smolts. The treatments, presence and absence of UV light, are applied to the tanks and not to individual fish, but a whole group of fish is simultaneously exposed to the UV radiation. Here any tank effect is completely confounded with the treatment effect and cannot be separated. Another example is where inorganic fertilizers are applied to plots in a field containing some plants. At the time of harvest, not all the plants in the plot are harvested; only a sample of plants is harvested. In this case, once again, the plot is the experimental unit to which fertilizers are applied, but the observational units are the plants sampled.</p>
+<p>An observational unit is a unit on which the response variables are measured. Observational units are often the same as experimental units, but this may not always be true. The mistake of confusing the observational unit with the experimental unit leads to pseudo-replication, as discussed in a paper by <span class="citation" data-cites="hurlbert">Hurlbert (<a href="references.html#ref-hurlbert" role="doc-biblioref">1984</a>)</span>. Consider an experiment to investigate the effects of ultraviolet (UV) levels on the growth of smolt. The experiment is conducted in two tanks, where one tank receives high levels of UV light and the other receives no UV light. Fish are placed in each tank, and at the end of the experiment the growth of the individual fish is measured. In this experiment, the tanks are the experimental units but the observational units are the smolts. The treatments, presence and absence of UV light, are applied to the tanks and not to individual fish, but a whole group of fish is simultaneously exposed to the UV radiation. Here any tank effect is completely confounded with the treatment effect and cannot be separated. Another example is where inorganic fertilizers are applied to plots in a field containing some plants. At the time of harvest, not all the plants in the plot are harvested; only a sample of plants is harvested. In this case, once again, the plot is the experimental unit to which fertilizers are applied, but the observational units are the plants sampled.</p>
 </section>
 </section>
 <section id="experimental-error" class="level2" data-number="16.2">
 <h2 data-number="16.2" class="anchored" data-anchor-id="experimental-error"><span class="header-section-number">16.2</span> Experimental error</h2>
-<p>To explain experimental error, consider the example given by <span class="citation" data-cites="gomez">(<a href="references.html#ref-gomez" role="doc-biblioref">Gomez and Gomez 1984</a>)</span>. Consider a plant breeder who wishes to compare the yield of a new rice variety A with that of a standard variety B of known and tested properties. He lays out two plots of equal size, side by side, and sows one to variety A and the other to variety B. Grain yield for each plot is then measured, and the variety with the higher yield is judged to be better. Despite the simplicity and common-sense appeal of the procedure just outlined, it has one important flaw. It presumes that any difference between the yields of the two plots is caused by the varieties and nothing else. This certainly is not true. Even if the same variety were planted on both plots, the yields would differ. Other factors, such as soil fertility, moisture, and damage by insects, diseases, and birds also affect rice yields. Because these other factors affect yields, a satisfactory evaluation of the two varieties must involve a procedure that can separate the varietal difference from other sources of variation. That is, the plant breeder must be able to design an experiment that allows him to decide whether the difference observed is caused by varietal difference or by other factors.</p>
+<p>To explain experimental error, consider the example given by <span class="citation" data-cites="gomez">Gomez and Gomez (<a href="references.html#ref-gomez" role="doc-biblioref">1984</a>)</span>. Consider a plant breeder who wishes to compare the yield of a new rice variety A with that of a standard variety B of known and tested properties. He lays out two plots of equal size, side by side, and sows one to variety A and the other to variety B. Grain yield for each plot is then measured, and the variety with the higher yield is judged to be better. Despite the simplicity and common-sense appeal of the procedure just outlined, it has one important flaw. It presumes that any difference between the yields of the two plots is caused by the varieties and nothing else. This certainly is not true. Even if the same variety were planted on both plots, the yields would differ. Other factors, such as soil fertility, moisture, and damage by insects, diseases, and birds also affect rice yields. Because these other factors affect yields, a satisfactory evaluation of the two varieties must involve a procedure that can separate the varietal difference from other sources of variation. That is, the plant breeder must be able to design an experiment that allows him to decide whether the difference observed is caused by varietal difference or by other factors.</p>
 <blockquote class="blockquote">
 <p>The logic behind the decision is simple. Two rice varieties planted in two adjacent plots will be considered different in their yielding ability only if the observed yield difference is larger than that expected if both plots were planted to the same variety.</p>
 </blockquote>
@@ -793,7 +828,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 </ul>
 <p>The answer to all these questions highlights the importance of properly designing an experiment. In the above example, we cannot confidently say that poultry manure is the best because many other factors could have influenced the results. The plants may differ in their genetic makeup, age, initial health, soil conditions, sunlight received, or several other environmental factors. Any of these factors, rather than the manure itself, could be responsible for the observed differences in growth.</p>
 <p>For this reason, the scientific community would not accept the conclusion from such an experiment. A scientific conclusion must be based on an experiment that is carefully planned and supported by statistical principles. Proper experimental design ensures that the treatment effects are measured fairly while minimizing the influence of other sources of variation.</p>
-<p>Design of experiments is the process of planning an experiment so that the data collected can answer a research question in a valid, reliable, efficient, and economical manner. The design of an experiment and the statistical analysis of the resulting data are closely related. A well-designed experiment produces data that can be analyzed to draw valid and reliable conclusions. On the other hand, if an experiment is poorly designed, even the most advanced statistical methods cannot produce trustworthy conclusions.</p>
+<p>Design of experiments is the process of planning an experiment so that the data collected can answer a research question in a valid, reliable, efficient, and economical manner. The design of an experiment and the statistical analysis of the resulting data are closely related. A well-designed experiment produces data that can be analysed to draw valid and reliable conclusions. On the other hand, if an experiment is poorly designed, even the most advanced statistical methods cannot produce trustworthy conclusions.</p>
 <p>In the following sections, we will learn the basic principles of experimental design and see how the above experiment can be redesigned to produce scientifically valid results.</p>
 </section>
 <section id="importance-of-doe" class="level2" data-number="16.4">
@@ -824,7 +859,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 <h2 data-number="16.6" class="anchored" data-anchor-id="brief-history"><span class="header-section-number">16.6</span> Brief history</h2>
 <p>The statistical principles underlying the design of experiments were pioneered by R. A. Fisher in the 1920s and 1930s at Rothamsted Experimental Station, an agricultural research station around forty kilometres north of London. Fisher showed the way to draw valid conclusions from field experiments where nuisance variables such as temperature, soil conditions, and rainfall are present. He introduced the concept of analysis of variance (ANOVA) for partitioning the variation present in data into that (a) due to attributable factors and (b) due to chance factors. The methodologies he and his colleague Frank Yates developed are now widely used and have had a profound impact on agricultural research. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span></p>
 <p>Though experimental design was initially introduced in an agricultural context, the method has been applied successfully in industry since the 1940s. George Box and his co-workers developed experimental design procedures for optimising chemical processes, particularly response surface designs for the chemical and process industries. <span class="citation" data-cites="Montgomery2017">(<a href="references.html#ref-Montgomery2017" role="doc-biblioref">Montgomery 2017</a>)</span></p>
-<p>More recently, experimental designs are also being used in clinical trials. This evolved in the 1960s, when medical advances had previously been based on unreliable data. For example, doctors used to examine a few patients and publish papers based on such data. The biases resulting from these kinds of studies became known. This led to a move toward making the randomized double-blind clinical trial the standard for approval of any new product, medical device, or procedure. The scientific application of valid designing and analysis following proper statistical methods became very important in clinical trials.</p>
+<p>Experimental design also became central to clinical research. The Medical Research Council’s controlled streptomycin trial, reported in 1948, is an important early example of random allocation in medicine. Randomization and, where feasible, blinding help reduce different sources of bias; neither is confined to agricultural experiments. <span class="citation" data-cites="MRC1948">(<a href="references.html#ref-MRC1948" role="doc-biblioref">Medical Research Council 1948</a>)</span></p>
 <p>Even more recently, experimental design techniques have started gaining popularity in the area of computer-aided design and engineering using computer and simulation models, including applications in manufacturing industries.</p>
 </section>
 <section id="sec-basicP" class="level2" data-number="16.7">
@@ -844,12 +879,12 @@ Figure&nbsp;16.3: Yield observed from the plants
 </div>
 <section id="sec-rand" class="level3" data-number="16.7.1">
 <h3 data-number="16.7.1" class="anchored" data-anchor-id="sec-rand"><span class="header-section-number">16.7.1</span> Randomization</h3>
-<p>Randomization is the process of assigning treatments to experimental units purely by chance. In other words, every experimental unit has an equal chance of receiving any of the treatments.</p>
-<p>The main purpose of randomization is to eliminate bias and ensure that the treatment groups are comparable. It prevents the experimenter from consciously or unconsciously assigning a particular treatment to a better or poorer experimental unit. As a result, the effect of unknown or uncontrollable factors is distributed randomly among the treatments.</p>
-<p>For example, suppose three fertilizers (A, B, and C) are to be tested on 15 potted plants. Instead of choosing which plants receive each fertilizer, the treatments are assigned randomly. This ensures that differences in plant size, soil conditions, or other unknown factors are spread across all treatments rather than favouring one treatment.</p>
-<p>Randomization also satisfies an important assumption of statistical analysis. Since the treatments are assigned at random, the experimental errors are expected to be random and independent. This allows statistical methods such as the t-test, F-test (ANOVA), and other hypothesis tests to produce valid conclusions.</p>
+<p>Randomization is the process of assigning treatments to experimental units by a chance mechanism that follows the chosen design. In a balanced experiment, each eligible unit has the same probability of receiving each treatment. Unequal allocation is also possible, provided the allocation probabilities are specified in advance.</p>
+<p>The main purpose of randomization is to prevent bias in treatment allocation. It prevents the experimenter from consciously or unconsciously assigning a particular treatment to a better or poorer experimental unit. Known and unknown unit characteristics are balanced in expectation over possible allocations; a particular random allocation need not give perfectly comparable groups.</p>
+<p>For example, suppose three fertilizers (A, B, and C) are to be tested on 15 potted plants, with five plants per fertilizer. Randomly permute five labels of each treatment and assign them to the numbered pots. Every allocation with these treatment counts is equally likely. Chance differences in initial plant size can still remain; blocking on initial size may improve precision.</p>
+<p>Randomization provides the basis for assessing treatment effects against chance allocation. It does not itself guarantee independent, normally distributed errors or equal error variances. Spatial dependence, repeated measurements, and interference between neighbouring plots must still be considered in the design and analysis.</p>
 <p>Randomization alone, however, is not sufficient. It should always be used together with replication to obtain reliable and scientifically valid results.</p>
-<p>When every experimental unit has an equal chance of receiving any treatment, the process is called <strong>complete randomization</strong>.</p>
+<p>In <strong>complete randomization</strong>, treatments are allocated across all experimental units without blocking restrictions, subject to the planned treatment counts. In an RCBD, randomization is restricted to the plots within each block. Equal marginal allocation probabilities alone do not distinguish these designs.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -860,7 +895,7 @@ Figure&nbsp;16.3: Yield observed from the plants
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Consider an example where you want to randomly allot 3 treatments to 3 experimental units. How will you do this? It is very easy: just label all the units from 1 to 3. Make lots of equal size labelled 1, 2, and 3. Put these labels in a bowl and pick one with your eyes closed. If 1 comes up, the first treatment is allotted to the first unit. This is a very simple technique of randomization. Random number tables or computer-generated random numbers can also be used.</p>
+<p>Consider an example where you want to randomly allot 3 treatments to 3 experimental units. Label the units 1 to 3, mix three identical folded lots labelled A, B, and C, and draw one lot without replacement for each unit in turn. If B is drawn first, unit 1 receives B; continue until all units have a treatment. Each of the six possible assignments is equally likely. This illustrates allocation only; one unit per treatment does not provide within-treatment replication. Random number tables or computer-generated random numbers can also be used.</p>
 </div>
 </div>
 <div class="cell" data-layout-align="center">
@@ -883,13 +918,13 @@ Figure&nbsp;16.4: Taking a lot from a bowl is also a process of randomization
 <p>Replication is the process of applying the same treatment to more than one experimental unit. In other words, each treatment is repeated several times in an experiment.</p>
 <p>The main purpose of replication is to improve the reliability and precision of the experimental results. A conclusion based on several observations is more dependable than one based on a single observation. As the number of replications increases, the precision of the experiment also increases.</p>
 <p>Replication also helps in estimating experimental error variance, which is the natural variation that exists even among experimental units receiving the same treatment. Estimating experimental error is essential because it allows us to determine whether the observed differences among treatments are real or simply due to chance. Statistical tests such as the t-test and Analysis of Variance (ANOVA) use this estimate of experimental error to test the significance of treatment effects.</p>
-<p>Without replication, it is impossible to estimate experimental error variance. As a result, reliable statistical analysis and valid conclusions cannot be made.</p>
+<p>Without independent replication, the ordinary single-factor ANOVA cannot separate treatment effects from experimental error. Repeated measurements or several plants sampled within one treated plot do not supply additional treatment replications. Some specialised unreplicated designs estimate error by additional assumptions, but these are not a substitute for planning adequate replication in the designs introduced here.</p>
 </section>
 <section id="sec-local" class="level3" data-number="16.7.3">
 <h3 data-number="16.7.3" class="anchored" data-anchor-id="sec-local"><span class="header-section-number">16.7.3</span> Local control (Blocking)</h3>
 <p>Local control, also known as <strong>blocking</strong>, is the principle of grouping similar experimental units into blocks before assigning treatments. The objective of blocking is to reduce experimental error by accounting for known sources of variation among the experimental units.</p>
 <p>In agricultural field experiments, the experimental field is rarely uniform. Soil fertility, moisture, slope, and other environmental conditions may vary from one part of the field to another. If these variations are ignored, they become part of the experimental error and make it difficult to detect the true effect of the treatments.</p>
-<p>To overcome this problem, the field is divided into smaller groups of relatively homogeneous experimental units, called <strong>blocks</strong>. Each block should contain experimental units that are as similar as possible. All the treatments are then assigned randomly within each block. In this way, the variation between blocks is separated from the experimental error, resulting in more precise comparisons among treatments.</p>
+<p>To overcome this problem, the field is divided into smaller groups of relatively homogeneous experimental units, called <strong>blocks</strong>. Each block should contain experimental units that are as similar as possible. In a complete block design, every treatment is assigned once within each block, using an independent random allocation for each block. Incomplete block designs contain only a subset of treatments per block. Blocking can improve precision when the variation removed compensates for the error degrees of freedom used.</p>
 <p>Local control is used together with replication to improve the precision of an experiment. By reducing experimental error by accounting for known sources of variation among experimental units, it increases the ability of the experiment to detect real differences among treatments.</p>
 <p>For example, consider a field where one side is more fertile than the other. Instead of treating the entire field as uniform, it can be divided into blocks based on soil fertility. Each block receives all the treatments, and the treatments are assigned randomly within each block. This ensures that the differences due to soil fertility are accounted for, allowing a fair comparison of the treatment effects.</p>
 <p>Suppose you have a field experiment with 4 treatments and 5 replications. Consider a field with a fertility gradient from left to right, as shown in <a href="#fig-field" class="quarto-xref">Figure&nbsp;<span>16.5</span></a>.</p>
@@ -916,7 +951,7 @@ Figure&nbsp;16.5: A field with a fertility gradient from left to right
 <div id="fig-field2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-field2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/design/field2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
+<img src="images/design/field2-corrected.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-field2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;16.6: Plots are grouped into blocks
@@ -941,7 +976,20 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <section id="appropriate-statistical-analysis" class="level3" data-number="16.8.3">
 <h3 data-number="16.8.3" class="anchored" data-anchor-id="appropriate-statistical-analysis"><span class="header-section-number">16.8.3</span> Appropriate statistical analysis</h3>
 <p>Appropriate statistical methods can further improve the precision of an experiment by accounting for known sources of variation. One commonly used method is <strong>Analysis of Covariance (ANCOVA)</strong>, which adjusts the response variable using one or more related variables called <strong>covariates</strong>. By removing the variation associated with the covariates, ANCOVA provides a more precise comparison of treatment effects.</p>
-<p>For example, in an animal feeding experiment, the animals may differ in their initial body weights. Since initial weight influences final weight, it can be used as a covariate. ANCOVA adjusts the final weights to account for these initial differences, allowing a fair comparison of the feeds. Similarly, in a field experiment, if some plots suffer greater pest damage than others, the extent of pest damage may be included as a covariate to improve the precision of treatment comparisons.</p>
+<p>For example, in an animal feeding experiment, the animals may differ in their initial body weights. Since initial weight influences final weight, it can be used as a covariate. ANCOVA adjusts the final weights to account for these initial differences, allowing a fair comparison of the feeds. Similarly, pre-treatment soil measurements may be useful covariates in a field experiment. Pest damage measured after treatment may itself be a treatment response; adjusting for it can remove part of the treatment effect and should not be done automatically.</p>
+</section>
+<section id="planning-and-recording-the-experiment" class="level3" data-number="16.8.4">
+<h3 data-number="16.8.4" class="anchored" data-anchor-id="planning-and-recording-the-experiment"><span class="header-section-number">16.8.4</span> Planning and recording the experiment</h3>
+<p>State the research question, the primary response and its measurement units, the treatments, and the experimental unit before laying out the experiment. Decide which comparisons matter most and estimate the replication needed from the smallest scientifically important difference, anticipated error variance, significance level, and desired power. An error-df guideline alone does not establish adequate power.</p>
+<p>Form blocks using information available before treatment assignment. Number the plots on a field map, generate the allocation according to the design, and retain the allocation record. With computer randomization, record the seed and software used. Do not select a layout simply because its treatment pattern looks evenly spread. Plan guard rows, buffers and application procedures to limit treatment movement between plots. Where feasible, use coded treatment labels when recording responses to reduce observer bias.</p>
+<p>If treatments are applied or responses measured over several days, account for time or batches by blocking or by a suitable random run order. A random field layout alone does not protect against a fixed application order that always favours the same treatment. Specify the net plot and sampling method before harvesting, retain the original observations, and document missing values and departures from the plan.</p>
+</section>
+<section id="matching-the-design-to-the-experimental-units" class="level3" data-number="16.8.5">
+<h3 data-number="16.8.5" class="anchored" data-anchor-id="matching-the-design-to-the-experimental-units"><span class="header-section-number">16.8.5</span> Matching the design to the experimental units</h3>
+<p>CRD is useful for relatively homogeneous units; RCBD controls one blocking classification; a Latin square controls two blocking classifications. These designs are developed in the single-factor chapter. A factorial experiment describes the treatment combinations and can use any suitable randomization design. <span class="citation" data-cites="NISTdesign">(<a href="references.html#ref-NISTdesign" role="doc-biblioref">NIST/SEMATECH, n.d.-a</a>)</span></p>
+<p>When one factor is difficult to apply to small plots, a <strong>split-plot design</strong> may be appropriate. For example, irrigation levels can be randomized to whole plots within each block, and varieties randomized separately to subplots within every whole plot. There are two stages of randomization and two sizes of experimental unit. In the usual balanced split-plot analysis with fixed treatment factors, irrigation is tested against whole-plot error; variety and its interaction with irrigation use subplot error. Treating all subplots as independent irrigation replications gives an invalid error term. Split-plot analysis requires the corresponding model and is beyond the single-error ANOVA developed here. <span class="citation" data-cites="NISTnested">(<a href="references.html#ref-NISTnested" role="doc-biblioref">NIST/SEMATECH, n.d.-b</a>)</span></p>
+<p>Repeated observations on the same plot over time are also related observations, not new randomizations. Experiments across locations or seasons may need models for those environments and their interactions with treatments. The scope of the conclusion should match the environments and experimental units actually studied.</p>
+<p>A survey observes selected population units, whereas an experiment assigns treatments to experimental units. The design determines the correct error term for analysis. The next chapter examines field variability through uniformity trials; the ANOVA chapter then explains how observed variation is partitioned and tested.</p>
 </section>
 </section>
 <section id="chapter-summary" class="level2" data-number="16.9">
@@ -950,34 +998,18 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>Design of Experiments is a statistical methodology for planning experiments so that treatment effects can be estimated accurately, efficiently, and without __________.</p></li>
-<li><p>A systematic procedure carried out under controlled conditions to discover an unknown effect or test a hypothesis is called an __________.</p></li>
-<li><p>The three basic principles of experimental design are __________, __________, and __________.</p></li>
-<li><p>The object of comparison in an experiment is called a __________.</p></li>
-<li><p>A treatment used as a standard for comparison is called a __________ treatment.</p></li>
-<li><p>The smallest unit to which a treatment is independently applied is called the __________ unit.</p></li>
-<li><p>The measurable outcome observed after applying a treatment is called the __________.</p></li>
-<li><p>A variable whose influence on a response is being studied is called a __________.</p></li>
-<li><p>The values or settings taken by a factor are called factor __________.</p></li>
-<li><p>A unit on which the response variable is measured is called the __________ unit.</p></li>
-<li><p>The variation among experimental units receiving the same treatment is called __________ error.</p></li>
-<li><p>The main objective of experimental design is to __________ experimental error.</p></li>
-<li><p>The process of assigning treatments to experimental units purely by chance is called __________.</p></li>
-<li><p>When every experimental unit has an equal chance of receiving any treatment, it is called __________ randomization.</p></li>
-<li><p>The process of applying the same treatment to more than one experimental unit is called __________.</p></li>
-<li><p>Replication helps in estimating the __________ error variance.</p></li>
-<li><p>Grouping similar experimental units into blocks before assigning treatments is called __________ control.</p></li>
-<li><p>Local control is also known as __________.</p></li>
-<li><p>In a block, experimental units should be as __________ as possible.</p></li>
-<li><p>A design in which every block contains all the treatments is called a __________ Block Design.</p></li>
-<li><p>Plants located along the border of a plot may be affected by neighbouring plots; this is called the __________ effect.</p></li>
-<li><p>The inner portion of a plot from which observations are recorded is called the __________ plot.</p></li>
-<li><p>All management practices other than the treatments under study should be kept as __________ as possible.</p></li>
-<li><p>ANCOVA can improve precision by adjusting the response variable using one or more __________ variables.</p></li>
-<li><p>The statistical principles underlying the design of experiments were pioneered by __________.</p></li>
-<li><p>R. A. Fisher developed the principles of experimental design at __________ Experimental Station.</p></li>
-<li><p>Fisher introduced __________ of Variance for partitioning variation in experimental data.</p></li>
-<li><p>The three basic principles of design are collectively called the __________ Principles of Design.</p></li>
+<li><p>The condition or combination of conditions applied to an experimental unit is called a __________.</p></li>
+<li><p>A standard treatment used for comparison is called a __________.</p></li>
+<li><p>The smallest unit to which a treatment is independently assigned is the __________ unit.</p></li>
+<li><p>A variable whose levels are investigated in an experiment is called a __________.</p></li>
+<li><p>The values or settings of a factor are called its __________.</p></li>
+<li><p>Assignment of treatments by chance is called __________.</p></li>
+<li><p>Independent application of a treatment to several experimental units is called __________.</p></li>
+<li><p>Grouping similar experimental units before randomization is called __________.</p></li>
+<li><p>Blocking is an application of the principle of local __________.</p></li>
+<li><p>Replication permits estimation of experimental __________.</p></li>
+<li><p>The unit on which a measurement is recorded is called the __________ unit.</p></li>
+<li><p>The inner part of a plot used for recording yield is called the __________ plot.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1072,12 +1104,12 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <li><p>Experimental error → variation in response caused by extraneous factors among experimental units receiving the same treatment.</p></li>
 <li><p>Extraneous factors → factors other than the treatments that cause variation in the response.</p></li>
 <li><p>Randomization → assignment of treatments to experimental units purely by chance.</p></li>
-<li><p>Complete randomization → every experimental unit has an equal chance of receiving any treatment.</p></li>
+<li><p>Complete randomization → treatments are assigned without blocking restrictions, subject to the pre-specified treatment counts; allocation may be equal or unequal.</p></li>
 <li><p>Replication → application of the same treatment to more than one experimental unit.</p></li>
 <li><p>Local control → grouping similar experimental units into blocks before assigning treatments.</p></li>
 <li><p>Blocking → another term for local control.</p></li>
 <li><p>Basic principles of design → randomization, replication, and local control.</p></li>
-<li><p>Randomization → reduces bias and distributes unknown sources of variation among treatments.</p></li>
+<li><p>Randomization → protects against allocation bias and balances unknown sources of variation in expectation; a particular allocation can remain unbalanced.</p></li>
 <li><p>Replication → improves reliability and precision and permits estimation of experimental error.</p></li>
 <li><p>Local control → reduces experimental error by accounting for known sources of variation.</p></li>
 <li><p>Randomized Block Design → design in which similar experimental units are grouped into blocks and all treatments are randomly assigned within each block.</p></li>
@@ -1085,7 +1117,7 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <li><p>Net plot → inner portion of a plot from which observations are recorded after excluding border plants.</p></li>
 <li><p>Proper plot technique → keeping all management practices other than the treatments as uniform as possible.</p></li>
 <li><p>ANCOVA → statistical method that adjusts the response using one or more covariates to improve precision.</p></li>
-<li><p>Good experimental design → unbiased, precise, interpretable, efficient, simple, and capable of providing conclusions with wide validity.</p></li>
+<li><p>Good experimental design → supports unbiased, precise and interpretable comparisons, uses resources efficiently, and defines the conditions to which conclusions apply.</p></li>
 </ul>
 </section>
 <section id="important-historical-points" class="level3 unnumbered">
@@ -1104,7 +1136,7 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <ul>
 <li><p>A well-designed experiment separates the effect of the treatments from other sources of variation, so that observed differences can be attributed to the treatments with confidence.</p></li>
 <li><p>Experimental error is the variation among experimental units that receive the same treatment; every design must provide a way of estimating it.</p></li>
-<li><p>The three basic principles of design, randomization, replication, and local control, work together: randomization removes bias, replication permits estimation of experimental error and improves precision, and local control reduces experimental error by accounting for known sources of variation.</p></li>
+<li><p>The three basic principles of design, randomization, replication, and local control, work together: randomization protects against systematic allocation bias, replication permits estimation of experimental error and improves precision, and local control reduces experimental error by accounting for known sources of variation.</p></li>
 <li><p>An experimental unit is the smallest unit to which a treatment is independently applied; an observational unit is the unit on which the response is actually measured. Confusing the two leads to pseudo-replication.</p></li>
 <li><p>In a Randomized Block Design, similar experimental units are grouped into blocks, and all treatments are randomly assigned within each block, so that treatments are compared under similar conditions.</p></li>
 <li><p>Precision can be further improved through good plot technique (keeping everything except the treatment uniform), excluding border plants from data collection (using only the net plot), and appropriate statistical analysis such as ANCOVA, which adjusts for covariates.</p></li>
@@ -1114,7 +1146,7 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Bias <code>2.</code> Experiment <code>3.</code> Randomization; replication; local control <code>4.</code> Treatment <code>5.</code> Control <code>6.</code> Experimental <code>7.</code> Response <code>8.</code> Factor <code>9.</code> Levels <code>10.</code> Observational <code>11.</code> Experimental <code>12.</code> Minimise <code>13.</code> Randomization <code>14.</code> Complete <code>15.</code> Replication <code>16.</code> Experimental <code>17.</code> Local <code>18.</code> Blocking <code>19.</code> Similar <code>20.</code> Randomized <code>21.</code> Border <code>22.</code> Net <code>23.</code> Uniform <code>24.</code> Covariate <code>25.</code> R. A. Fisher <code>26.</code> Rothamsted <code>27.</code> Analysis <code>28.</code> Basic</p>
+<p><code>1.</code> Treatment <code>2.</code> Control <code>3.</code> Experimental <code>4.</code> Factor <code>5.</code> Levels <code>6.</code> Randomization <code>7.</code> Replication <code>8.</code> Blocking <code>9.</code> Control <code>10.</code> Error <code>11.</code> Observational <code>12.</code> Net</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1123,7 +1155,7 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <li><p>The result is based on only one plant per manure, with no replication. The difference could be due to natural variation among the plants (genetic makeup, initial health, soil conditions) rather than the manure itself, and with no replication there is no way to estimate the experimental error and judge whether the observed difference is real.</p></li>
 <li><p>Even under the same treatment, experimental units differ in genetic makeup, age, initial health, and microenvironment, so their responses vary naturally. If this variation is mistaken for a treatment effect, the comparison of treatments becomes unreliable.</p></li>
 <li><p>The principle of randomization has been violated. Treatments must be assigned to experimental units purely by chance; assigning healthier plants to one treatment biases the comparison in its favor regardless of the treatment’s true effect.</p></li>
-<li><p>Each of the 15 units is labeled, and the three treatments are allocated using a chance mechanism such as random numbers or drawing lots, giving every unit an equal chance of receiving any treatment, typically 5 units per treatment.</p></li>
+<li><p>Label the 15 units and prepare five labels of each treatment A, B and C. Randomly permute all 15 labels and assign them to the numbered units. This gives every unit an equal chance of receiving each treatment while retaining five replications per treatment.</p></li>
 <li><p>Randomization alone removes bias in how treatments are assigned but does not, by itself, allow experimental error to be estimated. Replication is needed to obtain that estimate, so the two principles are used together to ensure the comparison is both unbiased and testable.</p></li>
 <li><p>With only one unit per treatment, there is no replication, so experimental error cannot be estimated. Without an estimate of error, it is not possible to judge statistically whether the observed differences among treatments are real or due to chance.</p></li>
 <li><p>The field can be divided into blocks running perpendicular to the fertility gradient, so that units within each block are relatively homogeneous. All treatments are applied once within each block, separating the fertility-related variation from the experimental error.</p></li>
@@ -1132,17 +1164,17 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 <li><p>The experimental unit is the tank, since the UV treatment is applied to the whole tank. The observational units are the individual fish. Treating the fish as independent replicates of the treatment is pseudoreplication, because the tank effect is completely confounded with the treatment effect and the two cannot be separated.</p></li>
 <li><p>Since these plots all receive the identical treatment, any difference among them cannot be due to the treatment; it must come from other extraneous sources of variation. This difference therefore provides a direct measure of the experimental error.</p></li>
 <li><p>A difference between treatment means can arise purely from natural variation among experimental units, even when the treatments have no real effect. Comparing the observed difference with the experimental error shows whether it is larger than what chance alone could produce, which is necessary before concluding the treatments genuinely differ.</p></li>
-<li><p>If the fertility variation is ignored, it becomes part of the experimental error, inflating it and making real treatment differences harder to detect. It could also bias the comparison if fertility happens to coincide with how the treatments were allocated.</p></li>
-<li><p>By grouping plots of similar fertility into blocks and applying all treatments within each block, the variation between blocks (due to fertility) is estimated and removed separately, leaving a smaller and more accurate experimental error for comparing the treatments.</p></li>
+<li><p>If the fertility variation is ignored, it becomes part of the experimental error, inflating it and making real treatment differences harder to detect. A particular random allocation may give a chance imbalance in fertility. Systematic assignment of favourable plots to one treatment can create allocation bias.</p></li>
+<li><p>By grouping plots of similar fertility and randomizing treatments within each block, the analysis separates block variation from error. Precision improves when the variation removed compensates for the error degrees of freedom used.</p></li>
 <li><p>The border effect can be controlled by excluding the outer border plants from data collection and recording observations only from the inner net plot, since border plants may be influenced by treatments in the neighbouring plots.</p></li>
-<li><p>Border plants may be affected by treatments applied to neighbouring plots through seepage, competition, or runoff, so they do not purely reflect the treatment applied to their own plot. Restricting observations to the net plot ensures the recorded response reflects only the treatment under study.</p></li>
+<li><p>Border plants may be affected by neighbouring treatments through seepage, competition or runoff. A pre-specified net plot, guard rows and suitable buffers help limit this interference; excluding border plants alone does not guarantee that all interference has been removed.</p></li>
 <li><p>Since final weight is influenced by initial weight, initial body weight can be used as a covariate. ANCOVA statistically adjusts the final weights to account for these initial differences, removing this source of variation and giving a more precise comparison of the feeds.</p></li>
 <li><p>Statistical analysis can only work with the information present in the data. If the experiment lacked randomization or replication, the data simply does not contain the information needed to separate treatment effects from other sources of variation, no matter how advanced the analysis method is.</p></li>
 <li><p>Keeping all management practices other than the treatment (planting method, irrigation, weed control, and so on) as uniform as possible across all plots minimizes variation that is not due to the treatments, thereby reducing experimental error and improving the precision of treatment comparisons.</p></li>
-<li><p>Without replication, experimental error cannot be estimated, and without an estimate of error there is no basis for judging whether an observed difference among treatment means exceeds what chance alone could produce. No statistically valid conclusion can therefore be drawn.</p></li>
-<li><p>Randomization ensures unbiased estimates of the treatment effects and of the experimental error. Replication allows the experimental error to actually be estimated and improves precision. Local control reduces the size of the experimental error by accounting for known sources of variation. Together, the three principles ensure the experimental error is minimized, correctly estimated, and free of bias.</p></li>
+<li><p>In an ordinary single-factor comparison with one unit per treatment, within-treatment error cannot be estimated separately from treatment differences. Independent replication is therefore needed for the usual ANOVA error estimate; subsamples within the same treated unit do not supply it.</p></li>
+<li><p>Randomization protects against systematic allocation bias and supports unbiased treatment comparisons under the design. Replication supplies information about error and precision. Blocking can reduce residual variation when the blocks are informative. None of these principles guarantees a particular realised result or perfect model assumptions.</p></li>
 <li><p>Randomizing the treatments within each block ensures that any remaining variation among the units within a block does not systematically favor a particular treatment, keeping the comparison among treatments unbiased even after blocking.</p></li>
-<li><p>A good design uses randomization so that no treatment is systematically favored by known or unknown factors, ensuring that observed differences reflect only the true treatment effects and not other extraneous influences.</p></li>
+<li><p>A good design uses randomization to prevent systematic allocation bias. Observed treatment differences can still include chance error, which must be quantified in the analysis.</p></li>
 <li><p>By using local control and an efficient allocation of treatments and replications, a well-designed experiment increases the precision of comparisons for a given number of experimental units, allowing reliable conclusions without wasting resources on unnecessarily large experiments.</p></li>
 <li><p>Design of Experiments provides a structured framework, randomization, replication, and local control, that ensures treatment comparisons are unbiased, experimental error can be estimated, and conclusions are precise and reproducible, making the results of agricultural research scientifically credible and dependable.</p></li>
 </ol>
@@ -1157,7 +1189,7 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Darwin’s paired plants, decades before “local control” had a name</strong></p>
-<p>In 1876, Charles Darwin published a book describing eleven years of patient experiments comparing cross-fertilised and self-fertilised plants. He suspected that cross-fertilised seedlings grew taller and stronger, but he faced a familiar problem: pots differ from one another in soil, light, and moisture, so any two plants grown in different pots are not really comparable. Darwin’s solution was simple and elegant. In each pot, he planted one cross-fertilised seed and one self-fertilised seed side by side, so that both experienced exactly the same conditions. Only the difference in height between the two members of each pair was used to judge which type of seedling grew better.</p>
+<p>In 1876, Charles Darwin published a book describing eleven years of patient experiments comparing cross-fertilised and self-fertilised plants. He suspected that cross-fertilised seedlings grew taller and stronger, but he faced a familiar problem: pots differ from one another in soil, light, and moisture, so any two plants grown in different pots are not really comparable. Darwin’s solution was simple and elegant. He grew crossed and self-fertilised seedlings on opposite sides of the same pots, pairing seedlings of the same age so that the comparison shared the pot conditions. Some pots contained several pairs. The paired height differences provided a way to assess the comparison while allowing for differences between pots.</p>
 <p>Darwin never used the term “local control,” and the formal theory of experimental design was still half a century away. But by pairing his plants within the same pot, he was already doing what every blocked design does: grouping similar units together so that the treatment comparison is not clouded by differences between pots. Decades later, in his own book <em>The Design of Experiments</em>, Ronald Fisher returned to Darwin’s original data on paired maize seedlings and used it to illustrate the paired <em>t</em>-test, a fitting tribute to an experiment that anticipated one of the basic principles of design long before it had a name.</p>
 </div>
 </div>
@@ -1178,21 +1210,30 @@ Figure&nbsp;16.6: Plots are grouped into blocks
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-DasGiri1986" class="csl-entry" role="listitem">
-Das, M. N., and N. C. Giri. 1986. <em>Design and Analysis of Experiments</em>. 2nd ed. New Delhi: Wiley Eastern.
+Das, M. N., and N. C. Giri. 1986. <em>Design and Analysis of Experiments</em>. 2nd ed. Wiley Eastern.
 </div>
 <div id="ref-Fisher1935" class="csl-entry" role="listitem">
-Fisher, Ronald A. 1935. <em>The Design of Experiments</em>. Edinburgh: Oliver; Boyd.
+Fisher, Ronald A. 1935. <em>The Design of Experiments</em>. Oliver; Boyd.
 </div>
 <div id="ref-gomez" class="csl-entry" role="listitem">
-Gomez, Kwanchai A., and Arturo A. Gomez. 1984. <em>Statistical Procedures for Agricultural Research</em>. 2nd ed. New York: John Wiley; Sons.
+Gomez, Kwanchai A., and Arturo A. Gomez. 1984. <em>Statistical Procedures for Agricultural Research</em>. 2nd ed. John Wiley; Sons.
 </div>
 <div id="ref-hurlbert" class="csl-entry" role="listitem">
 Hurlbert, Stuart H. 1984. <span>“Pseudoreplication and the Design of Ecological Field Experiments.”</span> <em>Ecological Monographs</em> 54 (2): 187–211. <a href="https://doi.org/10.2307/1942661">https://doi.org/10.2307/1942661</a>.
 </div>
+<div id="ref-MRC1948" class="csl-entry" role="listitem">
+Medical Research Council. 1948. <span>“Streptomycin Treatment of Pulmonary Tuberculosis.”</span> <em>British Medical Journal</em> 2 (4582): 769–82. <a href="https://doi.org/10.1136/bmj.2.4582.769">https://doi.org/10.1136/bmj.2.4582.769</a>.
+</div>
 <div id="ref-Montgomery2017" class="csl-entry" role="listitem">
-Montgomery, Douglas C. 2017. <em>Design and Analysis of Experiments</em>. 9th ed. Hoboken, New Jersey: John Wiley; Sons.
+Montgomery, Douglas C. 2017. <em>Design and Analysis of Experiments</em>. 9th ed. John Wiley; Sons.
+</div>
+<div id="ref-NISTdesign" class="csl-entry" role="listitem">
+NIST/SEMATECH. n.d.-a. <span>“E-Handbook of Statistical Methods: Choosing an Experimental Design.”</span> Accessed October 18, 2026. <a href="https://www.itl.nist.gov/div898/handbook/pri/section3/pri3.htm">https://www.itl.nist.gov/div898/handbook/pri/section3/pri3.htm</a>.
+</div>
+<div id="ref-NISTnested" class="csl-entry" role="listitem">
+NIST/SEMATECH. n.d.-b. <span>“E-Handbook of Statistical Methods: How Can i Account for Nested Variation (Restricted Randomization)?”</span> Accessed October 18, 2026. <a href="https://www.itl.nist.gov/div898/handbook/pri/section5/pri55.htm">https://www.itl.nist.gov/div898/handbook/pri/section5/pri55.htm</a>.
 </div>
 </div>
 </section>
@@ -1285,7 +1326,7 @@ Montgomery, Douglas C. 2017. <em>Design and Analysis of Experiments</em>. 9th ed
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1628,16 +1669,17 @@ Montgomery, Douglas C. 2017. <em>Design and Analysis of Experiments</em>. 9th ed
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

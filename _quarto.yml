@@ -2,31 +2,36 @@ project:
   type: book
   output-dir: docs
   resources: 
+    - assets/
     - "*.png"
     - "*.jpeg"
     - "*.jfif"
     - "*.svg" 
+    - "!docs/**"
+    - "!review_tools/**"
+    - "!notesToadd/**"
   
 book:
   title: "TEXTBOOK OF AGRICULTURAL STATISTICS"
   subtitle: "A comprehensive guide in basic statistics for agricultural research"
-  favicon: images/cover.jpg
+  favicon: images/cover.png
   author: 
     - Dr. Pratheesh P. Gopinath
-    - Dr. Manju Mary Paul
     - Dr. Adarsh V.S.
     - Mohammed Hisham M.
-  date: "06/26/2026"
+    - Dr. Manju Mary Paul
+  date: "2026-09-26"
+  date-format: "D MMMM YYYY"
   reader-mode: true
   page-navigation: true
   back-to-top-navigation: true
   search: true
-  site-url: https://www.agrinoteskau.com/agstat-textbook.html
+  site-url: https://statoberrypapaya.github.io/TextbookofAgstat/
   # repo-url: https://github.com/STATOBERRYPAPAYA/TextbookofAgstat
-  image: images/cover.jpg
+  image: images/cover.png
   image-alt: "Textbook of Agricultural Statistics"
   open-graph: 
-    image: images/cover.jpg
+    image: images/cover.png
     image-alt: "Textbook of Agricultural Statistics"
   chapters:
   - index.qmd
@@ -58,22 +63,20 @@ book:
       - ancova.qmd
       - missingPlot.qmd
       - transformation.qmd
-  - part: "Appendices"
-    chapters:
-      - appendix1.qmd
-      - appendix2.qmd
-      - appendix3.qmd
-      - appendix4.qmd
-      - appendix5.qmd
-      - appendix_personalities.qmd
-
-  - references.qmd
+  appendices:
+    - appendix1.qmd
+    - appendix2.qmd
+    - appendix3.qmd
+    - appendix4.qmd
+    - appendix5.qmd
+    - appendix_personalities.qmd
+    - references.qmd
   twitter-card: 
-    image: images/papayalogo.png
+    image: images/cover.png
     image-alt: "Textbook of Agricultural Statistics"
     card-style: summary_large_image
   sidebar:
-    logo: images/sidebarcover.png
+    logo: images/cover.png
   page-footer:
     border: true
     left: |
@@ -83,13 +86,19 @@ book:
     right: |
         Licenced under [CC-BY-NC-ND 4.0 Int License](https://creativecommons.org/licenses/by-nc-nd/4.0/) <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/">![](/images/cclogo.png){style='width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;'}</a>
         Built with <a href="https://quarto.org/">Quarto</a>
-  cover-image: images/cover.jpg
+  cover-image: images/cover.png
   
 bibliography: 
   - book.bib
 
 format:
   html:
+    include-after-body:
+      text: |
+        <script defer src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
+    filters:
+      - compact-tables.lua
+    include-in-header: table-math-config.html
     mainfont: Georgia
     monofont: Fira Code
     highlight-style: arrow

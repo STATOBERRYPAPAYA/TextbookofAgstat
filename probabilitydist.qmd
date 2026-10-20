@@ -2,13 +2,13 @@
 
 In statistics, a probability distribution gives the possibility of each possible outcome of a random experiment or event. It provides a systematic way to understand and quantify the probabilities of different occurrences.
 
-Probability, as a measure of uncertainty, helps us analyze various phenomena. For instance, when rolling a die, the possible outcomes and their likelihoods are described by a probability distribution. Such distributions apply to any random experiment where outcomes are uncertain or unpredictable.
+Probability, as a measure of uncertainty, helps us analyse various phenomena. For instance, when rolling a die, the possible outcomes and their likelihoods are described by a probability distribution. Such distributions apply to any random experiment where outcomes are uncertain or unpredictable.
 
 In this chapter, we explore the definition, functions, formulas, and types of probability distributions.
 
 ## Probability distribution
 
-In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let $X$ be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the sample space $X = \{0, 1, 2, 3\}$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
+In simple terms, a probability distribution is a way to represent all possible outcomes of a random variable, along with their corresponding probabilities. To understand this better, let us consider a random experiment of tossing an unbiased coin three times. Let $X$ be the random variable defined as the number of heads that appear in these tosses. The possible outcomes for $X$ are 0 heads, 1 head, 2 heads, and 3 heads, forming the range $\{0,1,2,3\}$ of the random variable $X$. However, these outcomes are not equally likely. The total number of possible outcomes when tossing the coin three times is 8, as shown in @tbl-tossingcoin.
 
 | On tossing thrice | No. of heads ($X$) |
 |------------------|--------------------|
@@ -42,7 +42,7 @@ This is an example of discrete probability distribution as $X$ takes only discre
 
 ## Expected value of a random variable
 
-Expected value is exactly what you might think it means: the return you can expect for some kind of action. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!  
+Expected value is the probability-weighted average of a random variable. It need not be a possible individual outcome. The expected value of a random variable is the long-run average value of repetitions of the same experiment it represents. For example, the expected value in rolling a six-sided die is 3.5, because each face (1 through 6) has an equal chance of 1/6, and when you multiply each number by its probability and sum them up like 1/6 + 2/6 + 3/6 + 4/6 + 5/6 + 6/6, then you get 21/6, which is 3.5. It’s the average you’d see over countless rolls, even though you can’t roll a 3.5!  
 
 The expected value of a random variable $X$ is denoted as $E(X)$.\  
 
@@ -56,9 +56,9 @@ $$E(X) = \sum_{x} x\, p(x)$$ {#eq-expdiscrete}
 [**Continuous case**]{.underline}  
 
 
-$$E(X) = \int_{- \infty}^{\infty}{x p(x)\ \text{dx }};- \infty \leq x \leq \infty$$ {#eq-expcont}
+$$E(X) = \int_{- \infty}^{\infty}{x f(x)\,dx};- \infty \leq x \leq \infty$$ {#eq-expcont}
 
-here the random variable $X$ lies between ${-\infty}$ and ${+\infty}$
+Here $f(x)$ is the probability density. Integrating over the whole real line also covers variables with a restricted range, since their density is zero outside that range. A finite expected value requires $E(|X|)<\infty$.
 
 ::: {#exm-expval1}
 Find the expected value of $X$ of tossing a single unfair die.
@@ -97,7 +97,7 @@ kable_styling(
   ) 
 ```
 
-Using equation @eq-expdiscrete, $E(X)$ = $\sum_{x} x\, p(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
+Using @eq-expdiscrete, $E(X)$ = $\sum_{x} x\, p(x)$ = 0.1+0.2+0.3+0.4+0.5+3 = 4.5
 :::
 
 ::: {#exr-expval1}
@@ -119,6 +119,16 @@ kable_styling(
   ) 
 ```
 :::
+
+## Variance and cumulative probability
+
+For a random variable with finite second moment, variance is
+
+$$\operatorname{Var}(X)=E[(X-E(X))^2]=E(X^2)-[E(X)]^2.$$
+
+For discrete variables, $E[g(X)]=\sum_xg(x)p(x)$; for a variable with density, $E[g(X)]=\int g(x)f(x)\,dx$, when these expectations exist. If $Y=a+bX$, then $E(Y)=a+bE(X)$ and $\operatorname{Var}(Y)=b^2\operatorname{Var}(X)$. Expectations of sums add whenever the expectations exist. Variances add for independent variables with finite variances; without independence, covariance terms must be included.
+
+The **cumulative distribution function**, $F(x)=P(X\leq x)$, applies to discrete and continuous distributions. It is nondecreasing, approaches zero to the far left and one to the far right, and satisfies $P(a<X\leq b)=F(b)-F(a)$. For the three-toss example, $F(1)=P(X=0)+P(X=1)=1/2$. Later, the standard normal table gives values of this cumulative function.
 
 ## Discrete probability distributions
 
@@ -146,7 +156,7 @@ Properties of *p.m.f*
 
 -   If a value $x$ is not in the sample space $S$, its probability is zero: $p(x) = 0 \quad \text{for } x \notin S$
 
-The *p.m.f* is defined only for the discrete values in the sample space of the random variable $X$. It does not apply to continuous ranges or non-discrete variables.
+The *p.m.f* assigns positive probability only at its support values and is zero elsewhere. It does not apply to continuous ranges or non-discrete variables.
 
 ### Bernoulli distribution
 
@@ -169,7 +179,7 @@ Find the probability assuming Bernoulli distribution of a biased coin where prob
 
 **Solution**
 
-Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the equation @eq-bernoulli
+Let $X$ be the random variable which takes value 0 on getting tail (failure) and takes value 1 on getting head (success). So using the @eq-bernoulli
 
 $P(X = 0) = (0.4)^0 (1-0.4)^1 = 0.6$
 
@@ -191,7 +201,7 @@ A Bernoulli trial is one of the simplest experiments you can conduct in probabil
 
 ### Binomial distribution
 
-Binomial distribution can be thought of as simply the probability of a success or failure outcome in an experiment or survey that is repeated multiple times; *i.e*. a Binomial distribution happens, when a Bernoulli trial is repeated $n$ number of times. The binomial is a type of distribution that has two possible outcomes (the prefix “bi” means two, or twice). For example, if you toss a coin 5 times and count the number of heads, that count, $X$, follows a binomial distribution with $n = 5$. In short, a single coin toss is a Bernoulli trial, but repeating it several times (more than once) turns it into a binomial experiment.
+Binomial distribution can be thought of as simply the probability of a success or failure outcome in an experiment or survey that is repeated multiple times; *i.e*. a Binomial distribution happens, when a Bernoulli trial is repeated $n$ number of times. Each Bernoulli trial has two outcomes, but the binomial count has $n+1$ possible values, from 0 to $n$. For example, if you toss a coin 5 times and count the number of heads, that count, $X$, follows a binomial distribution with $n = 5$. In short, a single coin toss is a Bernoulli trial, but repeating it several times (more than once) turns it into a binomial experiment.
 
 **Binomial distributions must also meet the following three criteria:**
 
@@ -216,7 +226,7 @@ $p$= probability of getting a success in one trial
 $q$ = $1-p$ = probability of getting a failure in one trial
 
 ::: {.callout-important title="Note"}
-In a binomial distribution, the parameters are $n$, the number of independent trials, and $p$, the probability of success in a single trial. If X follows a binomial distribution we denote $X \sim \text{Bin}(n, p)$. The mean of $X$ is given by $E(X) = np$, while the variance is $\text{Var}(X) = npq$, where$q = 1 - p$. Since $0 < p < 1$, it follows that $q$ is also positive but less than 1. This implies that $np > npq$, establishing the fundamental property that the mean of a binomial distribution is always greater than its variance.
+In a binomial distribution, the parameters are $n$, the number of independent trials, and $p$, the probability of success in a single trial. If X follows a binomial distribution we denote $X \sim \text{Bin}(n, p)$. The mean of $X$ is given by $E(X) = np$, while the variance is $\text{Var}(X) = npq$, where$q = 1 - p$. For $n>0$ and $0<p<1$, $np>npq$. At $p=0$ or $p=1$, the binomial distribution is degenerate and has variance zero. In all cases the variance is no greater than the mean.
 :::
 
 ::: {#exm-binom1}
@@ -257,9 +267,7 @@ In a study on the survival of mango seedlings after transplanting, 100 groups of
 |            3            |         28        |
 |            4            |         17        |
 |            5            |         4         |
-: Number of survivors out of 5 in 100 groups {#tbl-survivorscount .bordered}
-
-: Number of mango seedlings surviving out of 5, in 100 groups {#tbl-mangosurvival .bordered}
+: Number of mango seedlings surviving out of 5, in 100 groups {#tbl-survivorscount .bordered}
 
 **Solution**
 
@@ -267,7 +275,14 @@ Here the number of trials is $n = 5$ and the total frequency is $N = 100$.
 
 Mean number of surviving seedlings,
 
-$$\overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 3) + (1 \times 16) + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)}{100} = \frac{252}{100} = 2.52$$
+$$
+\begin{aligned}
+\overline{x} &= \frac{\sum f x}{N}\\
+&= \frac{\begin{gathered}(0 \times 3) + (1 \times 16)\\ + (2 \times 32) + (3 \times 28) + (4 \times 17) + (5 \times 4)\end{gathered}}{100}\\
+&= \frac{252}{100}\\
+&= 2.52
+\end{aligned}
+$$
 
 The probability of success is estimated as $p = \dfrac{\overline{x}}{n} = \dfrac{2.52}{5} = 0.504$, so $q = 1 - 0.504 = 0.496$.
 
@@ -285,12 +300,20 @@ The expected frequency for each value of $x$ is obtained from $N \times \binom{5
 
 : Fitting of binomial distribution to seedling survival data {#tbl-binomfit1 .bordered}
 
-The expected frequencies are close to the observed frequencies, indicating that the binomial distribution provides a good fit to the data.
+The expected frequencies are descriptively close to the observed frequencies. A formal goodness-of-fit test, with appropriate grouping and adjustment for the estimated parameter, can be used to assess the fit. In the chi-square procedure developed in the small-sample-tests chapter, the usual degrees of freedom are $k-1-m$, where $k$ is the number of retained categories and $m$ is the number of fitted parameters. Here $m=1$ because $p$ is estimated and the five trials per group are fixed by the experiment. Pool categories when necessary for adequate expected frequencies; visual closeness alone is not a test.
 :::
+
+### Sampling without replacement
+
+The binomial model assumes independent trials with a constant success probability. Suppose a finite lot contains $N$ seeds, of which $K$ are diseased, and $n$ seeds are selected by SRSWOR. The number of diseased seeds follows a **hypergeometric distribution**:
+
+$$P(X=x)=\frac{\binom Kx\binom{N-K}{n-x}}{\binom Nn}.$$
+
+Here $\max(0,n-N+K)\leq x\leq\min(n,K)$. Its mean is $nK/N$ and its variance is $n(K/N)(1-K/N)(N-n)/(N-1)$ for $N>1$. The finite-population factor reflects dependence without replacement. When the sampling fraction is small, a binomial model with $p=K/N$ may approximate it. The combinations used in the previous chapter give this same probability by counting favourable samples.
 
 ### Poisson distribution
 
-The Poisson distribution, discovered by the French mathematician Siméon Denis Poisson (1781-1840), was developed to describe the number of times a gambler would win a rarely won game of chance over a large number of tries. As a discrete probability distribution, it specifically deals with rare events. One of its most famous applications came nearly 60 years later, when the statistician Ladislaus Bortkiewicz used the Poisson distribution in 1898 to study the number of deaths caused by horse kicks in the Prussian army, demonstrating its usefulness in modeling infrequent occurrences over a given interval of time or space.
+Siméon Denis Poisson (1781–1840) presented this probability law in his 1837 work on the probability of judicial decisions. [@Poisson1837] The distribution models counts in a specified interval or region. Events need not be rare over the whole interval; a high Poisson mean is possible. Its suitability depends on the event-rate and independence assumptions below, rather than on a story about a particular game.
 
 Other applications and examples where Poisson distribution is used
 
@@ -306,21 +329,23 @@ Other applications and examples where Poisson distribution is used
 
 -   Number of typing errors on a page
 
--   Hairs found in McDonald’s hamburgers
+-   Foreign particles found in a standard-sized food sample
 
--   Spread of an endangered animal in Africa
+-   Weed occurrences in equal-area quadrats under a suitable random spatial model
 
 -   Failure of a machine in one month
 
-A random variable $X$ is said to follow a Poisson distribution; if it assumes non-negative values and its probability mass function is given by:
+A common Poisson-process model assumes a constant event rate, independent counts in disjoint intervals, and negligible probability of multiple events in a sufficiently short interval. For a rate $r$ per unit time and an interval of length $t$, the mean count is $\lambda=rt$. Spatial counts require analogous conditions. Aggregated pests may be overdispersed, so pest counts do not automatically follow a Poisson model.
 
-$$p(x) = \frac{e^{- \lambda}.\lambda^{x}}{x!}; \quad x = 0, 1, 2, \ldots, \infty$$ {#eq-poisson}
+A random variable $X$ is said to follow a Poisson distribution if it assumes non-negative integer values and its probability mass function is given by:
+
+$$p(x) = \frac{e^{- \lambda}.\lambda^{x}}{x!}; \quad x = 0, 1, 2, \ldots$$ {#eq-poisson}
 
 where
 
 $e$ = base of the natural logarithm, a constant approximately equal to 2.71828.
 
-$\lambda$ : Average number of successes occurring in a given time interval or region in the Poisson distribution
+$\lambda>0$ : Average number of events occurring in a given time interval or region in the Poisson distribution
 
 ::: {.callout-important title="Note"}
 The parameter of Poisson distribution is $λ$. If X follows a Poisson distribution we denote $X \sim \text{poisson}(\lambda)$. The mean and the variance of the Poisson distribution are both equal to $\lambda$
@@ -347,6 +372,10 @@ The number of industrial injuries per working week in a particular factory is kn
 ::: {#exr-poisson3}
 A company knows from past experience that 3% of the bulbs they produce are defective. Assuming a Poisson distribution, find the probability of getting the following in a sample of 100 bulbs. (a) no defective (b) 1 defective.
 :::
+
+### Poisson approximation to the binomial
+
+If $X\sim\text{Bin}(n,p)$, a Poisson distribution with $\lambda=np$ can approximate its probabilities when $n$ is large and $p$ is small. This is an approximation, not an exact change of distribution. For the bulb exercise, independent defects with probability 0.03 give an exact binomial model with $n=100$; the requested Poisson approximation uses $\lambda=3$.
 
 ### Fitting of Poisson distribution
 
@@ -375,9 +404,17 @@ In a survey on the incidence of diamondback moth larvae, 100 cabbage plants were
 
 **Solution**
 
-The total frequency is $N = 100$. The mean number of larvae per plant is
+The total frequency is $N=100$. The final class is open-ended, so the exact sample mean cannot be recovered from the grouped table. For this illustration, approximate both observations in “4 or more” by 4. The resulting approximate mean is
 
-$$\lambda = \overline{x} = \frac{\sum f x}{N} = \frac{(0 \times 37) + (1 \times 37) + (2 \times 18) + (3 \times 6) + (4 \times 2)}{100} = \frac{99}{100} = 0.99$$
+$$
+\begin{aligned}
+\lambda &= \overline{x}\\
+&= \frac{\sum f x}{N}\\
+&= \frac{\begin{gathered}(0 \times 37) + (1 \times 37)\\ + (2 \times 18) + (3 \times 6) + (4 \times 2)\end{gathered}}{100}\\
+&= \frac{99}{100}\\
+&= 0.99
+\end{aligned}
+$$
 
 The expected frequency for each value of $x$ is obtained from $N \times \dfrac{e^{-\lambda} \lambda^x}{x!}$, as shown in @tbl-poissonfit1. The frequency for the class “4 or more” is obtained by subtracting the sum of the other expected frequencies from the total, $N$.
 
@@ -392,7 +429,7 @@ The expected frequency for each value of $x$ is obtained from $N \times \dfrac{e
 
 : Fitting of Poisson distribution to larval count data {#tbl-poissonfit1 .bordered}
 
-The expected frequencies agree closely with the observed frequencies, indicating that the Poisson distribution provides a good fit to the data.
+The expected frequencies are descriptively close to the observed frequencies. This is an approximate fit because the open-ended class was represented by 4; formal testing also requires appropriate expected counts and parameter-estimation degrees of freedom.
 :::
 
 ## Continuous probability distributions
@@ -403,17 +440,23 @@ If the random variable X is continuous, the corresponding probability distributi
 
 When a mathematical function is used to describe a continuous probability distribution, it is referred to as a probability density function (commonly abbreviated as *p.d.f*). It describes how values of a continuous random variable are distributed. It gives the relative likelihood of a variable taking a particular value within a given range. The area under the *pdf curve* over an interval represents the probability that the variable falls within that range. However, unlike pmf for discrete variables, the pdf itself does not give the probability of a single value but rather the density of possible values.
 
+A density satisfies $f(x)\geq0$ and $\int_{-\infty}^{\infty}f(x)\,dx=1$. For $a<b$,
+
+$$P(a<X\leq b)=\int_a^bf(x)\,dx.$$
+
+For a variable with a density, $P(X=x)=0$ at every individual value. The density can exceed 1; it is an area, not a height, that gives a probability.
+
 ### Normal distribution
 
 The name “normal distribution” comes from its historical use in describing many natural and social phenomena that appeared to follow a similar symmetric, bell-shaped pattern. The term “normal” was popularized by Karl Pearson in the early 20th century, though the distribution itself was first studied by Abraham de Moivre and later formalized by Carl Friedrich Gauss.
 
 The distribution was initially called the `Gaussian distribution`, as Gauss used it to model errors in astronomical observations. However, statisticians and scientists noticed that this pattern frequently appeared in various real-world data, such as heights, IQ scores, and measurement errors. Because it was so common, it became known as the normal distribution, implying that it represents a “normal” or typical way data is distributed in many natural processes.
 
-It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean ($\mu$) and standard deviation ($\sigma$). Its significance lies in the Central Limit Theorem, which states that the sum of a large number of independent random variables tends to be normally distributed, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.
+It is characterized by its symmetric, bell-shaped curve, where the mean, median, and mode are equal. Defined by two parameters, the mean ($\mu$) and standard deviation ($\sigma$). Its significance lies in the Central Limit Theorem, which states that a suitably standardised sum of independent, identically distributed variables with finite positive variance approaches the standard normal distribution, making it widely applicable in statistical inference. The normal distribution is defined by the following probability density function.
 
 $$f\left( x \right) = \frac{1}{\sigma\sqrt{2\pi}}e^{- \frac{{(x - \mu)}^{2}}{2\sigma^{2}}}; \quad -\infty < x < +\infty$$ {#eq-normaldist}
 
-where $\mu$ is the population mean and $\sigma^2$ is the variance, $e = 2.718$
+where $-\infty<\mu<\infty$ is the population mean and $\sigma^2>0$ is the variance, $e = 2.718$
 
 [**Parameters of Normal distribution**]{.underline}
 
@@ -454,7 +497,7 @@ The parameters of normal distribution are $\mu$ and $\sigma$. If a random variab
 
 | Area                  | $\%$ of value contained |
 |:----------------------:|:------------------------:|
-| $\mu \pm 0.745\sigma$ | 50                      |
+| $\mu \pm 0.6745\sigma$ | 50                      |
 | $\mu \pm \sigma$      | 68.26                   |
 | $\mu \pm 1.96\sigma$  | 95                      |
 | $\mu \pm 2\sigma$     | 95.44                   |
@@ -471,15 +514,15 @@ In short, a normal distribution is bell-shaped, symmetric, and has the property 
 
 3.  **Asymptotic**: The tails of the normal distribution approach, but never actually touch, the horizontal x-axis. This means the probability of extreme values is never exactly zero, but it becomes infinitesimally small.
 
-4.  **Skewness and Kurtosis**: A normal distribution has skewness equal to 0 (no skew), and kurtosis equal to 3 (mesokurtic), meaning it has a moderate peak and tails.
+4.  **Skewness and Kurtosis**: A normal distribution has skewness 0 and kurtosis 3 (excess kurtosis 0). It provides the reference for the terms mesokurtic, leptokurtic and platykurtic; kurtosis should not be interpreted as peak height alone.
 
 5.  **Linear combination**: A linear combination of independent normal variables is also normally distributed. This property is crucial in statistical analysis and is a key reason for the widespread use of the normal distribution.
 
-6.  **Central Limit Theorem**: The normal distribution is central to the Central Limit Theorem, which states that the distribution of the sample mean will tend to be normal regardless of the shape of the original distribution, provided the sample size is sufficiently large.
+6.  **Central Limit Theorem**: For independent, identically distributed observations with a finite mean and finite, positive variance, the standardized sample mean approaches a standard normal distribution as sample size increases. A fixed threshold such as 30 does not guarantee an adequate approximation; skewness and heavy tails can require much larger samples.
 
-7.  **Moments**: All odd order moments are zero in normal distribution.
+7.  **Moments**: All odd-order central moments are zero in a normal distribution.
 
-8.  **Dispersion**: Quartile Deviation. Q.D = $\frac{2}{3}\sigma$ and Mean Deviation. M.D = $\frac{4}{5}\sigma$.
+8.  **Dispersion**: Quartile deviation is $QD\approx0.67449\sigma$, and mean absolute deviation about the mean is $\sigma\sqrt{2/\pi}\approx0.79788\sigma$. The familiar values $2\sigma/3$ and $4\sigma/5$ are rough approximations.
 
 ### Standard normal distribution
 
@@ -513,7 +556,7 @@ A survey of daily travel time ($X$) had these results (in minutes): 26, 33, 65, 
 
 **Solution**
 
-The Mean ($\mu$) is 38.8 minutes, and the Standard Deviation ($\sigma$) is 11.4. Using @eq-standard.
+Treating these 20 observations as the complete descriptive dataset, the mean is 38.8 minutes and the standard deviation using divisor 20 is 11.4 minutes. Use these values to standardise each observation. Descriptive standardisation does not establish normality or justify normal tail probabilities.
 
 | $X$ | $X-\mu$ | $$z = \frac{X - \mu}{\sigma}$$ |
 |:----:|:-------:|:------------------------------:|
@@ -553,7 +596,7 @@ To find the z-score we need to divide the difference between the value, 27, and 
 
 ### Z-score table
 
-A **Z-score table** (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table or standard normal table is given in @tbl-ztable in appendix 3.  
+A **Z-score table** (or standard normal distribution table) shows the cumulative probability for a standard normal distribution, corresponding to different Z-scores. It provides the probability that a standard normal variable will be less than or equal to a given value. A model Z score table or standard normal table is given in @tbl-ztable in @sec-appendix-3.  
 
 Procedure to use a Z-Score Table is given below:
 
@@ -561,7 +604,7 @@ Procedure to use a Z-Score Table is given below:
     First, calculate the Z-score using the formula @eq-standard
 
 2.  **Find the Z-score in the table**:\
-    Once you have the Z-score, locate its value in the Z-score table @fig-zscoretable. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.
+    Once you have the Z-score, locate its value in the Z-score @tbl-ztable. The table typically lists Z-scores in two parts: the first two digits (the ones and tenths place) are listed on the left, and the second decimal place is listed at the top. For example, for a Z-score of 1.23, find 1.2 on the left side and 0.03 across the top, and the value at the intersection is the cumulative probability.
 
 3.  **Interpret the table value**:\
     The value from the Z-table represents the cumulative probability (area under the curve) to the left of the Z-score. For example A Z-score of 1.23 corresponds to a cumulative probability of about **0.8907**, which means there is an 89.07% chance that a value from the distribution is less than or equal to 1.23 standard deviations above the mean.
@@ -573,7 +616,7 @@ Procedure to use a Z-Score Table is given below:
     If you’re looking for the probability that a value falls between two Z-scores, find the cumulative probabilities for both Z-scores and subtract the smaller from the larger. For example, for Z-scores of 1.23 and 0.5. From the table the cumulative probability for 1.23 is 0.8907. The cumulative probability for 0.5 is 0.6915. The probability that $X$ lies between 0.5 and 1.23 is:$P(0.5 < z < 1.23) = 0.8907 - 0.6915 = 0.1992$. By following these steps, you can use the Z-score table to find cumulative probabilities and interpret standard normal distribution data.
 
 ::: {#exm-zscore3}
-Average yield of mango trees in an orchard has a mean of 70 kg and a standard deviation of 12 kg. What is the probable percentage of mango trees with yield more than 85 kg?
+Yields of mango trees in an orchard are normally distributed with a mean of 70 kg and a standard deviation of 12 kg. What is the probable percentage of mango trees with yield more than 85 kg?
 
 **Solution**
 
@@ -585,8 +628,14 @@ The heights of coconut trees, H metres, are Normally distributed with a mean of 
 
 **Solution**
 
-Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We need to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9449)$. Since normal distribution is symmetric, $P(z < -0.9449)=P(z > 0.9449)$. $P(z > 0.9449)= 1-P(z \leq 0.9449)$. From the table $P(z \leq 0.94) =0.8264$ so the probability is 1-0.8264=0.1736.
+Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We need to find $P(H < 12)$. Which can be standardized to $P(z < \frac{12 - 14.5}{\sqrt{7}})$= $P(z < -0.9449)$. Since normal distribution is symmetric, $P(z < -0.9449)=P(z > 0.9449)$. $P(z > 0.9449)= 1-P(z \leq 0.9449)$. From the table $P(z \leq 0.94) =0.8264$ so the two-decimal table approximation is $1-0.8264=0.1736$. Using the unrounded z-score gives approximately 0.1724.
 :::
+
+### Normal approximation to a binomial count
+
+For $X\sim\text{Bin}(n,p)$ with both $np$ and $n(1-p)$ sufficiently large, the count may be approximated by a normal variable with mean $np$ and variance $np(1-p)$. A useful introductory guideline is at least 10 expected successes and 10 expected failures. Since a count is discrete, a **continuity correction** improves many such approximations: for example, approximate $P(X\leq k)$ by the normal probability below $k+0.5$, and $P(X=k)$ by the area between $k-0.5$ and $k+0.5$.
+
+For example, if $X\sim\text{Bin}(100,0.5)$, then $P(X\leq55)$ is approximately $\Phi((55.5-50)/5)=\Phi(1.10)=0.8643$. The exact binomial probability is approximately 0.8644. Exact binomial calculations are preferable when the approximation is doubtful. The uncorrected large-sample proportion tests in the later chapter use the same normal-approximation principle.
 
 ## Chapter Summary
 
@@ -594,107 +643,35 @@ Let H be the height of the tree. It is given that $H \sim N(14.5,7)$. We need to
 
 Answers are given at the end of the chapter.
 
-1. A probability distribution gives the possible outcomes of a __________ variable along with their corresponding probabilities.
+1. The probability function of a discrete random variable is called a probability __________ function.
 
-2. A probability distribution in which the random variable takes countable values is called a __________ probability distribution.
+2. The sum of all probabilities in a discrete distribution is __________.
 
-3. A probability distribution in which the random variable takes continuous values is called a __________ probability distribution.
+3. The long-run average value of a random variable is its __________ value.
 
-4. The probability assigned to a particular value of a discrete random variable is called the __________.
+4. A single trial with outcomes coded 0 and 1 follows a __________ distribution.
 
-5. The expected value of a random variable represents its __________ average value over repeated trials.
+5. The number of successes in a fixed number of independent Bernoulli trials with constant success probability follows a __________ distribution.
 
-6. The expected value of a discrete random variable $X$ is denoted by __________.
+6. The mean of a binomial distribution with parameters $n$ and $p$ is __________.
 
-7. The expected value of a continuous random variable is obtained using __________.
+7. The variance of a binomial distribution is __________.
 
-8. The probability mass function is commonly abbreviated as __________.
+8. In a Poisson distribution, the mean is equal to the __________.
 
-9. For a discrete random variable, $p(x)$ represents __________.
+9. A Poisson random variable takes non-negative __________ values.
 
-10. The sum of all probabilities in a probability mass function is equal to __________.
+10. A continuous distribution is described by a probability __________ function.
 
-11. A Bernoulli distribution has exactly __________ possible outcomes.
+11. For a continuous random variable, probability over an interval is the __________ under its density curve.
 
-12. In a Bernoulli distribution, the probability of success is denoted by __________.
+12. The total area under a probability density curve is __________.
 
-13. The probability of failure in a Bernoulli distribution is __________.
+13. The normal distribution is symmetric about its __________.
 
-14. The parameter of a Bernoulli distribution is __________.
+14. The mean of the standard normal distribution is __________.
 
-15. The mean of a Bernoulli distribution is __________.
-
-16. The variance of a Bernoulli distribution is __________.
-
-17. A binomial distribution is obtained when a Bernoulli trial is repeated __________ times.
-
-18. In a binomial distribution, the number of trials $n$ is __________.
-
-19. In a binomial distribution, the trials are __________.
-
-20. In a binomial distribution, the probability of success remains __________ from trial to trial.
-
-21. The two parameters of a binomial distribution are __________ and __________.
-
-22. The probability of failure in a binomial distribution is denoted by __________.
-
-23. The mean of a binomial distribution is __________.
-
-24. The variance of a binomial distribution is __________.
-
-25. A Poisson distribution is mainly used to model __________ events.
-
-26. The parameter of a Poisson distribution is denoted by __________.
-
-27. In a Poisson distribution, the mean and variance are both equal to __________.
-
-28. The constant $e$ in the Poisson distribution is approximately __________.
-
-29. In fitting a binomial distribution, the probability of success is estimated as __________.
-
-30. In fitting a Poisson distribution, the parameter $\lambda$ is estimated as the observed __________.
-
-31. The expected frequency is obtained by multiplying the probability by the total __________.
-
-32. A continuous probability distribution is described by a probability __________ function.
-
-33. The probability density function is commonly abbreviated as __________.
-
-34. The probability of a continuous random variable falling within an interval is represented by the __________ under the density curve over that interval.
-
-35. The continuous probability distribution discussed in this chapter is the __________ distribution.
-
-36. The normal distribution is characterized by a __________-shaped curve.
-
-37. In a normal distribution, the mean, median, and mode are __________.
-
-38. A normal distribution is __________ about its mean.
-
-39. A normal distribution is defined by the two parameters __________ and __________.
-
-40. The total area under the normal distribution curve is equal to __________.
-
-41. The standard normal distribution has mean __________ and standard deviation __________.
-
-42. The standard normal distribution is also called the __________ distribution.
-
-43. A standardized value in a normal distribution is called a __________ score.
-
-44. The formula used to convert a normal variable into a standard normal variable is called __________.
-
-45. Approximately __________% of observations in a normal distribution lie within $\mu\pm\sigma$.
-
-46. Approximately __________% of observations lie within $\mu\pm2\sigma$.
-
-47. Approximately __________% of observations lie within $\mu\pm3\sigma$.
-
-48. The skewness of a normal distribution is __________.
-
-49. The kurtosis of a normal distribution is __________.
-
-50. The quartile deviation of a normal distribution is __________.
-
-51. The mean deviation of a normal distribution is __________.
+15. The variance of the standard normal distribution is __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -774,7 +751,7 @@ Answers are given at the end of the chapter.
 
 1. A coin is tossed three times and $X$ denotes the number of heads. Construct the probability distribution of $X$.
 
-2. Find the expected value of a random variable having the given discrete probability distribution.
+2. Using the distribution in question 1, calculate the expected number of heads in three independent tosses of an unbiased coin.
 
 3. Find the expected value of $X$ for an unfair die using the probabilities given in the chapter.
 
@@ -812,7 +789,7 @@ Answers are given at the end of the chapter.
 
 20. A random variable has mean 24 and standard deviation 2. Find the Z-score corresponding to $X=27$.
 
-21. A mango orchard has mean yield 70 kg and standard deviation 12 kg. Find the probability that a tree produces more than 85 kg.
+21. Tree yields in a mango orchard are normally distributed with mean 70 kg and standard deviation 12 kg. Find the probability that a tree produces more than 85 kg.
 
 22. Heights of coconut trees are normally distributed with mean 14.5 m and variance 7. Find the probability that a randomly selected tree has height less than 12 m.
 
@@ -824,10 +801,10 @@ Answers are given at the end of the chapter.
 
 ### Important formulae {.unnumbered}
 
-Probability distribution:
+Probability mass function for equally likely elementary outcomes:
 
 $$
-P(X=x)=\frac{\text{Number of times }X\text{ takes value }x}{\text{Total number of possible outcomes}}
+P(X=x)=\frac{\text{Number of outcomes giving }X=x}{\text{Total number of elementary outcomes}}
 $$
 
 Expected value of a discrete random variable:
@@ -839,7 +816,7 @@ $$
 Expected value of a continuous random variable:
 
 $$
-E(X)=\int_{-\infty}^{\infty}xp(x)\,dx
+E(X)=\int_{-\infty}^{\infty}xf(x)\,dx
 $$
 
 Probability mass function:
@@ -911,7 +888,7 @@ $$
 Poisson probability mass function:
 
 $$
-p(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\ldots,\infty
+p(x)=\frac{e^{-\lambda}\lambda^x}{x!},\quad x=0,1,2,\ldots
 $$
 
 Poisson mean:
@@ -965,13 +942,13 @@ $$
 Quartile deviation for a normal distribution:
 
 $$
-Q.D.=\frac{2}{3}\sigma
+Q.D.\approx0.67449\sigma
 $$
 
 Mean deviation for a normal distribution:
 
 $$
-M.D.=\frac{4}{5}\sigma
+M.D.=\sigma\sqrt{2/\pi}\approx0.79788\sigma
 $$
 
 ### Quick revision {.unnumbered}
@@ -996,7 +973,7 @@ $$
 - Binomial variance → $npq$.
 - In fitting a binomial distribution, $p=\frac{\bar{x}}{n}$.
 - Expected frequency → $N\times p(x)$.
-- Poisson distribution → used mainly for rare events.
+- Poisson distribution → models counts under appropriate rate and independence assumptions; it also approximates rare binomial successes.
 - Poisson parameter → $\lambda$.
 - Poisson mean → $\lambda$.
 - Poisson variance → $\lambda$.
@@ -1016,7 +993,7 @@ $$
 - About 99.73% of observations lie within $\mu\pm3\sigma$.
 - Normal distribution has skewness 0.
 - Normal distribution has kurtosis 3.
-- All odd-order moments are zero for the normal distribution.
+- All odd-order central moments are zero for the normal distribution.
 - The total area under the normal curve represents total probability.
 - The tails of the normal distribution are asymptotic to the horizontal axis.
 - A linear combination of independent normal variables is also normally distributed.
@@ -1029,14 +1006,14 @@ $$
 
 ::: {.answer-key}
 
-`1.` Random `2.` Discrete `3.` Continuous `4.` Probability mass function `5.` Long-run `6.` $E(X)$ `7.` Integration `8.` p.m.f. `9.` $P(X=x)$ `10.` 1 `11.` Two `12.` $p$ `13.` $1-p$ `14.` $p$ `15.` $p$ `16.` $p(1-p)$ `17.` $n$ `18.` Fixed `19.` Independent `20.` Constant `21.` $n$; $p$ `22.` $q$ `23.` $np$ `24.` $npq$ `25.` Rare `26.` $\lambda$ `27.` $\lambda$ `28.` 2.71828 `29.` $\frac{\bar{x}}{n}$ `30.` Mean `31.` Frequency `32.` Density `33.` p.d.f. `34.` Area `35.` Normal `36.` Bell `37.` Equal `38.` Symmetric `39.` $\mu$; $\sigma$ `40.` 1 `41.` 0; 1 `42.` Z `43.` Z `44.` Standardization `45.` 68.26 `46.` 95.44 `47.` 99.73 `48.` 0 `49.` 3 `50.` $\frac{2}{3}\sigma$ `51.` $\frac{4}{5}\sigma$
+`1.` Mass `2.` One `3.` Expected `4.` Bernoulli `5.` Binomial `6.` $np$ `7.` $np(1-p)$ `8.` Variance `9.` Integer `10.` Density `11.` Area `12.` One `13.` Mean `14.` Zero `15.` One
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
 1.  For 3 tosses of an unbiased coin, $X\in\{0,1,2,3\}$ with $P(X=0)=\frac{1}{8}$, $P(X=1)=\frac{3}{8}$, $P(X=2)=\frac{3}{8}$, $P(X=3)=\frac{1}{8}$.
 
-2.  Using @eq-expdiscrete, multiply each value of $X$ by its probability and sum the products to obtain $E(X)$.
+2.  Using @eq-expdiscrete, $E(X)=0(1/8)+1(3/8)+2(3/8)+3(1/8)=1.5$.
 
 3.  Using @eq-expdiscrete for the unfair die example in the chapter, $E(X)=0.1+0.2+0.3+0.4+0.5+3=4.5$.
 
@@ -1064,7 +1041,7 @@ $$
 
 15. Using $\lambda=3$ from question 14, $P(X=1)=3e^{-3}\approx0.1494$.
 
-16. The observed mean is $\lambda=\bar{x}=\frac{99}{100}=0.99$. Using @eq-poisson, the expected frequencies $N\frac{e^{-\lambda}\lambda^x}{x!}$ are 37.2, 36.8, 18.2, 6.0, 1.8, closely matching the observed frequencies.
+16. Approximating each observation in the “4 or more” category by 4 gives $\hat\lambda\approx99/100=0.99$. Using @eq-poisson, the expected frequencies $N\frac{e^{-\lambda}\lambda^x}{x!}$ are 37.2, 36.8, 18.2, 6.0, 1.8, closely matching the observed frequencies.
 
 17. The number of defective plants is countable, so it is a discrete probability distribution.
 
@@ -1076,7 +1053,7 @@ $$
 
 21. Using @eq-standard, $z=\frac{85-70}{12}=1.25$; from the Z-table $P(z\leq1.25)=0.8944$, so $P(z>1.25)=1-0.8944=0.1056$, or 10.56%.
 
-22. Using @eq-standard, $z=\frac{12-14.5}{\sqrt{7}}=-0.9449$; by symmetry $P(z<-0.9449)=P(z>0.9449)$, and from the Z-table $P(z\leq0.94)=0.8264$, so the probability is $1-0.8264=0.1736$.
+22. Using @eq-standard, $z=(12-14.5)/\sqrt7\approx-0.9449$. The probability is approximately 0.1724. Rounding $z$ first to $-0.94$ and using a two-decimal Z-table gives the less precise approximation 0.1736.
 
 23. Using @eq-standard, $z=\frac{40-50}{10}=-1$ and $z=\frac{60-50}{10}=1$; approximately 68.26% of observations lie within one standard deviation of the mean, so $P(40<X<60)\approx0.6826$.
 
@@ -1087,7 +1064,7 @@ $$
 ::: {.callout-caution title="Historical Insights"}
 **De Moivre’s Final Prediction**
 
-Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the **normal distribution**, the elegant bell-shaped curve that governs everything from human traits to measurement errors. As he aged, de Moivre observed that his daily sleep was increasing by about 15 minutes, and in a striking prediction, he calculated that on the day his sleep reached 24 hours, he would die. Mysteriously, his forecast came true, and he passed away on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and proving that even randomness follows a predictable order.
+Abraham de Moivre, a French mathematician exiled to England, spent his life uncovering the hidden patterns of probability. Among his greatest contributions was the **normal distribution**, the elegant bell-shaped curve that governs everything from human traits to measurement errors. A frequently repeated anecdote claims that he predicted his death by extrapolating an increase in his sleeping time. This should be treated as an anecdote, not as a verified scientific prediction. He died on November 27, 1754. Though eerie, his work on probability lived on, later refined by Gauss and Laplace, shaping the foundation of modern statistics and providing methods for describing uncertainty mathematically.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

@@ -1,6 +1,8 @@
 # Hypothesis testing
 
-In the previous chapters, we have learned how to describe and summarize data using measures of central tendency and dispersion. These tools help us understand what a sample of data looks like. But in agricultural research or in any research, we often go a step further, where we want to use the sample to draw conclusions about the larger population. This is where the branch of statistics named as **inferential statistics** come in to play, and at its core lies the process of **hypothesis testing**.
+In the previous chapters, we have learned how to describe and summarize data using measures of central tendency and dispersion. These tools help us understand what a sample of data looks like. But in agricultural research or in any research, we often go a step further, where we want to use the sample to draw conclusions about the larger population. This is where the branch of statistics called **inferential statistics** comes into play, and at its core lies the process of **hypothesis testing**.
+
+The sample-survey chapter introduced estimators, sampling error, and confidence intervals. Hypothesis testing uses the same idea of repeated-sampling variability, but begins with a specified claim about the population.
 
 ## A hypothesis
 
@@ -21,14 +23,14 @@ Examples of hypotheses from agriculture:
 These hypotheses can be tested by conducting a properly designed scientific experiment.
 
 ::: {.callout-important title="Note"}
-A **statistical hypothesis** is a specific, *testable* statement about a population parameter. It expresses an assumption or claim that can be tested using statistical methods based on sample data. Statistical hypotheses are generally formulated in pairs: the null hypothesis (denoted as $H_0$), which represents the default or no-effect assumption, and the alternative hypothesis (denoted as $H_1$ or $H_a$), which represents a statement that contradicts the null hypothesis.
+A **statistical hypothesis** is a specific, *testable* statement about a population distribution or its parameters. It expresses an assumption or claim that can be tested using statistical methods based on sample data. Statistical hypotheses are generally formulated in pairs: the null hypothesis (denoted as $H_0$), which represents the default or no-effect assumption, and the alternative hypothesis (denoted as $H_1$ or $H_a$), which represents a statement that contradicts the null hypothesis.
 :::
 
 ## The falsification principle {.unnumbered}
 
 The falsification principle, proposed by the philosopher Karl Popper, is a way of distinguishing science from non-science. It suggests that for a theory to be considered scientific, it must be capable of being tested and potentially proven **false**. For example, the hypothesis "all swans are white" can be falsified by observing a single black swan. According to Popper, science should attempt to *disprove* a theory, rather than continuously seek evidence that confirms it. [@Popper1959]
 
-This idea forms the philosophical backbone of hypothesis testing in statistics.  
+This provides a useful analogy for questioning a claim. A statistical rejection is not logical proof that a theory is false: it depends on a probability model and permits a controlled risk of error.  
 
 ```{r swan, echo=FALSE, fig.cap='Falsification principle: the black swan example', out.width="70%", fig.align='center'}
 knitr::include_graphics(rep("images/swan.png"))
@@ -40,7 +42,7 @@ Considering the Popperian Principle of Falsification, we need to translate the w
 
 [**Null hypothesis**]{.underline}
 
-The null hypothesis ($H_0$) is a statement that there is no effect, no difference, or no relationship between variables. It represents the default or status quo assumption. In hypothesis testing, we assume the null hypothesis is true unless we have strong statistical evidence against it.
+The null hypothesis ($H_0$) often states that there is no effect, no difference, or no relationship between variables. It may also specify another reference value or a probability distribution. It represents the default or status quo assumption. In hypothesis testing, we assume the null hypothesis is true unless we have strong statistical evidence against it.
 
 > Why do we need a null hypothesis?\
 > In an experiment, the results seen in the sample may differ from expectation either because a real effect exists, or simply because of random chance. The null hypothesis begins with the assumption that no real difference or effect exists in the population. Using this assumption, statistical tests examine the sample data and calculate how likely it is to obtain such results purely by chance. This helps us decide whether the observed difference is likely to be real or just a fluke.\
@@ -48,7 +50,7 @@ The null hypothesis ($H_0$) is a statement that there is no effect, no differenc
 
 [**Alternative hypothesis**]{.underline}
 
-The alternative hypothesis (denoted by $H_1$ or $H_a$) is a statement that contradicts the null hypothesis. It proposes that a real effect, difference, or relationship exists in the population and that the observed results are not due to random chance. In most studies, the alternative hypothesis represents the researcher's expectation or claim that they aim to find evidence to support.
+The alternative hypothesis (denoted by $H_1$ or $H_a$) is a statement that contradicts the null hypothesis. It proposes that a real effect, difference, or relationship exists in the population rather than the null value. Random sampling variation is present under either hypothesis. In most studies, the alternative hypothesis represents the researcher's expectation or claim that they aim to find evidence to support.
 
 ::: {.callout-note title="Important"}
 In statistics, we say **"fail to reject"** the null hypothesis - not "accept" the null hypothesis. Failing to reject $H_0$ does not prove that it is true; it only means we do not have sufficient evidence against it.
@@ -56,13 +58,13 @@ In statistics, we say **"fail to reject"** the null hypothesis - not "accept" th
 
 ### Definitions {.unnumbered}
 
-**Null hypothesis (**$H_0$): The hypothesis of no difference. It states that there is no effect, no difference, or no relationship between the variables or populations under study.
+**Null hypothesis (**$H_0$): The hypothesis assessed by the statistical test. It often states no effect, no difference, or no relationship, but may also specify another reference value or an entire probability distribution.
 
 **Alternative hypothesis (**$H_1$): The hypothesis of a difference. It states that there is an effect, a difference, or a relationship between the variables or populations under study.
 
 ### Example {.unnumbered}
 
-Not so long ago, people believed that the world was flat. The research question was: Is the Earth flat?. Here we can frame two hypotheses as Null hypothesis, $H_0$: The Earth is flat and Alternative hypothesis, $H_1$: The Earth is round. Several scientists, including Copernicus, set out to disprove the null hypothesis. This eventually led to the rejection of $H_0$ and the acceptance of $H_1$.
+Suppose a reference seed lot has a germination probability of 0.80. To investigate whether a new treatment changes germination, state $H_0:p=0.80$ and $H_1:p\neq0.80$. A random sample provides evidence for assessing these hypotheses; it does not prove either statement with certainty.
 
 ::: {#exm-exmhypo1}
 A plant biologist wants to test whether different fertilizers affect plant height.
@@ -75,7 +77,7 @@ $H_1$: There is a difference in plant height among different fertilizer treatmen
 ::: {#exm-exmhypo2}  
 A pharmaceutical company wants to know if a new drug is more effective than the standard treatment.
 
-$H_0$: The new drug is equally effective as the standard treatment.
+$H_0$: The new drug is no more effective than the standard treatment.
 
 $H_1$: The new drug is more effective than the standard treatment.
 :::   
@@ -83,19 +85,21 @@ $H_1$: The new drug is more effective than the standard treatment.
 ### Stating a hypothesis {#sec-state}  
 
 ::: {#exr-exrhypo1} 
-A researcher applies a certain chemical twice a week after flowering on a fruit tree and expects that the average fruit weight per plant is 8 kg.
+A researcher applies a certain chemical twice a week after flowering on fruit trees. The reference average fruit weight per plant is 8 kg, and the research question is whether the chemical reduces this average.
 
 **Step 1**: Identify the hypothesis from the problem.
 
-The researcher expects the average fruit weight per plant to be 8 kg. If $\mu$ (pronounced as 'mu') denotes the average fruit weight, the null hypothesis is:
+The reference average fruit weight per plant is 8 kg. If $\mu$ (pronounced as 'mu') denotes the average fruit weight, the null hypothesis is:
 
 $H_0$: $\mu$ = 8
 
 **Step 2**: State the alternative hypothesis.
 
-If the average fruit weight is not 8 kg, and there is no reason to believe the chemical will increase yield, the only remaining possibility is that the weight is less than 8 kg. So:
+Because the research question specifies a reduction before the data are examined, the alternative is:
 
-$H_1$: $\mu$ \< 8  
+$H_1$: $\mu$ \< 8
+
+The full one-sided null is $H_0:\mu\geq8$. The equality $\mu=8$ is its boundary value, used to calculate the usual test statistic.
 :::  
 
 **But what if the researcher has no prior idea of the direction of the effect?**
@@ -117,7 +121,7 @@ $H_1$: $\mu$ $\mathbf{\neq}$ 0
 
 ## Hypothesis testing {#sec-hypo}
 
-In hypothesis testing, a decision must be made between two alternatives *i.e.* the null hypothesis and the alternative hypothesis. To make the decision, an experiment is performed, and the null hypothesis is either rejected or not rejected based on a **decision rule**. Lets learn the concept of hypothesis testing with an example.  
+In hypothesis testing, a decision must be made between two alternatives *i.e.* the null hypothesis and the alternative hypothesis. To make the decision, an experiment is performed, and the null hypothesis is either rejected or not rejected based on a **decision rule**. Let us learn the concept of hypothesis testing with an example.  
 
 ::: {#exm-exmhypo3}
 You have a coin and want to check whether it is biased or unbiased. An unbiased coin has a 50:50 chance of landing heads or tails.
@@ -128,7 +132,7 @@ $H_0$: $p$ = 0.5 (coin is unbiased)
 
 $H_1$: $p$ $\mathbf{\neq}$ 0.5 (coin is biased)
 
-You toss the coin 10 times and note the outcomes, as shown in @tbl-cointoss.
+Assuming independent tosses with a constant head probability, you toss the coin 10 times and note the outcomes, as shown in @tbl-cointoss.
 
 |     |     |     |     |     |     |     |     |     |     |     |
 |:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|:----|
@@ -137,24 +141,24 @@ You toss the coin 10 times and note the outcomes, as shown in @tbl-cointoss.
 : Results of tossing a coin 10 times {#tbl-cointoss .bordered}  
 
 
-In hypothesis testing, acceptance or rejection of the null hypothesis is based on a **decision rule**, and this rule is driven by a quantity called the **test statistic**.
+In hypothesis testing, rejection or non-rejection of the null hypothesis is based on a **decision rule**, and this rule is driven by a quantity called the **test statistic**.
 
 A **test statistic** is a function of the sample observations that summarizes the sample data into a single numerical value. It is calculated using a specific formula and is used to determine whether the observed sample result is consistent with the null hypothesis. Different statistical tests use different test statistics. For example, the **z-statistic** is used in a z-test, the **t-statistic** in a t-test, the **$\chi^2$-statistic** in a chi-square test, and the **F-statistic** in an (F)-test. These test statistics will be discussed in detail in the following chapters.
 
-In this example, suppose you decide to reject $H_0$ if 8 or more heads occur in 10 tosses, i.e., reject $H_0$ if $p \geq \frac{8}{10} = 0.8$.
+For a two-sided test, unusually few heads and unusually many heads both count against $H_0$. At the 5% level, use the rule: reject if the number of heads is at most 1 or at least 9. The binomial calculation justifying this rule is given in the worked example below.
 
 From the experiment:
 
 Number of heads = 8; Number of tosses = 10
 
-Test statistic: $p$ = 8/10 = 0.8
+The test statistic is the count $X=8$, or equivalently the sample proportion $\hat p=8/10=0.8$. Here $p$ denotes the population probability, not the observed sample proportion.
 
-Based on the decision rule, you reject the null hypothesis and conclude that the coin is likely biased. This is just an example to show the concept. In practice decision rule is framed on the basis of the probability distribution of test statistic.  
+Since 8 is not in the rejection region, we do not reject $H_0$. The observed proportion differs from 0.5, but this difference is not sufficient evidence of bias at the chosen level.  
 :::   
 
 
 ::: {.callout-note title="Note"}
-In this example, the decision rule was set informally for illustration. In practice, decision rules are derived from statistical theory, taking into account the sample size and the chosen level of significance. This is discussed in the sections that follow.
+Choose the test and its decision rule before examining the result. The rule must agree with the alternative hypothesis and control the Type I error under the null model.
 :::
 
 ## Errors in hypothesis testing
@@ -167,8 +171,8 @@ Since hypothesis testing is based on sample data, it is possible to arrive at an
 
 |   | **In fact** $H_0$ is true | **In fact** $H_0$ is false |
 |-----------------------------|:--------------------|:---------------------|
-| **Test concludes** $H_0$ is true | *Correct Decision* | *Type II error* |
-| **Test concludes** $H_0$ is false | *Type I error* | *Correct Decision* |
+| **Decision:** Do not reject $H_0$ | *Correct Decision* | *Type II error* |
+| **Decision:** Reject $H_0$ | *Type I error* | *Correct Decision* |
 
 : The two types of errors in hypothesis testing {#tbl-errors .bordered}
 
@@ -182,7 +186,7 @@ $H_0$: $\mu_1 = \mu_2$ - The two medications are equally effective.
 
 $H_1$: $\mu_1 \neq \mu_2$ - The two medications differ in effectiveness.
 
-A **Type I error** here means concluding the medications differ when they actually do not - perhaps leading to an unnecessary change in treatment. A **Type II error** means concluding they are equally effective when one is actually better - potentially life-threatening if the inferior medication continues to be prescribed.
+A **Type I error** here means concluding the medications differ when they actually do not - perhaps leading to an unnecessary change in treatment. A **Type II error** means failing to detect a real difference when one is actually better - potentially life-threatening if the inferior medication continues to be prescribed.
 
 *Cancer diagnosis*
 
@@ -205,29 +209,29 @@ A **Type II error** → a guilty person is set free.
 Most people would agree that wrongly executing an innocent person is the more severe error. This is why many textbooks treat Type I error as more serious.
 
 ::: {.callout-note title="Exam Tip"}
-If an exam question asks which error is more serious, the safe answer is **Type I error**. But the honest answer is - *it depends on the context*.
+The relative seriousness of Type I and Type II errors depends on the consequences in the particular study. State the context and explain the consequences rather than assigning a universal ranking.
 :::
 
 ## Level of significance and power of test
 
 [**Level of significance** ($\alpha$)]{.underline}
 
-The significance level, denoted as $\alpha$ (alpha), is the probability of rejecting the null hypothesis when it is true. In other words, the level of significance is the probability of committing a Type I error. [@Fisher1925]. We fix a small value of $\alpha$ before the experiment to keep Type I error fixed.
+The significance level, denoted as $\alpha$ (alpha), is the chosen upper bound on the probability of rejecting the null hypothesis when it is true. In other words, it controls the probability of committing a Type I error. For an exact-size test this probability equals $\alpha$; a conservative test can have a smaller probability. We choose $\alpha$ before examining the data. [@Fisher1925]
 
-> In practice, we fix the Type I error by selecting a suitable value of $\alpha$ before the experiment, and reduce Type II error by using an adequate sample size. Commonly used values are $\alpha$ = 0.05 (for agricultural research) or $\alpha$ = 0.01 (medical research).
+> In practice, we control Type I error by selecting a suitable value of $\alpha$ before the experiment, and reduce Type II error by using an adequate sample size. Common illustrative choices are $\alpha=0.05$ and $\alpha=0.01$; the choice should reflect the study objectives and consequences of errors, rather than a fixed rule for a discipline.
 
 [**Power of test** (1 - $\beta$)]{.underline}
 
 The probability of a Type II error is denoted as $\beta$ (beta). The quantity $1 - \beta$ is called the **power of the test**. Power is the probability of correctly rejecting the null hypothesis when it is false - in other words, the ability of the test to detect a real effect when it exists. [@NeymanPearson1933]
 
-Both $\alpha$ and $\beta$ play a role in deciding the decision rule for hypothesis testing. Power is primarily determined by the sample size of the experiment: larger samples give more power.
+Both $\alpha$ and $\beta$ play a role in deciding the decision rule for hypothesis testing. Power depends on the particular alternative value, the effect size, variability, sample size, significance level and design. There is no single value of power for every false null hypothesis. For a fixed effect, variance, design and significance level, increasing the number of independent observations generally increases power.
 
 ## Region of acceptance and rejection  
 
 The test statistic calculated from the sample will follow a probability distribution. The test statistic calculated from a sample varies from one sample to another because of random chance. In @exm-exmhypo3, you obtained 8 heads in 10 tosses. If another person repeats the same experiment using the same coin and also tosses it 10 times, they may obtain 4, 5, 6, 7, 8, 9, or even 10 heads. Thus, although the hypothesis being tested remains the same, the value of the test statistic changes from sample to sample. Now imagine that this experiment is repeated thousands of times, each time recording the number of heads obtained in 10 tosses. Some experiments will result in 5 heads, some in 6, many in 4--6 heads, and only a few in 0 or 10 heads. The probability distribution formed by all these possible values of the test statistic is called its **sampling distribution**.  
 
 ::: {.callout-note title="Important"}
-Sampling distribution of a test statistic: The probability distribution of all possible values of a test statistic obtained from repeated random samples of the same size from the same population, assuming the null hypothesis is true.  
+Sampling distribution of a test statistic: The probability distribution of a statistic under repeated sampling according to the same design and model. For testing, we use its distribution under the null hypothesis; under alternative parameter values the sampling distribution may differ.  
 :::  
 
 You will reject the null hypothesis if the test statistic falls in a particular region of the sampling distribution. This region is called the **region of rejection** (also known as the **critical region**). The complementary region, where the test statistic leads to non-rejection of $H_0$, is called the **region of acceptance**.
@@ -236,8 +240,8 @@ You will reject the null hypothesis if the test statistic falls in a particular 
 knitr::include_graphics(rep("images/hypotest/region.png"))
 ```
 
--   Size of the region of rejection, which is also the probability of type I error = level of significance = $\alpha$
--   Size of the region of acceptance = $1 - \alpha$
+-   Under $H_0$, the rejection probability is at most $\alpha$ for a level-$\alpha$ test. It equals $\alpha$ for an exact-size test.
+-   Under $H_0$, the non-rejection probability is at least $1-\alpha$, with equality for an exact-size test.
 
 The *value of the test statistic* that separates the region of acceptance from the region of rejection is called the **critical value**. Decision on null hypothesis is made based on @sec-decrule.
 
@@ -251,7 +255,7 @@ The type of alternative hypothesis $H_1$ determines whether a test is one-tailed
 
 ### One-tailed tests {.unnumbered}
 
-Consider Problem 1 in @sec-state, where the alternative hypothesis is:
+Consider @exr-exrhypo1, where the alternative hypothesis is:
 
 $H_1$: $\mu$ \< 8
 
@@ -277,7 +281,7 @@ knitr::include_graphics(rep("images/hypotest/right.png"))
 
 ### Two-tailed test {.unnumbered}
 
-Consider Problem 2 from @sec-state, where the alternative hypothesis is:
+Consider @exr-exrhypo2, where the alternative hypothesis is:
 
 $H_1$: $\mu$ $\mathbf{\neq}$ 0
 
@@ -285,7 +289,7 @@ Or consider another example:
 
 $H_1$: $\mu$ $\mathbf{\neq}$ 8
 
-In both cases, the critical region lies on **both sides** of the sampling distribution. Each tail has an area of $\alpha/2$, giving a total critical area of $\alpha$.
+In both cases, the critical region lies on **both sides** of the null sampling distribution. An equal-tail test allocates $\alpha/2$ to each tail. For a discrete distribution, the attainable tail probabilities may be smaller.
 
 ```{r tailed3, echo=FALSE, fig.cap='Two-tailed test: Critical region on both sides', out.width="70%", fig.align='center'}
 knitr::include_graphics(rep("images/hypotest/twotailed.png"))
@@ -299,11 +303,13 @@ The **decision rule** specifies whether the null hypothesis ($H_0$) should be re
 
 The chosen significance level ($\alpha$) determines the **critical value(s)** that divide the sampling distribution into the **rejection region** and the **non-rejection region**. After computing the test statistic, it is compared with the critical value(s) to make a decision.
 
-The decision rules are:
+For the continuous test statistics used in the following chapters, the decision rules are:
 
 * **Right-tailed test**: Reject ($H_0$) if the calculated test statistic is **greater than** the critical value.
 * **Left-tailed test**: Reject ($H_0$) if the calculated test statistic is **less than** the critical value.
 * **Two-tailed test**: Reject ($H_0$) if the calculated test statistic is **less than the lower critical value** or **greater than the upper critical value**.
+
+For a discrete test, specify whether the boundary count is included in the rejection region, as in the coin rule $X\leq1$ or $X\geq9$. With continuous test statistics, a single boundary point has probability zero under the model.
 
 If the calculated test statistic does not fall in the rejection region, we **do not reject ($H_0$)**. This does not prove that $H_0$ is true; it simply indicates that the sample does not provide sufficient evidence to reject it at the chosen level of significance.
 
@@ -312,7 +318,7 @@ A well-designed statistical test has **high power** ($1-\beta$), meaning it has 
 
 ## A worked example
 
-Returning to the coin-tossing experiment @exm-exmhypo3 from @sec-hypo. Let $X$ be the number of heads in 10 tosses. Here in this example $X$ is our test statistic (suppose). Under the null hypothesis ($p$ = 0.5), $X$ follows a binomial distribution with $n$ = 10 and $p$ = 0.5.
+Returning to the coin-tossing experiment @exm-exmhypo3 from @sec-hypo. Let $X$ be the number of heads in 10 tosses. Here $X$ is our test statistic. Under the null hypothesis ($p$ = 0.5), $X$ follows a binomial distribution with $n$ = 10 and $p$ = 0.5.
 
 The binomial probability formula is:
 
@@ -340,18 +346,18 @@ The probability distribution of $X$ (Sampling distribution) under $H_0$ is given
 knitr::include_graphics(rep("images/hypotest/hypoplot.png"))
 ```
 
-For a two-tailed test at $\alpha$ = 0.05, each tail should have an area of $\alpha/2$ = 0.025. From @tbl-bindist:
+For an equal-tail two-sided test at $\alpha$ = 0.05, allow at most $\alpha/2$ = 0.025 in each tail. From @tbl-bindist:
 
 -   $P(X \leq 1)$ = 0.001 + 0.010 = 0.011
 -   $P(X \leq 2)$ = 0.011 + 0.044 = 0.055
 
-The left critical value is approximately $X$ = 2, and by symmetry the right critical value is $X$ = 8. This means: if the number of heads is **less than 2 or more than 8**, reject $H_0$ at $\alpha$ = 0.05.
+Using unrounded binomial probabilities, $P(X\leq1)=11/1024$ and $P(X\geq9)=11/1024$. Reject when $X\leq1$ or $X\geq9$. The actual Type I error is $22/1024\approx0.0215$, which is below 0.05. Including $X=2$ and $X=8$ would give $P(X\leq2)+P(X\geq8)=112/1024\approx0.1094$, exceeding 0.05. Because the count is discrete, a nonrandomised test need not attain exactly the stated significance level.
 
 ```{r hypo2, echo=FALSE, fig.cap='Probability distribution of X with critical region', out.width="70%", fig.align='center'}
-knitr::include_graphics(rep("images/hypotest/hypoplot2.png"))
+knitr::include_graphics(rep("images/hypotest/binomial-critical-region.svg"))
 ```
 
-In our experiment, we obtained 8 heads. Since 8 equals - but does not exceed - the critical value, we **fail to reject** $H_0$ at $\alpha$ = 0.05. We do not have sufficient evidence to conclude the coin is biased.
+In our experiment, we obtained 8 heads. Since 8 is outside the rejection region, we **fail to reject** $H_0$ at $\alpha$ = 0.05. We do not have sufficient evidence to conclude the coin is biased.
 
 Commonly used test statistics are $t$, $F$, $Z$, and $\chi^2$ (chi-square). Critical values of these statistics are available in standard statistical tables and will be used in later chapters.  
 
@@ -359,7 +365,7 @@ Commonly used test statistics are $t$, $F$, $Z$, and $\chi^2$ (chi-square). Crit
 
 Traditionally, hypothesis testing involved comparing the calculated test statistic with a critical value obtained from statistical tables. If the test statistic exceeded the critical value (or fell beyond it in the rejection region), the null hypothesis was rejected.
 
-Today, statistical softwares automatically calculates the p-value along with the test statistic. As a result, researchers rarely use printed statistical tables to make decisions. Instead, they compare the p-value directly with the chosen level of significance ($\alpha$).
+Today, statistical software automatically calculates the p-value along with the test statistic. As a result, researchers rarely use printed statistical tables to make decisions. Instead, they compare the p-value directly with the chosen level of significance ($\alpha$).
 
 The p-value provides a more informative and convenient approach because it indicates the smallest level of significance at which the null hypothesis would be rejected. Therefore, modern statistical analysis is primarily based on the p-value rather than on critical values.
 
@@ -377,6 +383,14 @@ Thus, the p-value helps us decide whether the sample provides sufficient evidenc
 ```{r pval, echo=FALSE, fig.cap='p-value in a right-tailed test. The shaded region represents the probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming the null hypothesis is true.', out.width="80%", fig.align='center'}
 knitr::include_graphics(rep("images/hypotest/pvalue.svg"))
 ```
+
+In the coin example, the exact two-sided p-value for eight heads is $P(X\leq2)+P(X\geq8)=0.109375$. This agrees with non-rejection at the 5% level. The p-value is not the probability that the coin is fair, nor is it the probability that the result will be reproduced.
+
+### Significance, precision and practical importance
+
+A small p-value does not measure the size or importance of an effect. A large sample may detect a small yield difference that is of little agricultural value, while an imprecise small study may fail to detect an important difference. Report the estimated effect, its units and a confidence interval as well as the test result. Failure to reject equality is not evidence of equivalence; demonstrating equivalence requires a specified practically acceptable margin and an appropriate test.
+
+If many hypotheses are tested, the probability of at least one false rejection can increase. Plan the comparisons in advance and use an appropriate multiple-comparison method when needed. Choosing the direction, significance level or stopping point after observing favourable results can invalidate the stated error probability.
 
 ## Steps in hypothesis testing
 
@@ -404,95 +418,33 @@ The following eight steps summarize the process of hypothesis testing.
 
 Answers are given at the end of the chapter.
 
-1. The branch of statistics that uses sample data to draw conclusions about a population is called __________ statistics.
+1. A testable statement about a population distribution or its parameters is called a statistical __________.
 
-2. A tentative and testable statement formulated on the basis of prior knowledge or scientific reasoning is called a __________.
+2. The hypothesis tested for possible rejection is called the __________ hypothesis.
 
-3. A statistical hypothesis is a testable statement about a population __________.
+3. The hypothesis specifying a departure from the null hypothesis is called the __________ hypothesis.
 
-4. The hypothesis representing no effect, no difference, or no relationship is called the __________ hypothesis.
+4. Rejecting a true null hypothesis is a Type __________ error.
 
-5. The null hypothesis is denoted by __________.
+5. Failing to reject a false null hypothesis is a Type __________ error.
 
-6. The hypothesis that contradicts the null hypothesis is called the __________ hypothesis.
+6. The probability of a Type II error is denoted by __________.
 
-7. The alternative hypothesis is denoted by __________ or __________.
+7. The probability of rejecting a false null hypothesis is called the __________ of a test.
 
-8. The principle that a scientific theory must be capable of being tested and potentially proven false is called the principle of __________.
+8. The power of a test is equal to __________.
 
-9. The falsification principle was proposed by __________.
+9. The set of test-statistic values leading to rejection is called the __________ region.
 
-10. In hypothesis testing, we say "fail to __________" the null hypothesis rather than accept it.
+10. A value separating rejection and non-rejection regions is called a __________ value.
 
-11. A numerical quantity calculated from sample observations and used to make a decision about $H_0$ is called a __________ statistic.
+11. An alternative hypothesis specifying departures in either direction requires a __________-tailed test.
 
-12. The probability of rejecting $H_0$ when it is actually true is called a __________ error.
+12. An alternative hypothesis specifying departures in one direction requires a __________-tailed test.
 
-13. The probability of failing to reject $H_0$ when it is actually false is called a __________ error.
+13. The probability, under the null model, of a result at least as extreme as the observed result is called the __________.
 
-14. Type I error is denoted by __________.
-
-15. The probability of Type II error is denoted by __________.
-
-16. The probability of correctly rejecting a false null hypothesis is called the __________ of the test.
-
-17. The power of a test is equal to __________.
-
-18. Commonly used levels of significance include __________ and __________.
-
-19. The probability distribution of all possible values of a test statistic under $H_0$ is called the __________ distribution.
-
-20. The region in which the test statistic leads to rejection of $H_0$ is called the __________ region.
-
-21. The rejection region is also called the __________ region.
-
-22. The complementary region in which $H_0$ is not rejected is called the __________ region.
-
-23. The value of the test statistic that separates the rejection and non-rejection regions is called the __________ value.
-
-24. The size of the rejection region is equal to the level of __________.
-
-25. The size of the acceptance region is equal to __________.
-
-26. If $H_1:\mu<\mu_0$, the test is called a __________-tailed test.
-
-27. If $H_1:\mu>\mu_0$, the test is called a __________-tailed test.
-
-28. If $H_1:\mu\neq\mu_0$, the test is called a __________-tailed test.
-
-29. In a two-tailed test, the total critical area is __________ and the area in each tail is __________.
-
-30. In a right-tailed test, $H_0$ is rejected when the calculated test statistic is __________ than the critical value.
-
-31. In a left-tailed test, $H_0$ is rejected when the calculated test statistic is __________ than the critical value.
-
-32. In a two-tailed test, $H_0$ is rejected when the test statistic falls beyond either of the two __________ values.
-
-33. The probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming $H_0$ is true, is called the __________.
-
-34. If the p-value is less than or equal to $\alpha$, we __________ $H_0$.
-
-35. If the p-value is greater than $\alpha$, we __________ reject $H_0$.
-
-36. A small p-value provides strong evidence __________ the null hypothesis.
-
-37. A large p-value indicates that the observed result is reasonably __________ with $H_0$.
-
-38. The test statistic commonly used in a z-test is the __________ statistic.
-
-39. The test statistic commonly used in a t-test is the __________ statistic.
-
-40. The test statistic used in a chi-square test is the __________ statistic.
-
-41. The test statistic used in an F-test is the __________ statistic.
-
-42. The first step in hypothesis testing is to state the __________ hypothesis.
-
-43. The second step in hypothesis testing is to state the __________ hypothesis.
-
-44. Before conducting the test, the researcher must set the level of __________.
-
-45. The final decision in hypothesis testing is based on the test statistic and the __________ value or p-value.
+14. When the p-value exceeds the chosen significance level, we __________ the null hypothesis.
 
 ### Short-answer questions {.unnumbered}
 
@@ -580,7 +532,7 @@ Answers are given at the end of the chapter.
 
 Answers are given at the end of the chapter.
 
-1. A researcher expects the average fruit weight per plant to be 8 kg. State the null and alternative hypotheses if the researcher expects the average to be less than 8 kg.
+1. The reference average fruit weight per plant is 8 kg. State the null and alternative hypotheses for testing whether it has decreased.
 
 2. A researcher wants to determine whether a pesticide has any effect on crop yield, but has no prior idea whether the effect will be positive or negative. State $H_0$ and $H_1$.
 
@@ -590,7 +542,7 @@ Answers are given at the end of the chapter.
 
 5. A coin is suspected to be biased. State the null and alternative hypotheses for testing whether the probability of obtaining a head is 0.5.
 
-6. In 10 tosses of a coin, 8 heads are obtained. If the decision rule is to reject $H_0$ when 8 or more heads are obtained, state the test statistic and decision.
+6. In 10 independent tosses, 8 heads are obtained. Use the two-sided 5% binomial rejection rule $X\leq1$ or $X\geq9$ to test whether the coin is fair. State the statistic and decision.
 
 7. Explain why obtaining 8 heads in 10 tosses does not by itself prove that the coin is biased.
 
@@ -645,7 +597,7 @@ Answers are given at the end of the chapter.
 Level of significance:
 
 $$
-\alpha=P(\text{Reject }H_0\mid H_0\text{ is true})
+P(\text{Reject }H_0\mid H_0\text{ is true})\leq\alpha
 $$
 
 Probability of Type II error:
@@ -663,19 +615,19 @@ $$
 Size of rejection region:
 
 $$
-P(\text{Rejection region})=\alpha
+P_{H_0}(\text{Rejection region})\leq\alpha
 $$
 
 Size of acceptance region:
 
 $$
-P(\text{Acceptance region})=1-\alpha
+P_{H_0}(\text{Non-rejection region})\geq1-\alpha
 $$
 
 Binomial test statistic used in the worked coin example:
 
 $$
-p=\frac{x}{n}
+\hat p=\frac{x}{n}
 $$
 
 Binomial probability:
@@ -716,7 +668,7 @@ $$
 - Common test statistics → $Z$, $t$, $\chi^2$, and $F$.
 - Type I error → reject $H_0$ when $H_0$ is true.
 - Type II error → fail to reject $H_0$ when $H_0$ is false.
-- $\alpha$ → probability of Type I error.
+- $\alpha$ → chosen upper bound on the Type I error probability.
 - $\beta$ → probability of Type II error.
 - Power → probability of correctly rejecting a false $H_0$.
 - Power → $1-\beta$.
@@ -726,12 +678,12 @@ $$
 - Critical region → another name for rejection region.
 - Acceptance region → complementary region where $H_0$ is not rejected.
 - Critical value → value separating the rejection and non-rejection regions.
-- Rejection region has probability $\alpha$.
-- Acceptance region has probability $1-\alpha$.
+- Under $H_0$, the rejection probability is controlled at $\alpha$; a discrete test can be conservative.
+- Under $H_0$, the non-rejection probability is at least $1-\alpha$ for a level-$\alpha$ test.
 - $H_1:\mu<\mu_0$ → left-tailed test.
 - $H_1:\mu>\mu_0$ → right-tailed test.
 - $H_1:\mu\neq\mu_0$ → two-tailed test.
-- In a two-tailed test, each tail has area $\alpha/2$.
+- An equal-tail two-sided test allocates $\alpha/2$ to each tail; a discrete test may not attain these probabilities exactly.
 - Right-tailed test → reject $H_0$ when the calculated statistic is greater than the critical value.
 - Left-tailed test → reject $H_0$ when the calculated statistic is less than the critical value.
 - Two-tailed test → reject $H_0$ when the statistic falls below the lower critical value or above the upper critical value.
@@ -753,22 +705,23 @@ $$
 
 ::: {.answer-key}
 
-`1.` Inferential `2.` Hypothesis `3.` Parameter `4.` Null `5.` $H_0$ `6.` Alternative `7.` $H_1$; $H_a$ `8.` Falsification `9.` Karl Popper `10.` Reject `11.` Test `12.` Type I `13.` Type II `14.` $\alpha$ `15.` $\beta$ `16.` Power `17.` $1-\beta$ `18.` 0.05; 0.01 `19.` Sampling `20.` Rejection `21.` Critical `22.` Acceptance `23.` Critical `24.` Significance `25.` $1-\alpha$ `26.` Left `27.` Right `28.` Two `29.` $\alpha$; $\alpha/2$ `30.` Greater `31.` Less `32.` Critical `33.` p-value `34.` Reject `35.` Do not `36.` Against `37.` Consistent `38.` $z$ `39.` $t$ `40.` $\chi^2$ `41.` $F$ `42.` Null `43.` Alternative `44.` Significance `45.` Critical
+`1.` Hypothesis `2.` Null `3.` Alternative `4.` I `5.` II `6.` $\beta$ `7.` Power `8.` $1-\beta$ `9.` Critical `10.` Critical `11.` Two `12.` One `13.` p-value `14.` Fail to reject
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
 
-1.  Let $\mu$ denote the average fruit weight. Since the expected value is 8 kg and the researcher expects the average to be less than 8 kg, $H_0:\mu=8$ and $H_1:\mu<8$. This is a left-tailed test.
+1.  Let $\mu$ denote the average fruit weight. The hypotheses are $H_0:\mu\geq8$ and $H_1:\mu<8$. This is a left-tailed test, calculated at the null boundary $\mu=8$.
 
 2.  Let $\mu$ denote the change in average yield. Since there is no expected change but the chemical could either increase or decrease yield, $H_0:\mu=0$ and $H_1:\mu\neq0$. This is a two-tailed test.
 
 3.  Let $\mu$ denote the average crop yield. Since the researcher wants to determine whether the yield changes from 50 kg, $H_0:\mu=50$ and $H_1:\mu\neq50$. This is a two-tailed test.
 
-4.  Let $\mu$ denote the average yield of the new variety. $H_0:\mu=40$ and $H_1:\mu>40$. This is a right-tailed test.
+4.  Let $\mu$ denote the average yield of the new variety. $H_0:\mu\leq40$ and $H_1:\mu>40$. This is a right-tailed test, calculated at the null boundary $\mu=40$.
 
 5.  Let $p$ denote the probability of obtaining a head. For an unbiased coin $H_0:p=0.5$, and for a biased coin $H_1:p\neq0.5$. This is a two-tailed test.
 
-6.  The test statistic used in the example is $p=\frac{x}{n}=\frac{8}{10}=0.8$. The decision rule is to reject $H_0$ if 8 or more heads occur; since 8 heads were obtained, this illustrative rule leads to rejection of $H_0$.
+6.  The observed statistic is $X=8$ heads, with sample proportion $\hat p=0.8$. Since neither $X\leq1$ nor $X\geq9$ holds, do not reject $H_0:p=0.5$ at the two-sided 5% level. The exact two-sided p-value is $2P(X\geq8)=0.109375$.
+
 
 7.  Eight heads in ten tosses may occur simply because of random variation even when the coin is unbiased. Therefore, the observed result must be compared with the sampling distribution of the test statistic and an appropriate decision rule; an observed difference alone does not prove that the null hypothesis is false.
 
@@ -776,15 +729,15 @@ $$
 
 9.  Failing to reject $H_0$ when it is actually false is a **Type II error**.
 
-10. The level of significance is the probability of committing a Type I error. Given $\alpha=0.05$, the probability of Type I error is 0.05 or 5%.
+10. The probability of a Type I error is controlled at 0.05 or 5%. It equals 0.05 for an exact-size test and can be smaller for a conservative discrete test.
 
 11. Given $\beta=0.20$, and Power $=1-\beta$, so Power $=1-0.20=0.80$, or 80%.
 
 12. Given Power $=0.90$, and since Power $=1-\beta$, we have $\beta=1-0.90=0.10$, or 10%.
 
-13. Given $\alpha=0.01$, the size of the rejection region is equal to $\alpha$, so $P(\text{Rejection region})=0.01$, or 1%.
+13. Under $H_0$, the rejection probability is at most 0.01 or 1%, with equality for an exact-size test.
 
-14. For a two-tailed test, the area in each tail is $\frac{\alpha}{2}$. Given $\alpha=0.05$, each tail has an area of $\frac{0.05}{2}=0.025$.
+14. An equal-tail two-sided test allocates $\alpha/2=0.025$ to each tail. A continuous exact-size test attains these areas; a conservative discrete test may use smaller tail probabilities.
 
 15. Given $H_1:\mu<10$, the test is a **left-tailed test**, and the rejection region lies on the left side of the sampling distribution.
 
@@ -821,15 +774,15 @@ $$
 ::: {.callout-caution title="Historical Insights"}
 **The lady, the tea, and the birth of hypothesis testing**
 
-It was an otherwise unremarkable summer afternoon at an agricultural research station in Cambridge, England, in the 1920s. A group of colleagues sat down for tea. When statistician Ronald Fisher poured a cup and offered it to his colleague Dr. Muriel Bristol, she politely declined. She preferred tea into which the milk had been added first, she explained - and she could tell the difference just by tasting.
+It was an otherwise unremarkable summer afternoon at Rothamsted Experimental Station in Harpenden, England, in the 1920s. A group of colleagues sat down for tea. When statistician Ronald Fisher poured a cup and offered it to his colleague Dr. Muriel Bristol, she politely declined. She preferred tea into which the milk had been added first, she explained - and she could tell the difference just by tasting.
 
-Fisher was sceptical. "Nonsense," he reportedly said. "Surely it makes no difference." But Bristol was adamant. A third colleague, William Roach, suggested they settle the matter with an experiment.
+Fisher was sceptical, but Bristol maintained that she could tell the difference. A third colleague, William Roach, suggested they settle the matter with an experiment.
 
-Fisher prepared eight cups of tea - four with milk added first, four with tea added first - and presented them to Dr. Bristol in a random order. She was told that four cups had been prepared each way, and her task was to identify them. She correctly identified all eight.
+Fisher prepared eight cups of tea - four with milk added first, four with tea added first - and presented them to Dr. Bristol in a random order. She was told that four cups had been prepared each way, and her task was to identify them. The statistical calculation considers the result in which all eight are correctly identified; Fisher's 1935 account presents the experimental reasoning rather than documenting Bristol's observed result.
 
-Fisher used this experiment in his landmark 1935 book *The Design of Experiments* to introduce the concept of the null hypothesis and significance testing. The null hypothesis was that Dr. Bristol had no ability to tell the difference and was merely guessing. Fisher showed that the probability of correctly identifying all eight cups by chance alone was only 1 in 70, or about 1.4% - well below any reasonable threshold of significance. [@Fisher1935]
+Fisher used this experiment in his landmark 1935 book *The Design of Experiments* to introduce the concept of the null hypothesis and significance testing. The null hypothesis was that Dr. Bristol had no ability to tell the difference and was merely guessing. Fisher showed that the probability of correctly identifying all eight cups by chance alone was only 1 in 70, or about 1.4% - below the conventional 5% level, though not below 1%. [@Fisher1935]
 
-This charming episode gave the world a framework that now underlies every clinical trial, every agricultural experiment, and every scientific study that draws a conclusion from data. The next time you test a hypothesis in your research, you are following in the footsteps of a tea party in Cambridge.
+This charming episode gave the world a framework that now underlies every clinical trial, every agricultural experiment, and every scientific study that draws a conclusion from data. The next time you test a hypothesis in your research, you are following in the footsteps of a tea experiment at Rothamsted.
 :::
 
 ::: {.callout-tip title="Quotes to Inspire"}

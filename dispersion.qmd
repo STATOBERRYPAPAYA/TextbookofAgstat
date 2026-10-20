@@ -104,7 +104,7 @@ L = Upper boundary of the highest class = 75
 
 S = Lower boundary of the lowest class = 60
 
-Range = L - S = 75 - 60 = 15
+Using the outer class boundaries gives an approximate range of $75-60=15$. The exact range of the original observations is not recoverable from the grouped table.
 :::
 
 **Merits and demerits of range**
@@ -115,7 +115,7 @@ Range = L - S = 75 - 60 = 15
 
 2.  It is easy to calculate.
 
-3.  In certain types of problems like quality control, weather forecasts, share price analysis, etc.
+3.  It is useful as a quick summary in applications such as quality control and the reporting of daily temperature ranges.
 
 [**Demerits**]{.underline}
 
@@ -134,6 +134,8 @@ Range = L - S = 75 - 60 = 15
 The range is a simple and quick measure to calculate. However, because it relies solely on the maximum and minimum values in a data set, it does not provide information about how the data is distributed between these two values. As a result, the range may not be an effective measure of dispersion, especially if one or both of these values are significantly different from the rest of the data. To address this limitation, the interquartile range is often used. The interquartile range is a more robust measure of dispersion, defined as the difference between the upper and lower quartiles of the data. IQR is also known as midspread. Thus,
 
 $$IQR = Q_3 - Q_1$$ {#eq-iqr}
+
+Half the interquartile range is the **quartile deviation**, $QD=(Q_3-Q_1)/2$.
 
 The inter-quartile range of a set of data is therefore not affected by values of the data outside *Q*~1~ and *Q*~3~ making it a more reliable measure of spread for skewed or non-normal distributions.
 
@@ -224,7 +226,7 @@ Here *n* = 6 and $\sum_{i = 1}^{n}\left| x_{i} - \overline{x} \right|$ = 16 ther
 
 2.  Different items of observations can be easily compared with mean deviation.
 
-3.  Mean deviation is better than quartile deviation and range because it is based on all the observations of the series.
+3.  Mean deviation uses all observations, whereas range and quartile deviation summarize selected features of the distribution. The preferred measure depends on the purpose.
 
 4.  Mean deviation is less affected by the extreme values in the series while comparing to standard deviation.
 
@@ -234,13 +236,13 @@ Here *n* = 6 and $\sum_{i = 1}^{n}\left| x_{i} - \overline{x} \right|$ = 16 ther
 
 [**Demerits**]{.underline}
 
-1.  Mean deviation becomes difficult to compute mean deviation in case of fractions.
+1.  Calculations by hand can become tedious when the observations contain many decimal places.
 
 2.  It is not applicable for algebraic calculations.
 
 3.  It cannot be calculated from open-end class intervals.
 
-4.  Mean deviation is not a good measure as it ignores negative signs of deviations.
+4.  Taking absolute deviations avoids cancellation, but makes some algebraic calculations less convenient than with squared deviations.
 
 ## The variance and standard deviation
 
@@ -250,14 +252,16 @@ $$
 \mathbf{\text{sample variance}},\mathit{s}^{2} = \frac{\sum_{i = 1}^{n} (x_{i} - \overline{x})^{2}}{n - 1}
 $$ {#eq-samplevariance}
 
-The sample **standard deviation**, *s*, is the positive square root of the sample variance.
+The sample variance requires $n>1$. The divisor $n-1$ accounts for estimating the mean from the same sample: the deviations sum to zero, leaving $n-1$ independent deviations. For independent observations from a population with finite variance, this makes $s^2$ an unbiased estimator of the population variance. The square root $s$ is not generally an unbiased estimator of the population standard deviation.
+
+The sample **standard deviation**, *s*, is the non-negative square root of the sample variance.
 
 $$\mathbf{\text{standard deviation} ,\mathit{s} = \ }\sqrt{\frac{\sum_{i = 1}^{n} (x_{i} - \overline{x})^{2}}{n - 1}}$$ {#eq-samplesd}
 
 ::: {.callout-important title="Note"}
 **Why standard deviation?**
 
-While both variance and standard deviation measure data dispersion, standard deviation is preferred for practical interpretation. Variance is expressed in squared units, making it harder to interpret. For example, if the data represents lengths in meters, the variance is in square meters (m²), which complicates understanding variability. In contrast, standard deviation is the square root of variance, preserving the original unit (e.g., meters), making it more intuitive. Thus, standard deviation is preferred for its clarity and ease of interpretation, especially when analyzing how data points deviate from the mean.
+While both variance and standard deviation measure data dispersion, standard deviation is preferred for practical interpretation. Variance is expressed in squared units, making it harder to interpret. For example, if the data represents lengths in meters, the variance is in square meters (m²), which complicates understanding variability. In contrast, standard deviation is the square root of variance, preserving the original unit (e.g., meters), making it more intuitive. Thus, standard deviation is preferred for its clarity and ease of interpretation, especially when analysing how data points deviate from the mean.
 :::
 
 If the standard deviation of data set A is greater than that of data set B, it indicates that data set A is more dispersed than data set B. A higher standard deviation means that the values in data set A are more spread out from the mean compared to the values in data set B. It’s important to note that the standard deviation of any data set is always a non-negative number, as it represents the square root of the variance, which is always non-negative. Variance and standard deviation can never be negative values.
@@ -312,11 +316,17 @@ $$Sample\ standard\ deviation,\ s_{B} = \ \sqrt{s_{B}^{2}} = \ \sqrt{10.8} = 3.2
 It can be seen that $s_{B} > s_{A}$, confirming that data set B is more dispersed than data set A as shown in @fig-scatterab.
 :::
 
+If the observations are the entire finite population and the aim is to describe their spread, the population variance is
+
+$$\sigma^2=\frac{1}{N}\sum_{i=1}^N(x_i-\mu)^2.$$
+
+This descriptive divisor $N$ differs from the sample divisor $n-1$. In finite-population sampling theory, another useful quantity is $S^2=\sum_{i=1}^N(x_i-\mu)^2/(N-1)$; the sampling formulas must be used with the variance convention under which they were derived.
+
 ### An alternative formula for computing the variance
 
 The computation of *s*² requires calculations of $\overline{x}$, *n* subtractions and *n* squaring and adding operations. If the original observations or the deviations $\left( x_{i} - \overline{x} \right)$ are not integers, the deviations $\left( x_{i} - \overline{x} \right)$ may be difficult to work with, and several decimals may have to be carried to ensure numerical accuracy. A more efficient computational formula for *s*² is given by
 
-$$s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{x_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}x_{i} \right)^{2} \right\}$$ {#eq-alternatevar}
+$$s^2=\frac{\sum_{i=1}^n x_i^2-(\sum_{i=1}^n x_i)^2/n}{n-1}$$ {#eq-alternatevar}
 
 ::: {#exm-ct29}
 Consider the data set below; find standard deviation?
@@ -346,7 +356,7 @@ Consider the data set below; find standard deviation?
 
 using @eq-alternatevar ; here *n* = 9
 
-$s^{2} = \frac{1}{8}\left\{ 700 - {\frac{1}{9}\left( 72 \right)}^{2} \right\}$ = 15.5
+$s^{2} = \frac{1}{8}\left(700-\frac{72^2}{9}\right)=15.5$
 
 $s = \ \sqrt{15.5} = 3.94$
 :::
@@ -355,7 +365,7 @@ $s = \ \sqrt{15.5} = 3.94$
 
 #### Discrete frequency table
 
-$$s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{{f_{i}x}_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}{f_{i}x}_{i} \right)^{2} \right\}$$ {#eq-sdfreq}
+$$s^2=\frac{\sum_{i=1}^k f_i x_i^2-(\sum_{i=1}^k f_i x_i)^2/n}{n-1}$$ {#eq-sdfreq}
 
 where, $x_i$ is the *i*^th^ observation and $f_{i}$ is the corresponding frequency
 
@@ -364,7 +374,7 @@ The frequency distributions of seed yield of 50 sesamum plants are given below. 
 
 |                         |     |     |     |     |     |
 |:-----------------------:|:---:|:---:|:---:|:---:|:---:|
-| Seed yield in gms (*x*) |  3  |  4  |  5  |  6  |  7  |
+| Seed yield in g (*x*) |  3  |  4  |  5  |  6  |  7  |
 |     Frequency (*f*)     |  4  |  6  | 15  | 15  | 10  |
 
 : A model frequency distributions of seed yield {#tbl-seedyld .bordered}
@@ -392,7 +402,9 @@ $standard\ deviation,\ s = \sqrt{1.3914}$ = 1.18
 
 #### Grouped frequency table
 
-$$s^{2} = \frac{1}{n - 1}\left\{ \sum_{i = 1}^{n}{{f_{i}d}_{i}^{2} - \frac{1}{n}}\left( \sum_{i = 1}^{n}{f_{i}d}_{i} \right)^{2} \right\}$$ {#eq-sdgrp}
+$$s^2=\frac{c^2}{n-1}\left[\sum_{i=1}^k f_i d_i^2-\frac{(\sum_{i=1}^k f_i d_i)^2}{n}\right]$$ {#eq-sdgrp}
+
+This calculation replaces observations by their class marks and therefore gives an approximate variance. The coding form assumes equal class widths.
 
 where, $f_{i}$ is the frequency of *i*^th^ class, $d_{i} = \frac{x_{i} - A}{c}$, where $x_{i}$ is the class mark, $A$ is the class mark with the highest frequency and *c* is the class interval.
 
@@ -401,23 +413,23 @@ The frequency distributions of seed yield of 50 sesamum plants are given below. 
 
 |                         |          |          |          |          |         |
 |:-----------------------:|:--------:|:--------:|:--------:|:--------:|:-------:|
-| Seed yield in gms (*x*) | 2.5--3.5 | 3.5--4.5 | 4.5--5.5 | 5.5--6.5 | 6.5-7.5 |
+| Seed yield in g (*x*) | 2.5--3.5 | 3.5--4.5 | 4.5--5.5 | 5.5--6.5 | 6.5-7.5 |
 | Frequency (*f*)         |    4     |    6     |    15    |    15    |   10    |
 
-: A model gropued frequency distributions of seed yield {#tbl-grpseedyld .bordered}
+: A model grouped frequency distribution of seed yield {#tbl-grpseedyld .bordered}
 
 **Solution**
 
 Here *n* = 50; *c* = 1
 
-| **Seed yield** | $f_{i}$ | $x_{i}$ | $$d_{i} = \frac{x_{i} - A}{c}$$ | $f_{i}.d_{i}$ | $f_{i}.d_{i}^{2}$ |
+| **Seed yield** | $f_{i}$ | $x_{i}$ | $d_{i} = \frac{x_{i} - A}{c}$ | $f_{i}.d_{i}$ | $f_{i}.d_{i}^{2}$ |
 |:----------:|:----------:|:----------:|:----------:|:----------:|:----------:|
 | 2.5--3.5 | 4 | 3 | -2 | -8 | 16 |
 | 3.5--4.5 | 6 | 4 | -1 | -6 | 6 |
 | 4.5--5.5 | 15 | 5 | 0 | 0 | 0 |
 | 5.5--6.5 | 15 | 6 | 1 | 15 | 15 |
 | 6.5--7.5 | 10 | 7 | 2 | 20 | 40 |
-| **Total** | **50** | **25** | **0** | **21** | **77** |
+| **Total** | **50** | — | — | **21** | **77** |
 
 : Calculation of sd for grouped frequency distribution {#tbl-grpfreqsd .bordered}
 
@@ -452,13 +464,13 @@ $standard\ deviation,\ s = \sqrt{1.3914}$ = 1.18
 
 2.  It gives more weight to extreme values because the values are squared up.
 
-3.  As it is an absolute measure of variability, it cannot be used for the purpose of comparison.
+3.  As an absolute measure, it should not be compared directly across different units or unrelated measurement scales. It can be compared for measurements on the same scale.
 
 ## Coefficient of variation
 
 The standard deviation is an absolute measure of dispersion. It is expressed in terms of units in which the original figures are collected and stated. The standard deviation of heights of plants cannot be compared with the standard deviation of weights of the grains, as both are expressed in different units, *i*.*e*. heights in centimetre and weights in kilograms.
 
-Therefore, the standard deviation must be converted into a relative measure of dispersion for the purpose of comparison. The relative measure is known as the **coefficient of variation**. The coefficient of variation is obtained by dividing the standard deviation by the mean and expressed in percentage.
+Therefore, the standard deviation must be converted into a relative measure of dispersion for the purpose of comparison. The relative measure is known as the **coefficient of variation**. The coefficient of variation is obtained by dividing the standard deviation by the mean and expressing the result as a percentage. It is meaningful for ratio-scale measurements with a positive mean. It is unstable near zero and is generally unsuitable when the mean is zero or negative, or when the scale has an arbitrary zero such as Celsius temperature.
 
 $$\text{Coefficient of variation} \, (C.V) = \frac{\text{standard deviation}}{\text{mean}} \times 100$$ {#eq-cv}
 
@@ -483,71 +495,63 @@ The yield is subject to more variation than the plant height.
 
 
 
+## Relative measures and properties of dispersion
+
+Relative measures have no measurement unit. For positive observations with nonzero denominators, the coefficient of range is $(x_{\max}-x_{\min})/(x_{\max}+x_{\min})$, and the coefficient of quartile deviation is $(Q_3-Q_1)/(Q_3+Q_1)$. A mean-deviation coefficient divides the mean deviation by the same centre about which it was calculated. State that centre; a zero or unsuitable denominator makes such a ratio uninformative.
+
+Mean absolute deviation can be calculated about any chosen centre $a$ as $\sum|x_i-a|/n$. It is smallest when $a$ is a median. This should not be confused with the **median absolute deviation**, $\operatorname{median}|x_i-\operatorname{median}(x)|$, which is also often abbreviated MAD. In this chapter, MAD denotes the mean absolute deviation unless stated otherwise.
+
+Adding a constant does not change variance. If $y_i=a+bx_i$, then $s_y^2=b^2s_x^2$ and $s_y=|b|s_x$. Variance therefore has squared measurement units, whereas SD has the original units.
+
+### Combining groups
+
+Suppose groups have sizes $n_j$, means $\bar x_j$ and sample variances $s_j^2$. Put $N=\sum_jn_j$ and $\bar x=\sum_jn_j\bar x_j/N$. The combined sample variance is
+
+$$s^2=\frac{\sum_j(n_j-1)s_j^2+\sum_jn_j(\bar x_j-\bar x)^2}{N-1}.$$ {#eq-combined-variance}
+
+The first sum is variation within groups; the second is variation between their means. Averaging the group SDs does not give the combined SD.
+
+::: {#exm-combined-sd}
+Two samples have $(n_1,\bar x_1,s_1)=(3,4,1)$ and $(n_2,\bar x_2,s_2)=(2,6,2)$. Find their combined mean and SD.
+
+**Solution**
+
+The combined mean is $(3\times4+2\times6)/5=4.8$. From @eq-combined-variance,
+
+$$s^2=\frac{2(1)^2+1(2)^2+3(4-4.8)^2+2(6-4.8)^2}{4}=2.7.$$
+
+Therefore, the combined SD is $\sqrt{2.7}=1.64$, approximately.
+:::
+
 ## Chapter Summary
 
 ### Fill in the blanks {.unnumbered}
 
 Answers are given at the end of the chapter.
 
-1. The extent to which observations deviate from a central value is called __________.
+1. The spread of observations is called __________.
 
-2. The statistical measures used to quantify the spread or variability of data are called measures of __________.
+2. The difference between the largest and smallest observations is the __________.
 
-3. The simplest measure of dispersion is the __________.
+3. The difference between the third and first quartiles is the __________ range.
 
-4. The range is the difference between the __________ observation and the __________ observation.
+4. Half the interquartile range is called the quartile __________.
 
-5. The range is denoted by __________.
+5. The average of absolute deviations from a specified central value is the mean __________ deviation.
 
-6. For a grouped frequency distribution, the largest value for calculating range is taken as the __________ boundary of the highest class.
+6. The mean absolute deviation is minimized when deviations are taken from the __________.
 
-7. For a grouped frequency distribution, the smallest value for calculating range is taken as the __________ boundary of the lowest class.
+7. The non-negative square root of variance is the standard __________.
 
-8. The interquartile range is the difference between the __________ and __________ quartiles.
+8. Variance is expressed in the __________ of the original measurement units.
 
-9. The interquartile range is also known as the __________.
+9. Standard deviation is expressed in the __________ units as the observations.
 
-10. The interquartile range is not affected by observations outside __________ and __________.
+10. The standard deviation of identical observations is __________.
 
-11. The mean absolute deviation is also known as the __________ deviation.
+11. The usual unbiased sample variance uses the divisor __________.
 
-12. Mean absolute deviation is calculated by taking the average of the __________ deviations from a central value.
-
-13. The most important measures of variability are variance and __________.
-
-14. Sample variance is denoted by __________.
-
-15. Sample standard deviation is denoted by __________.
-
-16. Standard deviation is the positive __________ root of variance.
-
-17. Variance is expressed in __________ units of the original measurements.
-
-18. Standard deviation is expressed in the __________ units as the original measurements.
-
-19. The standard deviation of a dataset can never be __________.
-
-20. A larger standard deviation indicates __________ dispersion of observations around the mean.
-
-21. A smaller standard deviation indicates __________ dispersion of observations around the mean.
-
-22. The relative measure of dispersion used to compare variability between datasets is called the coefficient of __________.
-
-23. The coefficient of variation is expressed as a __________.
-
-24. A higher coefficient of variation indicates __________ relative variability.
-
-25. A lower coefficient of variation indicates __________ relative variability.
-
-26. The standard deviation is an __________ measure of dispersion.
-
-27. The coefficient of variation is a __________ measure of dispersion.
-
-28. The term “standard deviation” was first introduced in writing by __________ in 1894.
-
-29. The concept of variance was introduced by __________.
-
-30. The mean absolute deviation about the __________ is the least.
+12. The standard deviation expressed as a percentage of a positive mean is the coefficient of __________.
 
 ### Short-answer questions {.unnumbered}
 
@@ -742,7 +746,7 @@ $$
 - MAD → average absolute deviation from a central value.
 - MAD about the median is the least.
 - Variance → average squared deviation, using $n-1$ for sample variance.
-- Standard deviation → positive square root of sample variance.
+- Standard deviation → non-negative square root of sample variance.
 - Variance is expressed in squared units.
 - Standard deviation is expressed in the original units.
 - Standard deviation is always non-negative.
@@ -762,7 +766,7 @@ $$
 
 ::: {.answer-key}
 
-`1.` Dispersion `2.` Dispersion `3.` Range `4.` Largest; smallest `5.` $R$ `6.` Upper `7.` Lower `8.` Third (upper); first (lower) `9.` Midspread `10.` $Q_1$; $Q_3$ `11.` Mean `12.` Absolute `13.` Standard deviation `14.` $s^2$ `15.` $s$ `16.` Square `17.` Squared `18.` Same `19.` Negative `20.` Greater `21.` Lower `22.` Variation `23.` Percentage `24.` Greater `25.` Lower `26.` Absolute `27.` Relative `28.` Karl Pearson `29.` R.A. Fisher `30.` Median
+`1.` Dispersion `2.` Range `3.` Interquartile `4.` Deviation `5.` Absolute `6.` Median `7.` Deviation `8.` Square `9.` Same `10.` Zero `11.` $n-1$ `12.` Variation
 :::
 
 ### Solutions to numerical and conceptual questions {.unnumbered}
@@ -771,7 +775,7 @@ $$
 
 2.  Using @eq-range, $40=L-15\Rightarrow L=55$; the largest observation is 55.
 
-3.  Using @eq-range with class boundaries, $R=L-S=75-60=15$.
+3.  The outer class boundaries give an approximate range of $75-60=15$; the exact range of the original data is unknown.
 
 4.  Using @eq-iqr, $IQR=Q_3-Q_1=11-4.5=6.5$.
 
@@ -787,7 +791,7 @@ $$
 
 10. Using @eq-sdfreq with $n=50$, $\sum f_ix_i=271$, $\sum f_ix_i^2=1537$: $s^2=\frac{1}{49}\left(1537-\frac{271^2}{50}\right)=1.3914$, so $s=1.18$.
 
-11. Using @eq-sdgrp with $A=5$, $c=1$, $\sum f_id_i=21$, $\sum f_id_i^2=77$: $s^2=\frac{1}{49}\left(77-\frac{21^2}{50}\right)=1.3914$, so $s=1.18$, matching question 10 since $c=1$ leaves the variance unchanged.
+11. Using the class-midpoint approximation in @eq-sdgrp with $A=5$, $c=1$, $\sum f_id_i=21$, $\sum f_id_i^2=77$: $s^2=\frac{1}{49}\left(77-\frac{21^2}{50}\right)=1.3914$, so $s=1.18$, matching question 10 because the class marks and frequencies are the same; this does not establish that the underlying raw observations have identical variances.
 
 12. Using @eq-cv, $CV=\frac{10}{50}\times100=20\%$.
 

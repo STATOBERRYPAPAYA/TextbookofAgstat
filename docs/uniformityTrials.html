@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>17&nbsp; Uniformity trials – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./anova.html" rel="next">
 <link href="./designofexperiments.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,13 +99,40 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 <script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -132,16 +163,18 @@ window.Quarto = {
 
 <meta property="og:title" content="17&nbsp; Uniformity trials – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="17&nbsp; Uniformity trials – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -330,8 +363,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -531,47 +564,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -639,7 +672,7 @@ window.Quarto = {
 <p>Uniformity trials can also be planned to determine the suitable size and shape of the plot and the number of plots in a block. Uniformity trials enable us to have an idea about the fertility variation of the field.</p>
 <section id="how-a-uniformity-trial-is-performed" class="level2" data-number="17.1">
 <h2 data-number="17.1" class="anchored" data-anchor-id="how-a-uniformity-trial-is-performed"><span class="header-section-number">17.1</span> How a uniformity trial is performed</h2>
-<p>A uniformity trial is conducted to know the nature of the soil fertility gradient. In a uniformity trial, a particular variety of a crop is sown over the entire experimental field and uniformly managed throughout the growing season without applying fertilizer. At the time of harvest, a substantial border is removed from all sides of the field. The remainder of the field is divided into small plots, which are termed <strong>basic units</strong>. The size of the basic unit is decided by judgement, depending on the crop. The smaller the basic unit, the more accurate the study of heterogeneity that is possible. The produce from each basic unit is harvested and recorded separately. The yield differences between the basic units are taken as the measure of soil heterogeneity of the study area.</p>
+<p>A uniformity trial is conducted to know the nature of the soil fertility gradient. In a uniformity trial, a particular variety of a crop is sown over the entire experimental field and uniformly managed throughout the growing season. Any fertilizer and other management inputs must be applied uniformly; fertilizer omission is not a defining requirement. At the time of harvest, a substantial border is removed from all sides of the field. The remainder of the field is divided into small plots, which are termed <strong>basic units</strong>. The size of the basic unit is decided by judgement, depending on the crop. Smaller basic units reveal finer spatial detail, but their size must also allow reliable harvesting and weighing at a practical cost. Very small units are not automatically more accurate. The produce from each basic unit is harvested and recorded separately. The yield differences between the basic units are taken as the measure of soil heterogeneity of the study area.</p>
 <p>Several types of analysis are available to evaluate the pattern of soil heterogeneity based on uniformity trial data. We will discuss some of these procedures in detail.</p>
 </section>
 <section id="fertility-contour-map" class="level2" data-number="17.2">
@@ -648,13 +681,13 @@ window.Quarto = {
 </section>
 <section id="serial-correlation" class="level2" data-number="17.3">
 <h2 data-number="17.3" class="anchored" data-anchor-id="serial-correlation"><span class="header-section-number">17.3</span> Serial correlation</h2>
-<p>The serial correlation procedure is generally used to test the randomness of a data set. However, it is also useful in characterizing the trend in soil fertility using uniformity trial data. Horizontal and vertical serial correlations are calculated. These correlations give an idea of whether the fertility gradient is more pronounced horizontally or vertically. A low serial correlation indicates that fertile areas occur in spots, and a high value indicates that there is a gradient.</p>
+<p>Serial correlation describes association between neighbouring yields. Positive values indicate similarity between nearby units, but do not by themselves establish a directional fertility gradient. The sequence and treatment of boundaries must be stated. The following formula is for a circular sequence:</p>
 <p><span id="eq-serialcorr"><span class="math display">\[r_{s} = \frac{\sum_{i=1}^{n} X_{i}X_{i+1} - \dfrac{\left( \sum_{i=1}^{n} X_{i} \right)^{2}}{n}}{\sum_{i=1}^{n} X_{i}^{2} - \dfrac{\left( \sum_{i=1}^{n} X_{i} \right)^{2}}{n}} \tag{17.1}\]</span></span></p>
-<p>where <span class="math inline">\(X_{i}\)</span> is the value of the <span class="math inline">\(i^{\text{th}}\)</span> basic unit and <span class="math inline">\(n\)</span> is the number of basic units.</p>
+<p>where <span class="math inline">\(X_{i}\)</span> is the yield at position <span class="math inline">\(i\)</span> in the chosen sequence, <span class="math inline">\(n\)</span> is the number of units, and <span class="math inline">\(X_{n+1}=X_1\)</span>. In the worked example, successive columns or rows are traversed in alternating directions to form a serpentine sequence. The closing pair and turns between strips affect the coefficient, so it is a descriptive sequence statistic rather than a pure directional neighbour correlation.</p>
 </section>
 <section id="mean-square-between-strips" class="level2" data-number="17.4">
 <h2 data-number="17.4" class="anchored" data-anchor-id="mean-square-between-strips"><span class="header-section-number">17.4</span> Mean square between strips</h2>
-<p>This method is simpler to compute and has the same objective as the serial correlation. The units are first combined as horizontal and vertical strips. The variability between strips is measured in each direction by the mean square between strips. The relative size of the two mean squares indicates whether the fertility gradient is more pronounced horizontally or vertically.</p>
+<p>This method is simpler to compute and has the same objective as the serial correlation. The units are first combined as horizontal and vertical strips. The variability between strips is measured in each direction by the mean square between strips. A mean square between vertical strips measures changes across columns, along the horizontal direction. A mean square between horizontal strips measures changes across rows, along the vertical direction. The strip orientation and the direction across which its totals vary must be distinguished; these are descriptive comparisons, not proof of a monotonic gradient.</p>
 <p><span id="eq-ssvertical"><span class="math display">\[\text{Sum of squares (Vertical)} = \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n} \tag{17.2}\]</span></span></p>
 <p><span id="eq-sshorizontal"><span class="math display">\[\text{Sum of squares (Horizontal)} = \frac{\sum_{i=1}^{r} H_{i}^{2}}{c} - \frac{G^{2}}{n} \tag{17.3}\]</span></span></p>
 <p><span id="eq-msvertical"><span class="math display">\[\text{Mean square (Vertical)} = \frac{\text{Sum of squares (Vertical)}}{c - 1} \tag{17.4}\]</span></span></p>
@@ -667,30 +700,48 @@ window.Quarto = {
 <p><span id="eq-smithlaw"><span class="math display">\[V_{x} = \frac{V_{1}}{x^{b}} \tag{17.6}\]</span></span></p>
 <p>Taking logarithms on both sides,</p>
 <p><span id="eq-smithlog"><span class="math display">\[\log V_{x} = \log V_{1} - b\log x \tag{17.7}\]</span></span></p>
-<p>where <span class="math inline">\(x\)</span> is the number of basic units in a plot, <span class="math inline">\(V_{x}\)</span> is the variance of the mean per plot of <span class="math inline">\(x\)</span> units, <span class="math inline">\(V_{1}\)</span> is the variance of the mean per plot of one unit, and <span class="math inline">\(b\)</span> is the regression coefficient. The value of <span class="math inline">\(b\)</span> is determined by the principle of least squares. <span class="math inline">\(b\)</span> is called <strong>Smith’s index of soil heterogeneity</strong>. The index gives a single value as a quantitative measure of heterogeneity in the area.</p>
+<p>where <span class="math inline">\(x\)</span> is the number of basic units in a plot, <span class="math inline">\(V_{x}\)</span> is the variance of the mean per plot of <span class="math inline">\(x\)</span> units, <span class="math inline">\(V_{1}\)</span> is the variance of the mean per plot of one unit, and <span class="math inline">\(b\)</span> is the negative of the slope in the log–log regression. The value of <span class="math inline">\(b\)</span> is determined by the principle of least squares. <span class="math inline">\(b\)</span> is called <strong>Smith’s index of soil heterogeneity</strong>. The index gives a single value as a quantitative measure of heterogeneity in the area.</p>
 <section id="sec-smith" class="level3" data-number="17.5.1">
 <h3 data-number="17.5.1" class="anchored" data-anchor-id="sec-smith"><span class="header-section-number">17.5.1</span> Smith’s index of soil heterogeneity</h3>
 <p><strong>Step 1.</strong> Combine the basic units to simulate plots of different sizes and shapes. Use only combinations that fit exactly into the whole area, <em>i</em>.<em>e</em>. the product of the number of simulated plots and the number of basic units per plot must equal the total number of basic units.</p>
-<p><strong>Step 2.</strong> For each of the simulated plots constructed in Step 1, compute the yield total <span class="math inline">\(T\)</span> as the sum of the basic units that make up that plot, and compute the between-plot variance <span class="math inline">\(V_{(x)}\)</span>:</p>
-<p><span id="eq-betweenplotvar"><span class="math display">\[V_{(x)} = \sum_{i=1}^{w}\frac{T_{i}^{2}}{x} - \frac{G^{2}}{rc} \tag{17.8}\]</span></span></p>
+<p><strong>Step 2.</strong> For each of the simulated plots constructed in Step 1, compute the yield total <span class="math inline">\(T\)</span> as the sum of the basic units that make up that plot, and compute the between-plot sum of squares <span class="math inline">\(Q_x\)</span>:</p>
+<p><span id="eq-betweenplotvar"><span class="math display">\[Q_x = \sum_{i=1}^{w}\frac{T_{i}^{2}}{x} - \frac{G^{2}}{rc} \tag{17.8}\]</span></span></p>
 <p>where <span class="math inline">\(w = \dfrac{rc}{x}\)</span> is the total number of simulated plots of size <span class="math inline">\(x\)</span> basic units. <span class="math inline">\(r\)</span> is the number of rows and <span class="math inline">\(c\)</span> is the number of columns. <span class="math inline">\(G\)</span> is the total of all the basic units.</p>
-<p><strong>Step 3.</strong> For each plot size and shape, compute the variance per unit area:</p>
-<p><span id="eq-varperunit"><span class="math display">\[V_{x} = \frac{V_{(x)}}{rc - 1} \tag{17.9}\]</span></span></p>
-<p><strong>Step 4.</strong> For each plot size having more than one shape, test the homogeneity of the between-plot variances <span class="math inline">\(V_{(x)}\)</span> to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. If they are found to be homogeneous, the average of the <span class="math inline">\(V_{(x)}\)</span> values over all plot shapes of a given size is computed; otherwise the <span class="math inline">\(V_{(x)}\)</span> of each plot shape of a given size is used separately for further calculation.</p>
-<p>For example, there are two plot shapes for size 2 m², <em>i</em>.<em>e</em>. 2 × 1 m and 1 × 2 m. For both of these plots <span class="math inline">\(V_{(x)}\)</span> is calculated. Homogeneity is tested using the F test. If it is non-significant, the average of the <span class="math inline">\(V_{(x)}\)</span> values over the plot shapes 2 × 1 m and 1 × 2 m is calculated.</p>
-<p><strong>Step 5.</strong> Using the values of the variance per unit area <span class="math inline">\(V_{x}\)</span> computed in Steps 3 and 4, estimate the regression coefficient between <span class="math inline">\(V_{x}\)</span> and plot size <span class="math inline">\(x\)</span>.</p>
+<p><strong>Step 3.</strong> Compute the sample variance of the simulated plot means, which is the variance per basic unit area used here. Put <span class="math inline">\(N=rc\)</span>, <span class="math inline">\(z_i=T_i/x\)</span> and <span class="math inline">\(\bar z=G/N\)</span>. Then</p>
+<p><span id="eq-varperunit"><span class="math display">\[V_x=\frac{Q_x}{N-x}=\frac{Q_x}{rc-x} \tag{17.9}\]</span></span></p>
+<p>To see why the divisor is <span class="math inline">\(N-x\)</span>, note that there are <span class="math inline">\(w=N/x\)</span> plot means and</p>
+<p><span class="math display">\[Q_x=x\sum_{i=1}^{w}(z_i-\bar z)^2.\]</span></p>
+<p>Therefore,</p>
+<p><span class="math display">\[V_x=\frac{\sum_{i=1}^{w}(z_i-\bar z)^2}{w-1}
+     =\frac{Q_x}{x(w-1)}.\]</span></p>
+<p>This is equivalent to calculating the sample variance of the plot totals and dividing it by <span class="math inline">\(x^2\)</span>, as in Gomez and Gomez (1984, pp.&nbsp;489–491). <span class="citation" data-cites="gomez">(<a href="references.html#ref-gomez" role="doc-biblioref">Gomez and Gomez 1984</a>)</span> The sum of squares <span class="math inline">\(Q_x\)</span> is an intermediate quantity, not a variance. At least two simulated plots are needed, so exclude <span class="math inline">\(x=N\)</span> from variance calculations.</p>
+<p>Some software uses a different field-scaled quantity, <span class="math inline">\(Q_x/(N-1)\)</span>. It agrees with <span class="math inline">\(V_x\)</span> when <span class="math inline">\(x=1\)</span> but differs for larger plots. Do not substitute that quantity into this calculation or combine its fitted index with the adjustment table below.</p>
+<p><strong>Step 4.</strong> Compare the variation for different shapes of the same size descriptively. The shapes are alternative partitions of the same observations, so their variance estimates are dependent. An ordinary two-sample F test or a chi-square variance test cannot automatically be applied to these values. Either retain the shapes separately, as in this example, or specify a descriptive averaging rule in advance. Formal inference requires a justified spatial model or independent replication.</p>
+<p>For example, compare 2 × 1 m and 1 × 2 m plots of size 2 m² using the same definition of <span class="math inline">\(V_x\)</span>. A difference may be useful for choosing an orientation, but a non-significant test would not establish equality, even if a valid test were available.</p>
+<p><strong>Step 5.</strong> Using the values of the variance per unit area <span class="math inline">\(V_{x}\)</span> computed in Steps 3 and 4, estimate the slope relating <span class="math inline">\(\log V_x-\log V_1\)</span> to <span class="math inline">\(\log x\)</span>.</p>
 <p>Using Fairfield Smith’s variance law, <a href="#eq-smithlog" class="quarto-xref">Equation&nbsp;<span>17.7</span></a> can be written as</p>
 <p><span id="eq-smithlogdiff"><span class="math display">\[\log V_{x} - \log V_{1} = -b\log x \tag{17.10}\]</span></span></p>
 <p>Consider <span class="math inline">\(Y = \log V_{x} - \log V_{1}\)</span>. Then <a href="#eq-smithlogdiff" class="quarto-xref">Equation&nbsp;<span>17.10</span></a> can be written in the form</p>
 <p><span class="math display">\[Y = cX \quad \text{where} \quad c = -b, \ X = \log x\]</span></p>
 <p><span class="math inline">\(b\)</span> is estimated by fitting a regression between <span class="math inline">\(Y\)</span> and <span class="math inline">\(X\)</span>.</p>
-<p><strong>Step 6.</strong> Obtain the adjusted <span class="math inline">\(b\)</span> from the computed <span class="math inline">\(b\)</span> value using the range <span class="math inline">\(\dfrac{x_{1}}{n}\)</span>, where <span class="math inline">\(x_{1}\)</span> is the size of the basic unit and <span class="math inline">\(n\)</span> is the whole area size. Columns 2 and 3 in <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a> give the range of <span class="math inline">\(\dfrac{x_{1}}{n}\)</span>. Once you have the computed <span class="math inline">\(b\)</span> and the value of <span class="math inline">\(\dfrac{x_{1}}{n}\)</span>, you can calculate the corresponding adjusted <span class="math inline">\(b\)</span> using <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a> by interpolation as follows.</p>
-<p>Find <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> such that the calculated <span class="math inline">\(b\)</span> lies between them, <span class="math inline">\(L_1 \leq b_{\text{cal}} \leq L_2\)</span>, where <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> are the values in the computed <span class="math inline">\(b\)</span> column of <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a>. Let <span class="math inline">\(y_1\)</span> and <span class="math inline">\(y_2\)</span> be the values corresponding to <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> under the range of <span class="math inline">\(\dfrac{x_{1}}{n}\)</span> in <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a>. Then use the formula</p>
-<p><span id="eq-adjb"><span class="math display">\[\text{Adjusted } b = y_{1} + (b_{\text{cal}} - L_{1})\frac{\left( y_{2} - y_{1} \right)}{\left( L_{2} - L_{1} \right)} \tag{17.11}\]</span></span></p>
+<p><strong>Step 6.</strong> Convert the fitted index <span class="math inline">\(b_{\text{cal}}\)</span> to the table-adjusted index.</p>
+<p><strong>Why is an adjustment made?</strong> The fitted index describes the relationship between plot size and variance within the particular, finite area used for the uniformity trial. Smith introduced an adjustment to express this relationship for a theoretically unlimited field, so that the index is less tied to the size of the area observed. Here, an unlimited field is a mathematical reference for generalising the relationship; it does not mean that the trial must cover an unlimited area. <span class="citation" data-cites="Smith1938">(<a href="references.html#ref-Smith1938" role="doc-biblioref">Smith 1938</a>)</span></p>
+<p>The adjustment therefore accounts for the finite area of the trial. Its size depends on the fitted index and on the area of a basic unit relative to the whole trial. It changes the index used in this generalisation; it does not change the observed yields or the variances already calculated. It is also separate from the degrees-of-freedom correction used to calculate a sample variance. The fitted index and the adjusted index should consequently be labelled separately when reporting the results.</p>
+<p><a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a> reproduces Table 12.5 of Gomez and Gomez (1984, p.&nbsp;493); their interpolation procedure is on p.&nbsp;494. <span class="citation" data-cites="gomez">(<a href="references.html#ref-gomez" role="doc-biblioref">Gomez and Gomez 1984</a>)</span> The two adjusted-value columns refer to ranges of <span class="math inline">\(x_1/A\)</span>, where <span class="math inline">\(x_1\)</span> is the physical area of one basic unit and <span class="math inline">\(A\)</span> is the area of the whole trial, expressed in the same units. This dimensionless ratio equals <span class="math inline">\(1/N\)</span> when all <span class="math inline">\(N\)</span> basic units have equal area. It is not the size <span class="math inline">\(x\)</span> of each simulated plot.</p>
+<p>Use the table as follows:</p>
+<ol type="1">
+<li>Calculate <span class="math inline">\(x_1/A\)</span> and choose the adjusted-value column whose heading contains that ratio.</li>
+<li>In the first column, find the two computed-index values <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> that bracket <span class="math inline">\(b_{\text{cal}}\)</span>.</li>
+<li>In the selected adjusted-value column, read <span class="math inline">\(y_1\)</span> opposite <span class="math inline">\(L_1\)</span> and <span class="math inline">\(y_2\)</span> opposite <span class="math inline">\(L_2\)</span>.</li>
+<li>Interpolate between those two entries:</li>
+</ol>
+<p><span id="eq-adjb"><span class="math display">\[b_{\text{adj}}=y_1+(b_{\text{cal}}-L_1)
+                 \frac{y_2-y_1}{L_2-L_1}. \tag{17.11}\]</span></span></p>
+<p>The fraction <span class="math inline">\((b_{\text{cal}}-L_1)/(L_2-L_1)\)</span> locates the fitted index between the two rows. Apply the same fraction to the change <span class="math inline">\(y_2-y_1\)</span> in adjusted values. If the fitted index is exactly a tabulated value, read its adjusted value directly. The table gives an approximate adjustment within the stated ranges; do not extrapolate beyond its rows or columns without a justified method.</p>
 <div id="tbl-adjb" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-adjb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values and the computed b value.
+Table&nbsp;17.1: Adjusted values of Smith’s soil heterogeneity index
 </figcaption>
 <div aria-describedby="tbl-adjb-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
@@ -751,12 +802,12 @@ Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values 
 <td style="text-align: center;">0.371</td>
 </tr>
 <tr class="even">
-<td style="text-align: center;">0.1</td>
+<td style="text-align: center;">0.15</td>
 <td style="text-align: center;">0.257</td>
 <td style="text-align: center;">0.343</td>
 </tr>
 <tr class="odd">
-<td style="text-align: center;">0.15</td>
+<td style="text-align: center;">0.1</td>
 <td style="text-align: center;">0.226</td>
 <td style="text-align: center;">0.312</td>
 </tr>
@@ -775,18 +826,18 @@ Table&nbsp;17.1: Adjusted b table. Obtain the value of b using the range values 
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A relatively low value of the calculated adjusted Smith’s index of soil heterogeneity (<span class="math inline">\(b\)</span>) indicates a relatively high degree of correlation among adjacent plots in the study area, which means the change in the level of soil fertility tends to be gradual rather than in patches. Even though <span class="math inline">\(b\)</span> is a regression coefficient, its value lies between 0 and 1.</p>
+<p>A relatively low Smith’s index is consistent with a slower reduction in variation as plot size increases, often associated with positive correlation between nearby units. Values between 0 and 1 are common under Smith’s empirical model; an unconstrained fitted slope need not give a value in this range. The index alone does not identify the spatial pattern.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="sec-mcm" class="level2" data-number="17.6">
 <h2 data-number="17.6" class="anchored" data-anchor-id="sec-mcm"><span class="header-section-number">17.6</span> Maximum curvature method</h2>
-<p>This method is used to find the optimal plot size for the experiment. In this method, the basic units of the uniformity trial are combined to form new units. The new units are formed by combining columns, rows, or both. The combination of columns and rows is done in such a way that no column or row is left out. For each set of units, the coefficient of variation (CV) is computed. A curve is plotted by taking the plot size (in terms of basic units) on the X-axis and the CV values on the Y-axis of a graph sheet. The point at which the curve takes a turn, <em>i</em>.<em>e</em>. the point of maximum curvature, is located by inspection. The value corresponding to the point of maximum curvature is the optimum plot size.</p>
+<p>This method is used to find the optimal plot size for the experiment. In this method, the basic units of the uniformity trial are combined to form new units. The new units are formed by combining columns, rows, or both. The combination of columns and rows is done in such a way that no column or row is left out. For each set of units, the coefficient of variation (CV) is computed. A curve is plotted by taking the plot size (in terms of basic units) on the X-axis and the CV values on the Y-axis of a graph sheet. The point at which the curve takes a turn, <em>i</em>.<em>e</em>. an apparent bend, is located by inspection. Its horizontal coordinate provides a traditional graphical guide to plot size. The result depends on axis scales, the range of sizes examined and the objective; it is not a universal economic optimum.</p>
 </section>
 <section id="uniformity-trial-explained" class="level2" data-number="17.7">
 <h2 data-number="17.7" class="anchored" data-anchor-id="uniformity-trial-explained"><span class="header-section-number">17.7</span> Uniformity trial explained</h2>
-<p>Let us discuss in detail the procedures explained above using an example. Consider a rice crop field of 12 m × 17 m, uniformly managed throughout the growing season without applying fertilizer. At the time of harvest, a border of 1 m is removed from all sides of the field. The resultant effective area is now 10 m × 15 m. The entire field is divided into basic units of size 1 m × 1 m, and the yield (in grams) is noted from each basic unit. There are 150 basic units.</p>
+<p>Let us discuss in detail the procedures explained above using an example. Consider a rice crop field of 12 m × 17 m, uniformly managed throughout the growing season. Any fertilizer and other management inputs must be applied uniformly; fertilizer omission is not a defining requirement. At the time of harvest, a border of 1 m is removed from all sides of the field. The resultant effective area is now 10 m × 15 m. The entire field is divided into basic units of size 1 m × 1 m, and the yield (in grams) is noted from each basic unit. There are 150 basic units.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-u1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -832,7 +883,7 @@ Figure&nbsp;17.2: Calculation of moving averages of 3 × 3 basic units
 </div>
 </div>
 </div>
-<p><strong>Step 2.</strong> The moving averages are labelled as shown below. After the calculation of moving averages, there are now 8 values in a row and 13 values in a column. The dimension of each plot in the figure below can be considered as 1.25 m × 1.154 m (<span class="math inline">\(10/8 = 1.25\)</span> and <span class="math inline">\(15/13 = 1.154\)</span>).</p>
+<p><strong>Step 2.</strong> The moving averages are labelled as shown below. After the calculation of moving averages, there are now 8 values in a row and 13 values in a column. Each moving average summarises a 3 m × 3 m window. Adjacent window centres remain 1 m apart; overlapping windows do not create new physical plots of size <span class="math inline">\(10/8\)</span> by <span class="math inline">\(15/13\)</span>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-u3" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -918,7 +969,7 @@ Figure&nbsp;17.7: Pairwise calculation of vertical values
 <div id="fig-serial2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-serial2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/serial1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
+<img src="images/serial2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-serial2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.8: Pairwise calculation of horizontal values
@@ -929,7 +980,7 @@ Figure&nbsp;17.8: Pairwise calculation of horizontal values
 </div>
 <p>Using <a href="#eq-serialcorr" class="quarto-xref">Equation&nbsp;<span>17.1</span></a>,</p>
 <p>Horizontal <span class="math inline">\(r_{s} = \dfrac{100946042 - \dfrac{(122777)^{2}}{150}}{101325715 - \dfrac{(122777)^{2}}{150}} = 0.54317\)</span></p>
-<p>Both coefficients are low, which indicates the presence of fertile areas in spots. However, the horizontal serial correlation coefficient was a little higher than the vertical, implying some fertility gradient in the horizontal direction. The relative magnitude of the two serial correlations should not, however, be used to indicate the relative degree of the gradients in the two directions.</p>
+<p>The coefficients show positive association along the two serpentine sequences. The horizontal value is somewhat higher, but these statistics alone do not establish spots, patches or a directional gradient. Use the contour map and strip analysis to investigate the spatial pattern.</p>
 </section>
 <section id="mean-square-between-strips-1" class="level3" data-number="17.7.3">
 <h3 data-number="17.7.3" class="anchored" data-anchor-id="mean-square-between-strips-1"><span class="header-section-number">17.7.3</span> Mean square between strips</h3>
@@ -948,8 +999,20 @@ Figure&nbsp;17.9: Mean square between strips from uniformity trial data
 </div>
 </div>
 <p><span class="math inline">\(G = 122777\)</span>, <span class="math inline">\(n = 150\)</span>.</p>
-<p><span class="math display">\[\text{Sum of squares (Vertical)} = \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n} = \frac{12686^{2} + 12816^{2} + \ldots + 12253^{2}}{15} - \frac{122777^{2}}{150} = 63971.47\]</span></p>
-<p><span class="math display">\[\text{Sum of squares (Horizontal)} = \frac{\sum_{i=1}^{r} H_{i}^{2}}{c} - \frac{G^{2}}{n} = \frac{8874^{2} + 8877^{2} + \ldots + 7692^{2}}{10} - \frac{122777^{2}}{150} = 341185.77\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Sum of squares (Vertical)} &amp;= \frac{\sum_{i=1}^{c} V_{i}^{2}}{r} - \frac{G^{2}}{n}\\
+&amp;= \frac{12686^{2} + 12816^{2} + \ldots + 12253^{2}}{15} - \frac{122777^{2}}{150}\\
+&amp;= 63971.47
+\end{aligned}
+\]</span></p>
+<p><span class="math display">\[
+\begin{aligned}
+\text{Sum of squares (Horizontal)} &amp;= \frac{\sum_{i=1}^{r} H_{i}^{2}}{c} - \frac{G^{2}}{n}\\
+&amp;= \frac{8874^{2} + 8877^{2} + \ldots + 7692^{2}}{10} - \frac{122777^{2}}{150}\\
+&amp;= 341185.77
+\end{aligned}
+\]</span></p>
 <p><span class="math display">\[\text{Mean square (Vertical)} = \frac{63971.47}{9} = 7107.94\]</span></p>
 <p><span class="math display">\[\text{Mean square (Horizontal)} = \frac{341185.77}{14} = 24370.41\]</span></p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
@@ -962,19 +1025,19 @@ Figure&nbsp;17.9: Mean square between strips from uniformity trial data
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The results show that the horizontal-strip mean square is almost 3 times higher than the vertical-strip mean square, indicating that the trend of soil fertility was more pronounced along the length than along the width of the field.</p>
+<p>The horizontal-strip mean square is about 3.43 times the vertical-strip mean square. This indicates a stronger component of yield variation across rows, along the length of this field. It does not by itself prove a monotonic fertility gradient or provide a significance test.</p>
 </div>
 </div>
 </section>
 <section id="smiths-index-of-soil-heterogeneity" class="level3" data-number="17.7.4">
 <h3 data-number="17.7.4" class="anchored" data-anchor-id="smiths-index-of-soil-heterogeneity"><span class="header-section-number">17.7.4</span> Smith’s index of soil heterogeneity</h3>
 <div id="exm-smith" class="theorem example">
-<p><span class="theorem-title"><strong>Example 17.1</strong></span> The optimal plot size can be identified using this method. From the possible plot sizes, the optimum plot size can be found using the method explained in <a href="#sec-smith" class="quarto-xref"><span>Section 17.5.1</span></a>. <a href="#tbl-plotsizes" class="quarto-xref">Table&nbsp;<span>17.2</span></a> shows 9 different plot sizes created from the uniformity trial data in <a href="#fig-u1" class="quarto-xref">Figure&nbsp;<span>17.1</span></a>.</p>
+<p><span class="theorem-title"><strong>Example 17.1</strong></span> Smith’s method describes how variance changes with plot size. Selecting a practical plot size also requires the available area, replication, precision and costs. <a href="#tbl-plotsizes" class="quarto-xref">Table&nbsp;<span>17.2</span></a> shows nine plot-size and shape arrangements created from the uniformity trial data in <a href="#fig-u1" class="quarto-xref">Figure&nbsp;<span>17.1</span></a>.</p>
 <p><strong>Solution</strong></p>
 <div id="tbl-plotsizes" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plotsizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.2: Nine different plot sizes created from the uniformity trial data
+Table&nbsp;17.2: Nine plot-size and shape arrangements from the uniformity trial data
 </figcaption>
 <div aria-describedby="tbl-plotsizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="lightable-classic table table-bordered cell caption-top table-sm table-striped small">
@@ -1071,7 +1134,7 @@ Figure&nbsp;17.10: The uniformity trial plot is divided into six plots
 </div>
 </div>
 </div>
-<p>Now consider the equation for the between-plot variance, <a href="#eq-betweenplotvar" class="quarto-xref">Equation&nbsp;<span>17.8</span></a>, where <span class="math inline">\(w = \dfrac{rc}{x}\)</span> is the total number of simulated plots of size <span class="math inline">\(x\)</span> basic units. <span class="math inline">\(r\)</span> is the number of rows and <span class="math inline">\(c\)</span> is the number of columns. <span class="math inline">\(G\)</span> is the total of all the basic units. The totals of each of the six plots are shown in <a href="#fig-smith2" class="quarto-xref">Figure&nbsp;<span>17.11</span></a>.</p>
+<p>Now consider the between-plot sum of squares in <a href="#eq-betweenplotvar" class="quarto-xref">Equation&nbsp;<span>17.8</span></a>, where <span class="math inline">\(w = \dfrac{rc}{x}\)</span> is the total number of simulated plots of size <span class="math inline">\(x\)</span> basic units. <span class="math inline">\(r\)</span> is the number of rows and <span class="math inline">\(c\)</span> is the number of columns. <span class="math inline">\(G\)</span> is the total of all the basic units. The totals of each of the six plots are shown in <a href="#fig-smith2" class="quarto-xref">Figure&nbsp;<span>17.11</span></a>.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-smith2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
@@ -1086,10 +1149,10 @@ Figure&nbsp;17.11: Totals of each of the six plots
 </div>
 </div>
 </div>
-<p><span class="math display">\[V_{(25)} = \frac{21366^{2} + 21433^{2} + \ldots + 18811^{2}}{25} - \frac{(122777)^{2}}{150} = 218767.71\]</span></p>
+<p><span class="math display">\[Q_{25} = \frac{21366^{2} + 21433^{2} + \ldots + 18811^{2}}{25} - \frac{(122777)^{2}}{150} = 218767.71\]</span></p>
 <p>The variance per unit area is given by <a href="#eq-varperunit" class="quarto-xref">Equation&nbsp;<span>17.9</span></a>,</p>
-<p><span class="math display">\[V_{25} = \frac{218767.71}{149} = 1468.24\]</span></p>
-<p>The coefficient of variation is calculated as <span class="math inline">\(\dfrac{\text{standard deviation}}{\text{mean}} \times 100\)</span>. Here, for the plot size of 25, the standard deviation <span class="math inline">\(= \sqrt{1468.24} = 38.318\)</span>, and the mean of the entire data set <span class="math inline">\(= 818.5133\)</span>. Therefore, <span class="math inline">\(\text{C.V} = \dfrac{38.318}{818.5133} = 0.047\)</span>. Similarly, it can be calculated for all the plot sizes. The <span class="math inline">\(V_{x}\)</span> and C.V for all other plot sizes are summarized in <a href="#tbl-vxcv" class="quarto-xref">Table&nbsp;<span>17.3</span></a>.</p>
+<p><span class="math display">\[V_{25}=\frac{Q_{25}}{150-25}=\frac{218767.71}{125}=1750.14.\]</span></p>
+<p>There are <span class="math inline">\(150/25=6\)</span> plot means. Their sample standard deviation is <span class="math inline">\(\sqrt{1750.141707}=41.8347\)</span>, and their mean is <span class="math inline">\(818.5133\)</span>. Hence <span class="math inline">\(CV=100(41.8347/818.5133)=5.11\%\)</span>, or 5.1% to one decimal place. The corresponding variances and CV values for all plot sizes and shapes are summarized in <a href="#tbl-vxcv" class="quarto-xref">Table&nbsp;<span>17.3</span></a>.</p>
 <div id="tbl-vxcv" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-vxcv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1124,8 +1187,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">2</td>
 <td style="text-align: center; width: 2cm;">1</td>
 <td style="text-align: center; width: 2cm;">75</td>
-<td style="text-align: center; width: 2cm;">4 427.18</td>
-<td style="text-align: center; width: 2cm;">8.1</td>
+<td style="text-align: center; width: 2cm;">4 457.09</td>
+<td style="text-align: center; width: 2cm;">8.2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 2cm;">3</td>
@@ -1133,7 +1196,7 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">1</td>
 <td style="text-align: center; width: 2cm;">3</td>
 <td style="text-align: center; width: 2cm;">50</td>
-<td style="text-align: center; width: 2cm;">3 733.36</td>
+<td style="text-align: center; width: 2cm;">3 784.16</td>
 <td style="text-align: center; width: 2cm;">7.5</td>
 </tr>
 <tr class="even">
@@ -1142,8 +1205,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">1</td>
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">30</td>
-<td style="text-align: center; width: 2cm;">2 213.82</td>
-<td style="text-align: center; width: 2cm;">5.7</td>
+<td style="text-align: center; width: 2cm;">2 274.89</td>
+<td style="text-align: center; width: 2cm;">5.8</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 2cm;">5</td>
@@ -1151,8 +1214,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">1</td>
 <td style="text-align: center; width: 2cm;">30</td>
-<td style="text-align: center; width: 2cm;">3 066.42</td>
-<td style="text-align: center; width: 2cm;">6.8</td>
+<td style="text-align: center; width: 2cm;">3 151.01</td>
+<td style="text-align: center; width: 2cm;">6.9</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 2cm;">6</td>
@@ -1160,8 +1223,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">2</td>
 <td style="text-align: center; width: 2cm;">3</td>
 <td style="text-align: center; width: 2cm;">25</td>
-<td style="text-align: center; width: 2cm;">3 316.61</td>
-<td style="text-align: center; width: 2cm;">7.0</td>
+<td style="text-align: center; width: 2cm;">3 431.77</td>
+<td style="text-align: center; width: 2cm;">7.2</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 2cm;">7</td>
@@ -1169,8 +1232,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">2</td>
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">15</td>
-<td style="text-align: center; width: 2cm;">2 003.03</td>
-<td style="text-align: center; width: 2cm;">5.5</td>
+<td style="text-align: center; width: 2cm;">2 131.80</td>
+<td style="text-align: center; width: 2cm;">5.6</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 2cm;">8</td>
@@ -1178,8 +1241,8 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">3</td>
 <td style="text-align: center; width: 2cm;">10</td>
-<td style="text-align: center; width: 2cm;">2 268.41</td>
-<td style="text-align: center; width: 2cm;">5.8</td>
+<td style="text-align: center; width: 2cm;">2 503.65</td>
+<td style="text-align: center; width: 2cm;">6.1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 2cm;">9</td>
@@ -1187,44 +1250,44 @@ Table&nbsp;17.3: Variance per unit area and C.V for all plot sizes
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">5</td>
 <td style="text-align: center; width: 2cm;">6</td>
-<td style="text-align: center; width: 2cm;">1 468.24</td>
-<td style="text-align: center; width: 2cm;">4.7</td>
+<td style="text-align: center; width: 2cm;">1 750.14</td>
+<td style="text-align: center; width: 2cm;">5.1</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>For each plot size having more than one shape (here plot size 5 has more than one shape), test the homogeneity of the between-plot variances <span class="math inline">\(V_{(x)}\)</span> to determine the significance of the plot orientation (plot-shape) effect, using the F test or the chi-square test. For each plot size whose plot-shape effect is non-significant, compute the average of the <span class="math inline">\(V_{x}\)</span> values over all plot shapes and proceed with the estimation of Smith’s index of soil heterogeneity.</p>
-<p><span class="math inline">\(V_{(x)}\)</span> calculated for both plot shapes:</p>
+<p>For size 5, the two orientations give the following between-plot sums of squares. Retain both orientations separately in the regression; do not treat them as independent samples for a variance test.</p>
+<p><span class="math inline">\(Q_x\)</span> calculated for both plot shapes:</p>
 <div id="tbl-plotshapevar" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-plotshapevar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;17.4: Between-plot variance for the two shapes of the size-5 plot
+Table&nbsp;17.4: Between-plot sums of squares for size-5 plot shapes
 </figcaption>
 <div aria-describedby="tbl-plotshapevar-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;">Plot shape</th>
-<th style="text-align: center;"><span class="math inline">\(V_{(x)}\)</span></th>
+<th style="text-align: center;"><span class="math inline">\(Q_x\)</span></th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">1 × 5</td>
-<td style="text-align: center;">456895.9</td>
+<td style="text-align: center;">329859.5</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">5 × 1</td>
-<td style="text-align: center;">329859.5</td>
+<td style="text-align: center;">456895.9</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>The degrees of freedom for the F test are <span class="math inline">\((w_{1} - 1,\ w_{2} - 1)\)</span>, where <span class="math inline">\(w_{1}\)</span> and <span class="math inline">\(w_{2}\)</span> are the number of plots of each particular shape. Here, the degrees of freedom <span class="math inline">\(= (30 - 1,\ 30 - 1) = (29, 29)\)</span>. F is calculated as the ratio of the <span class="math inline">\(V_{(x)}\)</span> of the two plot shapes, <span class="math inline">\(F_{\text{cal}} = \dfrac{456895.9}{329859.5} = 1.39\)</span>. The calculated value of F is compared with the table value of F. The table value of F at <span class="math inline">\((29, 29)\)</span> degrees of freedom is <span class="math inline">\(F_{\text{table}} = 1.860\)</span>. Since <span class="math inline">\(F_{\text{cal}} &lt; F_{\text{table}}\)</span>, the calculated F is non-significant, so we take the average of the <span class="math inline">\(V_{x}\)</span> of both plot shapes and proceed. In our example, we proceeded without taking the average. This F test example is included for a better understanding of the theory.</p>
+<p>The descriptive ratio is <span class="math inline">\(456895.9/329859.5=1.39\)</span>. Thus the 5 × 1 orientation has about 39% more variation than the 1 × 5 orientation under the same scaling. Because both partitions use the same field observations, comparison with an ordinary <span class="math inline">\(F_{29,29}\)</span> critical value is not justified. This ratio provides no valid significance test of orientation.</p>
 <p>Now Smith’s index of soil heterogeneity is estimated as follows.</p>
 <div id="tbl-smithindex" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
@@ -1246,69 +1309,69 @@ Table&nbsp;17.5: Estimation of Smith’s index of soil heterogeneity
 <tr class="odd">
 <td style="text-align: center; width: 3cm;">1</td>
 <td style="text-align: center; width: 3cm;">5577.88</td>
-<td style="text-align: center; width: 3cm;">8.62656</td>
+<td style="text-align: center; width: 3cm;">8.626563</td>
 <td style="text-align: center; width: 3cm;">0.000000</td>
 <td style="text-align: center; width: 3cm;">0.0000000</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3cm;">2</td>
-<td style="text-align: center; width: 3cm;">4427.18</td>
-<td style="text-align: center; width: 3cm;">8.39552</td>
-<td style="text-align: center; width: 3cm;">-0.231045</td>
+<td style="text-align: center; width: 3cm;">4457.09</td>
+<td style="text-align: center; width: 3cm;">8.402252</td>
+<td style="text-align: center; width: 3cm;">-0.224311</td>
 <td style="text-align: center; width: 3cm;">0.6931472</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3cm;">3</td>
-<td style="text-align: center; width: 3cm;">3733.36</td>
-<td style="text-align: center; width: 3cm;">8.22506</td>
-<td style="text-align: center; width: 3cm;">-0.401499</td>
+<td style="text-align: center; width: 3cm;">3784.16</td>
+<td style="text-align: center; width: 3cm;">8.238578</td>
+<td style="text-align: center; width: 3cm;">-0.387985</td>
 <td style="text-align: center; width: 3cm;">1.0986123</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3cm;">5</td>
-<td style="text-align: center; width: 3cm;">2213.82</td>
-<td style="text-align: center; width: 3cm;">7.70248</td>
-<td style="text-align: center; width: 3cm;">-0.924087</td>
+<td style="text-align: center; width: 3cm;">2274.89</td>
+<td style="text-align: center; width: 3cm;">7.729688</td>
+<td style="text-align: center; width: 3cm;">-0.896875</td>
 <td style="text-align: center; width: 3cm;">1.6094379</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3cm;">5</td>
-<td style="text-align: center; width: 3cm;">3066.42</td>
-<td style="text-align: center; width: 3cm;">8.02826</td>
-<td style="text-align: center; width: 3cm;">-0.598299</td>
+<td style="text-align: center; width: 3cm;">3151.01</td>
+<td style="text-align: center; width: 3cm;">8.055477</td>
+<td style="text-align: center; width: 3cm;">-0.571086</td>
 <td style="text-align: center; width: 3cm;">1.6094379</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3cm;">6</td>
-<td style="text-align: center; width: 3cm;">3316.61</td>
-<td style="text-align: center; width: 3cm;">8.10670</td>
-<td style="text-align: center; width: 3cm;">-0.519865</td>
+<td style="text-align: center; width: 3cm;">3431.77</td>
+<td style="text-align: center; width: 3cm;">8.140831</td>
+<td style="text-align: center; width: 3cm;">-0.485732</td>
 <td style="text-align: center; width: 3cm;">1.7917595</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3cm;">10</td>
-<td style="text-align: center; width: 3cm;">2003.03</td>
-<td style="text-align: center; width: 3cm;">7.60242</td>
-<td style="text-align: center; width: 3cm;">-1.024146</td>
+<td style="text-align: center; width: 3cm;">2131.80</td>
+<td style="text-align: center; width: 3cm;">7.664721</td>
+<td style="text-align: center; width: 3cm;">-0.961842</td>
 <td style="text-align: center; width: 3cm;">2.3025851</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3cm;">15</td>
-<td style="text-align: center; width: 3cm;">2268.41</td>
-<td style="text-align: center; width: 3cm;">7.72683</td>
-<td style="text-align: center; width: 3cm;">-0.899731</td>
+<td style="text-align: center; width: 3cm;">2503.65</td>
+<td style="text-align: center; width: 3cm;">7.825504</td>
+<td style="text-align: center; width: 3cm;">-0.801060</td>
 <td style="text-align: center; width: 3cm;">2.7080502</td>
 </tr>
 <tr class="odd">
 <td style="text-align: center; width: 3cm;">25</td>
-<td style="text-align: center; width: 3cm;">1468.24</td>
-<td style="text-align: center; width: 3cm;">7.29182</td>
-<td style="text-align: center; width: 3cm;">-1.334744</td>
+<td style="text-align: center; width: 3cm;">1750.14</td>
+<td style="text-align: center; width: 3cm;">7.467452</td>
+<td style="text-align: center; width: 3cm;">-1.159111</td>
 <td style="text-align: center; width: 3cm;">3.2188758</td>
 </tr>
 <tr class="even">
 <td style="text-align: center; width: 3cm;">V1 = 5577.88</td>
-<td style="text-align: center; width: 3cm;">log(V1) = 8.62656</td>
+<td style="text-align: center; width: 3cm;">log(V1) = 8.626563</td>
 <td style="text-align: center; width: 3cm;">NA</td>
 <td style="text-align: center; width: 3cm;">NA</td>
 <td style="text-align: center; width: 3cm;">NA</td>
@@ -1319,10 +1382,11 @@ Table&nbsp;17.5: Estimation of Smith’s index of soil heterogeneity
 </figure>
 </div>
 <p>Fit a linear regression <span class="math inline">\(Y = cX\)</span> and estimate the value of <span class="math inline">\(c\)</span>, where <span class="math inline">\(c = -b\)</span>.</p>
-<p>The estimated value of <span class="math inline">\(c\)</span> is <span class="math inline">\(-0.3952\)</span>. Therefore, the calculated value of <span class="math inline">\(b = 0.3952\)</span>. In our case, <span class="math inline">\(\dfrac{x_{1}}{n} = \dfrac{1}{150} = 0.0067\)</span>. Now we need to find the adjusted value as explained in Step 6 of <a href="#sec-smith" class="quarto-xref"><span>Section 17.5.1</span></a> using <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a>. The value of <span class="math inline">\(\dfrac{x_{1}}{n} = 0.0067\)</span> is between 0.001 and 0.01.</p>
-<p>Here <span class="math inline">\(b_{\text{cal}} = 0.3952\)</span>, <span class="math inline">\(y_{1} = 0.443\)</span>, <span class="math inline">\(y_{2} = 0.528\)</span>, <span class="math inline">\(L_{1} = 0.40\)</span>, and <span class="math inline">\(L_{2} = 0.50\)</span>.</p>
-<p><span class="math display">\[\text{Adjusted } b = 0.443 + (0.3952 - 0.40)\frac{(0.528 - 0.443)}{(0.50 - 0.40)} = 0.43892\]</span></p>
-<p>The value obtained from the interpolation matches the adjusted <span class="math inline">\(b\)</span> in <a href="#tbl-adjb" class="quarto-xref">Table&nbsp;<span>17.1</span></a>. If the <span class="math inline">\(b\)</span> value is low, it indicates a relatively high degree of correlation among adjacent plots in the study area, indicating a gradual change in soil fertility. But here <span class="math inline">\(b\)</span> is 0.43892, which is moderate, so there is no indication of a gradient, only a slight indication of patches.</p>
+<p>Using the nine plot-size and shape arrangements separately and the sample variances defined in Step 3, the regression through the origin gives <span class="math inline">\(c=-0.360686601\)</span>, so <span class="math inline">\(b_{\text{cal}}=0.360686601\approx0.3607\)</span>. This is a descriptive fit: the alternative partitions reuse the same field observations. We retain both size-5 shapes rather than selecting one after a significance test.</p>
+<p>If both the intercept and slope are estimated freely in <span class="math inline">\(\log V_x=a-b\log x\)</span>, the same nine arrangements give <span class="math inline">\(b=0.3468\)</span>. That is a different fit. The calculation above fixes the intercept at the observed <span class="math inline">\(\log V_1\)</span>, as specified by <span class="math inline">\(Y=cX\)</span>, and gives <span class="math inline">\(b=0.3607\)</span>. State which fitting method is used; the two estimates should not be substituted for one another without changing the model.</p>
+<p>One basic unit has area <span class="math inline">\(x_1=1\text{ m}^2\)</span> and the whole trial has area <span class="math inline">\(A=150\text{ m}^2\)</span>. Thus <span class="math inline">\(x_1/A=1/150=0.006667\)</span>, which selects the <strong>0.001 to 0.01</strong> column. The computed index 0.3607 lies between <span class="math inline">\(L_1=0.35\)</span> and <span class="math inline">\(L_2=0.40\)</span>. In that column, the corresponding adjusted entries are <span class="math inline">\(y_1=0.403\)</span> and <span class="math inline">\(y_2=0.443\)</span>.</p>
+<p><span class="math display">\[b_{\text{adj}}=0.403+(0.3607-0.35)\frac{0.443-0.403}{0.40-0.35}=0.41156.\]</span></p>
+<p>The fitted index is 21.4% of the way from 0.35 to 0.40, so the adjusted value is 21.4% of the way from 0.403 to 0.443. The result 0.41156 uses the rounded fitted index; retaining full precision gives 0.4115493, or 0.41155. Report which rounding convention is used. Thus, 0.3607 describes the fitted relationship within this trial, whereas approximately 0.41156 is the index after the finite-area adjustment prescribed by the table. The increase does not mean that the field has physically become more heterogeneous. Neither value is a percentage of soil heterogeneity. This adjusted index is a summary of variance reduction with increasing plot size; it does not establish a gradient direction or distinguish gradients from patches.</p>
 </div>
 </section>
 <section id="maximum-curvature-method" class="level3" data-number="17.7.5">
@@ -1333,7 +1397,7 @@ Table&nbsp;17.5: Estimation of Smith’s index of soil heterogeneity
 <div id="fig-mcm1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mcm1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/mcm1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+<img src="images/mcm-cv-corrected.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mcm1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.12: Relationship between CV and plot size
@@ -1342,13 +1406,13 @@ Figure&nbsp;17.12: Relationship between CV and plot size
 </div>
 </div>
 </div>
-<p><a href="#fig-mcm1" class="quarto-xref">Figure&nbsp;<span>17.12</span></a> indicates that as the plot size increases, the coefficient of variation decreases, and this decrease is maximum with the square-shaped plot of 5 m × 5 m. As we took a small data set for illustrative purposes, it is clearly seen that the 5 m × 5 m plot has the lowest CV value and also the lowest variance per basic unit area.</p>
+<p><a href="#fig-mcm1" class="quarto-xref">Figure&nbsp;<span>17.12</span></a> shows that the 5 m × 5 m plot has the lowest CV among the arrangements examined. This does not establish a point of maximum curvature or prove that this plot size is optimal: the curve must include enough sizes beyond the apparent bend, and the result depends on the axis scales and practical costs. Treat the figure as an illustration of variation reduction.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div id="fig-mcm2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-mcm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/mcm2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
+<img src="images/mcm-variance-corrected.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-mcm2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;17.13: Relationship between variance per basic unit area and plot size
@@ -1366,46 +1430,18 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A trial conducted to study the nature and extent of fertility variation in a field is called a __________ trial.</p></li>
-<li><p>In a uniformity trial, the entire experimental field is planted with a single __________ of crop.</p></li>
-<li><p>In a uniformity trial, the crop is managed __________ throughout the growing season.</p></li>
-<li><p>Fertilizer is generally __________ in a uniformity trial.</p></li>
-<li><p>The small plots into which the effective field is divided are called __________ units.</p></li>
-<li><p>The smaller the basic unit, the more accurately the study of field __________ can be made.</p></li>
-<li><p>The yield differences between basic units are used as a measure of soil __________.</p></li>
-<li><p>A fertility contour map is constructed using __________ averages of yields.</p></li>
-<li><p>Moving averages help to reduce the large random variation expected on __________ plots.</p></li>
-<li><p>Serial correlation can be calculated in both the __________ and __________ directions.</p></li>
-<li><p>A low serial correlation indicates that fertile areas occur in __________.</p></li>
-<li><p>A high serial correlation indicates the presence of a fertility __________.</p></li>
-<li><p>The relative size of horizontal and vertical serial correlations gives an indication of the __________ of fertility pattern.</p></li>
-<li><p>The mean square between strips method has the same objective as the __________ correlation method.</p></li>
-<li><p>In the mean square between strips method, basic units are combined into __________ and __________ strips.</p></li>
-<li><p>The variability between strips is measured using the __________ square between strips.</p></li>
-<li><p>Smith’s variance law describes the relationship between plot size and the __________ of the mean per plot.</p></li>
-<li><p>Fairfield Smith’s variance law is represented by <span class="math inline">\(V_x=\)</span> __________.</p></li>
-<li><p>The parameter <span class="math inline">\(b\)</span> in Smith’s variance law is called Smith’s index of soil __________.</p></li>
-<li><p>A lower value of Smith’s index generally indicates a higher degree of __________ among adjacent plots.</p></li>
-<li><p>The value of Smith’s index <span class="math inline">\(b\)</span> lies between __________ and __________.</p></li>
-<li><p>In constructing simulated plots, the product of the number of plots and the number of basic units per plot must equal the __________ number of basic units.</p></li>
-<li><p>The total yield of the basic units forming a simulated plot is denoted by __________.</p></li>
-<li><p>The variance between simulated plots is denoted by __________.</p></li>
-<li><p>Variance per unit area is obtained by dividing the between-plot variance by __________.</p></li>
-<li><p>When a plot size has more than one possible shape, the homogeneity of the variances can be tested using the __________ test or the __________ test.</p></li>
-<li><p>If the variances for different plot shapes are homogeneous, their __________ is used for further calculation.</p></li>
-<li><p>Smith’s index is estimated by fitting a __________ between <span class="math inline">\(\log V_x-\log V_1\)</span> and <span class="math inline">\(\log x\)</span>.</p></li>
-<li><p>In the regression equation <span class="math inline">\(Y=cX\)</span>, the relationship between <span class="math inline">\(c\)</span> and Smith’s index is __________.</p></li>
-<li><p>The adjusted value of Smith’s index is obtained by __________ when the calculated value lies between two tabulated values.</p></li>
-<li><p>The maximum curvature method is used to determine the __________ plot size.</p></li>
-<li><p>In the maximum curvature method, plot size is plotted on the __________ axis.</p></li>
-<li><p>In the maximum curvature method, coefficient of variation is plotted on the __________ axis.</p></li>
-<li><p>As plot size increases, the coefficient of variation generally __________.</p></li>
-<li><p>The plot size corresponding to the point of maximum curvature is considered the __________ plot size.</p></li>
-<li><p>The first true uniformity trial was conducted at __________ Experimental Station.</p></li>
-<li><p>The first true uniformity trial was conducted by W. B. Mercer and __________.</p></li>
-<li><p>The historical uniformity trial was conducted using a field of __________.</p></li>
-<li><p>The study showed that neighbouring plots tended to __________ one another.</p></li>
-<li><p>The historical uniformity trial demonstrated that combining small plots into larger plots reduces the variability per __________ area.</p></li>
+<li><p>A field trial conducted under uniform treatment to study field variability is called a __________ trial.</p></li>
+<li><p>The smallest harvested subdivision in a uniformity trial is called a __________ unit.</p></li>
+<li><p>A map showing spatial patterns in yield is called a fertility __________ map.</p></li>
+<li><p>The correlation between yields of neighbouring units is a form of __________ correlation.</p></li>
+<li><p>The relationship <span class="math inline">\(V_x=V_1/x^b\)</span> is known as Smith’s __________ law.</p></li>
+<li><p>The parameter <span class="math inline">\(b\)</span> in Smith’s law is an index of soil __________.</p></li>
+<li><p>Taking logarithms of Smith’s variance law produces a __________ relationship.</p></li>
+<li><p>The slope of the regression of <span class="math inline">\(\log V_x\)</span> on <span class="math inline">\(\log x\)</span> is __________.</p></li>
+<li><p>The yield of a simulated plot is the __________ of the yields of its constituent basic units.</p></li>
+<li><p>To convert the variance of plot totals to the variance of yield per basic unit, divide by the __________ of the number of basic units per plot.</p></li>
+<li><p>In the maximum curvature method, plot size is plotted against the coefficient of __________.</p></li>
+<li><p>For a fixed total experimental area, increasing plot size reduces the number of available __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1415,7 +1451,7 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <li><p>State the objectives of a uniformity trial.</p></li>
 <li><p>Explain how a uniformity trial is conducted.</p></li>
 <li><p>What are basic units?</p></li>
-<li><p>Why should the basic units be as small as possible?</p></li>
+<li><p>What factors determine a suitable basic-unit size?</p></li>
 <li><p>How can a uniformity trial help in planning a field experiment?</p></li>
 <li><p>What information about a field can be obtained from a uniformity trial?</p></li>
 <li><p>Explain the construction of a fertility contour map.</p></li>
@@ -1427,7 +1463,7 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <li><p>What is the limitation of interpreting the relative magnitude of horizontal and vertical serial correlations?</p></li>
 <li><p>Explain the mean square between strips method.</p></li>
 <li><p>Distinguish between horizontal and vertical strips.</p></li>
-<li><p>How is the direction of the fertility gradient identified using mean squares between strips?</p></li>
+<li><p>What do the mean squares between vertical and horizontal strips describe, and why do they not by themselves establish a monotonic fertility gradient?</p></li>
 <li><p>What is Fairfield Smith’s variance law?</p></li>
 <li><p>Explain the meaning of <span class="math inline">\(V_x\)</span>, <span class="math inline">\(V_1\)</span>, <span class="math inline">\(x\)</span>, and <span class="math inline">\(b\)</span> in Smith’s variance law.</p></li>
 <li><p>What is Smith’s index of soil heterogeneity?</p></li>
@@ -1436,8 +1472,8 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <li><p>Why should all possible simulated plot sizes and shapes fit exactly within the field?</p></li>
 <li><p>Explain the calculation of between-plot variance.</p></li>
 <li><p>Explain how variance per unit area is calculated.</p></li>
-<li><p>Why is the homogeneity of variance tested when a plot size has more than one shape?</p></li>
-<li><p>Explain how the F test is used to compare variances of different plot shapes.</p></li>
+<li><p>Why should different plot shapes of the same size be compared?</p></li>
+<li><p>Why is an ordinary two-sample F test inappropriate for alternative partitions of the same field?</p></li>
 <li><p>Explain the regression procedure used to estimate Smith’s index.</p></li>
 <li><p>Why is the calculated Smith’s index adjusted?</p></li>
 <li><p>Explain the interpolation method used to obtain adjusted <span class="math inline">\(b\)</span>.</p></li>
@@ -1456,20 +1492,20 @@ Figure&nbsp;17.13: Relationship between variance per basic unit area and plot si
 <ol type="1">
 <li><p>A field of 12 m × 17 m is used for a uniformity trial. A border of 1 m is removed from all sides. Find the effective area.</p></li>
 <li><p>If the effective field in Question 1 is divided into 1 m × 1 m basic units, find the total number of basic units.</p></li>
-<li><p>In a uniformity trial, explain why fertilizer is not applied to the crop.</p></li>
+<li><p>Explain why fertilizer and other management inputs must be applied uniformly in a uniformity trial.</p></li>
 <li><p>A uniformity trial gives low horizontal and vertical serial correlation coefficients. What does this indicate about the distribution of fertility?</p></li>
 <li><p>The horizontal serial correlation is 0.54 and the vertical serial correlation is 0.44. Explain the interpretation based on the chapter.</p></li>
-<li><p>Calculate the vertical and horizontal mean squares between strips when the required strip totals and grand total are given.</p></li>
+<li><p>Use the strip totals in <a href="#fig-meansq" class="quarto-xref">Figure&nbsp;<span>17.9</span></a> to calculate the vertical and horizontal mean squares between strips.</p></li>
 <li><p>The vertical mean square is 7107.94 and the horizontal mean square is 24370.41. Which direction shows greater fertility variation?</p></li>
 <li><p>Explain why the relative magnitude of the two serial correlation coefficients should not be used to quantify the relative degree of fertility gradients.</p></li>
 <li><p>A uniformity trial contains <span class="math inline">\(r\)</span> rows and <span class="math inline">\(c\)</span> columns of basic units. Find the total number of basic units.</p></li>
 <li><p>A plot size contains <span class="math inline">\(x\)</span> basic units and the field contains <span class="math inline">\(rc\)</span> basic units. Find the number of simulated plots.</p></li>
-<li><p>Calculate the between-plot variance when the simulated plot totals, total number of basic units, and grand total are given.</p></li>
-<li><p>Explain why the variance per unit area is calculated after obtaining the between-plot variance.</p></li>
-<li><p>For a plot size having two orientations, the calculated variances are 456895.9 and 329859.5. Calculate the F statistic.</p></li>
-<li><p>If the calculated F value is 1.39 and the table value is 1.860, state the conclusion regarding plot orientation.</p></li>
-<li><p>Given <span class="math inline">\(b_{\text{cal}}=0.3952\)</span>, <span class="math inline">\(L_1=0.40\)</span>, <span class="math inline">\(L_2=0.50\)</span>, <span class="math inline">\(y_1=0.443\)</span>, and <span class="math inline">\(y_2=0.528\)</span>, calculate the adjusted Smith’s index.</p></li>
-<li><p>Explain the interpretation of an adjusted Smith’s index of 0.43892.</p></li>
+<li><p>Use the six size-25 plot totals in <a href="#fig-smith2" class="quarto-xref">Figure&nbsp;<span>17.11</span></a> to calculate the between-plot sum of squares <span class="math inline">\(Q_{25}\)</span> and then the sample variance of plot means <span class="math inline">\(V_{25}\)</span>.</p></li>
+<li><p>Explain the distinction between the between-plot sum of squares <span class="math inline">\(Q_x\)</span> and the variance per basic unit area <span class="math inline">\(V_x\)</span>.</p></li>
+<li><p>For a plot size having two orientations, the between-plot sums of squares are 456895.9 and 329859.5. Calculate their descriptive ratio.</p></li>
+<li><p>A ratio of 1.39 is obtained from two alternative partitions of the same field. Can it be compared directly with an ordinary F-table value? Explain.</p></li>
+<li><p>Given <span class="math inline">\(b_{\text{cal}}=0.3607\)</span>, <span class="math inline">\(L_1=0.35\)</span>, <span class="math inline">\(L_2=0.40\)</span>, <span class="math inline">\(y_1=0.403\)</span>, and <span class="math inline">\(y_2=0.443\)</span>, calculate the adjusted Smith’s index.</p></li>
+<li><p>Explain the interpretation of an adjusted Smith’s index of 0.41156.</p></li>
 <li><p>A uniformity trial gives CV values for several plot sizes. Explain how the optimum plot size can be identified using the maximum curvature method.</p></li>
 <li><p>If the CV decreases sharply up to a particular plot size and then changes only slightly, explain which plot size would be considered appropriate.</p></li>
 <li><p>Explain why the optimum plot size obtained from the maximum curvature method may depend on the crop and field conditions.</p></li>
@@ -1534,13 +1570,13 @@ c=-b
 <p><span class="math display">\[
 w=\frac{rc}{x}
 \]</span></p>
-<p>Between-plot variance:</p>
+<p>Between-plot sum of squares:</p>
 <p><span class="math display">\[
-V_{(x)}=\sum_{i=1}^{w}\frac{T_i^2}{x}-\frac{G^2}{rc}
+Q_x=\sum_{i=1}^{w}\frac{T_i^2}{x}-\frac{G^2}{rc}
 \]</span></p>
 <p>Variance per unit area:</p>
 <p><span class="math display">\[
-V_x=\frac{V_{(x)}}{rc-1}
+V_x=\frac{Q_x}{rc-x}
 \]</span></p>
 <p>Coefficient of variation:</p>
 <p><span class="math display">\[
@@ -1554,9 +1590,9 @@ SD=\sqrt{V_x}
 <p><span class="math display">\[
 \text{Adjusted }b=y_1+(b_{\text{cal}}-L_1)\frac{y_2-y_1}{L_2-L_1}
 \]</span></p>
-<p>F statistic for comparing variances of two plot shapes:</p>
+<p>Descriptive ratio for two plot shapes (not an F test for dependent partitions):</p>
 <p><span class="math display">\[
-F=\frac{\text{Larger variance}}{\text{Smaller variance}}
+R=\frac{\text{Larger between-plot sum of squares}}{\text{Smaller between-plot sum of squares}}
 \]</span></p>
 </section>
 <section id="quick-revision" class="level3 unnumbered">
@@ -1564,62 +1600,62 @@ F=\frac{\text{Larger variance}}{\text{Smaller variance}}
 <ul>
 <li><p>Uniformity trial → used to study the nature and extent of fertility variation in a field.</p></li>
 <li><p>A single crop variety is grown over the entire field.</p></li>
-<li><p>The crop is managed uniformly and fertilizer is not applied.</p></li>
+<li><p>All management inputs, including fertilizer if used, are applied uniformly.</p></li>
 <li><p>A substantial border is removed before dividing the field into basic units.</p></li>
 <li><p>Basic unit → smallest unit from which yield is separately recorded.</p></li>
 <li><p>Yield differences among basic units → measure of soil heterogeneity.</p></li>
-<li><p>Smaller basic units → more accurate study of field heterogeneity.</p></li>
+<li><p>Smaller basic units → finer spatial detail, balanced against harvesting accuracy and cost.</p></li>
 <li><p>Uniformity trials can help determine → fertility variation, plot size, plot shape, and block size.</p></li>
 <li><p>Fertility contour map → graphical representation of soil heterogeneity.</p></li>
 <li><p>Moving averages → used to reduce random variation and identify areas of similar fertility.</p></li>
 <li><p>Similar fertility areas → grouped together in the contour map.</p></li>
 <li><p>Serial correlation → measures the relationship between neighbouring observations.</p></li>
 <li><p>Horizontal and vertical serial correlations → used to identify the direction of fertility variation.</p></li>
-<li><p>Low serial correlation → fertile areas occur in spots.</p></li>
-<li><p>High serial correlation → fertility gradient is present.</p></li>
+<li><p>Low serial correlation → little linear association at the chosen lag; this alone does not establish patches.</p></li>
+<li><p>High serial correlation → neighbouring yields are associated; use the field map to assess gradients and patches.</p></li>
 <li><p>Mean square between strips → simpler method having the same objective as serial correlation.</p></li>
-<li><p>Vertical strips → used to study fertility variation in the vertical direction.</p></li>
-<li><p>Horizontal strips → used to study fertility variation in the horizontal direction.</p></li>
+<li><p>Between vertical strips → measures variation across columns, in the horizontal direction.</p></li>
+<li><p>Between horizontal strips → measures variation across rows, in the vertical direction.</p></li>
 <li><p>Larger strip mean square → indicates greater variation in that direction.</p></li>
-<li><p>Fairfield Smith’s variance law → relates plot size to variance per plot.</p></li>
+<li><p>Fairfield Smith’s variance law → relates plot size to the variance of yield per basic unit area.</p></li>
 <li><p>Smith’s law → <span class="math inline">\(V_x=V_1/x^b\)</span>.</p></li>
 <li><p>Smith’s index of soil heterogeneity → <span class="math inline">\(b\)</span>.</p></li>
 <li><p><span class="math inline">\(b\)</span> → quantitative measure of soil heterogeneity.</p></li>
-<li><p>Lower <span class="math inline">\(b\)</span> → higher correlation among adjacent plots and more gradual change in fertility.</p></li>
-<li><p>Higher <span class="math inline">\(b\)</span> → greater tendency for fertility variation to occur in patches.</p></li>
-<li><p>Smith’s index lies between 0 and 1.</p></li>
+<li><p>Lower <span class="math inline">\(b\)</span> → slower fitted variance reduction, often associated with positive nearby correlation; a gradient is not established.</p></li>
+<li><p>Higher <span class="math inline">\(b\)</span> → a faster fitted reduction in variance as plot size increases; it does not establish a patch pattern.</p></li>
+<li><p>Values from 0 to 1 describe the usual idealised range of Smith’s index; empirical fitted values can fall outside this range.</p></li>
 <li><p>Simulated plots → formed by combining basic units into different sizes and shapes.</p></li>
 <li><p>Only plot arrangements that fit exactly within the whole field are used.</p></li>
-<li><p>Between-plot variance → calculated for each simulated plot size and shape.</p></li>
-<li><p>Variance per unit area → obtained by dividing between-plot variance by <span class="math inline">\(rc-1\)</span>.</p></li>
-<li><p>When a plot size has more than one shape → test homogeneity of variances using F test or chi-square test.</p></li>
-<li><p>Non-significant plot-shape effect → average the variance values for the different shapes.</p></li>
+<li><p>Between-plot sum of squares → calculated for each simulated plot size and shape.</p></li>
+<li><p>Variance per basic unit area <span class="math inline">\(V_x\)</span> → sample variance of plot means, equal to <span class="math inline">\(Q_x/(rc-x)\)</span>.</p></li>
+<li><p>Alternative shapes partition the same field → their variance estimates are dependent.</p></li>
+<li><p>Retain shapes separately or state a descriptive averaging rule; an ordinary F test does not justify pooling dependent partitions.</p></li>
 <li><p>Smith’s index → estimated by regression of <span class="math inline">\(Y=\log V_x-\log V_1\)</span> on <span class="math inline">\(X=\log x\)</span>.</p></li>
 <li><p>In <span class="math inline">\(Y=cX\)</span>, <span class="math inline">\(c=-b\)</span>.</p></li>
 <li><p>Adjusted <span class="math inline">\(b\)</span> → obtained using interpolation from the adjusted <span class="math inline">\(b\)</span> table.</p></li>
 <li><p>Maximum curvature method → used to determine optimum plot size.</p></li>
 <li><p>In maximum curvature method → plot size is plotted on the X-axis and CV on the Y-axis.</p></li>
 <li><p>As plot size increases → CV generally decreases.</p></li>
-<li><p>Point of maximum curvature → gives the optimum plot size.</p></li>
+<li><p>Apparent bend → a traditional plot-size guide sensitive to axis scales and the available arrangements.</p></li>
 <li><p>In the rice example → the field was 12 m × 17 m.</p></li>
 <li><p>After removing a 1 m border from all sides → effective area was 10 m × 15 m.</p></li>
 <li><p>With 1 m × 1 m basic units → there were 150 basic units.</p></li>
 <li><p>In the example, vertical serial correlation → 0.438627.</p></li>
 <li><p>In the example, horizontal serial correlation → 0.54317.</p></li>
-<li><p>Both serial correlations were low, indicating fertile areas occurring in spots.</p></li>
-<li><p>The horizontal value was somewhat higher, suggesting some fertility gradient in the horizontal direction.</p></li>
-<li><p>In the example, horizontal-strip mean square was much larger than vertical-strip mean square, indicating a stronger fertility trend along the length of the field.</p></li>
-<li><p>For plot size 25 m² in the example → <span class="math inline">\(V_{25}=1468.24\)</span>.</p></li>
-<li><p>The calculated Smith’s index in the example was <span class="math inline">\(b=0.3952\)</span> before adjustment.</p></li>
-<li><p>The adjusted Smith’s index in the example was approximately <span class="math inline">\(0.43892\)</span>.</p></li>
-<li><p>The adjusted value indicated moderate heterogeneity, with no clear fertility gradient but a slight indication of patches.</p></li>
+<li><p>Positive sequence correlations describe nearby similarity; they do not by themselves establish patches or gradients.</p></li>
+<li><p>The higher horizontal sequence correlation alone does not establish a horizontal fertility gradient.</p></li>
+<li><p>In the example, the larger horizontal-strip mean square indicates greater yield variation across rows; a monotonic gradient is not established.</p></li>
+<li><p>For plot size 25 m² in the example → <span class="math inline">\(V_{25}=1750.14\)</span>.</p></li>
+<li><p>The calculated Smith’s index in the example was <span class="math inline">\(b=0.3607\)</span> before adjustment.</p></li>
+<li><p>The adjusted Smith’s index in the example was approximately <span class="math inline">\(0.41156\)</span>.</p></li>
+<li><p>The index summarises variance reduction with plot size; identifying gradients or patches also requires spatial information.</p></li>
 <li><p>Uniformity trials are important because field variability exists even when all management practices are kept uniform.</p></li>
 </ul>
 </section>
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Uniformity <code>2.</code> Variety <code>3.</code> Uniformly <code>4.</code> Not applied <code>5.</code> Basic <code>6.</code> Heterogeneity <code>7.</code> Heterogeneity <code>8.</code> Moving <code>9.</code> Small <code>10.</code> Horizontal; vertical <code>11.</code> Spots <code>12.</code> Gradient <code>13.</code> Direction <code>14.</code> Serial <code>15.</code> Horizontal; vertical <code>16.</code> Mean <code>17.</code> Variance <code>18.</code> <span class="math inline">\(V_1/x^b\)</span> <code>19.</code> Heterogeneity <code>20.</code> Correlation <code>21.</code> 0; 1 <code>22.</code> Total <code>23.</code> <span class="math inline">\(T\)</span> <code>24.</code> <span class="math inline">\(V_{(x)}\)</span> <code>25.</code> <span class="math inline">\(rc-1\)</span> <code>26.</code> F; chi-square <code>27.</code> Average <code>28.</code> Regression <code>29.</code> <span class="math inline">\(c=-b\)</span> <code>30.</code> Interpolation <code>31.</code> Optimum <code>32.</code> X <code>33.</code> Y <code>34.</code> Decreases <code>35.</code> Optimum <code>36.</code> Rothamsted <code>37.</code> A. D. Hall <code>38.</code> Wheat <code>39.</code> Resemble <code>40.</code> Unit</p>
+<p><code>1.</code> Uniformity <code>2.</code> Basic <code>3.</code> Contour <code>4.</code> Serial <code>5.</code> Variance <code>6.</code> Heterogeneity <code>7.</code> Linear <code>8.</code> <span class="math inline">\(-b\)</span> <code>9.</code> Sum <code>10.</code> Square <code>11.</code> Variation <code>12.</code> Plots</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1627,22 +1663,22 @@ F=\frac{\text{Larger variance}}{\text{Smaller variance}}
 <ol type="1">
 <li><p>Removing a 1 m border from all sides of a 12 m × 17 m field leaves an effective area of <span class="math inline">\((12-2)\times(17-2)=10\times15=150\text{ m}^2\)</span>.</p></li>
 <li><p>With 1 m × 1 m basic units, the number of basic units is <span class="math inline">\(10\times15=150\)</span>.</p></li>
-<li><p>Fertilizer is not applied so that any yield differences among basic units reflect only the natural heterogeneity of the soil, rather than being confounded with a differential response to fertilizer.</p></li>
-<li><p>Low horizontal and vertical serial correlations indicate that fertile areas are scattered as spots or patches across the field rather than following a systematic gradient in either direction.</p></li>
-<li><p>Since the horizontal correlation (0.54) is somewhat higher than the vertical correlation (0.44), there may be a slight fertility gradient along the horizontal direction, but because both values are relatively low, the dominant pattern is still one of fertile areas occurring in patches rather than a strong directional gradient.</p></li>
-<li><p>Using <a href="#eq-ssvertical" class="quarto-xref">Equation&nbsp;<span>17.2</span></a> and <a href="#eq-sshorizontal" class="quarto-xref">Equation&nbsp;<span>17.3</span></a>, compute <span class="math inline">\(SS_V=\dfrac{\sum V_i^2}{r}-\dfrac{G^2}{n}\)</span> and <span class="math inline">\(SS_H=\dfrac{\sum H_i^2}{c}-\dfrac{G^2}{n}\)</span> from the given vertical strip totals <span class="math inline">\(V_i\)</span>, horizontal strip totals <span class="math inline">\(H_i\)</span>, and grand total <span class="math inline">\(G\)</span>; then divide each by its degrees of freedom, <span class="math inline">\((c-1)\)</span> for vertical and <span class="math inline">\((r-1)\)</span> for horizontal, using <a href="#eq-msvertical" class="quarto-xref">Equation&nbsp;<span>17.4</span></a> and <a href="#eq-mshorizontal" class="quarto-xref">Equation&nbsp;<span>17.5</span></a>.</p></li>
-<li><p>Since the horizontal mean square (24370.41) is much larger than the vertical mean square (7107.94), the horizontal direction shows greater fertility variation.</p></li>
-<li><p>Serial correlation reflects the pattern of association between neighbouring units, but its numerical value is not a calibrated measure of the steepness of a gradient. Two correlation values can therefore indicate which direction shows a stronger tendency toward a gradient, but their relative magnitude should not be read as a precise quantitative comparison of the two gradients’ strengths.</p></li>
+<li><p>Fertilizer need not be omitted. Apply it, and all other management inputs, uniformly so that treatment differences do not create artificial spatial variation. Yield variation can also include measurement error and other environmental effects.</p></li>
+<li><p>Low neighbour correlations indicate little linear association at the chosen lag. They do not establish spots or patches; inspect the spatial map and other diagnostics.</p></li>
+<li><p>There is positive association along both chosen sequences, somewhat stronger horizontally. The coefficients alone do not establish a directional gradient or classify the field as patchy.</p></li>
+<li><p>The vertical and horizontal sums of squares are 63971.47 and 341185.77. Their mean squares are <span class="math inline">\(63971.47/9=7107.94\)</span> and <span class="math inline">\(341185.77/14=24370.41\)</span>, respectively. Using <a href="#eq-ssvertical" class="quarto-xref">Equation&nbsp;<span>17.2</span></a> and <a href="#eq-sshorizontal" class="quarto-xref">Equation&nbsp;<span>17.3</span></a>, compute <span class="math inline">\(SS_V=\dfrac{\sum V_i^2}{r}-\dfrac{G^2}{n}\)</span> and <span class="math inline">\(SS_H=\dfrac{\sum H_i^2}{c}-\dfrac{G^2}{n}\)</span> from the given vertical strip totals <span class="math inline">\(V_i\)</span>, horizontal strip totals <span class="math inline">\(H_i\)</span>, and grand total <span class="math inline">\(G\)</span>; then divide each by its degrees of freedom, <span class="math inline">\((c-1)\)</span> for vertical and <span class="math inline">\((r-1)\)</span> for horizontal, using <a href="#eq-msvertical" class="quarto-xref">Equation&nbsp;<span>17.4</span></a> and <a href="#eq-mshorizontal" class="quarto-xref">Equation&nbsp;<span>17.5</span></a>.</p></li>
+<li><p>The greater mean square between horizontal strips indicates greater variation across rows, along the vertical length of the field. The strip names refer to their orientation, not to the direction perpendicular to them.</p></li>
+<li><p>Serial correlation measures association between neighbouring yields at the chosen lag. It is not a calibrated measure of gradient steepness, and comparing two coefficients alone does not determine the direction or strength of a fertility gradient. Examine the field map and strip variation as well.</p></li>
 <li><p>The total number of basic units is <span class="math inline">\(n=r\times c\)</span>.</p></li>
 <li><p>The number of simulated plots of size <span class="math inline">\(x\)</span> basic units is <span class="math inline">\(w=\dfrac{rc}{x}\)</span>.</p></li>
-<li><p>Using <a href="#eq-betweenplotvar" class="quarto-xref">Equation&nbsp;<span>17.8</span></a>, compute <span class="math inline">\(V_{(x)}=\displaystyle\sum_{i=1}^{w}\dfrac{T_i^2}{x}-\dfrac{G^2}{rc}\)</span> from the given simulated plot totals <span class="math inline">\(T_i\)</span>, the total number of basic units <span class="math inline">\(rc\)</span>, and the grand total <span class="math inline">\(G\)</span>.</p></li>
-<li><p>Between-plot variance alone is not directly comparable across different plot sizes, since it is computed from totals over different numbers of basic units. Dividing by <span class="math inline">\(rc-1\)</span> converts it to a variance per unit area, placing all plot sizes on a common, comparable scale.</p></li>
-<li><p><span class="math inline">\(F_{\text{cal}}=\dfrac{456895.9}{329859.5}=1.39\)</span>.</p></li>
-<li><p>Since <span class="math inline">\(F_{\text{cal}}=1.39\)</span> is less than <span class="math inline">\(F_{\text{table}}=1.860\)</span>, the difference between the two plot orientations is non-significant, meaning the plot-shape effect does not significantly affect the variance for that plot size, so the values for the two shapes can be averaged.</p></li>
-<li><p>Adjusted <span class="math inline">\(b=0.443+(0.3952-0.40)\dfrac{(0.528-0.443)}{(0.50-0.40)}=0.43892\)</span>.</p></li>
-<li><p>An adjusted Smith’s index of 0.43892 is a moderate value, neither close to 0 nor close to 1. It shows no strong indication of a fertility gradient, but only a slight indication that fertile areas occur in patches.</p></li>
-<li><p>The plot size (in basic units) is plotted on the X-axis and the corresponding CV values on the Y-axis. As plot size increases, CV generally decreases; the point at which the curve bends most sharply, the point of maximum curvature, is located by inspection, and the plot size corresponding to that point is taken as the optimum.</p></li>
-<li><p>The plot size near where the CV curve levels off, that is, near the point of maximum curvature, would be considered appropriate, since increasing the plot size beyond this point gives only a small further reduction in CV for a proportionally larger increase in plot size.</p></li>
+<li><p>The six plot totals give <span class="math inline">\(Q_{25}=218767.71\)</span>. Using <a href="#eq-varperunit" class="quarto-xref">Equation&nbsp;<span>17.9</span></a>, <span class="math inline">\(V_{25}=Q_{25}/(150-25)=1750.14\)</span>. The first quantity is a sum of squares; the second is a sample variance.</p></li>
+<li><p>With <span class="math inline">\(z_i=T_i/x\)</span>, <span class="math inline">\(Q_x=x\sum(z_i-\bar z)^2\)</span> and <span class="math inline">\(w=rc/x\)</span>. Thus the sample variance of plot means is <span class="math inline">\(V_x=Q_x/[x(w-1)]=Q_x/(rc-x)\)</span>. The alternative field-scaled quantity <span class="math inline">\(Q_x/(rc-1)\)</span> is different and is not used with this worked adjustment.</p></li>
+<li><p>The descriptive ratio is <span class="math inline">\(R=456895.9/329859.5=1.39\)</span>. It is not automatically an F statistic with a known reference distribution.</p></li>
+<li><p>No.&nbsp;Alternative partitions reuse the same observations, so their variance estimates are dependent. The independent normal-sample assumptions of the ordinary variance-ratio F test are not met. No significance conclusion follows from this ratio alone.</p></li>
+<li><p>Adjusted <span class="math inline">\(b=0.403+(0.3607-0.35)\dfrac{0.443-0.403}{0.40-0.35}=0.41156\)</span>.</p></li>
+<li><p>The value 0.41156 indicates an intermediate rate of variance reduction as plot size increases. Smith’s index alone cannot establish whether the field has a gradient or patches; directional and spatial analyses are needed.</p></li>
+<li><p>Plot size on the X-axis and CV on the Y-axis. Locate an apparent bend as a traditional graphical guide. State the axis scales and arrangements examined. Inspection alone does not establish a unique statistical or economic optimum.</p></li>
+<li><p>The plot size near where the CV curve levels off, that is, near the point of maximum curvature, may be a candidate, provided the scale, precision, replication and cost considerations support it, since increasing the plot size beyond this point gives only a small further reduction in CV for a proportionally larger increase in plot size.</p></li>
 <li><p>Different crops and fields have different patterns and magnitudes of inherent soil heterogeneity, so the plot size at which the CV curve stabilises will naturally differ from one crop or field to another.</p></li>
 <li><p>Since the variation is strongest in the horizontal direction, blocks should be formed as long, narrow strips running perpendicular to the horizontal gradient (that is, oriented vertically), so that the units within each block are as homogeneous as possible.</p></li>
 </ol>
@@ -1657,8 +1693,8 @@ F=\frac{\text{Larger variance}}{\text{Smaller variance}}
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>The wheat field that started it all</strong></p>
-<p>In 1910, at the Rothamsted Experimental Station in England, two researchers named <strong>W. B. Mercer</strong> and <strong>A. D. Hall</strong> carried out what is now regarded as the first true uniformity trial. They took a single one-acre field of wheat, grew it under completely uniform treatment, and then harvested it as 500 tiny separate plots, each just about one-fortieth of an acre, recording the grain and straw yield of every plot on its own. When they looked at the results, something important became clear: even though every plot had received identical treatment, the yields varied considerably from one plot to the next. This variation could only be due to the natural heterogeneity of the soil itself.</p>
-<p>Their 1911 paper, <em>The Experimental Error of Field Trials</em>, showed that neighbouring plots tended to resemble one another, and that combining small plots into larger ones reduced the variability per unit area, exactly the ideas behind the fertility contour map, the serial correlation, and Fairfield Smith’s variance law that you have studied in this chapter. <span class="citation" data-cites="MercerHall1911">(<a href="references.html#ref-MercerHall1911" role="doc-biblioref">Mercer and Hall 1911</a>)</span> The experiment gave agricultural scientists their first real measure of soil variability, and it convinced a generation of researchers that the size and shape of a plot, and the way plots are grouped into blocks, must be chosen deliberately rather than by guesswork. Nearly every design principle in the modern field experiment traces back to that patiently subdivided acre of wheat.</p>
+<p>In 1910, at the Rothamsted Experimental Station in England, two researchers named <strong>W. B. Mercer</strong> and <strong>A. D. Hall</strong> carried out a classic uniformity trial. They took a single one-acre field of wheat, grew it under completely uniform treatment, and then harvested it as 500 tiny separate plots, each approximately one five-hundredth of an acre, recording the grain and straw yield of every plot on its own. When they looked at the results, something important became clear: even though every plot had received identical treatment, the yields varied considerably from one plot to the next. The variation revealed spatial differences despite uniform treatment; measurement error and other environmental influences can also contribute.</p>
+<p>Their 1911 paper, <em>The Experimental Error of Field Trials</em>, showed that neighbouring plots tended to resemble one another, and that combining small plots into larger ones reduced the variability per unit area, exactly the ideas behind the fertility contour map, the serial correlation, and Fairfield Smith’s variance law that you have studied in this chapter. <span class="citation" data-cites="MercerHall1911">(<a href="references.html#ref-MercerHall1911" role="doc-biblioref">Mercer and Hall 1911</a>)</span> The experiment provided an influential measure of field variability, and it convinced a generation of researchers that the size and shape of a plot, and the way plots are grouped into blocks, must be chosen deliberately rather than by guesswork. The patiently subdivided acre remains an influential illustration of the importance of field variability.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1678,7 +1714,10 @@ F=\frac{\text{Larger variance}}{\text{Smaller variance}}
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="ref-gomez" class="csl-entry" role="listitem">
+Gomez, Kwanchai A., and Arturo A. Gomez. 1984. <em>Statistical Procedures for Agricultural Research</em>. 2nd ed. John Wiley; Sons.
+</div>
 <div id="ref-MercerHall1911" class="csl-entry" role="listitem">
 Mercer, W. B., and A. D. Hall. 1911. <span>“The Experimental Error of Field Trials.”</span> <em>The Journal of Agricultural Science</em> 4 (2): 107–32. <a href="https://doi.org/10.1017/S002185960000160X">https://doi.org/10.1017/S002185960000160X</a>.
 </div>
@@ -1776,7 +1815,7 @@ Smith, H. Fairfield. 1938. <span>“An Empirical Law Describing Heterogeneity in
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2119,16 +2158,17 @@ Smith, H. Fairfield. 1938. <span>“An Empirical Law Describing Heterogeneity in
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

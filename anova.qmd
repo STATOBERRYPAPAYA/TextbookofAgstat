@@ -18,9 +18,9 @@ In general, every experiment is conducted on a sample of experimental units, and
 
 **Analysis of Variance (ANOVA)** is the statistical procedure used for this purpose. ANOVA partitions the total observed variation into components attributable to different sources of variation, primarily treatment and experimental error. The fundamental principle of ANOVA is that if the treatment effect is real, the variation among treatment means (between-treatment variation) should be substantially larger than the random variation within treatments (error variation).
 
-To assess this, ANOVA compares the treatment variance (between-group variance) with the error variance (within-group variance). If the treatment variance is considerably greater than the error variance, it provides evidence that the treatment means are not all equal. Conversely, if the treatment variance is similar to the error variance, the observed differences among treatment means are likely due to random chance.
+To assess this, ANOVA compares the treatment variance (between-group variance) with the error variance (within-group variance). If the treatment variance is considerably greater than the error variance, it provides evidence that the treatment means are not all equal. Conversely, if the treatment variance is similar to the error variance, the data may provide insufficient evidence to reject equal population means; this does not prove that treatment effects are absent.
 
-In essence, ANOVA is a statistical hypothesis-testing procedure used to determine whether the **means of two or more populations** differ significantly by comparing the variation due to treatments with the variation due to experimental error. The method was developed by Sir Ronald A. Fisher, and it remains one of the most widely used techniques for analyzing experimental data.
+In essence, ANOVA is a statistical hypothesis-testing procedure used to determine whether the **means of two or more populations** differ significantly by comparing the variation due to treatments with the variation due to experimental error. The method was developed by Sir Ronald A. Fisher, and it remains one of the most widely used techniques for analysing experimental data.
 
 
 ## Null hypothesis in ANOVA
@@ -31,7 +31,7 @@ The null hypothesis in ANOVA is that the population means are equal, which is de
 
 Before proceeding further, it is important to understand the concept of degrees of freedom (df). Simply put, degrees of freedom are the number of independent values that are free to vary after certain conditions or constraints have been taken into account.
 
-To understand this idea, consider a simple example. Suppose you have 7 different hats and you want to wear a different hat every day for one week. On the first day, you can choose any one of the 7 hats. On the second day, you have 6 hats left to choose from. Similarly, on the third day you have 5 choices, and so on. By the sixth day, only two hats remain, so you still have a choice. However, after selecting a hat on the sixth day, there is only one hat left for the seventh day. Therefore, the choice on the last day is no longer free, it is completely determined by the choices made on the previous six days. In this example, there are 6 independent choices, or 7 − 1 = 6 degrees of freedom.
+To understand this idea, consider a simple example. Suppose you have 7 different hats and you want to wear a different hat every day for one week. On the first day, you can choose any one of the 7 hats. On the second day, you have 6 hats left to choose from. Similarly, on the third day you have 5 choices, and so on. By the sixth day, only two hats remain, so you still have a choice. However, after selecting a hat on the sixth day, there is only one hat left for the seventh day. Therefore, the choice on the last day is no longer free, it is completely determined by the choices made on the previous six days. This illustrates how a final value can be determined by earlier choices. It is only an analogy; statistical degrees of freedom concern independent numerical information, not the number of possible hat arrangements.
 
 Now let us see how this idea applies to statistics.
 
@@ -50,13 +50,13 @@ This means that if the deviations of the first six observations are known, the d
 
 It is important to note that all seven observations are used in calculating the standard deviation. However, only (n-1) deviations are independent because one degree of freedom has already been used to estimate the sample mean.
 
-If we divide by (n), the sample variance tends to underestimate the true population variance. Dividing by (n-1), a correction known as Bessel's correction, removes this bias and provides an unbiased estimate of the population variance. Consequently, it also gives a better estimate of the population standard deviation.
+If we divide by (n), the sample variance tends to underestimate the true population variance. Dividing by (n-1), a correction known as Bessel's correction, removes this bias and provides an unbiased estimate of the population variance. The square root of this unbiased variance estimate is the usual sample standard deviation, but it is not itself exactly unbiased for the population standard deviation.
 
 Degrees of freedom play an important role in many statistical methods. They determine the shape of probability distributions such as the t-distribution, chi-square distribution, and F-distribution, which are used in hypothesis testing. The degrees of freedom therefore influence the critical values and p-values used to decide whether the observed differences are statistically significant.
 
 ## Mean squares
 
-The sum of squares is the sum of the squared differences of each observation from the mean. That is, Sum of squares = $\sum_{i=1}^{n}\left( x_{i} - \overline{x} \right)^{2}$, where $i = 1, 2, \ldots, n$, and the mean $\overline{x} = \dfrac{\sum_{i=1}^{n} x_{i}}{n}$. The sum of squares generates a measure of variability. In one-way ANOVA we calculate the sum of squares of all observations to get a measure of total variability, along with the within-group and between-group sums of squares, which give an idea of the within-group (error) and between-group (between treatments) variability respectively. Mean sum of squares, or mean squares, are obtained by dividing the sum of squares by the corresponding degrees of freedom. The mean square provides an unbiased estimate of variance. For example, in ANOVA the error mean square (MSE), given by $\dfrac{\text{within-group sum of squares}}{\text{error degrees of freedom}}$, provides an unbiased estimate of the error variance.
+The sum of squares is the sum of the squared differences of each observation from the mean. That is, Sum of squares = $\sum_{i=1}^{n}\left( x_{i} - \overline{x} \right)^{2}$, where $i = 1, 2, \ldots, n$, and the mean $\overline{x} = \dfrac{\sum_{i=1}^{n} x_{i}}{n}$. The sum of squares generates a measure of variability. In one-way ANOVA we calculate the sum of squares of all observations to get a measure of total variability, along with the within-group and between-group sums of squares, which give an idea of the within-group (error) and between-group (between treatments) variability respectively. Mean sum of squares, or mean squares, are obtained by dividing the sum of squares by the corresponding degrees of freedom. The error mean square provides an unbiased estimate of error variance under the model; other mean squares may also contain treatment or variance-component contributions. For example, in ANOVA the error mean square (MSE), given by $\dfrac{\text{within-group sum of squares}}{\text{error degrees of freedom}}$, provides an unbiased estimate of the error variance.
 
 ## Test statistic F
 
@@ -66,7 +66,7 @@ The F-statistic is the ratio of two variances, and it was named after Sir Ronald
 
 The F-distribution is a continuous probability distribution that is always positively (right) skewed. Its exact shape depends on the numerator and denominator degrees of freedom. As shown in @fig-fdist, different combinations of degrees of freedom produce F-distributions with different shapes. For smaller degrees of freedom, the distribution is more highly skewed, whereas as the degrees of freedom increase, the distribution becomes less skewed and more concentrated around 1.
 
-In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others. F-table with critical values of the F distribution at alpha = 0.05 is given in @tbl-ftable in Appendix 5.
+In ANOVA, the calculated F value is compared with the critical F value obtained from the F-distribution table. If the calculated F value is greater than the critical F value, the null hypothesis is rejected, indicating that at least one treatment mean differs significantly from the others. F-table with critical values of the F distribution at alpha = 0.05 is given in @tbl-ftable in @sec-appendix-5.
 
 ```{r echo=FALSE, out.width="60%", fig.align='center'}
 #| label: fig-fdist
@@ -86,6 +86,12 @@ knitr::include_graphics("images/fdist.png")
 
 As a result of the above assumptions, the experimental errors are independent and identically distributed (iid) with a normal distribution of mean 0 and variance $\sigma^2$. In other words, we can say $e_{ij} \sim iid\ N(0, \sigma^{2})$.
 
+## Checking the fitted model
+
+Assumptions concern the errors conditional on the fitted treatment and block effects, not the pooled response values from groups with different means. Plot residuals against fitted values to look for changes in spread or curvature, and use a normal probability plot to assess major departures from normality. For a field experiment, inspect residuals against plot position; for sequential measurements, inspect them against time or run order.
+
+Investigate unusual observations against the original records without deleting them merely because they affect significance. A transformation or a model for unequal variances can address some departures; neither repairs pseudoreplication or an incorrect experimental unit. Include effect estimates, their uncertainty and the measurement units when reporting an ANOVA, rather than reporting only whether the F test is significant.
+
 ## Types of ANOVA
 
 Based on the model used and the sources of variation studied, ANOVA can be classified into the following types:
@@ -98,11 +104,13 @@ Based on the model used and the sources of variation studied, ANOVA can be class
 
 The simplest form of analysis of variance is one-way analysis of variance (one-way ANOVA). It is used when there is only one factor (source of variation) that is expected to influence the response variable. The objective of one-way ANOVA is to determine whether the means of two or more groups defined by this single factor differ significantly.
 
-For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertiliser treatments. In this case, the fertiliser treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.
+For example, suppose a researcher wants to compare the yield of a crop grown in fields receiving different fertilizer treatments. In this case, the fertilizer treatment is the only factor under study, while all other unexplained variation is included in the experimental error. One-way ANOVA separates the total variation in the data into two components: variation due to the factor being studied and variation due to random error. By comparing these two sources of variation, it determines whether the observed differences among group means are statistically significant.
 
 #### One-way ANOVA model {#sec-onewaymodel}
 
 $$Y_{ij} = \mu + \tau_{i} + e_{ij}$$ {#eq-onewaymodel}
+
+For identifiability in the balanced fixed-effects model, take $\sum_i\tau_i=0$, so $\mu$ is the overall population mean. The notation $t$ here denotes the number of treatments; the calculations below use $v$ for the same number.
 
 where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. $Y_{ij}$ is the observed value of the $i^{\text{th}}$ treatment from the $j^{\text{th}}$ replication, $\tau_{i}$ is the effect of the $i^{\text{th}}$ treatment, and $\mu$ is the general effect which is common for all treatments. $e_{ij}$ is the error effect, $e_{ij} \sim iid\ N(0, \sigma^{2})$.
 
@@ -136,7 +144,7 @@ dt %>%
 
 ANOVA consists of partitioning the total variation in the $Y_{ij}$ values into variation due to treatments and variation caused by uncontrolled factors (error variation). Therefore, we can write
 
-Variance of $Y_{ij}$ = $\dfrac{1}{n}\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \bar{Y} \right)^{2}$, where $n = v \times r$ and the overall mean $\bar{Y} = \dfrac{G}{n}$.
+The descriptive variance of all observed responses about the grand mean = $\dfrac{1}{n}\sum_{i=1}^{v}\sum_{j=1}^{r}\left( Y_{ij} - \bar{Y} \right)^{2}$, where $n = v \times r$ and the overall mean $\bar{Y} = \dfrac{G}{n}$.
 
 Total Sum of Squares = $\sum_{i=1}^{v}\sum_{j=1}^{r} Y_{ij}^{2} - \dfrac{G^{2}}{n}$; where $\dfrac{G^{2}}{n}$ is known as the correction factor (C.F.).
 
@@ -176,13 +184,18 @@ $$\begin{aligned}
 &+ 2\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right)
 \end{aligned}$$
 
-Since the sum of the weighted residuals is zero, $\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0$, and the above equation becomes
+Within every treatment, $\sum_j(Y_{ij}-\overline{Y}_i)=0$. Hence the cross-product term vanishes: $\sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}\left( \overline{Y}_{i} - \overline{Y} \right) = 0$, and the above equation becomes
 
 $$= \sum_{i=1}^{v}\sum_{j=1}^{r} e_{ij}^{2} + \sum_{i=1}^{v}\sum_{j=1}^{r}\left( \overline{Y}_{i} - \overline{Y} \right)^{2}$$
 
 Total Sum of Squares = within-group sum of squares + between-group sum of squares, that is,
 
-$$\text{Total Sum of Squares} = \text{Error Sum of Squares} + \text{Treatment Sum of Squares}$$ {#eq-sspartition}
+$$
+\begin{aligned}
+\text{Total Sum of Squares} &= \text{Error Sum of Squares}\\
+&\quad + \text{Treatment Sum of Squares}
+\end{aligned}
+$$ {#eq-sspartition}
 :::
 
 #### Treatment sum of squares
@@ -274,7 +287,9 @@ kbl(
   )
 ```
 
-Here $F \sim F_{(v-1),\ v(r-1)}$.
+Under $H_0$ and the independent normal-error model, $F\sim F_{(v-1),\ v(r-1)}$.
+
+Under this balanced fixed-effects model, $E(\text{MSE})=\sigma^2$ and $E(\text{MST})=\sigma^2+r\sum_i\tau_i^2/(v-1)$. Thus both estimate the same error variance under $H_0$, whereas treatment differences increase the expected treatment mean square. Independence of the treatment and error sums of squares under the normal model gives the F-test. This explains why a comparison of mean squares tests means.
 
 MSE is an estimate of the error variance $\sigma^2$, and $\sqrt{\dfrac{\text{MSE}}{r}}$ is the standard error of a treatment mean.
 
@@ -285,7 +300,7 @@ If your calculated F value in ANOVA is larger than the F critical value correspo
 #### Example of one-way ANOVA {#sec-onewayexample}
 
 ::: {#exm-oneway}
-The data on tiller count after transplanting were recorded from 4 hill sampling units for a fertilizer trial involving 6 treatments. Test for a significant difference between the treatments. The treatments are labeled as $T_1$, $T_2$, $T_3$, $T_4$, $T_5$, and $T_6$.
+The data on tiller count after transplanting were recorded from four independently treated experimental units per treatment in a fertilizer trial involving six treatments. Test for a significant difference between the treatments. The treatments are labeled as $T_1$, $T_2$, $T_3$, $T_4$, $T_5$, and $T_6$.
 
 **Solution**
 
@@ -345,7 +360,7 @@ $$\text{Total SS} = \sum_{i=1}^{6}\sum_{j=1}^{4} y_{ij}^{2} - CF = 112305 - 9894
 
 Treatment Sum of Squares,
 
-$$\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.3 - 98945.04 = 10427.21$$
+$$\text{Treatment SS} = \sum_{i=1}^{6}\frac{T_{i}^{2}}{r_i} - CF = 109372.25 - 98945.04 = 10427.21$$
 
 Error Sum of Squares,
 
@@ -368,13 +383,13 @@ dt <- data.frame(
 
   SS = c(
     "10427.21",
-    "2932.74",
-    "13359.95"
+    "2932.75",
+    "13359.96"
   ),
 
   MSS = c(
     "$\\dfrac{10427.21}{5}=2085.442$",
-    "$\\dfrac{2932.74}{18}=162.93$",
+    "$\\dfrac{2932.75}{18}=162.93$",
     ""
   ),
 
@@ -418,7 +433,7 @@ kbl(
   )
 ```
 
-Here you can see that the calculated value is greater than the table value of F. So the null hypothesis is rejected, and we conclude that at least a pair of treatments are significantly different at the 5% level of significance.
+The calculated F exceeds the 5% critical value, so reject the null hypothesis of equal treatment means. The double asterisk also denotes significance at 1%: the corresponding critical value is $F_{0.01;(5,18)}=4.248$, still well below 12.80. At least one pair of population means differs; the overall test does not identify which pairs.
 :::
 
 ### Two-way ANOVA
@@ -442,7 +457,7 @@ where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. $Y_{ij}$ is the observed 
 
 #### Two-way classification
 
-Consider an experiment with $v$ levels of factor 1 and $r$ levels of factor 2. The observations are recorded as shown in @tbl-twoway. We have considered the situation of only one observation per cell.
+Consider an experiment with $v$ levels of factor 1 and $r$ levels of factor 2. The observations are recorded as shown in @tbl-twoway. We have considered only one observation per cell and assumed no interaction. With one observation per combination, interaction and experimental error cannot be estimated separately. The residual mean square can serve as error only under the additive model. Replication within combinations is needed for a separate general interaction test; see the factorial chapter.
 
 ```{r tbl-twoway,echo=FALSE,warning=FALSE,results='asis'}
 #| tbl-cap: "Two-way classification of data"
@@ -555,7 +570,7 @@ kbl(
 ```
 
 
-Here there are two F values, one for factor A and one for factor B. $F_A \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_B \sim F_{(r-1),\ (v-1)(r-1)}$.
+Under the additive normal-error model and the corresponding null hypothesis, there are two F values, one for factor A and one for factor B. $F_A \sim F_{(v-1),\ (v-1)(r-1)}$ and $F_B \sim F_{(r-1),\ (v-1)(r-1)}$.
 
 ::: {.callout-note title="Note"}
 In two-way ANOVA there are two null hypotheses, one for factor A and the other for factor B. For example, for factor A:
@@ -576,7 +591,7 @@ Decisions on the null hypotheses are made by comparing the corresponding F value
 #### Example of two-way ANOVA
 
 ::: {#exm-twoway}
-Four chemicals $S_1$, $S_2$, $S_3$, and $S_4$ were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Consider that chemicals and breeds are independent.
+Four chemicals $S_1$, $S_2$, $S_3$, and $S_4$ were administered to 5 cow breeds (A, B, C, D, E). Observations were taken during the peak lactation period, and the average yield over the period is taken. Is there any significant difference between the chemicals? Is there any significant difference between the milk yields of the breeds? Assume that the 20 cell observations come from independent experimental units with normal errors of common variance, and that the chemical effects do not interact with breed. The additive assumption, rather than simply calling the factors independent, is required for this unreplicated analysis.
 
 **Solution**
 
@@ -653,15 +668,78 @@ where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. Here in our example $t = 
 
 ### Random effects model {#sec-randomeff1}
 
-A random effects model, also called a variance components model, is a statistical model where the model parameters are random variables. Consider the example above of the wheat fields. If a random effects model is used, then the fields are assumed to be randomly sampled from a population of fields in that area, and the analysis of variance model is
+A random effects model, also called a variance components model, is a statistical model in which some effects are modelled as random variables; their variance components are unknown fixed parameters. Consider the example above of the wheat fields. If a random effects model is used, then the fields are assumed to be randomly sampled from a population of fields in that area, and the analysis of variance model is
 
 $$Y_{ij} = \mu + \tau_{i} + e_{ij}; \qquad e_{ij} \sim iid\ N(0, \sigma^{2}); \quad \tau_{i} \sim N(0, \sigma_{\tau}^{2})$$
 
-where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. Here $\tau_{i}$ is considered as a random variable, $\tau_{i} \sim N(0, \sigma_{\tau}^{2})$, and $e_{ij} \sim N(0, \sigma^{2})$. In this model, field is a "random effect". The statistical model describes the whole ensemble of possible repetitions of the experiment in the region from which the fields were selected. The experimenter could make generalisations about all the fields in that particular region based on the experiment. One important consequence of random effects is that the responses (the $Y_{ij}$'s) are no longer independent. The random $\tau_{i}$'s induce correlations among the responses. The responses jointly have a multivariate normal distribution.
+Assume the random field effects are independent of one another and of all errors.
+
+where $i = 1, 2, \ldots, t$ and $j = 1, 2, \ldots, r$. Here $\tau_{i}$ is considered as a random variable, $\tau_{i} \sim N(0, \sigma_{\tau}^{2})$, and $e_{ij} \sim N(0, \sigma^{2})$. In this model, field is a "random effect". The statistical model describes the whole ensemble of possible repetitions of the experiment in the region from which the fields were selected. The model supports inference about the variability among fields in the population from which they were sampled, subject to the sampling and model assumptions. One important consequence of random effects is that the responses (the $Y_{ij}$'s) are no longer independent. The random $\tau_{i}$'s induce correlations among the responses. The responses jointly have a multivariate normal distribution.
 
 ### Mixed effects model {#sec-mixed}
 
 A mixed model, mixed-effects model, or mixed error-component model is a statistical model containing both fixed effects and random effects. For example, in an agricultural trial where several specific fertilizers of interest (fixed effect) are tested across a random sample of fields drawn from a larger region (random effect), the model contains both kinds of effects and is therefore a mixed model.
+
+
+
+ANOVA is an omnibus test: it assesses overall equality of means. It does not identify every pairwise difference. The next chapter explains multiple-comparison procedures for that purpose.
+
+## Chapter Summary
+
+### Fill in the blanks {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. ANOVA stands for Analysis of __________.
+
+2. The null hypothesis in a one-way fixed-effects ANOVA states that all population means are __________.
+
+3. A sum of squares divided by its degrees of freedom is called a mean __________.
+
+4. The denominator of the usual treatment F-ratio is the __________ mean square.
+
+5. The total degrees of freedom for $N$ observations are __________.
+
+6. The treatment degrees of freedom for $v$ groups are __________.
+
+7. The error degrees of freedom in a one-way ANOVA are __________.
+
+8. The usual exact ANOVA F-test assumes normally distributed __________.
+
+9. A model containing both fixed and random effects is called a __________ model.
+
+10. An F-test of the overall equality of treatment means is called an __________ test.
+
+### Short-answer questions {.unnumbered}
+
+1. Explain why ANOVA compares mean squares when testing differences between means.
+
+2. Distinguish fixed and random effects.
+
+3. State the assumptions of a one-way ANOVA.
+
+4. Explain why a significant F-test does not identify the treatment pairs that differ.
+
+### Numerical and conceptual questions {.unnumbered}
+
+Answers are given at the end of the chapter.
+
+1. In a CRD with four treatments and five observations per treatment, treatment SS is 120 and error SS is 80. Calculate the degrees of freedom, mean squares, and treatment F-ratio.
+
+2. A treatment F-test is non-significant at the 5% level. Does this establish equality of the population means? Explain.
+
+### Answers to fill in the blanks {.unnumbered}
+
+::: {.answer-key}
+
+`1.` Variance `2.` Equal `3.` Square `4.` Error `5.` $N-1$ `6.` $v-1$ `7.` $N-v$ `8.` Errors `9.` Mixed `10.` Omnibus
+:::
+
+### Solutions to numerical and conceptual questions {.unnumbered}
+
+1. There are $N=20$ observations. Treatment df $=3$, error df $=16$, and total df $=19$. Treatment MS $=120/3=40$ and MSE $=80/16=5$, giving $F=40/5=8$.
+
+2. No. The data provide insufficient evidence to reject equality at that level. This does not establish that all population means are identical.
 
 ::: {.callout-caution title="Historical Insights"}
 **Fisher, Rothamsted, and the birth of ANOVA**

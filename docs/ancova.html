@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>22&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./missingPlot.html" rel="next">
 <link href="./factorial.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="22&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="22&nbsp; Analysis of covariance – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -593,6 +626,14 @@ window.Quarto = {
   <li><a href="#table-of-adjusted-values" id="toc-table-of-adjusted-values" class="nav-link" data-scroll-target="#table-of-adjusted-values"><span class="header-section-number">22.3.3</span> Table of adjusted values</a></li>
   </ul></li>
   <li><a href="#analysis-of-covariance-for-rbd" id="toc-analysis-of-covariance-for-rbd" class="nav-link" data-scroll-target="#analysis-of-covariance-for-rbd"><span class="header-section-number">22.4</span> Analysis of covariance for RBD</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">22.5</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -619,12 +660,12 @@ window.Quarto = {
 </header>
 
 
-<p>Analysis of Covariance (ANCOVA) is a statistical method that integrates features of Analysis of Variance (ANOVA) and regression. It is designed to analyze a continuous outcome variable influenced by one or more categorical predictor variables (factors) while incorporating continuous variables, known as covariates. By accounting for the variability associated with these covariates, ANCOVA adjusts the outcome variable to a standardized value, enhancing statistical power and reducing experimental error. This adjustment is particularly valuable in experimental designs, where precise detection of treatment effects is crucial.</p>
+<p>Analysis of Covariance (ANCOVA) is a statistical method that integrates features of Analysis of Variance (ANOVA) and regression. It is designed to analyse a continuous outcome variable influenced by one or more categorical predictor variables (factors) while incorporating continuous variables, known as covariates. By accounting for the variability associated with these covariates, ANCOVA adjusts the outcome variable to a standardized value, enhancing statistical power and reducing experimental error. This adjustment is particularly valuable in experimental designs, where precise detection of treatment effects is crucial.</p>
 <p>A well-designed experiment minimizes experimental error to detect significant differences among treatments. While blocking is commonly employed for this purpose, it may not fully address variability arising from unpredictable factors. ANCOVA provides an additional layer of control by incorporating covariates with known functional relationships to the primary outcome variable. This reduces variability among experimental units and isolates the effects of treatments.</p>
 <section id="applications-in-experimental-design" class="level2" data-number="22.1">
 <h2 data-number="22.1" class="anchored" data-anchor-id="applications-in-experimental-design"><span class="header-section-number">22.1</span> Applications in experimental design</h2>
-<p>ANCOVA is widely applied in experimental studies to adjust for variability. For example, in animal feeding trials, initial differences in body weight can influence final weight measurements. Using initial body weight as a covariate allows adjustments to final weights, simulating a scenario where all animals started with identical weights. Similarly, in field experiments where rodent damage varies across plots, ANCOVA can adjust plot yields to estimate what they would have been in the absence of damage.</p>
-<p>The effective application of ANCOVA requires measuring both the primary outcome variable and one or more covariates. Additionally, there must be a known functional relationship, often assumed to be linear between the covariates and the outcome variable. For instance, in variety trials where weed incidence impacts grain yield, ANCOVA adjusts yield data to a common level of weed incidence, enabling a clearer comparison of varietal differences. While the technique accommodates multiple covariates and nonlinear relationships, a single linear covariate often suffices for most agricultural research scenarios.</p>
+<p>ANCOVA is widely applied in experimental studies to adjust for variability. For example, in animal feeding trials, initial differences in body weight can influence final weight measurements. Using initial body weight as a covariate allows adjustments to final weights, simulating a scenario where all animals started with identical weights. A measured source of plot variation may be used as a covariate if it is appropriate to the scientific question and is not itself affected by the treatments. Adjustment to zero damage would also require support in the observed covariate range; ANCOVA does not automatically reconstruct yields in the absence of damage.</p>
+<p>The effective application of ANCOVA requires measuring both the primary outcome variable and one or more covariates. Additionally, there must be a known functional relationship, often assumed to be linear between the covariates and the outcome variable. For instance, pre-treatment measurements of soil fertility can be used to adjust yield comparisons. Weed incidence measured after treatment may itself be affected by variety or management; adjusting for it can change the treatment effect being estimated and requires particular care. While the technique accommodates multiple covariates and nonlinear relationships, a single linear covariate often suffices for most agricultural research scenarios.</p>
 </section>
 <section id="ancova-in-agricultural-research" class="level2" data-number="22.2">
 <h2 data-number="22.2" class="anchored" data-anchor-id="ancova-in-agricultural-research"><span class="header-section-number">22.2</span> ANCOVA in agricultural research</h2>
@@ -635,11 +676,19 @@ window.Quarto = {
 </section>
 <section id="comparison-with-blocking" class="level3" data-number="22.2.2">
 <h3 data-number="22.2.2" class="anchored" data-anchor-id="comparison-with-blocking"><span class="header-section-number">22.2.2</span> Comparison with blocking</h3>
-<p>Although both blocking and ANCOVA aim to reduce experimental error, their application differs. Blocking is a pre-experiment strategy that addresses predictable sources of variability, such as soil type or environmental gradients. In contrast, ANCOVA is applied after the experiment to adjust for unforeseen sources of variability, such as pest damage or uneven irrigation. While blocking does not require quantitative measurements, ANCOVA relies on measurable covariates with known relationships to the primary variable. Pre-treatment measurements, such as soil nutrient levels, are ideal covariates if they remain unaffected by the treatments being tested.</p>
+<p>Although both blocking and ANCOVA aim to reduce experimental error, their application differs. Blocking is a pre-experiment strategy that addresses predictable sources of variability, such as soil type or environmental gradients. ANCOVA performs a statistical adjustment during analysis, but suitable covariates should preferably be identified and measured before treatment application. While blocking does not require quantitative measurements, ANCOVA relies on measurable covariates with known relationships to the primary variable. Pre-treatment measurements, such as soil nutrient levels, are ideal covariates if they remain unaffected by the treatments being tested.</p>
 </section>
 <section id="assumptions" class="level3" data-number="22.2.3">
 <h3 data-number="22.2.3" class="anchored" data-anchor-id="assumptions"><span class="header-section-number">22.2.3</span> Assumptions</h3>
-<p>Essentially analysis of covariance is an extension of the analysis of variance and all assumptions of ANOVA are applicable here also. In addition it is assumed that: - Y (study variable) and X (covariate) are linearly related; a part of the variation in Y is due to variation in X over the experimental units ; Values of X are not subject to error. - The linear relationship remains constant over the other known causes of variation like blocks, treatments etc.</p>
+<p>Analysis of covariance retains the relevant ANOVA assumptions. For the common-slope model used here:</p>
+<ul>
+<li>The conditional mean of <span class="math inline">\(Y\)</span> is linear in the covariate within each treatment.</li>
+<li>The regression slope is common across treatments; a treatment-by-covariate interaction should be examined when this assumption is doubtful.</li>
+<li>Errors are independent, have a common variance, and are normally distributed for the usual exact tests.</li>
+<li>Covariates should be measured reliably and should not be consequences of the treatments when estimating total treatment effects.</li>
+<li>Treatment groups should have adequate overlap in covariate values, so adjusted comparisons do not depend mainly on extrapolation.</li>
+</ul>
+<p>If slopes differ substantially, use a model allowing the interaction and interpret treatment differences at specified covariate values rather than imposing a common adjustment.</p>
 </section>
 <section id="analysis" class="level3" data-number="22.2.4">
 <h3 data-number="22.2.4" class="anchored" data-anchor-id="analysis"><span class="header-section-number">22.2.4</span> Analysis</h3>
@@ -663,6 +712,7 @@ y_{ij} = \mu + \tau_i + \beta x_{ij} + e_{ij} \quad i = 1, 2, ..., v; \, j = 1, 
 <span class="math inline">\(\beta\)</span>: Regression coefficient of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span><br>
 <span class="math inline">\(e_{ij}\)</span>: Random error terms associated with each plot<br>
 <span class="math inline">\(\tau_i\)</span> and <span class="math inline">\(\mu\)</span> are assumed to be fixed effects.</p>
+<p>The within-design covariate sum of squares <span class="math inline">\(E_{xx}\)</span> must be positive, and sufficient residual degrees of freedom must remain after estimating the slope. The covariate itself need not be normally distributed; the normality assumption concerns the errors conditional on treatment and covariate. Adjustment improves precision only when the covariate supplies enough useful information to compensate for the estimated slope and any covariate imbalance.</p>
 <section id="compute-the-sum-of-squares" class="level3" data-number="22.3.1">
 <h3 data-number="22.3.1" class="anchored" data-anchor-id="compute-the-sum-of-squares"><span class="header-section-number">22.3.1</span> Compute the sum of squares</h3>
 <ol type="1">
@@ -691,7 +741,7 @@ T_{xx} = \text{Treatment sum of squares for } X
 T_{yy} = \text{Treatment sum of squares for } Y
 \]</span></p></li>
 <li><p><strong>Treatment Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
-T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
+T_{xy} = \sum_i\frac{T_{ix}T_{iy}}{r_i} - \text{C.S.P.}(X, Y)
 \]</span> Where:</p>
 <ul>
 <li><span class="math inline">\(T_{ix}\)</span>: Treatment total for <span class="math inline">\(X\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment<br>
@@ -765,11 +815,11 @@ T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
 </tbody>
 </table>
 <ol type="1">
-<li><p><strong>Testing the significance of the covariate</strong> <span class="math inline">\(X\)</span></p>
+<li><p><strong>Checking treatment differences in the covariate</strong> <span class="math inline">\(X\)</span></p>
 <p>This is performed using the <span class="math inline">\(F\)</span> test:</p>
 <p><span class="math inline">\(F = \frac{\text{Mean Square due to treatments for } X}{\text{Mean Square due to error for } X}\)</span></p>
 <p>The F-ratio is calculated as: <span class="math display">\[F = \frac{T_{xx}/(v-1)}{E_{xx}/(n-v)}\]</span></p>
-<p>Non-significance of this F-ratio will indicate that the covariate is not influenced by the treatments.</p></li>
+<p>A non-significant F-ratio does not prove that the covariate is unaffected by treatment. Suitability follows primarily from its timing and the study design. Association with the response is assessed by the regression test below.</p></li>
 <li><p><strong>Estimate of Regression Coefficient</strong></p>
 <p>The regression coefficient (b) of <span class="math inline">\(Y\)</span> on <span class="math inline">\(X\)</span> is given by:<br>
 <span class="math display">\[ b = \frac{E_{xy}}{E_{xx}} \]</span></p></li>
@@ -804,7 +854,7 @@ The magnitude of this value will indicate the linear relationship between <span 
 <tbody>
 <tr class="odd">
 <td>Total</td>
-<td><span class="math inline">\((n-1)\)</span></td>
+<td><span class="math inline">\((n-2)\)</span></td>
 <td><span class="math inline">\(G_{yy}-\frac{G_{xy}^2}{G_{xx}}\)</span>……(i)</td>
 <td></td>
 <td></td>
@@ -836,7 +886,7 @@ The magnitude of this value will indicate the linear relationship between <span 
 <p>By removing the sum of squares due to regression from the error sum of squares for <span class="math inline">\(Y\)</span>, we obtain the sum of squares for residual random variation in <span class="math inline">\(Y\)</span>, called the adjusted error sum of squares. The corresponding error degrees of freedom are reduced by one.</p>
 <p><strong>From the analysis</strong></p>
 <ol type="1">
-<li><p>The significance of the regression coefficient <span class="math inline">\(\frac{\text{MS.Reg}}{\text{MSE(adj)}}\)</span> indicates that the covariate has an effect on the main variate, reducing the error variance of <span class="math inline">\(Y\)</span> significantly.</p></li>
+<li><p>The significance of the regression coefficient <span class="math inline">\(\frac{\text{MS.Reg}}{\text{MSE(adj)}}\)</span> indicates that the covariate has an effect on the main variate, showing an association with <span class="math inline">\(Y\)</span> after accounting for treatments. This is not by itself evidence of a causal covariate effect.</p></li>
 <li><p>Estimate of Coefficient of Variation <span class="math inline">\(=\frac{\sqrt{\text{MSE(adj)}}}{\text{Mean of } Y} \times 100\)</span></p></li>
 <li><p>The adjusted treatment means of <span class="math inline">\(Y\)</span> are obtained assuming a linear relation between <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>;<span class="math inline">\(\bar{y_{(i,adj.)}} = \bar{y}_i - b (\bar{x}_i - \bar{x})\)</span><br>
 where, <span class="math inline">\(\bar{y}_i\)</span> is the treatment mean of <span class="math inline">\(Y\)</span>; b is the regression coefficient; <span class="math inline">\(\bar{x}_i\)</span> is the corresponding treatment mean of <span class="math inline">\(X\)</span> and <span class="math inline">\(\bar{x}\)</span> is the grand mean of <span class="math inline">\(X\)</span>.</p></li>
@@ -846,15 +896,16 @@ where, <span class="math inline">\(\bar{y}_i\)</span> is the treatment mean of <
 SE = \sqrt{MSE(\text{adj.}) \left[ \frac{1}{r_1} + \frac{1}{r_2} + \frac{(\bar{x_{1}} - \bar{x_{2}})^2}{ \, E_{xx}} \right]}
 \]</span><br>
 where,&nbsp; <span class="math inline">\(r_1\)</span> and <span class="math inline">\(r_2\)</span>: Replications for the two treatment means;&nbsp; <span class="math inline">\(x_1\)</span> and <span class="math inline">\(x_2\)</span>: Mean values of <span class="math inline">\(X\)</span> for the two treatment;&nbsp; <span class="math inline">\(MSE(\text{adj.})\)</span>: Adjusted Mean Square Error;&nbsp; <span class="math inline">\(E_{xx}\)</span>: Error sum of squares for the covariate</p>
-<p>For cases where the error degrees of freedom are large (&gt;20), and the comparison is independent of mean values of <span class="math inline">\(X\)</span>, the averaged standard error is: <span class="math display">\[
+<p>For equally replicated treatments, the square root of the average pairwise variance is: <span class="math display">\[
 SE = \sqrt{\frac{2MSE(\text{adj.})}{r} \left( 1 + \frac{T_{xx}}{(v-1) E_{xx}} \right)}
 \]</span><br>
-where, v: Number of treatments; T: Total number of replications; r: Replications for equally replicated treatments.</p>
+where <span class="math inline">\(v\)</span> is the number of treatments and <span class="math inline">\(r\)</span> is their common replication. A particular pairwise comparison should use the preceding formula with its own covariate-mean difference.</p>
 <p>The Least Significant Difference (CD) is calculated as: <span class="math display">\[
-\text{CD} = t_{\alpha} \cdot SE
+\text{CD} = t_{\alpha/2,edf} \cdot SE
 \]</span></p>
-<p>where, <span class="math inline">\(t_{\alpha}\)</span>: t-value corresponding to the error degrees of freedom (n-v-1); SE: Standard error for the comparison.</p>
-<p><strong>Example 21.1</strong>: A greenhouse trial was conducted to study BPH damage to rice. This trial tested varying number of BPH nymphs per tiller. The main character of interest was the number of productive panicles. Tiller count made before BPH nymphs were placed on the plant is considered as covariate. Data on panicle number per hill <span class="math inline">\(Y\)</span>, initial tiller number per hill <span class="math inline">\(X\)</span> recorded from this experiment are given below</p>
+<p>where, <span class="math inline">\(t_{\alpha/2,edf}\)</span>: t-value corresponding to the error degrees of freedom (n-v-1); SE: Standard error for the comparison.</p>
+<div id="exm-ancova-crd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 22.1</strong></span> A greenhouse trial was conducted to study brown planthopper (BPH) damage to rice. This trial tested varying number of BPH nymphs per tiller. The main character of interest was the number of productive panicles. Tiller count made before BPH nymphs were placed on the plant is considered as covariate. Data on panicle number per hill <span class="math inline">\(Y\)</span>, initial tiller number per hill <span class="math inline">\(X\)</span> recorded from this experiment are given below</p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 14%">
@@ -933,7 +984,7 @@ where, v: Number of treatments; T: Total number of replications; r: Replications
 <td>5</td>
 <td>7</td>
 <td>31</td>
-<td>34</td>
+<td>33</td>
 </tr>
 <tr class="even">
 <td>0.5</td>
@@ -976,44 +1027,35 @@ where, v: Number of treatments; T: Total number of replications; r: Replications
 </tr>
 </tbody>
 </table>
-<p><strong>Solution 21.1</strong></p>
-<div class="callout callout-style-default callout-warning callout-titled" title="Check the data">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>Check the data
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The worked solution below uses a grand total of <span class="math inline">\(\sum X = 203\)</span>. Note, however, that the <span class="math inline">\(X\)</span> (tiller-count) values printed in the data table for treatment 0.2 sum to 33, not 34, which would make <span class="math inline">\(\sum X = 202\)</span>. Please verify the treatment-0.2 tiller counts against the original data source before finalising, since a change here propagates through the whole example. The steps and formulae are correct regardless of which total is used.</p>
-</div>
-</div>
-<p>Here, <span class="math inline">\(v\)</span> = 6; <span class="math inline">\(\sum X\)</span> = 203; <span class="math inline">\(\sum Y\)</span> = 207</p>
-<p><span class="math inline">\(CF_X=\frac{203^2}{v r}=1717.041\)</span></p>
-<p><span class="math inline">\(CF_Y=\frac{207^2}{v r}=1785.375\)</span></p>
-<p><span class="math inline">\(CSP_{XY}=\frac{203 \times 207}{v r}=1750.88\)</span></p>
-<p><strong>Total SS</strong></p>
-<p><span class="math inline">\(TSS_X= \sum X^2-CF_X=167.96\)</span></p>
-<p><span class="math inline">\(TSS_Y= \sum Y^2-CF_Y=309.625\)</span></p>
-<p><span class="math inline">\(TSCP_{XY}=\sum X_{ij}Y_{ij}-CSP_{XY}=200.13\)</span></p>
-<p><strong>Treatment SS</strong></p>
-<p><span class="math inline">\(SST_X=T_{XX}=\frac{\sum T_{ix}^2}{r}-CF_X=\frac{6941}{4}-1717.04=18.21\)</span></p>
-<p><span class="math inline">\(SST_Y=T_{YY}=\frac{\sum T_{iy}^2}{r}-CF_Y=1814.25-1785.375=28.875\)</span></p>
-<p><span class="math inline">\(SSPT_{XY}=T_{XY}=\frac{\sum T_{ix} \times \sum T_{iy}}{r}-CSP_{XY}=14.375\)</span></p>
-<p><strong>Error SS</strong></p>
-<p><span class="math inline">\(E_{XX}=TSS_X-T_{XX}=167.96-18.21=149.75\)</span></p>
-<p><span class="math inline">\(E_{YY}=TSS_Y-T_{YY}=309.625-28.875=280.75\)</span></p>
-<p><span class="math inline">\(E_{XY}=200.125-14.375=185.75\)</span></p>
-<p><span class="math inline">\(E=E_{YY}-\frac{E_{XY}^2}{E_{XX}}=50.3\)</span></p>
-<p><span class="math inline">\(E_1=TSS_Y-\frac{TSCP_{XY}^2}{TSS_X}=71.17\)</span></p>
-<p>Regression coefficient, <span class="math inline">\(b=\frac{E_{XY}}{E_{XX}}=1.24\)</span></p>
-<p>SS due to regression, <span class="math inline">\(SSR=\frac{E_{XY}^2}{E_{XX}}=230.48\)</span></p>
+<p><strong>Solution</strong></p>
+<p>Here, <span class="math inline">\(v=6\)</span>, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(n=24\)</span>, <span class="math inline">\(\sum X=202\)</span>, and <span class="math inline">\(\sum Y=207\)</span>. The individual observations in the printed table are used throughout; calculations retain full precision until the displayed results are rounded.</p>
+<p><span class="math display">\[CF_X=\frac{202^2}{24}=1700.166667,\qquad CF_Y=\frac{207^2}{24}=1785.375.\]</span></p>
+<p><span class="math display">\[CSP_{XY}=\frac{202(207)}{24}=1742.25.\]</span></p>
+<p><strong>Total sums of squares and products</strong></p>
+<p><span class="math display">\[TSS_X=\sum X_{ij}^2-CF_X=159.833333.\]</span></p>
+<p><span class="math display">\[TSS_Y=\sum Y_{ij}^2-CF_Y=309.625.\]</span></p>
+<p><span class="math display">\[TSCP_{XY}=\sum X_{ij}Y_{ij}-CSP_{XY}=196.75.\]</span></p>
+<p><strong>Treatment sums of squares and products</strong></p>
+<p><span class="math display">\[T_{XX}=\frac{\sum_i T_{ix}^2}{4}-CF_X=\frac{6874}{4}-1700.166667=18.333333.\]</span></p>
+<p><span class="math display">\[T_{YY}=\frac{\sum_i T_{iy}^2}{4}-CF_Y=1814.25-1785.375=28.875.\]</span></p>
+<p><span class="math display">\[T_{XY}=\frac{\sum_i T_{ix}T_{iy}}{4}-CSP_{XY}=\frac{7030}{4}-1742.25=15.25.\]</span></p>
+<p><strong>Error sums of squares and products</strong></p>
+<p><span class="math display">\[E_{XX}=159.833333-18.333333=141.5.\]</span></p>
+<p><span class="math display">\[E_{YY}=309.625-28.875=280.75.\]</span></p>
+<p><span class="math display">\[E_{XY}=196.75-15.25=181.5.\]</span></p>
+<p>The within-treatment regression coefficient is</p>
+<p><span class="math display">\[b=\frac{181.5}{141.5}=1.282686.\]</span></p>
+<p>The regression sum of squares is</p>
+<p><span class="math display">\[SSR=\frac{181.5^2}{141.5}=232.807420.\]</span></p>
+<p>Adjusted error sum of squares,</p>
+<p><span class="math display">\[E=280.75-\frac{181.5^2}{141.5}=47.942580.\]</span></p>
+<p>The covariate-adjusted total, before fitting treatments, is</p>
+<p><span class="math display">\[E_1=309.625-\frac{196.75^2}{159.833333}=67.431700.\]</span></p>
+<p>Thus, the adjusted treatment sum of squares is <span class="math inline">\(E_1-E=19.489120\)</span>.</p>
 <div id="tbl-ancova-ex1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ancova-ex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;22.1: Analysis of covariance table for Example 21.1
+Table&nbsp;22.1: Analysis of covariance table for <a href="#exm-ancova-crd" class="quarto-xref">Example&nbsp;<span>22.1</span></a>
 </figcaption>
 <div aria-describedby="tbl-ancova-ex1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1045,32 +1087,32 @@ Table&nbsp;22.1: Analysis of covariance table for Example 21.1
 <tr class="odd">
 <td style="text-align: left;">Treatment</td>
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">18.21</td>
+<td style="text-align: center;">18.333</td>
 <td style="text-align: center;">28.875</td>
-<td style="text-align: center;">14.375</td>
-<td style="text-align: center;"><span class="math inline">\(E_1-E=20.87\)</span></td>
+<td style="text-align: center;">15.250</td>
+<td style="text-align: center;">19.489</td>
 <td style="text-align: center;">5</td>
-<td style="text-align: center;">4.174</td>
-<td style="text-align: center;">1.43</td>
+<td style="text-align: center;">3.898</td>
+<td style="text-align: center;">1.382</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Error</td>
 <td style="text-align: center;">18</td>
-<td style="text-align: center;">149.75</td>
-<td style="text-align: center;">280.75</td>
-<td style="text-align: center;">185.75</td>
-<td style="text-align: center;"><span class="math inline">\(E=50.3\)</span></td>
+<td style="text-align: center;">141.500</td>
+<td style="text-align: center;">280.750</td>
+<td style="text-align: center;">181.500</td>
+<td style="text-align: center;">47.943</td>
 <td style="text-align: center;">17</td>
-<td style="text-align: center;">2.95</td>
+<td style="text-align: center;">2.820</td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Total</td>
 <td style="text-align: center;">23</td>
-<td style="text-align: center;">167.96</td>
+<td style="text-align: center;">159.833</td>
 <td style="text-align: center;">309.625</td>
-<td style="text-align: center;">200.125</td>
-<td style="text-align: center;"><span class="math inline">\(E_1=71.17\)</span></td>
+<td style="text-align: center;">196.750</td>
+<td style="text-align: center;">67.432</td>
 <td style="text-align: center;">22</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
@@ -1081,17 +1123,19 @@ Table&nbsp;22.1: Analysis of covariance table for Example 21.1
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
-<td style="text-align: center;">230.48</td>
+<td style="text-align: center;">232.807</td>
 <td style="text-align: center;">1</td>
-<td style="text-align: center;">230.48</td>
-<td style="text-align: center;">78.128</td>
+<td style="text-align: center;">232.807</td>
+<td style="text-align: center;">82.551</td>
 </tr>
 </tbody>
 </table>
 </div>
 </figure>
 </div>
-<p>Here, <span class="math inline">\(F_{(5,17)} = 2.81\)</span>, which is greater than the <span class="math inline">\(F_{cal}\)</span> of 1.43, so the adjusted treatment means do not differ significantly after adjusting for the tiller-count covariate.</p>
+<p>At the 5% level, <span class="math inline">\(F_{0.05;(5,17)}=2.810\)</span>. Since <span class="math inline">\(F_{cal}=1.382&lt;2.810\)</span> (p-value <span class="math inline">\(\approx0.280\)</span>), we do not reject equality of the adjusted treatment means. There is insufficient evidence of a treatment effect after adjusting for the initial tiller-count covariate; this does not prove that the treatment means are identical.</p>
+<p>Using <span class="math inline">\(\bar y_{i,\mathrm{adj}}=\bar y_i-b(\bar x_i-\bar x)\)</span>, the adjusted means for the six treatments, in the printed order, are approximately 7.502, 10.284, 7.964, 8.284, 9.246, and 8.469 panicles per hill.</p>
+</div>
 </section>
 </section>
 <section id="analysis-of-covariance-for-rbd" class="level2" data-number="22.4">
@@ -1144,9 +1188,9 @@ T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
 <li><p><strong>Block Sum of Products for</strong> <span class="math inline">\(X\)</span> and <span class="math inline">\(Y\)</span>: <span class="math display">\[
     B_{xy} = \frac{\sum_{i} (B_{ix} \cdot B_{iy})}{v} - \text{C.S.P.}(X, Y)\]</span> where:</p>
 <ul>
-<li><span class="math inline">\(B_{ix}\)</span>: Block total for <span class="math inline">\(X\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment<br>
+<li><span class="math inline">\(B_{ix}\)</span>: Total for <span class="math inline">\(X\)</span> in the <span class="math inline">\(i^{th}\)</span> block<br>
 </li>
-<li><span class="math inline">\(B_{iy}\)</span>: Block total for <span class="math inline">\(Y\)</span> for the <span class="math inline">\(i^{th}\)</span> treatment</li>
+<li><span class="math inline">\(B_{iy}\)</span>: Total for <span class="math inline">\(Y\)</span> in the <span class="math inline">\(i^{th}\)</span> block</li>
 </ul></li>
 <li><p><strong>Error Sum of Squares for</strong> <span class="math inline">\(X\)</span>: <span class="math display">\[
    E_{xx} = \text{Error sum of squares for } X
@@ -1248,12 +1292,15 @@ T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
 <p>The significance of the treatment effects is tested as <span class="math inline">\(F = \frac{(E_{1} - E) / (v - 1)}{MSE(adj)}\)</span></p>
 <p>The significance of regression coefficient by the ratio <span class="math inline">\(F = \frac{MS(Reg)}{MSE(adj)}\)</span></p>
 <p>The adjusted treatment means of <span class="math inline">\(Y\)</span> are obtained assuming a similar linear relationship as in the case of CRD.</p>
-<p>The standard error to compare a pair of treatment means ( when error degree of freedom is large (&gt;20):<br>
+<p>For the balanced RBD with a single common-slope covariate, the standard error for a particular adjusted-mean difference is</p>
+<p><span class="math display">\[SE(d_{ij})=\sqrt{MSE(adj)\left[\frac2r+\frac{(\overline{x}_i-\overline{x}_j)^2}{E_{xx}}\right]}.\]</span></p>
+<p>The square root of the average pairwise variance is given below. It is a summary, not a replacement for each pair-specific standard error:<br>
 </p>
 <p><span class="math inline">\(SE = \sqrt{\frac{2MSE(adj)}{r} \cdot \left(1 +  \frac{T_{xx}}{(v - 1)E_{xx}}\right)}\)</span></p>
 <p>and Critical Difference</p>
-<p><span class="math inline">\(CD = t_{\alpha} \cdot SE\)</span>, where the (t) value corresponds to the error degrees of freedom (r - 1)(v - 1) - 1 at a 5% level.</p>
-<p><strong>Example 21.2</strong>: A varietal trial on cotton was laid out in RBD with 4 replications, 7 varieties were evaluated for the yield of seed cotton. The crop stands per plots of size 30 m² were also recorded because of wide variation in plant numbers. Analyze the data on the yield of seed cotton per plot in 10 gm units <span class="math inline">\(Y\)</span> after adjusting for plant stand <span class="math inline">\(X\)</span>.</p>
+<p><span class="math inline">\(CD = t_{\alpha/2,edf} \cdot SE\)</span>, where the (t) value corresponds to the error degrees of freedom (r - 1)(v - 1) - 1 at a 5% level.</p>
+<div id="exm-ancova-rbd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 22.2</strong></span> A varietal trial on cotton was laid out in RBD with 4 replications, 7 varieties were evaluated for the yield of seed cotton. The crop stands per plots of size 30 m² were also recorded because of wide variation in plant numbers. For this calculation, assume stand is a suitable covariate and the common-slope model is appropriate. If variety affects stand, the adjusted comparison is a comparison at common stand, not the total variety effect including differences in establishment. Analyse the data on the yield of seed cotton per plot in 10 gm units <span class="math inline">\(Y\)</span> after adjusting for plant stand <span class="math inline">\(X\)</span>.</p>
 <table class="caption-top table">
 <tbody>
 <tr class="odd">
@@ -1357,7 +1404,7 @@ T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
 </tr>
 </tbody>
 </table>
-<p><strong>Solution 21.2</strong></p>
+<p><strong>Solution</strong></p>
 <table class="caption-top table">
 <colgroup>
 <col style="width: 13%">
@@ -1529,7 +1576,7 @@ T_{xy} = \frac{\sum_{i} (T_{ix} \cdot T_{iy})}{r} - \text{C.S.P.}(X, Y)
 <div id="tbl-ancova-ex2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ancova-ex2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;22.2: Analysis of covariance table for Example 21.2
+Table&nbsp;22.2: Analysis of covariance table for <a href="#exm-ancova-rbd" class="quarto-xref">Example&nbsp;<span>22.2</span></a>
 </figcaption>
 <div aria-describedby="tbl-ancova-ex2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1597,11 +1644,11 @@ Table&nbsp;22.2: Analysis of covariance table for Example 21.2
 <p><strong>Adjusted values</strong></p>
 <p>Adjusted error sum of squares, <span class="math inline">\(\text{Adj. ESS}_{YY}=E_{YY}-\dfrac{E_{XY}^2}{E_{XX}}=1136.438\)</span></p>
 <p>Adjusted treatment + error, <span class="math inline">\((E_{YY}+T_{YY})-\dfrac{(E_{XY}+T_{XY})^2}{E_{XX}+T_{XX}}=1562.133\)</span></p>
-<p>Adjusted treatment sum of squares <span class="math inline">\(= 1562.133-1136.438=425.694\)</span></p>
+<p>Adjusted treatment sum of squares <span class="math inline">\(= 1562.133014-1136.438410=425.694604\)</span></p>
 <div id="tbl-ancova-ex2-adj" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ancova-ex2-adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;22.3: Adjusted analysis of covariance table for Example 21.2
+Table&nbsp;22.3: Adjusted analysis of covariance table for <a href="#exm-ancova-rbd" class="quarto-xref">Example&nbsp;<span>22.2</span></a>
 </figcaption>
 <div aria-describedby="tbl-ancova-ex2-adj-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -1635,7 +1682,7 @@ Table&nbsp;22.3: Adjusted analysis of covariance table for Example 21.2
 <tr class="odd">
 <td style="text-align: left;">Adj. Treatment</td>
 <td style="text-align: center;">6</td>
-<td style="text-align: center;">425.694</td>
+<td style="text-align: center;">425.695</td>
 <td style="text-align: center;">70.949</td>
 <td style="text-align: center;">1.06</td>
 <td style="text-align: center;"><span class="math inline">\(F_{(6,17)}=2.70\)</span></td>
@@ -1654,6 +1701,53 @@ Table&nbsp;22.3: Adjusted analysis of covariance table for Example 21.2
 </figure>
 </div>
 <p>Since <span class="math inline">\(F_{cal} &lt; F_{tab}\)</span> for the treatments, the adjusted treatment means do not differ significantly after adjusting for the plant stand covariate.</p>
+</div>
+</section>
+<section id="chapter-summary" class="level2" data-number="22.5">
+<h2 data-number="22.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">22.5</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>ANCOVA combines analysis of variance with __________.</p></li>
+<li><p>A measured explanatory variable used for statistical adjustment is called a __________.</p></li>
+<li><p>The common-slope ANCOVA model assumes equal regression __________ across treatments.</p></li>
+<li><p>A covariate measured before treatment application is called a __________ covariate.</p></li>
+<li><p>With one fitted covariate, the error degrees of freedom are reduced by __________.</p></li>
+<li><p>The regression coefficient estimated from error sums is <span class="math inline">\(b=\)</span> __________.</p></li>
+<li><p>Adjusted treatment means are compared at a common covariate __________.</p></li>
+<li><p>Under the ANCOVA model, the mean of the errors is __________.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>State the additional assumptions required by the common-slope ANCOVA model.</p></li>
+<li><p>Why is a pre-treatment covariate preferable when estimating total treatment effects?</p></li>
+<li><p>Distinguish adjusted and unadjusted treatment means.</p></li>
+<li><p>Why does a non-significant treatment test on the covariate not prove that it is unaffected by treatment?</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>Given <span class="math inline">\(E_{xx}=100\)</span>, <span class="math inline">\(E_{xy}=50\)</span>, and <span class="math inline">\(E_{yy}=80\)</span>, calculate the regression coefficient and adjusted error sum of squares.</p></li>
+<li><p>A treatment has <span class="math inline">\(\bar y_i=30\)</span> and <span class="math inline">\(\bar x_i=12\)</span>. The grand covariate mean is 10 and the fitted slope is 2. Calculate its adjusted mean.</p></li>
+</ol>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<div class="answer-key">
+<p><code>1.</code> Regression <code>2.</code> Covariate <code>3.</code> Slopes <code>4.</code> Pre-treatment <code>5.</code> One <code>6.</code> <span class="math inline">\(E_{xy}/E_{xx}\)</span> <code>7.</code> Value <code>8.</code> Zero</p>
+</div>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>The slope is <span class="math inline">\(b=50/100=0.5\)</span>. The adjusted error SS is <span class="math inline">\(80-50^2/100=55\)</span>.</p></li>
+<li><p>The adjusted mean is <span class="math inline">\(30-2(12-10)=26\)</span>.</p></li>
+</ol>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1665,8 +1759,8 @@ Table&nbsp;22.3: Adjusted analysis of covariance table for Example 21.2
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Fisher’s marriage of two great ideas</strong></p>
-<p>By the mid-1920s, <strong>Ronald A. Fisher</strong> had already given the world two of the most powerful tools in all of statistics: the <strong>analysis of variance</strong>, for partitioning variation among groups, and <strong>regression</strong>, for describing how one variable depends on another. Working at the Rothamsted Experimental Station amid its long-running crop trials, Fisher saw that these two ideas could be combined into a single, more powerful procedure. Field plots were never perfectly uniform, some started with more plants, richer soil, or less pest damage than others, and this “nuisance” variation muddied the comparison of treatments. Fisher’s insight was that if such a nuisance factor could be measured as a covariate, its influence could be <em>regressed out</em> of the response before the treatments were compared by analysis of variance.</p>
-<p>This fusion, which he called the <strong>analysis of covariance</strong>, was presented in his 1932 edition of <em>Statistical Methods for Research Workers</em> and set out more fully with Frank Yates in the following years. Its beauty lies in its economy: instead of physically controlling every source of variation through elaborate blocking, the experimenter measures one or two covariates and lets the arithmetic do the adjusting. When you use the initial plant stand to adjust cotton yields, or pre-treatment body weight to adjust an animal’s final weight, you are applying exactly the tool Fisher devised, one that quietly draws on both of his monumental contributions at once. <span class="citation" data-cites="Fisher1932">(<a href="references.html#ref-Fisher1932" role="doc-biblioref">Fisher 1932</a>)</span></p>
+<p>By the mid-1920s, <strong>Ronald A. Fisher</strong> had helped develop and apply two powerful tools in statistics: the <strong>analysis of variance</strong>, for partitioning variation among groups, and <strong>regression</strong>, for describing how one variable depends on another. Working at the Rothamsted Experimental Station amid its long-running crop trials, Fisher saw that these two ideas could be combined into a single, more powerful procedure. Field plots were never perfectly uniform, some started with more plants, richer soil, or less pest damage than others, and this “nuisance” variation muddied the comparison of treatments. Fisher’s insight was that if such a nuisance factor could be measured as a covariate, its influence could be <em>regressed out</em> of the response before the treatments were compared by analysis of variance.</p>
+<p>This fusion, which he called the <strong>analysis of covariance</strong>, was presented in his 1932 edition of <em>Statistical Methods for Research Workers</em> and set out more fully with Frank Yates in the following years. Its beauty lies in its economy: instead of physically controlling every source of variation through elaborate blocking, the experimenter measures one or two covariates and lets the arithmetic do the adjusting. When you use the initial plant stand to adjust cotton yields, or pre-treatment body weight to adjust an animal’s final weight, you are applying exactly the tool Fisher devised, one that draws on both regression and analysis of variance. <span class="citation" data-cites="Fisher1932">(<a href="references.html#ref-Fisher1932" role="doc-biblioref">Fisher 1932</a>)</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1685,11 +1779,12 @@ Table&nbsp;22.3: Adjusted analysis of covariance table for Example 21.2
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Fisher1932" class="csl-entry" role="listitem">
-Fisher, Ronald A. 1932. <em>Statistical Methods for Research Workers</em>. 4th ed. Edinburgh: Oliver; Boyd.
+Fisher, Ronald A. 1932. <em>Statistical Methods for Research Workers</em>. 4th ed. Oliver; Boyd.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1779,7 +1874,7 @@ Fisher, Ronald A. 1932. <em>Statistical Methods for Research Workers</em>. 4th e
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -2122,16 +2217,17 @@ Fisher, Ronald A. 1932. <em>Statistical Methods for Research Workers</em>. 4th e
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>13&nbsp; Hypothesis testing – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./largeSampletest.html" rel="next">
 <link href="./sampleSurvey.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="13&nbsp; Hypothesis testing – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="13&nbsp; Hypothesis testing – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -597,7 +630,10 @@ window.Quarto = {
   </ul></li>
   <li><a href="#sec-decrule" id="toc-sec-decrule" class="nav-link" data-scroll-target="#sec-decrule"><span class="header-section-number">13.8</span> Decision Rule</a></li>
   <li><a href="#a-worked-example" id="toc-a-worked-example" class="nav-link" data-scroll-target="#a-worked-example"><span class="header-section-number">13.9</span> A worked example</a></li>
-  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">13.10</span> p-value</a></li>
+  <li><a href="#p-value" id="toc-p-value" class="nav-link" data-scroll-target="#p-value"><span class="header-section-number">13.10</span> p-value</a>
+  <ul class="collapse">
+  <li><a href="#significance-precision-and-practical-importance" id="toc-significance-precision-and-practical-importance" class="nav-link" data-scroll-target="#significance-precision-and-practical-importance"><span class="header-section-number">13.10.1</span> Significance, precision and practical importance</a></li>
+  </ul></li>
   <li><a href="#steps-in-hypothesis-testing" id="toc-steps-in-hypothesis-testing" class="nav-link" data-scroll-target="#steps-in-hypothesis-testing"><span class="header-section-number">13.11</span> Steps in hypothesis testing</a></li>
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">13.12</span> Chapter Summary</a>
   <ul class="collapse">
@@ -635,7 +671,8 @@ window.Quarto = {
 </header>
 
 
-<p>In the previous chapters, we have learned how to describe and summarize data using measures of central tendency and dispersion. These tools help us understand what a sample of data looks like. But in agricultural research or in any research, we often go a step further, where we want to use the sample to draw conclusions about the larger population. This is where the branch of statistics named as <strong>inferential statistics</strong> come in to play, and at its core lies the process of <strong>hypothesis testing</strong>.</p>
+<p>In the previous chapters, we have learned how to describe and summarize data using measures of central tendency and dispersion. These tools help us understand what a sample of data looks like. But in agricultural research or in any research, we often go a step further, where we want to use the sample to draw conclusions about the larger population. This is where the branch of statistics called <strong>inferential statistics</strong> comes into play, and at its core lies the process of <strong>hypothesis testing</strong>.</p>
+<p>The sample-survey chapter introduced estimators, sampling error, and confidence intervals. Hypothesis testing uses the same idea of repeated-sampling variability, but begins with a specified claim about the population.</p>
 <section id="a-hypothesis" class="level2" data-number="13.1">
 <h2 data-number="13.1" class="anchored" data-anchor-id="a-hypothesis"><span class="header-section-number">13.1</span> A hypothesis</h2>
 <p>Scientific research often involves conducting experiments to study natural phenomena or to evaluate the effect of different conditions or practices. In a scientific experiment, observations are made systematically and data are collected to answer specific research questions.</p>
@@ -658,14 +695,14 @@ window.Quarto = {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A <strong>statistical hypothesis</strong> is a specific, <em>testable</em> statement about a population parameter. It expresses an assumption or claim that can be tested using statistical methods based on sample data. Statistical hypotheses are generally formulated in pairs: the null hypothesis (denoted as <span class="math inline">\(H_0\)</span>), which represents the default or no-effect assumption, and the alternative hypothesis (denoted as <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>), which represents a statement that contradicts the null hypothesis.</p>
+<p>A <strong>statistical hypothesis</strong> is a specific, <em>testable</em> statement about a population distribution or its parameters. It expresses an assumption or claim that can be tested using statistical methods based on sample data. Statistical hypotheses are generally formulated in pairs: the null hypothesis (denoted as <span class="math inline">\(H_0\)</span>), which represents the default or no-effect assumption, and the alternative hypothesis (denoted as <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>), which represents a statement that contradicts the null hypothesis.</p>
 </div>
 </div>
 </section>
 <section id="the-falsification-principle" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="the-falsification-principle">The falsification principle</h2>
 <p>The falsification principle, proposed by the philosopher Karl Popper, is a way of distinguishing science from non-science. It suggests that for a theory to be considered scientific, it must be capable of being tested and potentially proven <strong>false</strong>. For example, the hypothesis “all swans are white” can be falsified by observing a single black swan. According to Popper, science should attempt to <em>disprove</em> a theory, rather than continuously seek evidence that confirms it. <span class="citation" data-cites="Popper1959">(<a href="references.html#ref-Popper1959" role="doc-biblioref">Popper 1959</a>)</span></p>
-<p>This idea forms the philosophical backbone of hypothesis testing in statistics.</p>
+<p>This provides a useful analogy for questioning a claim. A statistical rejection is not logical proof that a theory is false: it depends on a probability model and permits a controlled risk of error.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -681,14 +718,14 @@ window.Quarto = {
 <h2 data-number="13.2" class="anchored" data-anchor-id="null-and-alternative-hypothesis"><span class="header-section-number">13.2</span> Null and alternative hypothesis</h2>
 <p>Considering the Popperian Principle of Falsification, we need to translate the working hypothesis into a framework of two competing statements. These are termed the <strong>null hypothesis</strong> and the <strong>alternative hypothesis</strong>.</p>
 <p><u><strong>Null hypothesis</strong></u></p>
-<p>The null hypothesis (<span class="math inline">\(H_0\)</span>) is a statement that there is no effect, no difference, or no relationship between variables. It represents the default or status quo assumption. In hypothesis testing, we assume the null hypothesis is true unless we have strong statistical evidence against it.</p>
+<p>The null hypothesis (<span class="math inline">\(H_0\)</span>) often states that there is no effect, no difference, or no relationship between variables. It may also specify another reference value or a probability distribution. It represents the default or status quo assumption. In hypothesis testing, we assume the null hypothesis is true unless we have strong statistical evidence against it.</p>
 <blockquote class="blockquote">
 <p>Why do we need a null hypothesis?<br>
 In an experiment, the results seen in the sample may differ from expectation either because a real effect exists, or simply because of random chance. The null hypothesis begins with the assumption that no real difference or effect exists in the population. Using this assumption, statistical tests examine the sample data and calculate how likely it is to obtain such results purely by chance. This helps us decide whether the observed difference is likely to be real or just a fluke.<br>
 For example, suppose a researcher tests a new fertilizer and finds that plants in the sample are 3 cm taller than usual. This difference may be due to the fertilizer or simply to natural variation among plants. By assuming that the fertilizer has no effect (the null hypothesis), a statistical test determines whether the observed difference is likely to have occurred by chance. If it is very unlikely, we reject the null hypothesis and conclude that the fertilizer probably has a real effect.</p>
 </blockquote>
 <p><u><strong>Alternative hypothesis</strong></u></p>
-<p>The alternative hypothesis (denoted by <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>) is a statement that contradicts the null hypothesis. It proposes that a real effect, difference, or relationship exists in the population and that the observed results are not due to random chance. In most studies, the alternative hypothesis represents the researcher’s expectation or claim that they aim to find evidence to support.</p>
+<p>The alternative hypothesis (denoted by <span class="math inline">\(H_1\)</span> or <span class="math inline">\(H_a\)</span>) is a statement that contradicts the null hypothesis. It proposes that a real effect, difference, or relationship exists in the population rather than the null value. Random sampling variation is present under either hypothesis. In most studies, the alternative hypothesis represents the researcher’s expectation or claim that they aim to find evidence to support.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Important">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -704,12 +741,12 @@ For example, suppose a researcher tests a new fertilizer and finds that plants i
 </div>
 <section id="definitions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="definitions">Definitions</h3>
-<p><strong>Null hypothesis (</strong><span class="math inline">\(H_0\)</span>): The hypothesis of no difference. It states that there is no effect, no difference, or no relationship between the variables or populations under study.</p>
+<p><strong>Null hypothesis (</strong><span class="math inline">\(H_0\)</span>): The hypothesis assessed by the statistical test. It often states no effect, no difference, or no relationship, but may also specify another reference value or an entire probability distribution.</p>
 <p><strong>Alternative hypothesis (</strong><span class="math inline">\(H_1\)</span>): The hypothesis of a difference. It states that there is an effect, a difference, or a relationship between the variables or populations under study.</p>
 </section>
 <section id="example" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="example">Example</h3>
-<p>Not so long ago, people believed that the world was flat. The research question was: Is the Earth flat?. Here we can frame two hypotheses as Null hypothesis, <span class="math inline">\(H_0\)</span>: The Earth is flat and Alternative hypothesis, <span class="math inline">\(H_1\)</span>: The Earth is round. Several scientists, including Copernicus, set out to disprove the null hypothesis. This eventually led to the rejection of <span class="math inline">\(H_0\)</span> and the acceptance of <span class="math inline">\(H_1\)</span>.</p>
+<p>Suppose a reference seed lot has a germination probability of 0.80. To investigate whether a new treatment changes germination, state <span class="math inline">\(H_0:p=0.80\)</span> and <span class="math inline">\(H_1:p\neq0.80\)</span>. A random sample provides evidence for assessing these hypotheses; it does not prove either statement with certainty.</p>
 <div id="exm-exmhypo1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 13.1</strong></span> A plant biologist wants to test whether different fertilizers affect plant height.</p>
 <p><span class="math inline">\(H_0\)</span>: There is no difference in plant height among different fertilizer treatments.</p>
@@ -717,20 +754,21 @@ For example, suppose a researcher tests a new fertilizer and finds that plants i
 </div>
 <div id="exm-exmhypo2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 13.2</strong></span> A pharmaceutical company wants to know if a new drug is more effective than the standard treatment.</p>
-<p><span class="math inline">\(H_0\)</span>: The new drug is equally effective as the standard treatment.</p>
+<p><span class="math inline">\(H_0\)</span>: The new drug is no more effective than the standard treatment.</p>
 <p><span class="math inline">\(H_1\)</span>: The new drug is more effective than the standard treatment.</p>
 </div>
 </section>
 <section id="sec-state" class="level3" data-number="13.2.1">
 <h3 data-number="13.2.1" class="anchored" data-anchor-id="sec-state"><span class="header-section-number">13.2.1</span> Stating a hypothesis</h3>
 <div id="exr-exrhypo1" class="theorem exercise">
-<p><span class="theorem-title"><strong>Exercise 13.1</strong></span> A researcher applies a certain chemical twice a week after flowering on a fruit tree and expects that the average fruit weight per plant is 8 kg.</p>
+<p><span class="theorem-title"><strong>Exercise 13.1</strong></span> A researcher applies a certain chemical twice a week after flowering on fruit trees. The reference average fruit weight per plant is 8 kg, and the research question is whether the chemical reduces this average.</p>
 <p><strong>Step 1</strong>: Identify the hypothesis from the problem.</p>
-<p>The researcher expects the average fruit weight per plant to be 8 kg. If <span class="math inline">\(\mu\)</span> (pronounced as ‘mu’) denotes the average fruit weight, the null hypothesis is:</p>
+<p>The reference average fruit weight per plant is 8 kg. If <span class="math inline">\(\mu\)</span> (pronounced as ‘mu’) denotes the average fruit weight, the null hypothesis is:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu\)</span> = 8</p>
 <p><strong>Step 2</strong>: State the alternative hypothesis.</p>
-<p>If the average fruit weight is not 8 kg, and there is no reason to believe the chemical will increase yield, the only remaining possibility is that the weight is less than 8 kg. So:</p>
+<p>Because the research question specifies a reduction before the data are examined, the alternative is:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &lt; 8</p>
+<p>The full one-sided null is <span class="math inline">\(H_0:\mu\geq8\)</span>. The equality <span class="math inline">\(\mu=8\)</span> is its boundary value, used to calculate the usual test statistic.</p>
 </div>
 <p><strong>But what if the researcher has no prior idea of the direction of the effect?</strong></p>
 <div id="exr-exrhypo2" class="theorem exercise">
@@ -745,13 +783,13 @@ For example, suppose a researcher tests a new fertilizer and finds that plants i
 </section>
 <section id="sec-hypo" class="level2" data-number="13.3">
 <h2 data-number="13.3" class="anchored" data-anchor-id="sec-hypo"><span class="header-section-number">13.3</span> Hypothesis testing</h2>
-<p>In hypothesis testing, a decision must be made between two alternatives <em>i.e.</em> the null hypothesis and the alternative hypothesis. To make the decision, an experiment is performed, and the null hypothesis is either rejected or not rejected based on a <strong>decision rule</strong>. Lets learn the concept of hypothesis testing with an example.</p>
+<p>In hypothesis testing, a decision must be made between two alternatives <em>i.e.</em> the null hypothesis and the alternative hypothesis. To make the decision, an experiment is performed, and the null hypothesis is either rejected or not rejected based on a <strong>decision rule</strong>. Let us learn the concept of hypothesis testing with an example.</p>
 <div id="exm-exmhypo3" class="theorem example">
 <p><span class="theorem-title"><strong>Example 13.3</strong></span> You have a coin and want to check whether it is biased or unbiased. An unbiased coin has a 50:50 chance of landing heads or tails.</p>
 <p>If the coin is unbiased, the probability of obtaining a head is 0.5, i.e., <span class="math inline">\(p\)</span> = 0.5. The hypotheses are:</p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(p\)</span> = 0.5 (coin is unbiased)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(p\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0.5 (coin is biased)</p>
-<p>You toss the coin 10 times and note the outcomes, as shown in <a href="#tbl-cointoss" class="quarto-xref">Table&nbsp;<span>13.1</span></a>.</p>
+<p>Assuming independent tosses with a constant head probability, you toss the coin 10 times and note the outcomes, as shown in <a href="#tbl-cointoss" class="quarto-xref">Table&nbsp;<span>13.1</span></a>.</p>
 <div id="tbl-cointoss" class="bordered quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-cointoss-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -804,13 +842,13 @@ Table&nbsp;13.1: Results of tossing a coin 10 times
 </div>
 </figure>
 </div>
-<p>In hypothesis testing, acceptance or rejection of the null hypothesis is based on a <strong>decision rule</strong>, and this rule is driven by a quantity called the <strong>test statistic</strong>.</p>
+<p>In hypothesis testing, rejection or non-rejection of the null hypothesis is based on a <strong>decision rule</strong>, and this rule is driven by a quantity called the <strong>test statistic</strong>.</p>
 <p>A <strong>test statistic</strong> is a function of the sample observations that summarizes the sample data into a single numerical value. It is calculated using a specific formula and is used to determine whether the observed sample result is consistent with the null hypothesis. Different statistical tests use different test statistics. For example, the <strong>z-statistic</strong> is used in a z-test, the <strong>t-statistic</strong> in a t-test, the <strong><span class="math inline">\(\chi^2\)</span>-statistic</strong> in a chi-square test, and the <strong>F-statistic</strong> in an (F)-test. These test statistics will be discussed in detail in the following chapters.</p>
-<p>In this example, suppose you decide to reject <span class="math inline">\(H_0\)</span> if 8 or more heads occur in 10 tosses, i.e., reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(p \geq \frac{8}{10} = 0.8\)</span>.</p>
+<p>For a two-sided test, unusually few heads and unusually many heads both count against <span class="math inline">\(H_0\)</span>. At the 5% level, use the rule: reject if the number of heads is at most 1 or at least 9. The binomial calculation justifying this rule is given in the worked example below.</p>
 <p>From the experiment:</p>
 <p>Number of heads = 8; Number of tosses = 10</p>
-<p>Test statistic: <span class="math inline">\(p\)</span> = 8/10 = 0.8</p>
-<p>Based on the decision rule, you reject the null hypothesis and conclude that the coin is likely biased. This is just an example to show the concept. In practice decision rule is framed on the basis of the probability distribution of test statistic.</p>
+<p>The test statistic is the count <span class="math inline">\(X=8\)</span>, or equivalently the sample proportion <span class="math inline">\(\hat p=8/10=0.8\)</span>. Here <span class="math inline">\(p\)</span> denotes the population probability, not the observed sample proportion.</p>
+<p>Since 8 is not in the rejection region, we do not reject <span class="math inline">\(H_0\)</span>. The observed proportion differs from 0.5, but this difference is not sufficient evidence of bias at the chosen level.</p>
 </div>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
@@ -822,7 +860,7 @@ Table&nbsp;13.1: Results of tossing a coin 10 times
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this example, the decision rule was set informally for illustration. In practice, decision rules are derived from statistical theory, taking into account the sample size and the chosen level of significance. This is discussed in the sections that follow.</p>
+<p>Choose the test and its decision rule before examining the result. The rule must agree with the alternative hypothesis and control the Type I error under the null model.</p>
 </div>
 </div>
 </section>
@@ -837,7 +875,7 @@ Table&nbsp;13.1: Results of tossing a coin 10 times
 Table&nbsp;13.2: The two types of errors in hypothesis testing
 </figcaption>
 <div aria-describedby="tbl-errors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <colgroup>
 <col style="width: 40%">
 <col style="width: 29%">
@@ -852,12 +890,12 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Test concludes</strong> <span class="math inline">\(H_0\)</span> is true</td>
+<td><strong>Decision:</strong> Do not reject <span class="math inline">\(H_0\)</span></td>
 <td style="text-align: left;"><em>Correct Decision</em></td>
 <td style="text-align: left;"><em>Type II error</em></td>
 </tr>
 <tr class="even">
-<td><strong>Test concludes</strong> <span class="math inline">\(H_0\)</span> is false</td>
+<td><strong>Decision:</strong> Reject <span class="math inline">\(H_0\)</span></td>
 <td style="text-align: left;"><em>Type I error</em></td>
 <td style="text-align: left;"><em>Correct Decision</em></td>
 </tr>
@@ -871,7 +909,7 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 <p><em>Comparing two medications</em></p>
 <p><span class="math inline">\(H_0\)</span>: <span class="math inline">\(\mu_1 = \mu_2\)</span> - The two medications are equally effective.</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu_1 \neq \mu_2\)</span> - The two medications differ in effectiveness.</p>
-<p>A <strong>Type I error</strong> here means concluding the medications differ when they actually do not - perhaps leading to an unnecessary change in treatment. A <strong>Type II error</strong> means concluding they are equally effective when one is actually better - potentially life-threatening if the inferior medication continues to be prescribed.</p>
+<p>A <strong>Type I error</strong> here means concluding the medications differ when they actually do not - perhaps leading to an unnecessary change in treatment. A <strong>Type II error</strong> means failing to detect a real difference when one is actually better - potentially life-threatening if the inferior medication continues to be prescribed.</p>
 <p><em>Cancer diagnosis</em></p>
 <p><span class="math inline">\(H_0\)</span>: The patient does not have cancer.</p>
 <p><span class="math inline">\(H_1\)</span>: The patient has cancer.</p>
@@ -892,20 +930,20 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If an exam question asks which error is more serious, the safe answer is <strong>Type I error</strong>. But the honest answer is - <em>it depends on the context</em>.</p>
+<p>The relative seriousness of Type I and Type II errors depends on the consequences in the particular study. State the context and explain the consequences rather than assigning a universal ranking.</p>
 </div>
 </div>
 </section>
 <section id="level-of-significance-and-power-of-test" class="level2" data-number="13.5">
 <h2 data-number="13.5" class="anchored" data-anchor-id="level-of-significance-and-power-of-test"><span class="header-section-number">13.5</span> Level of significance and power of test</h2>
 <p><u><strong>Level of significance</strong> (<span class="math inline">\(\alpha\)</span>)</u></p>
-<p>The significance level, denoted as <span class="math inline">\(\alpha\)</span> (alpha), is the probability of rejecting the null hypothesis when it is true. In other words, the level of significance is the probability of committing a Type I error. <span class="citation" data-cites="Fisher1925">(<a href="references.html#ref-Fisher1925" role="doc-biblioref">Fisher 1925</a>)</span>. We fix a small value of <span class="math inline">\(\alpha\)</span> before the experiment to keep Type I error fixed.</p>
+<p>The significance level, denoted as <span class="math inline">\(\alpha\)</span> (alpha), is the chosen upper bound on the probability of rejecting the null hypothesis when it is true. In other words, it controls the probability of committing a Type I error. For an exact-size test this probability equals <span class="math inline">\(\alpha\)</span>; a conservative test can have a smaller probability. We choose <span class="math inline">\(\alpha\)</span> before examining the data. <span class="citation" data-cites="Fisher1925">(<a href="references.html#ref-Fisher1925" role="doc-biblioref">Fisher 1925</a>)</span></p>
 <blockquote class="blockquote">
-<p>In practice, we fix the Type I error by selecting a suitable value of <span class="math inline">\(\alpha\)</span> before the experiment, and reduce Type II error by using an adequate sample size. Commonly used values are <span class="math inline">\(\alpha\)</span> = 0.05 (for agricultural research) or <span class="math inline">\(\alpha\)</span> = 0.01 (medical research).</p>
+<p>In practice, we control Type I error by selecting a suitable value of <span class="math inline">\(\alpha\)</span> before the experiment, and reduce Type II error by using an adequate sample size. Common illustrative choices are <span class="math inline">\(\alpha=0.05\)</span> and <span class="math inline">\(\alpha=0.01\)</span>; the choice should reflect the study objectives and consequences of errors, rather than a fixed rule for a discipline.</p>
 </blockquote>
 <p><u><strong>Power of test</strong> (1 - <span class="math inline">\(\beta\)</span>)</u></p>
 <p>The probability of a Type II error is denoted as <span class="math inline">\(\beta\)</span> (beta). The quantity <span class="math inline">\(1 - \beta\)</span> is called the <strong>power of the test</strong>. Power is the probability of correctly rejecting the null hypothesis when it is false - in other words, the ability of the test to detect a real effect when it exists. <span class="citation" data-cites="NeymanPearson1933">(<a href="references.html#ref-NeymanPearson1933" role="doc-biblioref">Neyman and Pearson 1933</a>)</span></p>
-<p>Both <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> play a role in deciding the decision rule for hypothesis testing. Power is primarily determined by the sample size of the experiment: larger samples give more power.</p>
+<p>Both <span class="math inline">\(\alpha\)</span> and <span class="math inline">\(\beta\)</span> play a role in deciding the decision rule for hypothesis testing. Power depends on the particular alternative value, the effect size, variability, sample size, significance level and design. There is no single value of power for every false null hypothesis. For a fixed effect, variance, design and significance level, increasing the number of independent observations generally increases power.</p>
 </section>
 <section id="region-of-acceptance-and-rejection" class="level2" data-number="13.6">
 <h2 data-number="13.6" class="anchored" data-anchor-id="region-of-acceptance-and-rejection"><span class="header-section-number">13.6</span> Region of acceptance and rejection</h2>
@@ -920,7 +958,7 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Sampling distribution of a test statistic: The probability distribution of all possible values of a test statistic obtained from repeated random samples of the same size from the same population, assuming the null hypothesis is true.</p>
+<p>Sampling distribution of a test statistic: The probability distribution of a statistic under repeated sampling according to the same design and model. For testing, we use its distribution under the null hypothesis; under alternative parameter values the sampling distribution may differ.</p>
 </div>
 </div>
 <p>You will reject the null hypothesis if the test statistic falls in a particular region of the sampling distribution. This region is called the <strong>region of rejection</strong> (also known as the <strong>critical region</strong>). The complementary region, where the test statistic leads to non-rejection of <span class="math inline">\(H_0\)</span>, is called the <strong>region of acceptance</strong>.</p>
@@ -935,8 +973,8 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </div>
 </div>
 <ul>
-<li>Size of the region of rejection, which is also the probability of type I error = level of significance = <span class="math inline">\(\alpha\)</span></li>
-<li>Size of the region of acceptance = <span class="math inline">\(1 - \alpha\)</span></li>
+<li>Under <span class="math inline">\(H_0\)</span>, the rejection probability is at most <span class="math inline">\(\alpha\)</span> for a level-<span class="math inline">\(\alpha\)</span> test. It equals <span class="math inline">\(\alpha\)</span> for an exact-size test.</li>
+<li>Under <span class="math inline">\(H_0\)</span>, the non-rejection probability is at least <span class="math inline">\(1-\alpha\)</span>, with equality for an exact-size test.</li>
 </ul>
 <p>The <em>value of the test statistic</em> that separates the region of acceptance from the region of rejection is called the <strong>critical value</strong>. Decision on null hypothesis is made based on <a href="#sec-decrule" class="quarto-xref"><span>Section 13.8</span></a>.</p>
 <div class="cell" data-layout-align="center">
@@ -955,7 +993,7 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 <p>The type of alternative hypothesis <span class="math inline">\(H_1\)</span> determines whether a test is one-tailed or two-tailed.</p>
 <section id="one-tailed-tests" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="one-tailed-tests">One-tailed tests</h3>
-<p>Consider Problem 1 in <a href="#sec-state" class="quarto-xref"><span>Section 13.2.1</span></a>, where the alternative hypothesis is:</p>
+<p>Consider <a href="#exr-exrhypo1" class="quarto-xref">Exercise&nbsp;<span>13.1</span></a>, where the alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> &lt; 8</p>
 <p>Here, we reject <span class="math inline">\(H_0\)</span> if the test statistic falls towards the <strong>left</strong> side of the sampling distribution. This is called a <strong>left-tailed test</strong>.</p>
 <p>If instead the alternative hypothesis were:</p>
@@ -986,11 +1024,11 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </section>
 <section id="two-tailed-test" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="two-tailed-test">Two-tailed test</h3>
-<p>Consider Problem 2 from <a href="#sec-state" class="quarto-xref"><span>Section 13.2.1</span></a>, where the alternative hypothesis is:</p>
+<p>Consider <a href="#exr-exrhypo2" class="quarto-xref">Exercise&nbsp;<span>13.2</span></a>, where the alternative hypothesis is:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 0</p>
 <p>Or consider another example:</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\mu\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> 8</p>
-<p>In both cases, the critical region lies on <strong>both sides</strong> of the sampling distribution. Each tail has an area of <span class="math inline">\(\alpha/2\)</span>, giving a total critical area of <span class="math inline">\(\alpha\)</span>.</p>
+<p>In both cases, the critical region lies on <strong>both sides</strong> of the null sampling distribution. An equal-tail test allocates <span class="math inline">\(\alpha/2\)</span> to each tail. For a discrete distribution, the attainable tail probabilities may be smaller.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
@@ -1010,18 +1048,19 @@ Table&nbsp;13.2: The two types of errors in hypothesis testing
 </blockquote>
 <p>The <strong>decision rule</strong> specifies whether the null hypothesis (<span class="math inline">\(H_0\)</span>) should be rejected based on the calculated value of the test statistic. It depends on the <strong>level of significance</strong> (<span class="math inline">\(\alpha\)</span>) selected by the researcher and the <strong>alternative hypothesis</strong> (<span class="math inline">\(H_1\)</span>), which determines whether the test is right-tailed, left-tailed, or two-tailed.</p>
 <p>The chosen significance level (<span class="math inline">\(\alpha\)</span>) determines the <strong>critical value(s)</strong> that divide the sampling distribution into the <strong>rejection region</strong> and the <strong>non-rejection region</strong>. After computing the test statistic, it is compared with the critical value(s) to make a decision.</p>
-<p>The decision rules are:</p>
+<p>For the continuous test statistics used in the following chapters, the decision rules are:</p>
 <ul>
 <li><strong>Right-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>greater than</strong> the critical value.</li>
 <li><strong>Left-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>less than</strong> the critical value.</li>
 <li><strong>Two-tailed test</strong>: Reject (<span class="math inline">\(H_0\)</span>) if the calculated test statistic is <strong>less than the lower critical value</strong> or <strong>greater than the upper critical value</strong>.</li>
 </ul>
+<p>For a discrete test, specify whether the boundary count is included in the rejection region, as in the coin rule <span class="math inline">\(X\leq1\)</span> or <span class="math inline">\(X\geq9\)</span>. With continuous test statistics, a single boundary point has probability zero under the model.</p>
 <p>If the calculated test statistic does not fall in the rejection region, we <strong>do not reject (<span class="math inline">\(H_0\)</span>)</strong>. This does not prove that <span class="math inline">\(H_0\)</span> is true; it simply indicates that the sample does not provide sufficient evidence to reject it at the chosen level of significance.</p>
 <p>A well-designed statistical test has <strong>high power</strong> (<span class="math inline">\(1-\beta\)</span>), meaning it has a high probability of correctly rejecting a false null hypothesis while controlling the probability of a <strong>Type I error</strong> at the chosen significance level (<span class="math inline">\(\alpha\)</span>).</p>
 </section>
 <section id="a-worked-example" class="level2" data-number="13.9">
 <h2 data-number="13.9" class="anchored" data-anchor-id="a-worked-example"><span class="header-section-number">13.9</span> A worked example</h2>
-<p>Returning to the coin-tossing experiment <a href="#exm-exmhypo3" class="quarto-xref">Example&nbsp;<span>13.3</span></a> from <a href="#sec-hypo" class="quarto-xref"><span>Section 13.3</span></a>. Let <span class="math inline">\(X\)</span> be the number of heads in 10 tosses. Here in this example <span class="math inline">\(X\)</span> is our test statistic (suppose). Under the null hypothesis (<span class="math inline">\(p\)</span> = 0.5), <span class="math inline">\(X\)</span> follows a binomial distribution with <span class="math inline">\(n\)</span> = 10 and <span class="math inline">\(p\)</span> = 0.5.</p>
+<p>Returning to the coin-tossing experiment <a href="#exm-exmhypo3" class="quarto-xref">Example&nbsp;<span>13.3</span></a> from <a href="#sec-hypo" class="quarto-xref"><span>Section 13.3</span></a>. Let <span class="math inline">\(X\)</span> be the number of heads in 10 tosses. Here <span class="math inline">\(X\)</span> is our test statistic. Under the null hypothesis (<span class="math inline">\(p\)</span> = 0.5), <span class="math inline">\(X\)</span> follows a binomial distribution with <span class="math inline">\(n\)</span> = 10 and <span class="math inline">\(p\)</span> = 0.5.</p>
 <p>The binomial probability formula is:</p>
 <p><span class="math display">\[p(X = x) = \binom{n}{x} p^x q^{n-x} = \frac{n!}{(n-x)!\, x!} \, p^x q^{n-x}\]</span></p>
 <p>The probability distribution of <span class="math inline">\(X\)</span> (Sampling distribution) under <span class="math inline">\(H_0\)</span> is given in <a href="#tbl-bindist" class="quarto-xref">Table&nbsp;<span>13.3</span></a>. This table gives the probabilities of <span class="math inline">\(X\)</span> when the <span class="math inline">\(H_0\)</span> is true.</p>
@@ -1098,29 +1137,29 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 </div>
 </div>
 </div>
-<p>For a two-tailed test at <span class="math inline">\(\alpha\)</span> = 0.05, each tail should have an area of <span class="math inline">\(\alpha/2\)</span> = 0.025. From <a href="#tbl-bindist" class="quarto-xref">Table&nbsp;<span>13.3</span></a>:</p>
+<p>For an equal-tail two-sided test at <span class="math inline">\(\alpha\)</span> = 0.05, allow at most <span class="math inline">\(\alpha/2\)</span> = 0.025 in each tail. From <a href="#tbl-bindist" class="quarto-xref">Table&nbsp;<span>13.3</span></a>:</p>
 <ul>
 <li><span class="math inline">\(P(X \leq 1)\)</span> = 0.001 + 0.010 = 0.011</li>
 <li><span class="math inline">\(P(X \leq 2)\)</span> = 0.011 + 0.044 = 0.055</li>
 </ul>
-<p>The left critical value is approximately <span class="math inline">\(X\)</span> = 2, and by symmetry the right critical value is <span class="math inline">\(X\)</span> = 8. This means: if the number of heads is <strong>less than 2 or more than 8</strong>, reject <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05.</p>
+<p>Using unrounded binomial probabilities, <span class="math inline">\(P(X\leq1)=11/1024\)</span> and <span class="math inline">\(P(X\geq9)=11/1024\)</span>. Reject when <span class="math inline">\(X\leq1\)</span> or <span class="math inline">\(X\geq9\)</span>. The actual Type I error is <span class="math inline">\(22/1024\approx0.0215\)</span>, which is below 0.05. Including <span class="math inline">\(X=2\)</span> and <span class="math inline">\(X=8\)</span> would give <span class="math inline">\(P(X\leq2)+P(X\geq8)=112/1024\approx0.1094\)</span>, exceeding 0.05. Because the count is discrete, a nonrandomised test need not attain exactly the stated significance level.</p>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="images/hypotest/hypoplot2.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="images/hypotest/binomial-critical-region.svg" class="img-fluid figure-img" style="width:70.0%"></p>
 <figcaption>Probability distribution of X with critical region</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<p>In our experiment, we obtained 8 heads. Since 8 equals - but does not exceed - the critical value, we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05. We do not have sufficient evidence to conclude the coin is biased.</p>
+<p>In our experiment, we obtained 8 heads. Since 8 is outside the rejection region, we <strong>fail to reject</strong> <span class="math inline">\(H_0\)</span> at <span class="math inline">\(\alpha\)</span> = 0.05. We do not have sufficient evidence to conclude the coin is biased.</p>
 <p>Commonly used test statistics are <span class="math inline">\(t\)</span>, <span class="math inline">\(F\)</span>, <span class="math inline">\(Z\)</span>, and <span class="math inline">\(\chi^2\)</span> (chi-square). Critical values of these statistics are available in standard statistical tables and will be used in later chapters.</p>
 </section>
 <section id="p-value" class="level2" data-number="13.10">
 <h2 data-number="13.10" class="anchored" data-anchor-id="p-value"><span class="header-section-number">13.10</span> p-value</h2>
 <p>Traditionally, hypothesis testing involved comparing the calculated test statistic with a critical value obtained from statistical tables. If the test statistic exceeded the critical value (or fell beyond it in the rejection region), the null hypothesis was rejected.</p>
-<p>Today, statistical softwares automatically calculates the p-value along with the test statistic. As a result, researchers rarely use printed statistical tables to make decisions. Instead, they compare the p-value directly with the chosen level of significance (<span class="math inline">\(\alpha\)</span>).</p>
+<p>Today, statistical software automatically calculates the p-value along with the test statistic. As a result, researchers rarely use printed statistical tables to make decisions. Instead, they compare the p-value directly with the chosen level of significance (<span class="math inline">\(\alpha\)</span>).</p>
 <p>The p-value provides a more informative and convenient approach because it indicates the smallest level of significance at which the null hypothesis would be rejected. Therefore, modern statistical analysis is primarily based on the p-value rather than on critical values.</p>
 <p>The p-value is the probability of obtaining a test statistic as extreme as or more extreme than the one observed in the sample, assuming that the null hypothesis is true.</p>
 <p>A <strong>small p-value</strong> indicates that the observed result is unlikely to have occurred by random chance alone if the null hypothesis is true. Therefore, it provides strong evidence against the null hypothesis. On the other hand, a large p-value indicates that the observed result is reasonably consistent with the null hypothesis, and there is not enough evidence to reject it.</p>
@@ -1140,6 +1179,12 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 </div>
 </div>
 </div>
+<p>In the coin example, the exact two-sided p-value for eight heads is <span class="math inline">\(P(X\leq2)+P(X\geq8)=0.109375\)</span>. This agrees with non-rejection at the 5% level. The p-value is not the probability that the coin is fair, nor is it the probability that the result will be reproduced.</p>
+<section id="significance-precision-and-practical-importance" class="level3" data-number="13.10.1">
+<h3 data-number="13.10.1" class="anchored" data-anchor-id="significance-precision-and-practical-importance"><span class="header-section-number">13.10.1</span> Significance, precision and practical importance</h3>
+<p>A small p-value does not measure the size or importance of an effect. A large sample may detect a small yield difference that is of little agricultural value, while an imprecise small study may fail to detect an important difference. Report the estimated effect, its units and a confidence interval as well as the test result. Failure to reject equality is not evidence of equivalence; demonstrating equivalence requires a specified practically acceptable margin and an appropriate test.</p>
+<p>If many hypotheses are tested, the probability of at least one false rejection can increase. Plan the comparisons in advance and use an appropriate multiple-comparison method when needed. Choosing the direction, significance level or stopping point after observing favourable results can invalidate the stated error probability.</p>
+</section>
 </section>
 <section id="steps-in-hypothesis-testing" class="level2" data-number="13.11">
 <h2 data-number="13.11" class="anchored" data-anchor-id="steps-in-hypothesis-testing"><span class="header-section-number">13.11</span> Steps in hypothesis testing</h2>
@@ -1159,51 +1204,20 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>The branch of statistics that uses sample data to draw conclusions about a population is called __________ statistics.</p></li>
-<li><p>A tentative and testable statement formulated on the basis of prior knowledge or scientific reasoning is called a __________.</p></li>
-<li><p>A statistical hypothesis is a testable statement about a population __________.</p></li>
-<li><p>The hypothesis representing no effect, no difference, or no relationship is called the __________ hypothesis.</p></li>
-<li><p>The null hypothesis is denoted by __________.</p></li>
-<li><p>The hypothesis that contradicts the null hypothesis is called the __________ hypothesis.</p></li>
-<li><p>The alternative hypothesis is denoted by __________ or __________.</p></li>
-<li><p>The principle that a scientific theory must be capable of being tested and potentially proven false is called the principle of __________.</p></li>
-<li><p>The falsification principle was proposed by __________.</p></li>
-<li><p>In hypothesis testing, we say “fail to __________” the null hypothesis rather than accept it.</p></li>
-<li><p>A numerical quantity calculated from sample observations and used to make a decision about <span class="math inline">\(H_0\)</span> is called a __________ statistic.</p></li>
-<li><p>The probability of rejecting <span class="math inline">\(H_0\)</span> when it is actually true is called a __________ error.</p></li>
-<li><p>The probability of failing to reject <span class="math inline">\(H_0\)</span> when it is actually false is called a __________ error.</p></li>
-<li><p>Type I error is denoted by __________.</p></li>
-<li><p>The probability of Type II error is denoted by __________.</p></li>
-<li><p>The probability of correctly rejecting a false null hypothesis is called the __________ of the test.</p></li>
+<li><p>A testable statement about a population distribution or its parameters is called a statistical __________.</p></li>
+<li><p>The hypothesis tested for possible rejection is called the __________ hypothesis.</p></li>
+<li><p>The hypothesis specifying a departure from the null hypothesis is called the __________ hypothesis.</p></li>
+<li><p>Rejecting a true null hypothesis is a Type __________ error.</p></li>
+<li><p>Failing to reject a false null hypothesis is a Type __________ error.</p></li>
+<li><p>The probability of a Type II error is denoted by __________.</p></li>
+<li><p>The probability of rejecting a false null hypothesis is called the __________ of a test.</p></li>
 <li><p>The power of a test is equal to __________.</p></li>
-<li><p>Commonly used levels of significance include __________ and __________.</p></li>
-<li><p>The probability distribution of all possible values of a test statistic under <span class="math inline">\(H_0\)</span> is called the __________ distribution.</p></li>
-<li><p>The region in which the test statistic leads to rejection of <span class="math inline">\(H_0\)</span> is called the __________ region.</p></li>
-<li><p>The rejection region is also called the __________ region.</p></li>
-<li><p>The complementary region in which <span class="math inline">\(H_0\)</span> is not rejected is called the __________ region.</p></li>
-<li><p>The value of the test statistic that separates the rejection and non-rejection regions is called the __________ value.</p></li>
-<li><p>The size of the rejection region is equal to the level of __________.</p></li>
-<li><p>The size of the acceptance region is equal to __________.</p></li>
-<li><p>If <span class="math inline">\(H_1:\mu&lt;\mu_0\)</span>, the test is called a __________-tailed test.</p></li>
-<li><p>If <span class="math inline">\(H_1:\mu&gt;\mu_0\)</span>, the test is called a __________-tailed test.</p></li>
-<li><p>If <span class="math inline">\(H_1:\mu\neq\mu_0\)</span>, the test is called a __________-tailed test.</p></li>
-<li><p>In a two-tailed test, the total critical area is __________ and the area in each tail is __________.</p></li>
-<li><p>In a right-tailed test, <span class="math inline">\(H_0\)</span> is rejected when the calculated test statistic is __________ than the critical value.</p></li>
-<li><p>In a left-tailed test, <span class="math inline">\(H_0\)</span> is rejected when the calculated test statistic is __________ than the critical value.</p></li>
-<li><p>In a two-tailed test, <span class="math inline">\(H_0\)</span> is rejected when the test statistic falls beyond either of the two __________ values.</p></li>
-<li><p>The probability of obtaining a test statistic as extreme as or more extreme than the observed value, assuming <span class="math inline">\(H_0\)</span> is true, is called the __________.</p></li>
-<li><p>If the p-value is less than or equal to <span class="math inline">\(\alpha\)</span>, we __________ <span class="math inline">\(H_0\)</span>.</p></li>
-<li><p>If the p-value is greater than <span class="math inline">\(\alpha\)</span>, we __________ reject <span class="math inline">\(H_0\)</span>.</p></li>
-<li><p>A small p-value provides strong evidence __________ the null hypothesis.</p></li>
-<li><p>A large p-value indicates that the observed result is reasonably __________ with <span class="math inline">\(H_0\)</span>.</p></li>
-<li><p>The test statistic commonly used in a z-test is the __________ statistic.</p></li>
-<li><p>The test statistic commonly used in a t-test is the __________ statistic.</p></li>
-<li><p>The test statistic used in a chi-square test is the __________ statistic.</p></li>
-<li><p>The test statistic used in an F-test is the __________ statistic.</p></li>
-<li><p>The first step in hypothesis testing is to state the __________ hypothesis.</p></li>
-<li><p>The second step in hypothesis testing is to state the __________ hypothesis.</p></li>
-<li><p>Before conducting the test, the researcher must set the level of __________.</p></li>
-<li><p>The final decision in hypothesis testing is based on the test statistic and the __________ value or p-value.</p></li>
+<li><p>The set of test-statistic values leading to rejection is called the __________ region.</p></li>
+<li><p>A value separating rejection and non-rejection regions is called a __________ value.</p></li>
+<li><p>An alternative hypothesis specifying departures in either direction requires a __________-tailed test.</p></li>
+<li><p>An alternative hypothesis specifying departures in one direction requires a __________-tailed test.</p></li>
+<li><p>The probability, under the null model, of a result at least as extreme as the observed result is called the __________.</p></li>
+<li><p>When the p-value exceeds the chosen significance level, we __________ the null hypothesis.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1255,12 +1269,12 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 <h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A researcher expects the average fruit weight per plant to be 8 kg. State the null and alternative hypotheses if the researcher expects the average to be less than 8 kg.</p></li>
+<li><p>The reference average fruit weight per plant is 8 kg. State the null and alternative hypotheses for testing whether it has decreased.</p></li>
 <li><p>A researcher wants to determine whether a pesticide has any effect on crop yield, but has no prior idea whether the effect will be positive or negative. State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>.</p></li>
 <li><p>A researcher wants to determine whether a new fertilizer changes average crop yield from 50 kg. State the null and alternative hypotheses.</p></li>
 <li><p>A researcher wants to determine whether a new variety produces a yield greater than 40 kg per plant. State <span class="math inline">\(H_0\)</span> and <span class="math inline">\(H_1\)</span>.</p></li>
 <li><p>A coin is suspected to be biased. State the null and alternative hypotheses for testing whether the probability of obtaining a head is 0.5.</p></li>
-<li><p>In 10 tosses of a coin, 8 heads are obtained. If the decision rule is to reject <span class="math inline">\(H_0\)</span> when 8 or more heads are obtained, state the test statistic and decision.</p></li>
+<li><p>In 10 independent tosses, 8 heads are obtained. Use the two-sided 5% binomial rejection rule <span class="math inline">\(X\leq1\)</span> or <span class="math inline">\(X\geq9\)</span> to test whether the coin is fair. State the statistic and decision.</p></li>
 <li><p>Explain why obtaining 8 heads in 10 tosses does not by itself prove that the coin is biased.</p></li>
 <li><p>In a hypothesis test, <span class="math inline">\(H_0\)</span> is true but the researcher rejects it. Identify the type of error.</p></li>
 <li><p>In a hypothesis test, <span class="math inline">\(H_0\)</span> is false but the researcher fails to reject it. Identify the type of error.</p></li>
@@ -1291,7 +1305,7 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 <h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
 <p>Level of significance:</p>
 <p><span class="math display">\[
-\alpha=P(\text{Reject }H_0\mid H_0\text{ is true})
+P(\text{Reject }H_0\mid H_0\text{ is true})\leq\alpha
 \]</span></p>
 <p>Probability of Type II error:</p>
 <p><span class="math display">\[
@@ -1303,15 +1317,15 @@ Table&nbsp;13.3: Probability distribution of X (number of heads) under <span cla
 \]</span></p>
 <p>Size of rejection region:</p>
 <p><span class="math display">\[
-P(\text{Rejection region})=\alpha
+P_{H_0}(\text{Rejection region})\leq\alpha
 \]</span></p>
 <p>Size of acceptance region:</p>
 <p><span class="math display">\[
-P(\text{Acceptance region})=1-\alpha
+P_{H_0}(\text{Non-rejection region})\geq1-\alpha
 \]</span></p>
 <p>Binomial test statistic used in the worked coin example:</p>
 <p><span class="math display">\[
-p=\frac{x}{n}
+\hat p=\frac{x}{n}
 \]</span></p>
 <p>Binomial probability:</p>
 <p><span class="math display">\[
@@ -1345,7 +1359,7 @@ P(X=x)=\frac{n!}{(n-x)!x!}p^xq^{n-x}
 <li>Common test statistics → <span class="math inline">\(Z\)</span>, <span class="math inline">\(t\)</span>, <span class="math inline">\(\chi^2\)</span>, and <span class="math inline">\(F\)</span>.</li>
 <li>Type I error → reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is true.</li>
 <li>Type II error → fail to reject <span class="math inline">\(H_0\)</span> when <span class="math inline">\(H_0\)</span> is false.</li>
-<li><span class="math inline">\(\alpha\)</span> → probability of Type I error.</li>
+<li><span class="math inline">\(\alpha\)</span> → chosen upper bound on the Type I error probability.</li>
 <li><span class="math inline">\(\beta\)</span> → probability of Type II error.</li>
 <li>Power → probability of correctly rejecting a false <span class="math inline">\(H_0\)</span>.</li>
 <li>Power → <span class="math inline">\(1-\beta\)</span>.</li>
@@ -1355,12 +1369,12 @@ P(X=x)=\frac{n!}{(n-x)!x!}p^xq^{n-x}
 <li>Critical region → another name for rejection region.</li>
 <li>Acceptance region → complementary region where <span class="math inline">\(H_0\)</span> is not rejected.</li>
 <li>Critical value → value separating the rejection and non-rejection regions.</li>
-<li>Rejection region has probability <span class="math inline">\(\alpha\)</span>.</li>
-<li>Acceptance region has probability <span class="math inline">\(1-\alpha\)</span>.</li>
+<li>Under <span class="math inline">\(H_0\)</span>, the rejection probability is controlled at <span class="math inline">\(\alpha\)</span>; a discrete test can be conservative.</li>
+<li>Under <span class="math inline">\(H_0\)</span>, the non-rejection probability is at least <span class="math inline">\(1-\alpha\)</span> for a level-<span class="math inline">\(\alpha\)</span> test.</li>
 <li><span class="math inline">\(H_1:\mu&lt;\mu_0\)</span> → left-tailed test.</li>
 <li><span class="math inline">\(H_1:\mu&gt;\mu_0\)</span> → right-tailed test.</li>
 <li><span class="math inline">\(H_1:\mu\neq\mu_0\)</span> → two-tailed test.</li>
-<li>In a two-tailed test, each tail has area <span class="math inline">\(\alpha/2\)</span>.</li>
+<li>An equal-tail two-sided test allocates <span class="math inline">\(\alpha/2\)</span> to each tail; a discrete test may not attain these probabilities exactly.</li>
 <li>Right-tailed test → reject <span class="math inline">\(H_0\)</span> when the calculated statistic is greater than the critical value.</li>
 <li>Left-tailed test → reject <span class="math inline">\(H_0\)</span> when the calculated statistic is less than the critical value.</li>
 <li>Two-tailed test → reject <span class="math inline">\(H_0\)</span> when the statistic falls below the lower critical value or above the upper critical value.</li>
@@ -1382,26 +1396,26 @@ P(X=x)=\frac{n!}{(n-x)!x!}p^xq^{n-x}
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> Inferential <code>2.</code> Hypothesis <code>3.</code> Parameter <code>4.</code> Null <code>5.</code> <span class="math inline">\(H_0\)</span> <code>6.</code> Alternative <code>7.</code> <span class="math inline">\(H_1\)</span>; <span class="math inline">\(H_a\)</span> <code>8.</code> Falsification <code>9.</code> Karl Popper <code>10.</code> Reject <code>11.</code> Test <code>12.</code> Type I <code>13.</code> Type II <code>14.</code> <span class="math inline">\(\alpha\)</span> <code>15.</code> <span class="math inline">\(\beta\)</span> <code>16.</code> Power <code>17.</code> <span class="math inline">\(1-\beta\)</span> <code>18.</code> 0.05; 0.01 <code>19.</code> Sampling <code>20.</code> Rejection <code>21.</code> Critical <code>22.</code> Acceptance <code>23.</code> Critical <code>24.</code> Significance <code>25.</code> <span class="math inline">\(1-\alpha\)</span> <code>26.</code> Left <code>27.</code> Right <code>28.</code> Two <code>29.</code> <span class="math inline">\(\alpha\)</span>; <span class="math inline">\(\alpha/2\)</span> <code>30.</code> Greater <code>31.</code> Less <code>32.</code> Critical <code>33.</code> p-value <code>34.</code> Reject <code>35.</code> Do not <code>36.</code> Against <code>37.</code> Consistent <code>38.</code> <span class="math inline">\(z\)</span> <code>39.</code> <span class="math inline">\(t\)</span> <code>40.</code> <span class="math inline">\(\chi^2\)</span> <code>41.</code> <span class="math inline">\(F\)</span> <code>42.</code> Null <code>43.</code> Alternative <code>44.</code> Significance <code>45.</code> Critical</p>
+<p><code>1.</code> Hypothesis <code>2.</code> Null <code>3.</code> Alternative <code>4.</code> I <code>5.</code> II <code>6.</code> <span class="math inline">\(\beta\)</span> <code>7.</code> Power <code>8.</code> <span class="math inline">\(1-\beta\)</span> <code>9.</code> Critical <code>10.</code> Critical <code>11.</code> Two <code>12.</code> One <code>13.</code> p-value <code>14.</code> Fail to reject</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
 <ol type="1">
-<li><p>Let <span class="math inline">\(\mu\)</span> denote the average fruit weight. Since the expected value is 8 kg and the researcher expects the average to be less than 8 kg, <span class="math inline">\(H_0:\mu=8\)</span> and <span class="math inline">\(H_1:\mu&lt;8\)</span>. This is a left-tailed test.</p></li>
+<li><p>Let <span class="math inline">\(\mu\)</span> denote the average fruit weight. The hypotheses are <span class="math inline">\(H_0:\mu\geq8\)</span> and <span class="math inline">\(H_1:\mu&lt;8\)</span>. This is a left-tailed test, calculated at the null boundary <span class="math inline">\(\mu=8\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(\mu\)</span> denote the change in average yield. Since there is no expected change but the chemical could either increase or decrease yield, <span class="math inline">\(H_0:\mu=0\)</span> and <span class="math inline">\(H_1:\mu\neq0\)</span>. This is a two-tailed test.</p></li>
 <li><p>Let <span class="math inline">\(\mu\)</span> denote the average crop yield. Since the researcher wants to determine whether the yield changes from 50 kg, <span class="math inline">\(H_0:\mu=50\)</span> and <span class="math inline">\(H_1:\mu\neq50\)</span>. This is a two-tailed test.</p></li>
-<li><p>Let <span class="math inline">\(\mu\)</span> denote the average yield of the new variety. <span class="math inline">\(H_0:\mu=40\)</span> and <span class="math inline">\(H_1:\mu&gt;40\)</span>. This is a right-tailed test.</p></li>
+<li><p>Let <span class="math inline">\(\mu\)</span> denote the average yield of the new variety. <span class="math inline">\(H_0:\mu\leq40\)</span> and <span class="math inline">\(H_1:\mu&gt;40\)</span>. This is a right-tailed test, calculated at the null boundary <span class="math inline">\(\mu=40\)</span>.</p></li>
 <li><p>Let <span class="math inline">\(p\)</span> denote the probability of obtaining a head. For an unbiased coin <span class="math inline">\(H_0:p=0.5\)</span>, and for a biased coin <span class="math inline">\(H_1:p\neq0.5\)</span>. This is a two-tailed test.</p></li>
-<li><p>The test statistic used in the example is <span class="math inline">\(p=\frac{x}{n}=\frac{8}{10}=0.8\)</span>. The decision rule is to reject <span class="math inline">\(H_0\)</span> if 8 or more heads occur; since 8 heads were obtained, this illustrative rule leads to rejection of <span class="math inline">\(H_0\)</span>.</p></li>
+<li><p>The observed statistic is <span class="math inline">\(X=8\)</span> heads, with sample proportion <span class="math inline">\(\hat p=0.8\)</span>. Since neither <span class="math inline">\(X\leq1\)</span> nor <span class="math inline">\(X\geq9\)</span> holds, do not reject <span class="math inline">\(H_0:p=0.5\)</span> at the two-sided 5% level. The exact two-sided p-value is <span class="math inline">\(2P(X\geq8)=0.109375\)</span>.</p></li>
 <li><p>Eight heads in ten tosses may occur simply because of random variation even when the coin is unbiased. Therefore, the observed result must be compared with the sampling distribution of the test statistic and an appropriate decision rule; an observed difference alone does not prove that the null hypothesis is false.</p></li>
 <li><p>Rejecting <span class="math inline">\(H_0\)</span> when it is actually true is a <strong>Type I error</strong>.</p></li>
 <li><p>Failing to reject <span class="math inline">\(H_0\)</span> when it is actually false is a <strong>Type II error</strong>.</p></li>
-<li><p>The level of significance is the probability of committing a Type I error. Given <span class="math inline">\(\alpha=0.05\)</span>, the probability of Type I error is 0.05 or 5%.</p></li>
+<li><p>The probability of a Type I error is controlled at 0.05 or 5%. It equals 0.05 for an exact-size test and can be smaller for a conservative discrete test.</p></li>
 <li><p>Given <span class="math inline">\(\beta=0.20\)</span>, and Power <span class="math inline">\(=1-\beta\)</span>, so Power <span class="math inline">\(=1-0.20=0.80\)</span>, or 80%.</p></li>
 <li><p>Given Power <span class="math inline">\(=0.90\)</span>, and since Power <span class="math inline">\(=1-\beta\)</span>, we have <span class="math inline">\(\beta=1-0.90=0.10\)</span>, or 10%.</p></li>
-<li><p>Given <span class="math inline">\(\alpha=0.01\)</span>, the size of the rejection region is equal to <span class="math inline">\(\alpha\)</span>, so <span class="math inline">\(P(\text{Rejection region})=0.01\)</span>, or 1%.</p></li>
-<li><p>For a two-tailed test, the area in each tail is <span class="math inline">\(\frac{\alpha}{2}\)</span>. Given <span class="math inline">\(\alpha=0.05\)</span>, each tail has an area of <span class="math inline">\(\frac{0.05}{2}=0.025\)</span>.</p></li>
+<li><p>Under <span class="math inline">\(H_0\)</span>, the rejection probability is at most 0.01 or 1%, with equality for an exact-size test.</p></li>
+<li><p>An equal-tail two-sided test allocates <span class="math inline">\(\alpha/2=0.025\)</span> to each tail. A continuous exact-size test attains these areas; a conservative discrete test may use smaller tail probabilities.</p></li>
 <li><p>Given <span class="math inline">\(H_1:\mu&lt;10\)</span>, the test is a <strong>left-tailed test</strong>, and the rejection region lies on the left side of the sampling distribution.</p></li>
 <li><p>Given <span class="math inline">\(H_1:\mu&gt;10\)</span>, the test is a <strong>right-tailed test</strong>, and the rejection region lies on the right side of the sampling distribution.</p></li>
 <li><p>Given <span class="math inline">\(H_1:\mu\neq10\)</span>, the test is a <strong>two-tailed test</strong>, and the rejection region lies in both tails of the sampling distribution.</p></li>
@@ -1430,11 +1444,11 @@ P(X=x)=\frac{n!}{(n-x)!x!}p^xq^{n-x}
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>The lady, the tea, and the birth of hypothesis testing</strong></p>
-<p>It was an otherwise unremarkable summer afternoon at an agricultural research station in Cambridge, England, in the 1920s. A group of colleagues sat down for tea. When statistician Ronald Fisher poured a cup and offered it to his colleague Dr.&nbsp;Muriel Bristol, she politely declined. She preferred tea into which the milk had been added first, she explained - and she could tell the difference just by tasting.</p>
-<p>Fisher was sceptical. “Nonsense,” he reportedly said. “Surely it makes no difference.” But Bristol was adamant. A third colleague, William Roach, suggested they settle the matter with an experiment.</p>
-<p>Fisher prepared eight cups of tea - four with milk added first, four with tea added first - and presented them to Dr.&nbsp;Bristol in a random order. She was told that four cups had been prepared each way, and her task was to identify them. She correctly identified all eight.</p>
-<p>Fisher used this experiment in his landmark 1935 book <em>The Design of Experiments</em> to introduce the concept of the null hypothesis and significance testing. The null hypothesis was that Dr.&nbsp;Bristol had no ability to tell the difference and was merely guessing. Fisher showed that the probability of correctly identifying all eight cups by chance alone was only 1 in 70, or about 1.4% - well below any reasonable threshold of significance. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span></p>
-<p>This charming episode gave the world a framework that now underlies every clinical trial, every agricultural experiment, and every scientific study that draws a conclusion from data. The next time you test a hypothesis in your research, you are following in the footsteps of a tea party in Cambridge.</p>
+<p>It was an otherwise unremarkable summer afternoon at Rothamsted Experimental Station in Harpenden, England, in the 1920s. A group of colleagues sat down for tea. When statistician Ronald Fisher poured a cup and offered it to his colleague Dr.&nbsp;Muriel Bristol, she politely declined. She preferred tea into which the milk had been added first, she explained - and she could tell the difference just by tasting.</p>
+<p>Fisher was sceptical, but Bristol maintained that she could tell the difference. A third colleague, William Roach, suggested they settle the matter with an experiment.</p>
+<p>Fisher prepared eight cups of tea - four with milk added first, four with tea added first - and presented them to Dr.&nbsp;Bristol in a random order. She was told that four cups had been prepared each way, and her task was to identify them. The statistical calculation considers the result in which all eight are correctly identified; Fisher’s 1935 account presents the experimental reasoning rather than documenting Bristol’s observed result.</p>
+<p>Fisher used this experiment in his landmark 1935 book <em>The Design of Experiments</em> to introduce the concept of the null hypothesis and significance testing. The null hypothesis was that Dr.&nbsp;Bristol had no ability to tell the difference and was merely guessing. Fisher showed that the probability of correctly identifying all eight cups by chance alone was only 1 in 70, or about 1.4% - below the conventional 5% level, though not below 1%. <span class="citation" data-cites="Fisher1935">(<a href="references.html#ref-Fisher1935" role="doc-biblioref">Fisher 1935</a>)</span></p>
+<p>This charming episode gave the world a framework that now underlies every clinical trial, every agricultural experiment, and every scientific study that draws a conclusion from data. The next time you test a hypothesis in your research, you are following in the footsteps of a tea experiment at Rothamsted.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1454,18 +1468,18 @@ P(X=x)=\frac{n!}{(n-x)!x!}p^xq^{n-x}
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Fisher1925" class="csl-entry" role="listitem">
-Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Edinburgh: Oliver; Boyd.
+Fisher, Ronald A. 1925. <em>Statistical Methods for Research Workers</em>. Oliver; Boyd.
 </div>
 <div id="ref-Fisher1935" class="csl-entry" role="listitem">
-———. 1935. <em>The Design of Experiments</em>. Edinburgh: Oliver; Boyd.
+Fisher, Ronald A. 1935. <em>The Design of Experiments</em>. Oliver; Boyd.
 </div>
 <div id="ref-NeymanPearson1933" class="csl-entry" role="listitem">
 Neyman, Jerzy, and Egon S. Pearson. 1933. <span>“On the Problem of the Most Efficient Tests of Statistical Hypotheses.”</span> <em>Philosophical Transactions of the Royal Society of London, Series A</em> 231: 289–337. <a href="https://doi.org/10.1098/rsta.1933.0009">https://doi.org/10.1098/rsta.1933.0009</a>.
 </div>
 <div id="ref-Popper1959" class="csl-entry" role="listitem">
-Popper, Karl R. 1959. <em>The Logic of Scientific Discovery</em>. London: Routledge.
+Popper, Karl R. 1959. <em>The Logic of Scientific Discovery</em>. Routledge.
 </div>
 </div>
 </section>
@@ -1558,7 +1572,7 @@ Popper, Karl R. 1959. <em>The Logic of Scientific Discovery</em>. London: Routle
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1901,16 +1915,17 @@ Popper, Karl R. 1959. <em>The Logic of Scientific Discovery</em>. London: Routle
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

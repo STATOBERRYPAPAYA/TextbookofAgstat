@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>23&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./transformation.html" rel="next">
 <link href="./ancova.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="23&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="23&nbsp; Missing plot analysis – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -578,11 +611,20 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#covariance-method-bartletts-approach" id="toc-covariance-method-bartletts-approach" class="nav-link active" data-scroll-target="#covariance-method-bartletts-approach"><span class="header-section-number">23.1</span> Covariance method (Bartlett’s approach)</a></li>
+  <li><a href="#a-missing-observation-in-a-crd" id="toc-a-missing-observation-in-a-crd" class="nav-link active" data-scroll-target="#a-missing-observation-in-a-crd"><span class="header-section-number">23.0.1</span> A missing observation in a CRD</a></li>
+  <li><a href="#covariance-method-bartletts-approach" id="toc-covariance-method-bartletts-approach" class="nav-link" data-scroll-target="#covariance-method-bartletts-approach"><span class="header-section-number">23.1</span> Covariance method (Bartlett’s approach)</a></li>
   <li><a href="#method-of-substitution" id="toc-method-of-substitution" class="nav-link" data-scroll-target="#method-of-substitution"><span class="header-section-number">23.2</span> Method of substitution</a>
   <ul class="collapse">
-  <li><a href="#randomised-block-design-with-a-single-missing-value" id="toc-randomised-block-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#randomised-block-design-with-a-single-missing-value"><span class="header-section-number">23.2.1</span> Randomised block design with a single missing value</a></li>
+  <li><a href="#randomized-block-design-with-a-single-missing-value" id="toc-randomized-block-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#randomized-block-design-with-a-single-missing-value"><span class="header-section-number">23.2.1</span> Randomized block design with a single missing value</a></li>
   <li><a href="#latin-square-design-with-a-single-missing-value" id="toc-latin-square-design-with-a-single-missing-value" class="nav-link" data-scroll-target="#latin-square-design-with-a-single-missing-value"><span class="header-section-number">23.2.2</span> Latin square design with a single missing value</a></li>
+  </ul></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">23.3</span> Chapter Summary</a>
+  <ul class="collapse">
+  <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
+  <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
+  <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
+  <li><a href="#answers-to-fill-in-the-blanks" id="toc-answers-to-fill-in-the-blanks" class="nav-link" data-scroll-target="#answers-to-fill-in-the-blanks">Answers to fill in the blanks</a></li>
+  <li><a href="#solutions-to-numerical-and-conceptual-questions" id="toc-solutions-to-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -610,17 +652,22 @@ window.Quarto = {
 </header>
 
 
-<p>In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. The data recorded from plots so affected will be omitted and then the analysis is carried out – called as missing plot analysis.</p>
-<p>The Analysis of such data may be done by different methods.</p>
+<p>In agricultural field experiments the experimenter is often encountered with the situation that the observations of a particular treatment/ plot may be lost or may be affected by some external factors so that it would not be possible to analyse these observations by including it with the normal values. The observation on a treatment may get lost by various reasons like, attack of cattle or birds, manure may be dumped on the side, disease infestation and so on. Accidentally lost or unusable observations may require missing plot analysis. The reason for exclusion must be documented. A poor response caused by the treatment itself, such as treatment-induced plant death, must not automatically be discarded as a missing observation.</p>
+<section id="a-missing-observation-in-a-crd" class="level3" data-number="23.0.1">
+<h3 data-number="23.0.1" class="anchored" data-anchor-id="a-missing-observation-in-a-crd"><span class="header-section-number">23.0.1</span> A missing observation in a CRD</h3>
+<p>In a CRD, an accidentally missing observation generally leaves unequal treatment sample sizes. Calculate each treatment mean from the observations available and fit the one-way model to those observations. If all <span class="math inline">\(v\)</span> treatments remain represented, the residual degrees of freedom are <span class="math inline">\(n_{obs}-v\)</span>, where <span class="math inline">\(n_{obs}\)</span> is the number actually observed. Use the unequal-replication standard error for comparisons. Filling the missing value with a mean and counting it as an observed replication would give a false impression of precision. The missingness assumptions still matter.</p>
+<p>The analysis of RCBD and Latin-square data with missing plots may be done by different methods.</p>
 <ol type="i">
 <li><p>the most commonly used method currently adopted is known as ‘method of analysis of non – orthogonal data’ which is highly computer based</p></li>
 <li><p>Method of substitution by Yates based on minimization of the error sum of squares and</p></li>
 <li><p>Analysis of the data with missing values by the technique of analysis of covariance, due to Bartlett.</p></li>
 </ol>
+<p>The additive model must remain estimable from the observed plots. Missingness should not depend on unobserved responses in a way that biases the comparison; accidental sample loss differs from deliberately discarding low yields. With several missing plots, use the observed-data model and check its rank and residual degrees of freedom. Merely subtracting the number of missing plots from complete-data degrees of freedom is valid only when no additional effects become unestimable.</p>
+</section>
 <section id="covariance-method-bartletts-approach" class="level2" data-number="23.1">
 <h2 data-number="23.1" class="anchored" data-anchor-id="covariance-method-bartletts-approach"><span class="header-section-number">23.1</span> Covariance method (Bartlett’s approach)</h2>
 <p>Assume an imaginary covariate X taking values zero for every plot except the missing plot for which it will take the value 1 (or –1) . Now the value of the main variate Y = 0 for the missing plot, and the actual values for the remaining plots. The data will be analysed as per the ANCOVA technique of the respective design used.</p>
-<p>In missing plot analysis the degrees of freedom for error and total will be based on the existing number of observations only. By this method also the degrees of freedom of adjusted error sum of squares will be less by one ( when there is one missing value).</p>
+<p>With one missing value, the total and error degrees of freedom are each one less than in the complete design, provided the model remains estimable. In the indicator-covariate approach, the artificial zero is not a new observed response: the additional fitted indicator accounts for the missing position. Do not subtract a second degree of freedom after already using the reduced number of observed responses.</p>
 </section>
 <section id="method-of-substitution" class="level2" data-number="23.2">
 <h2 data-number="23.2" class="anchored" data-anchor-id="method-of-substitution"><span class="header-section-number">23.2</span> Method of substitution</h2>
@@ -630,8 +677,8 @@ window.Quarto = {
 <li><p>Some additional adjustments to treatment sum of squares are needed. In pair comparison also some changes are made.</p></li>
 <li><p>An iterative procedure is adopted when more than one observation is missing.</p></li>
 </ol>
-<section id="randomised-block-design-with-a-single-missing-value" class="level3" data-number="23.2.1">
-<h3 data-number="23.2.1" class="anchored" data-anchor-id="randomised-block-design-with-a-single-missing-value"><span class="header-section-number">23.2.1</span> Randomised block design with a single missing value</h3>
+<section id="randomized-block-design-with-a-single-missing-value" class="level3" data-number="23.2.1">
+<h3 data-number="23.2.1" class="anchored" data-anchor-id="randomized-block-design-with-a-single-missing-value"><span class="header-section-number">23.2.1</span> Randomized block design with a single missing value</h3>
 <ol type="i">
 <li>The missing value in RBD is estimated as</li>
 </ol>
@@ -644,7 +691,7 @@ B =Total of the observed values of the replication that contain the missing data
 T = Total of the observed values of the treatment that contain the missing data<br>
 G = Grand total of all existing observations.</p>
 <ol start="2" type="i">
-<li><p>This estimate of the missing value is placed in its position and the analysis is carried out based on the procedure of RBD. Subtract one degree of freedom from the total and error degrees of freedom. This method provides a proper estimate of the error variance per plot but there is an inflation in treatment sum of squares; ( the treatment sum of squares is positively biased). If the treatments turn out to be not significant we can ignore the bias and the results are accepted. But if the treatments turn out to be just significant, it may be due to this bias. In that case an actual treatment sum of squares is obtained by a suitable formula.</p></li>
+<li><p>Place the estimated value in its position and calculate the sums of squares using the RBD procedure. Subtract one degree of freedom from the total and error degrees of freedom. The completed-table error SS agrees with that from the additive model fitted to the observed data, but its treatment SS is inflated. Apply the adjustment below before testing treatments, rather than deciding whether to adjust after seeing the preliminary significance result. Direct fitting of the model to the observed responses is an alternative.</p></li>
 <li><p>Estimate of bias in the case of RBD:</p></li>
 </ol>
 <p><span id="eq-biasRBD"><span class="math display">\[Bias=\frac{(B+vT-G)^2}{v(v-1)(r-1)^2} \tag{23.2}\]</span></span></p>
@@ -656,13 +703,14 @@ G = Grand total of all existing observations.</p>
 <ol type="a">
 <li>For comparing two treatment means in which one of them contains the missing observation:</li>
 </ol>
-<p><span id="eq-CDmsRBD"><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} + \frac{v}{r(r-1)(v-1)}\right)} \tag{23.3}\]</span></span></p>
+<p><span id="eq-CDmsRBD"><span class="math display">\[CD=t_{\alpha/2,edf} \cdot \sqrt{MSE \cdot \left(\frac{2}{r} + \frac{v}{r(r-1)(v-1)}\right)} \tag{23.3}\]</span></span></p>
 <ol start="2" type="a">
 <li>For comparing other pairs of treatment means (in which neither contains a missing observation):</li>
 </ol>
-<p><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{\frac{2\,MSE}{r}}\]</span></p>
-<p>where <span class="math inline">\(t_{\alpha}\)</span> denotes the <span class="math inline">\(t\)</span> table value at <span class="math inline">\((r-1)(v-1)-1\)</span> degrees of freedom.</p>
-<p><strong>Example 22.1</strong>: Data of a RBD with five sources of sulphur (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the fresh weight are represented below. One sample was spoiled due to negligence during analysis. Find the missing value and do further analysis.</p>
+<p><span class="math display">\[CD=t_{\alpha/2,edf} \cdot \sqrt{\frac{2\,MSE}{r}}\]</span></p>
+<p>where <span class="math inline">\(t_{\alpha/2,edf}\)</span> denotes the <span class="math inline">\(t\)</span> table value at <span class="math inline">\((r-1)(v-1)-1\)</span> degrees of freedom.</p>
+<div id="exm-missing-rbd" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.1</strong></span> Data of a RBD with five sources of sulphur (S), 4 blocks chlorophyll content of a pea leaves in mg/g of the fresh weight are represented below. One sample was spoiled due to negligence during analysis. Find the missing value and do further analysis.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -711,7 +759,7 @@ G = Grand total of all existing observations.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Solution 22.1</strong></p>
+<p><strong>Solution</strong></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -770,21 +818,21 @@ G = Grand total of all existing observations.</p>
 <td style="text-align: center;">4.644</td>
 <td style="text-align: center;">2.744 + <span class="math inline">\(x\)</span></td>
 <td style="text-align: center;">3.333</td>
-<td style="text-align: center;">15.873 + <span class="math inline">\(x\)</span></td>
+<td style="text-align: center;">15.148 + <span class="math inline">\(x\)</span></td>
 </tr>
 </tbody>
 </table>
 <p>Here, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=5\)</span></p>
 <p>Using <a href="#eq-msRBD" class="quarto-xref">Equation&nbsp;<span>23.1</span></a></p>
-<p><span class="math display">\[x=\frac{10.976+12.875-15.148}{4\times3}=0.725\]</span></p>
-<p>Correction factor, <span class="math inline">\(CF=\dfrac{(15.873)^2}{20}=12.597\)</span></p>
-<p>Total SS <span class="math inline">\(=13.036-CF=13.036-12.597=0.439\)</span></p>
-<p>Treatment SS <span class="math inline">\(=\dfrac{50.95}{4}-12.597=0.1406\)</span></p>
-<p>Block SS <span class="math inline">\(=\dfrac{64.307}{5}-12.597=0.264\)</span></p>
+<p><span class="math display">\[x=\frac{10.976+12.875-15.148}{4\times3}=0.72525\]</span></p>
+<p>Correction factor, <span class="math inline">\(CF=\dfrac{(15.87325)^2}{20}=12.598003\)</span></p>
+<p>Total SS <span class="math inline">\(=13.036394-12.598003=0.438390\)</span></p>
+<p>Treatment SS <span class="math inline">\(=\dfrac{50.952085}{4}-12.598003=0.140018\)</span></p>
+<p>Block SS <span class="math inline">\(=\dfrac{64.309650}{5}-12.598003=0.263927\)</span></p>
 <p>Using <a href="#eq-biasRBD" class="quarto-xref">Equation&nbsp;<span>23.2</span></a></p>
 <p><span class="math display">\[Bias=\frac{(2.744+12.875-15.148)^2}{5\times4\times9}=0.00123\]</span></p>
-<p>Treatment Adj. SS <span class="math inline">\(=0.1406-0.00123=0.139\)</span></p>
-<p>Total Adj. SS <span class="math inline">\(=0.439-0.00123=0.437\)</span></p>
+<p>Treatment Adj. SS <span class="math inline">\(=0.140018-0.001232=0.138786\)</span></p>
+<p>Total Adj. SS <span class="math inline">\(=0.438390-0.001232=0.437158\)</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -800,43 +848,44 @@ G = Grand total of all existing observations.</p>
 <tr class="odd">
 <td>Block</td>
 <td>3</td>
-<td>0.264</td>
-<td>0.088</td>
-<td>29.33</td>
-<td>3.59</td>
+<td>0.263927</td>
+<td>0.087976</td>
+<td></td>
+<td></td>
 </tr>
 <tr class="even">
 <td>Treatment Adj.</td>
 <td>4</td>
-<td>0.139</td>
-<td>0.034</td>
-<td>11.003</td>
+<td>0.138786</td>
+<td>0.034696</td>
+<td>11.080</td>
 <td>3.36</td>
 </tr>
 <tr class="odd">
 <td>Error Adj.</td>
 <td>11</td>
-<td>0.034</td>
-<td>0.003</td>
+<td>0.034446</td>
+<td>0.003131</td>
 <td></td>
 <td></td>
 </tr>
 <tr class="even">
 <td>Total Adj.</td>
 <td>18</td>
-<td>0.437</td>
+<td>0.437158</td>
 <td></td>
 <td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> the treatment pairs are significantly different from each other.</p>
+<p>Since the treatment <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span>, the treatment means are not all equal. Use the relevant CD to assess individual pairs.</p>
 <p>CD for missing data using <a href="#eq-CDmsRBD" class="quarto-xref">Equation&nbsp;<span>23.3</span></a></p>
-<p><span class="math display">\[CD=2.201\times\sqrt{\frac{0.003}{4}\left(2+\frac{5}{12}\right)}=0.095\]</span></p>
+<p><span class="math display">\[CD=2.201\sqrt{\frac{0.003131424}{4}\left(2+\frac{5}{12}\right)}=0.09572\]</span></p>
 <p>CD for other data is</p>
-<p><span class="math display">\[CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times0.003}{4}}=0.086\]</span></p>
-<p>Here, the mean of <span class="math inline">\(S_3\)</span> is maximum, which was found to be on par with the means of <span class="math inline">\(S_1\)</span> and <span class="math inline">\(S_4\)</span>. Also, <span class="math inline">\(S_1\)</span> was on par with <span class="math inline">\(S_4\)</span> and <span class="math inline">\(S_2\)</span>. The mean of <span class="math inline">\(S_0\)</span> is minimum.</p>
+<p><span class="math display">\[CD=2.201\sqrt{\frac{2(0.003131424)}{4}}=0.08709\]</span></p>
+<p>The substituted treatment means are <span class="math inline">\(S_0=0.63775\)</span>, <span class="math inline">\(S_1=0.82506\)</span>, <span class="math inline">\(S_2=0.80375\)</span>, <span class="math inline">\(S_3=0.89000\)</span>, and <span class="math inline">\(S_4=0.81175\)</span>. The four means <span class="math inline">\(S_1\)</span> to <span class="math inline">\(S_4\)</span> do not differ significantly under the applicable CDs; all four exceed <span class="math inline">\(S_0\)</span> significantly. In particular, the <span class="math inline">\(S_3-S_2\)</span> difference is <span class="math inline">\(0.08625&lt;0.08709\)</span>.</p>
+</div>
 </section>
 <section id="latin-square-design-with-a-single-missing-value" class="level3" data-number="23.2.2">
 <h3 data-number="23.2.2" class="anchored" data-anchor-id="latin-square-design-with-a-single-missing-value"><span class="header-section-number">23.2.2</span> Latin square design with a single missing value</h3>
@@ -859,8 +908,9 @@ G = Grand total of all existing observations.</p>
 <ol start="3" type="i">
 <li>For pairwise comparison involving a treatment with a missing observation (comparing two treatment means in which one of them contains a missing observation):</li>
 </ol>
-<p><span id="eq-CDmsLSD"><span class="math display">\[CD=t_{\alpha} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\right)} \tag{23.6}\]</span></span></p>
-<p><strong>Example 22.2</strong>: The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.</p>
+<p><span id="eq-CDmsLSD"><span class="math display">\[CD=t_{\alpha/2,edf} \cdot \sqrt{MSE \cdot \left(\frac{2}{v} + \frac{1}{(v-1)(v-2)}\right)} \tag{23.6}\]</span></span></p>
+<div id="exm-missing-latin" class="theorem example">
+<p><span class="theorem-title"><strong>Example 23.2</strong></span> The data in below table is the grain yield of paddy from a varietal trial in 5x5 LSD with 5 varieties of paddy, one observation was found missing. Estimate the missing value and analyse the data.</p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -915,7 +965,7 @@ G = Grand total of all existing observations.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Solution 22.2</strong></p>
+<p><strong>Solution</strong></p>
 <p>Here, <span class="math inline">\(v=5\)</span></p>
 <table class="caption-top table">
 <colgroup>
@@ -996,16 +1046,17 @@ G = Grand total of all existing observations.</p>
 </tbody>
 </table>
 <p>Using <a href="#eq-msLSD" class="quarto-xref">Equation&nbsp;<span>23.4</span></a></p>
-<p><span class="math display">\[x=\frac{[5(116+133+150)-(2\times 805)]}{4\times3}=32.083\approx 32\]</span></p>
-<p>Correction factor, <span class="math inline">\(CF=\dfrac{(837)^2}{25}=28022.76\)</span></p>
-<p>Total SS <span class="math inline">\(=29399-CF=29399-28022.76=1376.24\)</span></p>
-<p>Treatment SS <span class="math inline">\(=\dfrac{129^2+202^2+182^2+190^2+134^2}{5}-28022.76=902.24\)</span></p>
-<p>Row SS <span class="math inline">\(=\dfrac{168^2+148^2+183^2+173^2+165^2}{5}-28022.76=131.44\)</span></p>
-<p>Column SS <span class="math inline">\(=\dfrac{176^2+168^2+171^2+165^2+157^2}{5}-28022.76=40.24\)</span></p>
+<p><span class="math display">\[x=\frac{5(116+133+150)-2(805)}{4\times3}=32.083333.\]</span></p>
+<p>Keep this unrounded value in the subsequent calculations.</p>
+<p>Correction factor, <span class="math inline">\(CF=\dfrac{(837.083333)^2}{25}=28028.340278\)</span></p>
+<p>Total SS <span class="math inline">\(=29404.340278-28028.340278=1376.000000\)</span></p>
+<p>Treatment SS <span class="math inline">\(=\dfrac{129^2+202^2+182.083333^2+190^2+134^2}{5}-28028.340278=902.727778\)</span></p>
+<p>Row SS <span class="math inline">\(=\dfrac{168^2+148.083333^2+183^2+173^2+165^2}{5}-28028.340278=130.794444\)</span></p>
+<p>Column SS <span class="math inline">\(=\dfrac{176^2+168^2+171^2+165.083333^2+157^2}{5}-28028.340278=40.161111\)</span></p>
 <p>Using <a href="#eq-biasLSD" class="quarto-xref">Equation&nbsp;<span>23.5</span></a></p>
 <p><span class="math display">\[Bias=\frac{[(4\times150)+133+116-805]^2}{(4\times3)^2}=13.44\]</span></p>
-<p>Treatment Adj. SS <span class="math inline">\(=902.24-13.44=888.8\)</span></p>
-<p>Total Adj. SS <span class="math inline">\(=1376.24-13.44=1362.8\)</span></p>
+<p>Treatment Adj. SS <span class="math inline">\(=902.727778-13.444444=889.283334\)</span></p>
+<p>Total Adj. SS <span class="math inline">\(=1376.000000-13.444444=1362.555556\)</span></p>
 <table class="caption-top table">
 <thead>
 <tr class="header">
@@ -1021,51 +1072,100 @@ G = Grand total of all existing observations.</p>
 <tr class="odd">
 <td style="text-align: center;">Row</td>
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">131.44</td>
-<td style="text-align: center;">32.86</td>
-<td style="text-align: center;">1.19</td>
-<td style="text-align: center;">3.36</td>
+<td style="text-align: center;">130.794</td>
+<td style="text-align: center;">32.699</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Column</td>
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">40.24</td>
-<td style="text-align: center;">10.06</td>
-<td style="text-align: center;">0.36</td>
-<td style="text-align: center;">3.36</td>
+<td style="text-align: center;">40.161</td>
+<td style="text-align: center;">10.040</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Treatment Adj.</td>
 <td style="text-align: center;">4</td>
-<td style="text-align: center;">888.8</td>
-<td style="text-align: center;">222.2</td>
-<td style="text-align: center;">8.08</td>
+<td style="text-align: center;">889.283</td>
+<td style="text-align: center;">222.321</td>
+<td style="text-align: center;">8.089</td>
 <td style="text-align: center;">3.36</td>
 </tr>
 <tr class="even">
 <td style="text-align: center;">Error Adj.</td>
 <td style="text-align: center;">11</td>
-<td style="text-align: center;">302.32</td>
-<td style="text-align: center;">27.48</td>
+<td style="text-align: center;">302.317</td>
+<td style="text-align: center;">27.483</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 <tr class="odd">
 <td style="text-align: center;">Total Adj.</td>
 <td style="text-align: center;">23</td>
-<td style="text-align: center;">1362.8</td>
+<td style="text-align: center;">1362.556</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
 </tbody>
 </table>
-<p>Since the <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span> the treatment pairs are significantly different from each other.</p>
+<p>Since the treatment <span class="math inline">\(F_{cal}&gt;F_{tab}\)</span>, the treatment means are not all equal. Use the relevant CD to assess individual pairs.</p>
+<p>The block, row and column entries in the substitution tables are parts of the completed-table calculation. They are not separate adjusted tests for those nuisance effects. The missing value breaks orthogonality; if such tests are required, fit nested models to the observed responses and adjust each tested effect for the other effects. The adjusted total shown here is bookkeeping for this treatment-test calculation, not the corrected total SS of the observed responses alone.</p>
 <p>CD for missing data using <a href="#eq-CDmsLSD" class="quarto-xref">Equation&nbsp;<span>23.6</span></a></p>
 <p><span class="math display">\[CD=2.201\times\sqrt{27.48\left(\frac{2}{5}+\frac{1}{4\times3}\right)}=8.021\]</span></p>
 <p>CD for other data is</p>
-<p><span class="math display">\[CD=t_{\alpha}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297\]</span></p>
-<p>Here, the mean of B is maximum, which was found to be on par with the means of D and C. The mean of A is minimum, which is on par with E.</p>
+<p><span class="math display">\[CD=t_{\alpha/2,edf}\times\sqrt{\frac{2\,MSE}{r}}=2.201\times\sqrt{\frac{2\times27.48}{5}}=7.297\]</span></p>
+<p>The substituted means are A = 25.8, B = 40.4, C = 36.4167, D = 38.0, and E = 26.8. Under the applicable CDs, B, C, and D are not significantly different from one another, and A and E are not significantly different. Each of B, C, and D exceeds both A and E significantly.</p>
+</div>
+</section>
+</section>
+<section id="chapter-summary" class="level2" data-number="23.3">
+<h2 data-number="23.3" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">23.3</span> Chapter Summary</h2>
+<section id="fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>The classical substitution estimate of a missing plot minimizes the error sum of __________.</p></li>
+<li><p>Estimating one missing observation reduces the error degrees of freedom by __________.</p></li>
+<li><p>An estimated missing value is not an additional independent __________.</p></li>
+<li><p>In the RBD missing-value formula, totals exclude the missing __________.</p></li>
+<li><p>The classical substitution procedure may inflate the treatment sum of __________.</p></li>
+<li><p>Repeated updating of several missing-value estimates is called __________.</p></li>
+<li><p>The two blocking factors in a Latin square are rows and __________.</p></li>
+<li><p>The error mean square is used to calculate the standard error of a treatment __________.</p></li>
+</ol>
+</section>
+<section id="short-answer-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="short-answer-questions">Short-answer questions</h3>
+<ol type="1">
+<li><p>Why must an estimated missing value not be counted as a new independent observation?</p></li>
+<li><p>State how one missing value affects the error and total degrees of freedom.</p></li>
+<li><p>Explain why a treatment causing plant death should not automatically be treated as an accidental missing value.</p></li>
+<li><p>Compare classical substitution with fitting a linear model to the observed data.</p></li>
+</ol>
+</section>
+<section id="numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="numerical-and-conceptual-questions">Numerical and conceptual questions</h3>
+<p>Answers are given at the end of the chapter.</p>
+<ol type="1">
+<li><p>In an RBD, <span class="math inline">\(r=4\)</span>, <span class="math inline">\(v=5\)</span>, the observed total of the affected block is <span class="math inline">\(B=30\)</span>, the observed total of the affected treatment is <span class="math inline">\(T=20\)</span>, and the observed grand total is <span class="math inline">\(G=170\)</span>. Estimate the missing value.</p></li>
+<li><p>A complete RBD has five treatments and four blocks. If one observation is missing, state the error and total degrees of freedom, assuming the additive model remains estimable.</p></li>
+</ol>
+</section>
+<section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
+<div class="answer-key">
+<p><code>1.</code> Squares <code>2.</code> One <code>3.</code> Observation <code>4.</code> Value <code>5.</code> Squares <code>6.</code> Iteration <code>7.</code> Columns <code>8.</code> Difference</p>
+</div>
+</section>
+<section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="solutions-to-numerical-and-conceptual-questions">Solutions to numerical and conceptual questions</h3>
+<ol type="1">
+<li><p>Using <a href="#eq-msRBD" class="quarto-xref">Equation&nbsp;<span>23.1</span></a>, <span class="math inline">\(x=[4(30)+5(20)-170]/[(4-1)(5-1)]=50/12=4.167\)</span>.</p></li>
+<li><p>Complete-data error df <span class="math inline">\(=(5-1)(4-1)=12\)</span> and total df <span class="math inline">\(=20-1=19\)</span>. With one missing observation, error df <span class="math inline">\(=11\)</span> and total df <span class="math inline">\(=18\)</span>.</p></li>
+</ol>
 <div class="callout callout-style-default callout-caution callout-titled" title="Historical Insights">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1078,7 +1178,7 @@ G = Grand total of all existing observations.</p>
 <div class="callout-body-container callout-body">
 <p><strong>Frank Yates and the art of the missing value</strong></p>
 <p>In the field, experiments rarely go exactly to plan. A goat breaks into a plot, a flood washes out a corner, a technician mislabels a sample, and suddenly one of the neatly balanced yields is simply gone. In the early days of agricultural statistics this was a serious problem, because Fisher’s elegant analysis of variance relied on the tidy balance of equal numbers in every treatment and block. A single hole in the data destroyed that balance and, with it, the simple arithmetic of the analysis.</p>
-<p>The solution came from <strong>Frank Yates</strong>, Fisher’s brilliant younger colleague at the Rothamsted Experimental Station. In the early 1930s Yates worked out that a missing observation could be replaced by an estimated value, chosen precisely so as to <em>minimise the error sum of squares</em>, allowing the standard analysis to proceed almost unchanged. His formulae, one for the randomized block design, another for the Latin square, let researchers recover nearly all the information from a damaged experiment with only a small, correctable bias in the treatment sum of squares and the loss of a single degree of freedom. Yates set this out in his 1933 paper on the analysis of replicated experiments with missing values, and the “missing plot technique” quickly became a standard part of every field experimenter’s toolkit. It is a fine example of the statistician’s craft: not discarding hard-won data because of an accident, but finding a principled way to make the most of what remains. <span class="citation" data-cites="Yates1933">(<a href="references.html#ref-Yates1933" role="doc-biblioref">Yates 1933</a>)</span></p>
+<p>The solution came from <strong>Frank Yates</strong>, Fisher’s brilliant younger colleague at the Rothamsted Experimental Station. In the early 1930s Yates worked out that a missing observation could be replaced by an estimated value, chosen precisely so as to <em>minimize the error sum of squares</em>, allowing the standard analysis to proceed almost unchanged. His formulae, one for the randomized block design, another for the Latin square, let researchers recover nearly all the information from a damaged experiment with only a small, correctable bias in the treatment sum of squares and the loss of a single degree of freedom. Yates set this out in his 1933 paper on the analysis of replicated experiments with missing values, and the “missing plot technique” quickly became a standard part of every field experimenter’s toolkit. It is a fine example of the statistician’s craft: not discarding hard-won data because of an accident, but finding a principled way to make the most of what remains. <span class="citation" data-cites="Yates1933">(<a href="references.html#ref-Yates1933" role="doc-biblioref">Yates 1933</a>)</span></p>
 </div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Quotes to Inspire">
@@ -1097,7 +1197,7 @@ G = Grand total of all existing observations.</p>
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Yates1933" class="csl-entry" role="listitem">
 Yates, Frank. 1933. <span>“The Analysis of Replicated Experiments When the Field Results Are Incomplete.”</span> <em>Empire Journal of Experimental Agriculture</em> 1 (2): 129–42.
 </div>
@@ -1192,7 +1292,7 @@ Yates, Frank. 1933. <span>“The Analysis of Replicated Experiments When the Fie
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1535,16 +1635,17 @@ Yates, Frank. 1933. <span>“The Analysis of Replicated Experiments When the Fie
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 

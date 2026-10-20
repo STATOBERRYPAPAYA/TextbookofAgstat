@@ -2,17 +2,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.10.18">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>14&nbsp; Large sample test – TEXTBOOK OF AGRICULTURAL STATISTICS</title>
 <style>
-code{white-space: pre-wrap;}
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -24,7 +30,6 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -52,22 +57,21 @@ div.csl-indent {
 <meta name="quarto:offset" content="./">
 <link href="./smallsampleTest.html" rel="next">
 <link href="./hypothesisTest.html" rel="prev">
-<link href="./images/cover.jpg" rel="icon" type="image/jpeg">
+<link href="./images/cover.png" rel="icon" type="image/png">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b85bc7c33db8c58e0ec93c3465666fed.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-88896ba663fc8608535e7267b4dbf4c8.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-fb77ba77b36fd600d9d65d23f81eb906.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-ec83875b329a6ed8b1e866b6edea5f06.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-daaf63eef9efff0208c90520eb97e087.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -95,9 +99,36 @@ div.csl-indent {
     "search-label": "Search"
   }
 }</script>
+<style>
+/* Natural column widths for short data tables; retain local mobile scrolling. */
+main table.compact-data-table {
+  width: auto;
+  min-width: 0;
+  max-width: 100%;
+  margin-inline: auto;
+  table-layout: auto;
+}
+main table.compact-data-table th,
+main table.compact-data-table td {
+  padding: 0.4em 1em;
+  vertical-align: middle;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+</style>
+<script>
+// kable HTML cells retain $...$ delimiters; Pandoc's normal prose uses \(...\).
+// Support both without changing the table data, markup, or print rendering.
+window.MathJax = {
+  tex: {
+    inlineMath: { "[+]": [["$", "$"]] },
+    processEscapes: true
+  }
+};
+</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -128,16 +159,18 @@ window.Quarto = {
 
 <meta property="og:title" content="14&nbsp; Large sample test – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:description" content="">
-<meta property="og:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/cover.jpg">
+<meta property="og:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta property="og:site_name" content="TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta property="og:image:alt" content="Textbook of Agricultural Statistics">
+<meta property="og:image:height" content="4950">
+<meta property="og:image:width" content="3103">
 <meta name="twitter:title" content="14&nbsp; Large sample test – TEXTBOOK OF AGRICULTURAL STATISTICS">
 <meta name="twitter:description" content="">
-<meta name="twitter:image" content="https://www.agrinoteskau.com/agstat-textbook.html/images/papayalogo.png">
+<meta name="twitter:image" content="https://statoberrypapaya.github.io/TextbookofAgstat/images/cover.png">
 <meta name="twitter:image:alt" content="Textbook of Agricultural Statistics">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image-height" content="541">
-<meta name="twitter:image-width" content="956">
+<meta name="twitter:image-height" content="4950">
+<meta name="twitter:image-width" content="3103">
 </head>
 
 <body class="nav-sidebar floating quarto-light"><script id="quarto-html-before-body" type="application/javascript">
@@ -326,8 +359,8 @@ window.Quarto = {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
       <a href="./index.html" class="sidebar-logo-link">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
-      <img src="./images/sidebarcover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="./images/cover.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
       </a>
     <div class="sidebar-title mb-0 py-0">
       <a href="./">TEXTBOOK OF AGRICULTURAL STATISTICS</a> 
@@ -527,47 +560,47 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">Appendix 1</span></span></a>
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Sources of official data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">Appendix 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Duncan’s multiple range table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">Appendix 3</span></span></a>
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Standard normal distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix4.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">Appendix 4</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Student’s t distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Appendix 5</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">F distribution table</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./appendix_personalities.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Appendix 6</span></span></a>
+ <span class="menu-text"><span class="chapter-number">F</span>&nbsp; <span class="chapter-title">Notable personalities in the development of statistics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
   </div>
 </li>
       </ul>
   </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">References</span></span></a>
-  </div>
-</li>
     </ul>
     </div>
 </nav>
@@ -581,6 +614,7 @@ window.Quarto = {
   <li><a href="#central-limit-theorem" id="toc-central-limit-theorem" class="nav-link active" data-scroll-target="#central-limit-theorem"><span class="header-section-number">14.1</span> Central Limit Theorem</a></li>
   <li><a href="#z-test" id="toc-z-test" class="nav-link" data-scroll-target="#z-test"><span class="header-section-number">14.2</span> Z test</a>
   <ul class="collapse">
+  <li><a href="#before-applying-a-test" id="toc-before-applying-a-test" class="nav-link" data-scroll-target="#before-applying-a-test">Before applying a test</a></li>
   <li><a href="#sec-decision" id="toc-sec-decision" class="nav-link" data-scroll-target="#sec-decision"><span class="header-section-number">14.2.1</span> Decision rule for the Z test</a></li>
   </ul></li>
   <li><a href="#test-for-a-single-population-proportion" id="toc-test-for-a-single-population-proportion" class="nav-link" data-scroll-target="#test-for-a-single-population-proportion"><span class="header-section-number">14.3</span> Test for a single population proportion</a></li>
@@ -596,7 +630,8 @@ window.Quarto = {
   <li><a href="#standard-deviations-are-not-equal" id="toc-standard-deviations-are-not-equal" class="nav-link" data-scroll-target="#standard-deviations-are-not-equal"><span class="header-section-number">14.6.2</span> Standard deviations are not equal</a></li>
   </ul></li>
   <li><a href="#test-for-the-difference-of-standard-deviations" id="toc-test-for-the-difference-of-standard-deviations" class="nav-link" data-scroll-target="#test-for-the-difference-of-standard-deviations"><span class="header-section-number">14.7</span> Test for the difference of standard deviations</a></li>
-  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">14.8</span> Chapter Summary</a>
+  <li><a href="#confidence-intervals-for-means-and-proportions" id="toc-confidence-intervals-for-means-and-proportions" class="nav-link" data-scroll-target="#confidence-intervals-for-means-and-proportions"><span class="header-section-number">14.8</span> Confidence intervals for means and proportions</a></li>
+  <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">14.9</span> Chapter Summary</a>
   <ul class="collapse">
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
@@ -633,10 +668,10 @@ window.Quarto = {
 </header>
 
 
-<p>A sample with a size of 30 or more (<span class="math inline">\(n≥30\)</span>) is generally referred to as a large sample. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.</p>
+<p>A sample size of 30 or more (<span class="math inline">\(n≥30\)</span>) is often used as a rough guide to a large sample, but it is not a universal threshold. The required size depends on the population distribution and the statistic being studied. Statistical methods based on such samples are known as large-sample tests. These methods rely on large-sample theory, which uses the Central Limit Theorem to approximate the sampling distribution of test statistics by the normal distribution, even when the population distribution is unknown.</p>
 <section id="central-limit-theorem" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="central-limit-theorem"><span class="header-section-number">14.1</span> Central Limit Theorem</h2>
-<p>The Central Limit Theorem states that when the sample size is sufficiently large (generally <span class="math inline">\(n≥30\)</span>), the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.</p>
+<p>The Central Limit Theorem states that when the sample size is sufficiently large, the sampling distribution of the sample mean is approximately normal, irrespective of the shape of the population distribution, provided the observations are independent and the population has a finite variance.</p>
 <p>Mathematically, if a random sample of size <span class="math inline">\(n\)</span> is drawn from a population with mean <span class="math inline">\(\mu\)</span> and variance <span class="math inline">\(\sigma^2\)</span>, then as <span class="math inline">\(n\)</span> <span class="math inline">\(\rightarrow\)</span> <span class="math inline">\(\infty\)</span>,</p>
 <p><span id="eq-clt"><span class="math display">\[
 \frac{\bar{X}-\mu}{\sigma/\sqrt{n}}
@@ -654,8 +689,8 @@ N(0,1),
 </section>
 <section id="z-test" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="z-test"><span class="header-section-number">14.2</span> Z test</h2>
-<p>The <span class="math inline">\(Z\)</span>-test is a statistical test based on the standard normal distribution. It is used to test hypotheses about population means and proportions when the sample size is sufficiently large and the necessary assumptions are satisfied. The value of the test statistic is compared with the critical value from the standard normal distribution to decide whether the null hypothesis should be accepted or rejected.</p>
-<p>The test statistic <span class="math inline">\(Z\)</span> is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The following large sample tests are covered in this chapter:</p>
+<p>The <span class="math inline">\(Z\)</span>-test is a statistical test based on the standard normal distribution. It is used to test hypotheses about population means and proportions when the sample size is sufficiently large and the necessary assumptions are satisfied. The value of the test statistic is compared with the critical value from the standard normal distribution to decide whether the null hypothesis should be rejected or not rejected.</p>
+<p>The test statistic <span class="math inline">\(Z\)</span> is calculated from a large sample using appropriate formulas that we will discuss in the coming sections. Under <span class="math inline">\(H_0\)</span>, <span class="math inline">\(Z\)</span> has an exact or approximate standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>, depending on the test and its assumptions. The following large sample tests are covered in this chapter:</p>
 <ul>
 <li><p>Test for a single proportion</p></li>
 <li><p>Test for the equality of two proportions</p></li>
@@ -663,6 +698,11 @@ N(0,1),
 <li><p>Test for the equality of two means</p></li>
 <li><p>Test for the difference of two standard deviations</p></li>
 </ul>
+<section id="before-applying-a-test" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="before-applying-a-test">Before applying a test</h3>
+<p>First identify the population parameter, the sampling unit and whether the samples are independent or paired. Plants measured within the same plot are not necessarily independent experimental replicates. A large number of measurements cannot correct this dependence. The formulas here assume independent observations; substantial sampling fractions or complex survey designs require the corresponding sampling standard errors.</p>
+<p>State the alternative hypothesis and the significance level before examining the result. A one-tailed test is used for a specified direction, not because the observed result happens to be positive or negative. Report the estimated difference as well as the decision. A statistically significant difference need not be large enough to be agriculturally important.</p>
+</section>
 <section id="sec-decision" class="level3" data-number="14.2.1">
 <h3 data-number="14.2.1" class="anchored" data-anchor-id="sec-decision"><span class="header-section-number">14.2.1</span> Decision rule for the Z test</h3>
 <p>Let <span class="math inline">\(Z\)</span> be the calculated value and <span class="math inline">\(\alpha\)</span> be the level of significance. We reject the null hypothesis if:</p>
@@ -678,7 +718,7 @@ N(0,1),
 Table&nbsp;14.1: Critical values of the standard normal distribution for a one-tailed test
 </figcaption>
 <div aria-describedby="tbl-zcrit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(\alpha\)</span> (one tail)</th>
@@ -718,7 +758,7 @@ Table&nbsp;14.1: Critical values of the standard normal distribution for a one-t
 Table&nbsp;14.2: Critical values of the standard normal distribution for a two-tailed test
 </figcaption>
 <div aria-describedby="tbl-zcrit2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<table class="table-bordered caption-top table">
+<table class="compact-data-table table-bordered caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(\alpha\)</span> (two tail)</th>
@@ -764,6 +804,8 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p>For a two-tailed test at <span class="math inline">\(\alpha\)</span> = 0.05, we split the significance level equally between the two tails and use the value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is <span class="math inline">\(Z_{0.025}\)</span> = 1.960. Similarly, for a two-tailed test at <span class="math inline">\(\alpha\)</span> = 0.01 we use <span class="math inline">\(Z_{0.005}\)</span> = 2.576. These are the same critical values shown directly against the overall two-tailed <span class="math inline">\(\alpha\)</span> in <a href="#tbl-zcrit2" class="quarto-xref">Table&nbsp;<span>14.2</span></a>.</p>
 </div>
 </div>
+<p>The same decision can be made using a <strong>p-value</strong>. It is the probability, assuming <span class="math inline">\(H_0\)</span> and the test model, of a result at least as extreme as that observed in the direction or directions specified by <span class="math inline">\(H_1\)</span>. It is not the probability that <span class="math inline">\(H_0\)</span> is true. Let <span class="math inline">\(\Phi(z)\)</span> denote the cumulative probability of the standard normal distribution. The p-value is <span class="math inline">\(1-\Phi(Z)\)</span> for a right-tailed test, <span class="math inline">\(\Phi(Z)\)</span> for a left-tailed test, and <span class="math inline">\(2[1-\Phi(|Z|)]\)</span> for a two-tailed test. Reject <span class="math inline">\(H_0\)</span> when the p-value is at most <span class="math inline">\(\alpha\)</span>.</p>
+<p>For example, <span class="math inline">\(Z=-2.00\)</span> in a two-tailed test gives a p-value of approximately 0.0455. Thus the null hypothesis is rejected at the 5% level. Failure to reject a null hypothesis does not prove equality; the sample may provide insufficient precision to detect a difference.</p>
 </section>
 </section>
 <section id="test-for-a-single-population-proportion" class="level2" data-number="14.3">
@@ -778,8 +820,8 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p>For this test, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zprop1"><span class="math display">\[Z = \frac{p - P_0}{\sqrt{P_0 Q_0 / n}} \tag{14.2}\]</span></span></p>
 <p>where <span class="math inline">\(Q_0 = 1 - P_0\)</span>.</p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution with mean 0 and variance 1, <span class="math inline">\(Z \sim N(0,1)\)</span>.</p>
-<p>The calculated value of <span class="math inline">\(Z\)</span> is then compared with the critical value of <span class="math inline">\(Z\)</span> from the table of the standard normal distribution. If the calculated value is higher than the table value, we reject the null hypothesis. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
+<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> approximately follows a standard normal distribution, provided the observations are independent and the expected counts <span class="math inline">\(nP_0\)</span> and <span class="math inline">\(nQ_0\)</span> are sufficiently large. A useful introductory guideline is that both counts should be at least 10. If this condition is not met, an exact binomial test can be used.</p>
+<p>The calculated value of <span class="math inline">\(Z\)</span> is then compared with the critical value of <span class="math inline">\(Z\)</span> from the table of the standard normal distribution. Apply the appropriate one-tailed or two-tailed rule in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>. If the calculated value is less than the table value, we conclude that we do not have enough evidence in our sample to reject the null hypothesis. See <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -825,8 +867,9 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p>For this test, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zprop2"><span class="math display">\[Z = \frac{p_1 - p_2}{\sqrt{\widehat{P}\,\widehat{Q}\left( \dfrac{1}{n_1} + \dfrac{1}{n_2} \right)}} \tag{14.3}\]</span></span></p>
 <p>where <span class="math inline">\(\widehat{P} = \dfrac{n_1 p_1 + n_2 p_2}{n_1 + n_2}\)</span> is the pooled proportion and <span class="math inline">\(\widehat{Q} = 1 - \widehat{P}\)</span>.</p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>.</p>
-<p>The calculated value of <span class="math inline">\(Z\)</span> is compared with the critical value of <span class="math inline">\(Z\)</span> from the standard normal table (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>). If the calculated value is higher than the table value, we reject the null hypothesis. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.</p>
+<p>The samples must be independent. For the normal approximation, check that <span class="math inline">\(n_1\widehat{P}\)</span>, <span class="math inline">\(n_1\widehat{Q}\)</span>, <span class="math inline">\(n_2\widehat{P}\)</span> and <span class="math inline">\(n_2\widehat{Q}\)</span> are sufficiently large; a useful introductory guideline is at least 10 each. Pooling is used because <span class="math inline">\(H_0\)</span> specifies a common population proportion.</p>
+<p>Under the null hypothesis, this statistic is approximately standard normal when the two samples are independent and the expected success and failure counts in each sample are sufficiently large.</p>
+<p>The calculated value of <span class="math inline">\(Z\)</span> is compared with the critical value of <span class="math inline">\(Z\)</span> from the standard normal table (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>). If the statistic falls in the rejection region specified in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>, reject <span class="math inline">\(H_0\)</span>. Otherwise, we conclude that we do not have enough evidence to reject the null hypothesis.</p>
 <div id="exm-prop2" class="theorem example">
 <p><span class="theorem-title"><strong>Example 14.2</strong></span> In order to assess the adoption of a new variety of paddy by farmers, a survey was conducted in a locality. The survey covered 80 farmers with large land holdings and 250 farmers with small land holdings. It was observed that 50 of the large-holding farmers and 78 of the small-holding farmers adopted the new paddy variety. Test whether there is any significant difference in the adoption behaviour of the two groups of farmers. (<span class="math inline">\(\alpha\)</span> = 0.01)</p>
 <p><strong>Solution</strong></p>
@@ -867,7 +910,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <h3 data-number="14.5.1" class="anchored" data-anchor-id="standard-deviation-is-known"><span class="header-section-number">14.5.1</span> Standard deviation is known</h3>
 <p>When <span class="math inline">\(\sigma\)</span> is known, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zmean-known"><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{\sigma}{\sqrt{n}}} \tag{14.4}\]</span></span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
+<p>Under the null hypothesis, this statistic is approximately standard normal for a sufficiently large independent random sample. For independent normal observations with known population standard deviation, it is exactly standard normal. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
 <div id="exm-mean-known" class="theorem example">
 <p><span class="theorem-title"><strong>Example 14.3</strong></span> A fertilizer packing unit is set to fill bags with a mean weight of 50 kg. From long experience the population standard deviation of the filling process is known to be 3.2 kg. A random sample of 64 bags was drawn and the mean weight was found to be 49.2 kg. Test whether the packing process is working at the intended mean weight of 50 kg, at the 5% level of significance.</p>
 <p><strong>Solution</strong></p>
@@ -888,7 +931,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <h3 data-number="14.5.2" class="anchored" data-anchor-id="standard-deviation-is-unknown"><span class="header-section-number">14.5.2</span> Standard deviation is unknown</h3>
 <p>When <span class="math inline">\(\sigma\)</span> is unknown, it is replaced by its sample estimate <span class="math inline">\(s\)</span>, and we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zmean-unknown"><span class="math display">\[Z = \frac{\overline{x} - \mu_0}{\dfrac{s}{\sqrt{n}}} \tag{14.5}\]</span></span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
+<p>Under the null hypothesis, this statistic is approximately standard normal for a sufficiently large independent random sample. For a normal population with unknown standard deviation, the statistic has an exact <span class="math inline">\(t\)</span> distribution with <span class="math inline">\(n-1\)</span> degrees of freedom. The <span class="math inline">\(t\)</span>-test can therefore be used even when the sample is large. The decision rule is given in <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>.</p>
 <div id="exm-mean1" class="theorem example">
 <p><span class="theorem-title"><strong>Example 14.4</strong></span> A sample of 900 items has a mean of 3.4 cm and a standard deviation of 2.61 cm. Test whether the population mean is 3.25 cm at the 5% significance level.</p>
 <p><strong>Solution</strong></p>
@@ -927,7 +970,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <h3 data-number="14.6.1" class="anchored" data-anchor-id="standard-deviations-are-equal"><span class="header-section-number">14.6.1</span> Standard deviations are equal</h3>
 <p>When the population standard deviations are equal, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zmean2-equal"><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}} \tag{14.6}\]</span></span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
+<p>Under the null hypothesis, this statistic is exactly standard normal for independent samples from normal populations with known common standard deviation. Otherwise, the normal approximation requires suitable large samples. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Note">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -938,7 +981,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>If the common <span class="math inline">\(\sigma\)</span> is unknown, it is replaced by its pooled estimate <span class="math inline">\(\sqrt{\dfrac{n_1 s_1^2 + n_2 s_2^2}{n_1 + n_2}}\)</span>, where <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes and <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are the sample standard deviations.</p>
+<p>If the common <span class="math inline">\(\sigma\)</span> is unknown, it is replaced by its pooled estimate <span class="math inline">\(\sqrt{\dfrac{(n_1-1)s_1^2+(n_2-1)s_2^2}{n_1+n_2-2}}\)</span>, where <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span> are the sample sizes and <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> are the sample standard deviations.</p>
 </div>
 </div>
 <div id="exm-mean2" class="theorem example">
@@ -956,14 +999,15 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sigma \sqrt{\dfrac{1}{n_1} + \dfrac{1}{n_2}}}\]</span></p>
 <p><span class="math display">\[= \frac{68 - 67.5}{2.5 \sqrt{\dfrac{1}{2000} + \dfrac{1}{1000}}}\]</span></p>
 <p><span class="math display">\[= \frac{0.5}{0.0968} = 5.16\]</span></p>
-<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the samples cannot be regarded as drawn from the same population.</p>
+<p>Since it is a two-tailed test, we compare with the critical value at <span class="math inline">\(\alpha/2\)</span> = 0.025, which is 1.960 (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>). Since the calculated value (5.16) is greater than the table value (1.960), we reject the null hypothesis. We conclude that the population means differ significantly. This test compares means; it does not test every feature of the two population distributions.</p>
 </div>
 </section>
 <section id="standard-deviations-are-not-equal" class="level3" data-number="14.6.2">
 <h3 data-number="14.6.2" class="anchored" data-anchor-id="standard-deviations-are-not-equal"><span class="header-section-number">14.6.2</span> Standard deviations are not equal</h3>
 <p>When the population standard deviations are not equal, we calculate the test statistic <span class="math inline">\(Z\)</span> using the following formula:</p>
 <p><span id="eq-zmean2-unequal"><span class="math display">\[Z = \frac{\overline{x}_1 - \overline{x}_2}{\sqrt{\dfrac{\sigma_1^2}{n_1} + \dfrac{\sigma_2^2}{n_2}}} \tag{14.7}\]</span></span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
+<p>Under the null hypothesis, this statistic is exactly standard normal for independent samples from normal populations with known standard deviations. Otherwise, the normal approximation requires suitable large samples. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
+<p>If the population standard deviations are unknown, replace them by <span class="math inline">\(s_1\)</span> and <span class="math inline">\(s_2\)</span> for a large-sample approximation. Welch’s <span class="math inline">\(t\)</span>-test in the next chapter also applies and accounts for the estimation of the standard errors. Both samples must contain enough independent observations; a large combined sample size alone is not sufficient.</p>
 <div id="exm-mean2-unequal" class="theorem example">
 <p><span class="theorem-title"><strong>Example 14.6</strong></span> Two paddy varieties were compared for their grain yield. A random sample of 100 plots of variety A gave a mean yield of 52 quintals per hectare with a population standard deviation of 8 quintals per hectare, while a random sample of 100 plots of variety B gave a mean yield of 49 quintals per hectare with a population standard deviation of 6 quintals per hectare. The two population standard deviations are known and unequal. Test whether the two varieties differ significantly in mean yield, at the 5% level of significance.</p>
 <p><strong>Solution</strong></p>
@@ -996,15 +1040,16 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1\)</span> &lt; <span class="math inline">\(\sigma_2\)</span> (left-tailed alternative)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1\)</span> &gt; <span class="math inline">\(\sigma_2\)</span> (right-tailed alternative)</p>
 <p><span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\sigma_2\)</span> (two-tailed alternative)</p>
-<p>For large samples, the sample standard deviation is approximately normally distributed about the population standard deviation, with the standard error of the difference of two sample standard deviations given by</p>
+<p>The normal-population assumption is important here because the variability of a sample standard deviation depends on the population distribution. For non-normal data, use a method appropriate to that distribution, such as a suitable robust variance comparison, rather than applying this formula automatically.</p>
+<p>For independent large samples from normal populations, each sample standard deviation is approximately normally distributed about its population standard deviation, with the standard error of the difference of two sample standard deviations given by</p>
 <p><span id="eq-sesd"><span class="math display">\[\text{S.E.}(s_1 - s_2) = \sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}} \tag{14.8}\]</span></span></p>
 <p>Hence, under the null hypothesis, the test statistic is</p>
 <p><span id="eq-zsd-known"><span class="math display">\[Z = \frac{s_1 - s_2}{\sqrt{\dfrac{\sigma_1^2}{2n_1} + \dfrac{\sigma_2^2}{2n_2}}} \sim N(0,1) \tag{14.9}\]</span></span></p>
-<p>When the null hypothesis is true, this <span class="math inline">\(Z\)</span> follows a standard normal distribution, <span class="math inline">\(Z \sim N(0,1)\)</span>. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
+<p>Under the null hypothesis, this statistic is approximately standard normal for independent large samples from normal populations. The approximation for standard deviations is not justified by the Central Limit Theorem for means alone. The decision rule is the same as above (see <a href="#sec-decision" class="quarto-xref"><span>Section 14.2.1</span></a>).</p>
 <p>The population standard deviations <span class="math inline">\(\sigma_1\)</span> and <span class="math inline">\(\sigma_2\)</span> are usually unknown, and for large samples they are replaced by the corresponding sample standard deviations. The test statistic then reduces to</p>
 <p><span id="eq-zsd-unknown"><span class="math display">\[Z = \frac{s_1 - s_2}{\sqrt{\dfrac{s_1^2}{2n_1} + \dfrac{s_2^2}{2n_2}}} \sim N(0,1) \tag{14.10}\]</span></span></p>
 <div id="exm-sd" class="theorem example">
-<p><span class="theorem-title"><strong>Example 14.7</strong></span> Two large samples of plant height measurements were taken from two fields. The first sample of 1000 plants had a standard deviation of 6.0 cm, and the second sample of 1200 plants had a standard deviation of 5.5 cm. Test whether the two populations have equal standard deviations, at the 5% level of significance.</p>
+<p><span class="theorem-title"><strong>Example 14.7</strong></span> Two large samples of plant height measurements were taken from two fields. Assume independent random samples from normal populations. The first sample of 1000 plants had a standard deviation of 6.0 cm, and the second sample of 1200 plants had a standard deviation of 5.5 cm. Test whether the two populations have equal standard deviations, at the 5% level of significance.</p>
 <p><strong>Solution</strong></p>
 <p>Null hypothesis, <span class="math inline">\(H_0\)</span>: <span class="math inline">\(\sigma_1\)</span> = <span class="math inline">\(\sigma_2\)</span></p>
 <p>Alternative hypothesis, <span class="math inline">\(H_1\)</span>: <span class="math inline">\(\sigma_1\)</span> <span class="math inline">\(\mathbf{\neq}\)</span> <span class="math inline">\(\sigma_2\)</span> (two-tailed test)</p>
@@ -1023,47 +1068,40 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <p><span class="theorem-title"><strong>Exercise 14.4</strong></span> Two random samples gave the following data. Test whether the population standard deviations are equal. <span class="math inline">\(n_1\)</span> = 800, <span class="math inline">\(n_2\)</span> = 900, <span class="math inline">\(s_1\)</span> = 4.2, <span class="math inline">\(s_2\)</span> = 3.8. (<span class="math inline">\(\alpha\)</span> = 0.05)</p>
 </div>
 </section>
-<section id="chapter-summary" class="level2" data-number="14.8">
-<h2 data-number="14.8" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">14.8</span> Chapter Summary</h2>
+<section id="confidence-intervals-for-means-and-proportions" class="level2" data-number="14.8">
+<h2 data-number="14.8" class="anchored" data-anchor-id="confidence-intervals-for-means-and-proportions"><span class="header-section-number">14.8</span> Confidence intervals for means and proportions</h2>
+<p>A confidence interval shows the precision of an estimate as well as its magnitude. For a population mean with known standard deviation, a <span class="math inline">\(100(1-\alpha)\%\)</span> confidence interval is</p>
+<p><span class="math display">\[\overline{x}\pm Z_{\alpha/2}\frac{\sigma}{\sqrt{n}}.\]</span></p>
+<p>For two independent means with known standard deviations, the interval is</p>
+<p><span class="math display">\[ (\overline{x}_1-\overline{x}_2)\pm Z_{\alpha/2}
+\sqrt{\frac{\sigma_1^2}{n_1}+\frac{\sigma_2^2}{n_2}}.\]</span></p>
+<p>For unknown standard deviations, the corresponding <span class="math inline">\(t\)</span> intervals are discussed in the next chapter. Large-sample normal intervals replace the population standard deviations by their sample estimates.</p>
+<p>For a single proportion, the simple large-sample interval is</p>
+<p><span class="math display">\[p\pm Z_{\alpha/2}\sqrt{\frac{p(1-p)}{n}}.\]</span></p>
+<p>For the difference of two independent proportions, the corresponding interval is</p>
+<p><span class="math display">\[ (p_1-p_2)\pm Z_{\alpha/2}
+\sqrt{\frac{p_1(1-p_1)}{n_1}+\frac{p_2(1-p_2)}{n_2}}.\]</span></p>
+<p>Notice that the standard error for the equality test uses the pooled proportion, whereas this confidence interval uses the two sample proportions separately. These simple proportion intervals require adequate success and failure counts and may perform poorly near 0 or 1; score-based intervals, such as the Wilson interval for one proportion, are preferable in those cases. They should not be used automatically for sparse data.</p>
+<p>In <a href="#exm-mean-known" class="quarto-xref">Example&nbsp;<span>14.3</span></a>, the 95% confidence interval is <span class="math inline">\(49.2\pm1.960(0.4)\)</span>, or approximately <span class="math inline">\((48.42,49.98)\)</span> kg. The intended mean of 50 kg lies outside this interval, agreeing with the two-sided test. A confidence interval describes uncertainty about a population parameter, not the range containing a specified percentage of individual observations.</p>
+</section>
+<section id="chapter-summary" class="level2" data-number="14.9">
+<h2 data-number="14.9" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">14.9</span> Chapter Summary</h2>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>
 <ol type="1">
-<li><p>A sample with a size of __________ or more is generally referred to as a large sample.</p></li>
-<li><p>Large-sample tests are based mainly on the __________ Limit Theorem.</p></li>
-<li><p>According to the Central Limit Theorem, the sampling distribution of the sample mean approaches a __________ distribution as the sample size increases.</p></li>
-<li><p>The standard normal distribution has mean __________ and variance __________.</p></li>
-<li><p>The test based on the standard normal distribution is called the __________ test.</p></li>
-<li><p>The test statistic used in a large-sample Z-test follows the __________ normal distribution when <span class="math inline">\(H_0\)</span> is true.</p></li>
-<li><p>The four large-sample tests discussed in the chapter are tests for a single proportion, equality of two proportions, a single mean, and equality of two __________.</p></li>
-<li><p>In a test for a single population proportion, the null hypothesis is <span class="math inline">\(H_0:P=\)</span> __________.</p></li>
-<li><p>In the single-proportion test, <span class="math inline">\(Q_0=\)</span> __________.</p></li>
-<li><p>The standard error for testing a single population proportion is calculated using the __________ value of the proportion.</p></li>
-<li><p>In the test for equality of two proportions, the pooled proportion is denoted by __________.</p></li>
-<li><p>In the test for equality of two proportions, the pooled probability of failure is <span class="math inline">\(\widehat{Q}=\)</span> __________.</p></li>
-<li><p>In a test for a single population mean, the null hypothesis is <span class="math inline">\(H_0:\mu=\)</span> __________.</p></li>
-<li><p>When the population standard deviation is known, the test statistic for a single mean uses __________.</p></li>
-<li><p>When the population standard deviation is unknown, the population standard deviation is replaced by the __________ standard deviation.</p></li>
-<li><p>In the test for equality of two means, the null hypothesis is <span class="math inline">\(H_0:\mu_1=\)</span> __________.</p></li>
-<li><p>When two population standard deviations are equal, the common standard deviation is denoted by __________.</p></li>
-<li><p>When two population standard deviations are unequal, the standard error contains __________ separate variance terms.</p></li>
-<li><p>For a two-tailed Z-test at <span class="math inline">\(\alpha=0.05\)</span>, the critical value is __________.</p></li>
-<li><p>For a two-tailed Z-test at <span class="math inline">\(\alpha=0.01\)</span>, the critical value is __________.</p></li>
-<li><p>For a right-tailed Z-test at <span class="math inline">\(\alpha=0.05\)</span>, the critical value is __________.</p></li>
-<li><p>For a left-tailed Z-test at <span class="math inline">\(\alpha=0.05\)</span>, the critical value is __________.</p></li>
-<li><p>For a two-tailed test, the significance level <span class="math inline">\(\alpha\)</span> is divided equally between the __________ tails.</p></li>
-<li><p>For a two-tailed test, <span class="math inline">\(H_0\)</span> is rejected when <span class="math inline">\(|Z|\)</span> is __________ than the critical value.</p></li>
-<li><p>For a right-tailed test, <span class="math inline">\(H_0\)</span> is rejected when <span class="math inline">\(Z\)</span> is __________ than the critical value.</p></li>
-<li><p>For a left-tailed test, <span class="math inline">\(H_0\)</span> is rejected when <span class="math inline">\(Z\)</span> is __________ than the negative critical value.</p></li>
-<li><p>The sample proportion is denoted by __________.</p></li>
-<li><p>The sample mean is denoted by __________.</p></li>
-<li><p>The population proportion is denoted by __________.</p></li>
-<li><p>The population mean is denoted by __________.</p></li>
-<li><p>The population standard deviation is denoted by __________.</p></li>
-<li><p>The sample standard deviation is denoted by __________.</p></li>
-<li><p>The difference between the sample mean and the hypothesized population mean is standardized by the __________ of the sample mean.</p></li>
-<li><p>The pooled proportion is calculated by combining the numbers of successes from the __________ samples.</p></li>
-<li><p>The Central Limit Theorem applies when observations are independent and the population has a finite __________.</p></li>
+<li><p>The theorem supporting the normal approximation to the sample mean under suitable conditions is the __________ Limit Theorem.</p></li>
+<li><p>The standard deviation of a sampling distribution is called the standard __________.</p></li>
+<li><p>The reference distribution used in a Z-test is the standard __________ distribution.</p></li>
+<li><p>For independent observations with population standard deviation <span class="math inline">\(\sigma\)</span>, the standard error of the sample mean is __________.</p></li>
+<li><p>In the one-proportion Z-test, the null standard error uses the __________ proportion.</p></li>
+<li><p>In a test of equality of two proportions, the common proportion estimated by combining both samples is called the __________ proportion.</p></li>
+<li><p>For two independent sample means, the variance of their difference equals the __________ of their variances.</p></li>
+<li><p>For a two-tailed Z-test at the 5% level, the positive critical value is approximately __________.</p></li>
+<li><p>For a right-tailed Z-test at the 5% level, the critical value is approximately __________.</p></li>
+<li><p>For a left-tailed Z-test at the 5% level, the critical value is approximately __________.</p></li>
+<li><p>Increasing sample size generally __________ the standard error of the mean.</p></li>
+<li><p>The normal approximation for a sample proportion requires sufficiently large expected counts of successes and __________.</p></li>
 </ol>
 </section>
 <section id="short-answer-questions" class="level3 unnumbered">
@@ -1075,7 +1113,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <li><p>Explain the importance of the Central Limit Theorem in large-sample testing.</p></li>
 <li><p>What are the assumptions of the Central Limit Theorem stated in this chapter?</p></li>
 <li><p>Define the Z-test.</p></li>
-<li><p>State the four large-sample tests discussed in the chapter.</p></li>
+<li><p>List the large-sample tests discussed in the chapter.</p></li>
 <li><p>Explain the general decision rule for a Z-test.</p></li>
 <li><p>What is the difference between a one-tailed and a two-tailed Z-test?</p></li>
 <li><p>Explain the test for a single population proportion.</p></li>
@@ -1115,7 +1153,7 @@ Table&nbsp;14.2: Critical values of the standard normal distribution for a two-t
 <li><p>From a paddy field, a random sample of 36 plants has mean panicle length 18.7 cm and standard deviation 1.25 cm. Test whether the population mean panicle length is 19 cm at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A population has known standard deviation 5. A sample of 100 observations has mean 48. Test whether the population mean is 50 at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A large sample has mean 102, while the hypothesized population mean is 100. The population standard deviation is 10 and the sample size is 400. Calculate the Z statistic and test the hypothesis at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
-<li><p>Two large samples have sizes 1000 and 2000, with means 67.5 and 68 inches respectively. The common population standard deviation is 2.5 inches. Test whether the two samples can be regarded as drawn from the same population at the 5% level.</p></li>
+<li><p>Two large samples have sizes 1000 and 2000, with means 67.5 and 68 inches respectively. The common population standard deviation is 2.5 inches. Test whether the population means are equal at the 5% level.</p></li>
 <li><p>Two paddy varieties have sample sizes 100 each. Variety A has mean yield 52 quintals per hectare and population standard deviation 8 quintals per hectare, while variety B has mean yield 49 quintals per hectare and population standard deviation 6 quintals per hectare. Test whether the two varieties differ significantly in mean yield at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>Two random samples have <span class="math inline">\(n_1=400\)</span>, <span class="math inline">\(n_2=400\)</span>, <span class="math inline">\(\bar{x}_1=250\)</span>, <span class="math inline">\(\bar{x}_2=220\)</span>, <span class="math inline">\(s_1=40\)</span>, and <span class="math inline">\(s_2=55\)</span>. Test whether the population means are equal at <span class="math inline">\(\alpha=0.05\)</span>.</p></li>
 <li><p>A two-tailed test is conducted at <span class="math inline">\(\alpha=0.05\)</span>. State the critical value.</p></li>
@@ -1182,7 +1220,7 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 <section id="critical-values-of-the-standard-normal-distribution" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="critical-values-of-the-standard-normal-distribution">Critical values of the standard normal distribution</h3>
 <p><strong>One-tailed test</strong></p>
-<table class="caption-top table">
+<table class="compact-data-table caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(\alpha\)</span> (one tail)</th>
@@ -1213,7 +1251,7 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 </tbody>
 </table>
 <p><strong>Two-tailed test</strong></p>
-<table class="caption-top table">
+<table class="compact-data-table caption-top table">
 <thead>
 <tr class="header">
 <th style="text-align: center;"><span class="math inline">\(\alpha\)</span> (two tail)</th>
@@ -1287,7 +1325,7 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 <section id="answers-to-fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="answers-to-fill-in-the-blanks">Answers to fill in the blanks</h3>
 <div class="answer-key">
-<p><code>1.</code> 30 <code>2.</code> Central <code>3.</code> Normal <code>4.</code> 0; 1 <code>5.</code> Z <code>6.</code> Standard <code>7.</code> Means <code>8.</code> <span class="math inline">\(P_0\)</span> <code>9.</code> <span class="math inline">\(1-P_0\)</span> <code>10.</code> Null <code>11.</code> <span class="math inline">\(\widehat{P}\)</span> <code>12.</code> <span class="math inline">\(1-\widehat{P}\)</span> <code>13.</code> <span class="math inline">\(\mu_0\)</span> <code>14.</code> <span class="math inline">\(\sigma\)</span> <code>15.</code> Sample <code>16.</code> <span class="math inline">\(\mu_2\)</span> <code>17.</code> <span class="math inline">\(\sigma\)</span> <code>18.</code> Two <code>19.</code> 1.960 <code>20.</code> 2.576 <code>21.</code> 1.645 <code>22.</code> <span class="math inline">\(-1.645\)</span> <code>23.</code> Two <code>24.</code> Greater <code>25.</code> Greater <code>26.</code> Less <code>27.</code> <span class="math inline">\(p\)</span> <code>28.</code> <span class="math inline">\(\bar{x}\)</span> <code>29.</code> <span class="math inline">\(P\)</span> <code>30.</code> <span class="math inline">\(\mu\)</span> <code>31.</code> <span class="math inline">\(\sigma\)</span> <code>32.</code> <span class="math inline">\(s\)</span> <code>33.</code> Standard error <code>34.</code> Two <code>35.</code> Variance</p>
+<p><code>1.</code> Central <code>2.</code> Error <code>3.</code> Normal <code>4.</code> <span class="math inline">\(\sigma/\sqrt{n}\)</span> <code>5.</code> Hypothesised <code>6.</code> Pooled <code>7.</code> Sum <code>8.</code> 1.96 <code>9.</code> 1.645 <code>10.</code> <span class="math inline">\(-1.645\)</span> <code>11.</code> Decreases <code>12.</code> Failures</p>
 </div>
 </section>
 <section id="solutions-to-numerical-and-conceptual-questions" class="level3 unnumbered">
@@ -1305,7 +1343,7 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 <li><p>Given <span class="math inline">\(\bar{x}=102\)</span>, <span class="math inline">\(\mu_0=100\)</span>, <span class="math inline">\(\sigma=10\)</span>, <span class="math inline">\(n=400\)</span>. Using <a href="#eq-zmean-known" class="quarto-xref">Equation&nbsp;<span>14.4</span></a>, <span class="math inline">\(Z=\frac{102-100}{10/\sqrt{400}}=\frac{2}{0.5}=4\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(Z_{0.025}=1.960\)</span>; since <span class="math inline">\(|4|&gt;1.960\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the population mean differs from 100.</p></li>
 <li><p>Given <span class="math inline">\(n_1=2000\)</span>, <span class="math inline">\(n_2=1000\)</span>, <span class="math inline">\(\bar{x}_1=68\)</span>, <span class="math inline">\(\bar{x}_2=67.5\)</span>, <span class="math inline">\(\sigma=2.5\)</span>. Using <a href="#eq-zmean2-equal" class="quarto-xref">Equation&nbsp;<span>14.6</span></a>, <span class="math inline">\(Z=\frac{68-67.5}{2.5\sqrt{\frac{1}{2000}+\frac{1}{1000}}}=5.16\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(Z_{0.025}=1.960\)</span>; since <span class="math inline">\(|5.16|&gt;1.960\)</span>, we reject <span class="math inline">\(H_0\)</span>. The two samples cannot be regarded as drawn from populations having the same mean.</p></li>
 <li><p>Given <span class="math inline">\(n_1=n_2=100\)</span>, <span class="math inline">\(\bar{x}_1=52\)</span>, <span class="math inline">\(\bar{x}_2=49\)</span>, <span class="math inline">\(\sigma_1=8\)</span>, <span class="math inline">\(\sigma_2=6\)</span>. Since the population standard deviations are unequal, using <a href="#eq-zmean2-unequal" class="quarto-xref">Equation&nbsp;<span>14.7</span></a>, <span class="math inline">\(Z=\frac{52-49}{\sqrt{\frac{8^2}{100}+\frac{6^2}{100}}}=\frac{3}{1}=3.00\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(Z_{0.025}=1.960\)</span>; since <span class="math inline">\(|3.00|&gt;1.960\)</span>, we reject <span class="math inline">\(H_0\)</span>. The two paddy varieties differ significantly in mean yield.</p></li>
-<li><p>Given <span class="math inline">\(n_1=n_2=400\)</span>, <span class="math inline">\(\bar{x}_1=250\)</span>, <span class="math inline">\(\bar{x}_2=220\)</span>, <span class="math inline">\(s_1=40\)</span>, <span class="math inline">\(s_2=55\)</span>. Since the population standard deviations are not given as known, use the pooled estimate <span class="math inline">\(\sigma=\sqrt{\frac{n_1s_1^2+n_2s_2^2}{n_1+n_2}}=\sqrt{\frac{400(40^2)+400(55^2)}{800}}=\sqrt{2312.5}\approx48.09\)</span>. Using <a href="#eq-zmean2-equal" class="quarto-xref">Equation&nbsp;<span>14.6</span></a>, <span class="math inline">\(Z=\frac{250-220}{48.09\sqrt{\frac{1}{400}+\frac{1}{400}}}\approx8.82\)</span>. At <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(Z_{0.025}=1.960\)</span>; since <span class="math inline">\(|8.82|&gt;1.960\)</span>, we reject <span class="math inline">\(H_0\)</span>. There is significant evidence that the two population means are different.</p></li>
+<li><p>The samples are independent and equal variances are not given. Use the large-sample standard error <span class="math inline">\(\sqrt{s_1^2/n_1+s_2^2/n_2}=\sqrt{40^2/400+55^2/400}=3.4004\)</span>. Thus <span class="math inline">\(Z=(250-220)/3.4004=8.82\)</span>, which exceeds 1.960. Reject equality of the population means at the two-sided 5% level. Welch’s t-test is also appropriate and gives the same conclusion.</p></li>
 <li><p>For a two-tailed test at <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(\frac{\alpha}{2}=0.025\)</span>, so <span class="math inline">\(Z_{0.025}=1.960\)</span>. The critical values are <span class="math inline">\(-1.960\)</span> and <span class="math inline">\(1.960\)</span>.</p></li>
 <li><p>For a right-tailed test at <span class="math inline">\(\alpha=0.01\)</span>, <span class="math inline">\(Z_{0.01}=2.326\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(Z&gt;2.326\)</span>.</p></li>
 <li><p>For a left-tailed test at <span class="math inline">\(\alpha=0.05\)</span>, <span class="math inline">\(Z_{0.05}=1.645\)</span>, so the critical value is <span class="math inline">\(-1.645\)</span>; reject <span class="math inline">\(H_0\)</span> if <span class="math inline">\(Z&lt;-1.645\)</span>.</p></li>
@@ -1326,9 +1364,9 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>Why 30? The bell curve, the astronomer, and the birth of large-sample theory</strong></p>
-<p>The reason large-sample tests work at all traces back to one of the most remarkable results in statistics: the <strong>Central Limit Theorem</strong>. It says that no matter what the shape of the parent population, the distribution of the sample mean approaches a normal distribution as the sample size grows. This is why the <span class="math inline">\(Z\)</span>-test, which assumes normality, can be applied to almost any large sample.</p>
+<p>The reason many large-sample tests work traces back to the <strong>Central Limit Theorem</strong>. For independent, identically distributed observations with finite positive variance, the distribution of the standardised sample mean approaches the standard normal distribution as the sample size grows. The approximation can be slow for strongly skewed or heavy-tailed populations, and dependence requires additional conditions.</p>
 <p>The normal curve itself was first derived by Abraham de Moivre in 1733 as an approximation to the binomial distribution, while he was studying games of chance. It was later rediscovered by Carl Friedrich Gauss around 1809, who used it to model the errors astronomers made when measuring the positions of stars and planets. Because the same bell-shaped curve kept appearing whenever many small independent errors were added together, it came to be called the <em>normal</em> distribution, and for a long time the <em>Gaussian</em> distribution. <span class="citation" data-cites="Gauss1809">(<a href="references.html#ref-Gauss1809" role="doc-biblioref">Gauss 1809</a>)</span></p>
-<p>But where did the famous cut-off of “<span class="math inline">\(n \geq 30\)</span>” come from? It was never a law of nature. It emerged as a practical rule of thumb in the early twentieth century, around the time William Gosset (writing under the pen name <em>Student</em>) developed the <span class="math inline">\(t\)</span>-distribution in 1908 while working as a brewer at Guinness in Dublin. Gosset showed that for small samples the normal approximation is unreliable and a separate distribution is needed. As the sample size increases, the <span class="math inline">\(t\)</span>-distribution steadily approaches the normal curve, and by about 30 observations the two are so close that the difference rarely matters in practice. That convenient meeting point gave us the boundary between “small” and “large” samples that we still use today. <span class="citation" data-cites="Student1908">(<a href="references.html#ref-Student1908" role="doc-biblioref">Student 1908</a>)</span></p>
+<p>But where does the familiar cut-off of “<span class="math inline">\(n\geq30\)</span>” fit? It is a rough teaching convention, not a universal mathematical boundary. For a normal population with unknown standard deviation, the usual mean statistic has an exact t distribution for every sample size greater than one. Its convergence to the normal distribution does not establish that every non-normal sample mean is adequately approximated at 30 observations. <span class="citation" data-cites="Student1908">(<a href="references.html#ref-Student1908" role="doc-biblioref">Student 1908</a>)</span></p>
 <p>So the next time you check whether your sample size crosses 30, remember that you are standing on the shoulders of a gambler, an astronomer, and a brewer.</p>
 </div>
 </div>
@@ -1349,9 +1387,9 @@ Z=\frac{s_1-s_2}{\sqrt{\frac{s_1^2}{2n_1}+\frac{s_2^2}{2n_2}}}
 
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-Gauss1809" class="csl-entry" role="listitem">
-Gauss, Carl Friedrich. 1809. <em>Theoria Motus Corporum Coelestium in Sectionibus Conicis Solem Ambientium</em>. Hamburg: Friedrich Perthes; I. H. Besser.
+Gauss, Carl Friedrich. 1809. <em>Theoria Motus Corporum Coelestium in Sectionibus Conicis Solem Ambientium</em>. Friedrich Perthes; I. H. Besser.
 </div>
 <div id="ref-Student1908" class="csl-entry" role="listitem">
 Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</em> 6 (1): 1–25. <a href="https://doi.org/10.1093/biomet/6.1.1">https://doi.org/10.1093/biomet/6.1.1</a>.
@@ -1447,7 +1485,7 @@ Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/www\.agrinoteskau\.com\/agstat-textbook\.html");
+        var filterRegex = new RegExp("https:\/\/statoberrypapaya\.github\.io\/TextbookofAgstat\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
@@ -1790,16 +1828,17 @@ Student. 1908. <span>“The Probable Error of a Mean.”</span> <em>Biometrika</
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src=".\images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p>Published by PAPAYA publishing division of <a href="https://www.statoberry.com/papaya"><img src="./images/statoberry.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>   
     <div class="nav-footer-center">
-<p><a href="https://www.statoberry.com/papaya"><img src=".\images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
+<p><a href="https://www.statoberry.com/papaya"><img src="./images/papayalogo.png" class="img-fluid" style="width: auto; height: 90px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a></p>
 </div>
     <div class="nav-footer-right">
-<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src=".\images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
+<p>Licenced under <a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">CC-BY-NC-ND 4.0 Int License</a> <a href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img src="./images/cclogo.png" class="img-fluid" style="width: auto; height: 35px; padding-left: 10px; padding-right: 10px; margin-bottom:5px;"></a> Built with <a href="https://quarto.org/">Quarto</a></p>
 </div>
   </div>
 </footer>
+<script defer="" src="assets/melon-tracker.js" data-book="agricultural-statistics"></script>
 
 
 
