@@ -13,6 +13,7 @@ issues=[];checked=0
 for p in out.glob('*.html'):
  s=p.read_text(encoding='utf-8');parsed=Resources();parsed.feed(s)
  assert 'src="assets/melon-tracker.js"' in s,p.name
+ assert s.count('melon-tracker.js')==1,(p.name,'duplicate analytics inclusion')
  for url in parsed.resources:
   u=urlsplit(url)
   if u.scheme or u.netloc:continue
