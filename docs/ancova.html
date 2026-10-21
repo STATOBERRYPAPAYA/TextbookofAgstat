@@ -628,6 +628,8 @@ window.Quarto = {
   <li><a href="#analysis-of-covariance-for-rbd" id="toc-analysis-of-covariance-for-rbd" class="nav-link" data-scroll-target="#analysis-of-covariance-for-rbd"><span class="header-section-number">22.4</span> Analysis of covariance for RBD</a></li>
   <li><a href="#chapter-summary" id="toc-chapter-summary" class="nav-link" data-scroll-target="#chapter-summary"><span class="header-section-number">22.5</span> Chapter Summary</a>
   <ul class="collapse">
+  <li><a href="#important-formulae" id="toc-important-formulae" class="nav-link" data-scroll-target="#important-formulae">Important formulae</a></li>
+  <li><a href="#quick-revision" id="toc-quick-revision" class="nav-link" data-scroll-target="#quick-revision">Quick revision</a></li>
   <li><a href="#fill-in-the-blanks" id="toc-fill-in-the-blanks" class="nav-link" data-scroll-target="#fill-in-the-blanks">Fill in the blanks</a></li>
   <li><a href="#short-answer-questions" id="toc-short-answer-questions" class="nav-link" data-scroll-target="#short-answer-questions">Short-answer questions</a></li>
   <li><a href="#numerical-and-conceptual-questions" id="toc-numerical-and-conceptual-questions" class="nav-link" data-scroll-target="#numerical-and-conceptual-questions">Numerical and conceptual questions</a></li>
@@ -1705,6 +1707,33 @@ Table&nbsp;22.3: Adjusted analysis of covariance table for <a href="#exm-ancova-
 </section>
 <section id="chapter-summary" class="level2" data-number="22.5">
 <h2 data-number="22.5" class="anchored" data-anchor-id="chapter-summary"><span class="header-section-number">22.5</span> Chapter Summary</h2>
+<section id="important-formulae" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="important-formulae">Important formulae</h3>
+<p>For the CRD with one covariate and a common within-treatment slope:</p>
+<p><span class="math display">\[Y_{ij}=\mu+\tau_i+\beta(X_{ij}-\bar X)+e_{ij},
+\qquad \hat\beta=\frac{E_{xy}}{E_{xx}}\]</span></p>
+<p>Here <span class="math inline">\(E_{xx}\)</span>, <span class="math inline">\(E_{xy}\)</span> and <span class="math inline">\(E_{yy}\)</span> are the within-treatment corrected sums of squares and products defined in the chapter, with <span class="math inline">\(E_{xx}&gt;0\)</span>.</p>
+<p><span class="math display">\[E=E_{yy}-\frac{E_{xy}^2}{E_{xx}},\qquad
+MSE_{adj}=\frac{E}{n-v-1}\]</span></p>
+<p>With <span class="math inline">\(n\)</span> observed responses, <span class="math inline">\(v\)</span> treatments and one fitted covariate slope, the CRD error degrees of freedom are <span class="math inline">\(n-v-1\)</span>. For the complete RBD with <span class="math inline">\(r\)</span> blocks, use the within-block-and-treatment quantities and error degrees of freedom <span class="math inline">\((r-1)(v-1)-1\)</span>.</p>
+<p><span class="math display">\[\bar Y_{i,adj}=\bar Y_i-\hat\beta(\bar X_i-\bar X)\]</span></p>
+<p><span class="math display">\[F_{Treatment}=\frac{(E_1-E)/(v-1)}{MSE_{adj}}\]</span></p>
+<p>Here <span class="math inline">\(E_1\)</span> is the residual sum of squares from the reduced model without treatment effects, retaining the covariate and, in RBD, the blocks. <span class="math inline">\(E\)</span> is from the full model. The treatment comparison is therefore adjusted for the covariate.</p>
+</section>
+<section id="quick-revision" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="quick-revision">Quick revision</h3>
+<ul>
+<li>ANCOVA combines treatment comparison with regression adjustment.</li>
+<li>A covariate should be relevant to the response and should not be caused by the treatment being compared.</li>
+<li>The common-slope model assumes the same regression slope across treatments; examine treatment-by-covariate interaction.</li>
+<li>Independent errors, appropriate linearity and common residual variance are required for the stated model; normal errors support the usual exact tests.</li>
+<li>Adjustment compares treatment means at a common covariate value.</li>
+<li>Estimating one covariate slope uses one additional error degree of freedom.</li>
+<li>A useful covariate can improve precision, but improvement is not guaranteed.</li>
+<li>Adjustment does not turn an observational comparison into a randomized experiment.</li>
+<li>Use pair-specific standard errors when covariate means differ.</li>
+</ul>
+</section>
 <section id="fill-in-the-blanks" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="fill-in-the-blanks">Fill in the blanks</h3>
 <p>Answers are given at the end of the chapter.</p>

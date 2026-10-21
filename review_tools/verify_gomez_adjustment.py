@@ -14,6 +14,10 @@ ys=[math.log(float(r['Vx'])/float(d[0]['Vx'])) for r in d]
 b=-sum(x*y for x,y in zip(xs,ys))/sum(x*x for x in xs)
 adj=.403+(b-.35)*(.443-.403)/(.4-.35)
 assert abs(b-.360686601148)<1e-10 and abs(adj-.4115492809184)<1e-10
+xbar=sum(xs)/len(xs);ybar=sum(ys)/len(ys)
+b_free=-sum((x-xbar)*(y-ybar) for x,y in zip(xs,ys))/sum((x-xbar)**2 for x in xs)
+adj_free=.364+(b_free-.30)*(.403-.364)/(.35-.30)
+assert abs(b_free-.3468119)<1e-7 and abs(adj_free-.4005133)<1e-7
 for r in d:
     n=150;x=float(r['x'])
     assert abs(float(r['Vx'])-float(r['SS'])/(n-x))<1e-7
@@ -23,6 +27,8 @@ report={'source':'Gomez and Gomez (1984), Statistical Procedures for Agricultura
  'variance_definition':'Printed pp. 489–491; sample variance of totals divided by squared plot size',
  'table_rows_checked':len(rows),'corrected_computed_b_labels':[.15,.10],
  'b_fitted':b,'b_adjusted_full_precision':adj,'b_adjusted_using_rounded_fit':.41156,
+ 'regression_source':'Printed p. 492, Step 5: Y=cX, c=sum(wXY)/sum(wX^2), a through-origin fit',
+ 'alternative_free_intercept_b':b_free,'alternative_table_interpolation':adj_free,
  'raw_yield_data_unchanged':True,
  'reference_pdf_sha256':hashlib.sha256((root/'review_tools/gomez1984_reference.pdf').read_bytes()).hexdigest(),
  'reference_download':'https://www2.hcmuaf.edu.vn/data/ndnang/file/PPTN%202/Statistical%20procedure%20for%20agriculture%20research-Gomez.pdf'}
